@@ -72,27 +72,27 @@ export default [
                     component : require('$comp/admin/campaign/CreateWrapper').default,
                     children  : [
                         {
-                            path      : 'create/step1',
+                            path      : 'create/name',
                             name      : 'create-step1',
                             component : require('$comp/admin/campaign/Step1').default
                         },
                         {
-                            path      : 'create/step2',
+                            path      : 'create/payment-type',
                             name      : 'create-step2',
                             component : require('$comp/admin/campaign/Step2').default
                         },
                         {
-                            path      : 'create/step3',
+                            path      : 'create/objective',
                             name      : 'create-step3',
                             component : require('$comp/admin/campaign/Step3').default
                         },
                         {
-                            path      : 'create/step4',
+                            path      : 'create/platform',
                             name      : 'create-step4',
                             component : require('$comp/admin/campaign/Step4').default
                         },
                         {
-                            path      : 'create/step5',
+                            path      : 'create/payment-nature',
                             name      : 'create-step5',
                             component : require('$comp/admin/campaign/Step5').default
                         }
