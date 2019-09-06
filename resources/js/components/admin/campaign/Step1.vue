@@ -12,9 +12,6 @@
                 ></v-text-field>
             </v-card-text>
             <v-card-actions class="float-right pr-12 pb-12">
-                <v-btn text color="grayLight">
-                    Back
-                </v-btn>
                 <v-btn color="primary" dark large @click="goToNext()">
                     Next
                     <v-icon right>keyboard_arrow_right</v-icon>
