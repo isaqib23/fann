@@ -66,7 +66,38 @@ export default [
                     path      : 'dashboard',
                     name      : 'dashboard',
                     component : require('$comp/admin/views/dashboard').default
-                }
+                },
+                {
+                    path      : 'campaign',
+                    component : require('$comp/admin/campaign/CreateWrapper').default,
+                    children  : [
+                        {
+                            path      : 'create/step1',
+                            name      : 'create-step1',
+                            component : require('$comp/admin/campaign/Step1').default
+                        },
+                        {
+                            path      : 'create/step2',
+                            name      : 'create-step2',
+                            component : require('$comp/admin/campaign/Step2').default
+                        },
+                        {
+                            path      : 'create/step3',
+                            name      : 'create-step3',
+                            component : require('$comp/admin/campaign/Step3').default
+                        },
+                        {
+                            path      : 'create/step4',
+                            name      : 'create-step4',
+                            component : require('$comp/admin/campaign/Step4').default
+                        },
+                        {
+                            path      : 'create/step5',
+                            name      : 'create-step5',
+                            component : require('$comp/admin/campaign/Step5').default
+                        }
+                    ]
+                },
             ]
         },
     ])

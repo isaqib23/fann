@@ -132,6 +132,9 @@
                     ],
                     [
                         {title: 'Profile', icon: 'person', to: {name: 'profile'}, exact: false}
+                    ],
+                    [
+                        {title: 'Create', icon: 'list_alt', to: {name: 'create-step1'}, exact: false}
                     ]
                 ]
             }

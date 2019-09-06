@@ -14,7 +14,9 @@ let colors = {
     "integrityColor": "#afbbc1",
     "darkSecondary" : "#2f2f2f",
     "darkTextColor" : "#dcdcdc",
-    "attention"     : "#de5b7b"
+    "attention"     : "#de5b7b",
+    "grayLight"     : "#BAC3C9",
+    "grayLighten"   : "#EDEDED"
 };
 
 Vue.use(Vuetify, {
