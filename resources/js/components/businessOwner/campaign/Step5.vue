@@ -31,8 +31,6 @@
 
 <script>
 
-    import router from "../../../router";
-
     export default {
 
         data: () => ({
@@ -53,10 +51,10 @@
         },
         methods: {
             goToNext(){
-                router.push({ name: 'create-campaign-requirements' })
+                this.$router.push({ name: 'create-campaign-requirements' })
             },
             goToBack(){
-                router.push({ name: 'create-step4' })
+                this.$router.push({ name: 'create-step4' })
             }
         }
     }

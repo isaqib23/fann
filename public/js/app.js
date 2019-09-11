@@ -3444,7 +3444,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
 //
 //
 //
@@ -3468,7 +3467,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3483,7 +3481,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     goToNext: function goToNext() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-step2'
       });
     }
@@ -3501,7 +3499,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
 //
 //
 //
@@ -3541,7 +3538,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3557,12 +3553,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     goToNext: function goToNext() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-step3'
       });
     },
     goToBack: function goToBack() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-step1'
       });
     }
@@ -3580,7 +3576,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
 //
 //
 //
@@ -3620,7 +3615,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3636,12 +3630,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     goToNext: function goToNext() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-step4'
       });
     },
     goToBack: function goToBack() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-step2'
       });
     }
@@ -3659,7 +3653,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
 //
 //
 //
@@ -3707,7 +3700,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3723,12 +3715,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     goToNext: function goToNext() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-step5'
       });
     },
     goToBack: function goToBack() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-step3'
       });
     }
@@ -3746,7 +3738,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../router */ "./resources/js/router/index.js");
 //
 //
 //
@@ -3778,7 +3769,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3797,12 +3787,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     goToNext: function goToNext() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-campaign-requirements'
       });
     },
     goToBack: function goToBack() {
-      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+      this.$router.push({
         name: 'create-step4'
       });
     }
@@ -19809,21 +19799,10 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      staticClass: "text-center",
-                      attrs: { lg6: "", sm6: "", xs6: "" }
+                      staticClass: "radio-center",
+                      attrs: { lg6: "", sm6: "", xs12: "" }
                     },
                     [
-                      _c(
-                        "v-sheet",
-                        { attrs: { color: "grayLighten create_sheet" } },
-                        [
-                          _c("v-icon", { attrs: { size: "70" } }, [
-                            _vm._v("event_available")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
                       _c(
                         "v-radio-group",
                         {
@@ -19837,6 +19816,17 @@ var render = function() {
                           }
                         },
                         [
+                          _c(
+                            "v-sheet",
+                            { attrs: { color: "grayLighten create_sheet" } },
+                            [
+                              _c("v-icon", { attrs: { size: "70" } }, [
+                                _vm._v("event_available")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c("v-radio", {
                             attrs: {
                               label: "Paid",
@@ -19854,25 +19844,14 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      staticClass: "text-center",
-                      attrs: { lg6: "", sm6: "", xs6: "" }
+                      staticClass: "radio-center",
+                      attrs: { lg6: "", sm6: "", xs12: "" }
                     },
                     [
                       _c(
-                        "v-sheet",
-                        { attrs: { color: "grayLighten create_sheet" } },
-                        [
-                          _c("v-icon", { attrs: { size: "70" } }, [
-                            _vm._v("flip_camera_android")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
                         "v-radio-group",
                         {
-                          staticClass: "right_radio",
+                          staticClass: "left_radio",
                           model: {
                             value: _vm.radios,
                             callback: function($$v) {
@@ -19882,6 +19861,17 @@ var render = function() {
                           }
                         },
                         [
+                          _c(
+                            "v-sheet",
+                            { attrs: { color: "grayLighten create_sheet" } },
+                            [
+                              _c("v-icon", { attrs: { size: "70" } }, [
+                                _vm._v("flip_camera_android")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c("v-radio", {
                             attrs: {
                               label: "Barter",
@@ -20003,21 +19993,10 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      staticClass: "text-center",
-                      attrs: { lg6: "", sm6: "", xs6: "" }
+                      staticClass: "radio-center",
+                      attrs: { lg6: "", sm6: "", xs12: "" }
                     },
                     [
-                      _c(
-                        "v-sheet",
-                        { attrs: { color: "grayLighten create_sheet" } },
-                        [
-                          _c("v-icon", { attrs: { size: "70" } }, [
-                            _vm._v("toll")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
                       _c(
                         "v-radio-group",
                         {
@@ -20031,6 +20010,17 @@ var render = function() {
                           }
                         },
                         [
+                          _c(
+                            "v-sheet",
+                            { attrs: { color: "grayLighten create_sheet" } },
+                            [
+                              _c("v-icon", { attrs: { size: "70" } }, [
+                                _vm._v("toll")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c("v-radio", {
                             attrs: {
                               label: "Brand Awareness",
@@ -20048,25 +20038,14 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      staticClass: "text-center",
-                      attrs: { lg6: "", sm6: "", xs6: "" }
+                      staticClass: "radio-center",
+                      attrs: { lg6: "", sm6: "", xs12: "" }
                     },
                     [
                       _c(
-                        "v-sheet",
-                        { attrs: { color: "grayLighten create_sheet" } },
-                        [
-                          _c("v-icon", { attrs: { size: "70" } }, [
-                            _vm._v("pan_tool")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
                         "v-radio-group",
                         {
-                          staticClass: "right_radio",
+                          staticClass: "radio-center",
                           model: {
                             value: _vm.radios,
                             callback: function($$v) {
@@ -20076,6 +20055,17 @@ var render = function() {
                           }
                         },
                         [
+                          _c(
+                            "v-sheet",
+                            { attrs: { color: "grayLighten create_sheet" } },
+                            [
+                              _c("v-icon", { attrs: { size: "70" } }, [
+                                _vm._v("pan_tool")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c("v-radio", {
                             attrs: {
                               label: "Product Promotion",
@@ -20197,21 +20187,10 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      staticClass: "text-center",
+                      staticClass: "radio-center",
                       attrs: { lg4: "", sm4: "", xs12: "" }
                     },
                     [
-                      _c(
-                        "v-sheet",
-                        { attrs: { color: "grayLighten create_sheet" } },
-                        [
-                          _c("v-icon", { attrs: { size: "70" } }, [
-                            _vm._v("local_see")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
                       _c(
                         "v-radio-group",
                         {
@@ -20225,6 +20204,17 @@ var render = function() {
                           }
                         },
                         [
+                          _c(
+                            "v-sheet",
+                            { attrs: { color: "grayLighten create_sheet" } },
+                            [
+                              _c("v-icon", { attrs: { size: "70" } }, [
+                                _vm._v("local_see")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c("v-radio", {
                             attrs: {
                               label: "Instagram",
@@ -20242,21 +20232,10 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      staticClass: "text-center",
+                      staticClass: "radio-center",
                       attrs: { lg4: "", sm4: "", xs12: "" }
                     },
                     [
-                      _c(
-                        "v-sheet",
-                        { attrs: { color: "grayLighten create_sheet" } },
-                        [
-                          _c("v-icon", { attrs: { size: "70" } }, [
-                            _vm._v("video_library")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
                       _c(
                         "v-radio-group",
                         {
@@ -20270,6 +20249,17 @@ var render = function() {
                           }
                         },
                         [
+                          _c(
+                            "v-sheet",
+                            { attrs: { color: "grayLighten create_sheet" } },
+                            [
+                              _c("v-icon", { attrs: { size: "70" } }, [
+                                _vm._v("video_library")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c("v-radio", {
                             attrs: {
                               label: "Youtube",
@@ -20287,21 +20277,10 @@ var render = function() {
                   _c(
                     "v-flex",
                     {
-                      staticClass: "text-center",
+                      staticClass: "radio-center",
                       attrs: { lg4: "", sm4: "", xs12: "" }
                     },
                     [
-                      _c(
-                        "v-sheet",
-                        { attrs: { color: "grayLighten create_sheet" } },
-                        [
-                          _c("v-icon", { attrs: { size: "70" } }, [
-                            _vm._v("rate_review")
-                          ])
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
                       _c(
                         "v-radio-group",
                         {
@@ -20315,6 +20294,17 @@ var render = function() {
                           }
                         },
                         [
+                          _c(
+                            "v-sheet",
+                            { attrs: { color: "grayLighten create_sheet" } },
+                            [
+                              _c("v-icon", { attrs: { size: "70" } }, [
+                                _vm._v("rate_review")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
                           _c("v-radio", {
                             attrs: {
                               label: "Blog Promotion",

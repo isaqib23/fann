@@ -6,19 +6,19 @@
             <v-card-text class="text-center">Select the <span class="primary--text">Type</span> of your campaign which you want to create</v-card-text>
             <v-card-text class="mb-12 text_field_width ma-auto">
                 <v-layout row justify-center wrap>
-                    <v-flex lg6 sm6 xs6 class="text-center">
-                        <v-sheet color="grayLighten create_sheet">
-                            <v-icon size="70">event_available</v-icon>
-                        </v-sheet>
+                    <v-flex lg6 sm6 xs12 class="radio-center">
                         <v-radio-group class="left_radio" v-model="radios">
+                            <v-sheet color="grayLighten create_sheet">
+                                <v-icon size="70">event_available</v-icon>
+                            </v-sheet>
                             <v-radio label="Paid" value="radio-1" color="primary"></v-radio>
                         </v-radio-group>
                     </v-flex>
-                    <v-flex lg6 sm6 xs6 class="text-center">
-                        <v-sheet color="grayLighten create_sheet">
-                            <v-icon size="70">flip_camera_android</v-icon>
-                        </v-sheet>
-                        <v-radio-group class="right_radio" v-model="radios">
+                    <v-flex lg6 sm6 xs12 class="radio-center">
+                        <v-radio-group class="left_radio" v-model="radios">
+                            <v-sheet color="grayLighten create_sheet">
+                                <v-icon size="70">flip_camera_android</v-icon>
+                            </v-sheet>
                             <v-radio label="Barter" value="radio-2" color="primary"></v-radio>
                         </v-radio-group>
                     </v-flex>
@@ -39,8 +39,6 @@
 
 <script>
 
-    import router from "../../../router";
-
     export default {
 
         data: () => ({
@@ -58,10 +56,10 @@
         },
         methods: {
             goToNext(){
-                router.push({name:'create-step3'})
+                this.$router.push({name:'create-step3'})
             },
             goToBack(){
-                router.push({name:'create-step1'})
+                this.$router.push({name:'create-step1'})
             }
         }
     }

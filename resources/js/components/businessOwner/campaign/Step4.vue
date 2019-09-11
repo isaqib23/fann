@@ -6,27 +6,27 @@
             <v-card-text class="text-center">Select the <span class="primary--text">Platform</span> of your campaign which you want to create</v-card-text>
             <v-card-text class="mb-12 text_field_width ma-auto">
                 <v-layout row justify-center wrap>
-                    <v-flex lg4 sm4 xs12 class="text-center">
-                        <v-sheet color="grayLighten create_sheet">
-                            <v-icon size="70">local_see</v-icon>
-                        </v-sheet>
+                    <v-flex lg4 sm4 xs12 class="radio-center">
                         <v-radio-group v-model="radios" class="first_radio">
+                            <v-sheet color="grayLighten create_sheet">
+                                <v-icon size="70">local_see</v-icon>
+                            </v-sheet>
                             <v-radio label="Instagram" value="radio-1" color="primary"></v-radio>
                         </v-radio-group>
                     </v-flex>
-                    <v-flex lg4 sm4 xs12 class="text-center">
-                        <v-sheet color="grayLighten create_sheet">
-                            <v-icon size="70">video_library</v-icon>
-                        </v-sheet>
+                    <v-flex lg4 sm4 xs12 class="radio-center">
                         <v-radio-group class="pl-12" v-model="radios">
+                            <v-sheet color="grayLighten create_sheet">
+                                <v-icon size="70">video_library</v-icon>
+                            </v-sheet>
                             <v-radio label="Youtube" value="radio-2" color="primary"></v-radio>
                         </v-radio-group>
                     </v-flex>
-                    <v-flex lg4 sm4 xs12 class="text-center">
-                        <v-sheet color="grayLighten create_sheet">
-                            <v-icon size="70">rate_review</v-icon>
-                        </v-sheet>
+                    <v-flex lg4 sm4 xs12 class="radio-center">
                         <v-radio-group class="pl-12" v-model="radios">
+                            <v-sheet color="grayLighten create_sheet">
+                                <v-icon size="70">rate_review</v-icon>
+                            </v-sheet>
                             <v-radio label="Blog Promotion" value="radio-3" color="primary"></v-radio>
                         </v-radio-group>
                     </v-flex>
@@ -47,8 +47,6 @@
 
 <script>
 
-    import router from "../../../router";
-
     export default {
 
         data: () => ({
@@ -66,10 +64,10 @@
         },
         methods: {
             goToNext(){
-                router.push({name:'create-step5'})
+                this.$router.push({name:'create-step5'})
             },
             goToBack(){
-                router.push({name:'create-step3'})
+                this.$router.push({name:'create-step3'})
             }
         }
     }
