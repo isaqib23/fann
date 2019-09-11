@@ -39,7 +39,7 @@ export default [
     ...applyRules(['businessOwner'], [
         {
             path      : '',
-            component : require('$comp/BusinessOwner/BusinessOwnerWrapper').default,
+            component : require('$comp/businessOwner/BusinessOwnerWrapper').default,
             children  : [
                 {
                     path      : '',
@@ -48,58 +48,58 @@ export default [
                 },
                 {
                     path      : 'profile',
-                    component : require('$comp/BusinessOwner/profile/ProfileWrapper').default,
+                    component : require('$comp/businessOwner/profile/ProfileWrapper').default,
                     children  : [
                         {
                             path      : '',
                             name      : 'profile',
-                            component : require('$comp/BusinessOwner/profile/Profile').default
+                            component : require('$comp/businessOwner/profile/Profile').default
                         },
                         {
                             path      : 'edit',
                             name      : 'profile-edit',
-                            component : require('$comp/BusinessOwner/profile/edit/ProfileEdit').default
+                            component : require('$comp/businessOwner/profile/edit/ProfileEdit').default
                         }
                     ]
                 },
                 {
                     path      : 'dashboard',
                     name      : 'dashboard',
-                    component : require('$comp/BusinessOwner/views/dashboard').default
+                    component : require('$comp/businessOwner/views/dashboard').default
                 },
                 {
                     path      : 'campaign/create',
-                    component : require('$comp/BusinessOwner/campaign/CreateWrapper').default,
+                    component : require('$comp/businessOwner/campaign/CreateWrapper').default,
                     children  : [
                         {
                             path      : 'name',
                             name      : 'create-step1',
-                            component : require('$comp/BusinessOwner/campaign/Step1').default
+                            component : require('$comp/businessOwner/campaign/Step1').default
                         },
                         {
                             path      : 'payment-type',
                             name      : 'create-step2',
-                            component : require('$comp/BusinessOwner/campaign/Step2').default
+                            component : require('$comp/businessOwner/campaign/Step2').default
                         },
                         {
                             path      : 'objective',
                             name      : 'create-step3',
-                            component : require('$comp/BusinessOwner/campaign/Step3').default
+                            component : require('$comp/businessOwner/campaign/Step3').default
                         },
                         {
                             path      : 'platform',
                             name      : 'create-step4',
-                            component : require('$comp/BusinessOwner/campaign/Step4').default
+                            component : require('$comp/businessOwner/campaign/Step4').default
                         },
                         {
                             path      : 'payment-nature',
                             name      : 'create-step5',
-                            component : require('$comp/BusinessOwner/campaign/Step5').default
+                            component : require('$comp/businessOwner/campaign/Step5').default
                         },
                         {
                             path      : 'requirements',
                             name      : 'create-campaign-requirements',
-                            component : require('$comp/BusinessOwner/campaign/CreateCampaignRequirements').default
+                            component : require('$comp/businessOwner/campaign/CreateCampaignRequirements').default
                         }
                     ]
                 },
