@@ -3356,6 +3356,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19381,147 +19394,159 @@ var render = function() {
               { staticClass: "left-pane" },
               [
                 _c(
-                  "v-stepper",
-                  {
-                    attrs: { vertical: true },
-                    model: {
-                      value: _vm.e1,
-                      callback: function($$v) {
-                        _vm.e1 = $$v
-                      },
-                      expression: "e1"
-                    }
-                  },
+                  "v-card",
                   [
                     _c(
-                      "v-stepper-header",
-                      [
-                        _c(
-                          "v-stepper-step",
-                          { attrs: { complete: _vm.e1 > 1, step: "1" } },
-                          [_vm._v("Name of step 1")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-stepper-step",
-                          { attrs: { complete: _vm.e1 > 2, step: "2" } },
-                          [_vm._v("Name of step 2")]
-                        ),
-                        _vm._v(" "),
-                        _c("v-stepper-step", { attrs: { step: "3" } }, [
-                          _vm._v("Name of step 3")
-                        ])
-                      ],
+                      "v-toolbar",
+                      { attrs: { flat: "", color: "primary", dark: "" } },
+                      [_c("v-toolbar-title", [_vm._v("User Profile")])],
                       1
                     ),
                     _vm._v(" "),
                     _c(
-                      "v-stepper-items",
+                      "v-tabs",
+                      { attrs: { vertical: "" } },
                       [
                         _c(
-                          "v-stepper-content",
-                          { attrs: { step: "1" } },
+                          "v-tab",
                           [
-                            _c("v-card", {
-                              staticClass: "mb-12",
-                              attrs: {
-                                color: "grey lighten-1",
-                                height: "200px"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                attrs: { color: "primary" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.e1 = 2
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                Continue\n                            "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("v-btn", { attrs: { text: "" } }, [
-                              _vm._v("Cancel")
-                            ])
+                            _c("v-icon", { attrs: { left: "" } }, [
+                              _vm._v("mdi-account")
+                            ]),
+                            _vm._v(
+                              "\n                            Option 1\n                        "
+                            )
                           ],
                           1
                         ),
                         _vm._v(" "),
                         _c(
-                          "v-stepper-content",
-                          { attrs: { step: "2" } },
+                          "v-tab",
                           [
-                            _c("v-card", {
-                              staticClass: "mb-12",
-                              attrs: {
-                                color: "grey lighten-1",
-                                height: "200px"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "v-btn",
-                              {
-                                attrs: { color: "primary" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.e1 = 3
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                Continue\n                            "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("v-btn", { attrs: { text: "" } }, [
-                              _vm._v("Cancel")
-                            ])
+                            _c("v-icon", { attrs: { left: "" } }, [
+                              _vm._v("mdi-lock")
+                            ]),
+                            _vm._v(
+                              "\n                            Option 2\n                        "
+                            )
                           ],
                           1
                         ),
                         _vm._v(" "),
                         _c(
-                          "v-stepper-content",
-                          { attrs: { step: "3" } },
+                          "v-tab",
                           [
-                            _c("v-card", {
-                              staticClass: "mb-12",
-                              attrs: {
-                                color: "grey lighten-1",
-                                height: "200px"
-                              }
-                            }),
-                            _vm._v(" "),
+                            _c("v-icon", { attrs: { left: "" } }, [
+                              _vm._v("mdi-access-point")
+                            ]),
+                            _vm._v(
+                              "\n                            Option 3\n                        "
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-tab-item",
+                          [
                             _c(
-                              "v-btn",
-                              {
-                                attrs: { color: "primary" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.e1 = 1
-                                  }
-                                }
-                              },
+                              "v-card",
+                              { attrs: { flat: "" } },
                               [
-                                _vm._v(
-                                  "\n                                Continue\n                            "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("v-btn", { attrs: { text: "" } }, [
-                              _vm._v("Cancel")
-                            ])
+                                _c("v-card-text", [
+                                  _c("p", [
+                                    _vm._v(
+                                      "\n                                        Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam feugiat lorem non metus. Sed a libero.\n                                    "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [
+                                    _vm._v(
+                                      "\n                                        Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam lobortis. Aliquam lobortis. Suspendisse non nisl sit amet velit hendrerit rutrum.\n                                    "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "mb-0" }, [
+                                    _vm._v(
+                                      "\n                                        Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Phasellus blandit leo ut odio.\n                                    "
+                                    )
+                                  ])
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-tab-item",
+                          [
+                            _c(
+                              "v-card",
+                              { attrs: { flat: "" } },
+                              [
+                                _c("v-card-text", [
+                                  _c("p", [
+                                    _vm._v(
+                                      "\n                                        Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.\n                                    "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [
+                                    _vm._v(
+                                      "\n                                        Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.\n                                    "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [
+                                    _vm._v(
+                                      "\n                                        Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.\n                                    "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", [
+                                    _vm._v(
+                                      "\n                                        Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.\n                                    "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "mb-0" }, [
+                                    _vm._v(
+                                      "\n                                        Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.\n                                    "
+                                    )
+                                  ])
+                                ])
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "v-tab-item",
+                          [
+                            _c(
+                              "v-card",
+                              { attrs: { flat: "" } },
+                              [
+                                _c("v-card-text", [
+                                  _c("p", [
+                                    _vm._v(
+                                      "\n                                        Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.\n                                    "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("p", { staticClass: "mb-0" }, [
+                                    _vm._v(
+                                      "\n                                        Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.\n                                    "
+                                    )
+                                  ])
+                                ])
+                              ],
+                              1
+                            )
                           ],
                           1
                         )
@@ -74625,10 +74650,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VStepper */ "./node_modules/vuetify/lib/components/VStepper/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
+/* harmony import */ var vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VToolbar */ "./node_modules/vuetify/lib/components/VToolbar/index.js");
 
 
 
@@ -74659,7 +74685,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VFlex"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VLayout"],VStepper: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_8__["VStepper"],VStepperContent: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_8__["VStepperContent"],VStepperHeader: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_8__["VStepperHeader"],VStepperItems: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_8__["VStepperItems"],VStepperStep: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_8__["VStepperStep"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardText"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VLayout"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTabs"],VToolbar: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_9__["VToolbar"],VToolbarTitle: vuetify_lib_components_VToolbar__WEBPACK_IMPORTED_MODULE_9__["VToolbarTitle"]})
 
 
 /* hot reload */
