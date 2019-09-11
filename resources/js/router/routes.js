@@ -39,7 +39,7 @@ export default [
     ...applyRules(['businessOwner'], [
         {
             path      : '',
-            component : require('$comp/BusinessOwner/AdminWrapper').default,
+            component : require('$comp/BusinessOwner/BusinessOwnerWrapper').default,
             children  : [
                 {
                     path      : '',
