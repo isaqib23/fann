@@ -53,10 +53,10 @@
         },
         methods: {
             goToNext(){
-                router.push({name:''})
+                router.push({ name: 'create-campaign-requirements' })
             },
             goToBack(){
-                router.push({name:'create-step4'})
+                router.push({ name: 'create-step4' })
             }
         }
     }

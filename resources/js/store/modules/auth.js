@@ -7,7 +7,8 @@ import * as types from '../mutation-types'
  */
 export const state = {
   user: null,
-  token: window.localStorage.getItem('token')
+  token: window.localStorage.getItem('token'),
+  type: null
 }
 
 /**
@@ -72,5 +73,6 @@ export const actions = {
 export const getters = {
   user: state => state.user,
   check: state => state.user !== null,
+  type: state => state.user.type,
   token: state => state.token
 }

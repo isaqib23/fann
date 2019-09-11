@@ -2651,6 +2651,100 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      e1: 0
+    };
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/campaign/CreateWrapper.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/campaign/CreateWrapper.vue?vue&type=script&lang=js& ***!
@@ -3051,7 +3145,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     goToNext: function goToNext() {
       _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
-        name: ''
+        name: 'create-campaign-requirements'
       });
     },
     goToBack: function goToBack() {
@@ -18327,6 +18421,188 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("app-footer")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=template&id=c48c6140&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=template&id=c48c6140& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-flex",
+        [
+          _c(
+            "v-layout",
+            [
+              _c(
+                "v-stepper",
+                {
+                  model: {
+                    value: _vm.e1,
+                    callback: function($$v) {
+                      _vm.e1 = $$v
+                    },
+                    expression: "e1"
+                  }
+                },
+                [
+                  _c(
+                    "v-stepper-header",
+                    [
+                      _c(
+                        "v-stepper-step",
+                        { attrs: { complete: _vm.e1 > 1, step: "1" } },
+                        [_vm._v("Name of step 1")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-stepper-step",
+                        { attrs: { complete: _vm.e1 > 2, step: "2" } },
+                        [_vm._v("Name of step 2")]
+                      ),
+                      _vm._v(" "),
+                      _c("v-stepper-step", { attrs: { step: "3" } }, [
+                        _vm._v("Name of step 3")
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-stepper-items",
+                    [
+                      _c(
+                        "v-stepper-content",
+                        { attrs: { step: "1" } },
+                        [
+                          _c("v-card", {
+                            staticClass: "mb-12",
+                            attrs: { color: "grey lighten-1", height: "200px" }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.e1 = 2
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Continue\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("v-btn", { attrs: { text: "" } }, [
+                            _vm._v("Cancel")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-stepper-content",
+                        { attrs: { step: "2" } },
+                        [
+                          _c("v-card", {
+                            staticClass: "mb-12",
+                            attrs: { color: "grey lighten-1", height: "200px" }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.e1 = 3
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Continue\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("v-btn", { attrs: { text: "" } }, [
+                            _vm._v("Cancel")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-stepper-content",
+                        { attrs: { step: "3" } },
+                        [
+                          _c("v-card", {
+                            staticClass: "mb-12",
+                            attrs: { color: "grey lighten-1", height: "200px" }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { color: "primary" },
+                              on: {
+                                click: function($event) {
+                                  _vm.e1 = 1
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Continue\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("v-btn", { attrs: { text: "" } }, [
+                            _vm._v("Cancel")
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
@@ -73272,6 +73548,95 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/campaign/CreateCampaignRequirements.vue":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/admin/campaign/CreateCampaignRequirements.vue ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateCampaignRequirements_vue_vue_type_template_id_c48c6140___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateCampaignRequirements.vue?vue&type=template&id=c48c6140& */ "./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=template&id=c48c6140&");
+/* harmony import */ var _CreateCampaignRequirements_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateCampaignRequirements.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VStepper */ "./node_modules/vuetify/lib/components/VStepper/index.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateCampaignRequirements_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateCampaignRequirements_vue_vue_type_template_id_c48c6140___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateCampaignRequirements_vue_vue_type_template_id_c48c6140___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* vuetify-loader */
+
+
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VLayout"],VStepper: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_7__["VStepper"],VStepperContent: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_7__["VStepperContent"],VStepperHeader: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_7__["VStepperHeader"],VStepperItems: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_7__["VStepperItems"],VStepperStep: vuetify_lib_components_VStepper__WEBPACK_IMPORTED_MODULE_7__["VStepperStep"]})
+
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/campaign/CreateCampaignRequirements.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateCampaignRequirements_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateCampaignRequirements.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateCampaignRequirements_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=template&id=c48c6140&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=template&id=c48c6140& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateCampaignRequirements_vue_vue_type_template_id_c48c6140___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateCampaignRequirements.vue?vue&type=template&id=c48c6140& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/campaign/CreateCampaignRequirements.vue?vue&type=template&id=c48c6140&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateCampaignRequirements_vue_vue_type_template_id_c48c6140___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateCampaignRequirements_vue_vue_type_template_id_c48c6140___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/campaign/CreateWrapper.vue":
 /*!******************************************************************!*\
   !*** ./resources/js/components/admin/campaign/CreateWrapper.vue ***!
@@ -75870,10 +76235,16 @@ var rules = {
       return !_store_index__WEBPACK_IMPORTED_MODULE_3__["default"].getters['auth/check'];
     }
   },
-  auth: {
+  businessOwner: {
     fail: 'login',
     check: function check() {
-      return _store_index__WEBPACK_IMPORTED_MODULE_3__["default"].getters['auth/check'];
+      return _store_index__WEBPACK_IMPORTED_MODULE_3__["default"].getters['auth/type'] == 'businessOwner';
+    }
+  },
+  influencer: {
+    fail: 'login',
+    check: function check() {
+      return _store_index__WEBPACK_IMPORTED_MODULE_3__["default"].getters['auth/type'] == 'influencer';
     }
   }
 };
@@ -75968,7 +76339,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
       component: __webpack_require__(/*! $comp/auth/password/password-reset/PasswordReset */ "./resources/js/components/auth/password/password-reset/PasswordReset.vue")["default"]
     }]
   }]
-}])), _toConsumableArray(applyRules(['auth'], [{
+}])), _toConsumableArray(applyRules(['businessOwner'], [{
   path: '',
   component: __webpack_require__(/*! $comp/admin/AdminWrapper */ "./resources/js/components/admin/AdminWrapper.vue")["default"],
   children: [{
@@ -75994,28 +76365,60 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     name: 'dashboard',
     component: __webpack_require__(/*! $comp/admin/views/dashboard */ "./resources/js/components/admin/views/dashboard.vue")["default"]
   }, {
-    path: 'campaign',
+    path: 'campaign/create',
     component: __webpack_require__(/*! $comp/admin/campaign/CreateWrapper */ "./resources/js/components/admin/campaign/CreateWrapper.vue")["default"],
     children: [{
-      path: 'create/name',
+      path: 'name',
       name: 'create-step1',
       component: __webpack_require__(/*! $comp/admin/campaign/Step1 */ "./resources/js/components/admin/campaign/Step1.vue")["default"]
     }, {
-      path: 'create/payment-type',
+      path: 'payment-type',
       name: 'create-step2',
       component: __webpack_require__(/*! $comp/admin/campaign/Step2 */ "./resources/js/components/admin/campaign/Step2.vue")["default"]
     }, {
-      path: 'create/objective',
+      path: 'objective',
       name: 'create-step3',
       component: __webpack_require__(/*! $comp/admin/campaign/Step3 */ "./resources/js/components/admin/campaign/Step3.vue")["default"]
     }, {
-      path: 'create/platform',
+      path: 'platform',
       name: 'create-step4',
       component: __webpack_require__(/*! $comp/admin/campaign/Step4 */ "./resources/js/components/admin/campaign/Step4.vue")["default"]
     }, {
-      path: 'create/payment-nature',
+      path: 'payment-nature',
       name: 'create-step5',
       component: __webpack_require__(/*! $comp/admin/campaign/Step5 */ "./resources/js/components/admin/campaign/Step5.vue")["default"]
+    }, {
+      path: 'requirements',
+      name: 'create-campaign-requirements',
+      component: __webpack_require__(/*! $comp/admin/campaign/CreateCampaignRequirements */ "./resources/js/components/admin/campaign/CreateCampaignRequirements.vue")["default"]
+    }]
+  }, {
+    path: 'campaign/edit',
+    component: __webpack_require__(/*! $comp/admin/campaign/CreateWrapper */ "./resources/js/components/admin/campaign/CreateWrapper.vue")["default"],
+    children: [{
+      path: 'name',
+      name: 'create-step1',
+      component: __webpack_require__(/*! $comp/admin/campaign/Step1 */ "./resources/js/components/admin/campaign/Step1.vue")["default"]
+    }, {
+      path: 'payment-type',
+      name: 'create-step2',
+      component: __webpack_require__(/*! $comp/admin/campaign/Step2 */ "./resources/js/components/admin/campaign/Step2.vue")["default"]
+    }, {
+      path: 'objective',
+      name: 'create-step3',
+      component: __webpack_require__(/*! $comp/admin/campaign/Step3 */ "./resources/js/components/admin/campaign/Step3.vue")["default"]
+    }, {
+      path: 'platform',
+      name: 'create-step4',
+      component: __webpack_require__(/*! $comp/admin/campaign/Step4 */ "./resources/js/components/admin/campaign/Step4.vue")["default"]
+    }, {
+      path: 'payment-nature',
+      name: 'create-step5',
+      component: __webpack_require__(/*! $comp/admin/campaign/Step5 */ "./resources/js/components/admin/campaign/Step5.vue")["default"]
+    }, {
+      path: 'requirements',
+      name: 'create-campaign-requirements',
+      component: __webpack_require__(/*! $comp/admin/campaign/CreateCampaignRequirements */ "./resources/js/components/admin/campaign/CreateCampaignRequirements.vue")["default"]
     }]
   }]
 }]))));
@@ -76164,7 +76567,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var state = {
   user: null,
-  token: window.localStorage.getItem('token')
+  token: window.localStorage.getItem('token'),
+  type: null
   /**
    * Mutations
    */
@@ -76284,6 +76688,9 @@ var getters = {
   },
   check: function check(state) {
     return state.user !== null;
+  },
+  type: function type(state) {
+    return state.user.type;
   },
   token: function token(state) {
     return state.token;

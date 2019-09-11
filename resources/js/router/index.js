@@ -29,7 +29,8 @@ router.beforeEach(async (to, from, next) => {
 
 const rules = {
   guest: { fail: 'index', check: () => (!store.getters['auth/check']) },
-  auth: { fail: 'login', check: () => (store.getters['auth/check']) }
+  businessOwner: { fail: 'login', check: () => (store.getters['auth/type'] == 'businessOwner') },
+  influencer: { fail: 'login', check: () => (store.getters['auth/type'] == 'influencer') },
 }
 
 function reroute(to) {

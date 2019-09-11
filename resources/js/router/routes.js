@@ -36,7 +36,7 @@ export default [
                 ]
         },
     ]),
-    ...applyRules(['auth'], [
+    ...applyRules(['businessOwner'], [
         {
             path      : '',
             component : require('$comp/admin/AdminWrapper').default,
@@ -68,33 +68,74 @@ export default [
                     component : require('$comp/admin/views/dashboard').default
                 },
                 {
-                    path      : 'campaign',
+                    path      : 'campaign/create',
                     component : require('$comp/admin/campaign/CreateWrapper').default,
                     children  : [
                         {
-                            path      : 'create/name',
+                            path      : 'name',
                             name      : 'create-step1',
                             component : require('$comp/admin/campaign/Step1').default
                         },
                         {
-                            path      : 'create/payment-type',
+                            path      : 'payment-type',
                             name      : 'create-step2',
                             component : require('$comp/admin/campaign/Step2').default
                         },
                         {
-                            path      : 'create/objective',
+                            path      : 'objective',
                             name      : 'create-step3',
                             component : require('$comp/admin/campaign/Step3').default
                         },
                         {
-                            path      : 'create/platform',
+                            path      : 'platform',
                             name      : 'create-step4',
                             component : require('$comp/admin/campaign/Step4').default
                         },
                         {
-                            path      : 'create/payment-nature',
+                            path      : 'payment-nature',
                             name      : 'create-step5',
                             component : require('$comp/admin/campaign/Step5').default
+                        },
+                        {
+                            path      : 'requirements',
+                            name      : 'create-campaign-requirements',
+                            component : require('$comp/admin/campaign/CreateCampaignRequirements').default
+                        }
+                    ]
+                },
+                {
+                    path      : 'campaign/edit',
+                    component : require('$comp/admin/campaign/CreateWrapper').default,
+                    children  : [
+                        {
+                            path      : 'name',
+                            name      : 'create-step1',
+                            component : require('$comp/admin/campaign/Step1').default
+                        },
+                        {
+                            path      : 'payment-type',
+                            name      : 'create-step2',
+                            component : require('$comp/admin/campaign/Step2').default
+                        },
+                        {
+                            path      : 'objective',
+                            name      : 'create-step3',
+                            component : require('$comp/admin/campaign/Step3').default
+                        },
+                        {
+                            path      : 'platform',
+                            name      : 'create-step4',
+                            component : require('$comp/admin/campaign/Step4').default
+                        },
+                        {
+                            path      : 'payment-nature',
+                            name      : 'create-step5',
+                            component : require('$comp/admin/campaign/Step5').default
+                        },
+                        {
+                            path      : 'requirements',
+                            name      : 'create-campaign-requirements',
+                            component : require('$comp/admin/campaign/CreateCampaignRequirements').default
                         }
                     ]
                 },
