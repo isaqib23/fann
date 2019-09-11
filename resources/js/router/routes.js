@@ -95,14 +95,28 @@ export default [
                             path      : 'payment-nature',
                             name      : 'create-step5',
                             component : require('$comp/businessOwner/campaign/Step5').default
-                        },
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            path      : '',
+            component : require('$comp/general/FullContentWidthWrapper').default,
+            children  : [
+                {
+                    path      : 'campaign/create',
+                    component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
+                    children  : [
                         {
                             path      : 'requirements',
                             name      : 'create-campaign-requirements',
                             component : require('$comp/businessOwner/campaign/CreateCampaignRequirements').default
                         }
                     ]
-                },
+
+                }
+
             ]
         },
     ])
