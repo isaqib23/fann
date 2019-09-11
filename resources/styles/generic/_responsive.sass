@@ -1,0 +1,159 @@
+$width-320: 320px
+$width-480: 480px
+$width-481: 481px
+$width-767: 767px
+$width-768: 768px
+$width-1024: 1024px
+$width-1025: 1025px
+$width-1280: 1280px
+$width-1281: 1281px
+
+
+/* ##Device = Desktops ##Screen = 1281px to higher resolution desktops */
+
+
+@media (min-width: $width-1281)
+.create_card
+    padding: 48px !important
+    .text_field_width
+        width: 50% !important
+    .action_btns
+        padding-right: 48px !important
+        padding-bottom: 48px !important
+    .right_radio
+        padding-left: 48px !important
+.create_container
+    margin: 48px !important
+
+
+
+/* ##Device = Laptops, Desktops ##Screen = B/w 1025px to 1280px */
+
+
+@media (min-width: $width-1025) and (max-width: $width-1280)
+
+//SASS
+
+
+
+/* ##Device = Tablets, Ipads (portrait) ##Screen = B/w 768px to 1024px */
+
+
+@media (min-width: $width-768) and (max-width: $width-1024)
+    .create_card
+        .action_btns
+            padding-right: 18px !important
+            padding-bottom: 18px !important
+        .create_sheet
+            margin: 15px !important
+            padding: 30px !important
+            .v-icon.v-icon
+                font-size: 40px !important
+        .left_radio
+            padding-left: 30px !important
+        .right_radio
+            padding-left: 30px !important
+        .first_radio
+            padding-left: 48px !important
+        .text_field_width
+            width: 100% !important
+
+
+
+/* ##Device = Tablets, Ipads (landscape) ##Screen = B/w 768px to 1024px */
+
+
+@media (min-width: $width-768) and (max-width: $width-1024) and (orientation: landscape)
+    .create_card
+        .action_btns
+            padding-right: 18px !important
+            padding-bottom: 18px !important
+        .create_sheet
+            margin: 15px !important
+            padding: 30px !important
+            .v-icon.v-icon
+                font-size: 40px !important
+        .left_radio
+            padding-left: 30px !important
+        .right_radio
+            padding-left: 30px !important
+        .first_radio
+            padding-left: 48px !important
+        .text_field_width
+            width: 100% !important
+
+
+
+/* ##Device = Low Resolution Tablets, Mobiles (Landscape) ##Screen = B/w 481px to 767px */
+
+
+@media (min-width: $width-481) and (max-width: $width-767)
+    .create_card
+        padding: 0px !important
+        .v-card__text
+            font-size: 12px
+        .v-card__title
+            font-size: 20px
+        .text_field_width
+            width: 100% !important
+        .action_btns
+            padding-right: 12px !important
+            padding-bottom: 12px !important
+        .create_sheet
+            margin: 8px !important
+            padding: 20px !important
+            .v-icon.v-icon
+                font-size: 28px !important
+        .left_radio
+            padding-left: 20px !important
+        .right_radio
+            padding-left: 20px !important
+        .first_radio
+            padding-left: 48px !important
+        .create_container
+            margin: 0px !important
+
+
+
+/* ##Device = Most of the Smartphones Mobiles (Portrait) ##Screen = B/w 320px to 479px */
+
+@media (min-width: $width-320) and (max-width: $width-480)
+    .create_card
+        padding: 0px !important
+        .v-card__text
+            font-size: 12px
+        .v-card__title
+            font-size: 18px
+        .text_field_width
+            width: 100% !important
+        .action_btns
+            padding-right: 12px !important
+            padding-bottom: 12px !important
+        .create_sheet
+            margin: 5px !important
+            padding: 15px !important
+            .v-icon.v-icon
+                font-size: 28px !important
+        .left_radio
+            padding-left: 12px !important
+        .right_radio
+            padding-left: 12px !important
+        .first_radio
+            padding-left: 48px !important
+    .create_container
+        margin: 0px !important
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-progress-linear background-opacity="-1" value="100" height="8" class="pa-0 mt-n6 mr-n5 ml-n1" style="border-top-left-radius: 4px; border-top-right-radius: 4px;"></v-progress-linear>
-        <v-card flat class="pa-12">
+        <v-card flat class="create_card">
             <v-card-title class="pb-8 justify-center">Create your amazing campaign in few steps</v-card-title>
             <v-card-text class="text-center">You are Almost done! Select your <span class="primary--text">Payment</span> mode to proceed</v-card-text>
             <v-card-text class="mb-12 text_field_width ma-auto">
@@ -16,7 +16,7 @@
                     </v-flex>
                 </v-layout>
             </v-card-text>
-            <v-card-actions class="float-right pr-12 pb-12">
+            <v-card-actions class="float-right action_btns">
                 <v-btn text color="grayLight" @click="goToBack()">
                     Back
                 </v-btn>
@@ -61,8 +61,3 @@
         }
     }
 </script>
-<style scoped>
-    .text_field_width{
-        width:50% !important;
-    }
-</style>

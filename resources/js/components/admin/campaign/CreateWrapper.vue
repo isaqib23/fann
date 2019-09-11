@@ -1,6 +1,6 @@
 <template>
     <v-container >
-        <v-card class="ma-12">
+        <v-card class="create_container">
             <v-card-text>
                 <v-layout row wrap>
                     <v-flex lg12 sm12 xs12>
