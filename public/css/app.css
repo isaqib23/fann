@@ -30208,7 +30208,7 @@ html {
 }
 
 .create_card .text_field_width {
-  width: 50% !important;
+  width: 70% !important;
 }
 
 .create_card .action_btns {
@@ -30218,6 +30218,21 @@ html {
 
 .create_card .right_radio {
   padding-left: 48px !important;
+}
+
+.create_card .create_sheet {
+  padding: 25px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.create_card .radio-center .v-input__control {
+  margin: 0 auto !important;
+}
+
+.create_card .radio-center .v-radio {
+  margin-right: 0px !important;
+  margin: 0 auto !important;
 }
 
 .create_container {
@@ -30235,8 +30250,9 @@ html {
   }
 
   .create_card .create_sheet {
-    margin: 15px !important;
-    padding: 30px !important;
+    padding: 25px;
+    margin-bottom: 10px;
+    text-align: center;
   }
 
   .create_card .create_sheet .v-icon.v-icon {
@@ -30269,8 +30285,9 @@ html {
   }
 
   .create_card .create_sheet {
-    margin: 15px !important;
-    padding: 30px !important;
+    padding: 25px;
+    margin-bottom: 10px;
+    text-align: center;
   }
 
   .create_card .create_sheet .v-icon.v-icon {
@@ -30320,23 +30337,16 @@ html {
 
   .create_card .create_sheet {
     margin: 8px !important;
-    padding: 20px !important;
+    padding: 60px !important;
+    text-align: center;
   }
 
   .create_card .create_sheet .v-icon.v-icon {
-    font-size: 28px !important;
+    font-size: 44px !important;
   }
 
-  .create_card .left_radio {
-    padding-left: 20px !important;
-  }
-
-  .create_card .right_radio {
-    padding-left: 20px !important;
-  }
-
-  .create_card .first_radio {
-    padding-left: 48px !important;
+  .create_card .radio-center .pl-12 {
+    padding-left: 0px !important;
   }
 
   .create_card .create_container {
@@ -30370,23 +30380,26 @@ html {
 
   .create_card .create_sheet {
     margin: 5px !important;
-    padding: 15px !important;
+    padding: 60px !important;
+    text-align: center;
   }
 
   .create_card .create_sheet .v-icon.v-icon {
-    font-size: 28px !important;
+    font-size: 44px !important;
   }
 
-  .create_card .left_radio {
-    padding-left: 12px !important;
+  .create_card .v-btn {
+    width: 50% !important;
+    font-size: 10px !important;
   }
 
-  .create_card .right_radio {
-    padding-left: 12px !important;
+  .create_card .v-btn.v-size--large {
+    padding-left: 36px !important;
+    padding-right: 36px !important;
   }
 
-  .create_card .first_radio {
-    padding-left: 48px !important;
+  .create_card .radio-center .pl-12 {
+    padding-left: 0px !important;
   }
 
   .create_container {

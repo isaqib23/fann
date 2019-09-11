@@ -23,8 +23,6 @@
 
 <script>
 
-    import router from "../../../router";
-
     export default {
 
         data: () => ({
@@ -41,7 +39,7 @@
         },
         methods: {
             goToNext(){
-                router.push({name:'create-step2'})
+                this.$router.push({name:'create-step2'})
             }
         }
     }
