@@ -30407,6 +30407,29 @@ html {
   }
 }
 
+.panes-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.left-pane {
+  width: 35%;
+}
+
+.right-pane {
+  flex: auto;
+  background: #eee;
+}
+
+.panes-container,
+.left-pane,
+.right-pane {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .fullBG {
   background-color: #4736a0;
   background-image: linear-gradient(to right, #403C79 0%, #EE6F6F 100%);

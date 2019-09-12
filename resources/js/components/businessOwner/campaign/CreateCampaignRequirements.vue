@@ -1,16 +1,14 @@
 <template>
     <div>
         <v-flex>
-            <v-layout class="panes-container">
+            <v-layout class="panes-container full_height">
                 <div class="left-pane" >
                     <v-card>
-                        <v-toolbar flat color="primary" dark>
-                            <v-toolbar-title>User Profile</v-toolbar-title>
-                        </v-toolbar>
-                        <v-tabs vertical>
-                            <v-tab>
-                                <v-icon left>mdi-account</v-icon>
-                                Option 1
+
+                        <v-tabs vertical flat icons-and-text active-class="active_tab" background-color="transparent" color="gutter" >
+                            <v-tab >
+                                Create
+                                <v-icon left>mdi-account-plus</v-icon>
                             </v-tab>
                             <v-tab>
                                 <v-icon left>mdi-lock</v-icon>
@@ -22,21 +20,32 @@
                             </v-tab>
 
                             <v-tab-item>
-                                <v-card flat>
-                                    <v-card-text>
+                                <div class="elevation-3 mx-auto pa-6 transition-swing" >
+                                    Class based elevation
+                                </div>
+
+                                <v-col cols="12" sm="6" md="3" >
+                                    <v-card flat>
                                         <p>
-                                            Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam feugiat lorem non metus. Sed a libero.
+                                            Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam
+                                            feugiat lorem non metus. Sed a libero.
                                         </p>
 
                                         <p>
-                                            Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam lobortis. Aliquam lobortis. Suspendisse non nisl sit amet velit hendrerit rutrum.
+                                            Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Aenean tellus
+                                            metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam lobortis. Aliquam
+                                            lobortis. Suspendisse non nisl sit amet velit hendrerit rutrum.
                                         </p>
 
                                         <p class="mb-0">
-                                            Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu. Pellentesque libero tortor, tincidunt et, tincidunt eget, semper nec, quam. Phasellus blandit leo ut odio.
+                                            Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu. Pellentesque libero
+                                            tortor, tincidunt et, tincidunt eget, semper nec, quam. Phasellus blandit leo ut
+                                            odio.
                                         </p>
-                                    </v-card-text>
-                                </v-card>
+                                    </v-card>
+                                </v-col>
+
+
                             </v-tab-item>
                             <v-tab-item>
                                 <v-card flat>
@@ -99,28 +108,33 @@
     }
 </script>
 
-<style>
-    .panes-container {
-        display: flex;
-        width: 100%;
-        overflow: hidden;
+<style scoped>
+     .full_height {
+        height: 100% !important;
     }
 
-    .left-pane {
-        width: 35%;
+    v-tabs {
+        height:100%;
     }
-
-
-    .right-pane {
-        flex: auto;
-        background: #eee;
+    .v-tabs > .v-tabs-bar {
+        margin: 0 0 0 -14px !important;
+        background: #403C79 !important;
+        height: 100% !important;
+        display: block !important;
+        border-radius:0px !important;
     }
-
-    .panes-container,
-    .left-pane,
-    .right-pane {
-        margin: 0;
-        padding: 0;
-        height: 100%;
+    .active_tab {
+        color:black !important;
+        background: #F7F7FF !important;
+    }
+    v-tabs-items {
+        background-color:#fafafa !important;
+        box-shadow:none !important;
+    }
+    .v-tabs--vertical.v-tabs--icons-and-text>.v-tabs-bar .v-tab{
+        padding-left: 30px;
+    }
+    .theme--light.v-tabs>.v-tabs-bar .v-tab--disabled, .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon {
+        color:#A5A4BF !important;
     }
 </style>

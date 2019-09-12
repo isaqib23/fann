@@ -16,7 +16,8 @@ let colors = {
     "darkTextColor" : "#dcdcdc",
     "attention"     : "#de5b7b",
     "grayLight"     : "#BAC3C9",
-    "grayLighten"   : "#EDEDED"
+    "grayLighten"   : "#EDEDED",
+    "gutter"        : "#F7F7FF"
 };
 
 Vue.use(Vuetify, {
