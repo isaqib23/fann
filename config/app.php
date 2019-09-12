@@ -148,6 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         \App\Providers\RepositoryServiceProvider::class,
         RocketCode\Shopify\ShopifyServiceProvider::class,
+        MartinLindhe\VueInternationalizationGenerator\GeneratorProvider::class,
 
         /*
          * Package Service Providers...
