@@ -5,7 +5,7 @@
                 <div class="left-pane" >
                     <v-card>
 
-                        <v-tabs vertical flat icons-and-text active-class="active_tab" background-color="transparent" color="gutter" >
+                        <v-tabs vertical flat icons-and-text active-class="active_tab" background-color="decent" color="gutter" >
                             <v-tab >
                                 Create
                                 <v-icon left>mdi-account-plus</v-icon>
@@ -25,7 +25,7 @@
                                 </div>
 
                                 <v-col cols="12" sm="6" md="3" >
-                                    <v-card flat>
+                                    <v-card>
                                         <p>
                                             Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam
                                             feugiat lorem non metus. Sed a libero.
@@ -48,7 +48,7 @@
 
                             </v-tab-item>
                             <v-tab-item>
-                                <v-card flat>
+                                <v-card>
                                     <v-card-text>
                                         <p>
                                             Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.
@@ -73,7 +73,7 @@
                                 </v-card>
                             </v-tab-item>
                             <v-tab-item>
-                                <v-card flat>
+                                <v-card>
                                     <v-card-text>
                                         <p>
                                             Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
@@ -109,6 +109,12 @@
 </script>
 
 <style scoped>
+    >>>.v-tabs-items, >>>.v-card{
+        background-color: #F0F0F7 !important;
+    }
+    >>>.v-card{
+        box-shadow:none !important;
+    }
      .full_height {
         height: 100% !important;
     }
@@ -127,13 +133,7 @@
         color:black !important;
         background: #F7F7FF !important;
     }
-    v-tabs-items {
-        background-color:#fafafa !important;
-        box-shadow:none !important;
-    }
-    .v-tabs--vertical.v-tabs--icons-and-text>.v-tabs-bar .v-tab{
-        padding-left: 30px;
-    }
+
     .theme--light.v-tabs>.v-tabs-bar .v-tab--disabled, .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon {
         color:#A5A4BF !important;
     }

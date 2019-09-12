@@ -17358,7 +17358,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.full_height[data-v-3b1115e4] {\n    height: 100% !important;\n}\nv-tabs[data-v-3b1115e4] {\n    height:100%;\n}\n.v-tabs > .v-tabs-bar[data-v-3b1115e4] {\n    margin: 0 0 0 -14px !important;\n    background: #403C79 !important;\n    height: 100% !important;\n    display: block !important;\n    border-radius:0px !important;\n}\n.active_tab[data-v-3b1115e4] {\n    color:black !important;\n    background: #F7F7FF !important;\n}\nv-tabs-items[data-v-3b1115e4] {\n    background-color:#fafafa !important;\n    box-shadow:none !important;\n}\n.v-tabs--vertical.v-tabs--icons-and-text>.v-tabs-bar .v-tab[data-v-3b1115e4]{\n    padding-left: 30px;\n}\n.theme--light.v-tabs>.v-tabs-bar .v-tab--disabled[data-v-3b1115e4], .theme--light.v-tabs>.v-tabs-bar .v-tab[data-v-3b1115e4]:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon[data-v-3b1115e4] {\n    color:#A5A4BF !important;\n}\n", ""]);
+exports.push([module.i, "\n[data-v-3b1115e4] .v-tabs-items,[data-v-3b1115e4] .v-card{\n    background-color: #F0F0F7 !important;\n}\n[data-v-3b1115e4] .v-card{\n    box-shadow:none !important;\n}\n.full_height[data-v-3b1115e4] {\n    height: 100% !important;\n}\nv-tabs[data-v-3b1115e4] {\n    height:100%;\n}\n.v-tabs > .v-tabs-bar[data-v-3b1115e4] {\n    margin: 0 0 0 -14px !important;\n    background: #403C79 !important;\n    height: 100% !important;\n    display: block !important;\n    border-radius:0px !important;\n}\n.active_tab[data-v-3b1115e4] {\n    color:black !important;\n    background: #F7F7FF !important;\n}\n.theme--light.v-tabs>.v-tabs-bar .v-tab--disabled[data-v-3b1115e4], .theme--light.v-tabs>.v-tabs-bar .v-tab[data-v-3b1115e4]:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon[data-v-3b1115e4] {\n    color:#A5A4BF !important;\n}\n", ""]);
 
 // exports
 
@@ -21363,7 +21363,7 @@ var render = function() {
                           flat: "",
                           "icons-and-text": "",
                           "active-class": "active_tab",
-                          "background-color": "transparent",
+                          "background-color": "decent",
                           color: "gutter"
                         }
                       },
@@ -21427,7 +21427,7 @@ var render = function() {
                               "v-col",
                               { attrs: { cols: "12", sm: "6", md: "3" } },
                               [
-                                _c("v-card", { attrs: { flat: "" } }, [
+                                _c("v-card", [
                                   _c("p", [
                                     _vm._v(
                                       "\n                                        Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam\n                                        feugiat lorem non metus. Sed a libero.\n                                    "
@@ -21458,7 +21458,6 @@ var render = function() {
                           [
                             _c(
                               "v-card",
-                              { attrs: { flat: "" } },
                               [
                                 _c("v-card-text", [
                                   _c("p", [
@@ -21503,7 +21502,6 @@ var render = function() {
                           [
                             _c(
                               "v-card",
-                              { attrs: { flat: "" } },
                               [
                                 _c("v-card-text", [
                                   _c("p", [
@@ -65570,7 +65568,7 @@ Vuetify.version = "2.0.3";
 /*!*******************************************!*\
   !*** ./node_modules/vuetify/lib/index.js ***!
   \*******************************************/
-/*! exports provided: colors, default, VApp, ClickOutside, Resize, Ripple, Scroll, Touch, VAppBar, VAppBarNavIcon, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardTitle, VCardActions, VCardText, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
+/*! exports provided: ClickOutside, Resize, Ripple, Scroll, Touch, colors, default, VApp, VAppBar, VAppBarNavIcon, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardTitle, VCardActions, VCardText, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78628,7 +78626,8 @@ var colors = {
   "attention": "#de5b7b",
   "grayLight": "#BAC3C9",
   "grayLighten": "#EDEDED",
-  "gutter": "#F7F7FF"
+  "gutter": "#F7F7FF",
+  "decent": "#53508C"
 };
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify_lib__WEBPACK_IMPORTED_MODULE_1__["default"], {
   components: {
