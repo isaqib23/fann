@@ -3378,6 +3378,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -17358,7 +17401,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n[data-v-3b1115e4] .v-tabs-items,[data-v-3b1115e4] .v-card{\n    background-color: #F0F0F7 !important;\n}\n[data-v-3b1115e4] .v-card{\n    box-shadow:none !important;\n}\n.full_height[data-v-3b1115e4] {\n    height: 100% !important;\n}\nv-tabs[data-v-3b1115e4] {\n    height:100%;\n}\n.v-tabs > .v-tabs-bar[data-v-3b1115e4] {\n    margin: 0 0 0 -14px !important;\n    background: #403C79 !important;\n    height: 100% !important;\n    display: block !important;\n    border-radius:0px !important;\n}\n.active_tab[data-v-3b1115e4] {\n    color:black !important;\n    background: #F7F7FF !important;\n}\n.theme--light.v-tabs>.v-tabs-bar .v-tab--disabled[data-v-3b1115e4], .theme--light.v-tabs>.v-tabs-bar .v-tab[data-v-3b1115e4]:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon[data-v-3b1115e4] {\n    color:#A5A4BF !important;\n}\n", ""]);
+exports.push([module.i, "\n[data-v-3b1115e4] .v-tabs-items,[data-v-3b1115e4] .v-card{\n    background-color:#F7F7FF !important;\n}\n[data-v-3b1115e4] .v-card{\n    box-shadow:none !important;\n}\n.full_height[data-v-3b1115e4] {\n    height: 100% !important;\n}\nv-tabs[data-v-3b1115e4] {\n    height:100%;\n}\n.v-tabs > .v-tabs-bar[data-v-3b1115e4] {\n    margin: 0 0 0 -14px !important;\n    background: #403C79 !important;\n    height: 100% !important;\n    display: block !important;\n    border-radius:0px !important;\n}\n.active_tab[data-v-3b1115e4] {\n    color:black !important;\n    background: #F7F7FF !important;\n}\n.theme--light.v-tabs>.v-tabs-bar .v-tab--disabled[data-v-3b1115e4], .theme--light.v-tabs>.v-tabs-bar .v-tab[data-v-3b1115e4]:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon[data-v-3b1115e4] {\n    color:#A5A4BF !important;\n}\n", ""]);
 
 // exports
 
@@ -21347,193 +21390,335 @@ var render = function() {
       _c(
         "v-flex",
         [
-          _c("v-layout", { staticClass: "panes-container full_height" }, [
-            _c(
-              "div",
-              { staticClass: "left-pane" },
-              [
-                _c(
-                  "v-card",
-                  [
-                    _c(
-                      "v-tabs",
-                      {
-                        attrs: {
-                          vertical: "",
-                          flat: "",
-                          "icons-and-text": "",
-                          "active-class": "active_tab",
-                          "background-color": "decent",
-                          color: "gutter"
-                        }
-                      },
-                      [
-                        _c(
-                          "v-tab",
-                          [
-                            _vm._v(
-                              "\n                            Create\n                            "
-                            ),
-                            _c("v-icon", { attrs: { left: "" } }, [
-                              _vm._v("mdi-account-plus")
-                            ])
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-tab",
-                          [
-                            _c("v-icon", { attrs: { left: "" } }, [
-                              _vm._v("mdi-lock")
-                            ]),
-                            _vm._v(
-                              "\n                            Option 2\n                        "
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-tab",
-                          [
-                            _c("v-icon", { attrs: { left: "" } }, [
-                              _vm._v("mdi-access-point")
-                            ]),
-                            _vm._v(
-                              "\n                            Option 3\n                        "
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-tab-item",
-                          [
-                            _c(
-                              "div",
-                              {
-                                staticClass:
-                                  "elevation-3 mx-auto pa-6 transition-swing"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                Class based elevation\n                            "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "v-col",
-                              { attrs: { cols: "12", sm: "6", md: "3" } },
-                              [
-                                _c("v-card", [
-                                  _c("p", [
+          _c(
+            "v-layout",
+            { staticClass: "panes-container full_height left-pane" },
+            [
+              _c(
+                "v-card",
+                { attrs: { fluid: "", "grid-list-md": "" } },
+                [
+                  _c(
+                    "v-tabs",
+                    {
+                      attrs: {
+                        vertical: "",
+                        flat: "",
+                        "icons-and-text": "",
+                        "active-class": "active_tab",
+                        "background-color": "decent",
+                        color: "gutter"
+                      }
+                    },
+                    [
+                      _c(
+                        "v-tab",
+                        [
+                          _vm._v(
+                            "\n                        Create\n                        "
+                          ),
+                          _c("v-icon", { attrs: { left: "" } }, [
+                            _vm._v("mdi-account-plus")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-tab",
+                        [
+                          _vm._v(
+                            "\n                        invite\n                        "
+                          ),
+                          _c("v-icon", { attrs: { left: "" } }, [
+                            _vm._v("mdi-lock")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-tab",
+                        [
+                          _vm._v(
+                            "\n                        promote\n                        "
+                          ),
+                          _c("v-icon", { attrs: { left: "" } }, [
+                            _vm._v("mdi-access-point")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-tab-item",
+                        [
+                          _c(
+                            "v-flex",
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  staticClass:
+                                    "elevation-4  mx-auto pa-6 transition-swing"
+                                },
+                                [
+                                  _c("v-card-text", [
+                                    _c("div", { staticClass: "title mb-2" }, [
+                                      _vm._v("Unlimited music now")
+                                    ]),
                                     _vm._v(
-                                      "\n                                        Sed aliquam ultrices mauris. Donec posuere vulputate arcu. Morbi ac felis. Etiam\n                                        feugiat lorem non metus. Sed a libero.\n                                    "
+                                      "\n                                    Listen to your favorite artists and albums whenever and wherever, online and offline.\n                                "
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _c("p", [
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-btn", { attrs: { text: "" } }, [
+                                        _vm._v("Listen Now")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  staticClass:
+                                    "elevation-4 mx-auto pa-6 transition-swing mt-3"
+                                },
+                                [
+                                  _c("v-card-text", [
+                                    _c(
+                                      "div",
+                                      { staticClass: "headline mb-2" },
+                                      [_vm._v("Unlimited music now")]
+                                    ),
                                     _vm._v(
-                                      "\n                                        Nam ipsum risus, rutrum vitae, vestibulum eu, molestie vel, lacus. Aenean tellus\n                                        metus, bibendum sed, posuere ac, mattis non, nunc. Aliquam lobortis. Aliquam\n                                        lobortis. Suspendisse non nisl sit amet velit hendrerit rutrum.\n                                    "
+                                      "\n                                    Listen to your favorite artists and albums whenever and wherever, online and offline.\n                                "
                                     )
                                   ]),
                                   _vm._v(" "),
-                                  _c("p", { staticClass: "mb-0" }, [
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-btn", { attrs: { text: "" } }, [
+                                        _vm._v("Listen Now")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  staticClass:
+                                    "elevation-4  mx-auto pa-6 transition-swing mt-3"
+                                },
+                                [
+                                  _c("v-card-text", [
+                                    _c(
+                                      "div",
+                                      { staticClass: "headline mb-2" },
+                                      [_vm._v("Unlimited music now")]
+                                    ),
                                     _vm._v(
-                                      "\n                                        Phasellus dolor. Fusce neque. Fusce fermentum odio nec arcu. Pellentesque libero\n                                        tortor, tincidunt et, tincidunt eget, semper nec, quam. Phasellus blandit leo ut\n                                        odio.\n                                    "
+                                      "\n                                    Listen to your favorite artists and albums whenever and wherever, online and offline.\n                                "
                                     )
-                                  ])
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-btn", { attrs: { text: "" } }, [
+                                        _vm._v("Listen Now")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  staticClass:
+                                    "elevation-4  mx-auto pa-6 transition-swing  mt-3"
+                                },
+                                [
+                                  _c("v-card-text", [
+                                    _c(
+                                      "div",
+                                      { staticClass: "headline mb-2" },
+                                      [_vm._v("Unlimited music now")]
+                                    ),
+                                    _vm._v(
+                                      "\n                                    Listen to your favorite artists and albums whenever and wherever, online and offline.\n                                "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-btn", { attrs: { text: "" } }, [
+                                        _vm._v("Listen Now")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  staticClass:
+                                    "elevation-4  mx-auto pa-6 transition-swing  mt-3"
+                                },
+                                [
+                                  _c("v-card-text", [
+                                    _c(
+                                      "div",
+                                      { staticClass: "headline mb-2" },
+                                      [_vm._v("Unlimited music now")]
+                                    ),
+                                    _vm._v(
+                                      "\n                                    Listen to your favorite artists and albums whenever and wherever, online and offline.\n                                "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    [
+                                      _c("v-btn", { attrs: { text: "" } }, [
+                                        _vm._v("Listen Now")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-tab-item",
+                        [
+                          _c(
+                            "v-card",
+                            [
+                              _c("v-card-text", [
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                                    Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                                    Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                                    Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                                    Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "mb-0" }, [
+                                  _vm._v(
+                                    "\n                                    Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.\n                                "
+                                  )
                                 ])
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-tab-item",
-                          [
-                            _c(
-                              "v-card",
-                              [
-                                _c("v-card-text", [
-                                  _c("p", [
-                                    _vm._v(
-                                      "\n                                        Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.\n                                    "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", [
-                                    _vm._v(
-                                      "\n                                        Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.\n                                    "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", [
-                                    _vm._v(
-                                      "\n                                        Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.\n                                    "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", [
-                                    _vm._v(
-                                      "\n                                        Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.\n                                    "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", { staticClass: "mb-0" }, [
-                                    _vm._v(
-                                      "\n                                        Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.\n                                    "
-                                    )
-                                  ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-tab-item",
+                        [
+                          _c(
+                            "v-card",
+                            [
+                              _c("v-card-text", [
+                                _c("p", [
+                                  _vm._v(
+                                    "\n                                    Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.\n                                "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("p", { staticClass: "mb-0" }, [
+                                  _vm._v(
+                                    "\n                                    Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.\n                                "
+                                  )
                                 ])
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "v-tab-item",
-                          [
-                            _c(
-                              "v-card",
-                              [
-                                _c("v-card-text", [
-                                  _c("p", [
-                                    _vm._v(
-                                      "\n                                        Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.\n                                    "
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("p", { staticClass: "mb-0" }, [
-                                    _vm._v(
-                                      "\n                                        Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.\n                                    "
-                                    )
-                                  ])
-                                ])
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "right-pane" })
-          ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-layout", { staticClass: "right-pane", attrs: { column: "" } })
         ],
         1
       )
@@ -76724,10 +76909,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
 
 
 
@@ -76758,7 +76944,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardText"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VCol"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VLayout"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTabs"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VLayout"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_9__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_9__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_9__["VTabs"]})
 
 
 /* hot reload */
