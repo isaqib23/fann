@@ -133,7 +133,6 @@
         color:black !important;
         background: #F7F7FF !important;
     }
-
     .theme--light.v-tabs>.v-tabs-bar .v-tab--disabled, .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon {
         color:#A5A4BF !important;
     }
