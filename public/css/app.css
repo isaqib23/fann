@@ -30415,10 +30415,11 @@ html {
 
 .left-pane {
   width: 35%;
+  float: left;
 }
 
 .right-pane {
-  flex: auto;
+  width: 65%;
   background: #eee;
 }
 
