@@ -3517,6 +3517,102 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3527,6 +3623,26 @@ __webpack_require__.r(__webpack_exports__);
     return {
       e1: 0,
       checkbox2: true,
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      kind: null,
+      min: 0,
+      max: 1000,
+      range: [100, 600],
+      rating: 3,
+      selected: null,
+      itemss: [{
+        text: 'Jason Oner',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png'
+      }, {
+        text: 'Travis Howard',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png'
+      }, {
+        text: 'Ali Connors',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png'
+      }, {
+        text: 'Cindy Baker',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png'
+      }],
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         maxFilesize: 0.5,
@@ -17530,7 +17646,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n[data-v-3b1115e4] .v-tabs-items,[data-v-3b1115e4] .v-card{\n    background-color:#F7F7FF !important;\n}\n[data-v-3b1115e4] .v-card{\n    box-shadow:none !important;\n}\n.full_height[data-v-3b1115e4] {\n    height: 100% !important;\n}\nv-tabs[data-v-3b1115e4] {\n    height:100%;\n}\n.v-tabs > .v-tabs-bar[data-v-3b1115e4] {\n    margin: 0 0 0 -14px !important;\n    background: #403C79 !important;\n    height: 100% !important;\n    display: block !important;\n    border-radius:0px !important;\n}\n.active_tab[data-v-3b1115e4] {\n    color:black !important;\n    background: #F7F7FF !important;\n}\n.theme--light.v-tabs>.v-tabs-bar .v-tab--disabled[data-v-3b1115e4], .theme--light.v-tabs>.v-tabs-bar .v-tab[data-v-3b1115e4]:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon[data-v-3b1115e4] {\n    color:#A5A4BF !important;\n}\n#dropzone[data-v-3b1115e4] {\n    background-color: #EFF2F8;\n    font-family: 'Arial', sans-serif;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n    border:none;\n    height:100px;\n    margin:0 auto;\n}\n#dropzone[data-v-3b1115e4] .overline{\n    font-size: 8px !important;\n}\n.dropzone_content[data-v-3b1115e4]{\n    background: #fff;\n    border-radius:10px;\n    padding:15px;\n}\n.dropzone[data-v-3b1115e4] .dz-message{\n    margin:0px !important;\n}\n[data-v-3b1115e4] .v-input__prepend-outer{\n    background:#EE6F6F;\n    padding:16px 14px;\n    margin:0px !important;\n    border-top-left-radius:5px;\n}\n[data-v-3b1115e4] .v-input__prepend-outer .v-icon{\n    color:#fff !important;\n}\n[data-v-3b1115e4] .v-text-field > .v-input__control > .v-input__slot{\n    border-radius: 0px !important;\n    margin-bottom: 0px !important;\n}\n[data-v-3b1115e4] .v-text-field__details{\n    display:none;\n}\n.task_btn[data-v-3b1115e4] .v-btn__content{\n    font-size:10px;\n}\n[data-v-3b1115e4] .tag_field .v-input__prepend-outer{\n    background:#EE6F6F;\n    padding:8px 10px;\n    margin:0px !important;\n    border-top-left-radius:5px;\n    border-bottom-left-radius:5px;\n}\n[data-v-3b1115e4] .tag_field > .v-input__control > .v-input__slot{\n    min-height: 40px !important;\n    border-top-right-radius:5px;\n    border-bottom-right-radius:5px;\n}\n[data-v-3b1115e4] .tag_field.v-input .v-label{\n    height:45px !important;\n}\n[data-v-3b1115e4] .tag_field.v-text-field--outlined .v-label{\n    top: 10px !important;\n}\n\n", ""]);
+exports.push([module.i, "\n[data-v-3b1115e4] .v-tabs-items,[data-v-3b1115e4] .v-card{\n    background-color:#F7F7FF !important;\n}\n[data-v-3b1115e4] .v-card{\n    box-shadow:none !important;\n}\n.full_height[data-v-3b1115e4] {\n    height: 100% !important;\n}\nv-tabs[data-v-3b1115e4] {\n    height:100%;\n}\n.v-tabs > .v-tabs-bar[data-v-3b1115e4] {\n    margin: 0 0 0 -14px !important;\n    background: #403C79 !important;\n    height: 100% !important;\n    display: block !important;\n    border-radius:0px !important;\n}\n.active_tab[data-v-3b1115e4] {\n    color:black !important;\n    background: #F7F7FF !important;\n}\n.theme--light.v-tabs>.v-tabs-bar .v-tab--disabled[data-v-3b1115e4], .theme--light.v-tabs>.v-tabs-bar .v-tab[data-v-3b1115e4]:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon[data-v-3b1115e4] {\n    color:#A5A4BF !important;\n}\n#dropzone[data-v-3b1115e4] {\n    background-color: #EFF2F8;\n    font-family: 'Arial', sans-serif;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n    border:none;\n    height:100px;\n    margin:0 auto;\n}\n#dropzone[data-v-3b1115e4] .overline{\n    font-size: 8px !important;\n}\n.dropzone_content[data-v-3b1115e4]{\n    background: #fff;\n    border-radius:10px;\n    padding:15px;\n}\n.dropzone[data-v-3b1115e4] .dz-message{\n    margin:0px !important;\n}\n[data-v-3b1115e4] .v-input__prepend-outer{\n    background:#EE6F6F;\n    padding:16px 14px;\n    margin:0px !important;\n    border-top-left-radius:5px;\n}\n[data-v-3b1115e4] .v-input__prepend-outer .v-icon{\n    color:#fff !important;\n}\n[data-v-3b1115e4] .v-text-field > .v-input__control > .v-input__slot{\n    border-radius: 0px !important;\n    margin-bottom: 0px !important;\n}\n[data-v-3b1115e4] .v-text-field__details{\n    display:none;\n}\n.task_btn[data-v-3b1115e4] .v-btn__content{\n    font-size:10px;\n}\n[data-v-3b1115e4] .tag_field .v-input__prepend-outer{\n    background:#EE6F6F;\n    padding:8px 10px;\n    margin:0px !important;\n    border-top-left-radius:5px;\n    border-bottom-left-radius:5px;\n}\n[data-v-3b1115e4] .tag_field > .v-input__control > .v-input__slot{\n    min-height: 40px !important;\n    border-top-right-radius:5px;\n    border-bottom-right-radius:5px;\n}\n[data-v-3b1115e4] .tag_field.v-input .v-label{\n    height:45px !important;\n}\n[data-v-3b1115e4] .tag_field.v-text-field--outlined .v-label{\n    top: 10px !important;\n}\n[data-v-3b1115e4] .kind_active {\n    background: #EE6F6F !important;\n    padding: 15px !important;\n}\n[data-v-3b1115e4] .kind_active:first-child {\n    border-right: 1px solid #ccc;\n    border-top-left-radius: 5px;\n    border-bottom-left-radius: 5px;\n}\n[data-v-3b1115e4] .kind_active .accent--text{\n    color: #fff !important;\n    caret-color: #fff !important;\n}\n[data-v-3b1115e4] .gender_group .kind_active .v-label,[data-v-3b1115e4] .age_group .kind_active .v-label{\n    color: #fff !important;\n    caret-color: #fff !important;\n}\n[data-v-3b1115e4] .kind_active .v-input--selection-controls__input{\n    margin-right: 0px !important;\n}\n[data-v-3b1115e4] .kind_group .v-input--radio-group__input,[data-v-3b1115e4] .gender_group .v-input--radio-group__input{\n    border: 1px solid #ccc !important;\n    border-radius: 5px !important;\n}\n[data-v-3b1115e4] .age_group .v-input--radio-group__input{\n    border: none;\n}\n[data-v-3b1115e4] .age_group .v-radio{\n    height: 30px;\n    padding-left: 15px;\n    padding-right: 15px;\n    margin-right:0px;\n    border: 1px solid #ccc;\n    border-radius: 5px;\n    margin: 5px;\n}\n[data-v-3b1115e4] .age_group .v-input--selection-controls__input{\n    display:none;\n}\n[data-v-3b1115e4] .kind_group .v-radio,[data-v-3b1115e4] .gender_group .v-radio{\n    height: 50px;\n    padding-left: 15px;\n    padding-right: 15px;\n    margin-right:0px;\n}\n[data-v-3b1115e4] .kind_group .v-radio:first-child,[data-v-3b1115e4] .gender_group .v-radio:first-child{\n    border-right: 1px solid #ccc;\n}\n[data-v-3b1115e4] .kind_group .v-radio:last-child,[data-v-3b1115e4] .gender_group .v-radio:last-child{\n    border-left: 1px solid #ccc;\n}\n[data-v-3b1115e4] .kind_group .v-label{\n    position: absolute !important;\n    bottom: -75px;\n    font-size: 11px;\n}\n[data-v-3b1115e4] .youtube_radio .v-label{\n    margin-left: 65px !important;\n}\n[data-v-3b1115e4] .blogger_radio .v-label{\n    margin-left: 130px !important;\n}\nv-list-tile-avatar img[data-v-3b1115e4] {\n    height: 15px !important;\n    margin-right: 10px\n}\n", ""]);
 
 // exports
 
@@ -22071,39 +22187,510 @@ var render = function() {
                         "v-tab-item",
                         [
                           _c(
-                            "v-card",
+                            "v-flex",
                             [
-                              _c("v-card-text", [
-                                _c("p", [
-                                  _vm._v(
-                                    "\n                                    Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.\n                                "
+                              _c(
+                                "v-card",
+                                {
+                                  staticClass:
+                                    "elevation-4  mx-auto pa-3 transition-swing"
+                                },
+                                [
+                                  _c("v-card-text", [
+                                    _c(
+                                      "div",
+                                      { staticClass: "subtitle-1 mb-2" },
+                                      [
+                                        _c("strong", [
+                                          _vm._v("Select Niche / Industry")
+                                        ])
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("v-select", {
+                                    attrs: {
+                                      items: _vm.items,
+                                      label: "Health Care",
+                                      outlined: ""
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kind_group" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "subtitle-2 mt-6 mb-2" },
+                                        [
+                                          _c("strong", [
+                                            _vm._v(
+                                              "What kind of Influencers you are looking for?"
+                                            )
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-radio-group",
+                                        {
+                                          staticClass: "mt-0",
+                                          attrs: { row: "" },
+                                          model: {
+                                            value: _vm.kind,
+                                            callback: function($$v) {
+                                              _vm.kind = $$v
+                                            },
+                                            expression: "kind"
+                                          }
+                                        },
+                                        [
+                                          _c("v-radio", {
+                                            staticClass: "insta_radio",
+                                            attrs: {
+                                              label: "Instagram",
+                                              "off-icon": "mdi-instagram",
+                                              "on-icon": "mdi-instagram",
+                                              value: "radio-1",
+                                              "active-class": "kind_active"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-radio", {
+                                            staticClass: "youtube_radio",
+                                            attrs: {
+                                              label: "Youtube",
+                                              "off-icon": "mdi-youtube",
+                                              "on-icon": "mdi-youtube",
+                                              value: "radio-2",
+                                              "active-class": "kind_active"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-radio", {
+                                            staticClass: "blogger_radio",
+                                            attrs: {
+                                              label: "Blogger",
+                                              "off-icon": "mdi-blogger",
+                                              "on-icon": "mdi-blogger",
+                                              value: "radio-3",
+                                              "active-class": "kind_active"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kind_group" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "subtitle-2 mt-6 mb-2" },
+                                        [_vm._v("Followers")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-range-slider", {
+                                        staticClass: "align-center",
+                                        attrs: {
+                                          max: _vm.max,
+                                          min: _vm.min,
+                                          "hide-details": ""
+                                        },
+                                        model: {
+                                          value: _vm.range,
+                                          callback: function($$v) {
+                                            _vm.range = $$v
+                                          },
+                                          expression: "range"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "p",
+                                        {
+                                          staticStyle: { "font-size": "10px" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.range[0]) +
+                                              " - " +
+                                              _vm._s(_vm.range[1]) +
+                                              " Followers"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kind_group" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "subtitle-2 mt-6 mb-2" },
+                                        [_vm._v("Likes per Post")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-range-slider", {
+                                        staticClass: "align-center",
+                                        attrs: {
+                                          max: _vm.max,
+                                          min: _vm.min,
+                                          "hide-details": ""
+                                        },
+                                        model: {
+                                          value: _vm.range,
+                                          callback: function($$v) {
+                                            _vm.range = $$v
+                                          },
+                                          expression: "range"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "p",
+                                        {
+                                          staticStyle: { "font-size": "10px" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            _vm._s(_vm.range[0]) +
+                                              " - " +
+                                              _vm._s(_vm.range[1]) +
+                                              " Likes"
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kind_group" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "subtitle-2 mt-6 mb-2" },
+                                        [_vm._v("Engagement Rate")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-select", {
+                                        attrs: {
+                                          items: _vm.items,
+                                          label: "10% to 15% Min",
+                                          outlined: ""
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "kind_group" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "subtitle-2 mt-6 mb-2" },
+                                        [_vm._v("Rating")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-rating", {
+                                        model: {
+                                          value: _vm.rating,
+                                          callback: function($$v) {
+                                            _vm.rating = $$v
+                                          },
+                                          expression: "rating"
+                                        }
+                                      })
+                                    ],
+                                    1
                                   )
-                                ]),
-                                _vm._v(" "),
-                                _c("p", [
-                                  _vm._v(
-                                    "\n                                    Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.\n                                "
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            [
+                              _c(
+                                "v-card",
+                                {
+                                  staticClass:
+                                    "elevation-4  mx-auto pa-3 transition-swing mt-3"
+                                },
+                                [
+                                  _c("v-card-text", [
+                                    _c(
+                                      "div",
+                                      { staticClass: "subtitle-1 mb-2" },
+                                      [
+                                        _c("strong", [
+                                          _vm._v("Influencers Demographics")
+                                        ])
+                                      ]
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "gender_group" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "subtitle-2 mb-2" },
+                                        [_c("strong", [_vm._v("Gender")])]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-radio-group",
+                                        {
+                                          staticClass: "mt-0",
+                                          attrs: { row: "" },
+                                          model: {
+                                            value: _vm.kind,
+                                            callback: function($$v) {
+                                              _vm.kind = $$v
+                                            },
+                                            expression: "kind"
+                                          }
+                                        },
+                                        [
+                                          _c("v-radio", {
+                                            attrs: {
+                                              label: "Male",
+                                              "off-icon": "mdi-human-male",
+                                              "on-icon": "mdi-human-male",
+                                              value: "radio-4",
+                                              "active-class": "kind_active"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-radio", {
+                                            attrs: {
+                                              label: "Female",
+                                              "off-icon": "mdi-human-female",
+                                              "on-icon": "mdi-human-female",
+                                              value: "radio-5",
+                                              "active-class": "kind_active"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "age_group" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "subtitle-2 mb-2" },
+                                        [_c("strong", [_vm._v("Age Range")])]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-radio-group",
+                                        {
+                                          staticClass: "mt-0",
+                                          attrs: { row: "" },
+                                          model: {
+                                            value: _vm.kind,
+                                            callback: function($$v) {
+                                              _vm.kind = $$v
+                                            },
+                                            expression: "kind"
+                                          }
+                                        },
+                                        [
+                                          _c("v-radio", {
+                                            attrs: {
+                                              label: "13 - 17",
+                                              "off-icon": "mdi-human-males",
+                                              "on-icon": "mdi-human-males",
+                                              value: "radio-6",
+                                              "active-class": "kind_active"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-radio", {
+                                            attrs: {
+                                              label: "18 - 24",
+                                              "off-icon": "mdi-human-males",
+                                              "on-icon": "mdi-human-males",
+                                              value: "radio-7",
+                                              "active-class": "kind_active"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-radio", {
+                                            attrs: {
+                                              label: "25 - 34",
+                                              "off-icon": "mdi-human-males",
+                                              "on-icon": "mdi-human-males",
+                                              value: "radio-8",
+                                              "active-class": "kind_active"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-radio", {
+                                            attrs: {
+                                              label: "35 - 44",
+                                              "off-icon": "mdi-human-males",
+                                              "on-icon": "mdi-human-males",
+                                              value: "radio-9",
+                                              "active-class": "kind_active"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("v-radio", {
+                                            attrs: {
+                                              label: "60+",
+                                              "off-icon": "mdi-human-males",
+                                              "on-icon": "mdi-human-males",
+                                              value: "radio-10",
+                                              "active-class": "kind_active"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "age_group" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "subtitle-2 mb-2" },
+                                        [_c("strong", [_vm._v("Country")])]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-select", {
+                                        attrs: {
+                                          items: _vm.itemss,
+                                          label: "Select",
+                                          "return-object": ""
+                                        },
+                                        scopedSlots: _vm._u([
+                                          {
+                                            key: "selection",
+                                            fn: function(data) {
+                                              return [
+                                                _c(
+                                                  "v-avatar",
+                                                  { attrs: { size: "36" } },
+                                                  [
+                                                    _c("img", {
+                                                      attrs: {
+                                                        src: data.item.avatar
+                                                      }
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c("div", [
+                                                  _vm._v(
+                                                    " " +
+                                                      _vm._s(data.item.text) +
+                                                      "\n                                            "
+                                                  )
+                                                ])
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            key: "item",
+                                            fn: function(data) {
+                                              return [
+                                                _c(
+                                                  "v-list-tile-avatar",
+                                                  { attrs: { size: "36" } },
+                                                  [
+                                                    _c("img", {
+                                                      attrs: {
+                                                        src: data.item.avatar
+                                                      }
+                                                    })
+                                                  ]
+                                                ),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-list-tile-content",
+                                                  [
+                                                    _c("v-list-tile-title", [
+                                                      _vm._v(
+                                                        " " +
+                                                          _vm._s(
+                                                            data.item.text
+                                                          ) +
+                                                          "\n                                                "
+                                                      )
+                                                    ])
+                                                  ],
+                                                  1
+                                                )
+                                              ]
+                                            }
+                                          }
+                                        ]),
+                                        model: {
+                                          value: _vm.selected,
+                                          callback: function($$v) {
+                                            _vm.selected = $$v
+                                          },
+                                          expression: "selected"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-card-actions",
+                                    { staticClass: "action_btns mt-3 mb-3" },
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "primary",
+                                            dark: "",
+                                            large: "",
+                                            block: ""
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                    Apply Search Filters\n                                "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
                                   )
-                                ]),
-                                _vm._v(" "),
-                                _c("p", [
-                                  _vm._v(
-                                    "\n                                    Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.\n                                "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("p", [
-                                  _vm._v(
-                                    "\n                                    Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.\n                                "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("p", { staticClass: "mb-0" }, [
-                                  _vm._v(
-                                    "\n                                    Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.\n                                "
-                                  )
-                                ])
-                              ])
+                                ],
+                                1
+                              )
                             ],
                             1
                           )
@@ -22299,7 +22886,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("v-card-text", { staticClass: "text-center" }, [
-            _vm._v(_vm._s(_vm.$t("labels.campaign.name_sub_text")) + " "),
+            _vm._v(_vm._s(_vm.$t("labels.campaign.name_subText")) + " "),
             _c("span", { staticClass: "primary--text" }, [
               _vm._v(_vm._s(_vm.$t("labels.campaign.name")))
             ])
@@ -22312,7 +22899,7 @@ var render = function() {
               _c("v-text-field", {
                 staticClass: "text_field_width ma-auto",
                 attrs: {
-                  label: _vm.$t("labels.campaign.name_field_placeholder"),
+                  label: _vm.$t("labels.campaign.name_fieldPlaceholder"),
                   solo: ""
                 },
                 model: {
@@ -22344,7 +22931,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_next_btn")) +
+                      _vm._s(_vm.$t("labels.campaign.name_nextBtn")) +
                       "\n                "
                   ),
                   _c("v-icon", { attrs: { right: "" } }, [
@@ -77380,14 +77967,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
-/* harmony import */ var vuetify_lib_components_VTextarea__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VTextarea */ "./node_modules/vuetify/lib/components/VTextarea/index.js");
+/* harmony import */ var vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VAvatar */ "./node_modules/vuetify/lib/components/VAvatar/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VRadioGroup */ "./node_modules/vuetify/lib/components/VRadioGroup/index.js");
+/* harmony import */ var vuetify_lib_components_VRangeSlider__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VRangeSlider */ "./node_modules/vuetify/lib/components/VRangeSlider/index.js");
+/* harmony import */ var vuetify_lib_components_VRating__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VRating */ "./node_modules/vuetify/lib/components/VRating/index.js");
+/* harmony import */ var vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VSelect */ "./node_modules/vuetify/lib/components/VSelect/index.js");
+/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var vuetify_lib_components_VTextarea__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuetify/lib/components/VTextarea */ "./node_modules/vuetify/lib/components/VTextarea/index.js");
 
 
 
@@ -77421,7 +78013,14 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCheckbox: vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__["VCheckbox"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VLayout"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTabs"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_11__["VTextField"],VTextarea: vuetify_lib_components_VTextarea__WEBPACK_IMPORTED_MODULE_12__["VTextarea"]})
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCheckbox: vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_8__["VCheckbox"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VLayout"],VRadio: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_11__["VRadio"],VRadioGroup: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_11__["VRadioGroup"],VRangeSlider: vuetify_lib_components_VRangeSlider__WEBPACK_IMPORTED_MODULE_12__["VRangeSlider"],VRating: vuetify_lib_components_VRating__WEBPACK_IMPORTED_MODULE_13__["VRating"],VSelect: vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_14__["VSelect"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_15__["VTabs"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_16__["VTextField"],VTextarea: vuetify_lib_components_VTextarea__WEBPACK_IMPORTED_MODULE_17__["VTextarea"]})
 
 
 /* hot reload */
@@ -80060,8 +80659,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\apps\influencerapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\apps\influencerapp\resources\styles\app.sass */"./resources/styles/app.sass");
+__webpack_require__(/*! D:\apps\influencerapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\apps\influencerapp\resources\styles\app.sass */"./resources/styles/app.sass");
 
 
 /***/ })

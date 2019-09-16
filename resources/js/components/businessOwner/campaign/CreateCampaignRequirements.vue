@@ -184,29 +184,125 @@
 
                         </v-tab-item>
                         <v-tab-item>
-                            <v-card>
-                                <v-card-text>
-                                    <p>
-                                        Morbi nec metus. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor urna a orci. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nunc sed turpis.
-                                    </p>
+                            <v-flex>
+                                <v-card class="elevation-4  mx-auto pa-3 transition-swing">
+                                    <v-card-text>
+                                        <div class="subtitle-1 mb-2"><strong>Select Niche / Industry</strong></div>
+                                    </v-card-text>
+                                    <v-select
+                                        :items="items"
+                                        label="Health Care"
+                                        outlined
+                                    ></v-select>
 
-                                    <p>
-                                        Suspendisse feugiat. Suspendisse faucibus, nunc et pellentesque egestas, lacus ante convallis tellus, vitae iaculis lacus elit id tortor. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In hac habitasse platea dictumst. Fusce ac felis sit amet ligula pharetra condimentum.
-                                    </p>
+                                    <div class="kind_group">
+                                        <div class="subtitle-2 mt-6 mb-2"><strong>What kind of Influencers you are looking for?</strong></div>
+                                    <v-radio-group v-model="kind" row class="mt-0">
+                                        <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="radio-1" active-class="kind_active"></v-radio>
+                                        <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="radio-2" active-class="kind_active"></v-radio>
+                                        <v-radio class="blogger_radio" label="Blogger" off-icon="mdi-blogger" on-icon="mdi-blogger" value="radio-3" active-class="kind_active"></v-radio>
+                                    </v-radio-group>
+                                    </div>
 
-                                    <p>
-                                        Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Nam commodo suscipit quam. In consectetuer turpis ut velit. Sed cursus turpis vitae tortor. Aliquam eu nunc.
-                                    </p>
+                                    <div class="kind_group">
+                                        <div class="subtitle-2 mt-6 mb-2">Followers</div>
+                                        <v-range-slider
+                                            v-model="range"
+                                            :max="max"
+                                            :min="min"
+                                            hide-details
+                                            class="align-center"
+                                        ></v-range-slider>
+                                        <p style="font-size: 10px">{{range[0]}} - {{range[1]}} Followers</p>
+                                    </div>
 
-                                    <p>
-                                        Etiam ut purus mattis mauris sodales aliquam. Ut varius tincidunt libero. Aenean viverra rhoncus pede. Duis leo. Fusce fermentum odio nec arcu.
-                                    </p>
+                                    <div class="kind_group">
+                                        <div class="subtitle-2 mt-6 mb-2">Likes per Post</div>
+                                        <v-range-slider
+                                            v-model="range"
+                                            :max="max"
+                                            :min="min"
+                                            hide-details
+                                            class="align-center"
+                                        ></v-range-slider>
+                                        <p style="font-size: 10px">{{range[0]}} - {{range[1]}} Likes</p>
+                                    </div>
 
-                                    <p class="mb-0">
-                                        Donec venenatis vulputate lorem. Aenean viverra rhoncus pede. In dui magna, posuere eget, vestibulum et, tempor auctor, justo. Fusce commodo aliquam arcu. Suspendisse enim turpis, dictum sed, iaculis a, condimentum nec, nisi.
-                                    </p>
-                                </v-card-text>
-                            </v-card>
+                                    <div class="kind_group">
+                                        <div class="subtitle-2 mt-6 mb-2">Engagement Rate</div>
+                                        <v-select
+                                            :items="items"
+                                            label="10% to 15% Min"
+                                            outlined
+                                        ></v-select>
+                                    </div>
+
+                                    <div class="kind_group">
+                                        <div class="subtitle-2 mt-6 mb-2">Rating</div>
+                                        <v-rating v-model="rating"></v-rating>
+                                    </div>
+                                </v-card>
+                            </v-flex>
+
+                            <v-flex>
+                                <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
+                                    <v-card-text>
+                                        <div class="subtitle-1 mb-2"><strong>Influencers Demographics</strong></div>
+                                    </v-card-text>
+
+                                    <div class="gender_group">
+                                        <div class="subtitle-2 mb-2"><strong>Gender</strong></div>
+                                        <v-radio-group v-model="kind" row class="mt-0">
+                                            <v-radio label="Male" off-icon="mdi-human-male" on-icon="mdi-human-male" value="radio-4" active-class="kind_active"></v-radio>
+                                            <v-radio label="Female" off-icon="mdi-human-female" on-icon="mdi-human-female" value="radio-5" active-class="kind_active"></v-radio>
+                                        </v-radio-group>
+                                    </div>
+
+                                    <div class="age_group">
+                                        <div class="subtitle-2 mb-2"><strong>Age Range</strong></div>
+                                        <v-radio-group v-model="kind" row class="mt-0">
+                                            <v-radio label="13 - 17" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-6" active-class="kind_active"></v-radio>
+                                            <v-radio label="18 - 24" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-7" active-class="kind_active"></v-radio>
+                                            <v-radio label="25 - 34" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-8" active-class="kind_active"></v-radio>
+                                            <v-radio label="35 - 44" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-9" active-class="kind_active"></v-radio>
+                                            <v-radio label="60+" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-10" active-class="kind_active"></v-radio>
+                                        </v-radio-group>
+                                    </div>
+
+                                    <div class="age_group">
+                                        <div class="subtitle-2 mb-2"><strong>Country</strong></div>
+                                        <v-select
+                                            :items="itemss"
+                                            v-model="selected"
+                                            label="Select"
+                                            return-object
+                                        >
+                                            <template slot="selection" slot-scope="data">
+                                                <v-avatar size="36">
+                                                    <img :src="data.item.avatar">
+                                                </v-avatar>
+                                                <div> {{ data.item.text }}
+                                                </div>
+                                            </template>
+                                            <template slot="item" slot-scope="data">
+                                                <v-list-tile-avatar size="36">
+                                                    <img :src="data.item.avatar">
+                                                </v-list-tile-avatar>
+                                                <v-list-tile-content>
+                                                    <v-list-tile-title> {{ data.item.text }}
+                                                    </v-list-tile-title>
+                                                </v-list-tile-content>
+                                            </template>
+                                        </v-select>
+                                    </div>
+
+                                    <v-card-actions class="action_btns mt-3 mb-3">
+                                    <v-btn color="primary" dark large block>
+                                        Apply Search Filters
+                                    </v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-flex>
                         </v-tab-item>
                         <v-tab-item>
                             <v-card>
@@ -242,6 +338,19 @@
            return  {
                e1: 0,
                checkbox2: true,
+               items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+               kind: null,
+               min: 0,
+               max: 1000,
+               range: [100, 600],
+               rating:3,
+               selected: null,
+               itemss: [
+                   { text: 'Jason Oner', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' },
+                   { text: 'Travis Howard', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' },
+                   { text: 'Ali Connors', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' },
+                   { text: 'Cindy Baker', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' }
+               ],
                dropzoneOptions: {
                    url: 'https://httpbin.org/post',
                    maxFilesize: 0.5,
@@ -342,5 +451,71 @@
     >>>.tag_field.v-text-field--outlined .v-label{
         top: 10px !important;
     }
+    >>>.kind_active {
+        background: #EE6F6F !important;
+        padding: 15px !important;
+    }
+    >>>.kind_active:first-child {
+        border-right: 1px solid #ccc;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    >>>.kind_active .accent--text{
+        color: #fff !important;
+        caret-color: #fff !important;
+    }
+    >>>.gender_group .kind_active .v-label, >>>.age_group .kind_active .v-label{
+        color: #fff !important;
+        caret-color: #fff !important;
+    }
+    >>>.kind_active .v-input--selection-controls__input{
+        margin-right: 0px !important;
+    }
+    >>>.kind_group .v-input--radio-group__input, >>>.gender_group .v-input--radio-group__input{
+        border: 1px solid #ccc !important;
+        border-radius: 5px !important;
 
+    }
+    >>>.age_group .v-input--radio-group__input{
+        border: none;
+    }
+    >>>.age_group .v-radio{
+        height: 30px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-right:0px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 5px;
+    }
+    >>>.age_group .v-input--selection-controls__input{
+        display:none;
+    }
+    >>>.kind_group .v-radio, >>>.gender_group .v-radio{
+        height: 50px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-right:0px;
+    }
+    >>>.kind_group .v-radio:first-child, >>>.gender_group .v-radio:first-child{
+        border-right: 1px solid #ccc;
+    }
+    >>>.kind_group .v-radio:last-child, >>>.gender_group .v-radio:last-child{
+        border-left: 1px solid #ccc;
+    }
+    >>>.kind_group .v-label{
+        position: absolute !important;
+        bottom: -75px;
+        font-size: 11px;
+    }
+    >>>.youtube_radio .v-label{
+        margin-left: 65px !important;
+    }
+    >>>.blogger_radio .v-label{
+        margin-left: 130px !important;
+    }
+    v-list-tile-avatar img {
+        height: 15px !important;
+        margin-right: 10px
+    }
 </style>
