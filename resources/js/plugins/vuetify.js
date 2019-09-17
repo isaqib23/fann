@@ -18,7 +18,8 @@ let colors = {
     "grayLight"     : "#BAC3C9",
     "grayLighten"   : "#EDEDED",
     "gutter"        : "#F7F7FF",
-    "decent"        : "#53508C"
+    "decent"        : "#53508C",
+    "white"        : "#FFFFFF",
 };
 
 Vue.use(Vuetify, {
