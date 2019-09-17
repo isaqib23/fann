@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-flex>
+        <v-flex class="ma-12">
             <v-card class="elevation-4  mx-auto pa-3 transition-swing">
                 <v-card-text>
                     <div class="subtitle-1 mb-2"><strong>Campaign Cover</strong></div>
