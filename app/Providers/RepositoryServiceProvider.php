@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\ShopRepository;
+use App\Repositories\ShopRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -23,6 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->bind(ShopRepository::class, ShopRepositoryEloquent::class);
         //:end-bindings:
     }
 }

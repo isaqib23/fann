@@ -135,7 +135,11 @@
                     ],
                     [
                         {title: 'Create', icon: 'list_alt', to: {name: 'create-step1'}, exact: false}
+                    ],
+                    [
+                        {title: 'Manage Shopify', icon: 'list_alt', to: {name: 'shopify-app'}, exact: false}
                     ]
+
                 ]
             }
         }

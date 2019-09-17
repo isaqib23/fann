@@ -97,7 +97,12 @@ export default [
                             component : require('$comp/businessOwner/campaign/Step5').default
                         }
                     ]
-                }
+                },
+                {
+                    path      : 'shopify-app',
+                    name      : 'shopify-app',
+                    component : require('$comp/businessOwner/shopify/Shakehand').default
+                },
             ]
         },
         {
