@@ -124,6 +124,25 @@ export default [
 
             ]
         },
+        {
+            path      : '',
+            component : require('$comp/general/FullContentWidthWrapper').default,
+            children  : [
+                {
+                    path      : 'influencer',
+                    component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
+                    children  : [
+                        {
+                            path      : 'profile',
+                            name      : 'influencer-profile',
+                            component : require('$comp/businessOwner/influencer/Profile').default
+                        }
+                    ]
+
+                }
+
+            ]
+        },
     ])
 ]
 

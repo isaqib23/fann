@@ -39,12 +39,13 @@
                         </div>
                     </v-card-text>
 
-                    <v-card-actions>
-                        <v-btn color="grayLight float_class" depressed>
+                    <v-card-actions class="py-3">
+                        <v-btn color="grayLight pl-5 pr-5" depressed height="30">
                             <v-icon>mdi-account-plus-outline</v-icon>
                             Invite
                         </v-btn>
-                        <v-btn color="primary float_class" dark depressed right end>
+                        <v-spacer></v-spacer>
+                        <v-btn color="primary pl-5 pr-5" depressed height="30" @click="goToProfile">
                             View Profile
                         </v-btn>
                     </v-card-actions>
@@ -72,7 +73,11 @@
                page: 1,
             }
         },
-        methods: {}
+        methods: {
+            goToProfile(){
+                this.$router.push({name:'influencer-profile'});
+            }
+        }
     }
 </script>
 
@@ -104,6 +109,9 @@
         font-size: 18px !important;
     }
     .v-card__actions .v-btn {
-        font-size: 10px !important;
+        font-size: 9px !important;
+    }
+    .v-card__actions .v-icon.v-icon{
+        font-size: 18px !important;
     }
 </style>
