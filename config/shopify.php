@@ -15,6 +15,8 @@ return [
         'write_discounts',
         'read_product_listings',
         'read_orders',
-        'write_orders'
+        'write_orders',
+        'read_customers',
+        'write_customers'
     ]
 ];
