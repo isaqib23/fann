@@ -30431,6 +30431,10 @@ html {
   height: 100%;
 }
 
+.full_width {
+  width: 100% !important;
+}
+
 .fullBG {
   background-color: #4736a0;
   background-image: linear-gradient(to right, #403C79 0%, #EE6F6F 100%);

@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-flex>
-            <v-layout class="panes-container full_height left-pane">
+            <v-layout class="panes-container full_height" v-bind:class="paneClass">
                 <v-card fluid grid-list-md>
 
                     <v-tabs v-model="active_tab" vertical flat icons-and-text active-class="active_tab" background-color="decent" color="gutter" >
@@ -13,18 +13,8 @@
                         <v-tab-item>
                             <InviteLeftPane></InviteLeftPane>
                         </v-tab-item>
-                        <v-tab-item>
-                            <v-card>
-                                <v-card-text>
-                                    <p>
-                                        Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
-                                    </p>
-
-                                    <p class="mb-0">
-                                        Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.
-                                    </p>
-                                </v-card-text>
-                            </v-card>
+                        <v-tab-item class="3rd_tab">
+                            <Promote></Promote>
                         </v-tab-item>
                     </v-tabs>
                 </v-card>
@@ -45,20 +35,27 @@
     import InviteLeftPane from './requirements/InviteLeftPane';
     import CreateRightPane from './requirements/CreateRightPane';
     import InviteRightPane from './requirements/InviteRightPane';
+    import Promote from './requirements/Promote';
     export default {
         components: {
             LeftTabs: LeftTabs,
             CreateLeftPane: CreateLeftPane,
             InviteLeftPane: InviteLeftPane,
             CreateRightPane: CreateRightPane,
-            InviteRightPane: InviteRightPane
+            InviteRightPane: InviteRightPane,
+            Promote: Promote
         },
         data: () => {
            return  {
                active_tab: 0
             }
         },
-        methods: {}
+        methods: {},
+        computed: {
+            paneClass: function() {
+                return (this.active_tab == 2) ? 'full_width' : 'left-pane';
+            }
+        }
     }
 </script>
 

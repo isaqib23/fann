@@ -3285,6 +3285,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _requirements_InviteLeftPane__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./requirements/InviteLeftPane */ "./resources/js/components/businessOwner/campaign/requirements/InviteLeftPane.vue");
 /* harmony import */ var _requirements_CreateRightPane__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./requirements/CreateRightPane */ "./resources/js/components/businessOwner/campaign/requirements/CreateRightPane.vue");
 /* harmony import */ var _requirements_InviteRightPane__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./requirements/InviteRightPane */ "./resources/js/components/businessOwner/campaign/requirements/InviteRightPane.vue");
+/* harmony import */ var _requirements_Promote__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./requirements/Promote */ "./resources/js/components/businessOwner/campaign/requirements/Promote.vue");
 //
 //
 //
@@ -3316,16 +3317,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -3337,14 +3329,20 @@ __webpack_require__.r(__webpack_exports__);
     CreateLeftPane: _requirements_CreateLeftPane__WEBPACK_IMPORTED_MODULE_1__["default"],
     InviteLeftPane: _requirements_InviteLeftPane__WEBPACK_IMPORTED_MODULE_2__["default"],
     CreateRightPane: _requirements_CreateRightPane__WEBPACK_IMPORTED_MODULE_3__["default"],
-    InviteRightPane: _requirements_InviteRightPane__WEBPACK_IMPORTED_MODULE_4__["default"]
+    InviteRightPane: _requirements_InviteRightPane__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Promote: _requirements_Promote__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
       active_tab: 0
     };
   },
-  methods: {}
+  methods: {},
+  computed: {
+    paneClass: function paneClass() {
+      return this.active_tab == 2 ? 'full_width' : 'left-pane';
+    }
+  }
 });
 
 /***/ }),
@@ -4480,6 +4478,46 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {},
+  data: function data() {
+    return {};
+  },
+  methods: {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/influencer/Profile.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/influencer/Profile.vue?vue&type=script&lang=js& ***!
@@ -4557,11 +4595,165 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
     return {
-      rating: 3
+      rating: 3,
+      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      show: true
     };
   },
   methods: {}
@@ -18435,6 +18627,25 @@ exports.push([module.i, "\n[data-v-9ccdcda8] .v-tabs-items,[data-v-9ccdcda8] .v-
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.main_wrapper[data-v-1f5ab389], .card_wrapper[data-v-1f5ab389]{\n    width: 85%;\n}\n[data-v-1f5ab389] .card_wrapper .v-badge__badge{\n    margin-top: 20px !important;\n    padding: 15px;\n    border-radius: 50px;\n    height:auto !important;\n}\n[data-v-1f5ab389] .v-sheet{\n    border-bottom-left-radius: 0px !important;\n    border-bottom-right-radius: 0px !important;\n}\n[data-v-1f5ab389] .gutterDark.v-sheet{\n    border-top-left-radius: 0px !important;\n    border-top-right-radius: 0px !important;\n}\n[data-v-1f5ab389] .v-rating .v-icon{\n    padding:0px;\n}\n.inner_wrapper[data-v-1f5ab389]{\n    max-width: 55% !important;\n    float: left !important;\n}\n.image_wrapper[data-v-1f5ab389]{\n    max-width: 17% !important;\n    float: left !important;\n}\n.icons .custom_icon[data-v-1f5ab389]{\n    padding: 4px 2px;\n    border-radius: 50px;\n    height: auto !important;\n    background: #FDE0E1;\n    border: 3px solid #fff;\n    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);\n}\n.icons .custom_icon[data-v-1f5ab389]:nth-child(2) {\n    background: #D8CEFD;\n}\n.icons .custom_icon[data-v-1f5ab389]:nth-child(3) {\n    background: #FEF7DA;\n}\n.overline1[data-v-1f5ab389]{\n    font-size: 11px;\n}\n.overline1 .custom_icon[data-v-1f5ab389]{\n    padding: 8px 4px !important;\n    border-radius: 50px;\n    height: auto !important;\n    background: #FDE0E1;\n    border: none;\n    box-shadow: none;\n}\n[data-v-1f5ab389] .v-btn {\n    font-size: 10px !important;\n}\n.action_class[data-v-1f5ab389] {\n    border-top: 1px solid #ccc;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/influencer/Profile.vue?vue&type=style&index=0&id=6d78311e&scoped=true&lang=css&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/influencer/Profile.vue?vue&type=style&index=0&id=6d78311e&scoped=true&lang=css& ***!
@@ -18447,7 +18658,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.main_wrapper[data-v-6d78311e]{\n    width: 90%;\n}\n[data-v-6d78311e] .v-rating .v-icon{\n    padding:0px;\n}\n.inner_wrapper[data-v-6d78311e]{\n    width: 60%;\n    max-width: 60% !important;\n}\n", ""]);
+exports.push([module.i, "\n.main_wrapper[data-v-6d78311e]{\n    width: 85%;\n}\n[data-v-6d78311e] .card_wrapper .v-badge__badge{\n    margin-top: 20px !important;\n    padding: 15px;\n    border-radius: 50px;\n    height:auto !important;\n}\n[data-v-6d78311e] .v-sheet{\n    border-bottom-left-radius: 0px !important;\n    border-bottom-right-radius: 0px !important;\n}\n[data-v-6d78311e] .gutterDark.v-sheet{\n    border-top-left-radius: 0px !important;\n    border-top-right-radius: 0px !important;\n}\n[data-v-6d78311e] .v-rating .v-icon{\n    padding:0px;\n}\n.inner_wrapper[data-v-6d78311e]{\n    max-width: 55% !important;\n    float: left !important;\n}\n.image_wrapper[data-v-6d78311e]{\n    max-width: 17% !important;\n    float: left !important;\n}\n.icons .custom_icon[data-v-6d78311e]{\n    padding: 4px 2px;\n    border-radius: 50px;\n    height: auto !important;\n    background: #FDE0E1;\n    border: 3px solid #fff;\n    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);\n}\n.icons .custom_icon[data-v-6d78311e]:nth-child(2) {\n    background: #D8CEFD;\n}\n.icons .custom_icon[data-v-6d78311e]:nth-child(3) {\n    background: #FEF7DA;\n}\n.overline1[data-v-6d78311e]{\n    font-size: 11px;\n}\n.overline1 .custom_icon[data-v-6d78311e]{\n    padding: 8px 4px !important;\n    border-radius: 50px;\n    height: auto !important;\n    background: #FDE0E1;\n    border: none;\n    box-shadow: none;\n}\n[data-v-6d78311e] .v-btn {\n    font-size: 10px !important;\n}\n.action_class[data-v-6d78311e] {\n    border-top: 1px solid #ccc;\n}\n", ""]);
 
 // exports
 
@@ -19085,6 +19296,36 @@ if(false) {}
 
 
 var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./LeftTabs.vue?vue&type=style&index=0&id=9ccdcda8&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/LeftTabs.vue?vue&type=style&index=0&id=9ccdcda8&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -22588,7 +22829,10 @@ var render = function() {
         [
           _c(
             "v-layout",
-            { staticClass: "panes-container full_height left-pane" },
+            {
+              staticClass: "panes-container full_height",
+              class: _vm.paneClass
+            },
             [
               _c(
                 "v-card",
@@ -22622,27 +22866,8 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-tab-item",
-                        [
-                          _c(
-                            "v-card",
-                            [
-                              _c("v-card-text", [
-                                _c("p", [
-                                  _vm._v(
-                                    "\n                                    Fusce a quam. Phasellus nec sem in justo pellentesque facilisis. Nam eget dui. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique sapien, a accumsan nisi mauris ac eros. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.\n                                "
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("p", { staticClass: "mb-0" }, [
-                                  _vm._v(
-                                    "\n                                    Cras sagittis. Phasellus nec sem in justo pellentesque facilisis. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nam at tortor in tellus interdum sagittis.\n                                "
-                                  )
-                                ])
-                              ])
-                            ],
-                            1
-                          )
-                        ],
+                        { staticClass: "3rd_tab" },
+                        [_c("Promote")],
                         1
                       )
                     ],
@@ -25321,6 +25546,79 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=template&id=1f5ab389&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=template&id=1f5ab389&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "v-flex",
+        { staticClass: "ma-12" },
+        [
+          _c(
+            "v-card",
+            { staticClass: "mx-auto card_wrapper" },
+            [
+              _c(
+                "v-row",
+                { staticClass: "py-12 mx-auto main_wrapper" },
+                [
+                  _c(
+                    "v-flex",
+                    { attrs: { lg12: "", sm12: "", m12: "" } },
+                    [
+                      _c("div", { staticClass: "subtitle-2 mb-2" }, [
+                        _c("strong", [_vm._v("Brand Mention")])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "overline mb-2" }, [
+                        _vm._v("Seperate with (,)")
+                      ]),
+                      _vm._v(" "),
+                      _c("v-text-field", {
+                        staticClass: "tag_field",
+                        attrs: {
+                          outlined: "",
+                          label: "Nike,Nuchey",
+                          "prepend-icon": "@"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/influencer/Profile.vue?vue&type=template&id=6d78311e&scoped=true&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/influencer/Profile.vue?vue&type=template&id=6d78311e&scoped=true& ***!
@@ -25349,198 +25647,887 @@ var render = function() {
           _vm._v(" "),
           _c(
             "v-card",
-            { staticClass: "mx-auto" },
+            { staticClass: "mx-auto card_wrapper" },
             [
               _c(
                 "v-row",
-                { staticClass: "py-4 px-12 mx-auto main_wrapper" },
+                { staticClass: "py-12 mx-auto main_wrapper" },
                 [
                   _c(
-                    "v-avatar",
-                    { attrs: { height: "150", width: "150" } },
-                    [
-                      _c("v-img", {
-                        attrs: {
-                          src:
-                            "https://cdn.vuetifyjs.com/images/cards/store.jpg"
+                    "v-badge",
+                    {
+                      attrs: { color: "primary" },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "badge",
+                          fn: function() {
+                            return [
+                              _c("v-icon", { attrs: { dark: "" } }, [
+                                _vm._v(
+                                  "\n                            mdi-chat\n                        "
+                                )
+                              ])
+                            ]
+                          },
+                          proxy: true
                         }
-                      })
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-col",
-                    { staticClass: "text-center inner_wrapper" },
+                      ])
+                    },
                     [
+                      _vm._v(" "),
                       _c(
-                        "v-container",
-                        { staticClass: "pa-0" },
+                        "div",
+                        { staticClass: "top_wrapper" },
                         [
                           _c(
-                            "v-card-title",
-                            { staticClass: "my-0 py-0" },
+                            "v-col",
+                            { staticClass: "image_wrapper" },
                             [
-                              _c("div", { staticClass: "headline mb-2 mr-4" }, [
-                                _c("strong", [_vm._v("Amanda Nash")])
-                              ]),
-                              _vm._v(" "),
-                              _c("v-rating", {
-                                staticClass: "mt-n4",
-                                attrs: { color: "warning" },
-                                model: {
-                                  value: _vm.rating,
-                                  callback: function($$v) {
-                                    _vm.rating = $$v
-                                  },
-                                  expression: "rating"
-                                }
-                              }),
-                              _vm._v(" "),
                               _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    color: "grayLighten pl-1 pr-1 ml-4 mr-2",
-                                    depressed: "",
-                                    height: "30"
-                                  }
-                                },
+                                "v-avatar",
+                                { attrs: { height: "150", width: "150" } },
                                 [
-                                  _vm._v(
-                                    "\n                                Lifestyle\n                            "
-                                  )
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                {
-                                  attrs: {
-                                    color: "grayLighten pl-1 pr-1 ml-1",
-                                    depressed: "",
-                                    height: "30"
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                Fashion\n                            "
-                                  )
-                                ]
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://cdn.vuetifyjs.com/images/cards/store.jpg"
+                                    }
+                                  })
+                                ],
+                                1
                               )
                             ],
                             1
                           ),
                           _vm._v(" "),
-                          _c("div", { staticClass: "text-start ml-4 mt-n2" }, [
-                            _c(
-                              "p",
-                              {
-                                staticClass: "overline integrityColor--text",
-                                attrs: { color: "grayLighten" }
-                              },
-                              [_vm._v("Amanda Nash")]
-                            )
-                          ]),
-                          _vm._v(" "),
                           _c(
-                            "div",
-                            { staticClass: "icons text-start ml-4" },
+                            "v-col",
+                            { staticClass: "text-center inner_wrapper" },
                             [
                               _c(
-                                "v-icon",
-                                { attrs: { color: "primary", large: "" } },
-                                [_vm._v("mdi-instagram")]
-                              ),
-                              _vm._v(" "),
-                              _c("v-icon", { attrs: { large: "" } }, [
-                                _vm._v("mdi-youtube")
-                              ]),
-                              _vm._v(" "),
-                              _c("v-icon", { attrs: { large: "" } }, [
-                                _vm._v("mdi-blogger")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "followers text-start ml-4 mt-3 body-2"
-                            },
-                            [
-                              _c(
-                                "span",
-                                { staticClass: "mr-3 integrityColor--text" },
+                                "v-container",
+                                { staticClass: "pa-0" },
                                 [
                                   _c(
-                                    "strong",
-                                    { staticClass: "mr-2 black--text" },
-                                    [_vm._v("2.2K")]
+                                    "v-card-title",
+                                    { staticClass: "my-0 py-0" },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "headline mb-2 mr-4" },
+                                        [_c("strong", [_vm._v("Amanda Nash")])]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("v-rating", {
+                                        staticClass: "mt-n4",
+                                        attrs: { color: "warning" },
+                                        model: {
+                                          value: _vm.rating,
+                                          callback: function($$v) {
+                                            _vm.rating = $$v
+                                          },
+                                          expression: "rating"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color:
+                                              "grayLighten pl-2 pr-2 ml-4 mr-2",
+                                            depressed: "",
+                                            height: "30"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        Lifestyle\n                                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "grayLighten pl-2 pr-2 ml-1",
+                                            depressed: "",
+                                            height: "30"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        Fashion\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
                                   ),
-                                  _vm._v("Posts\n                            ")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "span",
-                                { staticClass: "mr-3 integrityColor--text" },
-                                [
+                                  _vm._v(" "),
                                   _c(
-                                    "strong",
-                                    { staticClass: "mr-2 black--text" },
-                                    [_vm._v("40.2K")]
+                                    "div",
+                                    { staticClass: "text-start ml-4 mt-n2" },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "overline integrityColor--text",
+                                          attrs: { color: "grayLighten" }
+                                        },
+                                        [_vm._v("Amanda Nash")]
+                                      )
+                                    ]
                                   ),
-                                  _vm._v("Posts\n                            ")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "span",
-                                { staticClass: "mr-3 integrityColor--text" },
-                                [
+                                  _vm._v(" "),
                                   _c(
-                                    "strong",
-                                    { staticClass: "mr-2 black--text" },
-                                    [_vm._v("14.2K")]
+                                    "div",
+                                    { staticClass: "icons text-start ml-4" },
+                                    [
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          attrs: { color: "primary", large: "" }
+                                        },
+                                        [_vm._v("mdi-instagram")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          attrs: {
+                                            color: "integrityColor",
+                                            large: ""
+                                          }
+                                        },
+                                        [_vm._v("mdi-youtube")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-icon",
+                                        {
+                                          attrs: {
+                                            color: "integrityColor",
+                                            large: ""
+                                          }
+                                        },
+                                        [_vm._v("mdi-blogger")]
+                                      )
+                                    ],
+                                    1
                                   ),
-                                  _vm._v("Posts\n                            ")
-                                ]
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "followers text-start ml-4 mt-3 body-2"
+                                    },
+                                    [
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "mr-3 integrityColor--text"
+                                        },
+                                        [
+                                          _c(
+                                            "strong",
+                                            { staticClass: "mr-2 black--text" },
+                                            [_vm._v("2.2K")]
+                                          ),
+                                          _vm._v(
+                                            "Posts\n                                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "mr-3 integrityColor--text"
+                                        },
+                                        [
+                                          _c(
+                                            "strong",
+                                            { staticClass: "mr-2 black--text" },
+                                            [_vm._v("40.2K")]
+                                          ),
+                                          _vm._v(
+                                            "Posts\n                                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        {
+                                          staticClass:
+                                            "mr-3 integrityColor--text"
+                                        },
+                                        [
+                                          _c(
+                                            "strong",
+                                            { staticClass: "mr-2 black--text" },
+                                            [_vm._v("14.2K")]
+                                          ),
+                                          _vm._v(
+                                            "Posts\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "text-start ml-4 mt-2" },
+                                    [
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "text-justify integrityColor--text caption"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Fusce convallis metus id felis luctus adipiscing.\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "icons text-start ml-4" },
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "custom_icon" },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { color: "red" } },
+                                            [_vm._v("mdi-fire")]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "custom_icon" },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { color: "indigo" } },
+                                            [_vm._v("mdi-shield-half-full")]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "span",
+                                        { staticClass: "custom_icon" },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { color: "warning" } },
+                                            [_vm._v("mdi-wifi-strength-4")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "buttons text-right mt-n6" },
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color:
+                                              "grayLighten pl-2 pr-2 ml-4 mr-2",
+                                            depressed: "",
+                                            height: "40"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        Invite to campaign\n                                    "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: {
+                                            color: "primary pl-2 pr-2 ml-1",
+                                            depressed: "",
+                                            height: "40"
+                                          }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        Make Offer\n                                    "
+                                          )
+                                        ]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "text-start ml-4 mt-2" }, [
-                            _c(
-                              "p",
-                              {
-                                staticClass:
-                                  "text-justify integrityColor--text caption"
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Fusce convallis metus id felis luctus adipiscing.\n                            "
-                                )
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "v-row",
-                            [
-                              _c("v-col"),
-                              _vm._v(" "),
-                              _c("v-col"),
-                              _vm._v(" "),
-                              _c("v-col")
                             ],
                             1
                           )
                         ],
                         1
                       )
+                    ]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-card",
+            {
+              staticClass: "mx-auto card_wrapper",
+              attrs: { color: "gutterDark" }
+            },
+            [
+              _c(
+                "v-row",
+                { staticClass: "py-12 mx-auto main_wrapper" },
+                [
+                  _c(
+                    "v-row",
+                    { staticClass: "full_width", attrs: { align: "center" } },
+                    [
+                      _c(
+                        "v-col",
+                        { staticClass: "d-flex", attrs: { cols: "4" } },
+                        [
+                          _c("div", { staticClass: "subtitle-1 mb-2" }, [
+                            _c("strong", [_vm._v("Instagram Stats Overview")])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { staticClass: "d-flex", attrs: { cols: "2" } },
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.items,
+                              label: "Platform",
+                              outlined: "",
+                              height: "15"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { staticClass: "d-flex", attrs: { cols: "2" } },
+                        [
+                          _c("v-select", {
+                            attrs: {
+                              items: _vm.items,
+                              label: "From",
+                              outlined: ""
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    { staticClass: "full_width", attrs: { align: "center" } },
+                    [
+                      _c(
+                        "v-col",
+                        { staticClass: "d-flex", attrs: { cols: "3" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { "min-width": "100%" } },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "overline1" },
+                                [
+                                  _vm._v(
+                                    "\n                                Media Posts (last 30 days)\n                                "
+                                  ),
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "icons text-end" }, [
+                                    _c(
+                                      "span",
+                                      { staticClass: "custom_icon" },
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          { attrs: { color: "red" } },
+                                          [_vm._v("mdi-fire")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-text",
+                                { staticClass: "display-1 pb-0" },
+                                [
+                                  _c(
+                                    "strong",
+                                    { attrs: { color: "darkSecondary" } },
+                                    [_vm._v("148.5K")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-card-actions", { staticClass: "pl-5" }, [
+                                _c(
+                                  "span",
+                                  { staticClass: "success--text mr-2" },
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: { color: "success", small: "" }
+                                      },
+                                      [_vm._v("mdi-arrow-down")]
+                                    ),
+                                    _vm._v(
+                                      "13.8%\n                                "
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "overline1" }, [
+                                  _vm._v("Less post then ussual.")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { staticClass: "d-flex", attrs: { cols: "3" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { "min-width": "100%" } },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "overline1" },
+                                [
+                                  _vm._v(
+                                    "\n                                Media Posts (last 30 days)\n                                "
+                                  ),
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "icons text-end" }, [
+                                    _c(
+                                      "span",
+                                      { staticClass: "custom_icon" },
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          { attrs: { color: "red" } },
+                                          [_vm._v("mdi-fire")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-text",
+                                { staticClass: "display-1 pb-0" },
+                                [
+                                  _c(
+                                    "strong",
+                                    { attrs: { color: "darkSecondary" } },
+                                    [_vm._v("148.5K")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-card-actions", { staticClass: "pl-5" }, [
+                                _c(
+                                  "span",
+                                  { staticClass: "success--text mr-2" },
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: { color: "success", small: "" }
+                                      },
+                                      [_vm._v("mdi-arrow-down")]
+                                    ),
+                                    _vm._v(
+                                      "13.8%\n                                "
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "overline1" }, [
+                                  _vm._v("Less post then ussual.")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { staticClass: "d-flex", attrs: { cols: "3" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { "min-width": "100%" } },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "overline1" },
+                                [
+                                  _vm._v(
+                                    "\n                                Media Posts (last 30 days)\n                                "
+                                  ),
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "icons text-end" }, [
+                                    _c(
+                                      "span",
+                                      { staticClass: "custom_icon" },
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          { attrs: { color: "red" } },
+                                          [_vm._v("mdi-fire")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-text",
+                                { staticClass: "display-1 pb-0" },
+                                [
+                                  _c(
+                                    "strong",
+                                    { attrs: { color: "darkSecondary" } },
+                                    [_vm._v("148.5K")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-card-actions", { staticClass: "pl-5" }, [
+                                _c(
+                                  "span",
+                                  { staticClass: "success--text mr-2" },
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: { color: "success", small: "" }
+                                      },
+                                      [_vm._v("mdi-arrow-down")]
+                                    ),
+                                    _vm._v(
+                                      "13.8%\n                                "
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "overline1" }, [
+                                  _vm._v("Less post then ussual.")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { staticClass: "d-flex", attrs: { cols: "3" } },
+                        [
+                          _c(
+                            "v-card",
+                            { attrs: { "min-width": "100%" } },
+                            [
+                              _c(
+                                "v-card-title",
+                                { staticClass: "overline1" },
+                                [
+                                  _vm._v(
+                                    "\n                                Media Posts (last 30 days)\n                                "
+                                  ),
+                                  _c("v-spacer"),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "icons text-end" }, [
+                                    _c(
+                                      "span",
+                                      { staticClass: "custom_icon" },
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          { attrs: { color: "red" } },
+                                          [_vm._v("mdi-fire")]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-text",
+                                { staticClass: "display-1 pb-0" },
+                                [
+                                  _c(
+                                    "strong",
+                                    { attrs: { color: "darkSecondary" } },
+                                    [_vm._v("148.5K")]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("v-card-actions", { staticClass: "pl-5" }, [
+                                _c(
+                                  "span",
+                                  { staticClass: "success--text mr-2" },
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: { color: "success", small: "" }
+                                      },
+                                      [_vm._v("mdi-arrow-down")]
+                                    ),
+                                    _vm._v(
+                                      "13.8%\n                                "
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "overline1" }, [
+                                  _vm._v("Less post then ussual.")
+                                ])
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "subtitle-1 mb-3 mt-3" }, [
+                    _c("strong", [_vm._v("Featured Posts")])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-row",
+                    { staticClass: "full_width", attrs: { align: "center" } },
+                    _vm._l(15, function(i) {
+                      return _c(
+                        "v-col",
+                        { key: i, staticClass: "d-flex", attrs: { cols: "4" } },
+                        [
+                          _c(
+                            "v-card",
+                            {
+                              staticClass: "mx-auto",
+                              attrs: { "max-width": "344" }
+                            },
+                            [
+                              _c(
+                                "v-list-item",
+                                [
+                                  _c("v-list-item-avatar", {
+                                    attrs: { color: "grey" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-list-item-content",
+                                    [
+                                      _c(
+                                        "v-list-item-title",
+                                        { staticClass: "subtitle-2" },
+                                        [_vm._v("Amanda Nash")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-item-subtitle",
+                                        { staticClass: "caption" },
+                                        [_vm._v("by Kurt Wagner")]
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      attrs: {
+                                        color: "primary",
+                                        depressed: "",
+                                        height: "30"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Make Offer\n                                "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("v-img", {
+                                attrs: {
+                                  src:
+                                    "https://cdn.vuetifyjs.com/images/cards/mountain.jpg",
+                                  height: "194"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("v-card-text", {}, [
+                                _c("strong", { staticClass: "primary--text" }, [
+                                  _vm._v("View more on instagram")
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "v-card-actions",
+                                { staticClass: "action_class" },
+                                [
+                                  _c(
+                                    "v-tooltip",
+                                    {
+                                      attrs: { bottom: "" },
+                                      scopedSlots: _vm._u(
+                                        [
+                                          {
+                                            key: "activator",
+                                            fn: function(ref) {
+                                              var on = ref.on
+                                              return [
+                                                _c("v-icon", _vm._g({}, on), [
+                                                  _vm._v("mdi-heart-outline")
+                                                ])
+                                              ]
+                                            }
+                                          }
+                                        ],
+                                        null,
+                                        true
+                                      )
+                                    },
+                                    [
+                                      _vm._v(" "),
+                                      _c("span", [_vm._v("1,7524 likes")])
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("v-icon", [_vm._v("mdi-tooltip-outline")]),
+                                  _vm._v(" "),
+                                  _c("v-icon", [
+                                    _vm._v("mdi-briefcase-upload-outline")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("div", { staticClass: "flex-grow-1" }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    { attrs: { icon: "" } },
+                                    [
+                                      _c("v-icon", [
+                                        _vm._v("mdi-share-variant")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    }),
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "full_width text-end" },
+                    [
+                      _c("v-btn", { attrs: { large: "", text: "" } }, [
+                        _vm._v("Back")
+                      ])
                     ],
                     1
                   )
@@ -80131,8 +81118,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCardText"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VFlex"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VLayout"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_6__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_6__["VTabs"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCard"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VFlex"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VLayout"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_6__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_6__["VTabs"]})
 
 
 /* hot reload */
@@ -81355,6 +82341,107 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/businessOwner/campaign/requirements/Promote.vue":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/businessOwner/campaign/requirements/Promote.vue ***!
+  \*********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Promote_vue_vue_type_template_id_1f5ab389_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Promote.vue?vue&type=template&id=1f5ab389&scoped=true& */ "./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=template&id=1f5ab389&scoped=true&");
+/* harmony import */ var _Promote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Promote.vue?vue&type=script&lang=js& */ "./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Promote_vue_vue_type_style_index_0_id_1f5ab389_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css& */ "./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
+/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Promote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Promote_vue_vue_type_template_id_1f5ab389_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Promote_vue_vue_type_template_id_1f5ab389_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "1f5ab389",
+  null
+  
+)
+
+/* vuetify-loader */
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_7__["VTextField"]})
+
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/businessOwner/campaign/requirements/Promote.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Promote.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************!*\
+  !*** ./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_style_index_0_id_1f5ab389_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/style-loader!../../../../../../node_modules/css-loader??ref--6-1!../../../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../../../node_modules/postcss-loader/src??ref--6-2!../../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=style&index=0&id=1f5ab389&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_style_index_0_id_1f5ab389_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_style_index_0_id_1f5ab389_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_style_index_0_id_1f5ab389_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_style_index_0_id_1f5ab389_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_style_index_0_id_1f5ab389_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=template&id=1f5ab389&scoped=true&":
+/*!****************************************************************************************************************************!*\
+  !*** ./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=template&id=1f5ab389&scoped=true& ***!
+  \****************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_template_id_1f5ab389_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Promote.vue?vue&type=template&id=1f5ab389&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/Promote.vue?vue&type=template&id=1f5ab389&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_template_id_1f5ab389_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Promote_vue_vue_type_template_id_1f5ab389_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/businessOwner/influencer/Profile.vue":
 /*!**********************************************************************!*\
   !*** ./resources/js/components/businessOwner/influencer/Profile.vue ***!
@@ -81371,12 +82458,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VAvatar */ "./node_modules/vuetify/lib/components/VAvatar/index.js");
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
-/* harmony import */ var vuetify_lib_components_VRating__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VRating */ "./node_modules/vuetify/lib/components/VRating/index.js");
+/* harmony import */ var vuetify_lib_components_VBadge__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VBadge */ "./node_modules/vuetify/lib/components/VBadge/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VRating__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VRating */ "./node_modules/vuetify/lib/components/VRating/index.js");
+/* harmony import */ var vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VSelect */ "./node_modules/vuetify/lib/components/VSelect/index.js");
+/* harmony import */ var vuetify_lib_components_VTooltip__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VTooltip */ "./node_modules/vuetify/lib/components/VTooltip/index.js");
 
 
 
@@ -81409,7 +82500,18 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VContainer"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_10__["VImg"],VRating: vuetify_lib_components_VRating__WEBPACK_IMPORTED_MODULE_11__["VRating"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"]})
+
+
+
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__["VAvatar"],VBadge: vuetify_lib_components_VBadge__WEBPACK_IMPORTED_MODULE_6__["VBadge"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_7__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_8__["VCardTitle"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VCol"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VContainer"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__["VImg"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemTitle"],VRating: vuetify_lib_components_VRating__WEBPACK_IMPORTED_MODULE_13__["VRating"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VRow"],VSelect: vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_14__["VSelect"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VSpacer"],VTooltip: vuetify_lib_components_VTooltip__WEBPACK_IMPORTED_MODULE_15__["VTooltip"]})
 
 
 /* hot reload */
@@ -82848,6 +83950,7 @@ var colors = {
   "grayLight": "#BAC3C9",
   "grayLighten": "#EDEDED",
   "gutter": "#F7F7FF",
+  "gutterDark": "#F4F7FD",
   "decent": "#53508C",
   "white": "#FFFFFF"
 };

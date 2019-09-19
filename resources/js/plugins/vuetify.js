@@ -18,6 +18,7 @@ let colors = {
     "grayLight"     : "#BAC3C9",
     "grayLighten"   : "#EDEDED",
     "gutter"        : "#F7F7FF",
+    "gutterDark"    : "#F4F7FD",
     "decent"        : "#53508C",
     "white"        : "#FFFFFF",
 };
