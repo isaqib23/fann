@@ -3314,9 +3314,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 
 
@@ -3341,6 +3338,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     paneClass: function paneClass() {
       return this.active_tab == 2 ? 'full_width' : 'left-pane';
+    },
+    cardClass: function cardClass() {
+      return this.active_tab == 2 ? 'full_width' : '';
     }
   }
 });
@@ -4508,10 +4508,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   data: function data() {
-    return {};
+    return {
+      checkbox2: false
+    };
   },
   methods: {}
 });
@@ -18639,7 +18701,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.main_wrapper[data-v-1f5ab389], .card_wrapper[data-v-1f5ab389]{\n    width: 85%;\n}\n[data-v-1f5ab389] .card_wrapper .v-badge__badge{\n    margin-top: 20px !important;\n    padding: 15px;\n    border-radius: 50px;\n    height:auto !important;\n}\n[data-v-1f5ab389] .v-sheet{\n    border-bottom-left-radius: 0px !important;\n    border-bottom-right-radius: 0px !important;\n}\n[data-v-1f5ab389] .gutterDark.v-sheet{\n    border-top-left-radius: 0px !important;\n    border-top-right-radius: 0px !important;\n}\n[data-v-1f5ab389] .v-rating .v-icon{\n    padding:0px;\n}\n.inner_wrapper[data-v-1f5ab389]{\n    max-width: 55% !important;\n    float: left !important;\n}\n.image_wrapper[data-v-1f5ab389]{\n    max-width: 17% !important;\n    float: left !important;\n}\n.icons .custom_icon[data-v-1f5ab389]{\n    padding: 4px 2px;\n    border-radius: 50px;\n    height: auto !important;\n    background: #FDE0E1;\n    border: 3px solid #fff;\n    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);\n}\n.icons .custom_icon[data-v-1f5ab389]:nth-child(2) {\n    background: #D8CEFD;\n}\n.icons .custom_icon[data-v-1f5ab389]:nth-child(3) {\n    background: #FEF7DA;\n}\n.overline1[data-v-1f5ab389]{\n    font-size: 11px;\n}\n.overline1 .custom_icon[data-v-1f5ab389]{\n    padding: 8px 4px !important;\n    border-radius: 50px;\n    height: auto !important;\n    background: #FDE0E1;\n    border: none;\n    box-shadow: none;\n}\n[data-v-1f5ab389] .v-btn {\n    font-size: 10px !important;\n}\n.action_class[data-v-1f5ab389] {\n    border-top: 1px solid #ccc;\n}\n", ""]);
+exports.push([module.i, "\n.main_wrapper[data-v-1f5ab389], .card_wrapper[data-v-1f5ab389]{\n    width: 90%;\n}\n[data-v-1f5ab389] .tag_field > .v-input__control > .v-input__slot{\n    padding-right: 0px !important;\n}\n[data-v-1f5ab389] .tag_field .v-input__append-inner{\n    margin-top: 0px !important;\n}\n[data-v-1f5ab389] .tag_field .v-input__append-inner .v-input__icon{\n    background: #EE6F6F;\n    padding: 28px;\n    border-top-right-radius: 5px;\n    border-bottom-right-radius: 5px;\n}\n[data-v-1f5ab389] .tag_field .v-input__append-inner .v-icon.v-icon{\n    color: #ffffff;\n}\n", ""]);
 
 // exports
 
@@ -22836,7 +22898,10 @@ var render = function() {
             [
               _c(
                 "v-card",
-                { attrs: { fluid: "", "grid-list-md": "" } },
+                {
+                  class: _vm.cardClass,
+                  attrs: { fluid: "", "grid-list-md": "" }
+                },
                 [
                   _c(
                     "v-tabs",
@@ -22866,7 +22931,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-tab-item",
-                        { staticClass: "3rd_tab" },
+                        { staticClass: "full_width" },
                         [_c("Promote")],
                         1
                       )
@@ -25566,7 +25631,7 @@ var render = function() {
     [
       _c(
         "v-flex",
-        { staticClass: "ma-12" },
+        { staticClass: "my-12" },
         [
           _c(
             "v-card",
@@ -25578,27 +25643,262 @@ var render = function() {
                 [
                   _c(
                     "v-flex",
-                    { attrs: { lg12: "", sm12: "", m12: "" } },
+                    { attrs: { lg6: "", sm6: "", m12: "" } },
                     [
-                      _c("div", { staticClass: "subtitle-2 mb-2" }, [
-                        _c("strong", [_vm._v("Brand Mention")])
-                      ]),
+                      _c(
+                        "div",
+                        { staticClass: "url_field" },
+                        [
+                          _c("div", { staticClass: "subtitle-2 mb-2" }, [
+                            _c("strong", [_vm._v("Public URL")])
+                          ]),
+                          _vm._v(" "),
+                          _c("v-text-field", {
+                            staticClass: "tag_field",
+                            attrs: {
+                              outlined: "",
+                              label: "Nike,Nuchey",
+                              "append-outer-icon": "mdi-alert-circle-outline",
+                              "append-icon": "place"
+                            }
+                          })
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("div", { staticClass: "overline mb-2" }, [
-                        _vm._v("Seperate with (,)")
-                      ]),
+                      _c(
+                        "div",
+                        { staticClass: "url_boxes" },
+                        [
+                          _c("div", { staticClass: "subtitle-2 mb-2" }, [
+                            _c("strong", [_vm._v("Public URL")])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "v-row",
+                            { staticClass: "full_width px-3" },
+                            [
+                              _c(
+                                "v-flex",
+                                {
+                                  staticClass: "pr-2",
+                                  attrs: { lg6: "", sm6: "" }
+                                },
+                                [
+                                  _c(
+                                    "v-card",
+                                    {
+                                      staticClass: "text-center",
+                                      attrs: {
+                                        "max-width": "full_width",
+                                        color: "darkTextColor"
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-card-title",
+                                        {
+                                          staticClass:
+                                            "display-4 darkSecondary--text",
+                                          staticStyle: { display: "block" }
+                                        },
+                                        [_c("strong", [_vm._v("90")])]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-text",
+                                        [
+                                          _c(
+                                            "p",
+                                            { staticClass: "subtitle-1" },
+                                            [_vm._v("POTENTIAL INFLUENCER")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("p", [
+                                            _vm._v(
+                                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                block: "",
+                                                color: "#B4B3BB",
+                                                large: ""
+                                              }
+                                            },
+                                            [_vm._v("View All")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("p", { staticClass: "pt-4" }, [
+                                            _c("u", [
+                                              _vm._v(
+                                                "Lorem Ipsum is simply dummy text of the printing"
+                                              )
+                                            ])
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-flex",
+                                {
+                                  staticClass: "pl-2",
+                                  attrs: { lg6: "", sm6: "" }
+                                },
+                                [
+                                  _c(
+                                    "v-card",
+                                    {
+                                      staticClass: "text-center",
+                                      attrs: {
+                                        "max-width": "full_width",
+                                        color: "primary",
+                                        dark: ""
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "v-card-title",
+                                        {
+                                          staticClass:
+                                            "display-4 darkSecondary--text",
+                                          staticStyle: { display: "block" }
+                                        },
+                                        [_c("strong", [_vm._v("15")])]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-card-text",
+                                        [
+                                          _c(
+                                            "p",
+                                            { staticClass: "subtitle-1" },
+                                            [_vm._v("POTENTIAL INFLUENCER")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("p", [
+                                            _vm._v(
+                                              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+                                            )
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-btn",
+                                            {
+                                              attrs: {
+                                                block: "",
+                                                color: "#A64D4D",
+                                                large: ""
+                                              }
+                                            },
+                                            [_vm._v("View All")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("p", { staticClass: "pt-4" }, [
+                                            _c("u", [
+                                              _vm._v(
+                                                "Lorem Ipsum is simply dummy text of the printing"
+                                              )
+                                            ])
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
                       _vm._v(" "),
-                      _c("v-text-field", {
-                        staticClass: "tag_field",
-                        attrs: {
-                          outlined: "",
-                          label: "Nike,Nuchey",
-                          "prepend-icon": "@"
-                        }
-                      })
+                      _c(
+                        "v-row",
+                        { staticClass: "full_width" },
+                        [
+                          _c(
+                            "v-flex",
+                            {
+                              staticClass: "pr-2 mt-12",
+                              attrs: { lg12: "", sm12: "" }
+                            },
+                            [
+                              _c(
+                                "v-card",
+                                { attrs: { "max-width": "full_width" } },
+                                [
+                                  _c(
+                                    "v-card-text",
+                                    [
+                                      _c("v-checkbox", {
+                                        attrs: {
+                                          label:
+                                            "I will be shipping this product to influencers",
+                                          color: "primary"
+                                        },
+                                        model: {
+                                          value: _vm.checkbox2,
+                                          callback: function($$v) {
+                                            _vm.checkbox2 = $$v
+                                          },
+                                          expression: "checkbox2"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _c("p", [
+                                        _vm._v(
+                                          "\n                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book\n                                    "
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                {
+                                  staticClass: "mt-8 float-right",
+                                  attrs: { color: "primary", large: "" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                Launch Campaign\n                                "
+                                  ),
+                                  _c("v-icon", { attrs: { right: "" } }, [
+                                    _vm._v("keyboard_arrow_right")
+                                  ])
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("v-flex", { attrs: { lg6: "", sm6: "", m12: "" } })
                 ],
                 1
               )
@@ -69935,7 +70235,7 @@ Vuetify.version = "2.0.3";
 /*!*******************************************!*\
   !*** ./node_modules/vuetify/lib/index.js ***!
   \*******************************************/
-/*! exports provided: ClickOutside, Resize, Ripple, Scroll, Touch, colors, default, VApp, VAppBar, VAppBarNavIcon, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardTitle, VCardActions, VCardText, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
+/*! exports provided: colors, default, VApp, ClickOutside, Resize, Ripple, Scroll, Touch, VAppBar, VAppBarNavIcon, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardTitle, VCardActions, VCardText, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82356,9 +82656,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
 
 
 
@@ -82384,7 +82687,12 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_7__["VTextField"]})
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCheckbox: vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__["VCheckbox"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_9__["VIcon"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VRow"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__["VTextField"]})
 
 
 /* hot reload */
@@ -84738,8 +85046,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\apps\influencerapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\apps\influencerapp\resources\styles\app.sass */"./resources/styles/app.sass");
+__webpack_require__(/*! D:\apps\influencerapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\apps\influencerapp\resources\styles\app.sass */"./resources/styles/app.sass");
 
 
 /***/ })
