@@ -68,37 +68,6 @@ export default [
                     component : require('$comp/businessOwner/views/dashboard').default
                 },
                 {
-                    path      : 'campaign/create',
-                    component : require('$comp/businessOwner/campaign/CreateWrapper').default,
-                    children  : [
-                        {
-                            path      : 'name',
-                            name      : 'create-step1',
-                            component : require('$comp/businessOwner/campaign/Step1').default
-                        },
-                        {
-                            path      : 'payment-type',
-                            name      : 'create-step2',
-                            component : require('$comp/businessOwner/campaign/Step2').default
-                        },
-                        {
-                            path      : 'objective',
-                            name      : 'create-step3',
-                            component : require('$comp/businessOwner/campaign/Step3').default
-                        },
-                        {
-                            path      : 'platform',
-                            name      : 'create-step4',
-                            component : require('$comp/businessOwner/campaign/Step4').default
-                        },
-                        {
-                            path      : 'payment-nature',
-                            name      : 'create-step5',
-                            component : require('$comp/businessOwner/campaign/Step5').default
-                        }
-                    ]
-                },
-                {
                     path      : 'shopify-app',
                     name      : 'shopify-app',
                     component : require('$comp/businessOwner/shopify/Shakehand').default

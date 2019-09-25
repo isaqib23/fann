@@ -3387,409 +3387,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      items: []
-    };
-  },
-  mounted: function mounted() {},
-  methods: {}
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      form: {
-        name: null
-      },
-      labels: {
-        name: 'Write a suitable name here'
-      }
-    };
-  },
-  mounted: function mounted() {},
-  methods: {
-    goToNext: function goToNext() {
-      this.$router.push({
-        name: 'create-step2'
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      form: {
-        name: null
-      },
-      labels: {
-        name: 'Write a suitable name here'
-      },
-      radios: 'radio-1'
-    };
-  },
-  mounted: function mounted() {},
-  methods: {
-    goToNext: function goToNext() {
-      this.$router.push({
-        name: 'create-step3'
-      });
-    },
-    goToBack: function goToBack() {
-      this.$router.push({
-        name: 'create-step1'
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      form: {
-        name: null
-      },
-      labels: {
-        name: 'Write a suitable name here'
-      },
-      radios: 'radio-1'
-    };
-  },
-  mounted: function mounted() {},
-  methods: {
-    goToNext: function goToNext() {
-      this.$router.push({
-        name: 'create-step4'
-      });
-    },
-    goToBack: function goToBack() {
-      this.$router.push({
-        name: 'create-step2'
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      form: {
-        name: null
-      },
-      labels: {
-        name: 'Write a suitable name here'
-      },
-      radios: 'radio-1'
-    };
-  },
-  mounted: function mounted() {},
-  methods: {
-    goToNext: function goToNext() {
-      this.$router.push({
-        name: 'create-step5'
-      });
-    },
-    goToBack: function goToBack() {
-      this.$router.push({
-        name: 'create-step3'
-      });
-    }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=script&lang=js&":
-/*!***********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=script&lang=js& ***!
-  \***********************************************************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      form: {
-        name: null
-      },
-      labels: {
-        name1: 'I will pay a fixed amount',
-        name2: 'I am open to offers',
-        name3: 'Write your amount here'
-      },
-      checkbox1: true,
-      checkbox2: false
-    };
-  },
-  mounted: function mounted() {},
-  methods: {
-    goToNext: function goToNext() {
-      this.$router.push({
-        name: 'create-campaign-requirements'
-      });
-    },
-    goToBack: function goToBack() {
-      this.$router.push({
-        name: 'create-step4'
-      });
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/CreateLeftPane.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/requirements/CreateLeftPane.vue?vue&type=script&lang=js& ***!
@@ -3803,6 +3400,68 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue2_dropzone__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-dropzone/dist/vue2Dropzone.min.css */ "./node_modules/vue2-dropzone/dist/vue2Dropzone.min.css");
 /* harmony import */ var vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue2_dropzone_dist_vue2Dropzone_min_css__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -19065,7 +18724,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n#dropzone[data-v-2ad2201c] {\n    background-color: #EFF2F8;\n    font-family: 'Arial', sans-serif;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n    border:none;\n    height:100px;\n    margin:0 auto;\n}\n#dropzone[data-v-2ad2201c] .overline{\n    font-size: 8px !important;\n}\n.dropzone_content[data-v-2ad2201c]{\n    background: #fff;\n    border-radius:10px;\n    padding:15px;\n}\n.dropzone[data-v-2ad2201c] .dz-message{\n    margin:0px !important;\n}\n[data-v-2ad2201c] .v-input__prepend-outer{\n    background:#EE6F6F;\n    padding:16px 14px;\n    margin:0px !important;\n    border-top-left-radius:5px;\n}\n[data-v-2ad2201c] .v-input__prepend-outer .v-icon{\n    color:#fff !important;\n}\n[data-v-2ad2201c] .v-text-field > .v-input__control > .v-input__slot{\n    border-radius: 0px !important;\n    margin-bottom: 0px !important;\n}\n[data-v-2ad2201c] .v-text-field__details{\n    display:none;\n}\n.task_btn[data-v-2ad2201c] .v-btn__content{\n    font-size:10px;\n}\n[data-v-2ad2201c] .tag_field .v-input__prepend-outer{\n    background:#EE6F6F;\n    padding:8px 10px;\n    margin:0px !important;\n    border-top-left-radius:5px;\n    border-bottom-left-radius:5px;\n}\n[data-v-2ad2201c] .tag_field > .v-input__control > .v-input__slot{\n    min-height: 40px !important;\n    border-top-right-radius:5px;\n    border-bottom-right-radius:5px;\n}\n[data-v-2ad2201c] .tag_field.v-input .v-label{\n    height:45px !important;\n}\n[data-v-2ad2201c] .tag_field.v-text-field--outlined .v-label{\n    top: 10px !important;\n}\n", ""]);
+exports.push([module.i, "\n#dropzone[data-v-2ad2201c] {\n    background-color: #EFF2F8;\n    font-family: 'Arial', sans-serif;\n    letter-spacing: 0.2px;\n    color: #777;\n    transition: background-color .2s linear;\n    height:100px;\n    margin:0 auto;\n}\n#dropzone[data-v-2ad2201c] .overline{\n    font-size: 8px !important;\n}\n.dropzone_content[data-v-2ad2201c]{\n    background: #fff;\n    border-radius:10px;\n    padding:15px;\n}\n.dropzone[data-v-2ad2201c] .dz-message{\n    margin:0px !important;\n}\n[data-v-2ad2201c] .touch_field > .v-input__control > .v-input__slot{\n    padding-right: 0px !important;\n    padding-left: 0px !important;\n}\n[data-v-2ad2201c] .touch_field .v-input__append-inner{\n    margin-top: 0px !important;\n}\n[data-v-2ad2201c] .touch_field .v-input__append-inner .v-input__icon{\n    background: #dcdcdc;\n    padding: 28px;\n    border-top-right-radius: 5px;\n    border-bottom-right-radius: 5px;\n}\n[data-v-2ad2201c] .touch_field .v-input__append-inner .v-icon.v-icon{\n    color: #2f2f2f !important;\n}\n[data-v-2ad2201c] .touch_field .v-input__prepend-inner .v-input__icon{\n    background: #EE6F6F;\n    padding: 28px;\n    border-top-left-radius: 5px;\n    border-bottom-left-radius: 5px;\n}\n[data-v-2ad2201c] .touch_field .v-input__prepend-inner .v-icon.v-icon{\n    color: #ffffff !important;\n}\n[data-v-2ad2201c] .touch_field .v-input__prepend-inner{\n    margin-top: 0px !important;\n}\n[data-v-2ad2201c] .promotions .v-btn__content {\n    font-size: 12px !important;\n}\n[data-v-2ad2201c] .promotions .v-btn__content .v-icon.v-icon{\n    font-size: 18px !important;\n}\n[data-v-2ad2201c] .fields_tabs .v-tabs-bar {\n    height: 40px !important;\n}\n.v-tab[data-v-2ad2201c] {\n    color:#2f2f2f !important;\n    background: #dcdcdc !important;\n}\n.active_tab[data-v-2ad2201c] {\n    color:#ffffff !important;\n    background: #EE6F6F !important;\n}\n[data-v-2ad2201c] .fields_tabs .v-slide-group__prev,[data-v-2ad2201c] .fields_tabs .v-slide-group__next{\n    display:none !important;\n}\n[data-v-2ad2201c] .fields_tabs .v-tabs-slider-wrapper{\n    display: none !important;\n}\n[data-v-2ad2201c] .v-input__prepend-outer{\n    background:#EE6F6F;\n    padding:16px 14px;\n    margin:0px !important;\n    border-top-left-radius:5px;\n}\n[data-v-2ad2201c] .v-input__prepend-outer .v-icon{\n    color:#fff !important;\n}\n[data-v-2ad2201c] .tag_field > .v-input__control > .v-input__slot{\n    border-radius: 0px !important;\n    margin-bottom: 0px !important;\n}\n[data-v-2ad2201c] .v-text-field__details{\n    display:none;\n}\n.task_btn[data-v-2ad2201c] .v-btn__content{\n    font-size:10px;\n}\n[data-v-2ad2201c] .tag_field .v-input__prepend-outer{\n    background:#EE6F6F;\n    padding:8px 10px;\n    margin:0px !important;\n    border-top-left-radius:5px;\n    border-bottom-left-radius:5px;\n}\n[data-v-2ad2201c] .tag_field > .v-input__control > .v-input__slot{\n    min-height: 40px !important;\n    border-top-right-radius:5px;\n    border-bottom-right-radius:5px;\n}\n[data-v-2ad2201c] .tag_field.v-input .v-label{\n    height:45px !important;\n}\n[data-v-2ad2201c] .tag_field.v-text-field--outlined .v-label{\n    top: 10px !important;\n}\n", ""]);
 
 // exports
 
@@ -23637,1026 +23296,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=template&id=45cfc89f&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=template&id=45cfc89f& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "v-container",
-    [
-      _c(
-        "v-card",
-        { staticClass: "create_container" },
-        [
-          _c(
-            "v-card-text",
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    { attrs: { lg12: "", sm12: "", xs12: "" } },
-                    [
-                      _c(
-                        "transition",
-                        { attrs: { name: "fade", mode: "out-in" } },
-                        [_c("router-view")],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=template&id=b19d46e6&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=template&id=b19d46e6& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("v-progress-linear", {
-        staticClass: "pa-0 mt-n6 ml-n1",
-        staticStyle: { "border-top-left-radius": "4px" },
-        attrs: { "background-opacity": "-1", value: "20", height: "8" }
-      }),
-      _vm._v(" "),
-      _c(
-        "v-card",
-        { staticClass: "create_card", attrs: { flat: "" } },
-        [
-          _c("v-card-title", { staticClass: "pb-8 justify-center" }, [
-            _vm._v(_vm._s(_vm.$t("labels.campaign.name_title")))
-          ]),
-          _vm._v(" "),
-          _c("v-card-text", { staticClass: "text-center" }, [
-            _vm._v(_vm._s(_vm.$t("labels.campaign.name_subText")) + " "),
-            _c("span", { staticClass: "primary--text" }, [
-              _vm._v(_vm._s(_vm.$t("labels.campaign.name")))
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            { staticClass: "mb-12" },
-            [
-              _c("v-text-field", {
-                staticClass: "text_field_width ma-auto",
-                attrs: {
-                  label: _vm.$t("labels.campaign.name_fieldPlaceholder"),
-                  solo: ""
-                },
-                model: {
-                  value: _vm.form.name,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "name", $$v)
-                  },
-                  expression: "form.name"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            { staticClass: "float-right action_btns" },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "primary", dark: "", large: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToNext()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_nextBtn")) +
-                      "\n                "
-                  ),
-                  _c("v-icon", { attrs: { right: "" } }, [
-                    _vm._v("keyboard_arrow_right")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=template&id=b18117e4&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=template&id=b18117e4& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("v-progress-linear", {
-        staticClass: "pa-0 mt-n6 ml-n1",
-        staticStyle: { "border-top-left-radius": "4px" },
-        attrs: { "background-opacity": "-1", value: "40", height: "8" }
-      }),
-      _vm._v(" "),
-      _c(
-        "v-card",
-        { staticClass: "create_card", attrs: { flat: "" } },
-        [
-          _c("v-card-title", { staticClass: "pb-8 justify-center" }, [
-            _vm._v(_vm._s(_vm.$t("labels.campaign.name_title")))
-          ]),
-          _vm._v(" "),
-          _c("v-card-text", { staticClass: "text-center" }, [
-            _vm._v(
-              _vm._s(_vm.$t("labels.campaign.paymentType_subText1")) + " "
-            ),
-            _c("span", { staticClass: "primary--text" }, [
-              _vm._v(_vm._s(_vm.$t("labels.campaign.paymentType")))
-            ]),
-            _vm._v(" " + _vm._s(_vm.$t("labels.campaign.paymentType_subText2")))
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            { staticClass: "mb-12 text_field_width ma-auto" },
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "", "justify-center": "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    {
-                      staticClass: "radio-center",
-                      attrs: { lg6: "", sm6: "", xs12: "" }
-                    },
-                    [
-                      _c(
-                        "v-radio-group",
-                        {
-                          staticClass: "left_radio",
-                          model: {
-                            value: _vm.radios,
-                            callback: function($$v) {
-                              _vm.radios = $$v
-                            },
-                            expression: "radios"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-sheet",
-                            { attrs: { color: "grayLighten create_sheet" } },
-                            [
-                              _c("v-icon", { attrs: { size: "70" } }, [
-                                _vm._v("event_available")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-radio", {
-                            attrs: {
-                              label: _vm.$t(
-                                "labels.campaign.paymentType_PaidRadio"
-                              ),
-                              value: "radio-1",
-                              color: "primary"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    {
-                      staticClass: "radio-center",
-                      attrs: { lg6: "", sm6: "", xs12: "" }
-                    },
-                    [
-                      _c(
-                        "v-radio-group",
-                        {
-                          staticClass: "left_radio",
-                          model: {
-                            value: _vm.radios,
-                            callback: function($$v) {
-                              _vm.radios = $$v
-                            },
-                            expression: "radios"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-sheet",
-                            { attrs: { color: "grayLighten create_sheet" } },
-                            [
-                              _c("v-icon", { attrs: { size: "70" } }, [
-                                _vm._v("flip_camera_android")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-radio", {
-                            attrs: {
-                              label: _vm.$t(
-                                "labels.campaign.paymentType_BarterRadio"
-                              ),
-                              value: "radio-2",
-                              color: "primary"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            { staticClass: "float-right action_btns" },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { text: "", color: "grayLight" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToBack()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_backBtn")) +
-                      "\n            "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "primary", dark: "", large: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToNext()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_nextBtn")) +
-                      "\n                "
-                  ),
-                  _c("v-icon", { attrs: { right: "" } }, [
-                    _vm._v("keyboard_arrow_right")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=template&id=b164e8e2&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=template&id=b164e8e2& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("v-progress-linear", {
-        staticClass: "pa-0 mt-n6 ml-n1",
-        staticStyle: { "border-top-left-radius": "4px" },
-        attrs: { "background-opacity": "-1", value: "60", height: "8" }
-      }),
-      _vm._v(" "),
-      _c(
-        "v-card",
-        { staticClass: "create_card", attrs: { flat: "" } },
-        [
-          _c("v-card-title", { staticClass: "pb-8 justify-center" }, [
-            _vm._v(_vm._s(_vm.$t("labels.campaign.name_title")))
-          ]),
-          _vm._v(" "),
-          _c("v-card-text", { staticClass: "text-center" }, [
-            _vm._v(
-              _vm._s(_vm.$t("labels.campaign.paymentType_subText1")) + " "
-            ),
-            _c("span", { staticClass: "primary--text" }, [
-              _vm._v(_vm._s(_vm.$t("labels.campaign.objective")))
-            ]),
-            _vm._v(" " + _vm._s(_vm.$t("labels.campaign.paymentType_subText2")))
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            { staticClass: "mb-12 text_field_width ma-auto" },
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "", "justify-center": "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    {
-                      staticClass: "radio-center",
-                      attrs: { lg6: "", sm6: "", xs12: "" }
-                    },
-                    [
-                      _c(
-                        "v-radio-group",
-                        {
-                          staticClass: "left_radio",
-                          model: {
-                            value: _vm.radios,
-                            callback: function($$v) {
-                              _vm.radios = $$v
-                            },
-                            expression: "radios"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-sheet",
-                            { attrs: { color: "grayLighten create_sheet" } },
-                            [
-                              _c("v-icon", { attrs: { size: "70" } }, [
-                                _vm._v("toll")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-radio", {
-                            attrs: {
-                              label: _vm.$t(
-                                "labels.campaign.objective_BrandRadio"
-                              ),
-                              value: "radio-1",
-                              color: "primary"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    {
-                      staticClass: "radio-center",
-                      attrs: { lg6: "", sm6: "", xs12: "" }
-                    },
-                    [
-                      _c(
-                        "v-radio-group",
-                        {
-                          staticClass: "radio-center",
-                          model: {
-                            value: _vm.radios,
-                            callback: function($$v) {
-                              _vm.radios = $$v
-                            },
-                            expression: "radios"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-sheet",
-                            { attrs: { color: "grayLighten create_sheet" } },
-                            [
-                              _c("v-icon", { attrs: { size: "70" } }, [
-                                _vm._v("pan_tool")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-radio", {
-                            attrs: {
-                              label: _vm.$t(
-                                "labels.campaign.objective_ProductRadio"
-                              ),
-                              value: "radio-2",
-                              color: "primary"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            { staticClass: "float-right action_btns" },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { text: "", color: "grayLight" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToBack()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_backBtn")) +
-                      "\n            "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "primary", dark: "", large: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToNext()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_nextBtn")) +
-                      "\n                "
-                  ),
-                  _c("v-icon", { attrs: { right: "" } }, [
-                    _vm._v("keyboard_arrow_right")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=template&id=b148b9e0&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=template&id=b148b9e0& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("v-progress-linear", {
-        staticClass: "pa-0 mt-n6 ml-n1",
-        staticStyle: { "border-top-left-radius": "4px" },
-        attrs: { "background-opacity": "-1", value: "80", height: "8" }
-      }),
-      _vm._v(" "),
-      _c(
-        "v-card",
-        { staticClass: "create_card", attrs: { flat: "" } },
-        [
-          _c("v-card-title", { staticClass: "pb-8 justify-center" }, [
-            _vm._v(_vm._s(_vm.$t("labels.campaign.name_title")))
-          ]),
-          _vm._v(" "),
-          _c("v-card-text", { staticClass: "text-center" }, [
-            _vm._v(
-              _vm._s(_vm.$t("labels.campaign.paymentType_subText1")) + " "
-            ),
-            _c("span", { staticClass: "primary--text" }, [
-              _vm._v(_vm._s(_vm.$t("labels.campaign.platform")))
-            ]),
-            _vm._v(" " + _vm._s(_vm.$t("labels.campaign.paymentType_subText2")))
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            { staticClass: "mb-12 text_field_width ma-auto" },
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "", "justify-center": "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    {
-                      staticClass: "radio-center",
-                      attrs: { lg4: "", sm4: "", xs12: "" }
-                    },
-                    [
-                      _c(
-                        "v-radio-group",
-                        {
-                          staticClass: "first_radio",
-                          model: {
-                            value: _vm.radios,
-                            callback: function($$v) {
-                              _vm.radios = $$v
-                            },
-                            expression: "radios"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-sheet",
-                            { attrs: { color: "grayLighten create_sheet" } },
-                            [
-                              _c("v-icon", { attrs: { size: "70" } }, [
-                                _vm._v("local_see")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-radio", {
-                            attrs: {
-                              label: _vm.$t(
-                                "labels.campaign.platform_InstagramRadio"
-                              ),
-                              value: "radio-1",
-                              color: "primary"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    {
-                      staticClass: "radio-center",
-                      attrs: { lg4: "", sm4: "", xs12: "" }
-                    },
-                    [
-                      _c(
-                        "v-radio-group",
-                        {
-                          staticClass: "pl-12",
-                          model: {
-                            value: _vm.radios,
-                            callback: function($$v) {
-                              _vm.radios = $$v
-                            },
-                            expression: "radios"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-sheet",
-                            { attrs: { color: "grayLighten create_sheet" } },
-                            [
-                              _c("v-icon", { attrs: { size: "70" } }, [
-                                _vm._v("video_library")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-radio", {
-                            attrs: {
-                              label: _vm.$t(
-                                "labels.campaign.platform_YoutubeRadio"
-                              ),
-                              value: "radio-2",
-                              color: "primary"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-flex",
-                    {
-                      staticClass: "radio-center",
-                      attrs: { lg4: "", sm4: "", xs12: "" }
-                    },
-                    [
-                      _c(
-                        "v-radio-group",
-                        {
-                          staticClass: "pl-12",
-                          model: {
-                            value: _vm.radios,
-                            callback: function($$v) {
-                              _vm.radios = $$v
-                            },
-                            expression: "radios"
-                          }
-                        },
-                        [
-                          _c(
-                            "v-sheet",
-                            { attrs: { color: "grayLighten create_sheet" } },
-                            [
-                              _c("v-icon", { attrs: { size: "70" } }, [
-                                _vm._v("rate_review")
-                              ])
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c("v-radio", {
-                            attrs: {
-                              label: _vm.$t(
-                                "labels.campaign.platform_BlogRadio"
-                              ),
-                              value: "radio-3",
-                              color: "primary"
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            { staticClass: "float-right action_btns" },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { text: "", color: "grayLight" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToBack()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_backBtn")) +
-                      "\n            "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "primary", dark: "", large: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToNext()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_nextBtn")) +
-                      "\n                "
-                  ),
-                  _c("v-icon", { attrs: { right: "" } }, [
-                    _vm._v("keyboard_arrow_right")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=template&id=b12c8ade&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=template&id=b12c8ade& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("v-progress-linear", {
-        staticClass: "pa-0 mt-n6 mr-n5 ml-n1",
-        staticStyle: {
-          "border-top-left-radius": "4px",
-          "border-top-right-radius": "4px"
-        },
-        attrs: { "background-opacity": "-1", value: "100", height: "8" }
-      }),
-      _vm._v(" "),
-      _c(
-        "v-card",
-        { staticClass: "create_card", attrs: { flat: "" } },
-        [
-          _c("v-card-title", { staticClass: "pb-8 justify-center" }, [
-            _vm._v(_vm._s(_vm.$t("labels.campaign.name_title")))
-          ]),
-          _vm._v(" "),
-          _c("v-card-text", { staticClass: "text-center" }, [
-            _vm._v(_vm._s(_vm.$t("labels.campaign.payment_subText1")) + " "),
-            _c("span", { staticClass: "primary--text" }, [
-              _vm._v(_vm._s(_vm.$t("labels.campaign.payment")))
-            ]),
-            _vm._v(" " + _vm._s(_vm.$t("labels.campaign.payment_subText2")))
-          ]),
-          _vm._v(" "),
-          _c(
-            "v-card-text",
-            { staticClass: "mb-12 text_field_width ma-auto" },
-            [
-              _c(
-                "v-layout",
-                { attrs: { row: "", "justify-center": "", wrap: "" } },
-                [
-                  _c(
-                    "v-flex",
-                    {
-                      staticClass: "text-center",
-                      attrs: { lg12: "", sm12: "", xs12: "" }
-                    },
-                    [
-                      _c("v-checkbox", {
-                        attrs: {
-                          label: _vm.$t(
-                            "labels.campaign.payment_AmountCheckBox"
-                          ),
-                          color: "primary"
-                        },
-                        model: {
-                          value: _vm.checkbox1,
-                          callback: function($$v) {
-                            _vm.checkbox1 = $$v
-                          },
-                          expression: "checkbox1"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        staticClass: "ma-auto",
-                        attrs: {
-                          label: _vm.$t(
-                            "labels.campaign.payment_FieldPlaceHolder"
-                          ),
-                          solo: ""
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("v-checkbox", {
-                        attrs: {
-                          label: _vm.$t(
-                            "labels.campaign.payment_OfferCheckBox"
-                          ),
-                          color: "primary"
-                        },
-                        model: {
-                          value: _vm.checkbox2,
-                          callback: function($$v) {
-                            _vm.checkbox2 = $$v
-                          },
-                          expression: "checkbox2"
-                        }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            { staticClass: "float-right action_btns" },
-            [
-              _c(
-                "v-btn",
-                {
-                  attrs: { text: "", color: "grayLight" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToBack()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.name_backBtn")) +
-                      "\n            "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "primary", dark: "", large: "" },
-                  on: {
-                    click: function($event) {
-                      return _vm.goToNext()
-                    }
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$t("labels.campaign.payment_StartedBtn")) +
-                      "\n                "
-                  ),
-                  _c("v-icon", { attrs: { right: "" } }, [
-                    _vm._v("keyboard_arrow_right")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/requirements/CreateLeftPane.vue?vue&type=template&id=2ad2201c&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/businessOwner/campaign/requirements/CreateLeftPane.vue?vue&type=template&id=2ad2201c&scoped=true& ***!
@@ -24680,45 +23319,7 @@ var render = function() {
         [
           _c(
             "v-card",
-            { staticClass: "elevation-4  mx-auto pa-3 transition-swing" },
-            [
-              _c("v-card-text", [
-                _c("div", { staticClass: "subtitle-1 mb-2" }, [
-                  _c("strong", [_vm._v("Campaign Cover")])
-                ]),
-                _vm._v(
-                  "\n                Upload your campaign cover photo\n            "
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "dropzone_content" },
-                [
-                  _c("div", { staticClass: "subtitle-1 mb-2" }, [
-                    _vm._v("Upload")
-                  ]),
-                  _vm._v(" "),
-                  _c("vue-dropzone", {
-                    ref: "myVueDropzone",
-                    attrs: { id: "dropzone", options: _vm.dropzoneOptions }
-                  })
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-flex",
-        [
-          _c(
-            "v-card",
-            { staticClass: "elevation-4 mx-auto pa-3 transition-swing mt-3" },
+            { staticClass: "elevation-4 mx-auto pa-3 transition-swing" },
             [
               _c("v-card-text", [
                 _c("div", { staticClass: "subtitle-1 mb-2" }, [
@@ -24731,7 +23332,7 @@ var render = function() {
                   label: "Write your campaign description here",
                   "auto-grow": "",
                   outlined: "",
-                  rows: "8",
+                  rows: "5",
                   "row-height": "15"
                 }
               })
@@ -24749,25 +23350,83 @@ var render = function() {
             "v-card",
             { staticClass: "elevation-4  mx-auto pa-3 transition-swing mt-3" },
             [
-              _c("v-card-text", [
+              _c("v-card-title", [
                 _c("div", { staticClass: "subtitle-1 mb-2" }, [
-                  _c("strong", [_vm._v("Campaign Requirements / Tasks")])
+                  _c("strong", [_vm._v("Touch Point # 1")])
                 ])
               ]),
               _vm._v(" "),
+              _c("v-text-field", {
+                staticClass: "touch_field",
+                attrs: {
+                  solo: "",
+                  label: "Instagram image post",
+                  "prepend-inner-icon": "mdi-instagram",
+                  "append-icon": "place"
+                }
+              }),
+              _vm._v(" "),
               _c(
-                "v-layout",
-                { attrs: { row: "", wrap: "", "pl-3": "", "pr-3": "" } },
+                "div",
+                {
+                  staticClass: "d-inline-block full_width promotions mb-2 mt-4"
+                },
                 [
+                  _c("v-btn", { attrs: { color: "primary pl-3 pr-3" } }, [
+                    _vm._v(
+                      "\n                    Product Promotion\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("v-btn", { attrs: { color: "white float-right" } }, [
+                    _vm._v(
+                      "\n                    Brand Promotion\n                "
+                    )
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("v-text-field", {
+                staticClass: "touch_field mb-4",
+                attrs: {
+                  solo: "",
+                  label: "Instagram image post",
+                  "prepend-inner-icon": "mdi-instagram"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "v-tabs",
+                {
+                  staticClass: "fields_tabs",
+                  attrs: { "fixed-tabs": "", "active-class": "active_tab" }
+                },
+                [
+                  _c("v-tab", [
+                    _vm._v("\n                    Guidelines\n                ")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-tab", [
+                    _vm._v("\n                    Captions\n                ")
+                  ]),
+                  _vm._v(" "),
+                  _c("v-tab", [
+                    _vm._v(
+                      "\n                    Upload images\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
                   _c(
-                    "v-flex",
-                    { attrs: { lg9: "", sm9: "", m9: "" } },
+                    "v-tab-item",
                     [
-                      _c("v-text-field", {
+                      _c("v-textarea", {
                         attrs: {
+                          label: "Write your campaign description here",
+                          "auto-grow": "",
                           outlined: "",
-                          label: "Instagram image post",
-                          "prepend-icon": "mdi-instagram"
+                          rows: "5",
+                          "row-height": "15"
                         }
                       })
                     ],
@@ -24775,15 +23434,85 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c(
-                    "v-flex",
-                    { attrs: { lg3: "", sm3: "", m3: "" } },
+                    "v-tab-item",
                     [
-                      _c("v-text-field", {
-                        attrs: { outlined: "", label: "Qty", type: "number" }
+                      _c("v-textarea", {
+                        attrs: {
+                          label: "Write your campaign description here",
+                          "auto-grow": "",
+                          outlined: "",
+                          rows: "5",
+                          "row-height": "15"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-tab-item",
+                    [
+                      _c("vue-dropzone", {
+                        ref: "myVueDropzone",
+                        attrs: { id: "dropzone", options: _vm.dropzoneOptions }
                       })
                     ],
                     1
                   )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "d-inline-block full_width promotions mb-2 mt-4"
+                },
+                [
+                  _c("v-btn", { attrs: { color: "primary pl-7 pr-7" } }, [
+                    _vm._v("\n                    IG Story\n                ")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    { staticClass: "pl-5 pr-5", attrs: { color: "white" } },
+                    [_vm._v("\n                    IG Post\n                ")]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card",
+                { attrs: { flat: "" } },
+                [
+                  _c("v-card-title", [
+                    _c("div", { staticClass: "subtitle-1" }, [
+                      _c("strong", [_vm._v("Shipment")])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("v-checkbox", {
+                    attrs: {
+                      label: "I will be shipping this product to influencers",
+                      color: "primary"
+                    },
+                    model: {
+                      value: _vm.checkbox2,
+                      callback: function($$v) {
+                        _vm.checkbox2 = $$v
+                      },
+                      expression: "checkbox2"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    staticClass: "ma-auto",
+                    attrs: {
+                      label: _vm.$t("labels.campaign.payment_FieldPlaceHolder"),
+                      solo: ""
+                    }
+                  })
                 ],
                 1
               ),
@@ -24943,9 +23672,37 @@ var render = function() {
         [
           _c(
             "v-card",
+            { staticClass: "elevation-4  mx-auto pa-3 transition-swing mt-3" },
+            [
+              _c("v-card-title", [
+                _c("div", { staticClass: "subtitle-1 mb-2" }, [
+                  _c("strong", [_vm._v("Campaign Cover")])
+                ]),
+                _vm._v(
+                  "\n                Upload your campaign cover photo\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropzone_content" }, [
+                _c("div", { staticClass: "subtitle-1 mb-2" }, [
+                  _vm._v("Upload")
+                ])
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-flex",
+        [
+          _c(
+            "v-card",
             { staticClass: "elevation-4  mx-auto pa-3 transition-swing  mt-3" },
             [
-              _c("v-card-text", [
+              _c("v-card-title", [
                 _c("div", { staticClass: "subtitle-1" }, [
                   _c("strong", [_vm._v("Content Guidelines")])
                 ])
@@ -24974,7 +23731,7 @@ var render = function() {
             "v-card",
             { staticClass: "elevation-4  mx-auto pa-3 transition-swing  mt-3" },
             [
-              _c("v-card-text", [
+              _c("v-card-title", [
                 _c("div", { staticClass: "subtitle-1" }, [
                   _c("strong", [_vm._v("Shipment")])
                 ])
@@ -25536,7 +24293,7 @@ var render = function() {
             "v-card",
             { staticClass: "elevation-4  mx-auto pa-3 transition-swing" },
             [
-              _c("v-card-text", [
+              _c("v-card-title", [
                 _c("div", { staticClass: "subtitle-1 mb-2" }, [
                   _c("strong", [_vm._v("Select Niche / Industry")])
                 ])
@@ -25726,7 +24483,7 @@ var render = function() {
             "v-card",
             { staticClass: "elevation-4  mx-auto pa-3 transition-swing mt-3" },
             [
-              _c("v-card-text", [
+              _c("v-card-title", [
                 _c("div", { staticClass: "subtitle-1 mb-2" }, [
                   _c("strong", [_vm._v("Influencers Demographics")])
                 ])
@@ -83544,557 +82301,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/businessOwner/campaign/CreateWrapper.vue":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/CreateWrapper.vue ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _CreateWrapper_vue_vue_type_template_id_45cfc89f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateWrapper.vue?vue&type=template&id=45cfc89f& */ "./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=template&id=45cfc89f&");
-/* harmony import */ var _CreateWrapper_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateWrapper.vue?vue&type=script&lang=js& */ "./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _CreateWrapper_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _CreateWrapper_vue_vue_type_template_id_45cfc89f___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _CreateWrapper_vue_vue_type_template_id_45cfc89f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* vuetify-loader */
-
-
-
-
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_4__["VCardText"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VContainer"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VFlex"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_5__["VLayout"]})
-
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/businessOwner/campaign/CreateWrapper.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateWrapper_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateWrapper.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateWrapper_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=template&id=45cfc89f&":
-/*!*********************************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=template&id=45cfc89f& ***!
-  \*********************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateWrapper_vue_vue_type_template_id_45cfc89f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CreateWrapper.vue?vue&type=template&id=45cfc89f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/CreateWrapper.vue?vue&type=template&id=45cfc89f&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateWrapper_vue_vue_type_template_id_45cfc89f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateWrapper_vue_vue_type_template_id_45cfc89f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step1.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step1.vue ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Step1_vue_vue_type_template_id_b19d46e6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Step1.vue?vue&type=template&id=b19d46e6& */ "./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=template&id=b19d46e6&");
-/* harmony import */ var _Step1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Step1.vue?vue&type=script&lang=js& */ "./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Step1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Step1_vue_vue_type_template_id_b19d46e6___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Step1_vue_vue_type_template_id_b19d46e6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* vuetify-loader */
-
-
-
-
-
-
-
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_6__["VIcon"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_7__["VProgressLinear"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_8__["VTextField"]})
-
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/businessOwner/campaign/Step1.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step1.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=template&id=b19d46e6&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=template&id=b19d46e6& ***!
-  \*************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step1_vue_vue_type_template_id_b19d46e6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step1.vue?vue&type=template&id=b19d46e6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step1.vue?vue&type=template&id=b19d46e6&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step1_vue_vue_type_template_id_b19d46e6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step1_vue_vue_type_template_id_b19d46e6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step2.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step2.vue ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Step2_vue_vue_type_template_id_b18117e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Step2.vue?vue&type=template&id=b18117e4& */ "./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=template&id=b18117e4&");
-/* harmony import */ var _Step2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Step2.vue?vue&type=script&lang=js& */ "./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VRadioGroup */ "./node_modules/vuetify/lib/components/VRadioGroup/index.js");
-/* harmony import */ var vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VSheet */ "./node_modules/vuetify/lib/components/VSheet/index.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Step2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Step2_vue_vue_type_template_id_b18117e4___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Step2_vue_vue_type_template_id_b18117e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* vuetify-loader */
-
-
-
-
-
-
-
-
-
-
-
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VLayout"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_8__["VProgressLinear"],VRadio: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadio"],VRadioGroup: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadioGroup"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_10__["VSheet"]})
-
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/businessOwner/campaign/Step2.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step2.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step2_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=template&id=b18117e4&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=template&id=b18117e4& ***!
-  \*************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step2_vue_vue_type_template_id_b18117e4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step2.vue?vue&type=template&id=b18117e4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step2.vue?vue&type=template&id=b18117e4&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step2_vue_vue_type_template_id_b18117e4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step2_vue_vue_type_template_id_b18117e4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step3.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step3.vue ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Step3_vue_vue_type_template_id_b164e8e2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Step3.vue?vue&type=template&id=b164e8e2& */ "./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=template&id=b164e8e2&");
-/* harmony import */ var _Step3_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Step3.vue?vue&type=script&lang=js& */ "./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VRadioGroup */ "./node_modules/vuetify/lib/components/VRadioGroup/index.js");
-/* harmony import */ var vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VSheet */ "./node_modules/vuetify/lib/components/VSheet/index.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Step3_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Step3_vue_vue_type_template_id_b164e8e2___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Step3_vue_vue_type_template_id_b164e8e2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* vuetify-loader */
-
-
-
-
-
-
-
-
-
-
-
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VLayout"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_8__["VProgressLinear"],VRadio: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadio"],VRadioGroup: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadioGroup"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_10__["VSheet"]})
-
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/businessOwner/campaign/Step3.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step3_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step3.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step3_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=template&id=b164e8e2&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=template&id=b164e8e2& ***!
-  \*************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step3_vue_vue_type_template_id_b164e8e2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step3.vue?vue&type=template&id=b164e8e2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step3.vue?vue&type=template&id=b164e8e2&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step3_vue_vue_type_template_id_b164e8e2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step3_vue_vue_type_template_id_b164e8e2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step4.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step4.vue ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Step4_vue_vue_type_template_id_b148b9e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Step4.vue?vue&type=template&id=b148b9e0& */ "./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=template&id=b148b9e0&");
-/* harmony import */ var _Step4_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Step4.vue?vue&type=script&lang=js& */ "./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VRadioGroup */ "./node_modules/vuetify/lib/components/VRadioGroup/index.js");
-/* harmony import */ var vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VSheet */ "./node_modules/vuetify/lib/components/VSheet/index.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Step4_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Step4_vue_vue_type_template_id_b148b9e0___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Step4_vue_vue_type_template_id_b148b9e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* vuetify-loader */
-
-
-
-
-
-
-
-
-
-
-
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_7__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_6__["VLayout"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_8__["VProgressLinear"],VRadio: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadio"],VRadioGroup: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadioGroup"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_10__["VSheet"]})
-
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/businessOwner/campaign/Step4.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step4_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step4.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step4_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=template&id=b148b9e0&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=template&id=b148b9e0& ***!
-  \*************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step4_vue_vue_type_template_id_b148b9e0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step4.vue?vue&type=template&id=b148b9e0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step4.vue?vue&type=template&id=b148b9e0&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step4_vue_vue_type_template_id_b148b9e0___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step4_vue_vue_type_template_id_b148b9e0___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step5.vue":
-/*!******************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step5.vue ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Step5_vue_vue_type_template_id_b12c8ade___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Step5.vue?vue&type=template&id=b12c8ade& */ "./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=template&id=b12c8ade&");
-/* harmony import */ var _Step5_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Step5.vue?vue&type=script&lang=js& */ "./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
-/* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Step5_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Step5_vue_vue_type_template_id_b12c8ade___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Step5_vue_vue_type_template_id_b12c8ade___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* vuetify-loader */
-
-
-
-
-
-
-
-
-
-
-
-
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_3___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_4__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_5__["VCardTitle"],VCheckbox: vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_6__["VCheckbox"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__["VIcon"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VLayout"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_9__["VProgressLinear"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__["VTextField"]})
-
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/businessOwner/campaign/Step5.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step5_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step5.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step5_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=template&id=b12c8ade&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=template&id=b12c8ade& ***!
-  \*************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step5_vue_vue_type_template_id_b12c8ade___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vuetify-loader/lib/loader.js!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Step5.vue?vue&type=template&id=b12c8ade& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vuetify-loader/lib/loader.js!./node_modules/vue-loader/lib/index.js?!./resources/js/components/businessOwner/campaign/Step5.vue?vue&type=template&id=b12c8ade&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step5_vue_vue_type_template_id_b12c8ade___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vuetify_loader_lib_loader_js_node_modules_vue_loader_lib_index_js_vue_loader_options_Step5_vue_vue_type_template_id_b12c8ade___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./resources/js/components/businessOwner/campaign/requirements/CreateLeftPane.vue":
 /*!****************************************************************************************!*\
   !*** ./resources/js/components/businessOwner/campaign/requirements/CreateLeftPane.vue ***!
@@ -84114,8 +82320,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
 /* harmony import */ var vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCheckbox */ "./node_modules/vuetify/lib/components/VCheckbox/index.js");
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
-/* harmony import */ var vuetify_lib_components_VTextarea__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTextarea */ "./node_modules/vuetify/lib/components/VTextarea/index.js");
+/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
+/* harmony import */ var vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTextField */ "./node_modules/vuetify/lib/components/VTextField/index.js");
+/* harmony import */ var vuetify_lib_components_VTextarea__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VTextarea */ "./node_modules/vuetify/lib/components/VTextarea/index.js");
 
 
 
@@ -84145,7 +82352,11 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCheckbox: vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__["VCheckbox"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VFlex"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VLayout"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_9__["VTextField"],VTextarea: vuetify_lib_components_VTextarea__WEBPACK_IMPORTED_MODULE_10__["VTextarea"]})
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardTitle"],VCheckbox: vuetify_lib_components_VCheckbox__WEBPACK_IMPORTED_MODULE_7__["VCheckbox"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VFlex"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VLayout"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_9__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_9__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_9__["VTabs"],VTextField: vuetify_lib_components_VTextField__WEBPACK_IMPORTED_MODULE_10__["VTextField"],VTextarea: vuetify_lib_components_VTextarea__WEBPACK_IMPORTED_MODULE_11__["VTextarea"]})
 
 
 /* hot reload */
@@ -84376,7 +82587,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VFlex"],VRadio: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadio"],VRadioGroup: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadioGroup"],VRangeSlider: vuetify_lib_components_VRangeSlider__WEBPACK_IMPORTED_MODULE_10__["VRangeSlider"],VRating: vuetify_lib_components_VRating__WEBPACK_IMPORTED_MODULE_11__["VRating"],VSelect: vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_12__["VSelect"]})
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VAvatar: vuetify_lib_components_VAvatar__WEBPACK_IMPORTED_MODULE_5__["VAvatar"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_8__["VFlex"],VRadio: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadio"],VRadioGroup: vuetify_lib_components_VRadioGroup__WEBPACK_IMPORTED_MODULE_9__["VRadioGroup"],VRangeSlider: vuetify_lib_components_VRangeSlider__WEBPACK_IMPORTED_MODULE_10__["VRangeSlider"],VRating: vuetify_lib_components_VRating__WEBPACK_IMPORTED_MODULE_11__["VRating"],VSelect: vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_12__["VSelect"]})
 
 
 /* hot reload */
@@ -86844,30 +85055,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     path: 'dashboard',
     name: 'dashboard',
     component: __webpack_require__(/*! $comp/businessOwner/views/dashboard */ "./resources/js/components/businessOwner/views/dashboard.vue")["default"]
-  }, {
-    path: 'campaign/create',
-    component: __webpack_require__(/*! $comp/businessOwner/campaign/CreateWrapper */ "./resources/js/components/businessOwner/campaign/CreateWrapper.vue")["default"],
-    children: [{
-      path: 'name',
-      name: 'create-step1',
-      component: __webpack_require__(/*! $comp/businessOwner/campaign/Step1 */ "./resources/js/components/businessOwner/campaign/Step1.vue")["default"]
-    }, {
-      path: 'payment-type',
-      name: 'create-step2',
-      component: __webpack_require__(/*! $comp/businessOwner/campaign/Step2 */ "./resources/js/components/businessOwner/campaign/Step2.vue")["default"]
-    }, {
-      path: 'objective',
-      name: 'create-step3',
-      component: __webpack_require__(/*! $comp/businessOwner/campaign/Step3 */ "./resources/js/components/businessOwner/campaign/Step3.vue")["default"]
-    }, {
-      path: 'platform',
-      name: 'create-step4',
-      component: __webpack_require__(/*! $comp/businessOwner/campaign/Step4 */ "./resources/js/components/businessOwner/campaign/Step4.vue")["default"]
-    }, {
-      path: 'payment-nature',
-      name: 'create-step5',
-      component: __webpack_require__(/*! $comp/businessOwner/campaign/Step5 */ "./resources/js/components/businessOwner/campaign/Step5.vue")["default"]
-    }]
   }, {
     path: 'shopify-app',
     name: 'shopify-app',

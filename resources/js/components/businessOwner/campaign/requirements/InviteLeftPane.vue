@@ -2,9 +2,9 @@
     <div>
         <v-flex>
             <v-card class="elevation-4  mx-auto pa-3 transition-swing">
-                <v-card-text>
+                <v-card-title>
                     <div class="subtitle-1 mb-2"><strong>Select Niche / Industry</strong></div>
-                </v-card-text>
+                </v-card-title>
                 <v-select
                     :items="items"
                     label="Health Care"
@@ -62,9 +62,9 @@
 
         <v-flex>
             <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
-                <v-card-text>
+                <v-card-title>
                     <div class="subtitle-1 mb-2"><strong>Influencers Demographics</strong></div>
-                </v-card-text>
+                </v-card-title>
 
                 <div class="gender_group">
                     <div class="subtitle-2 mb-2"><strong>Gender</strong></div>

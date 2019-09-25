@@ -1,20 +1,7 @@
 <template>
     <div>
         <v-flex>
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing">
-                <v-card-text>
-                    <div class="subtitle-1 mb-2"><strong>Campaign Cover</strong></div>
-                    Upload your campaign cover photo
-                </v-card-text>
-                <div class="dropzone_content">
-                    <div class="subtitle-1 mb-2">Upload</div>
-                    <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
-                </div>
-            </v-card>
-        </v-flex>
-
-        <v-flex>
-            <v-card class="elevation-4 mx-auto pa-3 transition-swing mt-3"
+            <v-card class="elevation-4 mx-auto pa-3 transition-swing"
             >
                 <v-card-text >
                     <div class="subtitle-1 mb-2"><strong>Campaign Description</strong></div>
@@ -24,35 +11,97 @@
                     label="Write your campaign description here"
                     auto-grow
                     outlined
-                    rows="8"
+                    rows="5"
                     row-height="15"
                 ></v-textarea>
             </v-card>
         </v-flex>
 
-        <v-flex>
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3"
-            >
-                <v-card-text >
-                    <div class="subtitle-1 mb-2"><strong>Campaign Requirements / Tasks</strong></div>
-                </v-card-text>
 
-                <v-layout row wrap pl-3 pr-3>
-                    <v-flex lg9 sm9 m9>
-                        <v-text-field
+        <v-flex>
+            <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
+                <v-card-title>
+                    <div class="subtitle-1 mb-2"><strong>Touch Point # 1</strong></div>
+                </v-card-title>
+
+                <v-text-field
+                    solo
+                    label="Instagram image post"
+                    prepend-inner-icon="mdi-instagram"
+                    append-icon="place"
+                    class="touch_field"
+                ></v-text-field>
+
+                <div class="d-inline-block full_width promotions mb-2 mt-4">
+                    <v-btn color="primary pl-3 pr-3">
+                        Product Promotion
+                    </v-btn>
+                    <v-btn color="white float-right">
+                        Brand Promotion
+                    </v-btn>
+                </div>
+
+                <v-text-field
+                    solo
+                    label="Instagram image post"
+                    prepend-inner-icon="mdi-instagram"
+                    class="touch_field mb-4"
+                ></v-text-field>
+
+                <v-tabs fixed-tabs class="fields_tabs" active-class="active_tab">
+                    <v-tab>
+                        Guidelines
+                    </v-tab>
+                    <v-tab>
+                        Captions
+                    </v-tab>
+                    <v-tab>
+                        Upload images
+                    </v-tab>
+                    <v-tab-item>
+                        <v-textarea
+                            label="Write your campaign description here"
+                            auto-grow
                             outlined
-                            label="Instagram image post"
-                            prepend-icon="mdi-instagram"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex lg3 sm3 m3>
-                        <v-text-field
+                            rows="5"
+                            row-height="15"
+                        ></v-textarea>
+                    </v-tab-item>
+                    <v-tab-item>
+                        <v-textarea
+                            label="Write your campaign description here"
+                            auto-grow
                             outlined
-                            label="Qty"
-                            type="number"
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
+                            rows="5"
+                            row-height="15"
+                        ></v-textarea>
+                    </v-tab-item>
+                    <v-tab-item>
+                        <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
+                    </v-tab-item>
+                </v-tabs>
+                <div class="d-inline-block full_width promotions mb-2 mt-4">
+                    <v-btn color="primary pl-7 pr-7">
+                        IG Story
+                    </v-btn>
+                    <v-btn color="white" class="pl-5 pr-5">
+                        IG Post
+                    </v-btn>
+                </div>
+
+                <v-card flat>
+                    <v-card-title>
+                        <div class="subtitle-1"><strong>Shipment</strong></div>
+                    </v-card-title>
+
+                    <v-checkbox v-model="checkbox2" label="I will be shipping this product to influencers" color="primary"></v-checkbox>
+                    <v-text-field class="ma-auto"
+                                  :label="$t('labels.campaign.payment_FieldPlaceHolder')"
+                                  solo
+                    ></v-text-field>
+                </v-card>
+
+
                 <v-textarea
                     label="Write your task requirement here"
                     auto-grow
@@ -117,11 +166,24 @@
         </v-flex>
 
         <v-flex>
+            <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
+                <v-card-title>
+                    <div class="subtitle-1 mb-2"><strong>Campaign Cover</strong></div>
+                    Upload your campaign cover photo
+                </v-card-title>
+                <div class="dropzone_content">
+                    <div class="subtitle-1 mb-2">Upload</div>
+
+                </div>
+            </v-card>
+        </v-flex>
+
+        <v-flex>
             <v-card class="elevation-4  mx-auto pa-3 transition-swing  mt-3"
             >
-                <v-card-text >
+                <v-card-title>
                     <div class="subtitle-1"><strong>Content Guidelines</strong></div>
-                </v-card-text>
+                </v-card-title>
 
                 <v-text-field
                     outlined
@@ -141,9 +203,9 @@
         <v-flex>
             <v-card class="elevation-4  mx-auto pa-3 transition-swing  mt-3"
             >
-                <v-card-text >
+                <v-card-title>
                     <div class="subtitle-1"><strong>Shipment</strong></div>
-                </v-card-text>
+                </v-card-title>
 
                 <v-checkbox v-model="checkbox2" label="I will be shipping this product to influencers" color="primary"></v-checkbox>
             </v-card>
@@ -198,7 +260,6 @@
         letter-spacing: 0.2px;
         color: #777;
         transition: background-color .2s linear;
-        border:none;
         height:100px;
         margin:0 auto;
     }
@@ -213,6 +274,60 @@
     .dropzone >>>.dz-message{
         margin:0px !important;
     }
+    >>>.touch_field > .v-input__control > .v-input__slot{
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
+    >>>.touch_field .v-input__append-inner{
+        margin-top: 0px !important;
+    }
+    >>>.touch_field .v-input__append-inner .v-input__icon{
+        background: #dcdcdc;
+        padding: 28px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    >>>.touch_field .v-input__append-inner .v-icon.v-icon{
+        color: #2f2f2f !important;
+    }
+    >>>.touch_field .v-input__prepend-inner .v-input__icon{
+        background: #EE6F6F;
+        padding: 28px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    >>>.touch_field .v-input__prepend-inner .v-icon.v-icon{
+        color: #ffffff !important;
+    }
+    >>>.touch_field .v-input__prepend-inner{
+        margin-top: 0px !important;
+    }
+    >>>.promotions .v-btn__content {
+        font-size: 12px !important;
+    }
+    >>>.promotions .v-btn__content .v-icon.v-icon{
+        font-size: 18px !important;
+    }
+    >>>.fields_tabs .v-tabs-bar {
+        height: 40px !important;
+    }
+    .v-tab {
+        color:#2f2f2f !important;
+        background: #dcdcdc !important;
+    }
+    .active_tab {
+        color:#ffffff !important;
+        background: #EE6F6F !important;
+    }
+    >>>.fields_tabs .v-slide-group__prev, >>>.fields_tabs .v-slide-group__next{
+        display:none !important;
+    }
+    >>>.fields_tabs .v-tabs-slider-wrapper{
+        display: none !important;
+    }
+
+
+
     >>>.v-input__prepend-outer{
         background:#EE6F6F;
         padding:16px 14px;
@@ -222,7 +337,7 @@
     >>>.v-input__prepend-outer .v-icon{
         color:#fff !important;
     }
-    >>>.v-text-field > .v-input__control > .v-input__slot{
+    >>>.tag_field > .v-input__control > .v-input__slot{
         border-radius: 0px !important;
         margin-bottom: 0px !important;
     }
