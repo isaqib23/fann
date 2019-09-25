@@ -3,7 +3,7 @@
         <v-flex class="panes-container full_height" v-bind:class="paneClass">
             <v-card fluid grid-list-md v-bind:class="cardClass">
                 <v-tabs v-model="active_tab" vertical flat icons-and-text active-class="active_tab" background-color="decent" color="gutter">
-                    <LeftTabs class="tabuuuu"></LeftTabs>
+                    <LeftTabs></LeftTabs>
 
                     <v-tab-item>
                         <SetupLeftPane></SetupLeftPane>
@@ -23,7 +23,7 @@
         <v-flex lg8 sm6 xl8 md7 xs12 class="right-panes">
             <SetupRightPane v-if="active_tab == 0"></SetupRightPane>
             <CreateRightPane v-if="active_tab == 1"></CreateRightPane>
-            <InviteRightPane v-if="active_tab == 2"></InviteRightPane>
+            <InviteRightPaneListView v-if="active_tab == 2"></InviteRightPaneListView>
         </v-flex>
     </v-row>
 </template>
@@ -35,7 +35,8 @@
     import InviteLeftPane from './requirements/InviteLeftPane';
     import SetupRightPane from './requirements/SetupRightPane';
     import CreateRightPane from './requirements/CreateRightPane';
-    import InviteRightPane from './requirements/InviteRightPane';
+    import InviteRightPaneListView from './requirements/InviteRightPaneListView';
+    import InviteRightPaneGridView from './requirements/InviteRightPaneGridView';
     import Promote from './requirements/Promote';
     export default {
         components: {
@@ -45,7 +46,8 @@
             InviteLeftPane: InviteLeftPane,
             SetupRightPane: SetupRightPane,
             CreateRightPane: CreateRightPane,
-            InviteRightPane: InviteRightPane,
+            InviteRightPaneListView: InviteRightPaneListView,
+            InviteRightPaneGridView: InviteRightPaneGridView,
             Promote: Promote
         },
         data: () => {
@@ -66,6 +68,9 @@
 </script>
 
 <style scoped>
+    .main_wrapper{
+        background: #F4F7FD !important;
+    }
     .full_height{
         max-height: 100vh !important;
         min-height: 100vh !important;
