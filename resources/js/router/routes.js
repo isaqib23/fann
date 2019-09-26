@@ -44,23 +44,7 @@ export default [
                 {
                     path      : '',
                     name      : 'index',
-                    redirect  : {name: 'profile'}
-                },
-                {
-                    path      : 'profile',
-                    component : require('$comp/businessOwner/profile/ProfileWrapper').default,
-                    children  : [
-                        {
-                            path      : '',
-                            name      : 'profile',
-                            component : require('$comp/businessOwner/profile/Profile').default
-                        },
-                        {
-                            path      : 'edit',
-                            name      : 'profile-edit',
-                            component : require('$comp/businessOwner/profile/edit/ProfileEdit').default
-                        }
-                    ]
+                    redirect  : {name: 'settings'}
                 },
                 {
                     path      : 'dashboard',
@@ -72,6 +56,25 @@ export default [
                     name      : 'shopify-app',
                     component : require('$comp/businessOwner/shopify/Shakehand').default
                 },
+            ]
+        },
+        {
+            path      : '',
+            component : require('$comp/general/FullContentWidthWrapper').default,
+            children  : [
+                {
+                    path      : 'settings',
+                    component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
+                    children  : [
+                        {
+                            path      : 'business-profile',
+                            name      : 'settings-business-profile',
+                            component : require('$comp/businessOwner/settings/Settings').default
+                        }
+                    ]
+
+                }
+
             ]
         },
         {

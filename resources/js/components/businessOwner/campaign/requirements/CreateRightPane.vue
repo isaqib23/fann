@@ -2,21 +2,12 @@
     <v-flex class="ma-12">
         <div class="subtitle-1 mb-2"><strong>Search Results</strong></div>
         <v-card class="card_wrapper">
-            <v-img
-                src="/images/banner.png"
-                height="200"
-                class="grey darken-4"
-            ></v-img>
-
-
-
             <v-flex class="description_wrapper">
-                <v-card class="description_card ma-auto" width="550" height="200">
+                <v-card class="description_card ma-auto" width="80%" height="200">
                     <v-layout class="left-pane">
                         <div class="card_box"></div>
                     </v-layout>
                     <v-layout class="right-pane" style="background:#ccc">
-
                     </v-layout>
                 </v-card>
             </v-flex>
@@ -25,28 +16,66 @@
             <v-flex class="common_wrapper ma-auto mt-5">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <v-card-text>
+                        <card-title>
                             <div class="subtitle-1 mb-2"><strong>Campaign Requirements</strong></div>
-                        </v-card-text>
+                        </card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto">
-                        <div class="parent_box ma-3">
-                            <v-badge overlap>
-                                <template v-slot:badge>0</template>
-                            </v-badge>
-                            <div class="child_box pa-5">
-                                Instagram Post
+                            <div class="parent_box ma-3">
+                                <v-badge overlap color="accent">
+                                    <template v-slot:badge>0</template>
+                                    <div class="child_box pa-5">
+                                        Instagram Post
+                                    </div>
+                                </v-badge>
                             </div>
-                        </div>
 
                         <div class="parent_box ma-3">
-                            <v-badge overlap>
+                            <v-badge overlap color="accent">
                                 <template v-slot:badge>0</template>
+                                <div class="child_box pa-5">
+                                    Instagram Story
+                                </div>
                             </v-badge>
-                            <div class="child_box pa-5">
-                                Instagram Story
-                            </div>
                         </div>
+                    </v-layout>
+                </v-card>
+            </v-flex>
+
+            <v-flex class="common_wrapper ma-auto" color="black">
+                <v-card class="description_card ma-auto" flat>
+                    <v-layout class="left-pane">
+                        <card-title>
+                            <div class="subtitle-1 mb-2"><strong>Touch Points</strong></div>
+                        </card-title>
+                    </v-layout>
+                    <v-layout class="right-pane ma-auto inline_display">
+                        <v-list class="list_cards">
+                            <v-list-item v-for="i in 3" :key="i">
+                                <v-list-item-icon class="mr-0 mt-5">
+                                    <strong class="primary--text">1.</strong>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-row class="mx-auto">
+                                        <v-flex xl2 lg2 md2 sm2 xs2>
+                                            <v-list-item-avatar height="40" min-width="40" width="40">
+                                                <v-img src="/images/avtar.png"></v-img>
+                                            </v-list-item-avatar>
+                                        </v-flex>
+                                        <v-flex xl10 lg10 md10 sm10 xs10>
+                                            <v-text-field
+                                                solo
+                                                label="Instagram post"
+                                                append-icon="place"
+                                                class="touch_field"
+                                                readonly
+                                            ></v-text-field>
+                                        </v-flex>
+                                    </v-row>
+                                    <p class="primary--text overline ma-0"><v-icon color="primary">mdi-instagram</v-icon> Lorem Ipsum is simply dummy text</p>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </v-list>
                     </v-layout>
                 </v-card>
             </v-flex>
@@ -55,9 +84,9 @@
             <v-flex class="common_wrapper ma-auto">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <v-card-text>
+                        <card-title>
                             <div class="subtitle-1 mb-2"><strong>Hashtags</strong></div>
-                        </v-card-text>
+                        </card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto">
                         <v-btn class="ma-3" small>#Hashtag 1</v-btn>
@@ -69,13 +98,65 @@
             <v-flex class="common_wrapper ma-auto">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <v-card-text>
+                        <card-title>
                             <div class="subtitle-1 mb-2"><strong>Brand Mentions</strong></div>
-                        </v-card-text>
+                        </card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto">
                         <v-btn class="ma-3" small>@Mentions 1</v-btn>
                         <v-btn class="ma-3" small>@Mentions 2</v-btn>
+                    </v-layout>
+                </v-card>
+            </v-flex>
+
+            <v-flex class="common_wrapper ma-auto my-3">
+                <v-card class="description_card ma-auto" flat>
+                    <v-layout class="left-pane">
+                        <card-title>
+                            <div class="subtitle-1 mb-2"><strong>Captions</strong></div>
+                        </card-title>
+                    </v-layout>
+                    <v-layout class="right-pane ma-auto">
+                        <p class="ma-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </v-layout>
+                </v-card>
+            </v-flex>
+
+            <v-flex class="common_wrapper ma-auto my-3">
+                <v-card class="description_card ma-auto" flat>
+                    <v-layout class="left-pane">
+                        <card-title>
+                            <div class="subtitle-1 mb-2"><strong>Images</strong></div>
+                        </card-title>
+                    </v-layout>
+                    <v-layout class="right-pane ma-auto">
+                        <v-row>
+                            <v-col
+                                v-for="n in 6"
+                                :key="n"
+                                class="d-flex child-flex"
+                                cols="3"
+                            >
+                                <v-card flat tile class="d-flex">
+                                    <v-img
+                                        :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
+                                        :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+                                        aspect-ratio="1"
+                                        class="grey lighten-2"
+                                    >
+                                        <template v-slot:placeholder>
+                                            <v-row
+                                                class="fill-height ma-0"
+                                                align="center"
+                                                justify="center"
+                                            >
+                                                <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                                            </v-row>
+                                        </template>
+                                    </v-img>
+                                </v-card>
+                            </v-col>
+                        </v-row>
                     </v-layout>
                 </v-card>
             </v-flex>
@@ -85,9 +166,9 @@
             <v-flex class="common_wrapper ma-auto" color="black">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <v-card-text>
+                        <card-title>
                             <div class="subtitle-1 mb-2"><strong>Content Guidelines</strong></div>
-                        </v-card-text>
+                        </card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto inline_display">
                         <v-list>
@@ -113,59 +194,12 @@
 
             <v-divider></v-divider>
 
-            <v-flex class="common_wrapper ma-auto" color="black" style="min-height: 270px;">
-                <v-card class="description_card ma-auto" flat>
-                    <v-layout class="left-pane">
-                        <v-card-text>
-                            <div class="subtitle-1 mb-2"><strong>Due Date</strong></div>
-                            <v-date-picker :weekday-format="getDay" v-model="picker" width="180" height="180" color="primary"></v-date-picker>
-                        </v-card-text>
-                    </v-layout>
-                    <v-layout class="right-pane ma-auto inline_display">
-                        <v-card-text>
-                            <div class="subtitle-1 mb-2"><strong>Pricing</strong></div>
-                            <v-simple-table>
-                                <thead>
-                                    <tr>
-                                        <td>#</td>
-                                        <td>DELIVERABLES</td>
-                                        <td>QUANTITY</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Instagram Post Image</td>
-                                    <td>1</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Instagram Post Image</td>
-                                    <td>3</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Instagram Post Image</td>
-                                    <td>1</td>
-                                </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="2">Collabration Budget</td>
-                                        <td>$20.00</td>
-                                    </tr>
-                                </tfoot>
-                            </v-simple-table>
-                        </v-card-text>
-                    </v-layout>
-                </v-card>
-            </v-flex>
+
         </v-card>
     </v-flex>
 </template>
 
 <script>
-    const daysOfWeek = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
     export default {
         components: {
 
@@ -177,14 +211,10 @@
                    { number: 2, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
                    { number: 3, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'}
                ],
-               picker: new Date().toISOString().substr(0, 10),
             }
         },
         methods: {
-            getDay(date){
-                let i = new Date(date).getDay(date)
-                return daysOfWeek[i]
-            }
+
         }
     }
 </script>
@@ -193,6 +223,33 @@
     .card_wrapper {
         border-radius: 10px !important;
     }
+    >>>.touch_field > .v-input__control > .v-input__slot{
+        padding-right: 0px !important;
+    }
+    >>>.touch_field .v-input__append-inner{
+        margin-top: 0px !important;
+    }
+    >>>.touch_field .v-input__append-inner .v-input__icon{
+        background: #dcdcdc;
+        padding: 28px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    >>>.touch_field .v-input__append-inner .v-icon.v-icon{
+        color: #2f2f2f !important;
+    }
+    >>>.list_cards .v-avatar{
+        border-radius: 0px !important;
+    }
+    >>>.list_cards .v-text-field__details{
+        display: none !important;
+    }
+    >>>.list_cards .v-list-item__content, >>>.list_cards  .v-list-item{
+        padding:0px !important;
+    }
+
+
+
     .description_wrapper{
         background:linear-gradient(90deg, #ee6f6e 0%,#fea57e 100% );
         padding: 50px 90px;
@@ -272,41 +329,7 @@
         word-wrap: break-word !important;
         white-space: initial !important;
     }
-    >>>.v-date-picker-header .v-btn--fab{
-        height: 30px !important;
-        width: 30px !important;
-        border: 1px solid #ccc;
-        border-radius: 10px;
-    }
-    >>>.v-picker__title{
-        display: none !important;
-    }
-    >>>.v-date-picker-header{
-       padding: 4px !important;
-    }
-    >>>.v-date-picker-header__value button{
-        font-size:9px;
-        font-weight:bold;
-        color: #EE6F6F !important;
-    }
-    >>>.v-date-picker-table th{
-        font-size: 9px !important;
-        padding:0px !important;
-        margin:0px !important;
-    }
-    >>>.v-date-picker-table thead{
-        background: #cccccc;
-    }
-    >>>.v-date-picker-table--date .v-btn{
-        height: 25px;
-        width: 25px;
-        font-size: 10px !important;
-        border: 1px solid #cccccc;
-        border-radius: 0px;
-    }
-    >>>.v-picker__body{
-       height: 210px !important;
-    }
+
     .right-pane .v-data-table thead, .right-pane .v-data-table tfoot{
         background: #cccccc !important;
     }

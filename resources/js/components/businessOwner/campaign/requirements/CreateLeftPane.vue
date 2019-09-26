@@ -3,9 +3,9 @@
         <v-flex>
             <v-card class="elevation-4 mx-auto pa-3 transition-swing"
             >
-                <v-card-text >
+                <v-card-title>
                     <div class="subtitle-1 mb-2"><strong>Campaign Description</strong></div>
-                </v-card-text>
+                </v-card-title>
 
                 <v-textarea
                     label="Write your campaign description here"
@@ -91,24 +91,34 @@
 
                 <v-card flat>
                     <v-card-title>
-                        <div class="subtitle-1"><strong>Shipment</strong></div>
+                        <div class="subtitle-1"><strong>Select Barter Product</strong></div>
                     </v-card-title>
-
-                    <v-checkbox v-model="checkbox2" label="I will be shipping this product to influencers" color="primary"></v-checkbox>
-                    <v-text-field class="ma-auto"
-                                  :label="$t('labels.campaign.payment_FieldPlaceHolder')"
-                                  solo
-                    ></v-text-field>
+                    <v-select
+                        :items="items"
+                        label="Select from here"
+                        outlined
+                    ></v-select>
+                    <v-select
+                        :items="items"
+                        label="Product Title here"
+                        prepend-inner-icon="mdi-instagram"
+                        class="product_field"
+                        outlined
+                    ></v-select>
                 </v-card>
 
+                <v-card flat>
+                    <v-card-title>
+                        <div class="subtitle-1"><strong>Shipment</strong></div>
+                    </v-card-title>
+                    <v-checkbox v-model="checkbox2" label="I will be shipping this product to influencers" color="primary"></v-checkbox>
+                </v-card>
 
-                <v-textarea
-                    label="Write your task requirement here"
-                    auto-grow
-                    outlined
-                    rows="8"
-                    row-height="15"
-                ></v-textarea>
+            </v-card>
+        </v-flex>
+
+        <v-flex>
+            <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
                 <div class="text-center mt-4">
                     <v-btn block height="20" class="task_btn">+ Add another task</v-btn>
                 </div>
@@ -134,95 +144,9 @@
                         ></v-text-field>
                     </v-flex>
                 </v-layout>
-
-                <div class="subtitle-2 mt-4"><strong>Due Date</strong></div>
-                <v-layout row wrap pl-3 pr-3 mt-2>
-                    <v-flex lg4 sm4 m4>
-                        <v-text-field
-                            outlined
-                            label="mm"
-                            class="tag_field"
-                            type="number"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex lg4 sm4 m4>
-                        <v-text-field
-                            outlined
-                            label="yy"
-                            class="tag_field"
-                            type="number"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex lg4 sm4 m4>
-                        <v-text-field
-                            outlined
-                            label="dd"
-                            class="tag_field"
-                            type="number"
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
             </v-card>
         </v-flex>
 
-        <v-flex>
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
-                <v-card-title>
-                    <div class="subtitle-1 mb-2"><strong>Campaign Cover</strong></div>
-                    Upload your campaign cover photo
-                </v-card-title>
-                <div class="dropzone_content">
-                    <div class="subtitle-1 mb-2">Upload</div>
-
-                </div>
-            </v-card>
-        </v-flex>
-
-        <v-flex>
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing  mt-3"
-            >
-                <v-card-title>
-                    <div class="subtitle-1"><strong>Content Guidelines</strong></div>
-                </v-card-title>
-
-                <v-text-field
-                    outlined
-                    label=""
-                    prepend-icon="1"
-                    class="tag_field mb-3"
-                ></v-text-field>
-                <v-text-field
-                    outlined
-                    label=""
-                    prepend-icon="2"
-                    class="tag_field"
-                ></v-text-field>
-            </v-card>
-        </v-flex>
-
-        <v-flex>
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing  mt-3"
-            >
-                <v-card-title>
-                    <div class="subtitle-1"><strong>Shipment</strong></div>
-                </v-card-title>
-
-                <v-checkbox v-model="checkbox2" label="I will be shipping this product to influencers" color="primary"></v-checkbox>
-            </v-card>
-        </v-flex>
-
-        <v-flex>
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing  mt-3"
-            >
-
-                <v-checkbox v-model="checkbox1" :label="$t('labels.campaign.payment_AmountCheckBox')" color="primary"></v-checkbox>
-                <v-text-field class="ma-auto"
-                              :label="$t('labels.campaign.payment_FieldPlaceHolder')"
-                              solo
-                ></v-text-field>
-                <v-checkbox v-model="checkbox2" :label="$t('labels.campaign.payment_OfferCheckBox')" color="primary"></v-checkbox>
-            </v-card>
-        </v-flex>
     </div>
 </template>
 
@@ -274,7 +198,7 @@
     .dropzone >>>.dz-message{
         margin:0px !important;
     }
-    >>>.touch_field > .v-input__control > .v-input__slot{
+    >>>.touch_field > .v-input__control > .v-input__slot, >>>.product_field > .v-input__control > .v-input__slot{
         padding-right: 0px !important;
         padding-left: 0px !important;
     }
@@ -290,16 +214,16 @@
     >>>.touch_field .v-input__append-inner .v-icon.v-icon{
         color: #2f2f2f !important;
     }
-    >>>.touch_field .v-input__prepend-inner .v-input__icon{
+    >>>.touch_field .v-input__prepend-inner .v-input__icon, >>>.product_field .v-input__prepend-inner .v-input__icon{
         background: #EE6F6F;
         padding: 28px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 5px;
     }
-    >>>.touch_field .v-input__prepend-inner .v-icon.v-icon{
+    >>>.touch_field .v-input__prepend-inner .v-icon.v-icon, >>>.product_field .v-input__prepend-inner .v-icon.v-icon{
         color: #ffffff !important;
     }
-    >>>.touch_field .v-input__prepend-inner{
+    >>>.touch_field .v-input__prepend-inner, >>>.product_field  .v-input__prepend-inner{
         margin-top: 0px !important;
     }
     >>>.promotions .v-btn__content {

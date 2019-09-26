@@ -1,6 +1,25 @@
 <template>
     <v-flex class="ma-12">
         <div class="subtitle-1 mb-2"><strong>Search Results</strong></div>
+        <v-row justify="space-between" class="top_row">
+            <v-col md="4">
+                <v-select
+                    :items="items"
+                    label="Product Title here"
+                    class="product_field"
+                    solo
+                    background-color="white"
+                ></v-select>
+            </v-col>
+            <v-col md="4">
+                <v-text-field
+                    solo
+                    label="Search Here"
+                    prepend-inner-icon="mdi-account-search"
+                    class="touch_field"
+                ></v-text-field>
+            </v-col>
+        </v-row>
         <v-layout row wrap>
             <v-flex xl12 lg12 md12 sm12 xs12>
                     <v-list two-line color="transparent" class="list_cards">
@@ -75,6 +94,7 @@
            return  {
                rating: 3,
                page: 1,
+               items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             }
         },
         methods: {
@@ -104,5 +124,8 @@
     }
     >>>.list_cards .v-btn__content .v-icon.v-icon{
         font-size: 18px !important;
+    }
+    >>>.top_row .v-text-field__details{
+        display: none !important;
     }
 </style>

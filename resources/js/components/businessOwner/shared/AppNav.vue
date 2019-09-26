@@ -131,14 +131,14 @@
                         {title: 'Dashboard', icon: 'dashboard', to: {name: 'dashboard'}}
                     ],
                     [
-                        {title: 'Profile', icon: 'person', to: {name: 'profile'}, exact: false}
-                    ],
-                    [
                         {title: 'Create', icon: 'list_alt', to: {name: 'create-campaign-requirements'}, exact: false}
                     ],
                     [
                         {title: 'Manage Shopify', icon: 'list_alt', to: {name: 'shopify-app'}, exact: false}
-                    ]
+                    ],
+                    [
+                        {title: 'Settings', icon: 'settings_applications', to: {name: 'settings-business-profile'}, exact: false}
+                    ],
 
                 ]
             }
