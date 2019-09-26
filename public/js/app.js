@@ -5811,6 +5811,143 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5818,7 +5955,33 @@ __webpack_require__.r(__webpack_exports__);
         avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
         title: 'Brunch this weekend?',
         tags: ['Work', 'Art', 'Tech']
-      }
+      },
+      notifications: [{
+        text: 'Your Shipment is pending',
+        icon: 'mdi-clock',
+        time: '4 hours'
+      }, {
+        text: 'Touch point completed',
+        icon: 'mdi-account',
+        time: '3 hours'
+      }, {
+        text: 'Laura Started Chat',
+        icon: 'mdi-flag',
+        time: '2 hours'
+      }, {
+        text: 'Your Shipment is pending',
+        icon: 'mdi-clock',
+        time: '4 hours'
+      }, {
+        text: 'Touch point completed',
+        icon: 'mdi-account',
+        time: '3 hours'
+      }, {
+        text: 'Laura Started Chat',
+        icon: 'mdi-flag',
+        time: '2 hours'
+      }],
+      from: ['Foo', 'Bar', 'Fizz', 'Buzz']
     };
   }
 });
@@ -18967,7 +19130,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n[data-v-58f91188] .list_cards .v-avatar{\n    border-radius: 10px !important;\n}\n\n", ""]);
+exports.push([module.i, "\n[data-v-58f91188] .list_cards .v-avatar {\n    border-radius: 10px !important;\n}\n.notification-icon-padding[data-v-58f91188] {\n    padding: 9px;\n}\n.br-left[data-v-58f91188] {\n    border-top-left-radius: 5px;\n    border-bottom-left-radius: 5px;\n}\n.br-right[data-v-58f91188] {\n    border-top-right-radius: 5px;\n    border-bottom-right-radius: 5px;\n}\n.max-width-25[data-v-58f91188] {\n    max-width: 25%;\n}\n[data-v-58f91188] .max-width-25 .v-text-field__details{\n    display: none !important;\n}\n.max-width-13[data-v-58f91188] {\n    max-width: 13%;\n}\n\n\n", ""]);
 
 // exports
 
@@ -29191,9 +29354,11 @@ var render = function() {
                   _c(
                     "v-card-text",
                     [
-                      _c("div", { staticClass: "subtitle-1 mb-2" }, [
-                        _c("strong", [_vm._v("Campaign")])
-                      ]),
+                      _c(
+                        "div",
+                        { staticClass: "subtitle-1 mb-2 text-uppercase" },
+                        [_c("strong", [_vm._v("Campaign")])]
+                      ),
                       _vm._v(" "),
                       _c("v-simple-table", [
                         _c("thead", { staticClass: "grey lighten-4" }, [
@@ -29354,7 +29519,7 @@ var render = function() {
                                     attrs: {
                                       rounded: "",
                                       value: "26",
-                                      color: "green  accent-2",
+                                      color: "green accent-2",
                                       height: "6",
                                       reactive: ""
                                     }
@@ -29390,7 +29555,77 @@ var render = function() {
               _c(
                 "v-card",
                 { staticClass: "pa-2", attrs: { outlined: "", tile: "" } },
-                [_vm._v("\n                .col-6 .col-md-4\n            ")]
+                [
+                  _c(
+                    "v-list",
+                    { attrs: { flat: "" } },
+                    [
+                      _c("v-subheader", { staticClass: "text-uppercase" }, [
+                        _vm._v("Notifications")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-group",
+                        { attrs: { color: "primary" } },
+                        _vm._l(_vm.notifications, function(notification, i) {
+                          return _c(
+                            "v-list-item",
+                            { key: i },
+                            [
+                              _c(
+                                "v-list-item-content",
+                                { staticClass: "pa-2 max-width-13" },
+                                [
+                                  _c("v-list-item-title", {
+                                    staticClass:
+                                      "body-2 text-sm-center text--grey",
+                                    domProps: {
+                                      textContent: _vm._s(notification.time)
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-item-icon",
+                                {
+                                  staticClass:
+                                    "notification-icon-padding grey lighten-4 br-left"
+                                },
+                                [
+                                  _c("v-icon", {
+                                    domProps: {
+                                      textContent: _vm._s(notification.icon)
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list-item-content",
+                                { staticClass: "grey lighten-4 br-right" },
+                                [
+                                  _c("v-list-item-title", {
+                                    domProps: {
+                                      textContent: _vm._s(notification.text)
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        }),
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
               )
             ],
             1
@@ -29403,7 +29638,53 @@ var render = function() {
               _c(
                 "v-card",
                 { staticClass: "pa-2", attrs: { outlined: "", tile: "" } },
-                [_vm._v("\n                .col-6 .col-md-4\n            ")]
+                [
+                  _c(
+                    "v-card-title",
+                    { staticClass: "text-uppercase font-weight-bold" },
+                    [
+                      _vm._v("Campaign Reach\n                    "),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        staticClass: "float-right max-width-25",
+                        attrs: { items: _vm.from, label: "From", outlined: "" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-card-text", { staticClass: "pb-0" }, [
+                    _vm._v(
+                      "\n                    Analyze the success of your influencer in real time\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    { staticClass: "text-right d-block mr-2 pt-0" },
+                    [
+                      _c("h2", { staticClass: "font-weight-bold" }, [
+                        _vm._v("12K")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { staticClass: "error--text" },
+                        [
+                          _c(
+                            "v-icon",
+                            { attrs: { color: "error", small: "" } },
+                            [_vm._v("mdi-arrow-down")]
+                          ),
+                          _vm._v("13.8%\n                         ")
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ],
+                1
               )
             ],
             1
@@ -29416,7 +29697,53 @@ var render = function() {
               _c(
                 "v-card",
                 { staticClass: "pa-2", attrs: { outlined: "", tile: "" } },
-                [_vm._v("\n                .col-6 .col-md-4\n            ")]
+                [
+                  _c(
+                    "v-card-title",
+                    { staticClass: "text-uppercase font-weight-bold" },
+                    [
+                      _vm._v("Social Mentions\n                    "),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        staticClass: "float-right max-width-25",
+                        attrs: { items: _vm.from, label: "From", outlined: "" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-card-text", { staticClass: "pb-0" }, [
+                    _vm._v(
+                      "\n                    Monitor and engage in conversation happening around your brand\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    { staticClass: "text-right d-block mr-2 pt-0" },
+                    [
+                      _c("h2", { staticClass: "font-weight-bold" }, [
+                        _vm._v("120")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { staticClass: "success--text" },
+                        [
+                          _c(
+                            "v-icon",
+                            { attrs: { color: "success", small: "" } },
+                            [_vm._v("mdi-arrow-up")]
+                          ),
+                          _vm._v("13.8%\n                         ")
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ],
+                1
               )
             ],
             1
@@ -29429,7 +29756,53 @@ var render = function() {
               _c(
                 "v-card",
                 { staticClass: "pa-2", attrs: { outlined: "", tile: "" } },
-                [_vm._v("\n            .col-6 .col-md-4\n        ")]
+                [
+                  _c(
+                    "v-card-title",
+                    { staticClass: "text-uppercase font-weight-bold" },
+                    [
+                      _vm._v("Content Pieces\n                    "),
+                      _c("v-spacer"),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        staticClass: "float-right max-width-25",
+                        attrs: { items: _vm.from, label: "From", outlined: "" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-card-text", { staticClass: "pb-0" }, [
+                    _vm._v(
+                      "\n                    Track content curated via your campaigns by influencer\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    { staticClass: "text-right d-block mr-2 pt-0" },
+                    [
+                      _c("h2", { staticClass: "font-weight-bold" }, [
+                        _vm._v("20")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { staticClass: "error--text" },
+                        [
+                          _c(
+                            "v-icon",
+                            { attrs: { color: "error", small: "" } },
+                            [_vm._v("mdi-arrow-down")]
+                          ),
+                          _vm._v("30%\n                         ")
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                ],
+                1
               )
             ],
             1
@@ -29442,7 +29815,141 @@ var render = function() {
               _c(
                 "v-card",
                 { staticClass: "pa-2", attrs: { outlined: "", tile: "" } },
-                [_vm._v("\n                .col-12 .col-md-8\n            ")]
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "subtitle-1 mb-2 text-uppercase" },
+                        [_c("strong", [_vm._v("Payments")])]
+                      ),
+                      _vm._v(" "),
+                      _c("v-simple-table", [
+                        _c("thead", { staticClass: "grey lighten-4" }),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(4, function(i) {
+                            return _c("tr", { key: i }, [
+                              _c(
+                                "td",
+                                { attrs: { width: "15%" } },
+                                [
+                                  _c(
+                                    "v-list",
+                                    { staticClass: "list_cards" },
+                                    [
+                                      _c(
+                                        "v-list-item",
+                                        [
+                                          _c(
+                                            "v-list-item-avatar",
+                                            {
+                                              attrs: {
+                                                height: "50",
+                                                width: "50"
+                                              }
+                                            },
+                                            [
+                                              _c("v-img", {
+                                                attrs: { src: _vm.items.avatar }
+                                              })
+                                            ],
+                                            1
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "v-list-item-content",
+                                            [
+                                              _c("v-list-item-title", {
+                                                domProps: {
+                                                  innerHTML: _vm._s(
+                                                    _vm.items.title
+                                                  )
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("p", [
+                                  _vm._v(
+                                    " Laura Miller has marked touch point completed and requested for payemnt $15"
+                                  )
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass:
+                                        "blue--text caption pl-3 pr-3",
+                                      attrs: { "x-small": "", text: "" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    View Post\n                                "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass:
+                                        "blue--text caption pl-3 pr-3",
+                                      attrs: { "x-small": "", text: "" }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Chat\n                                "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-btn",
+                                    {
+                                      staticClass: "overline pl-3 pr-3",
+                                      attrs: {
+                                        color: "primary",
+                                        rounded: "",
+                                        depressed: ""
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Clear Payment\n                                "
+                                      )
+                                    ]
+                                  )
+                                ],
+                                1
+                              )
+                            ])
+                          }),
+                          0
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
               )
             ],
             1
@@ -29455,7 +29962,186 @@ var render = function() {
               _c(
                 "v-card",
                 { staticClass: "pa-2", attrs: { outlined: "", tile: "" } },
-                [_vm._v("\n                .col-6 .col-md-4\n            ")]
+                [
+                  _c(
+                    "v-card-text",
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "subtitle-1 mb-2 text-uppercase" },
+                        [_c("strong", [_vm._v("Shipments")])]
+                      ),
+                      _vm._v(" "),
+                      _c("v-simple-table", [
+                        _c("thead", { staticClass: "grey lighten-4" }),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(3, function(i) {
+                            return _c(
+                              "tr",
+                              { key: i, staticClass: "grey lighten-4" },
+                              [
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-list",
+                                      {
+                                        staticClass:
+                                          "list_cards grey lighten-4",
+                                        attrs: { "two-line": "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-list-item",
+                                          [
+                                            _c(
+                                              "v-list-item-avatar",
+                                              {
+                                                attrs: {
+                                                  height: "50",
+                                                  width: "50"
+                                                }
+                                              },
+                                              [
+                                                _c("v-img", {
+                                                  attrs: {
+                                                    src: _vm.items.avatar
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-list-item-content",
+                                              [
+                                                _c("v-list-item-title", {
+                                                  domProps: {
+                                                    innerHTML: _vm._s(
+                                                      _vm.items.title
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-list-item-subtitle",
+                                                  [
+                                                    _vm._v(
+                                                      "\n                                               Ship to\n                                                "
+                                                    ),
+                                                    _c(
+                                                      "router-link",
+                                                      {
+                                                        attrs: {
+                                                          to: "/",
+                                                          color: "primary"
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          "Velvet Leather Bag "
+                                                        )
+                                                      ]
+                                                    ),
+                                                    _vm._v(
+                                                      "\n                                               to\n                                                "
+                                                    ),
+                                                    _c(
+                                                      "router-link",
+                                                      {
+                                                        attrs: {
+                                                          to: "/",
+                                                          color: "primary"
+                                                        }
+                                                      },
+                                                      [_vm._v("Umer Dashy ")]
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass:
+                                          "blue--text caption pl-3 pr-3 d-inline-block",
+                                        attrs: { text: "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          {
+                                            attrs: { color: "green accent-2" }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                        mdi-check\n                                    "
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        staticClass:
+                                          "blue--text caption pl-3 pr-3 d-inline-block",
+                                        attrs: { text: "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-icon",
+                                          {
+                                            attrs: { color: "green accent-2" }
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\n                                        mdi-close\n                                    "
+                                            )
+                                          ]
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ])
+                    ],
+                    1
+                  )
+                ],
+                1
               )
             ],
             1
@@ -71496,7 +72182,7 @@ Vuetify.version = "2.0.3";
 /*!*******************************************!*\
   !*** ./node_modules/vuetify/lib/index.js ***!
   \*******************************************/
-/*! exports provided: ClickOutside, Resize, Ripple, Scroll, Touch, colors, default, VApp, VAppBar, VAppBarNavIcon, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardTitle, VCardActions, VCardText, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
+/*! exports provided: colors, default, VApp, ClickOutside, Resize, Ripple, Scroll, Touch, VAppBar, VAppBarNavIcon, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardTitle, VCardActions, VCardText, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -84733,16 +85419,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../../node_modules/vuetify-loader/lib/runtime/installComponents.js */ "./node_modules/vuetify-loader/lib/runtime/installComponents.js");
 /* harmony import */ var _node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var vuetify_lib_components_VBadge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBadge */ "./node_modules/vuetify/lib/components/VBadge/index.js");
-/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
-/* harmony import */ var vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VChip */ "./node_modules/vuetify/lib/components/VChip/index.js");
-/* harmony import */ var vuetify_lib_components_VChipGroup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VChipGroup */ "./node_modules/vuetify/lib/components/VChipGroup/index.js");
-/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
-/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
-/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
-/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
-/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
-/* harmony import */ var vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VSubheader */ "./node_modules/vuetify/lib/components/VSubheader/index.js");
+/* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
+/* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
+/* harmony import */ var vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VChip */ "./node_modules/vuetify/lib/components/VChip/index.js");
+/* harmony import */ var vuetify_lib_components_VChipGroup__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VChipGroup */ "./node_modules/vuetify/lib/components/VChipGroup/index.js");
+/* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuetify/lib/components/VImg */ "./node_modules/vuetify/lib/components/VImg/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
+/* harmony import */ var vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VSelect */ "./node_modules/vuetify/lib/components/VSelect/index.js");
+/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
+/* harmony import */ var vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuetify/lib/components/VSubheader */ "./node_modules/vuetify/lib/components/VSubheader/index.js");
 
 
 
@@ -84783,7 +85471,14 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBadge: vuetify_lib_components_VBadge__WEBPACK_IMPORTED_MODULE_5__["VBadge"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_7__["VChip"],VChipGroup: vuetify_lib_components_VChipGroup__WEBPACK_IMPORTED_MODULE_8__["VChipGroup"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VContainer"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_10__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_11__["VImg"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_9__["VLayout"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemContent"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_12__["VListItemTitle"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_13__["VProgressLinear"],VSimpleTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_14__["VSimpleTable"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_15__["VSubheader"]})
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBadge: vuetify_lib_components_VBadge__WEBPACK_IMPORTED_MODULE_5__["VBadge"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_8__["VChip"],VChipGroup: vuetify_lib_components_VChipGroup__WEBPACK_IMPORTED_MODULE_9__["VChipGroup"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VContainer"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_12__["VImg"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VLayout"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemContent"],VListItemGroup: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemGroup"],VListItemIcon: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemIcon"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemTitle"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_14__["VProgressLinear"],VSelect: vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_15__["VSelect"],VSimpleTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_16__["VSimpleTable"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VSpacer"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_17__["VSubheader"]})
 
 
 /* hot reload */
@@ -86026,8 +86721,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\apps\influencerapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\apps\influencerapp\resources\styles\app.sass */"./resources/styles/app.sass");
+__webpack_require__(/*! E:\apps\influencerapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\apps\influencerapp\resources\styles\app.sass */"./resources/styles/app.sass");
 
 
 /***/ })
