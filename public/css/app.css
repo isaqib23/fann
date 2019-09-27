@@ -30435,6 +30435,10 @@ html {
   width: 100% !important;
 }
 
+.no-hover {
+  pointer-events: none !important;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
   background-color: #F5F5F5;
