@@ -44,7 +44,7 @@ export default [
                 {
                     path      : '',
                     name      : 'index',
-                    redirect  : {name: 'settings'}
+                    redirect  : {name: 'settings-business-profile'}
                 },
                 {
                     path      : 'dashboard',

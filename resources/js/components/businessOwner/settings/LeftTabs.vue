@@ -6,7 +6,7 @@
         </v-tab>
         <v-tab >
             Billing & Payment
-            <v-icon left>mdi-account-plus</v-icon>
+            <v-icon left>credit_card</v-icon>
         </v-tab>
         <v-tab>
             Integrations

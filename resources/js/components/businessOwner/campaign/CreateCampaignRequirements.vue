@@ -76,15 +76,4 @@
         min-height: 100vh !important;
         overflow-y: scroll !important;
     }
-    .full_height::-webkit-scrollbar {
-        width: 6px;
-        background-color: #F5F5F5;
-    }
-    .full_height::-webkit-scrollbar-thumb {
-        background-color: #EE6F6F;
-    }
-    .full_height::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        background-color: #F5F5F5;
-    }
 </style>

@@ -9,10 +9,10 @@
                         <Profile></Profile>
                     </v-tab-item>
                     <v-tab-item>
-
+                        <Payments></Payments>
                     </v-tab-item>
                     <v-tab-item>
-
+                        <Integrations></Integrations>
                     </v-tab-item>
                 </v-tabs>
             </v-card>
@@ -23,12 +23,15 @@
 <script>
 import LeftTabs from './LeftTabs';
 import Profile from './Profile';
-
+import Payments from './Payments';
+import Integrations from './Integrations';
 
     export default {
         components: {
             LeftTabs: LeftTabs,
-            Profile: Profile
+            Profile: Profile,
+            Payments:Payments,
+            Integrations:Integrations
         },
         data: () => {
            return  {
