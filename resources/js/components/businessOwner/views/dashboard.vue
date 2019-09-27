@@ -11,7 +11,7 @@
                 <v-card class="pa-2" outlined tile >
                     <v-card-text>
                         <div class="subtitle-1 mb-2 text-uppercase"><strong>Campaign</strong></div>
-                        <v-simple-table>
+                        <v-simple-table fixed-header height="375px">
                             <thead class="grey lighten-4">
                             <tr>
                                 <th class="text-left">Campaign Name</th>
@@ -74,7 +74,7 @@
                 <v-card class="pa-2" outlined tile>
                     <v-list flat>
                         <v-subheader class="text-uppercase">Notifications</v-subheader>
-                        <v-list-item-group color="primary">
+                        <v-list-item-group color="primary" class="notification-grid-height">
                             <v-list-item
                                     v-for="(notification, i) in notifications"
                                     :key="i"
@@ -256,6 +256,12 @@
                                 </td>
                             </tr>
 
+                            <tr class="text-left ma-0 pa-0 no-hover" bgcolor="#69F0AE">
+                                <td class="ma-0 pa-0"  colspan="3" rowspan="1">
+                                    <v-sheet class="px-2" color="green accent-2 white--text">Hello, world! I'm a simple v-sheet -- Hello, world! I'm a simple v-sheet</v-sheet>
+                                </td>
+                            </tr>
+
                             </tbody>
                         </v-simple-table>
                     </v-card-text>
@@ -296,8 +302,21 @@
     >>>.list_cards .v-avatar {
         border-radius: 10px !important;
     }
+
+    >>>.max-width-25 .v-text-field__details{
+        display: none !important;
+    }
+
+    >>>.theme--light.v-data-table tbody tr:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;
+    }
+
     .notification-icon-padding {
         padding: 9px;
+    }
+    .notification-grid-height {
+        height: 378px;
+        overflow-y: auto;
     }
 
     .br-left {
@@ -312,12 +331,8 @@
     .max-width-25 {
         max-width: 25%;
     }
-    >>>.max-width-25 .v-text-field__details{
-        display: none !important;
-    }
+
     .max-width-13 {
         max-width: 13%;
     }
-
-
 </style>

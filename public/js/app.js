@@ -6298,6 +6298,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -19537,7 +19543,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n[data-v-58f91188] .list_cards .v-avatar {\n    border-radius: 10px !important;\n}\n.notification-icon-padding[data-v-58f91188] {\n    padding: 9px;\n}\n.br-left[data-v-58f91188] {\n    border-top-left-radius: 5px;\n    border-bottom-left-radius: 5px;\n}\n.br-right[data-v-58f91188] {\n    border-top-right-radius: 5px;\n    border-bottom-right-radius: 5px;\n}\n.max-width-25[data-v-58f91188] {\n    max-width: 25%;\n}\n[data-v-58f91188] .max-width-25 .v-text-field__details{\n    display: none !important;\n}\n.max-width-13[data-v-58f91188] {\n    max-width: 13%;\n}\n\n\n", ""]);
+exports.push([module.i, "\n[data-v-58f91188] .list_cards .v-avatar {\n    border-radius: 10px !important;\n}\n[data-v-58f91188] .max-width-25 .v-text-field__details{\n    display: none !important;\n}\n[data-v-58f91188] .theme--light.v-data-table tbody tr:not(:last-child) {\n    border-bottom: 1px solid rgba(0, 0, 0, 0.12) !important;\n}\n.notification-icon-padding[data-v-58f91188] {\n    padding: 9px;\n}\n.notification-grid-height[data-v-58f91188] {\n    height: 378px;\n    overflow-y: auto;\n}\n.br-left[data-v-58f91188] {\n    border-top-left-radius: 5px;\n    border-bottom-left-radius: 5px;\n}\n.br-right[data-v-58f91188] {\n    border-top-right-radius: 5px;\n    border-bottom-right-radius: 5px;\n}\n.max-width-25[data-v-58f91188] {\n    max-width: 25%;\n}\n.max-width-13[data-v-58f91188] {\n    max-width: 13%;\n}\n", ""]);
 
 // exports
 
@@ -30886,184 +30892,190 @@ var render = function() {
                         [_c("strong", [_vm._v("Campaign")])]
                       ),
                       _vm._v(" "),
-                      _c("v-simple-table", [
-                        _c("thead", { staticClass: "grey lighten-4" }, [
-                          _c("tr", [
-                            _c("th", { staticClass: "text-left" }, [
-                              _vm._v("Campaign Name")
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "th",
-                              {
-                                staticClass: "text-left",
-                                staticStyle: { width: "132px" }
-                              },
-                              [_vm._v("Progress")]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "th",
-                              { staticClass: "text-center" },
-                              [
-                                _c(
-                                  "v-badge",
-                                  {
-                                    attrs: {
-                                      overlap: "",
-                                      color: "transparent"
-                                    },
-                                    scopedSlots: _vm._u([
-                                      {
-                                        key: "badge",
-                                        fn: function() {
-                                          return [
-                                            _c(
-                                              "v-icon",
-                                              { attrs: { color: "red" } },
-                                              [
-                                                _vm._v(
-                                                  "\n                                            mdi-circle\n                                        "
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        },
-                                        proxy: true
-                                      }
-                                    ])
-                                  },
-                                  [
-                                    _vm._v(" "),
-                                    _c(
-                                      "v-icon",
-                                      { attrs: { color: "grey lighten-1" } },
-                                      [
-                                        _vm._v(
-                                          "\n                                        mdi-bell\n                                    "
-                                        )
-                                      ]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "tbody",
-                          _vm._l(4, function(i) {
-                            return _c("tr", { key: i }, [
+                      _c(
+                        "v-simple-table",
+                        { attrs: { "fixed-header": "", height: "375px" } },
+                        [
+                          _c("thead", { staticClass: "grey lighten-4" }, [
+                            _c("tr", [
+                              _c("th", { staticClass: "text-left" }, [
+                                _vm._v("Campaign Name")
+                              ]),
+                              _vm._v(" "),
                               _c(
-                                "td",
+                                "th",
+                                {
+                                  staticClass: "text-left",
+                                  staticStyle: { width: "132px" }
+                                },
+                                [_vm._v("Progress")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "th",
+                                { staticClass: "text-center" },
                                 [
                                   _c(
-                                    "v-list",
+                                    "v-badge",
                                     {
-                                      staticClass: "list_cards",
-                                      attrs: { "two-line": "" }
+                                      attrs: {
+                                        overlap: "",
+                                        color: "transparent"
+                                      },
+                                      scopedSlots: _vm._u([
+                                        {
+                                          key: "badge",
+                                          fn: function() {
+                                            return [
+                                              _c(
+                                                "v-icon",
+                                                { attrs: { color: "red" } },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            mdi-circle\n                                        "
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          },
+                                          proxy: true
+                                        }
+                                      ])
                                     },
                                     [
+                                      _vm._v(" "),
                                       _c(
-                                        "v-list-item",
+                                        "v-icon",
+                                        { attrs: { color: "grey lighten-1" } },
                                         [
-                                          _c(
-                                            "v-list-item-avatar",
-                                            {
-                                              attrs: {
-                                                height: "50",
-                                                width: "50"
-                                              }
-                                            },
-                                            [
-                                              _c("v-img", {
-                                                attrs: { src: _vm.items.avatar }
-                                              })
-                                            ],
-                                            1
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "v-list-item-content",
-                                            [
-                                              _c("v-list-item-title", {
-                                                domProps: {
-                                                  innerHTML: _vm._s(
-                                                    _vm.items.title
-                                                  )
-                                                }
-                                              }),
-                                              _vm._v(" "),
-                                              _c(
-                                                "v-list-item-subtitle",
-                                                [
-                                                  _c(
-                                                    "v-chip-group",
-                                                    _vm._l(
-                                                      _vm.items.tags,
-                                                      function(tag) {
-                                                        return _c(
-                                                          "v-chip",
-                                                          { key: tag },
-                                                          [
-                                                            _vm._v(
-                                                              "\n                                                        " +
-                                                                _vm._s(tag) +
-                                                                "\n                                                    "
-                                                            )
-                                                          ]
-                                                        )
-                                                      }
-                                                    ),
-                                                    1
-                                                  )
-                                                ],
-                                                1
-                                              )
-                                            ],
-                                            1
+                                          _vm._v(
+                                            "\n                                        mdi-bell\n                                    "
                                           )
-                                        ],
-                                        1
+                                        ]
                                       )
                                     ],
                                     1
                                   )
                                 ],
                                 1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                [
-                                  _c("p", [_vm._v("26% Completed")]),
-                                  _vm._v(" "),
-                                  _c("v-progress-linear", {
-                                    attrs: {
-                                      rounded: "",
-                                      value: "26",
-                                      color: "green accent-2",
-                                      height: "6",
-                                      reactive: ""
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(
-                                  "You have 13 unread notifications for this campaign"
-                                )
-                              ])
+                              )
                             ])
-                          }),
-                          0
-                        )
-                      ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "tbody",
+                            _vm._l(4, function(i) {
+                              return _c("tr", { key: i }, [
+                                _c(
+                                  "td",
+                                  [
+                                    _c(
+                                      "v-list",
+                                      {
+                                        staticClass: "list_cards",
+                                        attrs: { "two-line": "" }
+                                      },
+                                      [
+                                        _c(
+                                          "v-list-item",
+                                          [
+                                            _c(
+                                              "v-list-item-avatar",
+                                              {
+                                                attrs: {
+                                                  height: "50",
+                                                  width: "50"
+                                                }
+                                              },
+                                              [
+                                                _c("v-img", {
+                                                  attrs: {
+                                                    src: _vm.items.avatar
+                                                  }
+                                                })
+                                              ],
+                                              1
+                                            ),
+                                            _vm._v(" "),
+                                            _c(
+                                              "v-list-item-content",
+                                              [
+                                                _c("v-list-item-title", {
+                                                  domProps: {
+                                                    innerHTML: _vm._s(
+                                                      _vm.items.title
+                                                    )
+                                                  }
+                                                }),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "v-list-item-subtitle",
+                                                  [
+                                                    _c(
+                                                      "v-chip-group",
+                                                      _vm._l(
+                                                        _vm.items.tags,
+                                                        function(tag) {
+                                                          return _c(
+                                                            "v-chip",
+                                                            { key: tag },
+                                                            [
+                                                              _vm._v(
+                                                                "\n                                                        " +
+                                                                  _vm._s(tag) +
+                                                                  "\n                                                    "
+                                                              )
+                                                            ]
+                                                          )
+                                                        }
+                                                      ),
+                                                      1
+                                                    )
+                                                  ],
+                                                  1
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          ],
+                                          1
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "td",
+                                  [
+                                    _c("p", [_vm._v("26% Completed")]),
+                                    _vm._v(" "),
+                                    _c("v-progress-linear", {
+                                      attrs: {
+                                        rounded: "",
+                                        value: "26",
+                                        color: "green accent-2",
+                                        height: "6",
+                                        reactive: ""
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("td", [
+                                  _vm._v(
+                                    "You have 13 unread notifications for this campaign"
+                                  )
+                                ])
+                              ])
+                            }),
+                            0
+                          )
+                        ]
+                      )
                     ],
                     1
                   )
@@ -31092,7 +31104,10 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "v-list-item-group",
-                        { attrs: { color: "primary" } },
+                        {
+                          staticClass: "notification-grid-height",
+                          attrs: { color: "primary" }
+                        },
                         _vm._l(_vm.notifications, function(notification, i) {
                           return _c(
                             "v-list-item",
@@ -31503,164 +31518,200 @@ var render = function() {
                         _vm._v(" "),
                         _c(
                           "tbody",
-                          _vm._l(3, function(i) {
-                            return _c(
+                          [
+                            _vm._l(3, function(i) {
+                              return _c(
+                                "tr",
+                                { key: i, staticClass: "grey lighten-4" },
+                                [
+                                  _c(
+                                    "td",
+                                    [
+                                      _c(
+                                        "v-list",
+                                        {
+                                          staticClass:
+                                            "list_cards grey lighten-4",
+                                          attrs: { "two-line": "" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-list-item",
+                                            [
+                                              _c(
+                                                "v-list-item-avatar",
+                                                {
+                                                  attrs: {
+                                                    height: "50",
+                                                    width: "50"
+                                                  }
+                                                },
+                                                [
+                                                  _c("v-img", {
+                                                    attrs: {
+                                                      src: _vm.items.avatar
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "v-list-item-content",
+                                                [
+                                                  _c("v-list-item-title", {
+                                                    domProps: {
+                                                      innerHTML: _vm._s(
+                                                        _vm.items.title
+                                                      )
+                                                    }
+                                                  }),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "v-list-item-subtitle",
+                                                    [
+                                                      _vm._v(
+                                                        "\n                                               Ship to\n                                                "
+                                                      ),
+                                                      _c(
+                                                        "router-link",
+                                                        {
+                                                          attrs: {
+                                                            to: "/",
+                                                            color: "primary"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "Velvet Leather Bag "
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(
+                                                        "\n                                               to\n                                                "
+                                                      ),
+                                                      _c(
+                                                        "router-link",
+                                                        {
+                                                          attrs: {
+                                                            to: "/",
+                                                            color: "primary"
+                                                          }
+                                                        },
+                                                        [_vm._v("Umer Dashy ")]
+                                                      )
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass:
+                                            "blue--text caption pl-3 pr-3 d-inline-block",
+                                          attrs: { text: "" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              attrs: { color: "green accent-2" }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        mdi-check\n                                    "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "td",
+                                    [
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          staticClass:
+                                            "blue--text caption pl-3 pr-3 d-inline-block",
+                                          attrs: { text: "" }
+                                        },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            {
+                                              attrs: { color: "green accent-2" }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        mdi-close\n                                    "
+                                              )
+                                            ]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ]
+                              )
+                            }),
+                            _vm._v(" "),
+                            _c(
                               "tr",
-                              { key: i, staticClass: "grey lighten-4" },
+                              {
+                                staticClass: "text-left ma-0 pa-0 no-hover",
+                                attrs: { bgcolor: "#69F0AE" }
+                              },
                               [
                                 _c(
                                   "td",
+                                  {
+                                    staticClass: "ma-0 pa-0",
+                                    attrs: { colspan: "3", rowspan: "1" }
+                                  },
                                   [
                                     _c(
-                                      "v-list",
+                                      "v-sheet",
                                       {
-                                        staticClass:
-                                          "list_cards grey lighten-4",
-                                        attrs: { "two-line": "" }
+                                        staticClass: "px-2",
+                                        attrs: {
+                                          color: "green accent-2 white--text"
+                                        }
                                       },
                                       [
-                                        _c(
-                                          "v-list-item",
-                                          [
-                                            _c(
-                                              "v-list-item-avatar",
-                                              {
-                                                attrs: {
-                                                  height: "50",
-                                                  width: "50"
-                                                }
-                                              },
-                                              [
-                                                _c("v-img", {
-                                                  attrs: {
-                                                    src: _vm.items.avatar
-                                                  }
-                                                })
-                                              ],
-                                              1
-                                            ),
-                                            _vm._v(" "),
-                                            _c(
-                                              "v-list-item-content",
-                                              [
-                                                _c("v-list-item-title", {
-                                                  domProps: {
-                                                    innerHTML: _vm._s(
-                                                      _vm.items.title
-                                                    )
-                                                  }
-                                                }),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "v-list-item-subtitle",
-                                                  [
-                                                    _vm._v(
-                                                      "\n                                               Ship to\n                                                "
-                                                    ),
-                                                    _c(
-                                                      "router-link",
-                                                      {
-                                                        attrs: {
-                                                          to: "/",
-                                                          color: "primary"
-                                                        }
-                                                      },
-                                                      [
-                                                        _vm._v(
-                                                          "Velvet Leather Bag "
-                                                        )
-                                                      ]
-                                                    ),
-                                                    _vm._v(
-                                                      "\n                                               to\n                                                "
-                                                    ),
-                                                    _c(
-                                                      "router-link",
-                                                      {
-                                                        attrs: {
-                                                          to: "/",
-                                                          color: "primary"
-                                                        }
-                                                      },
-                                                      [_vm._v("Umer Dashy ")]
-                                                    )
-                                                  ],
-                                                  1
-                                                )
-                                              ],
-                                              1
-                                            )
-                                          ],
-                                          1
+                                        _vm._v(
+                                          "Hello, world! I'm a simple v-sheet -- Hello, world! I'm a simple v-sheet"
                                         )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        staticClass:
-                                          "blue--text caption pl-3 pr-3 d-inline-block",
-                                        attrs: { text: "" }
-                                      },
-                                      [
-                                        _c(
-                                          "v-icon",
-                                          {
-                                            attrs: { color: "green accent-2" }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                        mdi-check\n                                    "
-                                            )
-                                          ]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "td",
-                                  [
-                                    _c(
-                                      "v-btn",
-                                      {
-                                        staticClass:
-                                          "blue--text caption pl-3 pr-3 d-inline-block",
-                                        attrs: { text: "" }
-                                      },
-                                      [
-                                        _c(
-                                          "v-icon",
-                                          {
-                                            attrs: { color: "green accent-2" }
-                                          },
-                                          [
-                                            _vm._v(
-                                              "\n                                        mdi-close\n                                    "
-                                            )
-                                          ]
-                                        )
-                                      ],
-                                      1
+                                      ]
                                     )
                                   ],
                                   1
                                 )
                               ]
                             )
-                          }),
-                          0
+                          ],
+                          2
                         )
                       ])
                     ],
@@ -73708,7 +73759,7 @@ Vuetify.version = "2.0.3";
 /*!*******************************************!*\
   !*** ./node_modules/vuetify/lib/index.js ***!
   \*******************************************/
-/*! exports provided: ClickOutside, Resize, Ripple, Scroll, Touch, colors, default, VApp, VAppBar, VAppBarNavIcon, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardTitle, VCardActions, VCardText, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
+/*! exports provided: colors, default, VApp, ClickOutside, Resize, Ripple, Scroll, Touch, VAppBar, VAppBarNavIcon, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardTitle, VCardActions, VCardText, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87308,8 +87359,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
 /* harmony import */ var vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vuetify/lib/components/VProgressLinear */ "./node_modules/vuetify/lib/components/VProgressLinear/index.js");
 /* harmony import */ var vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vuetify/lib/components/VSelect */ "./node_modules/vuetify/lib/components/VSelect/index.js");
-/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
-/* harmony import */ var vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuetify/lib/components/VSubheader */ "./node_modules/vuetify/lib/components/VSubheader/index.js");
+/* harmony import */ var vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vuetify/lib/components/VSheet */ "./node_modules/vuetify/lib/components/VSheet/index.js");
+/* harmony import */ var vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vuetify/lib/components/VDataTable */ "./node_modules/vuetify/lib/components/VDataTable/index.js");
+/* harmony import */ var vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vuetify/lib/components/VSubheader */ "./node_modules/vuetify/lib/components/VSubheader/index.js");
 
 
 
@@ -87357,7 +87409,8 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBadge: vuetify_lib_components_VBadge__WEBPACK_IMPORTED_MODULE_5__["VBadge"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_8__["VChip"],VChipGroup: vuetify_lib_components_VChipGroup__WEBPACK_IMPORTED_MODULE_9__["VChipGroup"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VContainer"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_12__["VImg"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VLayout"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemContent"],VListItemGroup: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemGroup"],VListItemIcon: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemIcon"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemTitle"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_14__["VProgressLinear"],VSelect: vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_15__["VSelect"],VSimpleTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_16__["VSimpleTable"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VSpacer"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_17__["VSubheader"]})
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBadge: vuetify_lib_components_VBadge__WEBPACK_IMPORTED_MODULE_5__["VBadge"],VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_6__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardText"],VCardTitle: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_7__["VCardTitle"],VChip: vuetify_lib_components_VChip__WEBPACK_IMPORTED_MODULE_8__["VChip"],VChipGroup: vuetify_lib_components_VChipGroup__WEBPACK_IMPORTED_MODULE_9__["VChipGroup"],VContainer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VContainer"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_11__["VIcon"],VImg: vuetify_lib_components_VImg__WEBPACK_IMPORTED_MODULE_12__["VImg"],VLayout: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VLayout"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemContent"],VListItemGroup: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemGroup"],VListItemIcon: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemIcon"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_13__["VListItemTitle"],VProgressLinear: vuetify_lib_components_VProgressLinear__WEBPACK_IMPORTED_MODULE_14__["VProgressLinear"],VSelect: vuetify_lib_components_VSelect__WEBPACK_IMPORTED_MODULE_15__["VSelect"],VSheet: vuetify_lib_components_VSheet__WEBPACK_IMPORTED_MODULE_16__["VSheet"],VSimpleTable: vuetify_lib_components_VDataTable__WEBPACK_IMPORTED_MODULE_17__["VSimpleTable"],VSpacer: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_10__["VSpacer"],VSubheader: vuetify_lib_components_VSubheader__WEBPACK_IMPORTED_MODULE_18__["VSubheader"]})
 
 
 /* hot reload */
@@ -87857,6 +87910,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify_toast_snackbar__WEBPACK_I
   },
   icons: {
     iconfont: 'mdi'
+  },
+  options: {
+    customProperties: true
   }
 }));
 
@@ -88611,8 +88667,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\apps\influencerapp\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\apps\influencerapp\resources\styles\app.sass */"./resources/styles/app.sass");
+__webpack_require__(/*! E:\apps\influencerapp\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\apps\influencerapp\resources\styles\app.sass */"./resources/styles/app.sass");
 
 
 /***/ })
