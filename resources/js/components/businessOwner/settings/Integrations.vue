@@ -102,7 +102,7 @@
     .tab_items {
         border: 1px solid #cccccc;
         border-top-right-radius: 5px;
-        background: #ffffff;
+        --background: #ffffff;
     }
     >>>.fields_tabs .all_integration{
         border-top-left-radius: 5px !important;

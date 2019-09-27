@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-flex class="my-12">
+        <v-flex class="ma-12">
             <div class="subtitle-1 mb-2"><strong>Amanda's Profile</strong></div>
             <v-card class="mx-auto card_wrapper">
                 <v-row class="py-12 mx-auto main_wrapper">

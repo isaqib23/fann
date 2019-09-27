@@ -137,6 +137,9 @@
                         {title: 'Manage Shopify', icon: 'list_alt', to: {name: 'shopify-app'}, exact: false}
                     ],
                     [
+                        {title: 'Shipment', icon: 'local_shipping', to: {name: 'shipment'}, exact: false}
+                    ],
+                    [
                         {title: 'Settings', icon: 'settings_applications', to: {name: 'settings-business-profile'}, exact: false}
                     ],
 

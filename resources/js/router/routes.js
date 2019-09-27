@@ -115,6 +115,25 @@ export default [
 
             ]
         },
+        {
+            path      : '',
+            component : require('$comp/general/FullContentWidthWrapper').default,
+            children  : [
+                {
+                    path      : '',
+                    component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
+                    children  : [
+                        {
+                            path      : 'shipment',
+                            name      : 'shipment',
+                            component : require('$comp/businessOwner/shipment/Shipment').default
+                        }
+                    ]
+
+                }
+
+            ]
+        },
     ])
 ]
 
