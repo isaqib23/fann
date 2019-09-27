@@ -1,10 +1,10 @@
 <template>
     <v-flex class="my-12 mx-auto card_wrapper">
-        <div class="subtitle-1 mb-2"><strong>Business Profile</strong></div>
+        <div class="subtitle-1 mb-2"><strong>Integrations</strong></div>
         <v-card class="pa-6">
             <v-row class="mx-auto">
                 <v-flex xl12 lg12 md12 sm12 sx12 class="mr-12">
-                    <v-card-text>
+                    <v-card-text class="mb-12">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores modi quidem veniam, expedita quis laboriosam, ullam facere adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.</p>
 
                         <v-row>
@@ -23,6 +23,22 @@
                                         <p>Enabled Integrations</p>
                                     </v-tab-item>
                                 </v-tabs>
+                                <v-list class="integrations_list">
+                                    <v-list-item>
+                                        <v-list-item-icon class="title mr-2">
+                                            <v-icon color="success">mdi-shopify</v-icon>
+                                        </v-list-item-icon>
+
+                                        <v-list-item-content>
+                                            <v-list-item-title>Shopify</v-list-item-title>
+                                            <v-list-item-subtitle>Ecommerce</v-list-item-subtitle>
+                                        </v-list-item-content>
+
+                                        <v-list-item-avatar class="primary--text" width="100">
+                                            View Settings <v-icon color="primary">keyboard_arrow_right</v-icon>
+                                        </v-list-item-avatar>
+                                    </v-list-item>
+                                </v-list>
                             </v-col>
                         </v-row>
 
@@ -93,5 +109,14 @@
     }
     >>>.fields_tabs .enabled_integration{
         border-top-right-radius: 5px !important;
+    }
+    >>>.integrations_list .v-list-item__icon .v-icon.v-icon{
+        font-size: 48px !important;
+    }
+    .integrations_list{
+        border: 1px solid #ccc;
+        border-bottom-right-radius: 5px;
+        border-left: 6px solid #EE6F6F;
+        border-top: none;
     }
 </style>

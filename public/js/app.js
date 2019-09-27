@@ -4942,6 +4942,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -19257,7 +19273,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.card_wrapper[data-v-3a0909f4]{\n    width: 90%;\n}\n[data-v-3a0909f4] .fields_tabs .v-tabs-bar {\n    height: 40px !important;\n}\n[data-v-3a0909f4] .fields_tabs .v-slide-group__prev,[data-v-3a0909f4] .fields_tabs .v-slide-group__next{\n    display:none !important;\n}\n[data-v-3a0909f4] .fields_tabs .v-tabs-slider-wrapper{\n    display: none !important;\n}\n.v-tab[data-v-3a0909f4] {\n    color:#2f2f2f !important;\n    background: #dcdcdc !important;\n}\n.active_tab[data-v-3a0909f4] {\n    color:#ffffff !important;\n    background: #EE6F6F !important;\n}\n.tab_items[data-v-3a0909f4] {\n    border: 1px solid #cccccc;\n    border-top-right-radius: 5px;\n    background: #ffffff;\n}\n[data-v-3a0909f4] .fields_tabs .all_integration{\n    border-top-left-radius: 5px !important;\n}\n[data-v-3a0909f4] .fields_tabs .enabled_integration{\n    border-top-right-radius: 5px !important;\n}\n", ""]);
+exports.push([module.i, "\n.card_wrapper[data-v-3a0909f4]{\n    width: 90%;\n}\n[data-v-3a0909f4] .fields_tabs .v-tabs-bar {\n    height: 40px !important;\n}\n[data-v-3a0909f4] .fields_tabs .v-slide-group__prev,[data-v-3a0909f4] .fields_tabs .v-slide-group__next{\n    display:none !important;\n}\n[data-v-3a0909f4] .fields_tabs .v-tabs-slider-wrapper{\n    display: none !important;\n}\n.v-tab[data-v-3a0909f4] {\n    color:#2f2f2f !important;\n    background: #dcdcdc !important;\n}\n.active_tab[data-v-3a0909f4] {\n    color:#ffffff !important;\n    background: #EE6F6F !important;\n}\n.tab_items[data-v-3a0909f4] {\n    border: 1px solid #cccccc;\n    border-top-right-radius: 5px;\n    background: #ffffff;\n}\n[data-v-3a0909f4] .fields_tabs .all_integration{\n    border-top-left-radius: 5px !important;\n}\n[data-v-3a0909f4] .fields_tabs .enabled_integration{\n    border-top-right-radius: 5px !important;\n}\n[data-v-3a0909f4] .integrations_list .v-list-item__icon .v-icon.v-icon{\n    font-size: 48px !important;\n}\n.integrations_list[data-v-3a0909f4]{\n    border: 1px solid #ccc;\n    border-bottom-right-radius: 5px;\n    border-left: 6px solid #EE6F6F;\n    border-top: none;\n}\n", ""]);
 
 // exports
 
@@ -28304,7 +28320,7 @@ var render = function() {
     { staticClass: "my-12 mx-auto card_wrapper" },
     [
       _c("div", { staticClass: "subtitle-1 mb-2" }, [
-        _c("strong", [_vm._v("Business Profile")])
+        _c("strong", [_vm._v("Integrations")])
       ]),
       _vm._v(" "),
       _c(
@@ -28324,6 +28340,7 @@ var render = function() {
                 [
                   _c(
                     "v-card-text",
+                    { staticClass: "mb-12" },
                     [
                       _c("p", [
                         _vm._v(
@@ -28381,6 +28398,65 @@ var render = function() {
                                     "v-tab-item",
                                     { staticClass: "pa-8 tab_items" },
                                     [_c("p", [_vm._v("Enabled Integrations")])]
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-list",
+                                { staticClass: "integrations_list" },
+                                [
+                                  _c(
+                                    "v-list-item",
+                                    [
+                                      _c(
+                                        "v-list-item-icon",
+                                        { staticClass: "title mr-2" },
+                                        [
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { color: "success" } },
+                                            [_vm._v("mdi-shopify")]
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-item-content",
+                                        [
+                                          _c("v-list-item-title", [
+                                            _vm._v("Shopify")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("v-list-item-subtitle", [
+                                            _vm._v("Ecommerce")
+                                          ])
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-list-item-avatar",
+                                        {
+                                          staticClass: "primary--text",
+                                          attrs: { width: "100" }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                        View Settings "
+                                          ),
+                                          _c(
+                                            "v-icon",
+                                            { attrs: { color: "primary" } },
+                                            [_vm._v("keyboard_arrow_right")]
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
@@ -85413,7 +85489,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuetify/lib/components/VBtn */ "./node_modules/vuetify/lib/components/VBtn/index.js");
 /* harmony import */ var vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuetify/lib/components/VCard */ "./node_modules/vuetify/lib/components/VCard/index.js");
 /* harmony import */ var vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuetify/lib/components/VGrid */ "./node_modules/vuetify/lib/components/VGrid/index.js");
-/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
+/* harmony import */ var vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuetify/lib/components/VIcon */ "./node_modules/vuetify/lib/components/VIcon/index.js");
+/* harmony import */ var vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuetify/lib/components/VList */ "./node_modules/vuetify/lib/components/VList/index.js");
+/* harmony import */ var vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuetify/lib/components/VTabs */ "./node_modules/vuetify/lib/components/VTabs/index.js");
 
 
 
@@ -85445,7 +85523,15 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 
 
-_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VFlex"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_8__["VTabs"]})
+
+
+
+
+
+
+
+
+_node_modules_vuetify_loader_lib_runtime_installComponents_js__WEBPACK_IMPORTED_MODULE_4___default()(component, {VBtn: vuetify_lib_components_VBtn__WEBPACK_IMPORTED_MODULE_5__["VBtn"],VCard: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCard"],VCardActions: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardActions"],VCardText: vuetify_lib_components_VCard__WEBPACK_IMPORTED_MODULE_6__["VCardText"],VCol: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VCol"],VFlex: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VFlex"],VIcon: vuetify_lib_components_VIcon__WEBPACK_IMPORTED_MODULE_8__["VIcon"],VList: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VList"],VListItem: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItem"],VListItemAvatar: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItemAvatar"],VListItemContent: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItemContent"],VListItemIcon: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItemIcon"],VListItemSubtitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItemSubtitle"],VListItemTitle: vuetify_lib_components_VList__WEBPACK_IMPORTED_MODULE_9__["VListItemTitle"],VRow: vuetify_lib_components_VGrid__WEBPACK_IMPORTED_MODULE_7__["VRow"],VTab: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTab"],VTabItem: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTabItem"],VTabs: vuetify_lib_components_VTabs__WEBPACK_IMPORTED_MODULE_10__["VTabs"]})
 
 
 /* hot reload */
