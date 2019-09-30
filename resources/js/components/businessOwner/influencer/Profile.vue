@@ -61,12 +61,22 @@
                                     </div>
                                     <div class="buttons text-right mt-n6">
                                         <v-spacer></v-spacer>
-                                        <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2" depressed height="40">
-                                            Invite to campaign
-                                        </v-btn>
-                                        <v-btn color="primary pl-2 pr-2 ml-1" depressed height="40">
-                                            Make Offer
-                                        </v-btn>
+                                        <v-dialog v-model="proposal" max-width="70%">
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2" depressed height="40" v-on="on">
+                                                    Invite to campaign
+                                                </v-btn>
+                                            </template>
+                                            <Proposal></Proposal>
+                                        </v-dialog>
+                                        <v-dialog v-model="touchPoint" max-width="50%">
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn color="primary pl-2 pr-2 ml-1" depressed height="40" v-on="on">
+                                                    Make Offer
+                                                </v-btn>
+                                            </template>
+                                            <TouchPoint></TouchPoint>
+                                        </v-dialog>
                                     </div>
                                 </v-container>
                             </v-col>
@@ -219,16 +229,21 @@
 </template>
 
 <script>
+import Proposal from '../popups/Proposal'
+import TouchPoint from '../popups/TouchPoint'
 
     export default {
         components: {
-
+            Proposal:Proposal,
+            TouchPoint:TouchPoint
         },
         data: () => {
            return  {
                rating: 3,
                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-               show: true
+               show: true,
+               proposal: false,
+               touchPoint: false
             }
         },
         methods: {}

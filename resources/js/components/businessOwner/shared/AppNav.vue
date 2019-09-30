@@ -143,6 +143,12 @@
                         {title: 'Shipment', icon: 'local_shipping', to: {name: 'shipment'}, exact: false}
                     ],
                     [
+                        {title: 'Payments', icon: 'mdi-bank', to: {name: 'payments'}, exact: false}
+                    ],
+                    [
+                        {title: 'Message', icon: 'mdi-chat', to: {name: 'message-inbox'}, exact: false}
+                    ],
+                    [
                         {title: 'Settings', icon: 'settings_applications', to: {name: 'settings-business-profile'}, exact: false}
                     ],
 
