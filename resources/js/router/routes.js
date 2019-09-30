@@ -134,6 +134,51 @@ export default [
 
             ]
         },
+        {
+            path      : '',
+            component : require('$comp/general/FullContentWidthWrapper').default,
+            children  : [
+                {
+                    path      : '',
+                    component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
+                    children  : [
+                        {
+                            path      : 'payments',
+                            name      : 'payments',
+                            component : require('$comp/businessOwner/payments/Payment').default
+                        }
+                    ]
+
+                }
+
+            ]
+        },
+        {
+            path      : '',
+            component : require('$comp/general/FullContentWidthWrapper').default,
+            children  : [
+                {
+                    path      : '',
+                    component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
+                    children  : [
+                        {
+                            path      : 'messages',
+                            name      : 'messages',
+                            component : require('$comp/businessOwner/messages/index').default,
+                            children  : [
+                                {
+                                    path      : 'inbox',
+                                    name      : 'message-inbox',
+                                    component : require('$comp/businessOwner/messages/inbox').default
+                                }
+                            ]
+                        }
+                    ]
+
+                }
+
+            ]
+        }
     ])
 ]
 
