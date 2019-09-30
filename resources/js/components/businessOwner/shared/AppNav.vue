@@ -134,6 +134,9 @@
                         {title: 'Create', icon: 'list_alt', to: {name: 'create-campaign-requirements'}, exact: false}
                     ],
                     [
+                        {title: 'Manage', icon: 'mdi-receipt', to: {name: 'manage-campaigns'}, exact: false}
+                    ],
+                    [
                         {title: 'Manage Shopify', icon: 'list_alt', to: {name: 'shopify-app'}, exact: false}
                     ],
                     [

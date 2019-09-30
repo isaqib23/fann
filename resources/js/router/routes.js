@@ -63,6 +63,17 @@ export default [
             component : require('$comp/general/FullContentWidthWrapper').default,
             children  : [
                 {
+                    path      : 'campaign/create',
+                    component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
+                    children  : [
+                        {
+                            path      : 'requirements',
+                            name      : 'create-campaign-requirements',
+                            component : require('$comp/businessOwner/campaign/CreateCampaignRequirements').default
+                        }
+                    ]
+                },
+                {
                     path      : 'settings',
                     component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
                     children  : [
@@ -73,27 +84,18 @@ export default [
                         }
                     ]
 
-                }
-
-            ]
-        },
-        {
-            path      : '',
-            component : require('$comp/general/FullContentWidthWrapper').default,
-            children  : [
+                },
                 {
-                    path      : 'campaign/create',
+                    path      : 'manage',
                     component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
                     children  : [
                         {
-                            path      : 'requirements',
-                            name      : 'create-campaign-requirements',
-                            component : require('$comp/businessOwner/campaign/CreateCampaignRequirements').default
+                            path      : 'campaign',
+                            name      : 'manage-campaigns',
+                            component : require('$comp/businessOwner/campaign/manage/index').default
                         }
                     ]
-
-                }
-
+                },
             ]
         },
         {
