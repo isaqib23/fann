@@ -74,7 +74,97 @@
         </v-flex>
         <v-flex xs12 md5 class="pa-2">
             <v-card class="pa-2" outlined tile>
-                Right Page
+
+                <v-flex xs12>
+                        <v-icon small class="ml-7 pa-2">edit</v-icon>
+                        <v-icon small class="ml-1 pa-2">mdi-content-duplicate</v-icon>
+                        <v-icon small class="ml-1 pa-2">mdi-trash-can</v-icon>
+                </v-flex>
+                <v-divider></v-divider>
+
+                <v-flex xs12 class="ma-2 pa-2">
+                    <v-card-title>
+                        <div class="subtitle-1 text-uppercase black--text" ><strong>Promoting Global Real Estate License</strong></div>
+                    </v-card-title>
+                    <v-card-text class="pa-0">
+                        <div class="d-inline-block ml-4" >
+                            <span class="primary--text">Unboxing</span>
+                            <span class="ml-2">
+                                Campaign Type: <span class="primary--text">Barter</span>
+                            </span>
+                            <span class="ml-2">
+                                Status:
+                                <v-switch
+                                        class="float-right pa-0 mx-2 my-0"
+                                        flat
+                                        v-model="item.status"
+                                        inset
+                                        color="error"
+                                        hide-details
+                                ></v-switch>
+                            </span>
+                        </div>
+                    </v-card-text>
+                </v-flex>
+                <v-divider></v-divider>
+
+                <v-flex xs12 class="ma-2 pa-2">
+                    <v-card-text class="pa-0">
+                        <div class="ma-2 pa-2" >
+                         <div>Objective: <span class="primary--text ml-4"> Brand Awareness</span></div>
+                         <div class="mt-2 pt-2">Deliverables: <span class="primary--text ml-4"> 13</span> / 20</div>
+                         <div class="mt-2 pt-2">Influencers: <span class="ml-4"> 09/20</span></div>
+
+                        </div>
+                    </v-card-text>
+                </v-flex>
+                <v-divider></v-divider>
+
+                <v-flex xs12 class="ma-2 pa-2">
+
+                   <v-row>
+                       <v-col cols="6" md="4">
+                           <v-card color="#EDF2F9" max-height="120" max-width="120" class="pa-2"  outlined tile>
+                               .col-6 .col-md-4
+                           </v-card>
+                       </v-col>
+                       <v-col cols="6" md="4">
+                           <v-card color="#EDF2F9" max-height="120" max-width="120" class="pa-2"  outlined tile>
+                               .col-6 .col-md-4
+                           </v-card>
+                       </v-col>
+                       <v-col cols="6" md="4">
+                           <v-card color="#EDF2F9" max-height="120" max-width="120" class="pa-2"  outlined tile>
+                               .col-6 .col-md-4
+                           </v-card>
+                       </v-col>
+
+                   </v-row>
+
+                        <v-card color="#EDF2F9" max-height="120" max-width="120" class="ma-2 pa-2">
+                            <v-card-text class="black--text">
+                                <div class="subtitle-2 mb-2 text-uppercase text-center">Impressions</div>
+                                <span class="headline pa-2">125K</span>
+                            </v-card-text>
+                        </v-card>
+                    <v-card color="#EDF2F9" max-height="120" max-width="120" class="ma-2 pa-2">
+                        <v-card-text class="black--text">
+                            <div class="subtitle-2 mb-2 text-uppercase text-center">Impressions</div>
+                            <span class="headline pa-2">125K</span>
+                        </v-card-text>
+                    </v-card>
+                    <v-col> </v-col>
+                    <v-col>
+                        <v-card color="#EDF2F9">
+                            <v-card-text class="black--text">
+                                <div class="subtitle-2 mb-2 text-uppercase">Impressions</div>
+                                125K
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+
+                </v-flex>
+
             </v-card>
         </v-flex>
     </v-layout>
@@ -82,7 +172,6 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
 
     export default {
         data: () => ({
