@@ -2,21 +2,21 @@
     <div>
         <v-flex class="ma-12">
             <div class="subtitle-1 mb-2"><strong>Inbox</strong></div>
-            <v-card class="mx-auto card_wrapper pa-3">
+            <v-card class="mx-auto card_wrapper">
                 <v-row class="mx-auto main_wrapper" justify="start">
-                    <v-col cols="12" md="2" color="white">
-                        <div class="compose pb-5">
-                            <v-btn block color="primary">
+                    <v-col cols="12" md="2" color="white" class="pa-0 left_border">
+                        <div class="compose text-center pa-5">
+                            <v-btn color="primary" block :to="{ name: 'message-compose'}">
                                 Compose
                             </v-btn>
                         </div>
                         <v-divider></v-divider>
-                        <v-list subheader class="mail_lists py-3">
+                        <v-list subheader class="mail_lists pl-10">
                             <v-list-item
                                 class="pa-0"
                                 v-for="item in items"
                                 :key="item.title"
-                                @click=""
+                                @click="goToInbox()"
                             >
                                 <v-list-item-content>
                                     <v-list-item-title v-text="item.title"></v-list-item-title>
@@ -29,7 +29,7 @@
 
                             <v-divider inset></v-divider>
 
-                            <v-subheader inset>Tag</v-subheader>
+                            <v-subheader class="ml-0 subtitle-1 font-weight-bold pl-0 black--text">Tag</v-subheader>
 
                             <v-list-item
                                 class="pa-0"
@@ -37,7 +37,7 @@
                                 :key="item.title"
                                 @click=""
                             >
-                                <v-list-item-avatar>
+                                <v-list-item-avatar class="ma-0">
                                     <v-icon
                                         class="overline"
                                         color="primary"
@@ -70,13 +70,13 @@ import TouchPoint from '../popups/TouchPoint'
         data: () => {
            return  {
                items: [
-                   { icon: 'mdi-circle', title: 'Inbox', count: 5 },
-                   { icon: 'mdi-circle', title: 'Sent', count: 0 },
-                   { icon: 'mdi-circle', title: 'Draft', count: 0 },
-                   { icon: 'mdi-circle', title: 'Trash', count: 0 },
-                   { icon: 'mdi-circle', title: 'Important', count: 3 },
-                   { icon: 'mdi-circle', title: 'Spam', count: 0 },
-                   { icon: 'mdi-circle', title: 'Starred', count: 0 },
+                   { icon: 'mdi-circle', title: 'Inbox', count: 5, active: true },
+                   { icon: 'mdi-circle', title: 'Sent', count: 0, active: true },
+                   { icon: 'mdi-circle', title: 'Draft', count: 0, active: true },
+                   { icon: 'mdi-circle', title: 'Trash', count: 0, active: true },
+                   { icon: 'mdi-circle', title: 'Important', count: 3, active: true },
+                   { icon: 'mdi-circle', title: 'Spam', count: 0, active: true },
+                   { icon: 'mdi-circle', title: 'Starred', count: 0, active: true },
                ],
                items2: [
                    { icon: 'mdi-circle', title: 'Instagram', count: '0' },
@@ -85,12 +85,19 @@ import TouchPoint from '../popups/TouchPoint'
                ]
             }
         },
-        methods: {}
+        methods: {
+            goToInbox(){
+                this.$router.push({name:'message-inbox'})
+            }
+        }
     }
 </script>
 
 <style scoped>
     >>>.mail_lists .v-list-item{
         min-height: 35px !important;
+    }
+    .left_border {
+        border-right: 1px solid #EDEDED !important;
     }
 </style>

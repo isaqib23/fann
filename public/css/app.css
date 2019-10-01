@@ -30441,7 +30441,7 @@ html {
 
 ::-webkit-scrollbar {
   width: 6px;
-  background-color: #C7C7C7;
+  background-color: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -30449,8 +30449,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #C7C7C7;
+  background-color: #ffffff;
 }
 
 .fullBG {
