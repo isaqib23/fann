@@ -30453,6 +30453,10 @@ html {
   background-color: #C7C7C7;
 }
 
+.v-application {
+  font-family: SourceSansPro-Regular !important;
+}
+
 .fullBG {
   background-color: #4736a0;
   background-image: linear-gradient(to right, #403C79 0%, #EE6F6F 100%);

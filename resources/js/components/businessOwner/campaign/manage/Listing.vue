@@ -149,7 +149,7 @@
                         </v-card>
                     <v-card color="#EDF2F9" max-height="120" max-width="120" class="ma-2 pa-2">
                         <v-card-text class="black--text">
-                            <div class="subtitle-2 mb-2 text-uppercase text-center">Impressions</div>
+                            <div class="subtitle-2 mb-2 text-uppercase text-center">Actions</div>
                             <span class="headline pa-2">125K</span>
                         </v-card-text>
                     </v-card>

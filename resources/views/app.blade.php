@@ -9,6 +9,7 @@
         <title>{{ env('APP_NAME_FORMATTED') }}</title>
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet">
+        <link href="/css/fonts.css" rel="stylesheet">
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="/images/brand.png" />
 
