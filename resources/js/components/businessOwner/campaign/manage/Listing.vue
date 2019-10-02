@@ -27,6 +27,7 @@
                                 <th class="text-left black--text">impressions</th>
                                 <th class="text-left black--text">actions</th>
                                 <th class="text-left black--text">eng.rate</th>
+                                <th class="text-left black--text"></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -62,7 +63,7 @@
                                 <td>{{ item.actions }}</td>
                                 <td>{{ item.engRate }}</td>
                                 <td>
-                                    <v-btn small color="green accent-4 white--text">
+                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
                                     </v-btn>
                                 </td>
@@ -121,48 +122,30 @@
                 </v-flex>
                 <v-divider></v-divider>
 
-                <v-flex xs12 class="ma-2 pa-2">
+                <v-flex xs12 class="ma-2 pa-2" >
 
-                   <v-row>
-                       <v-col cols="6" md="4">
-                           <v-card color="#EDF2F9" max-height="120" max-width="120" class="pa-2"  outlined tile>
-                               .col-6 .col-md-4
-                           </v-card>
-                       </v-col>
-                       <v-col cols="6" md="4">
-                           <v-card color="#EDF2F9" max-height="120" max-width="120" class="pa-2"  outlined tile>
-                               .col-6 .col-md-4
-                           </v-card>
-                       </v-col>
-                       <v-col cols="6" md="4">
-                           <v-card color="#EDF2F9" max-height="120" max-width="120" class="pa-2"  outlined tile>
-                               .col-6 .col-md-4
-                           </v-card>
-                       </v-col>
+                   <v-layout>
+                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 ml-10 pa-2 float-left">
+                           <v-card-text class="black--text">
+                               <div class="subtitle-2 mb-2 text-uppercase text-center">Impressions</div>
+                               <span class="headline pa-2">125K</span>
+                           </v-card-text>
+                       </v-card>
+                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 ml-10 pa-2 float-left">
+                           <v-card-text class="black--text">
+                               <div class="subtitle-2 mb-2 text-uppercase text-center">Actions</div>
+                               <span class="headline pa-2">2.7K</span>
+                           </v-card-text>
+                       </v-card>
+                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 ml-10 pa-2 float-left">
+                           <v-card-text class="black--text">
+                               <div class="subtitle-2 mb-2 text-uppercase text-center">Eng. rate</div>
+                               <span class="headline pa-2">2.0%</span>
+                           </v-card-text>
+                       </v-card>
+                   </v-layout>
 
-                   </v-row>
-
-                        <v-card color="#EDF2F9" max-height="120" max-width="120" class="ma-2 pa-2">
-                            <v-card-text class="black--text">
-                                <div class="subtitle-2 mb-2 text-uppercase text-center">Impressions</div>
-                                <span class="headline pa-2">125K</span>
-                            </v-card-text>
-                        </v-card>
-                    <v-card color="#EDF2F9" max-height="120" max-width="120" class="ma-2 pa-2">
-                        <v-card-text class="black--text">
-                            <div class="subtitle-2 mb-2 text-uppercase text-center">Impressions</div>
-                            <span class="headline pa-2">125K</span>
-                        </v-card-text>
-                    </v-card>
-                    <v-col> </v-col>
-                    <v-col>
-                        <v-card color="#EDF2F9">
-                            <v-card-text class="black--text">
-                                <div class="subtitle-2 mb-2 text-uppercase">Impressions</div>
-                                125K
-                            </v-card-text>
-                        </v-card>
-                    </v-col>
+                   <v-spacer></v-spacer>
 
                 </v-flex>
 
