@@ -172,6 +172,11 @@ export default [
                                     path      : 'inbox',
                                     name      : 'message-inbox',
                                     component : require('$comp/businessOwner/messages/inbox').default
+                                },
+                                {
+                                    path      : 'compose',
+                                    name      : 'message-compose',
+                                    component : require('$comp/businessOwner/messages/compose').default
                                 }
                             ]
                         }

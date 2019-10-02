@@ -8,10 +8,10 @@
                     <v-tab-item>
                         <CampaignListing></CampaignListing>
                     </v-tab-item>
-                    <!-- <v-tab-item>
-                         <Payments></Payments>
+                    <v-tab-item>
+                         <Placement></Placement>
                      </v-tab-item>
-                     <v-tab-item>
+                    <!-- <v-tab-item>
                          <Integrations></Integrations>
                      </v-tab-item>-->
                 </v-tabs>
@@ -23,15 +23,15 @@
 <script>
     import LeftTabs from './LeftTabs';
     import Listing from './Listing';
-    /*import Payments from './Payments';
-    import Integrations from './Integrations';*/
+    import Placement from './Placement';
+    /*import Integrations from './Integrations';*/
 
     export default {
         components: {
             LeftTabs: LeftTabs,
             CampaignListing: Listing,
-            /*  Payments:Payments,
-              Integrations:Integrations*/
+            Placement:Placement,
+            /*    Integrations:Integrations*/
         },
         data: () => {
             return  {

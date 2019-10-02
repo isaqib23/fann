@@ -181,8 +181,8 @@
                             <tr v-for="i in 4" :key="i">
                                 <td width="15%">
                                     <v-list  class="list_cards">
-                                        <v-list-item>
-                                            <v-list-item-avatar height="50" width="50">
+                                        <v-list-item class="px-0">
+                                            <v-list-item-avatar height="50" width="50" class="mr-3">
                                                 <v-img :src="items.avatar"></v-img>
                                             </v-list-item-avatar>
                                             <v-list-item-content>
@@ -196,14 +196,14 @@
 
                                 </td>
                                 <td>
-                                    <v-btn x-small text class="blue--text caption pl-3 pr-3" >
+                                    <v-btn x-small text class="blue--text overline" >
                                         View Post
                                     </v-btn>
-                                    <v-btn x-small text class="blue--text caption pl-3 pr-3" >
+                                    <v-btn x-small text class="blue--text overline" >
                                         Chat
                                     </v-btn>
 
-                                    <v-btn color="primary" rounded class="overline pl-3 pr-3" depressed>
+                                    <v-btn color="primary" rounded class="overline" x-small depressed>
                                         Clear Payment
                                     </v-btn>
                                 </td>
