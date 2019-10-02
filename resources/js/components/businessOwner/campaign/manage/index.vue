@@ -9,7 +9,7 @@
                         <CampaignListing></CampaignListing>
                     </v-tab-item>
                     <v-tab-item>
-                         <Tables></Tables>
+                         <Placement></Placement>
                      </v-tab-item>
                     <!-- <v-tab-item>
                          <Integrations></Integrations>
@@ -23,14 +23,14 @@
 <script>
     import LeftTabs from './LeftTabs';
     import Listing from './Listing';
-    import Tables from './Tables';
+    import Placement from './Placement';
     /*import Integrations from './Integrations';*/
 
     export default {
         components: {
             LeftTabs: LeftTabs,
             CampaignListing: Listing,
-            Tables:Tables,
+            Placement:Placement,
             /*    Integrations:Integrations*/
         },
         data: () => {
