@@ -62,7 +62,7 @@
                                 <td>{{ item.actions }}</td>
                                 <td>{{ item.engRate }}</td>
                                 <td>
-                                    <v-btn small color="green accent-4 white--text">
+                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
                                     </v-btn>
                                 </td>
