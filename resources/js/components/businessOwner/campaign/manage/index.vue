@@ -11,9 +11,9 @@
                     <v-tab-item>
                          <Placement></Placement>
                      </v-tab-item>
-                    <!-- <v-tab-item>
-                         <Integrations></Integrations>
-                     </v-tab-item>-->
+                    <v-tab-item>
+                         <Influencer></Influencer>
+                     </v-tab-item>
                 </v-tabs>
             </v-card>
         </v-flex>
@@ -24,14 +24,14 @@
     import LeftTabs from './LeftTabs';
     import Listing from './Listing';
     import Placement from './Placement';
-    /*import Integrations from './Integrations';*/
+    import Influencer from './Influencer';
 
     export default {
         components: {
             LeftTabs: LeftTabs,
             CampaignListing: Listing,
             Placement:Placement,
-            /*    Integrations:Integrations*/
+            Influencer:Influencer
         },
         data: () => {
             return  {

@@ -29,7 +29,8 @@
                             <div class="subtitle-1 font-weight-bold">
                                 <span>Campaign</span><v-icon class="body-1 mx-5 font-weight-bold">keyboard_arrow_right</v-icon>
                                 <span>Placement</span><v-icon class="body-1 mx-5 font-weight-bold">keyboard_arrow_right</v-icon>
-                                <span>influencer</span>
+                                <span>Influencer</span><v-icon class="body-1 mx-5 font-weight-bold">keyboard_arrow_right</v-icon>
+                                <span>Touch Points</span>
                             </div>
                         </v-toolbar-title>
                     </v-toolbar>
@@ -143,67 +144,7 @@
             </v-data-table>
         </v-flex>
         <v-flex xs12 md5 class="pa-2">
-            <v-card class="list_cards">
-                <v-list three-line>
-                    <template v-for="(item, index) in items">
-                        <v-divider
-                            v-if="item.divider"
-                            :key="index"
-                            :inset="item.inset"
-                        ></v-divider>
 
-                        <v-list-item
-                            v-else
-                            :key="item.title"
-                            @click=""
-                        >
-                            <v-list-item-avatar height="80" min-width="80" width="80">
-                                <v-img :src="item.avatar"></v-img>
-                            </v-list-item-avatar>
-
-                            <v-list-item-content>
-                                <v-list-item-title>
-                                    <div>
-                                        <div class="d-inline-block float-left body-2">
-                                            {{item.title}}
-                                            <div class="followers overline">
-                                                <v-icon class="caption">mdi-instagram</v-icon>
-                                                50.5K Followers
-                                            </div>
-                                        </div>
-                                        <div class="d-inline-block float-right">
-                                            <v-icon class="body-1 black--text">mdi-chat</v-icon>
-                                            <v-icon class="body-1 black--text">cancel</v-icon>
-                                            <v-icon class="body-1 black--text">mdi-refresh</v-icon>
-                                            <v-btn color="primary list_proposal" depressed small class="overline">
-                                                View Proposal
-                                            </v-btn>
-                                        </div>
-                                    </div>
-                                </v-list-item-title>
-                                <v-list-item-subtitle>
-                                    <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
-                                    <div class="subtitle-2 mb-2 integrityColor--text d-inline-block float-right">
-                                        <strong class="caption">Eng. Rate</strong>
-                                        <strong class="ml-3 caption">Comments</strong>
-                                        <strong class="ml-3 caption">Likes</strong>
-                                    </div>
-                                    <div class="followers">
-                                        <div class="text-start d-inline-block">
-                                            <strong class="ml-2">$59.00 for 5 Touch Points</strong>
-                                        </div>
-                                        <div class="float-right d-inline-block">
-                                            <p class="d-inline-block mb-0 mr-n2">43%</p>
-                                            <p class="d-inline-block mb-0 ml-10 mr-6">2.2K</p>
-                                            <p class="d-inline-block mb-0 ml-5">5.5K</p>
-                                        </div>
-                                    </div>
-                                </v-list-item-subtitle>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </template>
-                </v-list>
-            </v-card>
         </v-flex>
     </v-layout>
 
@@ -284,32 +225,6 @@
                     engRate: '2.0',
                     id:'5'
                 },
-            ],
-            items: [
-                {
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-                    title: 'Brunch this weekend?',
-                },
-                { divider: true, inset: true },
-                {
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
-                    title: 'Summer BBQ',
-                },
-                { divider: true, inset: true },
-                {
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
-                    title: 'Oui oui',
-                },
-                { divider: true, inset: true },
-                {
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
-                    title: 'Birthday gift',
-                },
-                { divider: true, inset: true },
-                {
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
-                    title: 'Recipe to try',
-                },
             ]
         })
     }
@@ -351,8 +266,5 @@
     }
     >>>.table_class table{
         margin-top:16px !important;
-    }
-    >>>.list_proposal .v-btn__content{
-        font-size: 8px;
     }
 </style>

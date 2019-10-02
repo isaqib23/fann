@@ -55,6 +55,7 @@
                                             inset
                                             color="error"
                                             hide-details
+                                            class="swtich_class"
                                     ></v-switch>
                                 </td>
                                 <td>{{ item.impression }}</td>
@@ -95,7 +96,7 @@
                             <span class="ml-2">
                                 Status:
                                 <v-switch
-                                        class="float-right pa-0 mx-2 my-0"
+                                        class="float-right pa-0 mx-2 my-0 swtich_class"
                                         flat
                                         v-model="item.status"
                                         inset
@@ -192,5 +193,14 @@
 <style scoped>
     .card_wrapper{
         width: 90%;
+    }
+    >>>.swtich_class .v-input--switch__track{
+        height: 20px !important;
+        width: 40px !important;
+    }
+    >>>.swtich_class .v-input--switch__thumb{
+        width: 12px !important;
+        height: 12px !important;
+        top:2px !important;
     }
 </style>
