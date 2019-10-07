@@ -1,0 +1,90 @@
+<template>
+    <v-card class="create_card mx-auto mt-12">
+        <v-card-title class="pb-8 justify-center">Select Your Campaign Placement</v-card-title>
+        <v-card-text class="mb-12 text_field_width ma-auto">
+            <v-layout row justify-center wrap>
+                <v-flex lg4 sm4 xs4>
+                    <div class="text-center">
+                        <v-img src="/images/icons/balloon.svg" min-height="50" width="50" min-width="50" class="mx-auto"></v-img>
+                        <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">product placement</div>
+                    </div>
+
+                    <div class="pl-12">
+                        <v-checkbox label="Unboxing" color="primary" value="1" hide-details></v-checkbox>
+                        <v-checkbox label="Product Review" color="primary" value="2" hide-details></v-checkbox>
+                        <v-checkbox label="Contests & Giveways" color="primary" value="3" hide-details></v-checkbox>
+                    </div>
+
+                </v-flex>
+                <v-flex lg4 sm4 xs4>
+                    <div class="text-center">
+                        <v-img src="/images/icons/awareness.svg" min-height="50" width="50" min-width="50" class="mx-auto"></v-img>
+                        <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">brand awareness</div>
+                    </div>
+                    <div class="pl-12">
+                        <v-checkbox label="Unboxing" color="primary" value="1" hide-details></v-checkbox>
+                        <v-checkbox label="Product Review" color="primary" value="2" hide-details></v-checkbox>
+                        <v-checkbox label="Contests & Giveways" color="primary" value="3" hide-details></v-checkbox>
+                    </div>
+                </v-flex>
+                <v-flex lg4 sm4 xs4>
+                    <div class="text-center">
+                        <v-img src="/images/icons/sponsor.svg" min-height="50" width="50" min-width="50" class="mx-auto"></v-img>
+                        <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">sponsored content</div>
+                    </div>
+                    <div class="pl-12">
+                        <v-checkbox label="Unboxing" color="primary" value="1" hide-details></v-checkbox>
+                        <v-checkbox label="Product Review" color="primary" value="2" hide-details></v-checkbox>
+                        <v-checkbox label="Contests & Giveways" color="primary" value="3" hide-details></v-checkbox>
+                    </div>
+                </v-flex>
+            </v-layout>
+        </v-card-text>
+
+        <v-card-title class="pb-8 justify-center">Now Give Your Campaign A Beautiful Name</v-card-title>
+        <v-card-text class="mb-12 text_field_width ma-auto">
+            <v-layout row justify-center wrap>
+                <v-flex lg12 sm12 xs12 class="text-center">
+                    <v-text-field class="text_field_width ma-auto"
+                                  :label="$t('labels.campaign.name_fieldPlaceholder')"
+                                  solo
+                    ></v-text-field>
+                </v-flex>
+            </v-layout>
+        </v-card-text>
+        <v-card-actions class="float-right action_btns mt-n12">
+            <v-btn color="primary" dark large @click="goToNext()">
+                {{ $t('labels.campaign.name_nextBtn') }}
+                <v-icon right>keyboard_arrow_right</v-icon>
+            </v-btn>
+        </v-card-actions>
+    </v-card>
+</template>
+
+<script>
+
+    export default {
+
+        data: () => ({
+
+        }),
+
+        mounted() {
+
+        },
+        methods: {
+            goToNext(){
+                this.$router.push({ name: 'create-campaign-requirements' })
+            }
+        }
+    }
+</script>
+<style scoped>
+    .create_card {
+        width: 85%;
+        border-radius: 10px;
+    }
+    >>>.v-input__control {
+
+    }
+</style>

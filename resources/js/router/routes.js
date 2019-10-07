@@ -67,6 +67,16 @@ export default [
                     component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
                     children  : [
                         {
+                            path      : 'objective',
+                            name      : 'create-campaign-objective',
+                            component : require('$comp/businessOwner/campaign/Objective').default
+                        },
+                        {
+                            path      : 'campaign-name',
+                            name      : 'create-campaign-name',
+                            component : require('$comp/businessOwner/campaign/CampaignName').default
+                        },
+                        {
                             path      : 'requirements',
                             name      : 'create-campaign-requirements',
                             component : require('$comp/businessOwner/campaign/CreateCampaignRequirements').default

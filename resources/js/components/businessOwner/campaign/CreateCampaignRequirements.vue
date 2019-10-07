@@ -5,9 +5,9 @@
                 <v-tabs v-model="active_tab" vertical flat icons-and-text active-class="active_tab" background-color="decent" color="gutter">
                     <LeftTabs></LeftTabs>
 
-                    <v-tab-item>
+                    <!--<v-tab-item>
                         <SetupLeftPane></SetupLeftPane>
-                    </v-tab-item>
+                    </v-tab-item>-->
                     <v-tab-item>
                         <CreateLeftPane></CreateLeftPane>
                     </v-tab-item>
@@ -21,19 +21,19 @@
             </v-card>
         </v-flex>
         <v-flex lg8 sm6 xl8 md7 xs12 class="right-panes">
-            <SetupRightPane v-if="active_tab == 0"></SetupRightPane>
-            <CreateRightPane v-if="active_tab == 1"></CreateRightPane>
-            <InviteRightPaneListView v-if="active_tab == 2"></InviteRightPaneListView>
+            <!--<SetupRightPane v-if="active_tab == 0"></SetupRightPane>-->
+            <CreateRightPane v-if="active_tab == 0"></CreateRightPane>
+            <InviteRightPaneListView v-if="active_tab == 1"></InviteRightPaneListView>
         </v-flex>
     </v-row>
 </template>
 
 <script>
     import LeftTabs from './requirements/LeftTabs';
-    import SetupLeftPane from './requirements/SetupLeftPane';
+    //import SetupLeftPane from './requirements/SetupLeftPane';
     import CreateLeftPane from './requirements/CreateLeftPane';
     import InviteLeftPane from './requirements/InviteLeftPane';
-    import SetupRightPane from './requirements/SetupRightPane';
+    //import SetupRightPane from './requirements/SetupRightPane';
     import CreateRightPane from './requirements/CreateRightPane';
     import InviteRightPaneListView from './requirements/InviteRightPaneListView';
     import InviteRightPaneGridView from './requirements/InviteRightPaneGridView';
@@ -41,10 +41,10 @@
     export default {
         components: {
             LeftTabs: LeftTabs,
-            SetupLeftPane: SetupLeftPane,
+            //SetupLeftPane: SetupLeftPane,
             CreateLeftPane: CreateLeftPane,
             InviteLeftPane: InviteLeftPane,
-            SetupRightPane: SetupRightPane,
+            //SetupRightPane: SetupRightPane,
             CreateRightPane: CreateRightPane,
             InviteRightPaneListView: InviteRightPaneListView,
             InviteRightPaneGridView: InviteRightPaneGridView,
@@ -58,10 +58,10 @@
         methods: {},
         computed: {
             paneClass: function() {
-                return (this.active_tab == 3) ? 'lg12 sm12 xl12 md12 xs12' : 'lg4 sm6 xl4 md5 xs12';
+                return (this.active_tab == 2) ? 'lg12 sm12 xl12 md12 xs12' : 'lg4 sm6 xl4 md5 xs12';
             },
             cardClass: function() {
-                return (this.active_tab == 3) ? 'full_width' : 'full_width';
+                return (this.active_tab == 2) ? 'full_width' : 'full_width';
             }
         }
     }

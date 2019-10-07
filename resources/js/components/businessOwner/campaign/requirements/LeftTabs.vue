@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-tab >
+        <!--<v-tab >
             Setup
             <v-icon left>mdi-settings</v-icon>
-        </v-tab>
+        </v-tab>-->
         <v-tab >
             Create
             <v-icon left>mdi-account-plus</v-icon>
