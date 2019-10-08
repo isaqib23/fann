@@ -99,7 +99,7 @@
             <!-- Middle Content -->
             <v-flex xs12 md4 class="pa-2">
                 <v-card class="pa-2" outlined tile>
-                    <v-card-title class="text-uppercase font-weight-bold">Campaign Reach
+                    <v-card-title class="text-uppercase font-weight-black title">Campaign Reach
                         <v-spacer></v-spacer>
                         <v-select
                                 :items="from"
@@ -123,17 +123,19 @@
             </v-flex>
             <v-flex xs12 md4 class="pa-2">
                 <v-card class="pa-2" outlined tile>
-                    <v-card-title class="text-uppercase font-weight-bold">Social Mentions
+                    <v-card-title class="text-uppercase font-weight-black title">Social Mentions
                         <v-spacer></v-spacer>
                         <v-select
                                 :items="from"
                                 label="From"
                                 outlined
+                                dense
+                                height="20px"
                                 class="float-right max-width-25"
                         ></v-select>
                     </v-card-title>
 
-                    <v-card-text class="pb-0">
+                    <v-card-text class="pb-0" max-width="75%">
                         Monitor and engage in conversation happening around your brand
                     </v-card-text>
 
@@ -147,7 +149,7 @@
             </v-flex>
             <v-flex xs12 md4 class="pa-2">
                 <v-card class="pa-2" outlined tile>
-                    <v-card-title class="text-uppercase font-weight-bold">Content Pieces
+                    <v-card-title class="text-uppercase font-weight-black title">Content Pieces
                         <v-spacer></v-spacer>
                         <v-select
                                 :items="from"
