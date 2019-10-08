@@ -16,9 +16,9 @@
             <v-flex class="common_wrapper ma-auto mt-5">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <card-title>
+                        <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Campaign Requirements</strong></div>
-                        </card-title>
+                        </v-card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto">
                             <div class="parent_box ma-3">
@@ -45,9 +45,9 @@
             <v-flex class="common_wrapper ma-auto" color="black">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <card-title>
+                        <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Touch Points</strong></div>
-                        </card-title>
+                        </v-card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto inline_display">
                         <v-list class="list_cards">
@@ -84,9 +84,9 @@
             <v-flex class="common_wrapper ma-auto">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <card-title>
+                        <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Hashtags</strong></div>
-                        </card-title>
+                        </v-card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto">
                         <v-btn class="ma-3" small>#Hashtag 1</v-btn>
@@ -98,9 +98,9 @@
             <v-flex class="common_wrapper ma-auto">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <card-title>
+                        <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Brand Mentions</strong></div>
-                        </card-title>
+                        </v-card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto">
                         <v-btn class="ma-3" small>@Mentions 1</v-btn>
@@ -112,9 +112,9 @@
             <v-flex class="common_wrapper ma-auto my-3">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <card-title>
+                        <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Captions</strong></div>
-                        </card-title>
+                        </v-card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto">
                         <p class="ma-0">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
@@ -125,9 +125,9 @@
             <v-flex class="common_wrapper ma-auto my-3">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <card-title>
+                        <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Images</strong></div>
-                        </card-title>
+                        </v-card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto">
                         <v-row>
@@ -166,9 +166,9 @@
             <v-flex class="common_wrapper ma-auto" color="black">
                 <v-card class="description_card ma-auto" flat>
                     <v-layout class="left-pane">
-                        <card-title>
+                        <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Content Guidelines</strong></div>
-                        </card-title>
+                        </v-card-title>
                     </v-layout>
                     <v-layout class="right-pane ma-auto inline_display">
                         <v-list>
