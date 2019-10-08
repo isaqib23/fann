@@ -34,13 +34,13 @@
                             <tbody>
                             <tr v-for="i in 4" :key="i">
                                 <td>
-                                    <v-list two-line class="list_cards">
+                                    <v-list two-line class="list_cards py-0" dense="1">
                                         <v-list-item>
                                             <v-list-item-avatar height="50" width="50">
                                                 <v-img :src="items.avatar"></v-img>
                                             </v-list-item-avatar>
                                             <v-list-item-content>
-                                                <v-list-item-title v-html="items.title"></v-list-item-title>
+                                                <v-list-item-title class="font-weight-black" v-html="items.title"></v-list-item-title>
                                                 <v-list-item-subtitle >
                                                     <v-chip-group>
                                                         <v-chip v-for="tag in items.tags" :key="tag">
@@ -99,7 +99,7 @@
             <!-- Middle Content -->
             <v-flex xs12 md4 class="pa-2">
                 <v-card class="pa-2" outlined tile>
-                    <v-card-title class="text-uppercase font-weight-bold">Campaign Reach
+                    <v-card-title class="text-uppercase font-weight-black title">Campaign Reach
                         <v-spacer></v-spacer>
                         <v-select
                                 :items="from"
@@ -123,17 +123,19 @@
             </v-flex>
             <v-flex xs12 md4 class="pa-2">
                 <v-card class="pa-2" outlined tile>
-                    <v-card-title class="text-uppercase font-weight-bold">Social Mentions
+                    <v-card-title class="text-uppercase font-weight-black title">Social Mentions
                         <v-spacer></v-spacer>
                         <v-select
                                 :items="from"
                                 label="From"
                                 outlined
+                                dense="1"
+                                height="20px"
                                 class="float-right max-width-25"
                         ></v-select>
                     </v-card-title>
 
-                    <v-card-text class="pb-0">
+                    <v-card-text class="pb-0" max-width="75%">
                         Monitor and engage in conversation happening around your brand
                     </v-card-text>
 
@@ -147,13 +149,14 @@
             </v-flex>
             <v-flex xs12 md4 class="pa-2">
                 <v-card class="pa-2" outlined tile>
-                    <v-card-title class="text-uppercase font-weight-bold">Content Pieces
+                    <v-card-title class="text-uppercase font-weight-black title">Content Pieces
                         <v-spacer></v-spacer>
                         <v-select
                                 :items="from"
                                 label="From"
-                                outlined
-                                class="float-right max-width-25"
+                                solo
+                                dense
+                                class="float-right max-width-25 custom_dropdown"
                         ></v-select>
                     </v-card-title>
 
@@ -180,7 +183,7 @@
                             <tbody>
                             <tr v-for="i in 4" :key="i">
                                 <td width="15%">
-                                    <v-list  class="list_cards">
+                                    <v-list  class="list_cards py-0" dense="1">
                                         <v-list-item class="px-0">
                                             <v-list-item-avatar height="50" width="50" class="mr-3">
                                                 <v-img :src="items.avatar"></v-img>
@@ -203,7 +206,7 @@
                                         Chat
                                     </v-btn>
 
-                                    <v-btn color="primary" rounded class="overline" x-small depressed>
+                                    <v-btn max-width="20%" width="20%" color="primary" rounded class="overline" x-small depressed>
                                         Clear Payment
                                     </v-btn>
                                 </td>
@@ -223,7 +226,7 @@
                             <tbody>
                             <tr v-for="i in 3" :key="i" class="grey lighten-4">
                                 <td>
-                                    <v-list two-line class="list_cards grey lighten-4">
+                                    <v-list two-line class="list_cards grey lighten-4 py-0" dense="1">
                                         <v-list-item>
                                             <v-list-item-avatar height="50" width="50">
                                                 <v-img :src="items.avatar"></v-img>
@@ -331,8 +334,14 @@
     .max-width-25 {
         max-width: 25%;
     }
-
     .max-width-13 {
         max-width: 13%;
+    }
+    >>>.custom_dropdown .v-text-field.v-text-field--solo .v-input__control{
+        min-height: 10px;
+    }
+
+    >>>.custom_dropdown .v-label{
+        font-size: 10px;
     }
 </style>
