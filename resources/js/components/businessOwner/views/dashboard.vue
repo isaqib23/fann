@@ -32,9 +32,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="i in 4" :key="i">
+                            <tr v-for="i in 4" :key="i" class="hover_class">
                                 <td>
-                                    <v-list two-line class="list_cards py-0" dense="1">
+                                    <v-list two-line class="list_cards py-0 hover_class" dense="1">
                                         <v-list-item>
                                             <v-list-item-avatar height="50" width="50">
                                                 <v-img :src="items.avatar"></v-img>
@@ -98,14 +98,16 @@
 
             <!-- Middle Content -->
             <v-flex xs12 md4 class="pa-2">
-                <v-card class="pa-2" outlined tile>
+                <v-card class="pa-2" outlined tile min-height="196" max-height="196">
                     <v-card-title class="text-uppercase font-weight-black title">Campaign Reach
                         <v-spacer></v-spacer>
                         <v-select
-                                :items="from"
-                                label="From"
-                                outlined
-                                class="float-right max-width-25"
+                            :items="from"
+                            label="From"
+                            solo
+                            dense
+                            append-icon="keyboard_arrow_down"
+                            class="float-right max-width-25 custom_dropdown"
                         ></v-select>
                     </v-card-title>
 
@@ -122,16 +124,16 @@
                 </v-card>
             </v-flex>
             <v-flex xs12 md4 class="pa-2">
-                <v-card class="pa-2" outlined tile>
+                <v-card class="pa-2" outlined tile min-height="196" max-height="196">
                     <v-card-title class="text-uppercase font-weight-black title">Social Mentions
                         <v-spacer></v-spacer>
                         <v-select
-                                :items="from"
-                                label="From"
-                                outlined
-                                dense="1"
-                                height="20px"
-                                class="float-right max-width-25"
+                            :items="from"
+                            label="From"
+                            solo
+                            dense
+                            append-icon="keyboard_arrow_down"
+                            class="float-right max-width-25 custom_dropdown"
                         ></v-select>
                     </v-card-title>
 
@@ -148,7 +150,7 @@
                 </v-card>
             </v-flex>
             <v-flex xs12 md4 class="pa-2">
-                <v-card class="pa-2" outlined tile>
+                <v-card class="pa-2" outlined tile min-height="196" max-height="196">
                     <v-card-title class="text-uppercase font-weight-black title">Content Pieces
                         <v-spacer></v-spacer>
                         <v-select
@@ -156,6 +158,7 @@
                                 label="From"
                                 solo
                                 dense
+                                append-icon="keyboard_arrow_down"
                                 class="float-right max-width-25 custom_dropdown"
                         ></v-select>
                     </v-card-title>
@@ -181,9 +184,9 @@
                         <v-simple-table>
                             <thead class="grey lighten-4"></thead>
                             <tbody>
-                            <tr v-for="i in 4" :key="i">
-                                <td width="15%">
-                                    <v-list  class="list_cards py-0" dense="1">
+                            <tr v-for="i in 4" :key="i" class="hover_class">
+                                <td width="20%" class="px-2">
+                                    <v-list  class="list_cards py-0 hover_class" dense="1">
                                         <v-list-item class="px-0">
                                             <v-list-item-avatar height="50" width="50" class="mr-3">
                                                 <v-img :src="items.avatar"></v-img>
@@ -194,19 +197,18 @@
                                         </v-list-item>
                                     </v-list>
                                 </td>
-                                <td>
-                                    <p> Laura Miller has marked touch point completed and requested for payemnt $15</p>
-
+                                <td class="px-2" width="45%">
+                                    <p class="caption" mb-0> Laura Miller has marked touch point completed and requested for payemnt $15</p>
                                 </td>
-                                <td>
-                                    <v-btn x-small text class="blue--text overline" >
+                                <td class="px-2" width="35%">
+                                    <v-btn x-small text class="blue--text overline px-1" >
                                         View Post
                                     </v-btn>
-                                    <v-btn x-small text class="blue--text overline" >
+                                    <v-btn x-small text class="blue--text overline px-1" >
                                         Chat
                                     </v-btn>
 
-                                    <v-btn max-width="20%" width="20%" color="primary" rounded class="overline" x-small depressed>
+                                    <v-btn color="primary" rounded class="overline px-1" x-small depressed>
                                         Clear Payment
                                     </v-btn>
                                 </td>
@@ -243,15 +245,15 @@
                                         </v-list-item>
                                     </v-list>
                                 </td>
-                                <td>
-                                    <v-btn  text class="blue--text caption pl-3 pr-3 d-inline-block" >
+                                <td class="pa-0">
+                                    <v-btn  text class="blue--text caption pa-0">
                                         <v-icon color="green accent-2">
                                             mdi-check
                                         </v-icon>
                                     </v-btn>
                                 </td>
-                                <td>
-                                    <v-btn  text class="blue--text caption pl-3 pr-3 d-inline-block" >
+                                <td class="pa-0">
+                                    <v-btn  text class="blue--text caption pa-0">
                                         <v-icon color="green accent-2">
                                             mdi-close
                                         </v-icon>
@@ -337,11 +339,18 @@
     .max-width-13 {
         max-width: 13%;
     }
-    >>>.custom_dropdown .v-text-field.v-text-field--solo .v-input__control{
-        min-height: 10px;
+    >>>.custom_dropdown .v-input__control{
+        min-height: 30px !important;
+    }
+    >>>.custom_dropdown .v-input__control > .v-input__slot{
+        box-shadow: none !important;
+        border: 1px solid #cccccc;
     }
 
-    >>>.custom_dropdown .v-label{
+    >>>.custom_dropdown .v-label,  >>>.custom_dropdown .v-select__selection--comma{
         font-size: 10px;
+    }
+    >>>tr:hover .hover_class{
+        background: #EEEEEE !important;
     }
 </style>
