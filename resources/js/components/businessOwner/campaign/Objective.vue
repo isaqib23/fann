@@ -36,15 +36,17 @@
                             <v-radio value="radio-1" active-class="active_card_radio">
                                 <template slot="label">
                                     <v-card class="mx-auto text-center" outlined max-width="200">
-                                        <div class="float_class full_width" v-if="kind2 == 'radio-1'">
-                                            <v-icon align-end color="primary" class="float-right mt-1 mr-1">mdi-check-circle</v-icon>
+                                        <div class="triangle-topright" v-if="kind2 == 'radio-1'">
+                                            <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                         </div>
                                         <v-card-title>
-                                            <p class="icon_border ma-auto"><v-icon class="display-2">mdi-currency-usd</v-icon></p>
+                                            <p class="icon_border ma-auto"><v-icon class="display-2" :color="kind2 == 'radio-1' ? 'primary' : ''">mdi-currency-usd</v-icon></p>
                                         </v-card-title>
                                         <v-card-text class="px-2">
                                             <p class="title">PAID</p>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                            <p>
+                                                Pay a fixed amount to influencer for each  promotion touch point.
+                                            </p>
                                         </v-card-text>
                                     </v-card>
                                 </template>
@@ -53,15 +55,17 @@
                             <v-radio value="radio-2" active-class="active_card_radio">
                                 <template slot="label">
                                     <v-card class="mx-auto text-center" outlined max-width="200">
-                                        <div class="float_class full_width" v-if="kind2 == 'radio-2'">
-                                            <v-icon align-end color="primary" class="float-right mt-1 mr-1">mdi-check-circle</v-icon>
+                                        <div class="triangle-topright" v-if="kind2 == 'radio-2'">
+                                            <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                         </div>
                                         <v-card-title>
-                                            <p class="icon_border ma-auto"><v-icon class="display-2">mdi-ballot-recount-outline</v-icon></p>
+                                            <p class="icon_border ma-auto"><v-icon class="display-2" :color="kind2 == 'radio-2' ? 'primary' : ''">mdi-ballot-recount-outline</v-icon></p>
                                         </v-card-title>
                                         <v-card-text class="px-2">
                                             <p class="title">BARTER</p>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy</p>
+                                            <p>
+                                                You will barter a product with influencer for each touch point.
+                                            </p>
                                         </v-card-text>
                                     </v-card>
                                 </template>
@@ -134,5 +138,21 @@
     }
     .float_class{
         position: absolute;
+    }
+    .triangle-topright {
+        float: right;
+        shape-outside: polygon(45px 45px, 45px 45px, 45px 0, 0 0);
+        clip-path: polygon(45px 45px, 45px 45px, 45px 0, 0 0);
+        background: #EE6F6F;
+        height: 45px;
+        width: 45px;
+        position: absolute;
+        right: 0px;
+        margin-top: 2px;
+        margin-right: 2px;
+    }
+    >>>.triangle-topright .v-icon{
+        margin-right: 3px;
+        margin-top: -1px;
     }
 </style>
