@@ -36,7 +36,7 @@
                 </template>
 
                 <template v-slot:item.title="{ item }">
-                    <v-list two-line>
+                    <v-list two-line class="py-0" dense="1">
                         <v-list-item>
                             <v-list-item-content>
                                 <v-list-item-title v-html="item.title"></v-list-item-title>
