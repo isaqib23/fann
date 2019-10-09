@@ -1,5 +1,5 @@
 <template>
-    <v-flex class="ma-12">
+    <v-flex :class="$vuetify.breakpoint.smAndUp ? 'ma-12' : 'mx-1 mt-5'">
         <div class="subtitle-1 mb-2"><strong>Search Results</strong></div>
         <v-row justify="space-between" class="top_row">
             <v-col md="4">

@@ -3,7 +3,7 @@
         <v-flex class="my-12">
             <v-card class="mx-auto card_wrapper">
                 <v-row class="py-12 mx-auto main_wrapper">
-                    <v-flex lg6 sm6 m12>
+                    <v-flex lg6 sm12 xs12 m12>
                         <div class="url_field">
                             <div class="subtitle-2 mb-2"><strong>Public URL</strong></div>
                             <v-text-field
@@ -17,7 +17,7 @@
                         <div class="url_boxes">
                             <div class="subtitle-2 mb-2"><strong>Public URL</strong></div>
                             <v-row class="full_width px-3">
-                                <v-flex lg6 sm6 class="pr-2">
+                                <v-flex lg6 sm12 xs12 :class="$vuetify.breakpoint.mdAndUp ? 'pr-2' : 'mb-5'">
                                     <v-card
                                         max-width="full_width"
                                         color="darkTextColor"
@@ -32,7 +32,7 @@
                                         </v-card-text>
                                     </v-card>
                                 </v-flex>
-                                <v-flex lg6 sm6 class="pl-2">
+                                <v-flex lg6 sm12 xs12 :class="$vuetify.breakpoint.mdAndUp ? 'pl-2' : 'mb-5'">
                                     <v-card
                                         max-width="full_width"
                                         color="primary"
@@ -70,7 +70,7 @@
                             </v-flex>
                         </v-row>
                     </v-flex>
-                    <v-flex lg6 sm6 m12>
+                    <v-flex lg6 sm6 m12 class="hidden-sm-and-down">
 
                     </v-flex>
                 </v-row>
