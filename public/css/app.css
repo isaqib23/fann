@@ -30423,12 +30423,8 @@ html {
   background: #F1F2FE;
 }
 
-.panes-container,
-.left-pane,
-.right-pane {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+.full_width_md {
+  width: 82% !important;
 }
 
 .full_width {

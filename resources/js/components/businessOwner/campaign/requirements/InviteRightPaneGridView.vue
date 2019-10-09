@@ -1,5 +1,6 @@
 <template>
-    <v-flex class="ma-12">
+    <v-flex :class="$vuetify.breakpoint.smAndUp ? 'ma-12' : 'mx-1 mt-5'"
+    >
         <div class="subtitle-1 mb-2"><strong>Search Results</strong></div>
         <v-layout row wrap>
             <v-flex xl4 lg4 md4 sm4 xs12 v-for="i in 15" :key="i" class="mt-4 mb-4">

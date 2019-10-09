@@ -62,6 +62,7 @@
                         text
                         depressed
                         v-on="on"
+                        :class="$vuetify.breakpoint.smAndUp ? '' : 'pr-12'"
                     >
                         {{username}}
                         <v-avatar :size="32" class="mx-2">
