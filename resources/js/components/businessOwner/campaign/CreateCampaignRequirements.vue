@@ -1,8 +1,12 @@
 <template>
     <v-row class="mx-auto main_wrapper">
-        <v-flex class="panes-container full_height" v-bind:class="paneClass">
+        <v-flex class="full_height" v-bind:class="paneClass">
             <v-card fluid grid-list-md v-bind:class="cardClass">
-                <v-tabs v-model="active_tab" vertical flat icons-and-text active-class="active_tab" background-color="decent" color="gutter">
+                <v-tabs v-model="active_tab"
+                        :vertical="$vuetify.breakpoint.mdAndUp ? true : false"
+                        :centered="$vuetify.breakpoint.mdAndUp ? false : true"
+                        :active-class="$vuetify.breakpoint.mdAndUp ? 'active_tab' : 'active_tab_sm'"
+                        flat icons-and-text background-color="decent" color="gutter">
                     <LeftTabs></LeftTabs>
 
                     <!--<v-tab-item>
@@ -20,7 +24,7 @@
                 </v-tabs>
             </v-card>
         </v-flex>
-        <v-flex lg8 sm6 xl8 md7 xs12 class="right-panes">
+        <v-flex xl8 lg8 md12 sm12 xs12 class="right-panes">
             <!--<SetupRightPane v-if="active_tab == 0"></SetupRightPane>-->
             <CreateRightPane v-if="active_tab == 0"></CreateRightPane>
             <InviteRightPaneListView v-if="active_tab == 1"></InviteRightPaneListView>
@@ -58,7 +62,7 @@
         methods: {},
         computed: {
             paneClass: function() {
-                return (this.active_tab == 2) ? 'lg12 sm12 xl12 md12 xs12' : 'lg4 sm6 xl4 md5 xs12';
+                return (this.active_tab == 2) ? 'lg12 sm12 xl12 md12 xs12' : 'xl4 lg4 md12 sm12 xs12';
             },
             cardClass: function() {
                 return (this.active_tab == 2) ? 'full_width' : 'full_width';
@@ -71,7 +75,7 @@
     .main_wrapper{
         background: #F4F7FD !important;
     }
-    .full_height{
+    .full_heights{
         max-height: 100vh !important;
         min-height: 100vh !important;
         overflow-y: scroll !important;
