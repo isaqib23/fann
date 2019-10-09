@@ -34,7 +34,7 @@
                             <tbody>
                             <tr v-for="i in 4" :key="i" class="hover_class">
                                 <td>
-                                    <v-list two-line class="list_cards py-0 hover_class" dense="1">
+                                    <v-list two-line class="list_cards py-0 hover_class" dense>
                                         <v-list-item>
                                             <v-list-item-avatar height="50" width="50">
                                                 <v-img :src="items.avatar"></v-img>
@@ -186,7 +186,7 @@
                             <tbody>
                             <tr v-for="i in 4" :key="i" class="hover_class">
                                 <td width="20%" class="px-2">
-                                    <v-list  class="list_cards py-0 hover_class" dense="1">
+                                    <v-list  class="list_cards py-0 hover_class" dense>
                                         <v-list-item class="px-0">
                                             <v-list-item-avatar height="50" width="50" class="mr-3">
                                                 <v-img :src="items.avatar"></v-img>
@@ -228,7 +228,7 @@
                             <tbody>
                             <tr v-for="i in 3" :key="i" class="grey lighten-4">
                                 <td>
-                                    <v-list two-line class="list_cards grey lighten-4 py-0" dense="1">
+                                    <v-list two-line class="list_cards grey lighten-4 py-0" dense>
                                         <v-list-item>
                                             <v-list-item-avatar height="50" width="50">
                                                 <v-img :src="items.avatar"></v-img>

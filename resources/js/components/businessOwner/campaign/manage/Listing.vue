@@ -34,7 +34,7 @@
                             <tr v-for="i in 8" :key="i">
                                 <td><v-checkbox value="true"></v-checkbox></td>
                                 <td>
-                                    <v-list two-line class="list_cards py-0" dense="1">
+                                    <v-list two-line class="list_cards py-0" dense>
                                         <v-list-item>
                                             <v-list-item-content>
                                                 <v-list-item-title v-html="item.title"></v-list-item-title>
