@@ -7,7 +7,7 @@
                     <v-btn color="white"class="mr-n1 btn_right_border btn_left_border" large>In Transit</v-btn>
                     <v-btn color="white btn_left_border" large>Delivered</v-btn>
                     <v-btn color="primary" class="btn_right_border" large dark
-                           :class="$vuetify.breakpoint.smAndUp ? 'mr-n1 mr-n1' : 'mt-2'"
+                           :class="$vuetify.breakpoint.smAndUp ? 'ml-8 mr-n1' : 'mt-2'"
                     >Paid</v-btn>
                     <v-btn color="white btn_left_border" large
                            :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-2'"
@@ -50,21 +50,21 @@
                                 <v-simple-table class="shipping_table" v-for="j in 2" :key="j">
                                     <thead class="gutter">
                                         <tr>
-                                            <th class="table_col_width subtitle-2 black--text">Influencer Name: Jhon Snow</th>
-                                            <th class="table_col_width subtitle-2 black--text text-center">Product</th>
-                                            <th class="table_col_width subtitle-2 black--text text-center">Date Dispatch</th>
+                                            <th class="table_col_width subtitle-2 font-weight-bold black--text">Influencer Name: Jhon Snow</th>
+                                            <th class="table_col_width subtitle-2 black--text text-center font-weight-bold">Product</th>
+                                            <th class="table_col_width subtitle-2 black--text text-center font-weight-bold">Date Dispatch</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <tr v-for="i in 4" :key="i">
                                         <td >
-                                            <v-list two-line class="list_cards my-0 py-0">
+                                            <v-list two-line class="list_cards my-0 py-0 hover_class">
                                                 <v-list-item>
                                                     <v-list-item-avatar height="40" width="40" class="mr-2 my-0">
                                                         <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
                                                     </v-list-item-avatar>
                                                     <v-list-item-content>
-                                                        <v-list-item-title>
+                                                        <v-list-item-title class="body-2">
                                                             Brunch this weekend? <v-icon>open_in_new</v-icon>
                                                         </v-list-item-title>
                                                     </v-list-item-content>
@@ -89,21 +89,21 @@
                                 <v-simple-table class="shipping_table" v-for="j in 2" :key="j">
                                     <thead class="gutter">
                                     <tr>
-                                        <th class="table_col_width subtitle-2 black--text">Influencer Name: Jhon Snow</th>
-                                        <th class="table_col_width subtitle-2 black--text text-center">Product</th>
-                                        <th class="table_col_width subtitle-2 black--text text-center">Date Dispatch</th>
+                                        <th class="table_col_width subtitle-2 black--text font-weight-bold">Influencer Name: Jhon Snow</th>
+                                        <th class="table_col_width subtitle-2 black--text text-center font-weight-bold">Product</th>
+                                        <th class="table_col_width subtitle-2 black--text text-center font-weight-bold">Date Dispatch</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr v-for="i in 4" :key="i">
                                         <td >
-                                            <v-list two-line class="list_cards my-0 py-0">
+                                            <v-list two-line class="list_cards my-0 py-0 hover_class">
                                                 <v-list-item>
                                                     <v-list-item-avatar height="40" width="40" class="mr-2 my-0">
                                                         <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
                                                     </v-list-item-avatar>
                                                     <v-list-item-content>
-                                                        <v-list-item-title>
+                                                        <v-list-item-title class="body-2">
                                                             Brunch this weekend? <v-icon>open_in_new</v-icon>
                                                         </v-list-item-title>
                                                     </v-list-item-content>
@@ -159,5 +159,8 @@
     }
     >>>.list_cards .v-avatar {
         border-radius: 10px !important;
+    }
+    >>>tr:hover .hover_class{
+        background: #EEEEEE !important;
     }
 </style>

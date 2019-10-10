@@ -39,11 +39,11 @@
                                         dark
                                         class="text-center"
                                     >
-                                        <v-card-title style="display:block" class="display-4 darkSecondary--text"><strong>15</strong></v-card-title>
+                                        <v-card-title style="display:block" class="display-4 white--text"><strong>15</strong></v-card-title>
                                         <v-card-text>
                                             <p class="subtitle-1">POTENTIAL INFLUENCER</p>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                                            <v-btn block color="#A64D4D" large>View All</v-btn>
+                                            <p class="white--text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                                            <v-btn class="white--text" block color="#A64D4D" large>View All</v-btn>
                                             <p class="pt-4"><u>Lorem Ipsum is simply dummy text of the printing</u></p>
                                         </v-card-text>
                                     </v-card>
@@ -54,7 +54,7 @@
                         <v-row class="full_width">
                             <v-flex lg12 sm12 class="pr-2 mt-12">
                                 <v-card
-                                    max-width="full_width"
+                                    max-width="full_width" dense outlined
                                 >
                                     <v-card-text>
                                         <v-checkbox v-model="checkbox2" label="I will be shipping this product to influencers" color="primary"></v-checkbox>

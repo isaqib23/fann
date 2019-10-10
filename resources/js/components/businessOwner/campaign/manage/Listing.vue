@@ -1,7 +1,7 @@
 <template>
     <v-layout wrap class="ma-3 pa-2">
         <v-flex xs12 fluid>
-                <v-btn color="primary" large class="d-inline-block float-left"
+                <v-btn color="primary" large class="d-inline-block float-left caption"
                    :class="$vuetify.breakpoint.smAndUp ? 'mx-2' : 'my-2'"
                 >
                     Create Campaign
@@ -36,7 +36,7 @@
                             <tr v-for="i in 8" :key="i">
                                 <td><v-checkbox value="true"></v-checkbox></td>
                                 <td>
-                                    <v-list two-line class="list_cards py-0" dense>
+                                    <v-list two-line class="list_cards py-0 hover_class" dense>
                                         <v-list-item>
                                             <v-list-item-content>
                                                 <v-list-item-title v-html="item.title"></v-list-item-title>
@@ -88,7 +88,7 @@
 
                 <v-flex xs12 class="ma-2 pa-2">
                     <v-card-title>
-                        <div class="subtitle-1 text-uppercase black--text" ><strong>Promoting Global Real Estate License</strong></div>
+                        <div class="subtitle-1 text-uppercase darken-1" ><strong>Promoting Global Real Estate License</strong></div>
                     </v-card-title>
                     <v-card-text class="pa-0">
                         <div class="d-inline-block ml-4" >
@@ -194,5 +194,8 @@
     }
     >>>.custom_field .v-input__control{
         min-height: 43px !important;
+    }
+    >>>tr:hover .hover_class{
+        background: #EEEEEE !important;
     }
 </style>

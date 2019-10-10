@@ -38,7 +38,7 @@
                 </template>
 
                 <template v-slot:item.title="{ item }">
-                    <v-list two-line class="py-0" dense>
+                    <v-list two-line class="py-0 hover_class" dense>
                         <v-list-item>
                             <v-list-item-content>
                                 <v-list-item-title v-html="item.title"></v-list-item-title>
@@ -77,6 +77,7 @@
                     <td :colspan="headers.length">
                         <v-timeline
                             dense clipped
+                            class="ml-n7"
                         >
                             <v-timeline-item
                                 v-for="n in 3"
@@ -124,8 +125,8 @@
                                                         </div>
                                                     </div>
                                                 </v-flex>
-                                                <v-flex xl3 lg3 md3 sm6 xs12>
-                                                    <v-btn color="primary" depressed small class="overline px-1 ml-1" min-width="30">
+                                                <v-flex xl3 lg3 md3 sm6 xs12 class="text-center">
+                                                    <v-btn color="info" depressed small class="overline px-3 ml-1 white--text" min-width="30">
                                                         <v-icon class="caption">mdi-instagram</v-icon>
                                                         Chat
                                                     </v-btn>
@@ -144,16 +145,16 @@
                 </template>
             </v-data-table>
         </v-flex>
-        <v-flex xs12 md5 class="pa-2">
-            <v-card class="list_cards">
-                <v-list three-line>
+        <v-flex xs12 md5 class="pa-2 list_cards">
+                <v-list three-line class="px-5">
+                    <div class="subtitle-1 text-uppercase darken-1 pa-5" ><strong>Proposal</strong></div>
                     <template v-for="(item, index) in items">
+                        <v-card class="mb-2">
                         <v-divider
                             v-if="item.divider"
                             :key="index"
                             :inset="item.inset"
                         ></v-divider>
-
                         <v-list-item
                             v-else
                             :key="item.title"
@@ -203,9 +204,9 @@
                                 </v-list-item-subtitle>
                             </v-list-item-content>
                         </v-list-item>
+                        </v-card>
                     </template>
                 </v-list>
-            </v-card>
         </v-flex>
     </v-layout>
 
@@ -359,5 +360,8 @@
     }
     >>>.custom_field .v-input__control{
         min-height: 43px !important;
+    }
+    >>>tr:hover .hover_class{
+        background: #EEEEEE !important;
     }
 </style>

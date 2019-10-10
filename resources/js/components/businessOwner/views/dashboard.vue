@@ -4,7 +4,7 @@
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
         <v-layout wrap>
             <v-flex xs12 class="pa-2">
-                <v-subheader class="pa-0 subtitle-2 black--text">Dashboard</v-subheader>
+                <v-subheader class="pa-0 subtitle-2 black--text font-weight-bold">Dashboard</v-subheader>
             </v-flex>
             <!-- Top Content -->
             <v-flex xs12 md7 class="pa-2">
@@ -35,7 +35,7 @@
                             <tr v-for="i in 4" :key="i" class="hover_class">
                                 <td>
                                     <v-list two-line class="list_cards py-0 hover_class" dense>
-                                        <v-list-item>
+                                        <v-list-item class="px-0">
                                             <v-list-item-avatar height="50" width="50">
                                                 <v-img :src="items.avatar"></v-img>
                                             </v-list-item-avatar>
@@ -73,7 +73,7 @@
             <v-flex xs12 md5 class="pa-2">
                 <v-card class="pa-2" outlined tile>
                     <v-list flat>
-                        <v-subheader class="text-uppercase">Notifications</v-subheader>
+                        <v-subheader class="subtitle-1 mb-2 text-uppercase"><strong>Notifications</strong></v-subheader>
                         <v-list-item-group color="primary" class="notification-grid-height">
                             <v-list-item
                                     v-for="(notification, i) in notifications"
@@ -217,6 +217,10 @@
                             </tbody>
                         </v-simple-table>
                     </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn text class="mb-3" color="blue">Show more</v-btn>
+                    </v-card-actions>
                 </v-card>
             </v-flex>
             <v-flex xs12 md5 class="pa-2">
@@ -229,7 +233,7 @@
                             <tr v-for="i in 3" :key="i" class="grey lighten-4">
                                 <td>
                                     <v-list two-line class="list_cards grey lighten-4 py-0" dense>
-                                        <v-list-item>
+                                        <v-list-item class="px-0">
                                             <v-list-item-avatar height="50" width="50">
                                                 <v-img :src="items.avatar"></v-img>
                                             </v-list-item-avatar>

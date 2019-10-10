@@ -8,7 +8,8 @@
                 <v-select
                     :items="items"
                     label="Health Care"
-                    outlined
+                    solo
+                    class="custom_dropdown"
                 ></v-select>
 
                 <div class="kind_group">
@@ -16,7 +17,7 @@
                     <v-radio-group v-model="kind" row class="mt-0">
                         <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="radio-1" active-class="kind_active"></v-radio>
                         <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="radio-2" active-class="kind_active"></v-radio>
-                        <v-radio class="blogger_radio" label="Blogger" off-icon="mdi-blogger" on-icon="mdi-blogger" value="radio-3" active-class="kind_active"></v-radio>
+
                     </v-radio-group>
                 </div>
 
@@ -49,7 +50,8 @@
                     <v-select
                         :items="items"
                         label="10% to 15% Min"
-                        outlined
+                        solo
+                        class="custom_dropdown"
                     ></v-select>
                 </div>
 
@@ -216,5 +218,15 @@
     v-list-tile-avatar img {
         height: 15px !important;
         margin-right: 10px
+    }
+    >>>.gender_group .v-radio{
+        height: 35px !important;
+    }
+    >>>.custom_dropdown .v-input__control{
+        min-height: 45px !important;
+    }
+    >>>.custom_dropdown .v-input__control > .v-input__slot{
+        box-shadow: none !important;
+        border: 1px solid #cccccc;
     }
 </style>

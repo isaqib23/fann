@@ -9,13 +9,14 @@
                     class="product_field"
                     solo
                     background-color="white"
+                    append-icon="keyboard_arrow_down"
                 ></v-select>
             </v-col>
             <v-col md="4">
                 <v-text-field
                     solo
                     label="Search Here"
-                    prepend-inner-icon="mdi-account-search"
+                    prepend-inner-icon="search"
                     class="touch_field"
                 ></v-text-field>
             </v-col>
@@ -58,7 +59,7 @@
                                                     </div>
                                                 </div>
                                             </v-flex>
-                                            <v-flex xl4 lg4 md4 sm6 xs12>
+                                            <v-flex xl4 lg4 md4 sm6 xs12 class="text-center">
                                                 <v-btn color="primary pl-3 pr-3" depressed @click="goToProfile">
                                                     View Profile
                                                 </v-btn>

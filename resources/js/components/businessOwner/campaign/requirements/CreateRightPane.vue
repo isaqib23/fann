@@ -69,7 +69,7 @@
                                     <v-list-item-content>
                                         <v-row class="mx-auto">
                                             <v-flex xl2 lg2 md2 sm2 xs2>
-                                                <v-list-item-avatar height="49" min-width="50" width="50" class="ma-0 field_icon">
+                                                <v-list-item-avatar height="49" min-width="100%" width="100%" class="ma-0 field_icon">
                                                     <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
                                                 </v-list-item-avatar>
                                             </v-flex>
