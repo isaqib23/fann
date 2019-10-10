@@ -1,16 +1,19 @@
 <template>
     <div>
-        <v-tab >
-            Campaign
-            <v-icon left>mdi-settings</v-icon>
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'" >
+            <v-icon left class="hidden-md-and-up">mdi-settings</v-icon>
+            <p>Campaign</p>
+            <v-icon left class="hidden-md-and-down">mdi-settings</v-icon>
         </v-tab>
-        <v-tab >
-            Placement
-            <v-icon left>mdi-account-plus</v-icon>
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'" >
+            <v-icon left class="hidden-md-and-up">mdi-account-plus</v-icon>
+            <p>Placement</p>
+            <v-icon left class="hidden-md-and-down">mdi-account-plus</v-icon>
         </v-tab>
-        <v-tab>
-            Influencer
-            <v-icon left>mdi-lock</v-icon>
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'">
+            <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
+            <p>Influencer</p>
+            <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
         </v-tab>
     </div>
 </template>
@@ -54,6 +57,14 @@
         color:black !important;
         background: #F7F7FF !important;
         border-left: 3px solid #EE6F6F;
+    }
+    .active_tab_sm {
+        color:black !important;
+        background: #F7F7FF !important;
+        border-top: 3px solid #EE6F6F;
+        line-height: 1;
+        padding-top: 12px;
+        padding-left: 25px;
     }
     .theme--light.v-tabs>.v-tabs-bar .v-tab--disabled, .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon {
         color:#A5A4BF !important;

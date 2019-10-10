@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-flex class="ma-12">
+        <v-flex :class="$vuetify.breakpoint.mdAndUp ? 'ma-12' : 'ma-1'">
             <div class="subtitle-1 mb-2"><strong>Inbox</strong></div>
             <v-card class="mx-auto card_wrapper">
                 <v-row class="mx-auto main_wrapper" justify="start">

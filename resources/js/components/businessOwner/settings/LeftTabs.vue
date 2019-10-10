@@ -1,16 +1,19 @@
 <template>
     <div>
-        <v-tab >
-            Business Profile
-            <v-icon left>mdi-account</v-icon>
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height text-center'">
+            <v-icon left class="hidden-md-and-up">mdi-account</v-icon>
+            <p>Business Profile</p>
+            <v-icon left class="hidden-md-and-down">mdi-account</v-icon>
         </v-tab>
-        <v-tab >
-            Billing & Payment
-            <v-icon left>credit_card</v-icon>
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height text-center'">
+            <v-icon left class="hidden-md-and-up">credit_card</v-icon>
+            <p>Billing & Payment</p>
+            <v-icon left class="hidden-md-and-down">credit_card</v-icon>
         </v-tab>
-        <v-tab>
-            Integrations
-            <v-icon left>mdi-lock</v-icon>
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height text-center'">
+            <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
+            <p>Integrations</p>
+            <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
         </v-tab>
     </div>
 </template>
@@ -54,6 +57,14 @@
         color:black !important;
         background: #F7F7FF !important;
         border-left: 3px solid #EE6F6F;
+    }
+    .active_tab_sm {
+        color:black !important;
+        background: #F7F7FF !important;
+        border-top: 3px solid #EE6F6F;
+        line-height: 1;
+        padding-top: 12px;
+        padding-left: 25px;
     }
     .theme--light.v-tabs>.v-tabs-bar .v-tab--disabled, .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs>.v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon {
         color:#A5A4BF !important;

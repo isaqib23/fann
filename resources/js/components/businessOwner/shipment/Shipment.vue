@@ -1,15 +1,19 @@
 <template>
     <div>
-        <v-flex class="ma-12">
+        <v-flex :class="$vuetify.breakpoint.smAndUp ? 'ma-12' : 'ma-1'">
             <v-row justify="space-between">
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="6" xs="12">
                     <v-btn color="primary" class="mr-n1 btn_right_border" dark large>Pending</v-btn>
                     <v-btn color="white"class="mr-n1 btn_right_border btn_left_border" large>In Transit</v-btn>
                     <v-btn color="white btn_left_border" large>Delivered</v-btn>
-                    <v-btn color="primary" class="ml-8 mr-n1 btn_right_border" large dark>Paid</v-btn>
-                    <v-btn color="white btn_left_border" large>Barter</v-btn>
+                    <v-btn color="primary" class="btn_right_border" large dark
+                           :class="$vuetify.breakpoint.smAndUp ? 'mr-n1 mr-n1' : 'mt-2'"
+                    >Paid</v-btn>
+                    <v-btn color="white btn_left_border" large
+                           :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-2'"
+                    >Barter</v-btn>
                 </v-col>
-                <v-col cols="12" md="5" class="pa-0">
+                <v-col cols="12" md="5" xs="12" class="pa-0">
                     <v-row class="search_fields">
                         <v-col cols="12" md="6">
                             <v-text-field

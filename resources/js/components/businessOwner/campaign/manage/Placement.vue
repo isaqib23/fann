@@ -1,11 +1,13 @@
 <template>
     <v-layout wrap class="ma-3 pa-2">
         <v-flex xs12 fluid>
-            <v-btn color="primary" large class="ma-2 d-inline-block float-left">
+            <v-btn color="primary" large class="d-inline-block float-left"
+               :class="$vuetify.breakpoint.smAndUp ? 'mx-2' : 'my-2'"
+            >
                 Create Campaign
             </v-btn>
             <v-text-field
-                class="float-left mt-1"
+                class="float-left custom_field"
                 solo
                 depressed
                 label="Search / Add Filters"
@@ -354,5 +356,8 @@
     }
     >>>.list_proposal .v-btn__content{
         font-size: 8px;
+    }
+    >>>.custom_field .v-input__control{
+        min-height: 43px !important;
     }
 </style>

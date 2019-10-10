@@ -2,7 +2,11 @@
     <v-row class="mx-auto main_wrapper">
         <v-flex class="panes-container full_height lg12 sm12 xl12 md12 xs12">
             <v-card fluid grid-list-md :class="cardClass">
-                <v-tabs v-model="active_tab" vertical flat icons-and-text active-class="active_tab" background-color="decent" color="gutter">
+                <v-tabs v-model="active_tab" flat icons-and-text background-color="decent" color="gutter"
+                        :vertical="$vuetify.breakpoint.mdAndUp ? true : false"
+                        :centered="$vuetify.breakpoint.mdAndUp ? false : true"
+                        :active-class="$vuetify.breakpoint.mdAndUp ? 'active_tab' : 'active_tab_sm'"
+                >
                     <LeftTabs></LeftTabs>
 
                     <v-tab-item>

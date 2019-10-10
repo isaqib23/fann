@@ -1,17 +1,17 @@
 <template>
     <div>
-        <v-flex class="ma-12">
+        <v-flex :class="$vuetify.breakpoint.smAndUp ? 'ma-12' : 'pa-2'">
             <v-row justify="start">
                 <v-col cols="12" md="6" class="py-0">
                     <v-row class="search_fields">
-                        <v-col cols="12" md="6">
+                        <v-col cols="12" md="6" :class="$vuetify.breakpoint.mdAndUp ? '' : 'pa-0'">
                             <v-text-field
                                 outlined
                                 label="Search by date"
                                 prepend-inner-icon="search"
                             ></v-text-field>
                         </v-col>
-                        <v-col cols="12" md="2" class="pr-0">
+                        <v-col cols="12" md="2" class="pr-0" :class="$vuetify.breakpoint.mdAndUp ? '' : 'pa-0'">
                             <v-select
                                 :items="items"
                                 label="To"
@@ -19,10 +19,10 @@
                             >
                             </v-select>
                         </v-col>
-                        <v-col cols="12" md="1" class="px-0 text-center">
+                        <v-col cols="12" md="1" class="px-0 text-center hidden-sm-and-down">
                             <v-icon class="pt-3" color="dark">mdi-minus</v-icon>
                         </v-col>
-                        <v-col cols="12" md="2" class="pl-0">
+                        <v-col cols="12" md="2" class="pl-0" :class="$vuetify.breakpoint.mdAndUp ? '' : 'pa-0'">
                             <v-select
                                 :items="items"
                                 label="From"

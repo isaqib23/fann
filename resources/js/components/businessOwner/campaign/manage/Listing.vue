@@ -1,11 +1,13 @@
 <template>
     <v-layout wrap class="ma-3 pa-2">
         <v-flex xs12 fluid>
-                <v-btn color="primary" large class="ma-2 d-inline-block float-left">
+                <v-btn color="primary" large class="d-inline-block float-left"
+                   :class="$vuetify.breakpoint.smAndUp ? 'mx-2' : 'my-2'"
+                >
                     Create Campaign
                 </v-btn>
                 <v-text-field
-                        class="float-left"
+                        class="float-left custom_field"
                         solo
                         depressed
                         label="Search / Add Filters"
@@ -122,32 +124,36 @@
                 </v-flex>
                 <v-divider></v-divider>
 
-                <v-flex xs12 class="ma-2 pa-2" >
+                <v-row>
 
-                   <v-layout>
-                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 ml-10 pa-2 float-left">
+                   <v-col cols="12" xl="4" lg="4" md="4" sm="4" xs="6">
+                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 pa-2 mx-auto">
                            <v-card-text class="black--text">
                                <div class="subtitle-2 mb-2 text-uppercase text-center">Impressions</div>
                                <span class="headline pa-2">125K</span>
                            </v-card-text>
                        </v-card>
-                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 ml-10 pa-2 float-left">
+                   </v-col>
+                    <v-col cols="12" xl="4" lg="4" md="4" sm="4" xs="6">
+                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 pa-2 mx-auto">
                            <v-card-text class="black--text">
                                <div class="subtitle-2 mb-2 text-uppercase text-center">Actions</div>
                                <span class="headline pa-2">2.7K</span>
                            </v-card-text>
                        </v-card>
-                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 ml-10 pa-2 float-left">
+                    </v-col>
+                    <v-col cols="12" xl="4" lg="4" md="4" sm="4" xs="6">
+                       <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 pa-2 mx-auto">
                            <v-card-text class="black--text">
                                <div class="subtitle-2 mb-2 text-uppercase text-center">Eng. rate</div>
                                <span class="headline pa-2">2.0%</span>
                            </v-card-text>
                        </v-card>
-                   </v-layout>
+                   </v-col>
 
                    <v-spacer></v-spacer>
 
-                </v-flex>
+                </v-row>
 
             </v-card>
         </v-flex>
@@ -185,5 +191,8 @@
         width: 12px !important;
         height: 12px !important;
         top:2px !important;
+    }
+    >>>.custom_field .v-input__control{
+        min-height: 43px !important;
     }
 </style>

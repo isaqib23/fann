@@ -1,5 +1,6 @@
 <template>
     <v-col cols="12" md="10" class="pa-0">
+        <v-divider class="hidden-md-and-up"></v-divider>
         <v-row justify="start">
             <v-col cols="12" md="4" class="vertical_border py-5 pr-0">
                 <v-text-field
@@ -28,6 +29,7 @@
                     </template>
                 </v-list>
             </v-col>
+            <v-divider class="hidden-md-and-up"></v-divider>
             <v-col cols="12" md="8" class="py-5 px-7">
                 <div class="mail_header bottom_border mr-n4 ml-n7 pl-7 pr-4">
                     <div class="subtitle-1 mb-2">
