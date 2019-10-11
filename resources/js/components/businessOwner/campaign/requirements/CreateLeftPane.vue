@@ -36,7 +36,7 @@
                     class="custom_dropdown"
                 ></v-select>
 
-                <v-row class="mx-auto">
+                <v-row class="mx-auto my-5">
                     <v-flex xl10 lg10 md10 sm11 xs11>
                         <v-select
                             :items="items"
@@ -55,9 +55,9 @@
                     </v-flex>
                 </v-row>
 
-                <v-row class="mx-auto">
+                <v-row class="mx-auto my-5">
                     <v-flex xl2 lg2 md2 sm1 xs2>
-                        <v-list-item-avatar height="49" min-width="100%" width="100%" class="ma-0 field_icon">
+                        <v-list-item-avatar height="45" min-width="100%" width="100%" class="ma-0 field_icon">
                             <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
                         </v-list-item-avatar>
                     </v-flex>
@@ -70,7 +70,7 @@
                         ></v-text-field>
                     </v-flex>
                     <v-flex xl2 lg2 md2 sm1 xs2>
-                        <v-list-item-avatar height="50" min-width="45" width="45" class="ma-0 field_right_icon" color="grey lighten-2">
+                        <v-list-item-avatar height="45" min-width="45" width="45" class="ma-0 field_right_icon" color="grey lighten-2">
                             <span>$25</span>
                         </v-list-item-avatar>
                     </v-flex>
@@ -85,9 +85,9 @@
                     </v-btn>
                 </div>
 
-                <v-row class="mx-auto">
+                <v-row class="mx-auto my-5">
                     <v-flex xl2 lg2 md2 sm1 xs2>
-                        <v-list-item-avatar height="49" min-width="100%" width="100%" class="ma-0 field_icon">
+                        <v-list-item-avatar height="45" min-width="100%" width="100%" class="ma-0 field_icon">
                             <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
                         </v-list-item-avatar>
                     </v-flex>
@@ -148,6 +148,38 @@
                 </div>
 
                 <v-card flat>
+                    <v-card-title class="pa-0">
+                        <div class="subtitle-1 text-uppercase d-block"><strong>Criteria</strong></div>
+                    </v-card-title>
+                    <v-card-text class="pa-0 pb-2">
+                        <p class="mb-0">Choose Giveaway Criteria</p>
+                    </v-card-text>
+                    <v-card outlined class="pa-3">
+                        <v-select
+                            :items="criteria"
+                            label="Choose Giveaway Criteria"
+                            solo
+                            class="custom_dropdown mb-0"
+                            append-icon="keyboard_arrow_down"
+                        ></v-select>
+                        <v-divider vertical class="vertical_divider"></v-divider>
+                        <div class="d-block">
+                            <v-combobox
+                                v-model="select"
+                                label="Enter Tags"
+                                multiple
+                                chips
+                            ></v-combobox>
+                        </div>
+                    </v-card>
+                    <v-divider vertical class="vertical_divider"></v-divider>
+                    <v-card-text class="px-0 pt-0">
+                        <v-btn outlined small color="grey" class="black--text pr-10">+ Add</v-btn>
+                    </v-card-text>
+                </v-card>
+
+
+                <v-card flat>
                     <v-card-title>
                         <div class="subtitle-1"><strong>Select Barter Product</strong></div>
                     </v-card-title>
@@ -161,7 +193,7 @@
                     ></v-select>
 
 
-                    <v-row class="mx-auto" justify="space-between">
+                    <v-row class="mx-auto my-5" justify="space-between">
                         <v-flex xl5 lg5 md5 sm12 xs12>
                             <v-menu
                                 v-model="menu1"
@@ -209,11 +241,11 @@
                             </v-menu>
                         </v-flex>
                     </v-row>
-                    <v-row class="mx-auto">
+                    <v-row class="mx-auto my-5">
                         <v-flex md12>
                             <label class="font-weight-bold">The amount you are paying to influencer.</label>
                             <v-text-field
-                                label="Start Date"
+                                label="$100"
                                 solo
                                 class="custom_datepickr"
                             ></v-text-field>
@@ -279,6 +311,8 @@
                checkbox2: true,
                checkbox1: false,
                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+               select: ['Vuetify', 'Programming'],
+               criteria: ['Tag Friends (Number Field)', 'Mention Brand (Instagram / YouTube Handle)', 'Follow (Instagram Handle)', 'Hashtag (#)'],
                dropzoneOptions: {
                    url: 'https://httpbin.org/post',
                    maxFilesize: 0.5,
@@ -427,5 +461,21 @@
     >>>.custom_datepickr .v-input__control > .v-input__slot{
         box-shadow: none !important;
         border: 1px solid #cccccc;
+    }
+    >>>.custom_dropdown .v-input__control{
+        min-height: 45px !important;
+    }
+    >>>.custom_dropdown .v-input__control > .v-input__slot{
+        box-shadow: none !important;
+        border: 1px solid #cccccc;
+    }
+    >>>.vertical_divider{
+        height: 25px !important;
+        margin-left: 45px !important;
+        border-color: black !important;
+        margin-bottom: -3px !important;
+    }
+    >>>.custom_dropdown .v-input__slot{
+        margin-bottom: 0px !important;
     }
 </style>

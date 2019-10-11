@@ -108,8 +108,8 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12>
-                            <v-btn class="ma-3" small>#Hashtag 1</v-btn>
-                            <v-btn class="ma-3" small>#Hashtag 1</v-btn>
+                            <v-btn class="ma-3" color="grey lighten-2" small>#Hashtag 1</v-btn>
+                            <v-btn class="ma-3" color="grey lighten-2" small>#Hashtag 1</v-btn>
                         </v-flex>
                     </v-layout>
                 </v-card>
@@ -126,8 +126,8 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12>
-                            <v-btn class="ma-3" small>@Mentions 1</v-btn>
-                            <v-btn class="ma-3" small>@Mentions 2</v-btn>
+                            <v-btn class="ma-3" color="grey lighten-2" small>@Mentions 1</v-btn>
+                            <v-btn class="ma-3" color="grey lighten-2" small>@Mentions 2</v-btn>
                         </v-flex>
                     </v-layout>
                 </v-card>
