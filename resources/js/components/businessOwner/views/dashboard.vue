@@ -224,7 +224,7 @@
                 </v-card>
             </v-flex>
             <v-flex xs12 md5 class="pa-2">
-                <v-card class="pa-2" outlined tile>
+                <v-card class="pa-2" outlined tile min-height="415" height="auto">
                     <v-card-text>
                         <div class="subtitle-1 mb-2 text-uppercase"><strong>Shipments</strong></div>
                         <v-simple-table>

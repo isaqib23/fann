@@ -1,5 +1,12 @@
 <template>
     <v-app-bar app>
+        <v-progress-linear
+            :active="loading"
+            :indeterminate="loading"
+            absolute
+            bottom
+            color="deep-purple accent-4"
+        ></v-progress-linear>
         <v-app-bar-nav-icon @click.stop="navToggle"></v-app-bar-nav-icon>
         <v-toolbar-title class="white--text">{{ appName }}</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -91,6 +98,7 @@
             appName: settings.appName,
             avatar: '',
             username: '',
+            loading: false,
             items: [
                 { title: 'Click Me' },
                 { title: 'Click Me' },
@@ -116,6 +124,13 @@
         },
         mounted() {
             this.username = this.auth.name
+        },
+        watch: {
+            loading (val) {
+                if (!val) return
+
+                setTimeout(() => (this.loading = false), 3000)
+            },
         }
     }
 </script>
