@@ -104,8 +104,8 @@
                                 <v-badge class="full_width">
                                     <template v-slot:badge>6</template>
                                     <v-card class="elevation-2 list_cards">
-                                    <v-list two-line>
-                                        <v-list-item>
+                                    <v-list>
+                                        <v-list-item two-line>
                                             <v-list-item-avatar height="30" min-width="30" width="30" class="mr-3">
                                                 <v-img src="/images/avtar.png"></v-img>
                                             </v-list-item-avatar>
@@ -113,14 +113,13 @@
                                             <v-list-item-content>
                                                 <v-row class="mx-auto">
                                                     <v-flex xl3 lg3 md3 sm6 xs12>
-                                                        <div class="float_class">
-                                                            <div class="body-2 mb-2"><strong>Amanda Nash</strong>
-                                                                <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
-                                                            </div>
-                                                        </div>
+                                                        <v-list-item-title>Amanda Nash</v-list-item-title>
+                                                        <v-list-item-subtitle>
+                                                            <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
+                                                        </v-list-item-subtitle>
                                                     </v-flex>
                                                     <v-flex xl2 lg2 md2 sm6 xs12>
-                                                        <div class="followers caption">
+                                                        <div class="followers body-2">
                                                             <v-icon class="body-1">mdi-instagram</v-icon>
                                                             50.5K Followers
                                                         </div>
@@ -128,20 +127,20 @@
                                                     <v-flex xl4 lg4 md4 sm12 xs12>
                                                         <div class="float_class">
                                                             <div class="caption mb-2 integrityColor--text">
-                                                                <strong class="caption">Eng. Rate</strong>
-                                                                <strong class="ml-1 caption">Comments</strong>
-                                                                <strong class="ml-1 caption">Likes</strong>
+                                                                <strong class="custom_font">Eng. Rate</strong>
+                                                                <strong class="ml-1 custom_font">Comments</strong>
+                                                                <strong class="ml-1 custom_font">Likes</strong>
                                                             </div>
                                                             <div class="followers">
-                                                                <p class="d-inline-block mb-0 mx-3">43%</p>
-                                                                <p class="d-inline-block mb-0 ml-5 mr-3">2.2K</p>
-                                                                <p class="d-inline-block mb-0 ml-3">5.5K</p>
+                                                                <p class="d-inline-block mb-0 mx-3 custom_font">43%</p>
+                                                                <p class="d-inline-block mb-0 ml-5 mr-3 custom_font">2.2K</p>
+                                                                <p class="d-inline-block mb-0 ml-3 custom_font">5.5K</p>
                                                             </div>
                                                         </div>
                                                     </v-flex>
                                                     <v-flex xl3 lg3 md3 sm6 xs12 class="text-center">
                                                         <v-btn color="info" depressed small class="overline px-3 ml-1 white--text" min-width="30">
-                                                            <v-icon class="caption">mdi-instagram</v-icon>
+                                                            <v-icon class="caption">mdi-chat</v-icon>
                                                             Chat
                                                         </v-btn>
                                                         <v-btn color="success" depressed small class="overline px-1" min-width="20">
@@ -165,7 +164,7 @@
                 <v-list three-line class="px-5">
                     <div class="subtitle-1 text-uppercase darken-1 pa-5" ><strong>Proposal</strong></div>
                     <template v-for="(item, index) in items">
-                        <v-card class="mb-2">
+                        <v-card class="mb-2 custom_list">
                         <v-divider
                             v-if="item.divider"
                             :key="index"
@@ -182,41 +181,55 @@
 
                             <v-list-item-content>
                                 <v-list-item-title>
-                                    <div>
-                                        <div class="d-inline-block float-left body-2">
-                                            {{item.title}}
-                                            <div class="followers overline">
-                                                <v-icon class="caption">mdi-instagram</v-icon>
-                                                50.5K Followers
+                                    <v-row justify="space-between">
+                                        <v-col md="6" class="py-0 ma-0">
+                                            <div class="float-left body-2">
+                                                {{item.title}}
+                                                <div class="followers overline">
+                                                    <v-icon class="caption">mdi-instagram</v-icon>
+                                                    50.5K Followers
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-inline-block float-right">
-                                            <v-icon class="body-1 black--text">mdi-chat</v-icon>
-                                            <v-icon class="body-1 black--text">cancel</v-icon>
-                                            <v-icon class="body-1 black--text">mdi-refresh</v-icon>
-                                            <v-btn color="primary list_proposal" depressed small class="overline">
-                                                View Proposal
-                                            </v-btn>
-                                        </div>
-                                    </div>
+                                        </v-col>
+                                        <v-col md="6" class="py-0 ma-0">
+                                            <div class="float-right">
+                                                <div class="d_block">
+                                                    <v-icon class="custom_font black--text px-1">mdi-chat</v-icon>
+                                                    <v-icon class="custom_font black--text px-1">cancel</v-icon>
+                                                    <v-icon class="custom_font black--text px-1">mdi-refresh</v-icon>
+                                                </div>
+                                                <v-btn color="primary list_proposal custom_font" depressed small>
+                                                    View Proposal
+                                                </v-btn>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
                                 </v-list-item-title>
                                 <v-list-item-subtitle>
-                                    <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
-                                    <div class="subtitle-2 mb-2 integrityColor--text d-inline-block float-right">
-                                        <strong class="caption">Eng. Rate</strong>
-                                        <strong class="ml-3 caption">Comments</strong>
-                                        <strong class="ml-3 caption">Likes</strong>
-                                    </div>
-                                    <div class="followers">
-                                        <div class="text-start d-inline-block">
-                                            <strong class="ml-2">$59.00 for 5 Touch Points</strong>
-                                        </div>
-                                        <div class="float-right d-inline-block">
-                                            <p class="d-inline-block mb-0 mr-n2">43%</p>
-                                            <p class="d-inline-block mb-0 ml-10 mr-6">2.2K</p>
-                                            <p class="d-inline-block mb-0 ml-5">5.5K</p>
-                                        </div>
-                                    </div>
+                                    <v-row justify="space-between">
+                                        <v-col md="6" class="py-0 ma-0">
+                                            <v-rating v-model="rating" size="7" small></v-rating>
+                                        </v-col>
+                                        <v-col md="6" class="py-0 ma-0">
+                                            <div class="subtitle-2 mb-2 integrityColor--text float-right ml-n7">
+                                                <strong class="custom_font">Eng. Rate</strong>
+                                                <strong class="ml-3 custom_font">Comments</strong>
+                                                <strong class="ml-3 custom_font">Likes</strong>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row justify="space-between">
+                                        <v-col md="6" class="py-0 ma-0">
+                                            <strong>$59.00 for 5 Touch Points</strong>
+                                        </v-col>
+                                        <v-col md="6" class="py-0 ma-0">
+                                            <div class="float-right d-inline-block ml-n7">
+                                                <p class="d-inline-block mb-0 mr-n2 custom_font">43%</p>
+                                                <p class="d-inline-block mb-0 ml-10 mr-6 custom_font">2.2K</p>
+                                                <p class="d-inline-block mb-0 ml-5 custom_font">5.5K</p>
+                                            </div>
+                                        </v-col>
+                                    </v-row>
                                 </v-list-item-subtitle>
                             </v-list-item-content>
                         </v-list-item>
@@ -383,5 +396,36 @@
     }
     >>>tr:hover .hover_class{
         background: #EEEEEE !important;
+    }
+
+    .custom_font{
+        font-size: 12px !important;
+    }
+    .followers {
+        padding-top: 12px;
+    }
+    >>>.d_block {
+        display: inline-block !important;
+    }
+
+    @media only screen
+    and (min-device-width: 960px)
+    and (max-device-width: 1366px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .custom_font{
+            font-size: 10px !important;
+        }
+        .followers {
+            padding-top: 0px;
+        }
+        >>>.custom_list .v-list-item__avatar{
+            margin-right: 5px !important;
+            height: 50px !important;
+            min-width: 50px !important;
+            width: 50px !important;
+        }
+        >>>.d_block {
+            display: block !important;
+        }
     }
 </style>

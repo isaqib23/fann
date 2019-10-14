@@ -67,6 +67,7 @@
                     <td :colspan="headers.length">
                         <v-timeline
                             dense clipped
+                            class="ml-n7"
                         >
                             <v-timeline-item
                                 v-for="n in 3"
@@ -82,7 +83,7 @@
                                         <v-col cols="12" md="6">
                                             <v-row class="mx-auto">
                                                 <v-flex xl2 lg2 md2 sm2 xs2>
-                                                    <v-list-item-avatar height="56" min-width="45" width="45" class="ma-0 number_avatar" color="primary">
+                                                    <v-list-item-avatar height="56" min-width="100%" width="100%" class="ma-0 number_avatar" color="primary">
                                                         <span class="white--text">1</span>
                                                     </v-list-item-avatar>
                                                 </v-flex>
@@ -101,7 +102,7 @@
                                                 </v-flex>
                                             </v-row>
                                         </v-col>
-                                        <v-col cols="12" md="3" class="px-1">
+                                        <v-col cols="12" md="4" class="px-1">
                                             <p class="mb-0 caption">
                                                 Start Date: <span class="float-right mr-5">Status</span>
                                             </p>
@@ -109,7 +110,7 @@
                                                 <span class="primary--text">12-09-2019</span> <span class="float-right primary--text mr-5">Draft</span>
                                             </p>
                                         </v-col>
-                                        <v-col cols="12" md="3" class="px-1">
+                                        <v-col cols="12" md="2" class="px-1">
                                             <p class="mb-0 text--primary caption pt-3">View Details
                                                 <v-menu offset-y>
                                                     <template v-slot:activator="{ on }">
