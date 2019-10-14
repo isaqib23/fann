@@ -20,7 +20,7 @@
                 <v-card-text>
                     <v-simple-table fixed-header height="auto">
                             <thead>
-                            <tr class="font-weight-black text-uppercase">
+                            <tr class="font-weight-bold title text-uppercase">
                                 <th class="text-left black--text">
                                     <v-checkbox value="true"></v-checkbox>
                                 </th>
@@ -36,13 +36,19 @@
                             <tr v-for="i in 8" :key="i">
                                 <td><v-checkbox value="true"></v-checkbox></td>
                                 <td>
-                                    <v-list two-line class="list_cards py-0 hover_class" dense>
-                                        <v-list-item>
+                                    <v-list two-line class="list_cards pa-0 mx-0 hover_class" dense>
+                                        <v-list-item class="px-0">
                                             <v-list-item-content>
                                                 <v-list-item-title v-html="item.title"></v-list-item-title>
                                                 <v-list-item-subtitle >
                                                     <v-chip-group>
-                                                        <v-chip v-for="tag in item.tags" :key="tag">
+                                                        <v-chip v-for="tag in item.tags"
+                                                                :key="tag"
+                                                                class="px-2"
+                                                                color="#E5E5E5"
+                                                                text-color="#71737D"
+                                                                label
+                                                        >
                                                             {{tag}}
                                                         </v-chip>
                                                     </v-chip-group>
@@ -58,12 +64,12 @@
                                             inset
                                             color="error"
                                             hide-details
-                                            class="swtich_class"
+                                            class="switch_class"
                                     ></v-switch>
                                 </td>
-                                <td>{{ item.impression }}</td>
-                                <td>{{ item.actions }}</td>
-                                <td>{{ item.engRate }}</td>
+                                <td class="subtitle-1">{{ item.impression }}</td>
+                                <td class="subtitle-1">{{ item.actions }}</td>
+                                <td class="subtitle-1">{{ item.engRate }}%</td>
                                 <td>
                                     <v-btn small color="green accent-4 white--text" min-width="20" class="px-1">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
@@ -93,13 +99,13 @@
                     <v-card-text class="pa-0">
                         <div class="d-inline-block ml-4" >
                             <span class="primary--text">Unboxing</span>
-                            <span class="ml-2">
+                            <span class="ml-7">
                                 Campaign Type: <span class="primary--text">Barter</span>
                             </span>
-                            <span class="ml-2">
+                            <span class="ml-7">
                                 Status:
                                 <v-switch
-                                        class="float-right pa-0 mx-2 my-0 swtich_class"
+                                        class="float-right pa-0 mx-2 mb-0 mt-1 switch_class"
                                         flat
                                         v-model="item.status"
                                         inset
@@ -183,15 +189,20 @@
     .card_wrapper{
         width: 90%;
     }
-    >>>.swtich_class .v-input--switch__track{
-        height: 20px !important;
-        width: 40px !important;
+    >>>.switch_class .v-input--switch__track{
+        height: 17px !important;
+        width: 34px !important;
     }
-    >>>.swtich_class .v-input--switch__thumb{
-        width: 12px !important;
-        height: 12px !important;
-        top:2px !important;
+    >>>.switch_class .v-input--switch__thumb{
+        width: 10px !important;
+        height: 10px !important;
+        top: 1px !important;
     }
+    >>>.switch_class .v-input--selection-controls__ripple {
+        width: 0px !important;
+        height: 0px !important;
+    }
+
     >>>.custom_field .v-input__control{
         min-height: 43px !important;
     }
