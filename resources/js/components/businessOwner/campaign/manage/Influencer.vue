@@ -302,7 +302,7 @@
         data: () => ({
             rating: 3,
             expanded: [],
-            singleExpand: false,
+            singleExpand: true,
             dropdown: [
                 { title: 'Click Me' },
                 { title: 'Click Me' },
@@ -310,11 +310,11 @@
                 { title: 'Click Me 2' },
             ],
             headers: [
-                { text: 'Placement', align: 'left', value: 'title', class: 'head_class'},
-                { text: 'Status', value: 'status', class: 'head_class'},
-                { text: 'Eng. Rate', value: 'engRate', class: 'head_class' },
-                { text: 'Comments', value: 'comments', class: 'head_class' },
-                { text: 'Like', value: 'likes', class: 'head_class' },
+                { text: 'Placement', align: 'left', value: 'title', class: 'head_class',sortable: false,},
+                { text: 'Status', value: 'status', class: 'head_class',sortable: false,},
+                { text: 'Eng. Rate', value: 'engRate', class: 'head_class',sortable: false, },
+                { text: 'Comments', value: 'comments', class: 'head_class',sortable: false, },
+                { text: 'Like', value: 'likes', class: 'head_class',sortable: false, },
             ],
             desserts: [
                 {

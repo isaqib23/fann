@@ -248,13 +248,13 @@
         data: () => ({
             rating: 3,
             expanded: [],
-            singleExpand: false,
+            singleExpand: true,
             headers: [
-                { text: 'Placement', align: 'left', value: 'title', class: 'head_class font-weight-bold text-uppercase'},
-                { text: 'Status', value: 'status', class: 'head_class font-weight-bold text-uppercase'},
-                { text: 'Impressions', value: 'impression', class: 'head_class font-weight-bold text-uppercase' },
-                { text: 'Actions', value: 'actions', class: 'head_class font-weight-bold text-uppercase' },
-                { text: 'Eng. Rate', value: 'engRate', class: 'head_class font-weight-bold text-uppercase' },
+                { text: 'Placement', align: 'left', value: 'title', class: 'head_class font-weight-bold text-uppercase',sortable: false,},
+                { text: 'Status', value: 'status', class: 'head_class font-weight-bold text-uppercase',sortable: false,},
+                { text: 'Impressions', value: 'impression', class: 'head_class font-weight-bold text-uppercase',sortable: false, },
+                { text: 'Actions', value: 'actions', class: 'head_class font-weight-bold text-uppercase',sortable: false, },
+                { text: 'Eng. Rate', value: 'engRate', class: 'head_class font-weight-bold text-uppercase',sortable: false, },
             ],
             desserts: [
                 {
