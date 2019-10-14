@@ -94,7 +94,7 @@
 
                 <v-flex xs12 class="ma-2 pa-2">
                     <v-card-title>
-                        <div class="subtitle-1 text-uppercase darken-1" ><strong>Promoting Global Real Estate License</strong></div>
+                        <div class="subtitle-1 text-capitalize darken-1" ><strong>Promoting Global Real Estate License</strong></div>
                     </v-card-title>
                     <v-card-text class="pa-0">
                         <div class="d-inline-block ml-4" >

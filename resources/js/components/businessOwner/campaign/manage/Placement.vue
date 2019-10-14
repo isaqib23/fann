@@ -28,23 +28,29 @@
                 <template v-slot:top>
                     <v-toolbar flat color="white">
                         <v-toolbar-title>
-                            <div class="subtitle-1 font-weight-bold">
+                            <div class="subtitle-1">
                                 <span>Campaign</span><v-icon class="body-1 mx-5 font-weight-bold">keyboard_arrow_right</v-icon>
                                 <span>Placement</span><v-icon class="body-1 mx-5 font-weight-bold">keyboard_arrow_right</v-icon>
-                                <span>influencer</span>
+                                <span>Influencer</span>
                             </div>
                         </v-toolbar-title>
                     </v-toolbar>
                 </template>
 
                 <template v-slot:item.title="{ item }">
-                    <v-list two-line class="py-0 hover_class" dense>
-                        <v-list-item>
+                    <v-list two-line class=" pa-0 mx-0 hover_class" dense>
+                        <v-list-item class="px-0">
                             <v-list-item-content>
                                 <v-list-item-title v-html="item.title"></v-list-item-title>
                                 <v-list-item-subtitle >
                                     <v-chip-group>
-                                        <v-chip v-for="tag in item.tags" :key="tag">
+                                        <v-chip v-for="tag in item.tags"
+                                                :key="tag"
+                                                class="px-2"
+                                                color="#E5E5E5"
+                                                text-color="#71737D"
+                                                label
+                                        >
                                             {{tag}}
                                         </v-chip>
                                     </v-chip-group>
@@ -61,12 +67,19 @@
                         inset
                         color="error"
                         hide-details
-                        class="swtich_class"
+                        class="switch_class"
                     ></v-switch>
+                </template>
+
+                <template v-slot:item.impression="{ item }">
+                    <span class="subtitle-1">{{item.impression}}</span>
+                </template>
+                <template v-slot:item.actions="{ item }">
+                    <span class="subtitle-1">{{item.actions}}</span>
                 </template>
                 <template v-slot:item.engRate="{ item }">
                     <div class="mb-0">
-                        <span>{{item.engRate}}</span>
+                        <span class="subtitle-1">{{item.engRate}}%</span>
                         <v-btn small color="green accent-4 white--text px-1 ml-6" min-width="20">
                             <v-icon class="body-1">keyboard_arrow_right</v-icon>
                         </v-btn>
@@ -88,55 +101,58 @@
                                 right
                                 small
                             >
-                                <v-badge>
+                                <v-badge class="full_width">
                                     <template v-slot:badge>6</template>
                                     <v-card class="elevation-2 list_cards">
-                                    <v-list-item>
-                                        <v-list-item-avatar height="30" min-width="30" width="30" class="mr-3">
-                                            <v-img src="/images/avtar.png"></v-img>
-                                        </v-list-item-avatar>
+                                    <v-list two-line>
+                                        <v-list-item>
+                                            <v-list-item-avatar height="30" min-width="30" width="30" class="mr-3">
+                                                <v-img src="/images/avtar.png"></v-img>
+                                            </v-list-item-avatar>
 
-                                        <v-list-item-content>
-                                            <v-row class="mx-auto">
-                                                <v-flex xl3 lg3 md3 sm6 xs12>
-                                                    <div class="float_class">
-                                                        <div class="body-2 mb-2"><strong>Amanda Nash</strong>
-                                                            <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
+                                            <v-list-item-content>
+                                                <v-row class="mx-auto">
+                                                    <v-flex xl3 lg3 md3 sm6 xs12>
+                                                        <div class="float_class">
+                                                            <div class="body-2 mb-2"><strong>Amanda Nash</strong>
+                                                                <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </v-flex>
-                                                <v-flex xl2 lg2 md2 sm6 xs12>
-                                                    <div class="followers caption">
-                                                        <v-icon class="body-1">mdi-instagram</v-icon>
-                                                        50.5K Followers
-                                                    </div>
-                                                </v-flex>
-                                                <v-flex xl4 lg4 md4 sm12 xs12>
-                                                    <div class="float_class">
-                                                        <div class="caption mb-2 integrityColor--text">
-                                                            <strong class="caption">Eng. Rate</strong>
-                                                            <strong class="ml-1 caption">Comments</strong>
-                                                            <strong class="ml-1 caption">Likes</strong>
+                                                    </v-flex>
+                                                    <v-flex xl2 lg2 md2 sm6 xs12>
+                                                        <div class="followers caption">
+                                                            <v-icon class="body-1">mdi-instagram</v-icon>
+                                                            50.5K Followers
                                                         </div>
-                                                        <div class="followers">
-                                                            <p class="d-inline-block mb-0 mx-3">43%</p>
-                                                            <p class="d-inline-block mb-0 ml-5 mr-3">2.2K</p>
-                                                            <p class="d-inline-block mb-0 ml-3">5.5K</p>
+                                                    </v-flex>
+                                                    <v-flex xl4 lg4 md4 sm12 xs12>
+                                                        <div class="float_class">
+                                                            <div class="caption mb-2 integrityColor--text">
+                                                                <strong class="caption">Eng. Rate</strong>
+                                                                <strong class="ml-1 caption">Comments</strong>
+                                                                <strong class="ml-1 caption">Likes</strong>
+                                                            </div>
+                                                            <div class="followers">
+                                                                <p class="d-inline-block mb-0 mx-3">43%</p>
+                                                                <p class="d-inline-block mb-0 ml-5 mr-3">2.2K</p>
+                                                                <p class="d-inline-block mb-0 ml-3">5.5K</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </v-flex>
-                                                <v-flex xl3 lg3 md3 sm6 xs12 class="text-center">
-                                                    <v-btn color="info" depressed small class="overline px-3 ml-1 white--text" min-width="30">
-                                                        <v-icon class="caption">mdi-instagram</v-icon>
-                                                        Chat
-                                                    </v-btn>
-                                                    <v-btn color="success" depressed small class="overline px-1" min-width="20">
-                                                        <v-icon>keyboard_arrow_right</v-icon>
-                                                    </v-btn>
-                                                </v-flex>
-                                            </v-row>
-                                        </v-list-item-content>
-                                    </v-list-item>
+                                                    </v-flex>
+                                                    <v-flex xl3 lg3 md3 sm6 xs12 class="text-center">
+                                                        <v-btn color="info" depressed small class="overline px-3 ml-1 white--text" min-width="30">
+                                                            <v-icon class="caption">mdi-instagram</v-icon>
+                                                            Chat
+                                                        </v-btn>
+                                                        <v-btn color="success" depressed small class="overline px-1" min-width="20">
+                                                            <v-icon>keyboard_arrow_right</v-icon>
+                                                        </v-btn>
+                                                    </v-flex>
+                                                </v-row>
+                                            </v-list-item-content>
+                                        </v-list-item>
+                                    </v-list>
+
                                 </v-card>
                                 </v-badge>
                             </v-timeline-item>
@@ -220,11 +236,11 @@
             expanded: [],
             singleExpand: false,
             headers: [
-                { text: 'Placement', align: 'left', value: 'title', class: 'head_class'},
-                { text: 'Status', value: 'status', class: 'head_class'},
-                { text: 'Impressions', value: 'impression', class: 'head_class' },
-                { text: 'Actions', value: 'actions', class: 'head_class' },
-                { text: 'Eng. Rate', value: 'engRate', class: 'head_class' },
+                { text: 'Placement', align: 'left', value: 'title', class: 'head_class font-weight-bold text-uppercase'},
+                { text: 'Status', value: 'status', class: 'head_class font-weight-bold text-uppercase'},
+                { text: 'Impressions', value: 'impression', class: 'head_class font-weight-bold text-uppercase' },
+                { text: 'Actions', value: 'actions', class: 'head_class font-weight-bold text-uppercase' },
+                { text: 'Eng. Rate', value: 'engRate', class: 'head_class font-weight-bold text-uppercase' },
             ],
             desserts: [
                 {
@@ -327,14 +343,18 @@
     >>>.v-badge__badge{
         margin-right: 16px !important;
     }
-    >>>.swtich_class .v-input--switch__track{
-        height: 20px !important;
-        width: 40px !important;
+    >>>.switch_class .v-input--switch__track{
+        height: 17px !important;
+        width: 34px !important;
     }
-    >>>.swtich_class .v-input--switch__thumb{
-        width: 12px !important;
-        height: 12px !important;
-        top:2px !important;
+    >>>.switch_class .v-input--switch__thumb{
+        width: 10px !important;
+        height: 10px !important;
+        top: 1px !important;
+    }
+    >>>.switch_class .v-input--selection-controls__ripple {
+        width: 0px !important;
+        height: 0px !important;
     }
     >>>.head_class{
         color: #000 !important;
