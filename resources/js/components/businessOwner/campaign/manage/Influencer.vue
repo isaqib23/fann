@@ -23,6 +23,7 @@
                 :expanded.sync="expanded"
                 item-key="id"
                 show-expand
+                :hide-default-footer="true"
                 class="elevation-1 table_class"
             >
                 <template v-slot:top>
