@@ -16,17 +16,19 @@
                                 :items="items"
                                 label="To"
                                 solo
+                                append-icon="keyboard_arrow_down"
                             >
                             </v-select>
                         </v-col>
                         <v-col cols="12" md="1" class="px-0 text-center hidden-sm-and-down">
                             <v-icon class="pt-3" color="dark">mdi-minus</v-icon>
                         </v-col>
-                        <v-col cols="12" md="2" class="pl-0" :class="$vuetify.breakpoint.mdAndUp ? '' : 'pa-0'">
+                        <v-col cols="12" md="3" class="pl-0" :class="$vuetify.breakpoint.mdAndUp ? '' : 'pa-0'">
                             <v-select
                                 :items="items"
                                 label="From"
                                 solo
+                                append-icon="keyboard_arrow_down"
                             >
                             </v-select>
                         </v-col>
@@ -39,24 +41,24 @@
                     <v-card class="mx-auto pa-8">
                         <v-card-title>
                             <v-row justify="space-between">
-                                <v-col cols="12" md="3">
+                                <v-col cols="12" md="6">
                                     <div class="subtitle-2 mb-2 text-uppercase"><strong>Payment Overview</strong></div>
                                 </v-col>
-                                <v-col cols="12" md="3">
-                                    <div class="subtitle-2 mb-2 text-uppercase"><strong>Your Engagement Budget:<span class="success--text">$99.00</span></strong></div>
+                                <v-col cols="12" md="6">
+                                    <div class="subtitle-2 mb-2 text-uppercase text-right"><strong>Your Remaining Budget:<span class="success--text">$99.00</span></strong></div>
                                 </v-col>
                             </v-row>
                         </v-card-title>
                         <v-simple-table class="shipping_table">
                             <thead class="gutter">
                             <tr>
-                                <th class="table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 8%">Date</th>
-                                <th class="table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 10%">Influencer</th>
-                                <th class="table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 25%">Campaign</th>
-                                <th class="table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 20%">Touch Point</th>
-                                <th class="table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 5%">Amount</th>
-                                <th class="table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 5%">Status</th>
-                                <th class="table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 27%">Actions</th>
+                                <th class="bg-grey table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 8%">Date</th>
+                                <th class="bg-grey table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 10%">Influencer</th>
+                                <th class="bg-grey table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 25%">Campaign</th>
+                                <th class="bg-grey table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 20%">Touch Point</th>
+                                <th class="bg-grey table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 5%">Amount</th>
+                                <th class="bg-grey table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 5%">Status</th>
+                                <th class="bg-grey table_col_width subtitle-2 black--text text-uppercase text-center" style="width: 27%">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -122,5 +124,8 @@
     }
     >>>.list_cards .v-avatar {
         border-radius: 10px !important;
+    }
+    >>>.bg-grey{
+        background: #EEEEEE !important;
     }
 </style>

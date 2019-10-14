@@ -69,7 +69,7 @@
                 </v-card-title>
 
                 <div class="gender_group">
-                    <div class="subtitle-2 mb-2"><strong>Gender</strong></div>
+                    <div class="subtitle-2 mb-2">Gender</div>
                     <v-radio-group v-model="kind" row class="mt-0">
                         <v-radio label="Male" off-icon="mdi-human-male" on-icon="mdi-human-male" value="radio-4" active-class="kind_active"></v-radio>
                         <v-radio label="Female" off-icon="mdi-human-female" on-icon="mdi-human-female" value="radio-5" active-class="kind_active"></v-radio>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="age_group">
-                    <div class="subtitle-2 mb-2"><strong>Age Range</strong></div>
+                    <div class="subtitle-2 mb-2">Age Range</div>
                     <v-radio-group v-model="kind" row class="mt-0">
                         <v-radio label="13 - 17" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-6" active-class="kind_active"></v-radio>
                         <v-radio label="18 - 24" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-7" active-class="kind_active"></v-radio>
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="age_group">
-                    <div class="subtitle-2 mb-2"><strong>Country</strong></div>
+                    <div class="subtitle-2 mb-2">Country</div>
                     <v-select
                         :items="itemss"
                         v-model="selected"
@@ -115,7 +115,7 @@
                 </div>
 
                 <v-card-actions class="action_btns mt-3 mb-3">
-                    <v-btn color="primary" dark large block>
+                    <v-btn color="primary" dark large block class="text-capitalize">
                         Apply Search Filters
                     </v-btn>
                 </v-card-actions>

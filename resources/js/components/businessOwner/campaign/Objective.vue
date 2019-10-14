@@ -4,8 +4,8 @@
         <v-card-text class="mb-12 text_field_width ma-auto">
             <v-layout row justify-center wrap>
                 <v-flex lg12 sm12 xs12 class="text-center">
-                    <v-radio-group v-model="kind" row class="mx-auto">
-                        <v-radio value="radio-1">
+                    <v-radio-group v-model="kind" row class="px-0">
+                        <v-radio class="px-12" value="radio-1" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate">
                             <template slot="label">
                                 <span class="subtitle-1 text-uppercase black--text font-weight-bold">
                                     <v-icon class="display-2 primary--text">mdi-instagram</v-icon>
@@ -13,7 +13,7 @@
                                 </span>
                             </template>
                         </v-radio>
-                        <v-radio value="radio-2">
+                        <v-radio class="px-12" value="radio-2" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate">
                             <template slot="label">
                                 <span class="subtitle-1 text-uppercase black--text font-weight-bold">
                                     <v-icon class="display-2 primary--text">mdi-youtube</v-icon>
@@ -77,7 +77,7 @@
             </v-layout>
         </v-card-text>
         <v-card-actions class="float-right action_btns mt-n12">
-            <v-btn color="primary" dark large @click="goToNext()">
+            <v-btn color="primary" dark large @click="goToNext()" class="text-capitalize">
                 {{ $t('labels.campaign.name_nextBtn') }}
                 <v-icon right>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -99,7 +99,7 @@
         },
         methods: {
             goToNext(){
-                this.$router.push({ name: 'create-campaign-name' })
+                this.$router.push({ name: 'create-campaign-requirements' })
             }
         }
     }

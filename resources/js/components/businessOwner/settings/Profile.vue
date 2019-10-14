@@ -1,16 +1,16 @@
 <template>
     <v-flex class="my-12 mx-auto card_wrapper">
-        <div class="subtitle-1 mb-2"><strong>Business Profile</strong></div>
+        <div class="subtitle-1 mb-2 text-uppercase"><strong>Business Profile</strong></div>
         <v-card class="pa-6">
             <v-row class="mx-auto">
                 <v-flex xl12 lg12 md12 sm12 sx12 class="mr-12">
                     <v-card-title>
-                        <div class="subtitle-1 mb-2"><strong>Business Profile</strong></div>
+                        <div class="subtitle-1 mb-2"><strong>Business Information</strong></div>
                     </v-card-title>
                     <v-card-text>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores modi quidem veniam, expedita quis laboriosam, ullam facere adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.</p>
 
-                        <div class="subtitle-1 mb-2"><strong>Personal Business</strong></div>
+                        <div class="subtitle-1 mb-2 black--text"><strong>Personal Business</strong></div>
                         <v-row>
                             <v-col cols="12" sm="4">
                                 <label class="font-weight-bold">First Name</label>
@@ -18,7 +18,7 @@
                                     v-model="user.name"
                                     label="First Name"
                                     solo
-                                    class="mt-1"
+                                    class="mt-1 custom_dropdown"
                                 ></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="4">
@@ -26,7 +26,7 @@
                                 <v-text-field
                                     label="Last Name"
                                     solo
-                                    class="mt-1"
+                                    class="mt-1 custom_dropdown"
                                 ></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="4">
@@ -35,12 +35,12 @@
                                     v-model="user.email"
                                     label="First Name"
                                     solo
-                                    class="mt-1"
+                                    class="mt-1 custom_dropdown"
                                 ></v-text-field>
                             </v-col>
                         </v-row>
 
-                        <div class="subtitle-1 mb-2"><strong>Company Details</strong></div>
+                        <div class="subtitle-1 mb-2 black--text"><strong>Company Details</strong></div>
                         <v-row>
                             <v-col cols="12" sm="4">
                                 <label class="font-weight-bold">Upload Logo</label>
@@ -60,7 +60,7 @@
                                 <v-text-field
                                     label="www.abc.com"
                                     solo
-                                    class="mt-1"
+                                    class="mt-1 custom_dropdown"
                                 ></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="4">
@@ -69,6 +69,8 @@
                                     :items="items"
                                     label="Health & fitness"
                                     solo
+                                    class="custom_dropdown"
+                                    append-icon="keyboard_arrow_down"
                                 ></v-select>
                             </v-col>
                         </v-row>
@@ -79,7 +81,7 @@
                                 <v-text-field
                                     label="123456789"
                                     solo
-                                    class="mt-1"
+                                    class="mt-1 custom_dropdown"
                                 ></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="4">
@@ -87,7 +89,7 @@
                                 <v-text-field
                                     label="Europe"
                                     solo
-                                    class="mt-1"
+                                    class="mt-1 custom_dropdown"
                                 ></v-text-field>
                             </v-col>
                         </v-row>
@@ -99,6 +101,7 @@
                                     name="input-7-4"
                                     label="Solo textarea ......"
                                     rows="7"
+                                    class="custom_dropdown"
                                 ></v-textarea>
                             </v-col>
                             <v-col cols="12" sm="4">
@@ -107,20 +110,24 @@
                                     :items="items"
                                     label="Islamabad"
                                     solo
+                                    append-icon="keyboard_arrow_down"
+                                    class="custom_dropdown"
                                 ></v-select>
                                 <label class="font-weight-bold">Country</label>
                                 <v-select
                                     :items="items"
                                     label="Pakistan"
                                     solo
+                                    class="custom_dropdown"
+                                    append-icon="keyboard_arrow_down"
                                 ></v-select>
                             </v-col>
                         </v-row>
                     </v-card-text>
 
                     <v-card-actions class="text-right float-right">
-                        <v-btn class="caption mr-3" large>Button</v-btn>
-                        <v-btn color="primary" class="caption" large>Submit</v-btn>
+                        <v-btn class="caption mr-3 text-capitalize" large>Button</v-btn>
+                        <v-btn color="primary" class="caption text-capitalize" large>Submit</v-btn>
                     </v-card-actions>
                 </v-flex>
             </v-row>
@@ -155,5 +162,12 @@
 <style scoped>
     .card_wrapper{
         width: 90%;
+    }
+    >>>.custom_dropdown .v-input__control > .v-input__slot{
+        box-shadow: none !important;
+        border: 1px solid #cccccc;
+    }
+    >>>.custom_dropdown .v-input__control{
+        min-height: 45px !important;
     }
 </style>

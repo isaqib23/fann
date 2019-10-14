@@ -33,7 +33,7 @@
             <v-col cols="12" md="8" class="py-5 px-7">
                 <div class="mail_header bottom_border mr-n4 ml-n7 pl-7 pr-4">
                     <div class="subtitle-1 mb-2">
-                        <v-chip color="primary" class="mr-5">Fashion</v-chip>
+                        <v-chip color="primary" class="mr-5" label>Fashion</v-chip>
                         <strong>Brunch this weekend?</strong>
                         <v-icon class="float-right">keyboard_arrow_down</v-icon>
                     </div>

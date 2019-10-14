@@ -5,21 +5,21 @@
             <v-icon left>mdi-settings</v-icon>
         </v-tab>-->
         <v-tab
-            :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'"
+            :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
         >
             <v-icon left class="hidden-md-and-up">mdi-account-plus</v-icon>
             <p>Create</p>
             <v-icon left class="hidden-md-and-down">mdi-account-plus</v-icon>
         </v-tab>
         <v-tab
-            :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'"
+            :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
         >
             <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
             <p>invite</p>
             <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
         </v-tab>
         <v-tab
-            :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'"
+            :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
         >
             <v-icon left class="hidden-md-and-up">mdi-access-point</v-icon>
             <p>promote</p>
@@ -66,7 +66,6 @@
     .active_tab {
         color:black !important;
         background: #F7F7FF !important;
-        border-left: 3px solid #EE6F6F;
     }
     .active_tab_sm {
         color:black !important;

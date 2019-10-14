@@ -10,9 +10,11 @@
                     </div>
 
                     <div class="pl-12">
-                        <v-checkbox label="Unboxing" color="primary" value="1" hide-details></v-checkbox>
-                        <v-checkbox label="Product Review" color="primary" value="2" hide-details></v-checkbox>
-                        <v-checkbox label="Contests & Giveways" color="primary" value="3" hide-details></v-checkbox>
+                        <v-radio-group v-model="radioGroup1">
+                            <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Unboxing" color="primary" value="1" hide-details></v-radio>
+                            <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Product Review" color="primary" value="2" hide-details></v-radio>
+                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Contests & Giveways" color="primary" value="3" hide-details></v-radio>
+                        </v-radio-group>
                     </div>
 
                 </v-flex>
@@ -22,9 +24,11 @@
                         <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">brand awareness</div>
                     </div>
                     <div class="pl-12">
-                        <v-checkbox label="Unboxing" color="primary" value="1" hide-details></v-checkbox>
-                        <v-checkbox label="Product Review" color="primary" value="2" hide-details></v-checkbox>
-                        <v-checkbox label="Contests & Giveways" color="primary" value="3" hide-details></v-checkbox>
+                        <v-radio-group v-model="radioGroup2">
+                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Shoutout" color="primary" value="1" hide-details></v-radio>
+                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Review" color="primary" value="2" hide-details></v-radio>
+                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Event Invitation" color="primary" value="3" hide-details></v-radio>
+                        </v-radio-group>
                     </div>
                 </v-flex>
                 <v-flex lg4 sm12 xs12>
@@ -33,9 +37,10 @@
                         <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">sponsored content</div>
                     </div>
                     <div class="pl-12">
-                        <v-checkbox label="Unboxing" color="primary" value="1" hide-details></v-checkbox>
-                        <v-checkbox label="Product Review" color="primary" value="2" hide-details></v-checkbox>
-                        <v-checkbox label="Contests & Giveways" color="primary" value="3" hide-details></v-checkbox>
+                        <v-radio-group v-model="radioGroup3">
+                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Promotional Content" color="primary" value="1" hide-details></v-radio>
+                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Special Events" color="primary" value="2" hide-details></v-radio>
+                        </v-radio-group>
                     </div>
                 </v-flex>
             </v-layout>
@@ -53,7 +58,7 @@
             </v-layout>
         </v-card-text>
         <v-card-actions class="float-right action_btns mt-n12">
-            <v-btn color="primary" dark large @click="goToNext()">
+            <v-btn color="primary" class="text-capitalize" dark large @click="goToNext()">
                 {{ $t('labels.campaign.name_nextBtn') }}
                 <v-icon right>keyboard_arrow_right</v-icon>
             </v-btn>
@@ -66,7 +71,9 @@
     export default {
 
         data: () => ({
-
+            radioGroup1: 1,
+            radioGroup2: 1,
+            radioGroup3: 1
         }),
 
         mounted() {
@@ -74,7 +81,7 @@
         },
         methods: {
             goToNext(){
-                this.$router.push({ name: 'create-campaign-requirements' })
+                this.$router.push({ name: 'create-campaign-objective' })
             }
         }
     }

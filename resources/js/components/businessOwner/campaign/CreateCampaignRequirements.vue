@@ -24,7 +24,9 @@
                 </v-tabs>
             </v-card>
         </v-flex>
-        <v-flex xl8 lg8 md12 sm12 xs12 class="right-panes">
+        <v-flex xl8 lg8 md8 sm12 xs12 class="right-panes "
+           :class="active_tab == 0 ? 'custom-padding' : ''"
+        >
             <!--<SetupRightPane v-if="active_tab == 0"></SetupRightPane>-->
             <CreateRightPane v-if="active_tab == 0"></CreateRightPane>
             <InviteRightPaneListView v-if="active_tab == 1"></InviteRightPaneListView>
@@ -62,7 +64,7 @@
         methods: {},
         computed: {
             paneClass: function() {
-                return (this.active_tab == 2) ? 'lg12 sm12 xl12 md12 xs12' : 'xl4 lg4 md12 sm12 xs12';
+                return (this.active_tab == 2) ? 'lg12 sm12 xl12 md4 xs12' : 'xl4 lg4 md4 sm12 xs12';
             },
             cardClass: function() {
                 return (this.active_tab == 2) ? 'full_width' : 'full_width';
@@ -79,5 +81,13 @@
         max-height: 100vh !important;
         min-height: 100vh !important;
         overflow-y: scroll !important;
+    }
+    @media only screen
+    and (min-device-width: 960px)
+    and (max-device-width: 1366px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .custom-padding{
+            padding-left: 48px !important;
+        }
     }
 </style>

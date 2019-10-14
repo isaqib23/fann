@@ -49,7 +49,7 @@
                     </v-layout>
                 </v-card>
             </v-flex>
-
+            <hr class="my-3 hr_divider" />
             <v-flex color="black" class="ma-auto"
                     :class="$vuetify.breakpoint.smAndUp ? 'common_wrapper' : 'full_width'"
             >
@@ -95,7 +95,7 @@
                     </v-layout>
                 </v-card>
             </v-flex>
-
+            <hr class="my-3 hr_divider" />
 
             <v-flex class="ma-auto"
                     :class="$vuetify.breakpoint.smAndUp ? 'common_wrapper' : 'full_width'"
@@ -108,13 +108,13 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12>
-                            <v-btn class="ma-3" color="grey lighten-2" small>#Hashtag 1</v-btn>
-                            <v-btn class="ma-3" color="grey lighten-2" small>#Hashtag 1</v-btn>
+                            <v-btn class="ma-3 text-capitalize" color="grey lighten-2" small>#Hashtag 1</v-btn>
+                            <v-btn class="ma-3 text-capitalize" color="grey lighten-2" small>#Hashtag 1</v-btn>
                         </v-flex>
                     </v-layout>
                 </v-card>
             </v-flex>
-
+            <hr class="my-3 hr_divider" />
             <v-flex class="ma-auto"
                     :class="$vuetify.breakpoint.smAndUp ? 'common_wrapper' : 'full_width'"
             >
@@ -126,13 +126,13 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12>
-                            <v-btn class="ma-3" color="grey lighten-2" small>@Mentions 1</v-btn>
-                            <v-btn class="ma-3" color="grey lighten-2" small>@Mentions 2</v-btn>
+                            <v-btn class="ma-3 text-lowercase" color="grey lighten-2" small>@Mentions 1</v-btn>
+                            <v-btn class="ma-3 text-lowercase" color="grey lighten-2" small>@Mentions 2</v-btn>
                         </v-flex>
                     </v-layout>
                 </v-card>
             </v-flex>
-
+            <hr class="my-3 hr_divider" />
             <v-flex class="ma-auto my-3"
                     :class="$vuetify.breakpoint.smAndUp ? 'common_wrapper' : 'full_width'"
             >
@@ -149,7 +149,7 @@
                     </v-layout>
                 </v-card>
             </v-flex>
-
+            <hr class="my-3 hr_divider" />
             <v-flex class="ma-auto my-3"
                     :class="$vuetify.breakpoint.smAndUp ? 'common_wrapper' : 'full_width'"
             >
@@ -192,7 +192,7 @@
                 </v-card>
             </v-flex>
 
-            <v-divider></v-divider>
+            <hr class="my-3 hr_divider" />
 
             <v-flex color="black" class="ma-auto"
                     :class="$vuetify.breakpoint.smAndUp ? 'common_wrapper' : 'full_width'"
@@ -227,7 +227,6 @@
                 </v-card>
             </v-flex>
 
-            <v-divider></v-divider>
 
 
         </v-card>
@@ -301,13 +300,7 @@
     .right-pane {
         width: 75% !important;
     }
-    .common_wrapper .left-pane {
-        width: 40% !important;
-    }
-    .common_wrapper .right-pane {
-        width: 60% !important;
-        background:none !important;
-    }
+
     .card_box {
         height: 120px;
         width: 120px;
@@ -423,5 +416,22 @@
     }
     .fix_width {
         width: 90% !important;
+    }
+
+    @media only screen
+    and (min-device-width: 960px)
+    and (max-device-width: 1366px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .common_wrapper {
+            width:90% !important;
+            clear: both !important;
+        }
+    }
+
+    .hr_divider {
+        height:1px;
+        border:none;
+        color:#333;
+        background-color:#333;
     }
 </style>

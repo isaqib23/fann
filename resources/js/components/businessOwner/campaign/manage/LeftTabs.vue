@@ -1,16 +1,16 @@
 <template>
     <div>
-        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'" >
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'" >
             <v-icon left class="hidden-md-and-up">mdi-settings</v-icon>
             <p>Campaign</p>
             <v-icon left class="hidden-md-and-down">mdi-settings</v-icon>
         </v-tab>
-        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'" >
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'" >
             <v-icon left class="hidden-md-and-up">mdi-account-plus</v-icon>
             <p>Placement</p>
             <v-icon left class="hidden-md-and-down">mdi-account-plus</v-icon>
         </v-tab>
-        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height'">
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'">
             <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
             <p>Influencer</p>
             <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
@@ -56,7 +56,6 @@
     .active_tab {
         color:black !important;
         background: #F7F7FF !important;
-        border-left: 3px solid #EE6F6F;
     }
     .active_tab_sm {
         color:black !important;

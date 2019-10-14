@@ -36,15 +36,14 @@
             </v-list-item>
         </v-list>
 
-        <v-list class="py-0" dense nav v-for="(group, index) in items" :key="index">
-            <v-divider class="mb-2" :class="{ 'mt-0': !index, 'mt-2': index }" v-if="group.length"></v-divider>
-
+        <v-list class="px-0 py-2" dense nav v-for="(group, index) in items" :key="index">
             <template v-for="item in group">
                 <v-list-group
                     v-if="!!item.items"
                     :prepend-icon="item.icon"
                     no-action
                     :key="item.title"
+                    active-class="nav_active"
                 >
                     <template v-slot:activator>
                         <v-list-item-content>
@@ -131,7 +130,7 @@
                         {title: 'Dashboard', icon: 'dashboard', to: {name: 'dashboard'}}
                     ],
                     [
-                        {title: 'Create', icon: 'list_alt', to: {name: 'create-campaign-objective'}, exact: false}
+                        {title: 'Create', icon: 'list_alt', to: {name: 'create-campaign-name'}, exact: false}
                     ],
                     [
                         {title: 'Manage', icon: 'mdi-receipt', to: {name: 'manage-campaigns'}, exact: false}
@@ -157,3 +156,16 @@
         }
     }
 </script>
+<style scoped>
+    >>>.v-list-item--active {
+        background: #53508D 0% 0% no-repeat padding-box !important;
+        color: #53508D !important;
+        border-left: 3px solid #EE6F6F;
+    }
+    >>>.v-list-item--active .v-list-item__title, >>>.v-list-item--active .v-icon.v-icon{
+        color: #ffffff !important;
+    }
+    >>>.v-navigation-drawer__border{
+        background-color: transparent !important;
+    }
+</style>

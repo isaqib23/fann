@@ -14,9 +14,9 @@
                         <v-simple-table fixed-header height="375px">
                             <thead class="grey lighten-4">
                             <tr>
-                                <th class="text-left">Campaign Name</th>
-                                <th class="text-left" style="width: 132px">Progress</th>
-                                <th class="text-center">
+                                <th class="text-left bg-grey">Campaign Name</th>
+                                <th class="text-left bg-grey" style="width: 132px">Progress</th>
+                                <th class="text-center bg-grey">
                                     <v-badge overlap color="transparent" >
                                         <template v-slot:badge >
                                             <v-icon color="red">
@@ -43,7 +43,12 @@
                                                 <v-list-item-title class="font-weight-black" v-html="items.title"></v-list-item-title>
                                                 <v-list-item-subtitle >
                                                     <v-chip-group>
-                                                        <v-chip v-for="tag in items.tags" :key="tag">
+                                                        <v-chip v-for="tag in items.tags" :key="tag"
+                                                                class="px-2"
+                                                                color="#E5E5E5"
+                                                                text-color="#71737D"
+                                                                label
+                                                        >
                                                             {{tag}}
                                                         </v-chip>
                                                     </v-chip-group>
@@ -80,7 +85,7 @@
                                     :key="i"
                             >
                                 <v-list-item-content class="pa-2 max-width-13" >
-                                    <v-list-item-title v-text="notification.time" class="body-2 text-sm-center text--grey"></v-list-item-title>
+                                    <v-list-item-title v-text="notification.time" class="caption text-sm-center text--grey"></v-list-item-title>
                                 </v-list-item-content>
 
                                 <v-list-item-icon class="notification-icon-padding grey lighten-4 br-left">
@@ -88,7 +93,7 @@
                                 </v-list-item-icon>
 
                                 <v-list-item-content class="grey lighten-4 br-right">
-                                    <v-list-item-title v-text="notification.text"></v-list-item-title>
+                                    <v-list-item-title v-html="notification.text"></v-list-item-title>
                                 </v-list-item-content>
                             </v-list-item>
                         </v-list-item-group>
@@ -289,20 +294,20 @@
                 avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
                 title: 'Brunch this weekend?',
                 tags: [
-                    'Work',
+                    'Barter: Valvet Leather Bag',
                     'Art',
                     'Tech'
                 ]
             },
             notifications: [
-                { text: 'Your Shipment is pending', icon: 'mdi-clock', time: '4 hours'},
+                { text: 'Your Shipment is pending <strong>Laura Miller</strong>', icon: 'mdi-clock', time: '4 hours'},
                 { text: 'Touch point completed', icon: 'mdi-account', time: '3 hours'},
                 { text: 'Laura Started Chat', icon: 'mdi-flag', time: '2 hours'},
                 { text: 'Your Shipment is pending', icon: 'mdi-clock', time: '4 hours'},
                 { text: 'Touch point completed', icon: 'mdi-account', time: '3 hours'},
                 { text: 'Laura Started Chat', icon: 'mdi-flag', time: '2 hours'}
             ],
-            from: ['Foo', 'Bar', 'Fizz', 'Buzz']
+            from: ['Last Week', 'Last Month', 'Last Year']
         })
     }
 </script>
@@ -341,7 +346,7 @@
         max-width: 25%;
     }
     .max-width-13 {
-        max-width: 13%;
+        max-width: 18%;
     }
     >>>.custom_dropdown .v-input__control{
         min-height: 30px !important;
@@ -357,4 +362,7 @@
     >>>tr:hover .hover_class{
         background: #EEEEEE !important;
     }
+    >>>.bg-grey{
+        background: #EEEEEE !important;
+     }
 </style>

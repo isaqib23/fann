@@ -6,7 +6,7 @@
                 <v-row class="mx-auto main_wrapper" justify="start">
                     <v-col cols="12" md="2" color="white" class="pa-0 left_border">
                         <div class="compose text-center pa-5">
-                            <v-btn color="primary" block :to="{ name: 'message-compose'}">
+                            <v-btn class="text-capitalize" color="primary" block :to="{ name: 'message-compose'}">
                                 Compose
                             </v-btn>
                         </div>
@@ -32,7 +32,7 @@
                             <v-subheader class="ml-0 subtitle-1 font-weight-bold pl-0 black--text">Tag</v-subheader>
 
                             <v-list-item
-                                class="pa-0"
+                                class="pa-0 ml-n4"
                                 v-for="item in items2"
                                 :key="item.title"
                                 @click=""

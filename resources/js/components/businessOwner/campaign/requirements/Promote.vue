@@ -63,7 +63,7 @@
                                         </p>
                                     </v-card-text>
                                 </v-card>
-                                <v-btn color="primary" large class="mt-8 float-right">
+                                <v-btn color="primary" large class="mt-8 float-right text-capitalize">
                                     Launch Campaign
                                     <v-icon right>keyboard_arrow_right</v-icon>
                                 </v-btn>

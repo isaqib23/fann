@@ -1,16 +1,16 @@
 <template>
     <div>
-        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height text-center'">
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
             <v-icon left class="hidden-md-and-up">mdi-account</v-icon>
             <p>Business Profile</p>
             <v-icon left class="hidden-md-and-down">mdi-account</v-icon>
         </v-tab>
-        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height text-center'">
-            <v-icon left class="hidden-md-and-up">credit_card</v-icon>
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
+            <v-icon left class="hidden-md-and-up">mdi-credit-card-outline mdi-rotate-45</v-icon>
             <p>Billing & Payment</p>
-            <v-icon left class="hidden-md-and-down">credit_card</v-icon>
+            <v-icon left class="hidden-md-and-down">mdi-credit-card</v-icon>
         </v-tab>
-        <v-tab :class="$vuetify.breakpoint.mdAndUp ? '' : 'd-inline-block full_height text-center'">
+        <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
             <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
             <p>Integrations</p>
             <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
@@ -56,7 +56,6 @@
     .active_tab {
         color:black !important;
         background: #F7F7FF !important;
-        border-left: 3px solid #EE6F6F;
     }
     .active_tab_sm {
         color:black !important;

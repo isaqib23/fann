@@ -49,21 +49,21 @@
                                                 <div class="float_class">
                                                     <div class="subtitle-2 mb-2 integrityColor--text">
                                                         <strong>Eng. Rate</strong>
-                                                        <strong class="ml-3">Comments</strong>
-                                                        <strong class="ml-3">Likes</strong>
+                                                        <strong class="ml-2">Comments</strong>
+                                                        <strong class="ml-1">Likes</strong>
                                                     </div>
                                                     <div class="followers">
                                                         <p class="d-inline-block mb-0 mx-3">43%</p>
                                                         <p class="d-inline-block mb-0 ml-10 mr-6">2.2K</p>
-                                                        <p class="d-inline-block mb-0 ml-5">5.5K</p>
+                                                        <p class="d-inline-block mb-0 ml-2">5.5K</p>
                                                     </div>
                                                 </div>
                                             </v-flex>
                                             <v-flex xl4 lg4 md4 sm6 xs12 class="text-center">
-                                                <v-btn color="primary pl-3 pr-3" depressed @click="goToProfile">
+                                                <v-btn color="primary pl-3 pr-3" class="text-capitalize" depressed @click="goToProfile">
                                                     View Profile
                                                 </v-btn>
-                                                <v-btn color="success pl-3 pr-3" depressed>
+                                                <v-btn color="success pl-3 pr-3" depressed class="text-capitalize">
                                                     <v-icon>mdi-account-plus-outline</v-icon>
                                                     Invite
                                                 </v-btn>

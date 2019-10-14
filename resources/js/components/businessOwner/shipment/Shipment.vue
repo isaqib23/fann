@@ -2,14 +2,14 @@
     <div>
         <v-flex :class="$vuetify.breakpoint.smAndUp ? 'ma-12' : 'ma-1'">
             <v-row justify="space-between">
-                <v-col cols="12" md="6" xs="12">
-                    <v-btn color="primary" class="mr-n1 btn_right_border" dark large>Pending</v-btn>
-                    <v-btn color="white"class="mr-n1 btn_right_border btn_left_border" large>In Transit</v-btn>
-                    <v-btn color="white btn_left_border" large>Delivered</v-btn>
-                    <v-btn color="primary" class="btn_right_border" large dark
+                <v-col cols="12" md="7" xs="12">
+                    <v-btn color="primary" class="mr-n1 btn_right_border text-capitalize" dark large>Pending</v-btn>
+                    <v-btn color="white"class="mr-n1 btn_right_border btn_left_border text-capitalize" large>In Transit</v-btn>
+                    <v-btn color="white btn_left_border text-capitalize" large>Delivered</v-btn>
+                    <v-btn color="primary" class="btn_right_border text-capitalize" large dark
                            :class="$vuetify.breakpoint.smAndUp ? 'ml-8 mr-n1' : 'mt-2'"
                     >Paid</v-btn>
-                    <v-btn color="white btn_left_border" large
+                    <v-btn color="white btn_left_border text-capitalize" large
                            :class="$vuetify.breakpoint.smAndUp ? '' : 'mt-2'"
                     >Barter</v-btn>
                 </v-col>
@@ -50,9 +50,9 @@
                                 <v-simple-table class="shipping_table" v-for="j in 2" :key="j">
                                     <thead class="gutter">
                                         <tr>
-                                            <th class="table_col_width subtitle-2 font-weight-bold black--text">Influencer Name: Jhon Snow</th>
-                                            <th class="table_col_width subtitle-2 black--text text-center font-weight-bold">Product</th>
-                                            <th class="table_col_width subtitle-2 black--text text-center font-weight-bold">Date Dispatch</th>
+                                            <th class="bg-grey table_col_width subtitle-2 font-weight-bold black--text">Influencer Name: Jhon Snow</th>
+                                            <th class="bg-grey table_col_width subtitle-2 black--text text-center font-weight-bold">Product</th>
+                                            <th class="bg-grey table_col_width subtitle-2 black--text text-center font-weight-bold">Date Dispatch</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -89,9 +89,9 @@
                                 <v-simple-table class="shipping_table" v-for="j in 2" :key="j">
                                     <thead class="gutter">
                                     <tr>
-                                        <th class="table_col_width subtitle-2 black--text font-weight-bold">Influencer Name: Jhon Snow</th>
-                                        <th class="table_col_width subtitle-2 black--text text-center font-weight-bold">Product</th>
-                                        <th class="table_col_width subtitle-2 black--text text-center font-weight-bold">Date Dispatch</th>
+                                        <th class="bg-grey table_col_width subtitle-2 black--text font-weight-bold">Influencer Name: Jhon Snow</th>
+                                        <th class="bg-grey table_col_width subtitle-2 black--text text-center font-weight-bold">Product</th>
+                                        <th class="bg-grey table_col_width subtitle-2 black--text text-center font-weight-bold">Date Dispatch</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -161,6 +161,9 @@
         border-radius: 10px !important;
     }
     >>>tr:hover .hover_class{
+        background: #EEEEEE !important;
+    }
+    >>>.bg-grey{
         background: #EEEEEE !important;
     }
 </style>

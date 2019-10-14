@@ -1,6 +1,6 @@
 <template>
     <v-flex class="my-12 mx-auto card_wrapper">
-        <div class="subtitle-1 mb-2"><strong>Integrations</strong></div>
+        <div class="subtitle-2 mb-2 text-uppercase"><strong>Integrations</strong></div>
         <v-card class="pa-6">
             <v-row class="mx-auto">
                 <v-flex xl12 lg12 md12 sm12 sx12 class="mr-12">
@@ -10,17 +10,36 @@
                         <v-row>
                             <v-col cols="12" sm="12">
                                 <v-tabs class="fields_tabs" active-class="active_tab">
-                                    <v-tab class="all_integration">
+                                    <v-tab class="all_integration text-capitalize">
                                         All Integrations
                                     </v-tab>
-                                    <v-tab class="enabled_integration">
+                                    <v-tab class="enabled_integration text-capitalize">
                                         Enabled Integrations
                                     </v-tab>
                                     <v-tab-item class="pa-8 tab_items">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum maiores modi quidem veniam, expedita quis laboriosam, ullam facere adipisci, iusto, voluptate sapiente corrupti asperiores rem nemo numquam fuga ab at.</p>
                                     </v-tab-item>
                                     <v-tab-item class="pa-8 tab_items">
-                                        <p>Enabled Integrations</p>
+                                        <v-row>
+                                            <v-col cols="12" sm="4">
+                                                <label class="font-weight-bold text-uppercase">Category</label>
+                                                <v-select
+                                                    :items="items"
+                                                    label="Health & fitness"
+                                                    solo
+                                                    append-icon="keyboard_arrow_down"
+                                                    class="custom_dropdown"
+                                                ></v-select>
+                                            </v-col>
+                                            <v-col cols="12" sm="4">
+                                                <label class="font-weight-bold text-uppercase">Name Includes</label>
+                                                <v-text-field
+                                                    label="Filter by integration Name"
+                                                    solo
+                                                    class="custom_dropdown"
+                                                ></v-text-field>
+                                            </v-col>
+                                        </v-row>
                                     </v-tab-item>
                                 </v-tabs>
                                 <v-list class="integrations_list">
@@ -30,8 +49,8 @@
                                         </v-list-item-icon>
 
                                         <v-list-item-content>
-                                            <v-list-item-title>Shopify</v-list-item-title>
-                                            <v-list-item-subtitle>Ecommerce</v-list-item-subtitle>
+                                            <v-list-item-title class="text-uppercase">Shopify</v-list-item-title>
+                                            <v-list-item-subtitle>eCommerce</v-list-item-subtitle>
                                         </v-list-item-content>
 
                                         <v-list-item-avatar class="primary--text" width="100">
@@ -45,8 +64,8 @@
                     </v-card-text>
 
                     <v-card-actions class="text-right float-right">
-                        <v-btn class="caption mr-3" large>Button</v-btn>
-                        <v-btn color="primary" class="caption" large>Submit</v-btn>
+                        <v-btn class="caption mr-3 text-capitalize" large>Button</v-btn>
+                        <v-btn color="primary" class="caption text-capitalize" large>Submit</v-btn>
                     </v-card-actions>
                 </v-flex>
             </v-row>
@@ -118,5 +137,12 @@
         border-bottom-right-radius: 5px;
         border-left: 6px solid #EE6F6F;
         border-top: none;
+    }
+    >>>.custom_dropdown .v-input__control > .v-input__slot{
+        box-shadow: none !important;
+        border: 1px solid #cccccc;
+    }
+    >>>.custom_dropdown .v-input__control{
+        min-height: 45px !important;
     }
 </style>

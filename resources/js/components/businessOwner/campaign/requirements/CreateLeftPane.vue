@@ -77,10 +77,10 @@
                 </v-row>
 
                 <div class="d-inline-block full_width promotions mb-2 mt-4">
-                    <v-btn color="primary pl-3 pr-3">
+                    <v-btn color="primary pl-3 pr-3" class="text-capitalize">
                         Product Promotion
                     </v-btn>
-                    <v-btn color="white float-right">
+                    <v-btn color="white float-right" class="text-capitalize">
                         Brand Promotion
                     </v-btn>
                 </div>
@@ -107,13 +107,13 @@
 
 
                 <v-tabs fixed-tabs class="fields_tabs" active-class="active_tab">
-                    <v-tab>
+                    <v-tab class="text-capitalize">
                         Guidelines
                     </v-tab>
-                    <v-tab>
+                    <v-tab class="text-capitalize">
                         Captions
                     </v-tab>
-                    <v-tab>
+                    <v-tab class="text-capitalize">
                         Upload images
                     </v-tab>
                     <v-tab-item>
@@ -139,10 +139,10 @@
                     </v-tab-item>
                 </v-tabs>
                 <div class="d-inline-block full_width promotions mb-2 mt-4">
-                    <v-btn color="primary pl-7 pr-7">
+                    <v-btn color="primary pl-7 pr-7" depressed class="text-capitalize">
                         IG Story
                     </v-btn>
-                    <v-btn color="white" class="pl-5 pr-5">
+                    <v-btn color="grey" class="pl-5 pr-5 text-capitalize" outlined>
                         IG Post
                     </v-btn>
                 </div>
@@ -181,7 +181,7 @@
 
                 <v-card flat>
                     <v-card-title>
-                        <div class="subtitle-1"><strong>Select Barter Product</strong></div>
+                        <div class="subtitle-1 ml-n3"><strong>Select Barter Product</strong></div>
                     </v-card-title>
                     <v-select
                         :items="items"
@@ -268,7 +268,7 @@
         >
             <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
                 <div class="text-center mt-4">
-                    <v-btn block height="20" class="task_btn">+ Add another task</v-btn>
+                    <v-btn block height="20" class="task_btn text-capitalize">+ Add another contest or giveaway</v-btn>
                 </div>
                 <v-layout row wrap pl-3 pr-3 mt-5>
                     <v-flex lg6 sm6 m6 pr-3>
@@ -436,6 +436,7 @@
     >>>.custom_dropdown .v-input__prepend-inner, >>>.product_field  .v-input__prepend-inner{
         margin-top: 0px !important;
         margin-left: -14px;
+        margin-right: 10px;
     }
     .field_icon{
         border-radius: 0px;
