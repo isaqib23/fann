@@ -14,12 +14,12 @@
                         <v-list subheader class="mail_lists pl-10">
                             <v-list-item
                                 class="pa-0"
-                                v-for="item in items"
+                                v-for="(item, index) in items"
                                 :key="item.title"
                                 @click="goToInbox()"
                             >
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="item.title"></v-list-item-title>
+                                    <v-list-item-title :class="index ? '' : 'primary--text'" v-text="item.title"></v-list-item-title>
                                 </v-list-item-content>
 
                                 <v-list-item-action class="pa-0 ma-0" v-if="item.count > 0">

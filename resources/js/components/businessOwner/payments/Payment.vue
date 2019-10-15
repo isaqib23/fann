@@ -72,10 +72,10 @@
                                 <td class="text-center">${{75*i}}</td>
                                 <td class="text-center"><v-icon class="overline" color="warning">mdi-circle</v-icon>Draft</td>
                                 <td class="text-center">
-                                    <v-btn color="primary" class="overline" small>
+                                    <v-btn color="primary" class="overline text-capitalize" small>
                                         Open Dispute
                                     </v-btn>
-                                    <v-btn color="success" class="overline" small>
+                                    <v-btn color="success" class="overline text-capitalize" small>
                                         Pay Influencer
                                     </v-btn>
                                 </td>

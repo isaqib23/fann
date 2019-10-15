@@ -24,7 +24,7 @@
                 </v-card-text>
 
                 <v-card-actions class="text-right float-right">
-                    <v-btn color="primary" class="caption pl-12 pr-12" large>Send</v-btn>
+                    <v-btn color="primary" class="caption pl-12 pr-12 text-capitalize" large>Send</v-btn>
                 </v-card-actions>
             </v-card>
         </v-row>

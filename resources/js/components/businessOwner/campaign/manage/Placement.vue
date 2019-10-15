@@ -1,7 +1,7 @@
 <template>
     <v-layout wrap class="ma-3 pa-2">
         <v-flex xs12 fluid>
-            <v-btn color="primary" large class="d-inline-block float-left"
+            <v-btn color="primary" large class="d-inline-block float-left text-capitalize"
                :class="$vuetify.breakpoint.smAndUp ? 'mx-2' : 'my-2'"
             >
                 Create Campaign
@@ -107,7 +107,7 @@
                                     <v-card class="elevation-2 list_cards">
                                     <v-list>
                                         <v-list-item two-line>
-                                            <v-list-item-avatar height="30" min-width="30" width="30" class="mr-3">
+                                            <v-list-item-avatar height="50" min-width="50" width="50" class="mr-3">
                                                 <v-img src="/images/avtar.png"></v-img>
                                             </v-list-item-avatar>
 
@@ -140,7 +140,7 @@
                                                         </div>
                                                     </v-flex>
                                                     <v-flex xl3 lg3 md3 sm6 xs12 class="text-center">
-                                                        <v-btn color="info" depressed small class="overline px-3 ml-1 white--text" min-width="30">
+                                                        <v-btn color="info" depressed small class="text-capitalize overline px-3 ml-1 white--text" min-width="30">
                                                             <v-icon class="caption">mdi-chat</v-icon>
                                                             Chat
                                                         </v-btn>
@@ -199,7 +199,7 @@
                                                     <v-icon class="custom_font black--text px-1">cancel</v-icon>
                                                     <v-icon class="custom_font black--text px-1">mdi-refresh</v-icon>
                                                 </div>
-                                                <v-btn color="primary list_proposal custom_font" depressed small>
+                                                <v-btn color="primary list_proposal custom_font text-capitalize" depressed small>
                                                     View Proposal
                                                 </v-btn>
                                             </div>

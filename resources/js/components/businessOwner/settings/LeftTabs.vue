@@ -2,17 +2,17 @@
     <div>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
             <v-icon left class="hidden-md-and-up">mdi-account</v-icon>
-            <p>Business Profile</p>
+            <p class="text-capitalize">Business Profile</p>
             <v-icon left class="hidden-md-and-down">mdi-account</v-icon>
         </v-tab>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
             <v-icon left class="hidden-md-and-up">mdi-credit-card-outline mdi-rotate-45</v-icon>
-            <p>Billing & Payment</p>
+            <p class="text-capitalize">Billing & Payment</p>
             <v-icon left class="hidden-md-and-down">mdi-credit-card</v-icon>
         </v-tab>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
             <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
-            <p>Integrations</p>
+            <p class="text-capitalize">Integrations</p>
             <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
         </v-tab>
     </div>

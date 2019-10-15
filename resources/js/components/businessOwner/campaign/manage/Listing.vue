@@ -1,7 +1,7 @@
 <template>
     <v-layout wrap class="ma-3 pa-2">
         <v-flex xs12 fluid>
-                <v-btn color="primary" large class="d-inline-block float-left caption"
+                <v-btn color="primary" large class="d-inline-block float-left caption text-capitalize"
                    :class="$vuetify.breakpoint.smAndUp ? 'mx-2' : 'my-2'"
                 >
                     Create Campaign
@@ -21,7 +21,7 @@
                     <v-simple-table fixed-header height="auto">
                             <thead>
                             <tr class="font-weight-bold title text-uppercase">
-                                <th class="text-left black--text">
+                                <th class="text-left black--text px-1">
                                     <v-checkbox value="true"></v-checkbox>
                                 </th>
                                 <th class="text-left black--text">Campaign</th>
@@ -34,7 +34,7 @@
                             </thead>
                             <tbody>
                             <tr v-for="i in 8" :key="i">
-                                <td><v-checkbox value="true"></v-checkbox></td>
+                                <td class="px-1"><v-checkbox value="true"></v-checkbox></td>
                                 <td>
                                     <v-list two-line class="list_cards pa-0 mx-0 hover_class" dense>
                                         <v-list-item class="px-0">
@@ -70,7 +70,7 @@
                                 <td class="subtitle-1">{{ item.impression }}</td>
                                 <td class="subtitle-1">{{ item.actions }}</td>
                                 <td class="subtitle-1">{{ item.engRate }}%</td>
-                                <td>
+                                <td class="px-1">
                                     <v-btn small color="green accent-4 white--text" min-width="20" class="px-1">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
                                     </v-btn>

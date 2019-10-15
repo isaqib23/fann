@@ -65,14 +65,14 @@
                                                     </v-list-item-avatar>
                                                     <v-list-item-content>
                                                         <v-list-item-title class="body-2">
-                                                            Brunch this weekend? <v-icon>open_in_new</v-icon>
+                                                            Brunch this weekend? <v-icon class="body-1">open_in_new</v-icon>
                                                         </v-list-item-title>
                                                     </v-list-item-content>
                                                 </v-list-item>
                                             </v-list>
                                         </td>
                                         <td class="text-center">
-                                            <p>Brunch this weekend? <v-icon>open_in_new</v-icon></p>
+                                            <p>Brunch this weekend? <v-icon class="body-1">open_in_new</v-icon></p>
                                         </td>
                                         <td class="text-center">10/12/2019</td>
                                     </tr>
@@ -104,14 +104,14 @@
                                                     </v-list-item-avatar>
                                                     <v-list-item-content>
                                                         <v-list-item-title class="body-2">
-                                                            Brunch this weekend? <v-icon>open_in_new</v-icon>
+                                                            Brunch this weekend? <v-icon class="body-1">open_in_new</v-icon>
                                                         </v-list-item-title>
                                                     </v-list-item-content>
                                                 </v-list-item>
                                             </v-list>
                                         </td>
                                         <td class="text-center">
-                                            <p>Brunch this weekend? <v-icon>open_in_new</v-icon></p>
+                                            <p>Brunch this weekend? <v-icon class="body-1">open_in_new</v-icon></p>
                                         </td>
                                         <td class="text-center">10/12/2019</td>
                                     </tr>

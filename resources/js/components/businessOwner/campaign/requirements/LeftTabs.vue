@@ -8,21 +8,21 @@
             :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
         >
             <v-icon left class="hidden-md-and-up">mdi-account-plus</v-icon>
-            <p>Create</p>
+            <p class="text-capitalize">Create</p>
             <v-icon left class="hidden-md-and-down">mdi-account-plus</v-icon>
         </v-tab>
         <v-tab
             :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
         >
             <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
-            <p>invite</p>
+            <p class="text-capitalize">invite</p>
             <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
         </v-tab>
         <v-tab
             :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
         >
             <v-icon left class="hidden-md-and-up">mdi-access-point</v-icon>
-            <p>promote</p>
+            <p class="text-capitalize">promote</p>
             <v-icon left class="hidden-md-and-down">mdi-access-point</v-icon>
         </v-tab>
     </div>

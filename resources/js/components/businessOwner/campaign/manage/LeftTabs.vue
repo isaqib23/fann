@@ -2,17 +2,17 @@
     <div>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'" >
             <v-icon left class="hidden-md-and-up">mdi-settings</v-icon>
-            <p>Campaign</p>
+            <p class="text-capitalize">Campaign</p>
             <v-icon left class="hidden-md-and-down">mdi-settings</v-icon>
         </v-tab>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'" >
             <v-icon left class="hidden-md-and-up">mdi-account-plus</v-icon>
-            <p>Placement</p>
+            <p class="text-capitalize">Placement</p>
             <v-icon left class="hidden-md-and-down">mdi-account-plus</v-icon>
         </v-tab>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'">
             <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
-            <p>Influencer</p>
+            <p class="text-capitalize">Influencer</p>
             <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
         </v-tab>
     </div>

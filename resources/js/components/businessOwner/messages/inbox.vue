@@ -14,7 +14,7 @@
                     <template v-for="(item, index) in items">
                         <v-divider></v-divider>
                         <v-list-item :key="item.title" :class="item.activeClass" @click="">
-                            <v-list-item-avatar>
+                            <v-list-item-avatar class="mr-2">
                                 <v-img :src="item.avatar"></v-img>
                             </v-list-item-avatar>
 
@@ -38,10 +38,8 @@
                         <v-icon class="float-right">keyboard_arrow_down</v-icon>
                     </div>
                     <v-list-item>
-                        <v-list-item-avatar>
-                            <v-list-item-avatar class="mr-1">
-                                <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
-                            </v-list-item-avatar>
+                        <v-list-item-avatar class="mr-3">
+                            <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                             <v-list-item-title class="body-2 font-weight-bold">Our Changing Planet

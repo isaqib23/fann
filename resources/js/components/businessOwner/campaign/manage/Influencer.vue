@@ -1,7 +1,7 @@
 <template>
     <v-layout wrap class="ma-3 pa-2">
         <v-flex xs12 fluid>
-            <v-btn color="primary" large class="d-inline-block float-left"
+            <v-btn color="primary" large class="d-inline-block float-left text-capitalize"
                :class="$vuetify.breakpoint.smAndUp ? 'mx-2' : 'my-2'"
             >
                 Create Campaign
@@ -119,13 +119,14 @@
                                                             <v-icon color="primary">mdi-dots-horizontal</v-icon>
                                                         </v-btn>
                                                     </template>
-                                                    <v-list>
+                                                    <v-list class="menu_list">
                                                         <v-list-item
                                                             v-for="(drop, index) in dropdown"
                                                             :key="index"
                                                             @click=""
+                                                            class="bottom_border"
                                                         >
-                                                            <v-list-item-title>{{ drop.title }}</v-list-item-title>
+                                                            <v-list-item-title v-html="drop.title" class="text-center"></v-list-item-title>
                                                         </v-list-item>
                                                     </v-list>
                                                 </v-menu>
@@ -141,7 +142,7 @@
         </v-flex>
         <v-flex xs12 md5 class="pa-2">
             <v-card>
-                <div class="mail_header bottom_border pa-5">
+                <div class="mail_header pa-5">
                     <div class="subtitle-1 mb-2">
                         <strong>Brunch this weekend?</strong>
                         <v-icon class="float-right">keyboard_arrow_down</v-icon>
@@ -199,10 +200,10 @@
                                                     </v-flex>
                                                 </v-row>
                                                 <div class="float-right">
-                                                    <v-btn color="primary list_proposal" depressed small class="overline pa-2" min-height="20">
+                                                    <v-btn color="primary list_proposal" depressed small class="text-capitalize overline pa-2" min-height="20">
                                                         Request Change
                                                     </v-btn>
-                                                    <v-btn color="success list_proposal" depressed small class="overline  pa-2"  min-height="20">
+                                                    <v-btn color="success list_proposal" depressed small class="text-capitalize overline  pa-2"  min-height="20">
                                                         Approve
                                                     </v-btn>
                                                 </div>
@@ -235,7 +236,7 @@
                                                         <v-list-item-title class="body-2 font-weight-bold">The filled style is still too big</v-list-item-title>
                                                         <v-list-item-subtitle>
                                                             <span class="primary--text">$15</span>
-                                                            <v-btn color="success list_proposal" depressed small class="overline pa-2 float-right"  min-height="20">
+                                                            <v-btn color="success list_proposal" depressed small class="text-capitalize overline pa-2 float-right"  min-height="20">
                                                                 Ship Now
                                                             </v-btn>
                                                         </v-list-item-subtitle>
@@ -272,6 +273,12 @@
                         </v-row>
                     </v-container>
 
+                    <v-row class="mx-auto ma-0 pa-0">
+                        <v-flex md12>
+                            <span class="primary--text mr-2">Reply</span>
+                            <span class="grey--text">Note</span>
+                        </v-flex>
+                    </v-row>
                     <v-row class="mx-auto mt-3">
                         <v-flex xl10 lg10 md10 sm10 xs10>
                             <v-textarea
@@ -281,7 +288,7 @@
                             ></v-textarea>
                         </v-flex>
                         <v-flex xl2 lg2 md2 sm2 xs2>
-                            <v-btn color="primary" depressed class="px-1 ml-3">
+                            <v-btn color="primary" depressed class="text-capitalize px-1 ml-3">
                                 Send
                             </v-btn>
                             <v-btn color="grayLighten" depressed class="px-1 ml-3 mt-3">
@@ -304,17 +311,18 @@
             expanded: [],
             singleExpand: true,
             dropdown: [
-                { title: 'Click Me' },
-                { title: 'Click Me' },
-                { title: 'Click Me' },
-                { title: 'Click Me 2' },
+                { title: '<strong>Status</strong> : In Progress' },
+                { title: 'Clone this Touchpoint' },
+                { title: 'Add new Touchpoint' },
+                { title: 'Pause This Touchpoint' },
+                { title: 'Delete' },
             ],
             headers: [
-                { text: 'Placement', align: 'left', value: 'title', class: 'head_class',sortable: false,},
-                { text: 'Status', value: 'status', class: 'head_class',sortable: false,},
-                { text: 'Eng. Rate', value: 'engRate', class: 'head_class',sortable: false, },
-                { text: 'Comments', value: 'comments', class: 'head_class',sortable: false, },
-                { text: 'Like', value: 'likes', class: 'head_class',sortable: false, },
+                { text: 'Influencers', align: 'left', value: 'title', class: 'head_class text-uppercase',sortable: false,},
+                { text: 'Status', value: 'status', class: 'head_class text-uppercase',sortable: false,},
+                { text: 'Eng. Rate', value: 'engRate', class: 'head_class text-uppercase',sortable: false, },
+                { text: 'Comments', value: 'comments', class: 'head_class text-uppercase',sortable: false, },
+                { text: 'Likes', value: 'likes', class: 'head_class text-uppercase',sortable: false, },
             ],
             desserts: [
                 {
@@ -498,5 +506,11 @@
     }
     >>>.custom_field .v-input__control{
         min-height: 43px !important;
+    }
+    .bottom_border{
+        border-bottom: 1px solid #cccccc;
+    }
+    .bottom_border:last-child{
+        border-bottom: none;
     }
 </style>
