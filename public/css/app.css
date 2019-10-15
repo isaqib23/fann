@@ -30448,6 +30448,11 @@ html {
   background-color: #ffffff;
 }
 
+.v-input--selection-controls__ripple {
+  width: 0px !important;
+  height: 0px !important;
+}
+
 .v-application {
   font-family: SourceSansPro-Regular !important;
 }

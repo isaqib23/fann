@@ -1,87 +1,96 @@
 <template>
     <v-card class="create_card mx-auto mt-12">
-        <v-card-title class="pb-8 justify-center">Select Your Campaign Placement</v-card-title>
-        <v-card-text class="mb-12 text_field_width ma-auto">
-            <v-layout row justify-center wrap>
-                <v-flex lg12 sm12 xs12 class="text-center">
-                    <v-radio-group v-model="kind" row class="px-0">
-                        <v-radio class="px-12" value="radio-1" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate">
-                            <template slot="label">
+        <v-card flat>
+            <v-card-title class="pb-8 justify-center">Select Your Campaign Placement</v-card-title>
+            <v-card-text class="mb-12 text_field_width ma-auto">
+                <v-layout row justify-center wrap>
+                    <v-flex lg12 sm12 xs12 class="text-center">
+                        <div class="card_radio placement_radio">
+                            <v-radio-group v-model="kind" row class="mt-0 full_width">
+
+                                <v-radio color="primary" value="radio-1" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate">
+                                    <template slot="label">
                                 <span class="subtitle-1 text-uppercase black--text font-weight-bold">
                                     <v-icon class="display-2 primary--text">mdi-instagram</v-icon>
                                     Instagram
                                 </span>
-                            </template>
-                        </v-radio>
-                        <v-radio class="px-12" value="radio-2" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate">
-                            <template slot="label">
-                                <span class="subtitle-1 text-uppercase black--text font-weight-bold">
+                                    </template>
+                                </v-radio>
+
+                                <v-radio color="primary" value="radio-2" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" class="you_radio">
+                                    <template slot="label">
+                                <span class="subtitle-1 text-uppercase black--text font-weight-bold youtube_radio">
                                     <v-icon class="display-2 primary--text">mdi-youtube</v-icon>
                                     Youtube
                                 </span>
-                            </template>
-                        </v-radio>
-                    </v-radio-group>
-                </v-flex>
-            </v-layout>
-        </v-card-text>
+                                    </template>
+                                </v-radio>
 
-        <v-card-title class="pb-8 justify-center">Select Your Campaign Type</v-card-title>
-        <v-card-text class="mb-12 text_field_width ma-auto">
-            <v-layout row justify-center wrap>
-                <v-flex lg12 sm12 xs12 class="text-center">
-                    <div class="card_radio">
-                        <v-radio-group v-model="kind2" row class="mt-0 full_width">
+                            </v-radio-group>
+                        </div>
+                    </v-flex>
+                </v-layout>
+            </v-card-text>
+        </v-card>
 
-                            <v-radio value="radio-1" active-class="active_card_radio">
-                                <template slot="label">
-                                    <v-card class="mx-auto text-center" outlined max-width="200">
-                                        <div class="triangle-topright" v-if="kind2 == 'radio-1'">
-                                            <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
-                                        </div>
-                                        <v-card-title>
-                                            <p class="icon_border ma-auto"><v-icon class="display-2" :color="kind2 == 'radio-1' ? 'primary' : ''">mdi-currency-usd</v-icon></p>
-                                        </v-card-title>
-                                        <v-card-text class="px-2">
-                                            <p class="title">PAID</p>
-                                            <p>
-                                                Pay a fixed amount to influencer for each  promotion touch point.
-                                            </p>
-                                        </v-card-text>
-                                    </v-card>
-                                </template>
-                            </v-radio>
+        <v-card flat>
+            <v-card-title class="pb-8 justify-center">Select Your Campaign Type</v-card-title>
+            <v-card-text class="mb-12 text_field_width ma-auto">
+                <v-layout row justify-center wrap>
+                    <v-flex lg12 sm12 xs12 class="text-center">
+                        <div class="card_radio campaign_radio">
+                            <v-radio-group v-model="kind2" row class="mt-0 full_width">
 
-                            <v-radio value="radio-2" active-class="active_card_radio">
-                                <template slot="label">
-                                    <v-card class="mx-auto text-center" outlined max-width="200">
-                                        <div class="triangle-topright" v-if="kind2 == 'radio-2'">
-                                            <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
-                                        </div>
-                                        <v-card-title>
-                                            <p class="icon_border ma-auto"><v-icon class="display-2" :color="kind2 == 'radio-2' ? 'primary' : ''">mdi-ballot-recount-outline</v-icon></p>
-                                        </v-card-title>
-                                        <v-card-text class="px-2">
-                                            <p class="title">BARTER</p>
-                                            <p>
-                                                You will barter a product with influencer for each touch point.
-                                            </p>
-                                        </v-card-text>
-                                    </v-card>
-                                </template>
-                            </v-radio>
+                                <v-radio value="radio-1" active-class="active_card_radio">
+                                    <template slot="label">
+                                        <v-card class="text-center" outlined max-width="200">
+                                            <div class="triangle-topright" v-if="kind2 == 'radio-1'">
+                                                <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
+                                            </div>
+                                            <v-card-title>
+                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="kind2 == 'radio-1' ? 'primary' : ''">mdi-currency-usd</v-icon></p>
+                                            </v-card-title>
+                                            <v-card-text class="px-2">
+                                                <p class="title">PAID</p>
+                                                <p>
+                                                    Pay a fixed amount to influencer for each  promotion touch point.
+                                                </p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-radio>
 
-                        </v-radio-group>
-                    </div>
-                </v-flex>
-            </v-layout>
-        </v-card-text>
-        <v-card-actions class="float-right action_btns mt-n12">
-            <v-btn color="primary" dark large @click="goToNext()" class="text-capitalize">
-                {{ $t('labels.campaign.name_nextBtn') }}
-                <v-icon right>keyboard_arrow_right</v-icon>
-            </v-btn>
-        </v-card-actions>
+                                <v-radio value="radio-2" active-class="active_card_radio">
+                                    <template slot="label">
+                                        <v-card class="text-center mx-auto" outlined max-width="200">
+                                            <div class="triangle-topright" v-if="kind2 == 'radio-2'">
+                                                <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
+                                            </div>
+                                            <v-card-title>
+                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="kind2 == 'radio-2' ? 'primary' : ''">mdi-ballot-recount-outline</v-icon></p>
+                                            </v-card-title>
+                                            <v-card-text class="px-2">
+                                                <p class="title">BARTER</p>
+                                                <p>
+                                                    You will barter a product with influencer for each touch point.
+                                                </p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-radio>
+
+                            </v-radio-group>
+                        </div>
+                    </v-flex>
+                </v-layout>
+            </v-card-text>
+            <v-card-actions class="float-right action_btns mt-n12">
+                <v-btn color="primary" dark large @click="goToNext()" class="text-capitalize">
+                    {{ $t('labels.campaign.name_nextBtn') }}
+                    <v-icon right>keyboard_arrow_right</v-icon>
+                </v-btn>
+            </v-card-actions>
+        </v-card>
     </v-card>
 </template>
 
@@ -115,7 +124,7 @@
     >>>>>>.active_card_radio .v-icon.v-icon{
         color: #EE6F6F !important;
     }
-    >>>.card_radio .v-input--selection-controls__input{
+    >>>.campaign_radio .v-input--selection-controls__input{
         display:none !important
     }
     .card_radio .icon_border{
@@ -154,5 +163,32 @@
     >>>.triangle-topright .v-icon{
         margin-right: 3px;
         margin-top: -1px;
+    }
+    .youtube_radio{
+        margin-left: -70px !important;
+    }
+    >>>.placement_radio .v-label:last-child{
+        width: 50% !important;
+    }
+    >>>.placement_radio .you_radio .v-input--selection-controls__input{
+        margin: 0 auto !important;
+    }
+
+    @media only screen
+    and (min-device-width: 960px)
+    and (max-device-width: 1366px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .youtube_radio{
+            margin-left: -55px !important;
+        }
+    }
+
+    @media only screen
+    and (min-device-width: 768px)
+    and (max-device-width: 1365px)
+    and (-webkit-min-device-pixel-ratio: 1) {
+        .youtube_radio{
+            margin-left: -45px !important;
+        }
     }
 </style>

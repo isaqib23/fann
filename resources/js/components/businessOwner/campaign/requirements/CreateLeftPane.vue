@@ -139,12 +139,12 @@
                     </v-tab-item>
                 </v-tabs>
                 <div class="d-inline-block full_width promotions mb-2 mt-4">
-                    <v-btn color="primary pl-7 pr-7" depressed class="text-capitalize">
-                        IG Story
-                    </v-btn>
-                    <v-btn color="grey" class="pl-5 pr-5 text-capitalize" outlined>
-                        IG Post
-                    </v-btn>
+                    <div class="age_group">
+                        <v-radio-group v-model="kind" row class="mt-0">
+                            <v-radio label="IG Story" value="1" active-class="kind_active"></v-radio>
+                            <v-radio label="IG Post" value="2" active-class="kind_active"></v-radio>
+                        </v-radio-group>
+                    </div>
                 </div>
 
                 <v-card flat>
@@ -308,6 +308,7 @@
         data: () => {
            return  {
                e1: 0,
+               kind: '1',
                checkbox2: true,
                checkbox1: false,
                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
@@ -478,5 +479,45 @@
     }
     >>>.custom_dropdown .v-input__slot{
         margin-bottom: 0px !important;
+    }
+
+    >>>.age_group .kind_active .v-label{
+        color: #fff !important;
+        caret-color: #fff !important;
+    }
+    >>>.age_group .v-input--radio-group__input{
+        border: none;
+    }
+    >>>.age_group .v-radio{
+        height: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-right:0px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 5px;
+    }
+    >>>.age_group .v-input--selection-controls__input{
+        display:none;
+    }
+    >>>.kind_active {
+        background: #EE6F6F !important;
+        padding: 20px !important;
+    }
+    >>>.kind_active:first-child {
+        border-right: 1px solid #ccc;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    >>>.kind_active .accent--text{
+        color: #fff !important;
+        caret-color: #fff !important;
+    }
+    >>>.gender_group .kind_active .v-label, >>>.age_group .kind_active .v-label{
+        color: #fff !important;
+        caret-color: #fff !important;
+    }
+    >>>.kind_active .v-input--selection-controls__input{
+        margin-right: 0px !important;
     }
 </style>

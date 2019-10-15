@@ -8,9 +8,9 @@
                             <div class="subtitle-2 mb-2"><strong>Public URL</strong></div>
                             <v-text-field
                                 outlined
-                                label="Nike,Nuchey"
+                                label="http://influencerapp.1dea.test/campaign/create"
                                 append-outer-icon="mdi-alert-circle-outline"
-                                append-icon="place"
+                                append-icon="mdi-content-copy"
                                 class="tag_field"
                             ></v-text-field>
                         </div>
@@ -57,7 +57,11 @@
                                     max-width="full_width" dense outlined
                                 >
                                     <v-card-text>
-                                        <v-checkbox v-model="checkbox2" label="I will be shipping this product to influencers" color="primary"></v-checkbox>
+                                        <v-checkbox v-model="checkbox2"  color="primary">
+                                            <template slot="label">
+                                                <strong>I will be shipping this product to influencers</strong>
+                                            </template>
+                                        </v-checkbox>
                                         <p>
                                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
                                         </p>

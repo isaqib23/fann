@@ -1,7 +1,8 @@
 <template>
     <v-card class="create_card mx-auto mt-12">
-        <v-card-title class="pb-8 justify-center">Select Your Campaign Placement</v-card-title>
+        <v-card-title class="pb-8 justify-center">Select Your Campaign Objective</v-card-title>
         <v-card-text class="mb-12  ma-auto">
+            <v-radio-group v-model="radioGroup">
             <v-layout row justify-center wrap>
                 <v-flex lg4 sm12 xs12>
                     <div class="pl-12">
@@ -10,11 +11,9 @@
                     </div>
 
                     <div class="pl-12">
-                        <v-radio-group v-model="radioGroup1">
-                            <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Unboxing" color="primary" value="1" hide-details></v-radio>
-                            <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Product Review" color="primary" value="2" hide-details></v-radio>
-                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Contests & Giveways" color="primary" value="3" hide-details></v-radio>
-                        </v-radio-group>
+                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Unboxing" color="primary" value="1" hide-details></v-radio>
+                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Product Review" color="primary" value="2" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Contests & Giveways" color="primary" value="3" hide-details></v-radio>
                     </div>
 
                 </v-flex>
@@ -24,11 +23,9 @@
                         <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">brand awareness</div>
                     </div>
                     <div class="pl-12">
-                        <v-radio-group v-model="radioGroup2">
-                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Shoutout" color="primary" value="1" hide-details></v-radio>
-                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Review" color="primary" value="2" hide-details></v-radio>
-                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Event Invitation" color="primary" value="3" hide-details></v-radio>
-                        </v-radio-group>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Shoutout" color="primary" value="4" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Review" color="primary" value="5" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Event Invitation" color="primary" value="6" hide-details></v-radio>
                     </div>
                 </v-flex>
                 <v-flex lg4 sm12 xs12>
@@ -37,21 +34,20 @@
                         <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">sponsored content</div>
                     </div>
                     <div class="pl-12">
-                        <v-radio-group v-model="radioGroup3">
-                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Promotional Content" color="primary" value="1" hide-details></v-radio>
-                            <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Special Events" color="primary" value="2" hide-details></v-radio>
-                        </v-radio-group>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Promotional Content" color="primary" value="7" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Special Events" color="primary" value="8" hide-details></v-radio>
                     </div>
                 </v-flex>
             </v-layout>
+            </v-radio-group>
         </v-card-text>
 
         <v-card-title class="pb-8 justify-center">Now Give Your Campaign A Beautiful Name</v-card-title>
         <v-card-text class="mb-12 text_field_width ma-auto">
             <v-layout row justify-center wrap>
                 <v-flex lg12 sm12 xs12 class="text-center">
-                    <v-text-field class="text_field_width ma-auto"
-                                  :label="$t('labels.campaign.name_fieldPlaceholder')"
+                    <v-text-field class="text_field_width ma-auto text-center"
+                                  label="Type Name Here"
                                   solo
                     ></v-text-field>
                 </v-flex>
@@ -71,9 +67,7 @@
     export default {
 
         data: () => ({
-            radioGroup1: 1,
-            radioGroup2: 1,
-            radioGroup3: 1
+            radioGroup: 1
         }),
 
         mounted() {
@@ -93,5 +87,8 @@
     }
     >>>.v-input__control {
 
+    }
+    >>>.v-input--selection-controls .v-input__control{
+        width: 100% !important;
     }
 </style>

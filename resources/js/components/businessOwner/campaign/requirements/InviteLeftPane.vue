@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-flex>
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing">
+            <v-card class="elevation-4  mx-auto pa-5 transition-swing">
                 <v-card-title>
                     <div class="subtitle-1 mb-2"><strong>Select Niche / Industry</strong></div>
                 </v-card-title>
@@ -13,7 +13,7 @@
                 ></v-select>
 
                 <div class="kind_group">
-                    <div class="subtitle-2 mt-6 mb-2"><strong>What kind of Influencers you are looking for?</strong></div>
+                    <div class="subtitle-2 mt-0 mb-2">What kind of Influencers you are looking for?</div>
                     <v-radio-group v-model="kind" row class="mt-0">
                         <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="radio-1" active-class="kind_active"></v-radio>
                         <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="radio-2" active-class="kind_active"></v-radio>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="kind_group">
-                    <div class="subtitle-2 mt-6 mb-2">Engagement Rate</div>
+                    <div class="subtitle-2 mt-6 mb-0">Engagement Rate</div>
                     <v-select
                         :items="items"
                         label="10% to 15% Min"
@@ -56,14 +56,14 @@
                 </div>
 
                 <div class="kind_group">
-                    <div class="subtitle-2 mt-6 mb-2">Rating</div>
+                    <div class="subtitle-2 mt-0 mb-2">Rating</div>
                     <v-rating v-model="rating"></v-rating>
                 </div>
             </v-card>
         </v-flex>
 
         <v-flex>
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
+            <v-card class="elevation-4  mx-auto pa-5 transition-swing mt-3">
                 <v-card-title>
                     <div class="subtitle-1 mb-2"><strong>Influencers Demographics</strong></div>
                 </v-card-title>
@@ -93,6 +93,8 @@
                         :items="itemss"
                         v-model="selected"
                         label="Select"
+                        solo
+                        class="custom_dropdown"
                         return-object
                     >
                         <template slot="selection" slot-scope="data">
@@ -114,7 +116,7 @@
                     </v-select>
                 </div>
 
-                <v-card-actions class="action_btns mt-3 mb-3">
+                <v-card-actions class="action_btns mt-0 mb-3">
                     <v-btn color="primary" dark large block class="text-capitalize">
                         Apply Search Filters
                     </v-btn>
@@ -228,5 +230,8 @@
     >>>.custom_dropdown .v-input__control > .v-input__slot{
         box-shadow: none !important;
         border: 1px solid #cccccc;
+    }
+    >>>.v-rating .v-icon{
+        padding:0px;
     }
 </style>
