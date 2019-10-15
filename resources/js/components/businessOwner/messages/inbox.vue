@@ -20,8 +20,8 @@
 
                             <v-list-item-content>
                                 <v-list-item-title>
-                                    {{item.title}}
-                                    <span class="float-right caption font-weight-bold">Jan 5</span>
+                                    <strong>{{item.title}}</strong>
+                                    <span class="float-right caption">Jan 5</span>
                                 </v-list-item-title>
                                 <v-list-item-subtitle v-html="item.subtitle"></v-list-item-subtitle>
                             </v-list-item-content>
@@ -34,7 +34,7 @@
                 <div class="mail_header bottom_border mr-n4 ml-n7 pl-7 pr-4">
                     <div class="subtitle-1 mb-2">
                         <v-chip color="primary" class="mr-5" label>Fashion</v-chip>
-                        <strong>Brunch this weekend?</strong>
+                        Brunch this weekend?
                         <v-icon class="float-right">keyboard_arrow_down</v-icon>
                     </div>
                     <v-list-item>

@@ -307,7 +307,7 @@
                 { text: 'Touch point completed', icon: 'mdi-account', time: '3 hours'},
                 { text: 'Laura Started Chat', icon: 'mdi-flag', time: '2 hours'}
             ],
-            from: ['Last Week', 'Last Month', 'Last Year']
+            from: ['Last Week','Last 15 days', 'Last Month', 'Last Year']
         })
     }
 </script>
@@ -343,7 +343,7 @@
         border-bottom-right-radius: 5px;
     }
     .max-width-25 {
-        max-width: 25%;
+        max-width: 35%;
     }
     .max-width-13 {
         max-width: 18%;

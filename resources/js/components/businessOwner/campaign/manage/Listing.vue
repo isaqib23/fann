@@ -22,7 +22,7 @@
                             <thead>
                             <tr class="font-weight-bold title text-uppercase">
                                 <th class="text-left black--text px-1">
-                                    <v-checkbox value="true"></v-checkbox>
+                                    <v-checkbox value="true" color="primary"></v-checkbox>
                                 </th>
                                 <th class="text-left black--text">Campaign</th>
                                 <th class="text-left black--text">status</th>
@@ -34,7 +34,7 @@
                             </thead>
                             <tbody>
                             <tr v-for="i in 8" :key="i">
-                                <td class="px-1"><v-checkbox value="true"></v-checkbox></td>
+                                <td class="px-1"><v-checkbox value="true" color="primary"></v-checkbox></td>
                                 <td>
                                     <v-list two-line class="list_cards pa-0 mx-0 hover_class" dense>
                                         <v-list-item class="px-0">
@@ -121,9 +121,9 @@
                 <v-flex xs12 class="ma-2 pa-2">
                     <v-card-text class="pa-0">
                         <div class="ma-2 pa-2" >
-                         <div>Objective: <span class="primary--text ml-4"> Brand Awareness</span></div>
-                         <div class="mt-2 pt-2">Deliverables: <span class="primary--text ml-4"> 13</span> / 20</div>
-                         <div class="mt-2 pt-2">Influencers: <span class="ml-4"> 09/20</span></div>
+                         <div>Objective: <span class="primary--text ml-10"> Brand Awareness</span></div>
+                         <div class="mt-2 pt-2">Deliverables: <span class="primary--text ml-6"> 13</span> / 20</div>
+                         <div class="mt-2 pt-2">Influencers: <span class="ml-8"> 09</span> / 20</div>
 
                         </div>
                     </v-card-text>

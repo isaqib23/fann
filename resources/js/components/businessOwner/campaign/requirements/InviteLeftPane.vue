@@ -57,7 +57,7 @@
 
                 <div class="kind_group">
                     <div class="subtitle-2 mt-0 mb-2">Rating</div>
-                    <v-rating v-model="rating"></v-rating>
+                    <v-rating v-model="rating" background-color="grey"></v-rating>
                 </div>
             </v-card>
         </v-flex>

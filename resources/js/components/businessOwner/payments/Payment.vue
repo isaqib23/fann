@@ -64,7 +64,7 @@
                             <tbody>
                             <tr v-for="i in 8" :key="i">
                                 <td >
-                                    <v-checkbox v-model="checkbox" label="10/03/2019"></v-checkbox>
+                                    <v-checkbox v-model="checkbox" color="primary" label="10/03/2019"></v-checkbox>
                                 </td>
                                 <td class="text-center">Laura Miller</td>
                                 <td class="text-center">Promotion Global Real Estate</td>

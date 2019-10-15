@@ -38,15 +38,17 @@
 
                 <v-row class="mx-auto my-5">
                     <v-flex xl10 lg10 md10 sm11 xs11>
-                        <v-select
+
+                        <v-combobox
+                            v-model="select2"
                             :items="items"
                             label="Instagram image post"
-                            solo
-                            dense
                             append-icon="keyboard_arrow_down"
                             prepend-inner-icon="mdi-instagram"
                             class="custom_dropdown product_right_border"
-                        ></v-select>
+                            solo
+                            dense
+                        ></v-combobox>
                     </v-flex>
                     <v-flex xl2 lg2 md2 sm1 xs1>
                         <v-list-item-avatar height="50" min-width="45" width="45" class="ma-0 field_right_icon" color="grey lighten-2">
@@ -312,6 +314,7 @@
                checkbox2: true,
                checkbox1: false,
                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+               select2: '',
                select: ['Vuetify', 'Programming'],
                criteria: ['Tag Friends (Number Field)', 'Mention Brand (Instagram / YouTube Handle)', 'Follow (Instagram Handle)', 'Hashtag (#)'],
                dropzoneOptions: {

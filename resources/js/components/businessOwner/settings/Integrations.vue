@@ -22,7 +22,7 @@
                                     <v-tab-item class="pa-8 tab_items">
                                         <v-row>
                                             <v-col cols="12" sm="4">
-                                                <label class="font-weight-bold text-uppercase">Category</label>
+                                                <label class="font-weight-bold black--text text-uppercase">Category</label>
                                                 <v-select
                                                     :items="items"
                                                     label="Health & fitness"
@@ -32,7 +32,7 @@
                                                 ></v-select>
                                             </v-col>
                                             <v-col cols="12" sm="4">
-                                                <label class="font-weight-bold text-uppercase">Name Includes</label>
+                                                <label class="font-weight-bold black--text text-uppercase">Name Includes</label>
                                                 <v-text-field
                                                     label="Filter by integration Name"
                                                     solo
@@ -64,7 +64,7 @@
                     </v-card-text>
 
                     <v-card-actions class="text-right float-right">
-                        <v-btn class="caption mr-3 text-capitalize" large>Button</v-btn>
+                        <v-btn class="caption mr-3 text-capitalize" large>Back</v-btn>
                         <v-btn color="primary" class="caption text-capitalize" large>Submit</v-btn>
                     </v-card-actions>
                 </v-flex>

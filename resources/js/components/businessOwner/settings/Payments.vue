@@ -5,7 +5,7 @@
             <v-row class="mx-auto">
                 <v-flex xl12 lg12 md12 sm12 sx12 class="mr-12">
                     <v-card-title>
-                        <div class="title mb-2"><strong>Your Current Balance:</strong> <span class="ml-5">$645.00</span></div>
+                        <div class="title mb-2"><strong>Your Current Balance:</strong> <span class="ml-5 font-weight-light">$645.00</span></div>
                     </v-card-title>
                     <v-card-text class="mb-10">
                         <div class="subtitle-1 mb-2 darkSecondary--text"><strong>Add more Funds</strong></div>
@@ -57,11 +57,11 @@
                                 </v-card>
                             </v-col>
                         </v-row>
-                        <p>A 2% processing fee will be accessed on all payments</p>
+                        <p>* A 2% processing fee will be accessed on all payments</p>
                     </v-card-text>
 
                     <v-card-actions class="text-right float-right">
-                        <v-btn class="caption mr-3 text-capitalize" large>Button</v-btn>
+                        <v-btn class="caption mr-3 text-capitalize" large>Back</v-btn>
                         <v-btn color="primary" class="caption text-capitalize" large>Submit</v-btn>
                     </v-card-actions>
                 </v-flex>

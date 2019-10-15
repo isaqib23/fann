@@ -4,7 +4,7 @@
             <v-btn color="primary" large class="d-inline-block float-left text-capitalize"
                :class="$vuetify.breakpoint.smAndUp ? 'mx-2' : 'my-2'"
             >
-                Create Campaign
+                Create Placement
             </v-btn>
             <v-text-field
                 class="float-left custom_field"
@@ -163,7 +163,7 @@
         </v-flex>
         <v-flex xs12 md5 class="pa-2 list_cards">
                 <v-list three-line class="px-5">
-                    <div class="subtitle-1 text-uppercase darken-1 pa-5" ><strong>Proposal</strong></div>
+                    <div class="subtitle-1 text-uppercase darken-1 pa-5" ><strong>Proposals</strong></div>
                     <template v-for="(item, index) in items">
                         <v-card class="mb-2 custom_list">
                         <v-divider
@@ -174,7 +174,6 @@
                         <v-list-item
                             v-else
                             :key="item.title"
-                            @click=""
                         >
                             <v-list-item-avatar height="80" min-width="80" width="80">
                                 <v-img :src="item.avatar"></v-img>
@@ -185,7 +184,7 @@
                                     <v-row justify="space-between">
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="float-left body-2">
-                                                {{item.title}}
+                                                <strong><u>{{item.title}}</u></strong>
                                                 <div class="followers overline">
                                                     <v-icon class="caption">mdi-instagram</v-icon>
                                                     50.5K Followers
@@ -209,7 +208,7 @@
                                 <v-list-item-subtitle>
                                     <v-row justify="space-between">
                                         <v-col md="6" class="py-0 ma-0">
-                                            <v-rating v-model="rating" size="7" small></v-rating>
+                                            <v-rating v-model="rating" size="7" small background-color="grey"></v-rating>
                                         </v-col>
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="subtitle-2 mb-2 integrityColor--text float-right ml-n7">

@@ -30,9 +30,9 @@
                     <v-toolbar flat color="white">
                         <v-toolbar-title>
                             <div class="subtitle-1 font-weight-bold">
-                                <span>Campaign</span><v-icon class="body-1 mx-5 font-weight-bold">keyboard_arrow_right</v-icon>
-                                <span>Placement</span><v-icon class="body-1 mx-5 font-weight-bold">keyboard_arrow_right</v-icon>
-                                <span>Influencer</span><v-icon class="body-1 mx-5 font-weight-bold">keyboard_arrow_right</v-icon>
+                                <span>Campaign</span><v-icon class="body-1 mx-5">keyboard_arrow_right</v-icon>
+                                <span>Placement</span><v-icon class="body-1 mx-5">keyboard_arrow_right</v-icon>
+                                <span>Influencer</span><v-icon class="body-1 mx-5">keyboard_arrow_right</v-icon>
                                 <span>Touch Points</span>
                             </div>
                         </v-toolbar-title>
@@ -105,18 +105,18 @@
                                         </v-col>
                                         <v-col cols="12" md="4" class="px-1">
                                             <p class="mb-0 caption">
-                                                Start Date: <span class="float-right mr-5">Status</span>
+                                                Start Date: <span class="float-right mr-5">Status:</span>
                                             </p>
                                             <p class="mb-0 caption">
                                                 <span class="primary--text">12-09-2019</span> <span class="float-right primary--text mr-5">Draft</span>
                                             </p>
                                         </v-col>
                                         <v-col cols="12" md="2" class="px-1">
-                                            <p class="mb-0 text--primary caption pt-3">View Details
+                                            <p class="mb-0 primary--text caption pt-3">View Details
                                                 <v-menu offset-y>
                                                     <template v-slot:activator="{ on }">
                                                         <v-btn v-on="on" small color="gray" min-width="20" depressed class="px-1 ml-3">
-                                                            <v-icon color="primary">mdi-dots-horizontal</v-icon>
+                                                            <v-icon>mdi-dots-horizontal</v-icon>
                                                         </v-btn>
                                                     </template>
                                                     <v-list class="menu_list">
@@ -144,7 +144,7 @@
             <v-card>
                 <div class="mail_header pa-5">
                     <div class="subtitle-1 mb-2">
-                        <strong>Brunch this weekend?</strong>
+                        Brunch this weekend?
                         <v-icon class="float-right">keyboard_arrow_down</v-icon>
                     </div>
                     <v-list-item>
@@ -155,7 +155,7 @@
                         </v-list-item-avatar>
                         <v-list-item-content>
                             <v-list-item-title class="body-2 font-weight-bold">Our Changing Planet
-                                <span class="float-right caption font-weight-bold">25 August</span>
+                                <span class="float-right caption">25 August</span>
                             </v-list-item-title>
                             <v-list-item-subtitle>to <strong class="black--text">me</strong></v-list-item-subtitle>
                         </v-list-item-content>
