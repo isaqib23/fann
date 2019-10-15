@@ -41,7 +41,7 @@
                                                     <div class="followers">
                                                         <v-icon>mdi-instagram</v-icon>
                                                         50.5K Followers
-                                                        <strong class="ml-2">$59.00</strong>
+                                                        <strong class="ml-2 font-weight-bold">$59.00</strong>
                                                     </div>
                                                 </div>
                                             </v-flex>
@@ -64,7 +64,6 @@
                                                     View Profile
                                                 </v-btn>
                                                 <v-btn color="success pl-3 pr-3" depressed class="text-capitalize">
-                                                    <v-icon>mdi-account-plus-outline</v-icon>
                                                     Invite
                                                 </v-btn>
                                             </v-flex>
