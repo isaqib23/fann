@@ -89,31 +89,32 @@
 
                 <div class="age_group">
                     <div class="subtitle-2 mb-2">Country</div>
-                    <v-select
-                        :items="itemss"
+                    <v-autocomplete
+                        :items="countries"
                         v-model="selected"
                         label="Select"
                         solo
                         class="custom_dropdown"
                         return-object
+                        item-text="name"
                     >
                         <template slot="selection" slot-scope="data">
-                            <v-avatar size="36">
-                                <img :src="data.item.avatar">
+                            <v-avatar size="36" class="mr-2" tile >
+                                <img :src="getFlag(data.item.flag)">
                             </v-avatar>
-                            <div> {{ data.item.text }}
+                            <div> {{ data.item.name }}
                             </div>
                         </template>
                         <template slot="item" slot-scope="data">
                             <v-list-tile-avatar size="36">
-                                <img :src="data.item.avatar">
+                                <img :src="getFlag(data.item.flag)">
                             </v-list-tile-avatar>
                             <v-list-tile-content>
-                                <v-list-tile-title> {{ data.item.text }}
+                                <v-list-tile-title> {{ data.item.name }}
                                 </v-list-tile-title>
                             </v-list-tile-content>
                         </template>
-                    </v-select>
+                    </v-autocomplete>
                 </div>
 
                 <v-card-actions class="action_btns mt-0 mb-3">
@@ -127,7 +128,8 @@
 </template>
 
 <script>
-
+    import axios from 'axios'
+    import { api } from '~/config'
     export default {
         components: {
 
@@ -140,6 +142,7 @@
                range: [100, 600],
                rating:3,
                selected: null,
+               countries : [],
                itemss: [
                    { text: 'Jason Oner', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' },
                    { text: 'Travis Howard', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' },
@@ -148,7 +151,24 @@
                ]
             }
         },
-        methods: {}
+        methods: {
+            getCountries: function(){
+                let self = this;
+                self.busy = true;
+                axios
+                    .get(api.path('countryList'))
+                    .then(function(resp){
+                        self.countries = resp.data.data;
+                        console.log(self.countries);
+                    });
+            },
+            getFlag(name){
+                return '/images/flags/'+name+'.svg';
+            }
+        },
+        mounted() {
+            this.getCountries();
+        },
     }
 </script>
 

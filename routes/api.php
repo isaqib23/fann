@@ -58,5 +58,11 @@ Route::group(['middleware' => ['jwt']], function() {
         'as' => 'shopify.clean-uninstall',
         'uses'  => 'ShopifyController@cleanUninstall'
     ]);
+
+    // ----- get countries list
+    Route::get('/country/all', [
+        'as' => 'country.all',
+        'uses' => 'CountriesController@index'
+    ]);
 });
 

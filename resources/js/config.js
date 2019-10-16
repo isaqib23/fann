@@ -75,6 +75,9 @@ export const api = Object.assign(new URL(apiUrl), {
     },
     linkedShops: {
         'url': 'shopify/linked-shops'
+    },
+    countryList: {
+        'url': 'country/all'
     }
 
 })

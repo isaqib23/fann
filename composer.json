@@ -13,6 +13,7 @@
         "laravel/tinker": "~1.0",
         "martinlindhe/laravel-vue-i18n-generator": "^0.1.40",
         "prettus/l5-repository": "^2.6",
+        "rinvex/countries": "^6.1",
         "rocket-code/shopify": "^2.0",
         "tymon/jwt-auth": "^1.0.0-rc.4.1"
     },
