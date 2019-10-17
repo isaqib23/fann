@@ -1,6 +1,6 @@
 <template>
     <v-flex>
-        <v-card>
+        <v-card class="pl-12 pr-3">
             <v-card-text>
                 <v-row class="mx-auto" justify="start">
                     <v-badge color="transparent">
@@ -27,14 +27,14 @@
                                         <strong>Amanda Nash</strong>
                                     </div>
                                     <v-rating v-model="rating" color="warning" class="mt-n4"></v-rating>
-                                    <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2" depressed height="30">
+                                    <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2" class="text-capitalize" depressed height="30">
                                         Lifestyle
                                     </v-btn>
-                                    <v-btn color="grayLighten pl-2 pr-2 ml-1" depressed height="30">
+                                    <v-btn color="grayLighten pl-2 pr-2 ml-1" class="text-capitalize" depressed height="30">
                                         Fashion
                                     </v-btn>
                                     <v-spacer></v-spacer>
-                                    <v-btn color="success" class="mr-12" depressed>
+                                    <v-btn color="success" class="mr-12 text-capitalize" depressed>
                                         Accept Proposal
                                     </v-btn>
                                 </v-card-title>
@@ -72,14 +72,14 @@
                     <tbody>
                     <tr v-for="i in 8" :key="i" class="my-3">
                         <td class="text-center">
-                            <v-layout row>
+                            <v-layout row class="pl-3 pt-3 pb-1">
                                 <v-flex md2 p>
                                     <v-btn class="btn_class" color="primary" height="48px">
                                         1
                                     </v-btn>
                                 </v-flex>
                                 <v-flex md10>
-                                    <v-text-field class="text_class" label="Promoting Global Real Estate Licence" readonly type="text" solo></v-text-field>
+                                    <v-text-field class="text_class" label="Promoting Global Real Estate Licence" type="text" solo></v-text-field>
                                 </v-flex>
                             </v-layout>
                         </td>

@@ -43,8 +43,8 @@ export default [
             children  : [
                 {
                     path      : '',
-                    name      : 'index',
-                    redirect  : {name: 'settings-business-profile'}
+                    name      : 'indexs',
+                    redirect  : {name: 'dashboard'}
                 },
                 {
                     path      : 'dashboard',
@@ -196,6 +196,35 @@ export default [
 
             ]
         }
+    ]),
+    ...applyRules(['influencer'], [
+        {
+            path      : '',
+            component : require('$comp/influencer/InfluencerWrapper').default,
+            children  : [
+                {
+                    path      : '',
+                    name      : 'index',
+                    redirect  : {name: 'influencer-dashboard'}
+                },
+                {
+                    path      : 'dashboard',
+                    name      : 'influencer-dashboard',
+                    component : require('$comp/influencer/views/dashboard').default
+                },
+            ]
+        },
+        {
+            path      : '',
+            component : require('$comp/general/FullContentWidthWrapper').default,
+            children  : [
+                {
+                    path      : 'organise/campaigns',
+                    name      : 'influencer-campaign',
+                    component : require('$comp/influencer/campaign/campaign').default,
+                },
+            ]
+        },
     ])
 ]
 

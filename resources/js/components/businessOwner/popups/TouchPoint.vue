@@ -19,10 +19,10 @@
                                         <strong>Amanda Nash</strong>
                                     </div>
                                     <v-rating v-model="rating" color="warning" class="mt-n4"></v-rating>
-                                    <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2" depressed height="30">
+                                    <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2" class="text-capitalize" depressed height="30">
                                         Lifestyle
                                     </v-btn>
-                                    <v-btn color="grayLighten pl-2 pr-2 ml-1" depressed height="30">
+                                    <v-btn color="grayLighten pl-2 pr-2 ml-1" class="text-capitalize" depressed height="30">
                                         Fashion
                                     </v-btn>
                                 </v-card-title>
@@ -69,7 +69,7 @@
                                     </v-col>
                                     <v-col cols="12" md="9" class="text-left">
                                         <p class="mb-1 dark--text">Orange Light Scrub</p>
-                                        <v-btn color="primary" class="overline" depressed>
+                                        <v-btn color="primary" class="overline text-capitalize" depressed>
                                             Copy Product Url
                                         </v-btn>
                                     </v-col>

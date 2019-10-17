@@ -142,13 +142,7 @@
                range: [100, 600],
                rating:3,
                selected: null,
-               countries : [],
-               itemss: [
-                   { text: 'Jason Oner', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' },
-                   { text: 'Travis Howard', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' },
-                   { text: 'Ali Connors', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' },
-                   { text: 'Cindy Baker', avatar: 'https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png' }
-               ]
+               countries : []
             }
         },
         methods: {

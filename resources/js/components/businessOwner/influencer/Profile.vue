@@ -3,6 +3,7 @@
         <v-flex class="ma-12">
             <div class="subtitle-1 mb-2"><strong>Amanda's Profile</strong></div>
             <v-card class="mx-auto card_wrapper">
+                <span class="primary--text pl-8 pt-8" style="position: absolute"><u>Back</u></span>
                 <v-row class="py-12 mx-auto main_wrapper">
                     <v-badge color="primary">
                         <template v-slot:badge>
@@ -23,20 +24,19 @@
                                     <v-card-title class="my-0 py-0">
                                         <div class="headline mb-2 mr-4"><strong>Amanda Nash</strong></div>
                                         <v-rating v-model="rating" color="warning" class="mt-n4"></v-rating>
-                                        <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2" depressed height="30">
+                                        <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2 text-capitalize" depressed height="30">
                                             Lifestyle
                                         </v-btn>
-                                        <v-btn color="grayLighten pl-2 pr-2 ml-1" depressed height="30">
+                                        <v-btn color="grayLighten pl-2 pr-2 ml-1 text-capitalize" depressed height="30">
                                             Fashion
                                         </v-btn>
                                     </v-card-title>
                                     <div class="text-start ml-4 mt-n2">
-                                        <p class="overline integrityColor--text" color="grayLighten">Amanda Nash</p>
+                                        <p class="overline integrityColor--text text-capitalize" color="grayLighten">Amanda Nash</p>
                                     </div>
                                     <div class="icons text-start ml-4">
-                                        <v-icon color="primary" large>mdi-instagram</v-icon>
+                                        <v-icon color="primary" large class="mr-3">mdi-instagram</v-icon>
                                         <v-icon color="integrityColor" large>mdi-youtube</v-icon>
-                                        <v-icon color="integrityColor" large>mdi-blogger</v-icon>
                                     </div>
                                     <div class="followers text-start ml-4 mt-3 body-2">
                                         <span class="mr-3 integrityColor--text">
@@ -63,7 +63,7 @@
                                         <v-spacer></v-spacer>
                                         <v-dialog v-model="proposal" max-width="70%">
                                             <template v-slot:activator="{ on }">
-                                                <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2" depressed height="40" v-on="on">
+                                                <v-btn color="grayLighten ml-4 mr-2 text-capitalize" depressed height="32" v-on="on">
                                                     Invite to campaign
                                                 </v-btn>
                                             </template>
@@ -71,7 +71,7 @@
                                         </v-dialog>
                                         <v-dialog v-model="touchPoint" max-width="50%">
                                             <template v-slot:activator="{ on }">
-                                                <v-btn color="primary pl-2 pr-2 ml-1" depressed height="40" v-on="on">
+                                                <v-btn color="primary ml-1 text-capitalize" depressed height="32" v-on="on">
                                                     Make Offer
                                                 </v-btn>
                                             </template>
@@ -93,10 +93,10 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col class="d-flex" cols="2">
-                            <v-select :items="items" label="Platform" outlined height="15"></v-select>
+                            <v-select :items="items" label="Platform" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
                         </v-col>
                         <v-col class="d-flex" cols="2">
-                            <v-select :items="items" label="From" outlined></v-select>
+                            <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
                         </v-col>
                     </v-row>
 
@@ -107,7 +107,43 @@
                                     Media Posts (last 30 days)
                                     <v-spacer></v-spacer>
                                     <div class="icons text-end">
-                                        <span class="custom_icon"><v-icon color="red">mdi-fire</v-icon></span>
+                                        <span class="custom_icon bg1"><v-icon class="title" color="#C73EA9">mdi-instagram</v-icon></span>
+                                    </div>
+                                </v-card-title>
+                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">178</strong></v-card-text>
+                                <v-card-actions class="pl-5">
+                                    <span class="error--text mr-2">
+                                        <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
+                                    </span>
+                                    <span class="overline1">Less post then ussual.</span>
+                                </v-card-actions>
+                            </v-card>
+                        </v-col>
+                        <v-col class="d-flex" cols="3">
+                            <v-card min-width="100%">
+                                <v-card-title class="overline1">
+                                    Media Posts (last 30 days)
+                                    <v-spacer></v-spacer>
+                                    <div class="icons text-end">
+                                        <span class="custom_icon bg2"><v-icon class="title" color="#1788F9">mdi-account-clock-outline</v-icon></span>
+                                    </div>
+                                </v-card-title>
+                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
+                                <v-card-actions class="pl-5">
+                                    <span class="success--text mr-2">
+                                        <v-icon color="success" small>mdi-arrow-up</v-icon>13.8%
+                                    </span>
+                                    <span class="overline1">Less post then ussual.</span>
+                                </v-card-actions>
+                            </v-card>
+                        </v-col>
+                        <v-col class="d-flex" cols="3">
+                            <v-card min-width="100%">
+                                <v-card-title class="overline1">
+                                    Media Posts (last 30 days)
+                                    <v-spacer></v-spacer>
+                                    <div class="icons text-end">
+                                        <span class="custom_icon bg3"><v-icon class="title" color="primary">mdi-heart</v-icon></span>
                                     </div>
                                 </v-card-title>
                                 <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
@@ -125,49 +161,13 @@
                                     Media Posts (last 30 days)
                                     <v-spacer></v-spacer>
                                     <div class="icons text-end">
-                                        <span class="custom_icon"><v-icon color="red">mdi-fire</v-icon></span>
+                                        <span class="custom_icon bg4"><v-icon color="#FDBA2C" class="title">mdi-tooltip</v-icon></span>
                                     </div>
                                 </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
+                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">17.1K</strong></v-card-text>
                                 <v-card-actions class="pl-5">
-                                    <span class="success--text mr-2">
-                                        <v-icon color="success" small>mdi-arrow-down</v-icon>13.8%
-                                    </span>
-                                    <span class="overline1">Less post then ussual.</span>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-                        <v-col class="d-flex" cols="3">
-                            <v-card min-width="100%">
-                                <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
-                                    <v-spacer></v-spacer>
-                                    <div class="icons text-end">
-                                        <span class="custom_icon"><v-icon color="red">mdi-fire</v-icon></span>
-                                    </div>
-                                </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
-                                <v-card-actions class="pl-5">
-                                    <span class="success--text mr-2">
-                                        <v-icon color="success" small>mdi-arrow-down</v-icon>13.8%
-                                    </span>
-                                    <span class="overline1">Less post then ussual.</span>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-                        <v-col class="d-flex" cols="3">
-                            <v-card min-width="100%">
-                                <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
-                                    <v-spacer></v-spacer>
-                                    <div class="icons text-end">
-                                        <span class="custom_icon"><v-icon color="red">mdi-fire</v-icon></span>
-                                    </div>
-                                </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
-                                <v-card-actions class="pl-5">
-                                    <span class="success--text mr-2">
-                                        <v-icon color="success" small>mdi-arrow-down</v-icon>13.8%
+                                    <span class="error--text mr-2">
+                                        <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
                                     </span>
                                     <span class="overline1">Less post then ussual.</span>
                                 </v-card-actions>
@@ -190,8 +190,8 @@
                                         <v-list-item-subtitle class="caption">by Kurt Wagner</v-list-item-subtitle>
                                     </v-list-item-content>
 
-                                    <v-btn color="primary" depressed height="30">
-                                        Make Offer
+                                    <v-btn color="primary" class="text-capitalize" depressed height="30">
+                                        View Profile
                                     </v-btn>
                                 </v-list-item>
 
@@ -200,18 +200,18 @@
                                     height="194"
                                 ></v-img>
 
-                                <v-card-text class="">
+                                <v-card-text class="py-2">
                                     <strong class="primary--text">View more on instagram</strong>
                                 </v-card-text>
 
                                 <v-card-actions class="action_class">
                                     <v-tooltip bottom>
                                         <template v-slot:activator="{ on }">
-                                            <v-icon v-on="on">mdi-heart-outline</v-icon>
+                                            <v-icon v-on="on" class="mr-2">mdi-heart-outline</v-icon>
                                         </template>
                                         <span>1,7524 likes</span>
                                     </v-tooltip>
-                                    <v-icon>mdi-tooltip-outline</v-icon>
+                                    <v-icon class="mr-2">mdi-tooltip-outline</v-icon>
                                     <v-icon>mdi-briefcase-upload-outline</v-icon>
                                     <div class="flex-grow-1"></div>
                                     <v-btn icon>
@@ -299,10 +299,9 @@ import TouchPoint from '../popups/TouchPoint'
         font-size: 11px;
     }
     .overline1 .custom_icon{
-        padding: 8px 4px !important;
+        padding: 8px 6px !important;
         border-radius: 50px;
         height: auto !important;
-        background: #FDE0E1;
         border: none;
         box-shadow: none;
     }
@@ -311,5 +310,24 @@ import TouchPoint from '../popups/TouchPoint'
     }
     .action_class {
         border-top: 1px solid #ccc;
+    }
+    >>>.custom_dropdown .v-input__control{
+        min-height: 45px !important;
+    }
+    >>>.custom_dropdown .v-input__control > .v-input__slot{
+        box-shadow: none !important;
+        border: 1px solid #cccccc;
+    }
+    .bg1{
+        background: #F7E1F2 !important;
+    }
+    .bg2{
+        background: #DCECFC !important;
+    }
+    .bg3{
+        background: #FBDFE0 !important;
+    }
+    .bg4{
+        background: #FFF6DA !important;
     }
 </style>
