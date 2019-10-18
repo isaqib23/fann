@@ -23,6 +23,7 @@
                             <v-card
                             :loading="loading"
                             class="mx-auto my-2"
+                            @click="goToDetail()"
                         >
                             <v-img
                                 height="250"
@@ -77,6 +78,9 @@
 
                 setTimeout(() => (this.loading = false), 2000)
             },
+            goToDetail(){
+                this.$router.push({ name: 'influencer-campaign-detail' })
+            }
         },
     }
 </script>

@@ -216,13 +216,38 @@ export default [
         },
         {
             path      : '',
-            component : require('$comp/general/FullContentWidthWrapper').default,
+            component : require('$comp/influencer/InfluencerWrapper').default,
             children  : [
                 {
                     path      : 'organise/campaigns',
                     name      : 'influencer-campaign',
                     component : require('$comp/influencer/campaign/campaign').default,
                 },
+                {
+                    path      : 'organise/campaigns/detail',
+                    name      : 'influencer-campaign-detail',
+                    component : require('$comp/influencer/campaign/campaignDetail').default,
+                },
+                {
+                    path      : 'organise/manage/campaign',
+                    name      : 'influencer-manage-campaign',
+                    component : require('$comp/influencer/campaign/manage/campaign').default,
+                },
+                {
+                    path      : 'organise/manage/influencer',
+                    name      : 'influencer-manage-influencers',
+                    component : require('$comp/influencer/campaign/manage/influencer').default,
+                },
+                {
+                    path      : 'influencer/earnings/pending',
+                    name      : 'influencer-earnings-pending',
+                    component : require('$comp/influencer/earnings/pendingClearance').default,
+                },
+                {
+                    path      : 'influencer/earnings/approval',
+                    name      : 'influencer-earnings-approval',
+                    component : require('$comp/influencer/earnings/approvalClearance').default,
+                }
             ]
         },
     ])

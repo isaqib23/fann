@@ -136,10 +136,10 @@
                         {title: 'Create', icon: 'list_alt', to: {name: 'shopify-app'}, exact: false}
                     ],
                     [
-                        {title: 'Manage', icon: 'mdi-receipt', to: {name: 'manage-campaigns'}, exact: false}
+                        {title: 'Manage', icon: 'mdi-receipt', to: {name: 'influencer-manage-campaign'}, exact: false}
                     ],
                     [
-                        {title: 'Payments', icon: 'mdi-bank', to: {name: 'payments'}, exact: false}
+                        {title: 'Earnings', icon: 'mdi-bank', to: {name: 'influencer-earnings-pending'}, exact: false}
                     ],
                     [
                         {title: 'Message', icon: 'mdi-chat', to: {name: 'message-inbox'}, exact: false}
