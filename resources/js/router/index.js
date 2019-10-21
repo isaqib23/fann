@@ -15,7 +15,9 @@ router.beforeEach(async (to, from, next) => {
   if (store.getters['auth/token'] && !store.getters['auth/check']) {
     try {
       await store.dispatch('auth/fetchUser')
-    } catch (e) {}
+    } catch (e) {
+        console.log(to)
+    }
   }
 
   let route = reroute(to)

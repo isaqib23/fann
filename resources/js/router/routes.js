@@ -8,6 +8,11 @@ export default [
             path: '', component: require('$comp/auth/AuthWrapper').default, redirect: {name: 'login'}, children:
                 [
                     {
+                        path      : '/',
+                        name      : 'index',
+                        component : require('$comp/App').default
+                    },
+                    {
                         path      : '/login',
                         name      : 'login',
                         component : require('$comp/auth/login/Login').default
@@ -43,12 +48,12 @@ export default [
             children  : [
                 {
                     path      : '',
-                    name      : 'indexs',
-                    redirect  : {name: 'dashboard'}
+                    name      : 'businessOwner-index',
+                    redirect  : {name: 'businessOwner-dashboard'}
                 },
                 {
                     path      : 'dashboard',
-                    name      : 'dashboard',
+                    name      : 'businessOwner-dashboard',
                     component : require('$comp/businessOwner/views/dashboard').default
                 },
                 {
@@ -204,7 +209,7 @@ export default [
             children  : [
                 {
                     path      : '',
-                    name      : 'index',
+                    name      : 'influencer-index',
                     redirect  : {name: 'influencer-dashboard'}
                 },
                 {
@@ -247,7 +252,13 @@ export default [
                     path      : 'influencer/earnings/approval',
                     name      : 'influencer-earnings-approval',
                     component : require('$comp/influencer/earnings/approvalClearance').default,
-                }
+                },
+                {
+                    path      : 'settings/profile',
+                    name      : 'settings-influencer-profile',
+                    component : require('$comp/influencer/settings/Settings').default
+
+                },
             ]
         },
     ])

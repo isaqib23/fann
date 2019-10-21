@@ -1,19 +1,19 @@
 <template>
     <div>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
-            <v-icon left class="hidden-md-and-up">mdi-account</v-icon>
-            <p class="text-capitalize">Business Profile</p>
-            <v-icon left class="hidden-md-and-down">mdi-account</v-icon>
+            <v-icon left class="hidden-md-and-up mr-0">mdi-account</v-icon>
+            <p class="text-capitalize text-center">Business<br>Profile</p>
+            <v-icon left class="hidden-md-and-downmr-0">mdi-account</v-icon>
         </v-tab>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
-            <v-icon left class="hidden-md-and-up">mdi-credit-card-outline mdi-rotate-45</v-icon>
-            <p class="text-capitalize">Billing & Payment</p>
-            <v-icon left class="hidden-md-and-down">mdi-credit-card</v-icon>
+            <v-icon left class="hidden-md-and-up mr-0">mdi-credit-card-outline mdi-rotate-45</v-icon>
+            <p class="text-capitalize text-center">Billing &<br>Payment</p>
+            <v-icon left class="hidden-md-and-down mr-0">mdi-credit-card</v-icon>
         </v-tab>
         <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height text-center'">
-            <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
-            <p class="text-capitalize">Integrations</p>
-            <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
+            <v-icon left class="hidden-md-and-up mr-0">mdi-lock</v-icon>
+            <p class="text-capitalize text-center">Integrations</p>
+            <v-icon left class="hidden-md-and-down mr-0">mdi-lock</v-icon>
         </v-tab>
     </div>
 </template>

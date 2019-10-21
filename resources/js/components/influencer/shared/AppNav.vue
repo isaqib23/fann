@@ -145,7 +145,7 @@
                         {title: 'Message', icon: 'mdi-chat', to: {name: 'message-inbox'}, exact: false}
                     ],
                     [
-                        {title: 'Settings', icon: 'settings_applications', to: {name: 'settings-business-profile'}, exact: false}
+                        {title: 'Settings', icon: 'settings_applications', to: {name: 'settings-influencer-profile'}, exact: false}
                     ],
 
                 ]
