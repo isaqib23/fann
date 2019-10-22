@@ -10,7 +10,7 @@
     >
 
         <v-list class="py-0">
-            <v-list-item class="secondary">
+            <v-list-item class="accent">
                 <v-list-item-icon v-show="$vuetify.breakpoint.mdAndUp && mini">
                     <img class="brand-logo-mini" src="/images/brand-mini.png"/>
                 </v-list-item-icon>
