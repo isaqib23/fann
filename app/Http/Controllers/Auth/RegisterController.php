@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'type' => 'required',
         ]);
     }
 
@@ -89,7 +90,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'type' => 'businessOwner',
+            'type' => ($data['type'] == 'businessOwner') ? 'businessOwner' : 'influencer',
         ]);
     }
 }

@@ -3,15 +3,15 @@ export default [
         path      : '*',
         redirect  : {name: 'index'}
     },
+    {
+        path      : '/',
+        name      : 'index',
+        component : require('$comp/Index').default
+    },
     ...applyRules(['guest'], [
         {
             path: '', component: require('$comp/auth/AuthWrapper').default, redirect: {name: 'login'}, children:
                 [
-                    {
-                        path      : '/',
-                        name      : 'index',
-                        component : require('$comp/App').default
-                    },
                     {
                         path      : '/login',
                         name      : 'login',

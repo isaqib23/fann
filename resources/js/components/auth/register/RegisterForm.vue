@@ -38,6 +38,11 @@
       :rules="[rules.required('password_confirmation')]"
     ></v-text-field>
 
+      <v-radio-group v-model="form.type" row>
+          <v-radio color="primary" label="Business Owner" value="businessOwner"></v-radio>
+          <v-radio color="primary" label="Influencer" value="influencer"></v-radio>
+      </v-radio-group>
+
     <v-layout row class="mt-4 mx-0">
       <v-spacer></v-spacer>
 
@@ -78,6 +83,7 @@ export default {
     form: {
       name: null,
       email: null,
+      type: 'businessOwner',
       password: null,
       password_confirmation: null
     }
@@ -87,6 +93,7 @@ export default {
     submit() {
       if (this.$refs.form.validate()) {
         this.loading = true
+          
         axios.post(api.path('register'), this.form)
           .then(res => {
             this.$toast.success('You have been successfully registered!')

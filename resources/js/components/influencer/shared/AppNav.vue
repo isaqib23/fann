@@ -127,7 +127,7 @@
             navigation() {
                 this.items = [
                     [
-                        {title: 'Dashboard', icon: 'dashboard', to: {name: 'dashboard'}}
+                        {title: 'Dashboard', icon: 'dashboard', to: {name: 'influencer-dashboard'}}
                     ],
                     [
                         {title: 'Campaigns', icon: 'mdi-account', to: {name: 'influencer-campaign'}, exact: false}
