@@ -59,13 +59,10 @@
 </template>
 
 <script>
-import Proposal from '../popups/Proposal'
-import TouchPoint from '../popups/TouchPoint'
 
     export default {
         components: {
-            Proposal:Proposal,
-            TouchPoint:TouchPoint
+
         },
         data: () => {
            return  {

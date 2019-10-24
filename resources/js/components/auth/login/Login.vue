@@ -28,7 +28,7 @@
                 this.$store.dispatch('auth/saveToken', data)
                 this.$store.dispatch('auth/setUser', data)
                 //this.$router.push({name: 'index'})
-                this.$router.push({name: data.user.type+'-index'})
+                this.$router.push({ name: data.user.type + '-index' })
             }
         },
         created() {

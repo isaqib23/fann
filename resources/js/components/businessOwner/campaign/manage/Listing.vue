@@ -71,7 +71,7 @@
                                 <td class="subtitle-1">{{ item.actions }}</td>
                                 <td class="subtitle-1">{{ item.engRate }}%</td>
                                 <td class="px-1">
-                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1">
+                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1" @click="addItem()">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
                                     </v-btn>
                                 </td>
@@ -182,7 +182,14 @@
                 actions: '2.7k',
                 engRate: '2.0'
             },
-        })
+        }),
+        methods: {
+            addItem(item) {
+                this.$nextTick(() => {
+                    this.active_tab = 1
+                })
+            },
+        }
     }
 </script>
 <style scoped>

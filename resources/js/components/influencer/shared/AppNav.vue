@@ -10,7 +10,7 @@
     >
 
         <v-list class="py-0">
-            <v-list-item class="secondary">
+            <v-list-item class="accent">
                 <v-list-item-icon v-show="$vuetify.breakpoint.mdAndUp && mini">
                     <img class="brand-logo-mini" src="/images/brand-mini.png"/>
                 </v-list-item-icon>
@@ -133,16 +133,13 @@
                         {title: 'Campaigns', icon: 'mdi-account', to: {name: 'influencer-campaign'}, exact: false}
                     ],
                     [
-                        {title: 'Create', icon: 'list_alt', to: {name: 'shopify-app'}, exact: false}
-                    ],
-                    [
                         {title: 'Manage', icon: 'mdi-receipt', to: {name: 'influencer-manage-campaign'}, exact: false}
                     ],
                     [
                         {title: 'Earnings', icon: 'mdi-bank', to: {name: 'influencer-earnings-pending'}, exact: false}
                     ],
                     [
-                        {title: 'Message', icon: 'mdi-chat', to: {name: 'message-inbox'}, exact: false}
+                        {title: 'Message', icon: 'mdi-chat', to: {name: 'influencer-message-inbox'}, exact: false}
                     ],
                     [
                         {title: 'Settings', icon: 'settings_applications', to: {name: 'settings-influencer-profile'}, exact: false}

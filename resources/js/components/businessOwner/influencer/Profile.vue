@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="buttons text-right mt-n6">
                                         <v-spacer></v-spacer>
-                                        <v-dialog v-model="proposal" max-width="70%">
+                                        <v-dialog v-model="proposal" max-width="70%" transition="slide-y-reverse-transition">
                                             <template v-slot:activator="{ on }">
                                                 <v-btn color="grayLighten ml-4 mr-2 text-capitalize" depressed height="32" v-on="on">
                                                     Invite to campaign
@@ -69,7 +69,7 @@
                                             </template>
                                             <Proposal></Proposal>
                                         </v-dialog>
-                                        <v-dialog v-model="touchPoint" max-width="50%">
+                                        <v-dialog v-model="touchPoint" max-width="50%" transition="slide-y-reverse-transition">
                                             <template v-slot:activator="{ on }">
                                                 <v-btn color="primary ml-1 text-capitalize" depressed height="32" v-on="on">
                                                     Make Offer

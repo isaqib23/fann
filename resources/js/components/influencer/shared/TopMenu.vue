@@ -10,11 +10,11 @@
         <v-app-bar-nav-icon @click.stop="navToggle"></v-app-bar-nav-icon>
         <v-toolbar-title class="white--text">{{ appName }}</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn icon large
+        <!--<v-btn icon large
                :color="$vuetify.theme.dark ? 'black' : 'white'"
                title="Toggle Night Mode" @click="toggleNight">
             <v-icon>invert_colors</v-icon>
-        </v-btn>
+        </v-btn>-->
         <v-toolbar-items>
             <v-btn icon>
                 <v-icon>mdi-chat</v-icon>

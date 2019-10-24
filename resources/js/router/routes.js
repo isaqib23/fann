@@ -6,7 +6,7 @@ export default [
     {
         path      : '/',
         name      : 'index',
-        component : require('$comp/Index').default
+        component : require('$comp/general/Index').default
     },
     ...applyRules(['guest'], [
         {
@@ -259,6 +259,29 @@ export default [
                     component : require('$comp/influencer/settings/Settings').default
 
                 },
+                {
+                    path      : 'influencer/popups',
+                    name      : 'influencer-popups',
+                    component : require('$comp/influencer/popups/index').default
+
+                },
+                {
+                    path      : 'influencer/messages',
+                    name      : 'influencer-messages',
+                    component : require('$comp/influencer/messages/index').default,
+                    children  : [
+                        {
+                            path      : 'inbox',
+                            name      : 'influencer-message-inbox',
+                            component : require('$comp/influencer/messages/inbox').default
+                        },
+                        {
+                            path      : 'compose',
+                            name      : 'influencer-message-compose',
+                            component : require('$comp/influencer/messages/compose').default
+                        }
+                    ]
+                }
             ]
         },
     ])

@@ -1,12 +1,6 @@
 <template>
     <v-layout wrap class="ma-3 pa-2">
         <v-flex xs12 fluid>
-                <v-btn color="primary" large class="d-inline-block float-left caption text-capitalize"
-                       @click="goToInfluencer()"
-                   :class="$vuetify.breakpoint.smAndUp ? 'mx-2' : 'my-2'"
-                >
-                    Go To Placement
-                </v-btn>
                 <v-text-field
                         class="float-left custom_field"
                         solo
@@ -81,7 +75,7 @@
                                     </v-btn>
                                 </td>
                                 <td class="px-1">
-                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1">
+                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1" @click="goToInfluencer()">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
                                     </v-btn>
                                 </td>
