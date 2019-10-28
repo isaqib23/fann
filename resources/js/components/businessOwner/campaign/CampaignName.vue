@@ -2,7 +2,7 @@
     <v-card class="create_card mx-auto mt-12">
         <v-card-title class="pb-8 justify-center">Select Your Campaign Objective</v-card-title>
         <v-card-text class="mb-12  ma-auto">
-            <v-radio-group v-model="radioGroup">
+            <v-radio-group v-model="campaignObjective">
             <v-layout row justify-center wrap>
                 <v-flex lg4 sm12 xs12>
                     <div class="pl-12">
@@ -11,9 +11,9 @@
                     </div>
 
                     <div class="pl-12">
-                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Unboxing" color="primary" value="1" hide-details></v-radio>
-                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Product Review" color="primary" value="2" hide-details></v-radio>
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Contests & Giveways" color="primary" value="3" hide-details></v-radio>
+                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Unboxing" color="primary" value="unboxing" hide-details></v-radio>
+                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Product Review" color="primary" value="productReview" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Contests & Giveways" color="primary" value="contestsGiveways" hide-details></v-radio>
                     </div>
 
                 </v-flex>
@@ -23,9 +23,9 @@
                         <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">brand awareness</div>
                     </div>
                     <div class="pl-12">
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Shoutout" color="primary" value="4" hide-details></v-radio>
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Review" color="primary" value="5" hide-details></v-radio>
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Event Invitation" color="primary" value="6" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Shoutout" color="primary" value="brandShoutout" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Review" color="primary" value="brandReview" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Event Invitation" color="primary" value="eventInvitation" hide-details></v-radio>
                     </div>
                 </v-flex>
                 <v-flex lg4 sm12 xs12>
@@ -34,8 +34,8 @@
                         <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">sponsored content</div>
                     </div>
                     <div class="pl-12">
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Promotional Content" color="primary" value="7" hide-details></v-radio>
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Special Events" color="primary" value="8" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Promotional Content" color="primary" value="promotionalContent" hide-details></v-radio>
+                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Special Events" color="primary" value="specialEvents" hide-details></v-radio>
                     </div>
                 </v-flex>
             </v-layout>
@@ -63,18 +63,26 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
 
     export default {
 
         data: () => ({
-            radioGroup: 1
+            campaignObjective: null
+        }),
+
+        computed: mapGetters({
+            campaign: 'campaign/campaignObjective'
         }),
 
         mounted() {
-
+            console.log(this.campaign);
+            this.campaignObjective = this.campaign
         },
+
         methods: {
             goToNext(){
+                this.$store.dispatch('campaign/saveObjective', this.campaignObjective)
                 this.$router.push({ name: 'create-campaign-objective' })
             }
         }

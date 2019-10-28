@@ -1,6 +1,6 @@
 <template>
     <v-navigation-drawer
-        fixed app dark
+        fixed app
         :permanent="$vuetify.breakpoint.mdAndUp"
         :mini-variant.sync="$vuetify.breakpoint.mdAndUp && mini"
         :value="mini"
@@ -47,7 +47,7 @@
                 >
                     <template v-slot:activator>
                         <v-list-item-content>
-                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                            <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
                         </v-list-item-content>
                     </template>
 
@@ -60,11 +60,11 @@
                         :exact="subItem.exact !== undefined ? subItem.exact : true"
                     >
                         <v-list-item-content class="pl-2">
-                            <v-list-item-title>{{ subItem.title }}</v-list-item-title>
+                            <v-list-item-title class="white--text">{{ subItem.title }}</v-list-item-title>
                         </v-list-item-content>
 
                         <v-list-item-icon>
-                            <v-icon>{{ subItem.icon }}</v-icon>
+                            <v-icon class="white--text">{{ subItem.icon }}</v-icon>
                         </v-list-item-icon>
                     </v-list-item>
                 </v-list-group>
@@ -79,11 +79,11 @@
                     :key="item.title"
                 >
                     <v-list-item-icon>
-                        <v-icon>{{ item.icon }}</v-icon>
+                        <v-icon class="white--text">{{ item.icon }}</v-icon>
                     </v-list-item-icon>
 
                     <v-list-item-content>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        <v-list-item-title class="white--text">{{ item.title }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </template>

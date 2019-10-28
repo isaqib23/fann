@@ -26,6 +26,5 @@
 
         <script src="{{ mix('/js/app.js') }}"></script>
         <link href="/css/nprogress.css" rel="stylesheet">
-        <script src="/js/nprogress.js"></script>
     </body>
 </html>

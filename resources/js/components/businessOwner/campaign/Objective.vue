@@ -85,6 +85,9 @@
                 </v-layout>
             </v-card-text>
             <v-card-actions class="float-right action_btns mt-n12">
+                <v-btn color="grey lighten-2" dark large @click="goToBack()" class="text-capitalize mr-2 grey--text">
+                    {{ $t('labels.campaign.name_backBtn') }}
+                </v-btn>
                 <v-btn color="primary" dark large @click="goToNext()" class="text-capitalize">
                     {{ $t('labels.campaign.name_nextBtn') }}
                     <v-icon right>keyboard_arrow_right</v-icon>
@@ -109,6 +112,9 @@
         methods: {
             goToNext(){
                 this.$router.push({ name: 'create-campaign-requirements' })
+            },
+            goToBack(){
+                this.$router.push({ name: 'create-campaign-name' })
             }
         }
     }

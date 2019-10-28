@@ -56,11 +56,7 @@ export default [
                     name      : 'businessOwner-dashboard',
                     component : require('$comp/businessOwner/views/dashboard').default
                 },
-                {
-                    path      : 'shopify-app',
-                    name      : 'shopify-app',
-                    component : require('$comp/businessOwner/shopify/Shakehand').default
-                },
+
             ]
         },
         {

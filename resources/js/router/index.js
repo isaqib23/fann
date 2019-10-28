@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import store from '~/store/index'
 import routes from './routes'
 import { api } from '~/config'
+import NProgress from 'nprogress';
 
 Vue.use(VueRouter)
 

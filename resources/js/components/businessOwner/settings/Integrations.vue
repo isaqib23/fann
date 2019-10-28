@@ -53,9 +53,15 @@
                                             <v-list-item-subtitle>eCommerce</v-list-item-subtitle>
                                         </v-list-item-content>
 
-                                        <v-list-item-avatar class="primary--text" width="100">
-                                            View Settings <v-icon color="primary">keyboard_arrow_right</v-icon>
-                                        </v-list-item-avatar>
+                                        <v-dialog v-model="ShopifyApp" max-width="50%" transition="slide-y-reverse-transition">
+                                            <template v-slot:activator="{ on }">
+                                                <v-list-item-avatar class="primary--text" width="100" v-on="on">
+                                                    View Settings <v-icon color="primary">keyboard_arrow_right</v-icon>
+                                                </v-list-item-avatar>
+                                            </template>
+                                            <ShopifyApp></ShopifyApp>
+                                        </v-dialog>
+
                                     </v-list-item>
                                 </v-list>
                             </v-col>
@@ -75,8 +81,12 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import ShopifyApp from '../shopify/Shakehand'
 
     export default {
+        components: {
+            ShopifyApp:ShopifyApp
+        },
         data: () => ({
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
@@ -85,7 +95,8 @@
             user: {
                 name: null,
                 email: null,
-            }
+            },
+            ShopifyApp: false
         }),
 
         computed: mapGetters({
