@@ -8,7 +8,6 @@
         color="accent"
         class="elevation-4"
     >
-
         <v-list class="py-0">
             <v-list-item class="accent">
                 <v-list-item-icon v-show="$vuetify.breakpoint.mdAndUp && mini">
