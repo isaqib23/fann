@@ -14,7 +14,6 @@ export const state = {
  * Mutations
  */
 export const mutations = {
-
     setObjective(state, objective) {
         state.campaignObjective = objective
     }
@@ -25,7 +24,6 @@ export const mutations = {
  * Actions
  */
 export const actions = {
-
     saveObjective({ commit }, payload) {
         commit('setObjective',payload);
     },
@@ -37,5 +35,4 @@ export const actions = {
  */
 export const getters = {
     campaignObjective: state => state.campaignObjective,
-
 }

@@ -98,6 +98,7 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
 
     export default {
 
@@ -105,9 +106,16 @@
             kind: 'radio-1',
             kind2: 'radio-1',
         }),
-
+        computed: {
+            ...mapGetters({
+                campaign: 'campaign/campaignObjective'
+            })
+        },
         mounted() {
 
+        },
+        created() {
+            console.info(this.campaign, "chummi");
         },
         methods: {
             goToNext(){

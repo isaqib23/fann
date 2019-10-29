@@ -7,7 +7,6 @@
                 <v-card-title>
                     <div class="subtitle-1 mb-2"><strong>Campaign Description</strong></div>
                 </v-card-title>
-
                 <v-textarea
                     label="Write your campaign description here"
                     auto-grow
@@ -18,9 +17,7 @@
             </v-card>
         </v-flex>
 
-
-        <v-flex
-        >
+        <v-flex>
             <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
                 <v-card-title>
                     <div class="subtitle-1 mb-2"><strong>Touch Point # 1</strong></div>
@@ -302,7 +299,7 @@
 
 <script>
     import vue2Dropzone from 'vue2-dropzone';
-
+    import { mapGetters } from 'vuex';
     export default {
         components: {
             vueDropzone: vue2Dropzone,
@@ -330,7 +327,15 @@
                date: new Date().toISOString().substr(0, 10),
             }
         },
-        methods: {}
+        methods: {},
+        computed : {
+            ...mapGetters({
+              campaignObjective : 'campaign/campaignObjective'
+            })
+        },
+        created() {
+            console.info(this.campaignObjective);
+        }
     }
 </script>
 
