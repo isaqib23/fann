@@ -9,7 +9,7 @@
                     </v-card-title>
                     <v-card-text>
                         <v-row justify="start">
-                            <v-col cols="12" sm="2">
+                            <v-col cols="12" sm="3">
                                 <image-input v-model="avatar">
                                     <div slot="activator">
                                         <v-avatar size="175px" v-ripple v-if="!avatar" class="grey lighten-3 mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">

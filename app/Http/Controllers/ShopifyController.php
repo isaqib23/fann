@@ -45,17 +45,26 @@ class ShopifyController extends Controller
     public function install($shop, Request $request)
     {
         $user = $request->user();
-        $shopify = $this->getShopifyObj($shop, '');
-        $permissionURL = $shopify->installURL([
-            'permissions'   => config('shopify.permissions'),
-            'redirect'      => route('shopify.auth-callback')
-        ]);
+        $shops = $this->repository->findByField('domain',$shop);
+        if($shops->count() == 0) {
+            $shopify = $this->getShopifyObj($shop, '');
+            $permissionURL = $shopify->installURL([
+                'permissions' => config('shopify.permissions'),
+                'redirect' => route('shopify.auth-callback')
+            ]);
 
-        // ----- add state param to personalize the user_id
-        $permissionURL .= '&state='. $user->id;
+            // ----- add state param to personalize the user_id
+            $permissionURL .= '&state=' . $user->id;
+
+            return response()->json([
+                'status' => true,
+                'url' => $permissionURL
+            ]);
+        }
 
         return response()->json([
-            'url' => $permissionURL
+            'status' => false,
+            'message' => 'You have entered shop domain name that already exists in our records.'
         ]);
     }
 
@@ -82,6 +91,7 @@ class ShopifyController extends Controller
 
             try {
                 $shopInfo = $shopify->call(['URL' => 'shop.json', 'METHOD' => 'GET']);
+
                 $this->repository->create([
                     'user_id'   => $user,
                     'domain'    => $shop,
