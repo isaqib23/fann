@@ -8,7 +8,6 @@
         color="accent"
         class="elevation-4"
     >
-
         <v-list class="py-0">
             <v-list-item class="accent">
                 <v-list-item-icon v-show="$vuetify.breakpoint.mdAndUp && mini">
@@ -24,7 +23,7 @@
                     <v-btn small icon @click.native.stop="navToggle" class="mx-0">
                         <v-icon>chevron_left</v-icon>
                     </v-btn>
-                </v-list-item-icon>
+                </v-list-item-icon>e
             </v-list-item>
 
             <v-list-item v-show="$vuetify.breakpoint.mdAndUp && mini">
