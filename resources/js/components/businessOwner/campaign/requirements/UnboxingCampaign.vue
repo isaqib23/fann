@@ -223,7 +223,7 @@
         },
         data: () => {
            return  {
-               tabsLength: 4,
+               tabsLength: 1,
                currentTab: 0,
                model: 0,
                e1: 0,
