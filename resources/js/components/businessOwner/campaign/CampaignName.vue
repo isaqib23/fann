@@ -70,11 +70,11 @@
         data: () => ({
             campaignObjective: null
         }),
-
-        computed: mapGetters({
-            campaign: 'campaign/campaignObjective'
-        }),
-
+        computed: {
+            ...mapGetters({
+                campaign: 'campaign/campaignObjective'
+            })
+        },
         mounted() {
             console.log(this.campaign);
             this.campaignObjective = this.campaign
