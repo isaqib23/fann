@@ -36,10 +36,8 @@
 
 <script>
     import LeftTabs from './requirements/LeftTabs';
-    //import SetupLeftPane from './requirements/SetupLeftPane';
-    import CreateLeftPane from './requirements/CreateLeftPane';
+    import CreateLeftPane from './requirements/UnboxingCampaign';
     import InviteLeftPane from './requirements/InviteLeftPane';
-    //import SetupRightPane from './requirements/SetupRightPane';
     import CreateRightPane from './requirements/CreateRightPane';
     import InviteRightPaneListView from './requirements/InviteRightPaneListView';
     import InviteRightPaneGridView from './requirements/InviteRightPaneGridView';
@@ -47,10 +45,8 @@
     export default {
         components: {
             LeftTabs: LeftTabs,
-            //SetupLeftPane: SetupLeftPane,
             CreateLeftPane: CreateLeftPane,
             InviteLeftPane: InviteLeftPane,
-            //SetupRightPane: SetupRightPane,
             CreateRightPane: CreateRightPane,
             InviteRightPaneListView: InviteRightPaneListView,
             InviteRightPaneGridView: InviteRightPaneGridView,
