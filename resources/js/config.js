@@ -1,8 +1,8 @@
-const apiUrl = roi_global.apiUrl;
+const apiUrl = faan.apiUrl;
 
 export const settings = {
-    appName: roi_global.appName,
-    appURL: roi_global.siteUrl
+    appName: faan.appName,
+    appURL: faan.siteUrl
 }
 
 class URL {

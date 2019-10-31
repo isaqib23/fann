@@ -11,10 +11,11 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet">
         <link href="/css/fonts.css" rel="stylesheet">
         <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+        <link href="/css/nprogress.css" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="/images/brand.png" />
 
         <script>
-            window.roi_global = {!! json_encode([
+            window.faan = {!! json_encode([
                 'appName'   => env('APP_NAME_FORMATTED'),
                 'siteUrl'   => config('app.url'),
                 'apiUrl'    => config('app.url') . '/api'
@@ -24,7 +25,9 @@
     <body>
         <div id="app" v-cloak></div>
 
+        <script src="{{ mix('/js/manifest.js') }}"></script>
+        <script src="{{ mix('/js/vendor.js') }}"></script>
         <script src="{{ mix('/js/app.js') }}"></script>
-        <link href="/css/nprogress.css" rel="stylesheet">
+
     </body>
 </html>

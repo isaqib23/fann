@@ -7,6 +7,7 @@
         :width="260"
         color="accent"
         class="elevation-4"
+        dark
     >
         <v-list class="py-0">
             <v-list-item class="accent">
