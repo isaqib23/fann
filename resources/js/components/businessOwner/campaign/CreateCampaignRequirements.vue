@@ -13,7 +13,10 @@
                         <SetupLeftPane></SetupLeftPane>
                     </v-tab-item>-->
                     <v-tab-item>
-                        <CreateLeftPane></CreateLeftPane>
+                        <UnboxingCampaign v-if="activeLeftBar == 'unboxing'"></UnboxingCampaign>
+                        <contestsGiveways v-else-if="activeLeftBar == 'contestsGiveways'"></contestsGiveways>
+                        <productReview v-else-if="activeLeftBar == 'productReview'"></productReview>
+                        <CreateLeftPane v-else></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
                         <InviteLeftPane></InviteLeftPane>
@@ -36,25 +39,37 @@
 
 <script>
     import LeftTabs from './requirements/LeftTabs';
-    import CreateLeftPane from './requirements/UnboxingCampaign';
+    import CreateLeftPane from './requirements/CreateLeftPane';
+    import UnboxingCampaign from './requirements/UnboxingCampaign';
+    import contestsGiveways from './requirements/contestsGiveways';
+    import productReview from './requirements/productReview';
     import InviteLeftPane from './requirements/InviteLeftPane';
     import CreateRightPane from './requirements/CreateRightPane';
     import InviteRightPaneListView from './requirements/InviteRightPaneListView';
     import InviteRightPaneGridView from './requirements/InviteRightPaneGridView';
     import Promote from './requirements/Promote';
+    import {mapGetters} from 'vuex';
     export default {
         components: {
             LeftTabs: LeftTabs,
             CreateLeftPane: CreateLeftPane,
+            UnboxingCampaign: UnboxingCampaign,
+            contestsGiveways: contestsGiveways,
+            productReview: productReview,
             InviteLeftPane: InviteLeftPane,
             CreateRightPane: CreateRightPane,
             InviteRightPaneListView: InviteRightPaneListView,
             InviteRightPaneGridView: InviteRightPaneGridView,
             Promote: Promote
         },
+        mounted() {
+            this.activeLeftBar = this.campaign;
+            console.log(this.activeLeftBar, 'ddfdfdfds');
+        },
         data: () => {
            return  {
-               active_tab: 0
+               active_tab: 0,
+               activeLeftBar:null
             }
         },
         methods: {},
@@ -64,7 +79,10 @@
             },
             cardClass: function() {
                 return (this.active_tab == 2) ? 'full_width' : 'full_width';
-            }
+            },
+            ...mapGetters({
+                campaign: 'campaign/campaignObjective'
+            })
         }
     }
 </script>
