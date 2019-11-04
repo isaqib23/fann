@@ -11,9 +11,11 @@
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^1.0",
+        "madcoda/php-youtube-api": "1.2",
         "martinlindhe/laravel-vue-i18n-generator": "^0.1.42",
         "prettus/l5-repository": "^2.6",
         "rinvex/countries": "^6.1",
+        "socialiteproviders/instagram": "^3.0",
         "tymon/jwt-auth": "^1.0.0-rc.4.1"
     },
     "require-dev": {

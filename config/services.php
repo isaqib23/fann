@@ -44,4 +44,9 @@ return [
         'zip_extract_path' => env('ZIP_EXTRACT_PATH'),
     ],
 
+    'instagram' => [
+        'client_id' => env('INSTAGRAM_KEY'),
+        'client_secret' => env('INSTAGRAM_SECRET'),
+        'redirect' => env('INSTAGRAM_REDIRECT_URI')
+    ],
 ];
