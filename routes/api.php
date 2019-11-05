@@ -47,12 +47,6 @@ Route::group(['middleware' => ['jwt']], function() {
         'uses' => 'ShopifyController@publish'
     ]);
 
-    // ----- delete zip
-    Route::delete('upload/delete', [
-        'as' => 'upload-delete',
-        'uses' => 'UploadZipsController@delete'
-    ]);
-
     // ----- clean uninstall
     Route::patch('shopify/clean-uninstall', [
         'as' => 'shopify.clean-uninstall',
@@ -64,5 +58,13 @@ Route::group(['middleware' => ['jwt']], function() {
         'as' => 'country.all',
         'uses' => 'CountriesController@index'
     ]);
+
+    // ----- Campaign related api's
+    Route::prefix('/campaign')->group(function () {
+
+        // ----- get campaign objectives list
+        Route::get('objectives', 'CampaignsController@getCampaignObjectives');
+    });
+
 });
 

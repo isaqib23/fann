@@ -27,4 +27,13 @@ class CampaignObjective extends Model
         return $this->belongsTo(CampaignObjectiveCategory::class);
     }
 
+    /**
+     * Scope a query to only include active users.
+     *
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
 }

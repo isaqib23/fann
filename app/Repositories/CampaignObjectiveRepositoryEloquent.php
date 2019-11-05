@@ -35,4 +35,12 @@ class CampaignObjectiveRepositoryEloquent extends BaseRepository implements Camp
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+
+    public function getObjectGroupByCategory()
+    {
+        $this->model()->active();
+
+    }
+
+
 }

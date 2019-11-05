@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\CampaignCreateRequest;
 use App\Http\Requests\CampaignUpdateRequest;
 use App\Contracts\CampaignRepository;
 use App\Validators\CampaignValidator;
+use App\Contracts\CampaignObjectiveRepository;
 
 /**
  * Class CampaignsController.
@@ -30,21 +34,29 @@ class CampaignsController extends Controller
     protected $validator;
 
     /**
+     * @var CampaignObjectiveRepository
+     */
+    protected $campaignObjectiveRepository;
+
+    /**
      * CampaignsController constructor.
      *
      * @param CampaignRepository $repository
-     * @param CampaignValidator $validator
+     * @param CampaignObjectiveRepository $campaignObjectiveRepository
      */
-    public function __construct(CampaignRepository $repository, CampaignValidator $validator)
+    public function __construct(
+        CampaignRepository $repository,
+        CampaignObjectiveRepository $campaignObjectiveRepository
+    )
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->campaignObjectiveRepository = $campaignObjectiveRepository;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -66,9 +78,9 @@ class CampaignsController extends Controller
      *
      * @param  CampaignCreateRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws ValidatorException
      */
     public function store(CampaignCreateRequest $request)
     {
@@ -106,7 +118,7 @@ class CampaignsController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -127,7 +139,7 @@ class CampaignsController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -144,7 +156,7 @@ class CampaignsController extends Controller
      *
      * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws ValidatorException
      */
     public function update(CampaignUpdateRequest $request, $id)
     {
@@ -185,7 +197,7 @@ class CampaignsController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -201,4 +213,18 @@ class CampaignsController extends Controller
 
         return redirect()->back()->with('message', 'Campaign deleted.');
     }
+
+    /**
+     * @return JsonResponse
+     */
+    public function getCampaignObjectives()
+    {
+        $objectives = $this->campaignObjectiveRepository->all();
+
+        return response()->json([
+            'data' => $objectives
+        ]);
+    }
+
+
 }

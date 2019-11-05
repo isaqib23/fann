@@ -64,6 +64,8 @@
 
 <script>
     import { mapGetters } from 'vuex';
+    import axios from 'axios'
+    import { api } from '~/config'
 
     export default {
 
@@ -78,6 +80,12 @@
         mounted() {
             console.log(this.campaign);
             this.campaignObjective = this.campaign
+
+            axios
+                .get(api.path('campaign.objectives'))
+                .then(function(resp){
+                 //  console.info('success', resp.data)
+                });
         },
 
         methods: {

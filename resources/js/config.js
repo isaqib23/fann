@@ -36,6 +36,8 @@ class URL {
     }
 }
 
+import campaign from '../js/apiRoutes/campaign';
+
 export const api = Object.assign(new URL(apiUrl), {
     url: '',
 
@@ -78,6 +80,8 @@ export const api = Object.assign(new URL(apiUrl), {
     },
     countryList: {
         'url': 'country/all'
-    }
+    },
+
+    campaign: campaign,
 
 })
