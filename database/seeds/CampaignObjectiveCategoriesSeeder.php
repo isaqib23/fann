@@ -10,9 +10,18 @@ use Illuminate\Support\Str;
 class CampaignObjectiveCategoriesSeeder extends Seeder
 {
     private $categories  = [
-        'Product Placement',
-        'Brand Awareness',
-        'Sponsored Content'
+        1 => [
+            'name' => 'Product Placement',
+            'image' => '/images/icons/balloon.svg'
+        ],
+        2 => [
+            'name' =>  'Brand Awareness',
+            'image' => '/images/icons/awareness.svg',
+        ],
+        3 => [
+            'name'  => 'Sponsored Content',
+            'image' => '/images/icons/awareness.svg',
+        ]
     ];
 
     /**
@@ -22,15 +31,17 @@ class CampaignObjectiveCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        foreach ($this->categories as $category) {
+        foreach ($this->categories as $categoryId => $category) {
             $dt = Carbon::now();
             $dateNow = $dt->toDateTimeString();
 
             DB::table('campaign_objective_categories')->insert([
-                'name' => $category,
-                'slug' => Str::slug($category),
+                'id'   => $categoryId,
+                'name' => $category['name'],
+                'slug' => Str::slug($category['name']),
+                'image' => $category['image'],
                 'created_at' => $dateNow,
-                'updated_at' => $dateNow,
+                'updated_at' => $dateNow
             ]);
         }
     }

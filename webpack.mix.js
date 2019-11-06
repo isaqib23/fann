@@ -38,7 +38,7 @@ if (mix.inProduction()) {
 }
 
 mix.js('resources/js/app.js', 'public/js')
-   .extract(['vue', 'vue-router', 'vuex', 'axios'])
+   .extract(['vue', 'vue-router', 'vuex', 'axios', 'lodash'])
    .sass('resources/styles/app.sass', 'public/css')
 
 mix.webpackConfig({

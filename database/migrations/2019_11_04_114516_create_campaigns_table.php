@@ -8,7 +8,13 @@ use Illuminate\Database\Migrations\Migration;
  */
 class CreateCampaignsTable extends Migration
 {
-	/**
+
+   public function __construct()
+   {
+       return ;
+   }
+
+    /**
 	 * Run the migrations.
 	 *
 	 * @return void

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class CampaignObjective extends Model
 {
@@ -20,11 +20,11 @@ class CampaignObjective extends Model
     ];
 
     /**
-     * @return BelongsTo
+     * @return HasOne
      */
     public function objectiveCategory()
     {
-        return $this->belongsTo(CampaignObjectiveCategory::class);
+        return $this->hasOne(CampaignObjectiveCategory::class, 'id', 'parent_category_id');
     }
 
     /**
@@ -33,7 +33,7 @@ class CampaignObjective extends Model
      */
     public function scopeActive($query)
     {
-        return $query->where('active', 1);
+        return $query->where('is_active', 1);
     }
 
 }

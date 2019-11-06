@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CampaingObjectives;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CampaignObjectiveCategory extends Model
 {
@@ -25,10 +25,11 @@ class CampaignObjectiveCategory extends Model
     ];
 
     /**
-     * @return HasMany
+     * @return BelongsTo
      */
     public function campaignObjectives()
     {
-        return $this->hasMany(CampaingObjectives::class, 'parent_category_id', 'id');
+        return $this->belongsTo(CampaingObjectives::class);
     }
+
 }

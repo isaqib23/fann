@@ -219,10 +219,10 @@ class CampaignsController extends Controller
      */
     public function getCampaignObjectives()
     {
-        $objectives = $this->campaignObjectiveRepository->all();
-
+        $objectives = $this->campaignObjectiveRepository->synthObjectiveAlongWithCategory();
         return response()->json([
-            'data' => $objectives
+            'details' => $objectives,
+
         ]);
     }
 

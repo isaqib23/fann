@@ -4,38 +4,17 @@
         <v-card-text class="mb-12  ma-auto">
             <v-radio-group v-model="campaignObjective">
             <v-layout row justify-center wrap>
-                <v-flex lg4 sm12 xs12>
+
+                <v-flex lg4 sm12 xs12 v-for="(objectives, category) in getCampaignObjectives" :key="category">
                     <div class="pl-12">
-                        <v-img src="/images/icons/balloon.svg" min-height="50" width="50" min-width="50" class="ml-12"></v-img>
-                        <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">product placement</div>
+                        <v-img :src="objectives.category.image" min-height="50" width="50" min-width="50" class="ml-12"></v-img>
+                        <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">{{category}}</div>
                     </div>
 
                     <div class="pl-12">
-                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Unboxing" color="primary" value="unboxing" hide-details></v-radio>
-                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Product Review" color="primary" value="productReview" hide-details></v-radio>
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Contests & Giveways" color="primary" value="contestsGiveways" hide-details></v-radio>
-                    </div>
-
-                </v-flex>
-                <v-flex lg4 sm12 xs12>
-                    <div class="pl-12">
-                        <v-img src="/images/icons/awareness.svg" min-height="50" width="50" min-width="50" class="ml-12"></v-img>
-                        <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">brand awareness</div>
-                    </div>
-                    <div class="pl-12">
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Shoutout" color="primary" value="brandShoutout" hide-details></v-radio>
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Brand Review" color="primary" value="brandReview" hide-details></v-radio>
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Event Invitation" color="primary" value="eventInvitation" hide-details></v-radio>
-                    </div>
-                </v-flex>
-                <v-flex lg4 sm12 xs12>
-                    <div class="pl-12">
-                        <v-img src="/images/icons/sponsor.svg" min-height="50" width="50" min-width="50" class="ml-12"></v-img>
-                        <div class="subtitle-1 mb-2 black--text text-uppercase font-weight-bold">sponsored content</div>
-                    </div>
-                    <div class="pl-12">
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Promotional Content" color="primary" value="promotionalContent" hide-details></v-radio>
-                        <v-radio  off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" label="Special Events" color="primary" value="specialEvents" hide-details></v-radio>
+                        <span v-for="(objective, objectiveIndex)  in objectives.main" :key="objectiveIndex">
+                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" :slug="objective.slug" :label="objective.name" :value="objective.id"  color="primary"  hide-details></v-radio>
+                        </span>
                     </div>
                 </v-flex>
             </v-layout>
@@ -70,26 +49,25 @@
     export default {
 
         data: () => ({
-            campaignObjective: null
+            campaignObjective: null,
+            getCampaignObjectives: {}
         }),
         computed: {
             ...mapGetters({
                 campaign: 'campaign/campaignObjective'
             })
         },
-        mounted() {
-            console.log(this.campaign);
-            this.campaignObjective = this.campaign
-
-            axios
-                .get(api.path('campaign.objectives'))
-                .then(function(resp){
-                 //  console.info('success', resp.data)
-                });
+       mounted() {
+           let self = this;
+           this.campaignObjective = this.campaign;
+           axios
+               .get(api.path('campaign.objectives'))
+               .then(function (resp) {
+                   self.getCampaignObjectives = resp.data.details;
+               });
         },
-
         methods: {
-            goToNext(){
+            goToNext() {
                 this.$store.dispatch('campaign/saveObjective', this.campaignObjective)
                 this.$router.push({ name: 'create-campaign-objective' })
             }

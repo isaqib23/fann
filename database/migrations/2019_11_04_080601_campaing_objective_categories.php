@@ -17,6 +17,7 @@ class CampaingObjectiveCategories extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug')->unique();
+            $table->string('image', 255);
             $table->boolean('is_active')->default('1');
             $table->timestamps();
         });

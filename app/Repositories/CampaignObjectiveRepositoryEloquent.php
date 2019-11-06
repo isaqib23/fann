@@ -25,8 +25,6 @@ class CampaignObjectiveRepositoryEloquent extends BaseRepository implements Camp
         return CampaignObjective::class;
     }
 
-
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -35,11 +33,36 @@ class CampaignObjectiveRepositoryEloquent extends BaseRepository implements Camp
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-
-    public function getObjectGroupByCategory()
+    /**
+     * @return mixed
+     */
+    public function getObjectWithCategory()
     {
-        $this->model()->active();
+       return $this->with(['objectiveCategory'])->findWhere([
+           'is_active' => 1
+       ]);
+    }
 
+    /**
+     * @return array
+     */
+    public function synthObjectiveAlongWithCategory()
+    {
+        $response  = [];
+        $objectives = $this->getObjectWithCategory();
+        foreach ($objectives as $objective) {
+            $response [$objective->objectiveCategory->name]['category'] = [
+                'id' => $objective->objectiveCategory->id,
+                'name' => $objective->objectiveCategory->name,
+                'image' => $objective->objectiveCategory->image
+            ];
+            $response [$objective->objectiveCategory->name]['main'][] = [
+                'id' => $objective->id,
+                'name' => $objective->name,
+                'slug' => $objective->slug
+            ];
+        }
+        return $response;
     }
 
 

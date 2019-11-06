@@ -1,5 +1,6 @@
 import 'babel-polyfill'
 import Vue from 'vue'
+import _ from 'lodash'
 
 import router from '~/router/index'
 import store from '~/store/index'
@@ -10,6 +11,7 @@ import VueInternationalization from 'vue-i18n';
 import Locale from './vue-i18n-locales.generated';
 
 window.Vue = Vue;
+window._ = _;
 
 Vue.use(VueInternationalization);
 const lang = document.documentElement.lang.substr(0, 2);

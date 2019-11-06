@@ -1,5 +1,5 @@
 <template>
-    <v-app-bar app>
+    <v-app-bar elevate-on-scroll app>
         <v-progress-linear
             :active="loading"
             :indeterminate="loading"
