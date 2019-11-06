@@ -13,7 +13,11 @@
 
                     <div class="pl-12">
                         <span v-for="(objective, objectiveIndex)  in objectives.main" :key="objectiveIndex">
-                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" :slug="objective.slug" :label="objective.name" :value="objective.id"  color="primary"  hide-details></v-radio>
+                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate"
+                                 :slug="objective.slug"
+                                 :label="objective.name"
+                                 :value="objective.id"
+                                 color="primary"  hide-details></v-radio>
                         </span>
                     </div>
                 </v-flex>

@@ -20,7 +20,7 @@ class CampaignObjectiveCategoriesSeeder extends Seeder
         ],
         3 => [
             'name'  => 'Sponsored Content',
-            'image' => '/images/icons/awareness.svg',
+            'image' => '/images/icons/sponsor.svg',
         ]
     ];
 
