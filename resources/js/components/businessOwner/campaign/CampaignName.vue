@@ -2,9 +2,8 @@
     <v-card class="create_card mx-auto mt-12">
         <v-card-title class="pb-8 justify-center">Select Your Campaign Objective</v-card-title>
         <v-card-text class="mb-12  ma-auto">
-            <v-radio-group v-model="campaignObjective">
+            <v-radio-group id="campaignObjectiveGroup">
             <v-layout row justify-center wrap>
-
                 <v-flex lg4 sm12 xs12 v-for="(objectives, category) in getCampaignObjectives" :key="category">
                     <div class="pl-12">
                         <v-img :src="objectives.category.image" min-height="50" width="50" min-width="50" class="ml-12"></v-img>
@@ -53,6 +52,7 @@
     export default {
 
         data: () => ({
+            self: this,
             campaignObjective: null,
             getCampaignObjectives: {}
         }),
@@ -72,6 +72,7 @@
         },
         methods: {
             goToNext() {
+                this.campaignObjective  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
                 this.$store.dispatch('campaign/saveObjective', this.campaignObjective)
                 this.$router.push({ name: 'create-campaign-objective' })
             }

@@ -108,14 +108,14 @@
         }),
         computed: {
             ...mapGetters({
-                campaign: 'campaign/campaignObjective'
+                campaignObjective: 'campaign/campaignObjective'
             })
         },
         mounted() {
 
         },
         created() {
-            console.info(this.campaign, "chummi");
+            console.info(this.campaignObjective, "chummi");
         },
         methods: {
             goToNext(){

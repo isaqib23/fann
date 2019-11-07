@@ -14,7 +14,7 @@
                     </v-tab-item>-->
                     <v-tab-item>
                         <UnboxingCampaign v-if="activeLeftBar == 'unboxing'"></UnboxingCampaign>
-                        <contestsGiveways v-else-if="activeLeftBar == 'contestsGiveways'"></contestsGiveways>
+                        <contestsGiveways v-else-if="activeLeftBar == 'contestGiveways'"></contestsGiveways>
                         <productReview v-else-if="activeLeftBar == 'productReview'"></productReview>
                         <CreateLeftPane v-else></CreateLeftPane>
                     </v-tab-item>
@@ -63,7 +63,7 @@
             Promote: Promote
         },
         mounted() {
-            this.activeLeftBar = this.campaign;
+            this.activeLeftBar =  _.camelCase(this.campaignObjective);
             console.log(this.activeLeftBar, 'ddfdfdfds');
         },
         data: () => {
@@ -81,7 +81,7 @@
                 return (this.active_tab == 2) ? 'full_width' : 'full_width';
             },
             ...mapGetters({
-                campaign: 'campaign/campaignObjective'
+                campaignObjective: 'campaign/campaignObjective'
             })
         }
     }
