@@ -9,11 +9,6 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCampaignsTable extends Migration
 {
 
-   public function __construct()
-   {
-       return ;
-   }
-
     /**
 	 * Run the migrations.
 	 *
@@ -23,8 +18,22 @@ class CreateCampaignsTable extends Migration
 	{
 		Schema::create('campaigns', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->string('slug', 255);
+            $table->text('description');
+            $table->text('status');
+            $table->unsignedInteger('touch_points');
+            $table->unsignedInteger('total_amount');
+            $table->unsignedInteger('objective_id');
+            $table->string('impressions');
+            $table->string('actions');
+            $table->string('eng_rate');
 
+            $table->softDeletes();
             $table->timestamps();
+
+
+            $table->foreign('objective_id')->references('id')->on('campaign_objectives');
 		});
 	}
 

@@ -6,11 +6,13 @@ use App\Contracts\CampaignObjectiveCategoryRepository;
 use App\Contracts\CampaignObjectiveRepository;
 use App\Contracts\CampaignRepository;
 use App\Contracts\CountryRepository;
+use App\Contracts\PlacementRepository;
 use App\Contracts\ShopRepository;
 use App\Repositories\CampaignObjectiveCategoryRepositoryEloquent;
 use App\Repositories\CampaignObjectiveRepositoryEloquent;
 use App\Repositories\CampaignRepositoryEloquent;
 use App\Repositories\CountryRepositoryEloquent;
+use App\Repositories\PlacementRepositoryEloquent;
 use App\Repositories\ShopRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
@@ -38,6 +40,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CampaignRepository::class, CampaignRepositoryEloquent::class);
         $this->app->bind(CampaignObjectiveRepository::class, CampaignObjectiveRepositoryEloquent::class);
         $this->app->bind(CampaignObjectiveCategoryRepository::class, CampaignObjectiveCategoryRepositoryEloquent::class);
+        $this->app->bind(PlacementRepository::class, PlacementRepositoryEloquent::class);
         //:end-bindings:
     }
 }
