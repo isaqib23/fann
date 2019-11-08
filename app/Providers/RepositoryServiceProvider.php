@@ -41,6 +41,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CampaignObjectiveRepository::class, CampaignObjectiveRepositoryEloquent::class);
         $this->app->bind(CampaignObjectiveCategoryRepository::class, CampaignObjectiveCategoryRepositoryEloquent::class);
         $this->app->bind(PlacementRepository::class, PlacementRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\PaymentTypeRepository::class, \App\Repositories\PaymentTypeRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\CampaignPaymentRepository::class, \App\Repositories\CampaignPaymentRepositoryEloquent::class);
         //:end-bindings:
     }
 }

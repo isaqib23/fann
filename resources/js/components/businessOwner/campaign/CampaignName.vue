@@ -3,7 +3,7 @@
         <v-card-title class="pb-8 justify-center">Select Your Campaign Objective</v-card-title>
         <v-card-text class="mb-12  ma-auto">
             <v-radio-group id="campaignObjectiveGroup">
-            <v-layout row justify-center wrap>
+            <v-layout row justify-center wrap>o
                 <v-flex lg4 sm12 xs12 v-for="(objectives, category) in getCampaignObjectives" :key="category">
                     <div class="pl-12">
                         <v-img :src="objectives.category.image" min-height="50" width="50" min-width="50" class="ml-12"></v-img>
@@ -16,7 +16,8 @@
                                  :slug="objective.slug"
                                  :label="objective.name"
                                  :value="objective.id"
-                                 color="primary"  hide-details></v-radio>
+                                 color="primary"  hide-details>
+                        </v-radio>
                         </span>
                     </div>
                 </v-flex>
@@ -29,6 +30,7 @@
             <v-layout row justify-center wrap>
                 <v-flex lg12 sm12 xs12 class="text-center">
                     <v-text-field class="text_field_width ma-auto text-center"
+                                  v-model="campaignName"
                                   label="Type Name Here"
                                   solo
                     ></v-text-field>
@@ -54,6 +56,7 @@
         data: () => ({
             self: this,
             campaignObjective: null,
+            campaignName: null,
             getCampaignObjectives: {}
         }),
         computed: {

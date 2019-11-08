@@ -13,5 +13,7 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(CampaignObjectiveCategoriesSeeder::class);
          $this->call(CampaignObjectiveSeeder::class);
+         $this->call(PaymentTypeSeeder::class);
+         $this->call(PlacementSeeder::class);
     }
 }
