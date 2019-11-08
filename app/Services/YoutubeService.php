@@ -13,6 +13,11 @@ use Madcoda\Youtube\Youtube;
 class YoutubeService
 {
     /**
+     * @var Youtube
+     */
+    private $youtube;
+
+    /**
      * YoutubeService constructor.
      */
     public function __construct()
