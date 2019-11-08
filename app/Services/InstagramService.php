@@ -1,22 +1,29 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Saqib Rao
- * Date: 08/05/2019
- * Time: 08:50 AM
- */
 
 namespace App\Services;
 
-use Illuminate\Http\JsonResponse;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
+/**
+ * Class InstagramService
+ * @package App\Services
+ */
 class InstagramService
 {
-    protected $instagram;
+    /**
+     * @var Client
+     */
     private $client;
+
+    /**
+     * @var
+     */
     private $access_token;
-//3226967544.4bb0011.5cf812b3e7044c7daf218c69b1ca8620
+
+    /**
+     * InstagramService constructor.
+     */
     public function __construct()
     {
         $this->client = new Client([
@@ -24,15 +31,24 @@ class InstagramService
         ]);
     }
 
-    public function setAccessToken($token){
+    /**
+     * @param $token
+     */
+    public function setAccessToken($token)
+    {
         $this->access_token = $token;
     }
 
-    public function getUser(){
-        if($this->access_token){
+    /**
+     * @return array
+     * @throws GuzzleException
+     */
+    public function getUser()
+    {
+        if ($this->access_token) {
             $response = $this->client->request('GET', 'users/self/', [
                 'query' => [
-                    'access_token' =>  $this->access_token
+                    'access_token' => $this->access_token
                 ]
             ]);
             return json_decode($response->getBody()->getContents())->data;
@@ -40,11 +56,16 @@ class InstagramService
         return [];
     }
 
-    public function getPosts(){
-        if($this->access_token){
+    /**
+     * @return array
+     * @throws GuzzleException
+     */
+    public function getPosts()
+    {
+        if ($this->access_token) {
             $response = $this->client->request('GET', 'users/self/media/recent/', [
                 'query' => [
-                    'access_token' =>  $this->access_token
+                    'access_token' => $this->access_token
                 ]
             ]);
             return json_decode($response->getBody()->getContents())->data;
@@ -52,11 +73,17 @@ class InstagramService
         return [];
     }
 
-    public function getTagPosts($tags){
-        if($this->access_token){
-            $response = $this->client->request('GET', 'tags/'.$tags.'/media/recent/', [
+    /**
+     * @param $tags
+     * @return array
+     * @throws GuzzleException
+     */
+    public function getTagPosts($tags)
+    {
+        if ($this->access_token) {
+            $response = $this->client->request('GET', 'tags/' . $tags . '/media/recent/', [
                 'query' => [
-                    'access_token' =>  $this->access_token
+                    'access_token' => $this->access_token
                 ]
             ]);
             return json_decode($response->getBody()->getContents())->data;
@@ -64,12 +91,17 @@ class InstagramService
         return [];
     }
 
-    public function getUsersFollows(){
-        if($this->access_token){
+    /**
+     * @return array
+     * @throws GuzzleException
+     */
+    public function getUsersFollows()
+    {
+        if ($this->access_token) {
             $response = $this->client->request('GET', 'users/self/follows/', [
                 'query' => [
-                    'access_token' =>  $this->access_token,
-                    'scope'         => 'basic+public_content+follower_list+comments+relationships+likes'
+                    'access_token' => $this->access_token,
+                    'scope' => 'basic+public_content+follower_list+comments+relationships+likes'
                 ]
             ]);
             return json_decode($response->getBody()->getContents())->data;

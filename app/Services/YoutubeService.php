@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Saqib Rao
- * Date: 08/07/2019
- * Time: 09:51 AM
- */
 
 namespace App\Services;
 
@@ -12,13 +6,20 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Madcoda\Youtube\Youtube;
 
+/**
+ * Class YoutubeService
+ * @package App\Services
+ */
 class YoutubeService
 {
-    protected $youtube;
-
+    /**
+     * YoutubeService constructor.
+     */
     public function __construct()
     {
-        $this->youtube = new Youtube(['key' => config('services.youtube.key')]);
+        $this->youtube = new Youtube([
+            'key' => config('services.youtube.key')
+        ]);
     }
 
     /**
@@ -80,9 +81,9 @@ class YoutubeService
      * @return JsonResponse
      * @description Search only Videos in a given channel
      */
-    public function searchChannelVideos(string $string,string $channel_id,int $results=50): JsonResponse
+    public function searchChannelVideos(string $string, string $channel_id, int $results = 50): JsonResponse
     {
-        return response()->json($this->youtube->searchChannelVideos($string,$channel_id,$results));
+        return response()->json($this->youtube->searchChannelVideos($string, $channel_id, $results));
     }
 
     /**
