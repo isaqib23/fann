@@ -249,7 +249,7 @@
                 this.currentTab = this.currentTab + 1;
             },
             preTab(){
-                if(this.currentTab === 0){
+                if(this.currentTab === 1){
                     return false;
                 }
                 this.currentTab = this.currentTab - 1;

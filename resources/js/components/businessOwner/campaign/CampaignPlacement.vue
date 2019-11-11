@@ -6,9 +6,9 @@
                 <v-layout row justify-center wrap>
                     <v-flex lg12 sm12 xs12 class="text-center">
                         <div class="card_radio placement_radio">
-                            <v-radio-group v-model="kind" row class="mt-0 full_width">
+                            <v-radio-group v-model="campaignPlacement.platform" row class="mt-0 full_width">
 
-                                <v-radio color="primary" value="radio-1" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate">
+                                <v-radio color="primary" value="instagram" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate">
                                     <template slot="label">
                                 <span class="subtitle-1 text-uppercase black--text font-weight-bold">
                                     <v-icon class="display-2 primary--text">mdi-instagram</v-icon>
@@ -17,7 +17,7 @@
                                     </template>
                                 </v-radio>
 
-                                <v-radio color="primary" value="radio-2" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" class="you_radio">
+                                <v-radio color="primary" value="youtube" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" class="you_radio">
                                     <template slot="label">
                                 <span class="subtitle-1 text-uppercase black--text font-weight-bold youtube_radio">
                                     <v-icon class="display-2 primary--text">mdi-youtube</v-icon>
@@ -39,16 +39,16 @@
                 <v-layout row justify-center wrap>
                     <v-flex lg12 sm12 xs12 class="text-center">
                         <div class="card_radio campaign_radio">
-                            <v-radio-group v-model="kind2" row class="mt-0 full_width">
+                            <v-radio-group v-model="campaignPlacement.type" row class="mt-0 full_width">
 
-                                <v-radio value="radio-1" active-class="active_card_radio">
+                                <v-radio value="paid" active-class="active_card_radio">
                                     <template slot="label">
                                         <v-card class="text-center" outlined max-width="200">
-                                            <div class="triangle-topright" v-if="kind2 == 'radio-1'">
+                                            <div class="triangle-topright" v-if="campaignPlacement.type == 'paid'">
                                                 <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                             </div>
                                             <v-card-title>
-                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="kind2 == 'radio-1' ? 'primary' : ''">mdi-currency-usd</v-icon></p>
+                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="campaignPlacement.type == 'paid' ? 'primary' : ''">mdi-currency-usd</v-icon></p>
                                             </v-card-title>
                                             <v-card-text class="px-2">
                                                 <p class="title">PAID</p>
@@ -60,14 +60,14 @@
                                     </template>
                                 </v-radio>
 
-                                <v-radio value="radio-2" active-class="active_card_radio">
+                                <v-radio value="barter" active-class="active_card_radio">
                                     <template slot="label">
                                         <v-card class="text-center mx-auto" outlined max-width="200">
-                                            <div class="triangle-topright" v-if="kind2 == 'radio-2'">
+                                            <div class="triangle-topright" v-if="campaignPlacement.type == 'barter'">
                                                 <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                             </div>
                                             <v-card-title>
-                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="kind2 == 'radio-2' ? 'primary' : ''">mdi-ballot-recount-outline</v-icon></p>
+                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="campaignPlacement.type == 'barter' ? 'primary' : ''">mdi-ballot-recount-outline</v-icon></p>
                                             </v-card-title>
                                             <v-card-text class="px-2">
                                                 <p class="title">BARTER</p>
@@ -78,17 +78,58 @@
                                         </v-card>
                                     </template>
                                 </v-radio>
-
+                            </v-radio-group>
+                        </div>
+                    </v-flex>
+                </v-layout>
+                <v-layout row justify-center wrap>
+                    <v-flex lg6 sm6 xs12 class="text-center">
+                        <div class="card_radio campaign_radio">
+                            <v-radio-group v-model="campaignPlacement.barterProduct" row class="mt-0 full_width">
+                                <v-radio :value="true" active-class="active_card_radio">
+                                    <template slot="label">
+                                        <v-card class="text-center" outlined max-width="200">
+                                            <div class="triangle-topright" v-if="campaignPlacement.barterProduct == true">
+                                                <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
+                                            </div>
+                                            <v-card-text class="px-2">
+                                                <p>
+                                                    Would you like barter this product?
+                                                </p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-radio>
+                            </v-radio-group>
+                        </div>
+                    </v-flex>
+                    <v-flex lg6 sm6 xs12 class="text-center">
+                        <div class="card_radio campaign_radio">
+                            <v-radio-group v-model="campaignPlacement.payForProduct" row class="mt-0 full_width">
+                                <v-radio :value="true" active-class="active_card_radio" style="margin-left: 90px">
+                                    <template slot="label">
+                                        <v-card class="text-center mx-auto" outlined max-width="200">
+                                            <div class="triangle-topright" v-if="campaignPlacement.payForProduct == true">
+                                                <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
+                                            </div>
+                                            <v-card-text class="px-2">
+                                                <p>
+                                                    Would you like pay for this product?
+                                                </p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-radio>
                             </v-radio-group>
                         </div>
                     </v-flex>
                 </v-layout>
             </v-card-text>
             <v-card-actions class="float-right action_btns mt-n12">
-                <v-btn color="grey lighten-2" dark large @click="goToBack()" class="text-capitalize mr-2 grey--text">
+                <v-btn color="grey lighten-2" depressed dark large @click="goToBack()" class="text-capitalize mr-2 grey--text">
                     {{ $t('labels.campaign.name_backBtn') }}
                 </v-btn>
-                <v-btn color="primary" dark large @click="goToNext()" class="text-capitalize">
+                <v-btn color="primary" depressed dark large @click="goToNext()" class="text-capitalize">
                     {{ $t('labels.campaign.name_nextBtn') }}
                     <v-icon right>keyboard_arrow_right</v-icon>
                 </v-btn>
@@ -99,30 +140,64 @@
 
 <script>
     import {mapGetters} from 'vuex';
-
+    import { required } from 'vuelidate/lib/validators'
     export default {
 
         data: () => ({
-            kind: 'radio-1',
-            kind2: 'radio-1',
+            campaignPlacement:{
+                platform:null,
+                type:null,
+                barterProduct:false,
+                payForProduct:false,
+            },
         }),
+        validations: {
+            campaignPlacement:{
+                platform: {
+                    required
+                },
+                type: {
+                    required
+                }
+            }
+        },
         computed: {
             ...mapGetters({
-                campaignObjective: 'campaign/campaignObjective'
+                campaignObjective: 'campaign/campaignObjective',
+                placement: 'campaign/campaignPlacement'
             })
         },
         mounted() {
-
+            this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
+            if(this.campaignObjective == null){
+                this.$router.push({ name: 'create-campaign-objective' })
+            }else if(this.campaignObjective.id == 1 || this.campaignObjective.id == 2){
+                this.campaignPlacement.type = 'barter';
+            }else if(this.campaignObjective.id == 3){
+                this.campaignPlacement.type = 'paid';
+            }
         },
         created() {
-            console.info(this.campaignObjective, "chummi");
+            console.info(this.campaignObjective);
         },
         methods: {
             goToNext(){
-                this.$router.push({ name: 'create-campaign-requirements' })
+                let self = this;
+                self.$v.$touch()
+                if (self.$v.$invalid) {
+                    if(self.$v.campaignPlacement.platform.$error) {
+                        this.$toast.error('Campaign Placement is required')
+                    }else if(self.$v.campaignPlacement.type.$error) {
+                        this.$toast.error('Campaign Type is required')
+                    }
+                } else {
+                    this.$store.dispatch('campaign/savePlacement', this.campaignPlacement)
+                    this.$router.push({ name: 'create-campaign-requirements' })
+                }
             },
             goToBack(){
-                this.$router.push({ name: 'create-campaign-name' })
+                this.$store.dispatch('campaign/savePlacement', this.campaignPlacement)
+                this.$router.push({ name: 'create-campaign-objective' })
             }
         }
     }
@@ -204,5 +279,8 @@
         .youtube_radio{
             margin-left: -45px !important;
         }
+    }
+    .paymentRadio >>>.v-input__control{
+        margin-left: 0px !important;
     }
 </style>
