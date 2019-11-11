@@ -9,10 +9,11 @@ import '~/plugins/index'
 import vuetify from '~/plugins/vuetify'
 import VueInternationalization from 'vue-i18n';
 import Locale from './vue-i18n-locales.generated';
+import Vuelidate from 'vuelidate'
 
 window.Vue = Vue;
 window._ = _;
-
+Vue.use(Vuelidate);
 Vue.use(VueInternationalization);
 const lang = document.documentElement.lang.substr(0, 2);
 const i18n = new VueInternationalization({

@@ -13,9 +13,9 @@
                         <SetupLeftPane></SetupLeftPane>
                     </v-tab-item>-->
                     <v-tab-item>
-                        <UnboxingCampaign v-if="activeLeftBar == 'unboxing'"></UnboxingCampaign>
-                        <contestsGiveways v-else-if="activeLeftBar == 'contestGiveways'"></contestsGiveways>
-                        <productReview v-else-if="activeLeftBar == 'productReview'"></productReview>
+                        <UnboxingCampaign v-if="campaignObjective.id == 1"></UnboxingCampaign>
+                        <contestsGiveways v-else-if="campaignObjective.id == 2"></contestsGiveways>
+                        <productReview v-else-if="campaignObjective.id == 3"></productReview>
                         <CreateLeftPane v-else></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
@@ -63,13 +63,28 @@
             Promote: Promote
         },
         mounted() {
-            this.activeLeftBar =  _.camelCase(this.campaignObjective);
-            console.log(this.activeLeftBar, 'ddfdfdfds');
+            this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
+            this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
+            if(this.objective == null){
+                this.$router.push({ name: 'create-campaign-objective' })
+            }
+
+            if(this.placement == null){
+                this.$router.push({ name: 'create-campaign-placement' })
+            }
         },
         data: () => {
            return  {
                active_tab: 0,
-               activeLeftBar:null
+               campaignObjective: {
+                   id:null,
+                   slug:null,
+                   name:null
+               },
+               campaignPlacement:{
+                   platform:null,
+                   type:null
+               }
             }
         },
         methods: {},
@@ -81,7 +96,8 @@
                 return (this.active_tab == 2) ? 'full_width' : 'full_width';
             },
             ...mapGetters({
-                campaignObjective: 'campaign/campaignObjective'
+                objective: 'campaign/campaignObjective',
+                placement: 'campaign/campaignPlacement'
             })
         }
     }

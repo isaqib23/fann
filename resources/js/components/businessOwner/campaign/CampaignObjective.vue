@@ -3,7 +3,7 @@
         <v-card-title class="pb-8 justify-center">Select Your Campaign Objective</v-card-title>
         <v-card-text class="mb-12  ma-auto">
             <v-radio-group id="campaignObjectiveGroup">
-            <v-layout row justify-center wrap>o
+            <v-layout row justify-center wrap>
                 <v-flex lg4 sm12 xs12 v-for="(objectives, category) in getCampaignObjectives" :key="category">
                     <div class="pl-12">
                         <v-img :src="objectives.category.image" min-height="50" width="50" min-width="50" class="ml-12"></v-img>
@@ -11,26 +11,28 @@
                     </div>
 
                     <div class="pl-12">
-                        <span v-for="(objective, objectiveIndex)  in objectives.main" :key="objectiveIndex">
-                        <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate"
-                                 :slug="objective.slug"
-                                 :label="objective.name"
-                                 :value="objective.id"
-                                 color="primary"  hide-details>
-                        </v-radio>
-                        </span>
+                        <v-radio-group v-model="campaignObjective.id">
+                            <span v-for="(objective, objectiveIndex)  in objectives.main" :key="objectiveIndex">
+                            <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate"
+                                     :slug="objective.slug"
+                                     :label="objective.name"
+                                     :value="objective.id"
+                                     color="primary"  hide-details>
+                            </v-radio>
+                            </span>
+                        </v-radio-group>
                     </div>
                 </v-flex>
             </v-layout>
             </v-radio-group>
         </v-card-text>
 
-        <v-card-title class="pb-8 justify-center">Now Give Your Campaign A Beautiful Name</v-card-title>
+        <v-card-title class="pb-8 justify-center">Now Give Your Campaign A Beautiful Names</v-card-title>
         <v-card-text class="mb-12 text_field_width ma-auto">
             <v-layout row justify-center wrap>
                 <v-flex lg12 sm12 xs12 class="text-center">
                     <v-text-field class="text_field_width ma-auto text-center"
-                                  v-model="campaignName"
+                                  v-model="campaignObjective.name"
                                   label="Type Name Here"
                                   solo
                     ></v-text-field>
@@ -50,15 +52,29 @@
     import { mapGetters } from 'vuex';
     import axios from 'axios'
     import { api } from '~/config'
-
+    import { required, minLength } from 'vuelidate/lib/validators'
     export default {
 
         data: () => ({
             self: this,
-            campaignObjective: null,
-            campaignName: null,
+            campaignObjective: {
+                id:null,
+                slug:null,
+                name:null
+            },
             getCampaignObjectives: {}
         }),
+        validations: {
+            campaignObjective:{
+                id: {
+                    required,
+                },
+                name: {
+                    required,
+                    minLength: minLength(4)
+                }
+            }
+        },
         computed: {
             ...mapGetters({
                 campaign: 'campaign/campaignObjective'
@@ -66,7 +82,7 @@
         },
        mounted() {
            let self = this;
-           this.campaignObjective = this.campaign;
+           this.campaignObjective = Object.assign(this.campaignObjective, this.campaign)
            axios
                .get(api.path('campaign.objectives'))
                .then(function (resp) {
@@ -75,9 +91,19 @@
         },
         methods: {
             goToNext() {
-                this.campaignObjective  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
-                this.$store.dispatch('campaign/saveObjective', this.campaignObjective)
-                this.$router.push({ name: 'create-campaign-objective' })
+                let self = this;
+                self.$v.$touch()
+                if (self.$v.$invalid) {
+                    if(self.$v.campaignObjective.id.$error) {
+                        this.$toast.error('Campaign Objective is required')
+                    }else if(self.$v.campaignObjective.name.$error) {
+                        this.$toast.error('Name must have at least '+self.$v.campaignObjective.name.$params.minLength.min+' letters.')
+                    }
+                } else {
+                    this.campaignObjective.slug  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
+                    this.$store.dispatch('campaign/saveObjective', this.campaignObjective)
+                    this.$router.push({ name: 'create-campaign-placement' })
+                }
             }
         }
     }

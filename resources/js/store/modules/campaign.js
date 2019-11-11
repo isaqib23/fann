@@ -6,8 +6,7 @@ import { api } from '~/config'
  */
 export const state = {
   campaignObjective: null,
-  token: window.localStorage.getItem('token'),
-  type: null
+  campaignPlacement: null
 }
 
 /**
@@ -16,6 +15,10 @@ export const state = {
 export const mutations = {
     setObjective(state, objective) {
         state.campaignObjective = objective
+    },
+
+    setPlacement(state, objective) {
+        state.campaignPlacement = objective
     }
 
 }
@@ -28,6 +31,10 @@ export const actions = {
         commit('setObjective',payload);
     },
 
+    savePlacement({ commit }, payload) {
+        commit('setPlacement',payload);
+    },
+
 }
 
 /**
@@ -35,4 +42,5 @@ export const actions = {
  */
 export const getters = {
     campaignObjective: state => state.campaignObjective,
+    campaignPlacement: state => state.campaignPlacement,
 }

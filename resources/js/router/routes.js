@@ -69,13 +69,13 @@ export default [
                     children  : [
                         {
                             path      : 'objective',
-                            name      : 'create-campaign-objective',
-                            component : require('$comp/businessOwner/campaign/Objective').default
+                            name      : 'create-campaign-placement',
+                            component : require('$comp/businessOwner/campaign/CampaignPlacement').default
                         },
                         {
                             path      : 'campaign-name',
-                            name      : 'create-campaign-name',
-                            component : require('$comp/businessOwner/campaign/CampaignName').default
+                            name      : 'create-campaign-objective',
+                            component : require('$comp/businessOwner/campaign/CampaignObjective').default
                         },
                         {
                             path      : 'requirements',
