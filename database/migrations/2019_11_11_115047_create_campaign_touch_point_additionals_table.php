@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateCampaignTouchPointImagesTable
+ * Class CreateCampaignTouchPointAdditionalsTable.
  */
-class CreateCampaignTouchPointImagesTable extends Migration
+class CreateCampaignTouchPointAdditionalsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -15,16 +15,15 @@ class CreateCampaignTouchPointImagesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('campaign_touch_point_images', function(Blueprint $table) {
+		Schema::create('campaign_touch_point_additionals', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_touch_point_id');
-            $table->text('path', 255);
-            $table->softDeletes();
-            $table->timestamps();
+            $table->json('tags');
+            $table->json('mentions');
 
             $table->foreign('campaign_touch_point_id')->references('id')->on('campaign_touch_points');
 
-
+            $table->timestamps();
 		});
 	}
 
@@ -35,6 +34,6 @@ class CreateCampaignTouchPointImagesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('campaign_touch_point_images');
+		Schema::drop('campaign_touch_point_additionals');
 	}
 }

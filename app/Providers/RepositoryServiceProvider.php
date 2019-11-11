@@ -53,6 +53,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CampaignPaymentRepository::class, CampaignPaymentRepositoryEloquent::class);
         $this->app->bind(CampaignTouchPointRepository::class, CampaignTouchPointRepositoryEloquent::class);
         $this->app->bind(CampaignTouchPointImageRepository::class, CampaignTouchPointImageRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\PlacementTypeRepository::class, \App\Repositories\PlacementTypeRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\CampaignTouchPointPlacementRepository::class, \App\Repositories\CampaignTouchPointPlacementRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\CampaignTouchPointProductRepository::class, \App\Repositories\CampaignTouchPointProductRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\CampaignTouchPointAdditionalRepository::class, \App\Repositories\CampaignTouchPointAdditionalRepositoryEloquent::class);
         //:end-bindings:
     }
 }

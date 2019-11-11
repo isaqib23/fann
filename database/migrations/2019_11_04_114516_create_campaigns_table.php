@@ -20,14 +20,14 @@ class CreateCampaignsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug', 255);
-            $table->text('description');
-            $table->text('status');
-            $table->unsignedInteger('touch_points');
-            $table->unsignedInteger('total_amount');
-            $table->unsignedInteger('objective_id');
-            $table->string('impressions');
-            $table->string('actions');
-            $table->string('eng_rate');
+            $table->text('description')->nullable();
+            $table->text('status')->nullable();
+            $table->unsignedInteger('touch_points')->default(0);
+            $table->double('total_amount', 10, 2)->default(0);
+            $table->unsignedInteger('objective_id')->default(0);
+            $table->unsignedInteger('impressions')->default(0);
+            $table->unsignedInteger('actions')->default(0);
+            $table->unsignedInteger('eng_rate')->default(0);
 
             $table->softDeletes();
             $table->timestamps();

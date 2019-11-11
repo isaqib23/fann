@@ -4,16 +4,16 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\campaignTouchpointImageRepository;
-use App\Models\CampaignTouchPointImage;
-use App\Validators\CampaignTouchpointImageValidator;
+use App\Contracts\CampaignTouchPointProductRepository;
+use App\Models\CampaignTouchPointProduct;
+use App\Validators\CampaignTouchPointProductValidator;
 
 /**
- * Class CampaignTouchPointImageRepositoryEloquent.
+ * Class CampaignTouchPointProductRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class CampaignTouchPointImageRepositoryEloquent extends BaseRepository implements CampaignTouchPointImageRepository
+class CampaignTouchPointProductRepositoryEloquent extends BaseRepository implements CampaignTouchPointProductRepository
 {
     /**
      * Specify Model class name
@@ -22,10 +22,10 @@ class CampaignTouchPointImageRepositoryEloquent extends BaseRepository implement
      */
     public function model()
     {
-        return CampaignTouchpointImage::class;
+        return CampaignTouchPointProduct::class;
     }
 
-
+    
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,5 @@ class CampaignTouchPointImageRepositoryEloquent extends BaseRepository implement
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-
+    
 }
