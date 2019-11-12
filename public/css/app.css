@@ -1,3 +1,93 @@
+
+.create_card[data-v-5cd889b1] {
+    width: 85%;
+    border-radius: 10px;
+}
+[data-v-5cd889b1] .v-input__control {
+}
+[data-v-5cd889b1] .v-input--selection-controls .v-input__control{
+    width: 100% !important;
+}
+
+.create_card[data-v-36b9a546] {
+    width: 85%;
+    border-radius: 10px;
+}
+[data-v-36b9a546] .v-input__control {
+    margin: 0 auto !important;
+}
+>>>>>>.active_card_radio .v-icon.v-icon[data-v-36b9a546]{
+    color: #EE6F6F !important;
+}
+[data-v-36b9a546] .campaign_radio .v-input--selection-controls__input{
+    display:none !important
+}
+.card_radio .icon_border[data-v-36b9a546]{
+    border:2px solid #cccccc;
+    border-radius: 50%;
+}
+[data-v-36b9a546] .active_card_radio .icon_border{
+    border-color: #EE6F6F !important;
+}
+[data-v-36b9a546] .card_radio .v-input__control{
+    width: 100% !important;
+}
+[data-v-36b9a546] .card_radio .v-radio{
+    width: 50% !important;
+    margin-right: 0px !important;
+}
+[data-v-36b9a546] .card_radio .v-label{
+    width: 100% !important;
+    margin: 5px !important;
+}
+.float_class[data-v-36b9a546]{
+    position: absolute;
+}
+.triangle-topright[data-v-36b9a546] {
+    float: right;
+    shape-outside: polygon(45px 45px, 45px 45px, 45px 0, 0 0);
+    -webkit-clip-path: polygon(45px 45px, 45px 45px, 45px 0, 0 0);
+            clip-path: polygon(45px 45px, 45px 45px, 45px 0, 0 0);
+    background: #EE6F6F;
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    right: 0px;
+    margin-top: 2px;
+    margin-right: 2px;
+}
+[data-v-36b9a546] .triangle-topright .v-icon{
+    margin-right: 3px;
+    margin-top: -1px;
+}
+.youtube_radio[data-v-36b9a546]{
+    margin-left: -70px !important;
+}
+[data-v-36b9a546] .placement_radio .v-label:last-child{
+    width: 50% !important;
+}
+[data-v-36b9a546] .placement_radio .you_radio .v-input--selection-controls__input{
+    margin: 0 auto !important;
+}
+@media only screen
+and (min-device-width: 960px)
+and (max-device-width: 1366px)
+and (-webkit-min-device-pixel-ratio: 1) {
+.youtube_radio[data-v-36b9a546]{
+        margin-left: -55px !important;
+}
+}
+@media only screen
+and (min-device-width: 768px)
+and (max-device-width: 1365px)
+and (-webkit-min-device-pixel-ratio: 1) {
+.youtube_radio[data-v-36b9a546]{
+        margin-left: -45px !important;
+}
+}
+.paymentRadio[data-v-36b9a546] .v-input__control{
+    margin-left: 0px !important;
+}
 /** Ripples */
 /** Elements */
 .container.grow-shrink-0 {
@@ -5561,96 +5651,6 @@
   height: 100%;
   overflow-x: auto;
 }
-.create_card[data-v-36b9a546] {
-    width: 85%;
-    border-radius: 10px;
-}
-[data-v-36b9a546] .v-input__control {
-    margin: 0 auto !important;
-}
->>>>>>.active_card_radio .v-icon.v-icon[data-v-36b9a546]{
-    color: #EE6F6F !important;
-}
-[data-v-36b9a546] .campaign_radio .v-input--selection-controls__input{
-    display:none !important
-}
-.card_radio .icon_border[data-v-36b9a546]{
-    border:2px solid #cccccc;
-    border-radius: 50%;
-}
-[data-v-36b9a546] .active_card_radio .icon_border{
-    border-color: #EE6F6F !important;
-}
-[data-v-36b9a546] .card_radio .v-input__control{
-    width: 100% !important;
-}
-[data-v-36b9a546] .card_radio .v-radio{
-    width: 50% !important;
-    margin-right: 0px !important;
-}
-[data-v-36b9a546] .card_radio .v-label{
-    width: 100% !important;
-    margin: 5px !important;
-}
-.float_class[data-v-36b9a546]{
-    position: absolute;
-}
-.triangle-topright[data-v-36b9a546] {
-    float: right;
-    shape-outside: polygon(45px 45px, 45px 45px, 45px 0, 0 0);
-    -webkit-clip-path: polygon(45px 45px, 45px 45px, 45px 0, 0 0);
-            clip-path: polygon(45px 45px, 45px 45px, 45px 0, 0 0);
-    background: #EE6F6F;
-    height: 45px;
-    width: 45px;
-    position: absolute;
-    right: 0px;
-    margin-top: 2px;
-    margin-right: 2px;
-}
-[data-v-36b9a546] .triangle-topright .v-icon{
-    margin-right: 3px;
-    margin-top: -1px;
-}
-.youtube_radio[data-v-36b9a546]{
-    margin-left: -70px !important;
-}
-[data-v-36b9a546] .placement_radio .v-label:last-child{
-    width: 50% !important;
-}
-[data-v-36b9a546] .placement_radio .you_radio .v-input--selection-controls__input{
-    margin: 0 auto !important;
-}
-@media only screen
-and (min-device-width: 960px)
-and (max-device-width: 1366px)
-and (-webkit-min-device-pixel-ratio: 1) {
-.youtube_radio[data-v-36b9a546]{
-        margin-left: -55px !important;
-}
-}
-@media only screen
-and (min-device-width: 768px)
-and (max-device-width: 1365px)
-and (-webkit-min-device-pixel-ratio: 1) {
-.youtube_radio[data-v-36b9a546]{
-        margin-left: -45px !important;
-}
-}
-.paymentRadio[data-v-36b9a546] .v-input__control{
-    margin-left: 0px !important;
-}
-
-.create_card[data-v-5cd889b1] {
-    width: 85%;
-    border-radius: 10px;
-}
-[data-v-5cd889b1] .v-input__control {
-}
-[data-v-5cd889b1] .v-input--selection-controls .v-input__control{
-    width: 100% !important;
-}
-
 [data-v-9ccdcda8] .v-tabs-items,[data-v-9ccdcda8] .v-card{
     background-color:#F7F7FF !important;
 }

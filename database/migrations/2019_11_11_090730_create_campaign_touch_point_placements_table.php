@@ -19,6 +19,7 @@ class CreateCampaignTouchPointPlacementsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('campaign_touch_point_id');
             $table->unsignedInteger('placement_type_id');
+            $table->string('link', 500)->nullable();
 
             $table->foreign('campaign_touch_point_id')->references('id')->on('campaign_touch_points');
             $table->foreign('placement_type_id')->references('id')->on('placement_types');
