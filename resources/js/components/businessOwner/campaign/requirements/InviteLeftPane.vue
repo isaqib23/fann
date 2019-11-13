@@ -152,7 +152,7 @@
                 axios
                     .get(api.path('countryList'))
                     .then(function(resp){
-                        self.countries = resp.data.data;
+                        self.countries = resp.data.countries;
                         console.log(self.countries);
                     });
             },

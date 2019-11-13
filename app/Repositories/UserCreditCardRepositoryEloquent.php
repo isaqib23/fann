@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\UserCreditCardRepository;
 use App\Models\UserCreditCard;
 use App\Validators\UserCreditCardValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class UserCreditCardRepositoryEloquent.
@@ -25,8 +26,6 @@ class UserCreditCardRepositoryEloquent extends BaseRepository implements UserCre
         return UserCreditCard::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -34,5 +33,25 @@ class UserCreditCardRepositoryEloquent extends BaseRepository implements UserCre
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    /**
+     * @param $request
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($request)
+    {
+        return $this->create([
+            'user_id'   => $request->input('user_id'),
+            'card_id'   => $request->input('card_id'),
+            'brand'     => $request->input('brand'),
+            'country'   => $request->input('country'),
+            'exp_month' => $request->input('expMonth'),
+            'exp_year'  => $request->input('expYear'),
+            'funding'   => $request->input('funding'),
+            'last4'     => $request->input('last4'),
+        ]);
+
+    }
+
 }

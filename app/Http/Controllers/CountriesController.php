@@ -65,7 +65,7 @@ class CountriesController extends Controller
             ];
         }
         return response()->json([
-            'data' => $list,
+            'countries' => $list,
         ]);
 
         //return view('countries.index', compact('countries'));
