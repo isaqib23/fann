@@ -27,11 +27,18 @@ export const mutations = {
  * Actions
  */
 export const actions = {
-    saveObjective({ commit }, payload) {
+    async saveObjective({ commit }, payload) {
+        await axios.post(api.path('campaign.save'), payload)
+            .then((function (resp) {
+                console.info('hello', resp);
+            }))
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
         commit('setObjective',payload);
     },
 
-    savePlacement({ commit }, payload) {
+   savePlacement({ commit }, payload) {
         commit('setPlacement',payload);
     },
 

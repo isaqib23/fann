@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use http\Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -76,14 +78,12 @@ class CampaignsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CampaignCreateRequest $request
-     *
-     * @return Response
-     *
-     * @throws ValidatorException
+     * @param Request $request
+     * @return JsonResponse|RedirectResponse
      */
-    public function store(CampaignCreateRequest $request)
+    public function store(Request $request)
     {
+        dd('chummi', $request->all());
         try {
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
@@ -92,7 +92,7 @@ class CampaignsController extends Controller
 
             $response = [
                 'message' => 'Campaign created.',
-                'data'    => $campaign->toArray(),
+                'details'    => $campaign->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -101,7 +101,7 @@ class CampaignsController extends Controller
             }
 
             return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
+        } catch (Exception $e) {
             if ($request->wantsJson()) {
                 return response()->json([
                     'error'   => true,
