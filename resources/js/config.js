@@ -81,6 +81,12 @@ export const api = Object.assign(new URL(apiUrl), {
     countryList: {
         'url': 'country/all'
     },
+    saveUserCard: {
+        'url': 'user/save_card'
+    },
+    getUserCard: {
+        'url': 'user/get_cards'
+    },
 
     campaign: campaign,
 

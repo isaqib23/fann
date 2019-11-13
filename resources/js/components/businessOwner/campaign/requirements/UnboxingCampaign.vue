@@ -204,7 +204,6 @@
                 <div class="text-center mt-4">
                     <v-btn block height="20" class="task_btn text-capitalize" @click="tabsLength++">+ Add another contest or giveaway</v-btn>
                 </div>
-
                 <div class="text-center mt-4">
                     <v-btn block height="20" color="primary" class="task_btn text-capitalize" @click="tabsLength--">- Remove contest or giveaway</v-btn>
                 </div>

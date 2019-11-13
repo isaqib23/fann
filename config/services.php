@@ -34,9 +34,23 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        'mode'   => env('STRIPE_MODE'),
+        'currency'   => env('STRIPE_CURRENCY'),
+        'api_version'   => env('STRIPE_VERSION'),
+        'production'   => [
+            'publish' => env('STRIPE_PROD_PUBLISH'),
+            'secret' => env('STRIPE_PROD_SECRET'),
+            'client_id'   => env('STRIPE_PROD_CLIENT'),
+        ],
+        'sandbox'   => [
+            'publish' => env('STRIPE_TEST_PUBLISH'),
+            'secret' => env('STRIPE_TEST_SECRET'),
+            'client_id'   => env('STRIPE_TEST_CLIENT'),
+        ],
+        'webhook' => [
+            'secret' => env('STRIPE_WEBHOOK_SECRET'),
+            'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
+        ],
     ],
 
     'generic' => [

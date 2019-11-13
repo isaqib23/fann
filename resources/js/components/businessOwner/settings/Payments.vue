@@ -26,7 +26,12 @@
                                     <v-card-title class="subtitle-1 font-weight-black" color="gray">
                                         Billing Method
                                         <v-spacer></v-spacer>
-                                        <v-btn color="primary" class="caption text-capitalize">Add Method</v-btn>
+                                        <v-dialog v-model="stripePopup" max-width="50%" transition="slide-y-reverse-transition">
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn color="primary" class="caption text-capitalize" v-on="on">Add Method</v-btn>
+                                            </template>
+                                            <stripePopup></stripePopup>
+                                        </v-dialog>
                                     </v-card-title>
                                     <v-card-text>
                                         <v-simple-table>
@@ -72,8 +77,14 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import stripePopup from '../popups/stripePopup'
+    import axios from 'axios'
+    import { api } from '~/config'
 
     export default {
+        components: {
+            stripePopup:stripePopup,
+        },
         data: () => ({
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
@@ -82,14 +93,28 @@
             user: {
                 name: null,
                 email: null,
-            }
+            },
+            stripePopup: false,
+            cards:[]
         }),
 
         computed: mapGetters({
             auth: 'auth/user'
         }),
-
+        methods: {
+            getCards: function(){
+                let self = this;
+                self.busy = true;
+                axios
+                    .get(api.path('getUserCard'))
+                    .then(function(resp){
+                        self.cards = resp.data.data;
+                        console.log(self.cards);
+                    });
+            }
+        },
         mounted() {
+            this.getCards();
             this.user = Object.assign(this.user, this.auth)
         }
     }

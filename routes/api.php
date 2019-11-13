@@ -59,6 +59,18 @@ Route::group(['middleware' => ['jwt']], function() {
         'uses' => 'CountriesController@index'
     ]);
 
+    // ----- store user card
+    Route::post('/user/save_card', [
+        'as' => 'user.save_card',
+        'uses' => 'SettingsController@store'
+    ]);
+
+    // ----- get user cards
+    Route::get('/user/get_cards', [
+        'as' => 'user.get_cards',
+        'uses' => 'SettingsController@index'
+    ]);
+
     // ----- Campaign related api's
     Route::prefix('/campaign')->group(function () {
 

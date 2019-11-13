@@ -11,7 +11,9 @@ use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\CountryRepository;
 use App\Contracts\PaymentTypeRepository;
 use App\Contracts\PlacementRepository;
+use App\Contracts\SettingsRepository;
 use App\Contracts\ShopRepository;
+use App\Contracts\UserCreditCardRepository;
 use App\Repositories\CampaignObjectiveCategoryRepositoryEloquent;
 use App\Repositories\CampaignObjectiveRepositoryEloquent;
 use App\Repositories\CampaignPaymentRepositoryEloquent;
@@ -21,7 +23,9 @@ use App\Repositories\CampaignTouchPointRepositoryEloquent;
 use App\Repositories\CountryRepositoryEloquent;
 use App\Repositories\PaymentTypeRepositoryEloquent;
 use App\Repositories\PlacementRepositoryEloquent;
+use App\Repositories\SettingsRepositoryEloquent;
 use App\Repositories\ShopRepositoryEloquent;
+use App\Repositories\UserCreditCardRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -53,6 +57,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CampaignPaymentRepository::class, CampaignPaymentRepositoryEloquent::class);
         $this->app->bind(CampaignTouchPointRepository::class, CampaignTouchPointRepositoryEloquent::class);
         $this->app->bind(CampaignTouchPointImageRepository::class, CampaignTouchPointImageRepositoryEloquent::class);
+        $this->app->bind(SettingsRepository::class, SettingsRepositoryEloquent::class);
+        $this->app->bind(UserCreditCardRepository::class, UserCreditCardRepositoryEloquent::class);
         //:end-bindings:
     }
 }
