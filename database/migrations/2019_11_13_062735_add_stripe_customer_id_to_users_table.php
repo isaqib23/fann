@@ -14,7 +14,7 @@ class AddStripeCustomerIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('stripe_customer_id')->unsigned()->nullable()->after('password');
+            $table->string('stripe_customer_id')->nullable()->after('password');
         });
     }
 
