@@ -37,6 +37,7 @@ class URL {
 }
 
 import campaign from '../js/apiRoutes/campaign';
+import setting from '../js/apiRoutes/settings';
 
 export const api = Object.assign(new URL(apiUrl), {
     url: '',
@@ -81,13 +82,8 @@ export const api = Object.assign(new URL(apiUrl), {
     countryList: {
         'url': 'country/all'
     },
-    saveUserCard: {
-        'url': 'user/save_card'
-    },
-    getUserCard: {
-        'url': 'user/get_cards'
-    },
 
     campaign: campaign,
+    setting:setting
 
 })

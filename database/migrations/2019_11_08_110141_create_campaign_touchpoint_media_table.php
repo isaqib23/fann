@@ -36,6 +36,6 @@ class CreateCampaignTouchPointMediaTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('campaign_touch_point_images');
+		Schema::drop('campaign_touch_point_media');
 	}
 }

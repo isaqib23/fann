@@ -26,19 +26,15 @@
                                     <v-card-title class="subtitle-1 font-weight-black" color="gray">
                                         Billing Method
                                         <v-spacer></v-spacer>
-                                        <v-dialog v-model="stripePopup" max-width="50%" transition="slide-y-reverse-transition">
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn color="primary" class="caption text-capitalize" v-on="on">Add Method</v-btn>
-                                            </template>
-                                            <stripePopup></stripePopup>
-                                        </v-dialog>
+                                        <v-btn color="primary" class="caption text-capitalize" @click="showDialog">Add Method</v-btn>
+
                                     </v-card-title>
                                     <v-card-text>
                                         <v-simple-table>
                                                 <tbody>
-                                                <tr v-for="i in 3" :key="i">
+                                                <tr v-for="(card, index) in cards" :key="card.id">
                                                     <td class="ma-0 pa-0">
-                                                        <p class="font-weight-bold d-block mb-n5 pl-5 text-uppercase">Primary</p>
+                                                        <p class="font-weight-bold d-block mb-n5 pl-5 text-uppercase" v-if="index == 0">Primary</p>
                                                         <v-list class="ma-0 pa-0">
                                                             <v-list-item>
                                                                 <v-list-item-icon class="title mr-2">
@@ -46,11 +42,11 @@
                                                                 </v-list-item-icon>
 
                                                                 <v-list-item-content>
-                                                                    <v-list-item-title class="caption">Visa ending in 2019</v-list-item-title>
+                                                                    <v-list-item-title class="caption">{{card.brand}} ending in {{card.exp_year}}</v-list-item-title>
                                                                 </v-list-item-content>
 
                                                                 <v-list-item-avatar>
-                                                                    CAD <v-icon>more_horiz</v-icon>
+                                                                    CAD {{card.last4}}
                                                                 </v-list-item-avatar>
                                                             </v-list-item>
                                                         </v-list>
@@ -72,7 +68,9 @@
                 </v-flex>
             </v-row>
         </v-card>
+        <stripePopup :dialog="dialog" @updateDialog="dialog = $event" />
     </v-flex>
+
 </template>
 
 <script>
@@ -94,7 +92,7 @@
                 name: null,
                 email: null,
             },
-            stripePopup: false,
+            dialog: false,
             cards:[]
         }),
 
@@ -106,11 +104,14 @@
                 let self = this;
                 self.busy = true;
                 axios
-                    .get(api.path('getUserCard'))
+                    .get(api.path('setting.getUserCard'))
                     .then(function(resp){
-                        self.cards = resp.data.data;
+                        self.cards = resp.data.cards;
                         console.log(self.cards);
                     });
+            },
+            showDialog() {
+                this.dialog = true;
             }
         },
         mounted() {
