@@ -11,12 +11,16 @@ use App\Contracts\CampaignTouchPointMediaRepository;
 use App\Contracts\CampaignTouchPointPlacementRepository;
 use App\Contracts\CampaignTouchPointProductRepository;
 use App\Contracts\CampaignTouchPointRepository;
+use App\Contracts\CityRepository;
+use App\Contracts\CompanyRepository;
+use App\Contracts\CompanyUserRepository;
 use App\Contracts\CountryRepository;
 use App\Contracts\PaymentTypeRepository;
 use App\Contracts\PlacementRepository;
 use App\Contracts\SettingsRepository;
 use App\Contracts\PlacementTypeRepository;
 use App\Contracts\ShopRepository;
+use App\Contracts\StateRepository;
 use App\Contracts\UserCreditCardRepository;
 use App\Repositories\CampaignObjectiveCategoryRepositoryEloquent;
 use App\Repositories\CampaignObjectiveRepositoryEloquent;
@@ -27,12 +31,16 @@ use App\Repositories\CampaignTouchPointMediaRepositoryEloquent;
 use App\Repositories\CampaignTouchPointPlacementRepositoryEloquent;
 use App\Repositories\CampaignTouchPointProductRepositoryEloquent;
 use App\Repositories\CampaignTouchPointRepositoryEloquent;
+use App\Repositories\CityRepositoryEloquent;
+use App\Repositories\CompanyRepositoryEloquent;
+use App\Repositories\CompanyUserRepositoryEloquent;
 use App\Repositories\CountryRepositoryEloquent;
 use App\Repositories\PaymentTypeRepositoryEloquent;
 use App\Repositories\PlacementRepositoryEloquent;
 use App\Repositories\SettingsRepositoryEloquent;
 use App\Repositories\PlacementTypeRepositoryEloquent;
 use App\Repositories\ShopRepositoryEloquent;
+use App\Repositories\StateRepositoryEloquent;
 use App\Repositories\UserCreditCardRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
@@ -75,6 +83,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CampaignTouchPointPlacementRepository::class, CampaignTouchPointPlacementRepositoryEloquent::class);
         $this->app->bind(CampaignTouchPointProductRepository::class, CampaignTouchPointProductRepositoryEloquent::class);
         $this->app->bind(CampaignTouchPointAdditionalRepository::class, CampaignTouchPointAdditionalRepositoryEloquent::class);
+        $this->app->bind(CompanyRepository::class, CompanyRepositoryEloquent::class);
+        $this->app->bind(CompanyUserRepository::class, CompanyUserRepositoryEloquent::class);
+        $this->app->bind(StateRepository::class, StateRepositoryEloquent::class);
+        $this->app->bind(CityRepository::class, CityRepositoryEloquent::class);
         //:end-bindings:
     }
 }

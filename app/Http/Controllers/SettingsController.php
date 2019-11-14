@@ -60,6 +60,10 @@ class SettingsController extends Controller
      */
     public function index(Request $request)
     {
+        $path = public_path() . "/js/cities.json";
+        $cities = json_decode(file_get_contents($path), true);
+
+        echo "<pre>";print_r($cities);exit;
         $user = $request->user();
 
         $cards = $this->creditCardRepository->findByField('user_id',$user->id);

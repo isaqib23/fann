@@ -100,15 +100,23 @@
                     >
                         <template slot="selection" slot-scope="data">
                             <v-avatar size="36" class="mr-2" tile >
-                                <img :src="getFlag(data.item.flag)">
+                                <img
+                                    :src="getFlag(data.item.flag)"
+                                    @error="imageUrlAlt"
+                                    lazy-src="/images/placeholder.png"
+                                >
                             </v-avatar>
                             <div> {{ data.item.name }}
                             </div>
                         </template>
                         <template slot="item" slot-scope="data">
-                            <v-list-tile-avatar size="36">
-                                <img :src="getFlag(data.item.flag)">
-                            </v-list-tile-avatar>
+                            <v-list-item-avatar size="36">
+                                <img
+                                    :src="getFlag(data.item.flag)"
+                                    @error="imageUrlAlt"
+                                    lazy-src="/images/placeholder.png"
+                                >
+                            </v-list-item-avatar>
                             <v-list-tile-content>
                                 <v-list-tile-title> {{ data.item.name }}
                                 </v-list-tile-title>
@@ -157,7 +165,10 @@
                     });
             },
             getFlag(name){
-                return '/images/flags/'+name+'.svg';
+                return '/images/flags/'+name;
+            },
+            imageUrlAlt(event) {
+                event.target.src = "/images/placeholder.png"
             }
         },
         mounted() {

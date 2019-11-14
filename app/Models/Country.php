@@ -20,6 +20,8 @@ class Country extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name', 'sort_name', 'phone_code', 'flag'
+    ];
 
 }
