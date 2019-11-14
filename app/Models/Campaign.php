@@ -20,6 +20,17 @@ class Campaign extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+        'status',
+        'touch_points',
+        'total_amount',
+        'objective_id',
+        'impressions',
+        'actions',
+        'eng_rate'
+    ];
 
 }

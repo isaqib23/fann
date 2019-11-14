@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="pl-12">
-                        <v-radio-group v-model="campaignObjective.id">
+                        <v-radio-group v-model="campaignObjective.ObjectiveId">
                             <span v-for="(objective, objectiveIndex)  in objectives.main" :key="objectiveIndex">
                             <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate"
                                      :slug="objective.slug"
@@ -58,15 +58,15 @@
         data: () => ({
             self: this,
             campaignObjective: {
-                id:null,
-                slug:null,
-                name:null
+                ObjectiveId: null,
+                slug: null,
+                name: null
             },
             getCampaignObjectives: {}
         }),
         validations: {
             campaignObjective:{
-                id: {
+                ObjectiveId: {
                     required,
                 },
                 name: {
@@ -78,6 +78,7 @@
         computed: {
             ...mapGetters({
                 campaign: 'campaign/campaignObjective'
+
             })
         },
        mounted() {
@@ -91,23 +92,22 @@
         },
         methods: {
             ...mapActions({
-                saveObjective: 'campaign/saveObjective',
-                savePlacement: 'campaign/savePlacement'
+                saveObjective: 'campaign/saveObjective'
             }),
-            async goToNext() {
+            async goToNext () {
                 let self = this;
                 self.$v.$touch()
                 if (self.$v.$invalid) {
-                    if(self.$v.campaignObjective.id.$error) {
+                    if(self.$v.campaignObjective.ObjectiveId.$error) {
                         this.$toast.error('Campaign Objective is required')
                     }else if(self.$v.campaignObjective.name.$error) {
                         this.$toast.error('Name must have at least '+self.$v.campaignObjective.name.$params.minLength.min+' letters.')
                     }
                 } else {
                     this.campaignObjective.slug  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
-                   /* this.$store.dispatch('campaign/saveObjective', this.campaignObjective)*/
-                    await this.saveObjective(this.campaignObjective);
-                   // this.$router.push({ name: 'create-campaign-placement' })
+                    let savedCampaign =  await this.saveObjective(this.campaignObjective);
+                    console.info(savedCampaign,  'hey response');
+                   // this.$router.push({ name: 'create-campaign-placement', params: { slug: savedCampaign.data.details.slug } })
                 }
             }
         }

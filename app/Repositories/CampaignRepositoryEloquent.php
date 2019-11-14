@@ -2,12 +2,13 @@
 
 namespace App\Repositories;
 
+use Exception;
 use Illuminate\Support\Str;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignRepository;
 use App\Models\Campaign;
-use App\Validators\CampaignValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class CampaignRepositoryEloquent.
@@ -34,12 +35,25 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @param $request
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($request)
+    {
+        return $this->create([
+            'name' => $request['name'],
+            'slug' => $this->createSlug($request['name']),
+            'objective_id'  => $request['ObjectiveId']
+        ]);
+    }
 
     /**
      * @param $title
      * @param int $id
      * @return string
-     * @throws \Exception
+     * @throws Exception
      */
     public function createSlug($title, $id = 0)
     {
@@ -62,7 +76,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             }
         }
 
-        throw new \Exception('Can not create a unique slug');
+        throw new Exception('Can not create a unique slug');
     }
 
     /**

@@ -5561,6 +5561,16 @@
   height: 100%;
   overflow-x: auto;
 }
+.create_card[data-v-5cd889b1] {
+    width: 85%;
+    border-radius: 10px;
+}
+[data-v-5cd889b1] .v-input__control {
+}
+[data-v-5cd889b1] .v-input--selection-controls .v-input__control{
+    width: 100% !important;
+}
+
 .create_card[data-v-36b9a546] {
     width: 85%;
     border-radius: 10px;
@@ -5639,16 +5649,6 @@ and (-webkit-min-device-pixel-ratio: 1) {
 }
 .paymentRadio[data-v-36b9a546] .v-input__control{
     margin-left: 0px !important;
-}
-
-.create_card[data-v-5cd889b1] {
-    width: 85%;
-    border-radius: 10px;
-}
-[data-v-5cd889b1] .v-input__control {
-}
-[data-v-5cd889b1] .v-input--selection-controls .v-input__control{
-    width: 100% !important;
 }
 
 [data-v-9ccdcda8] .v-tabs-items,[data-v-9ccdcda8] .v-card{

@@ -13,9 +13,9 @@
                         <SetupLeftPane></SetupLeftPane>
                     </v-tab-item>-->
                     <v-tab-item>
-                        <UnboxingCampaign v-if="campaignObjective.id == 1"></UnboxingCampaign>
-                        <contestsGiveways v-else-if="campaignObjective.id == 2"></contestsGiveways>
-                        <productReview v-else-if="campaignObjective.id == 3"></productReview>
+                        <UnboxingCampaign v-if="campaignObjective.ObjectiveId == 1"></UnboxingCampaign>
+                        <contestsGiveways v-else-if="campaignObjective.ObjectiveId == 2"></contestsGiveways>
+                        <productReview v-else-if="campaignObjective.ObjectiveId == 3"></productReview>
                         <CreateLeftPane v-else></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
@@ -65,19 +65,19 @@
         mounted() {
             this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
-            if(this.objective == null){
-                this.$router.push({ name: 'create-campaign-objective' })
+            if (this.objective == null) {
+                this.$router.push({name: 'create-campaign-objective'})
             }
 
-            if(this.placement == null){
-                this.$router.push({ name: 'create-campaign-placement' })
+            if (this.placement == null) {
+                this.$router.push({name: 'create-campaign-placement'})
             }
         },
         data: () => {
            return  {
                active_tab: 0,
                campaignObjective: {
-                   id:null,
+                   ObjectiveId:null,
                    slug:null,
                    name:null
                },
