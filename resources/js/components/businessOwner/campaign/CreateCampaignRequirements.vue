@@ -16,6 +16,9 @@
                         <UnboxingCampaign v-if="campaignObjective.ObjectiveId == 1"></UnboxingCampaign>
                         <contestsGiveways v-else-if="campaignObjective.ObjectiveId == 2"></contestsGiveways>
                         <productReview v-else-if="campaignObjective.ObjectiveId == 3"></productReview>
+                        <brandShoutOut v-else-if="campaignObjective.ObjectiveId == 4 || campaignObjective.id == 5"></brandShoutOut>
+                        <SponsoredContent v-else-if="campaignObjective.ObjectiveId == 6"></SponsoredContent>
+
                         <CreateLeftPane v-else></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
@@ -40,9 +43,11 @@
 <script>
     import LeftTabs from './requirements/LeftTabs';
     import CreateLeftPane from './requirements/CreateLeftPane';
-    import UnboxingCampaign from './requirements/UnboxingCampaign';
-    import contestsGiveways from './requirements/contestsGiveways';
-    import productReview from './requirements/productReview';
+    import UnboxingCampaign from './requirements/objectiveSelection/UnboxingCampaign';
+    import contestsGiveways from './requirements/objectiveSelection/contestsGiveways';
+    import productReview from './requirements/objectiveSelection/productReview';
+    import brandShoutOut from './requirements/objectiveSelection/brandShoutOut';
+    import SponsoredContent from './requirements/objectiveSelection/SponsoredContent';
     import InviteLeftPane from './requirements/InviteLeftPane';
     import CreateRightPane from './requirements/CreateRightPane';
     import InviteRightPaneListView from './requirements/InviteRightPaneListView';
@@ -60,7 +65,9 @@
             CreateRightPane: CreateRightPane,
             InviteRightPaneListView: InviteRightPaneListView,
             InviteRightPaneGridView: InviteRightPaneGridView,
-            Promote: Promote
+            Promote: Promote,
+            brandShoutOut: brandShoutOut,
+            SponsoredContent: SponsoredContent
         },
         mounted() {
             this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
