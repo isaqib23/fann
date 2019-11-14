@@ -49,7 +49,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
+    import { mapGetters, mapActions } from 'vuex';
     import axios from 'axios'
     import { api } from '~/config'
     import { required, minLength } from 'vuelidate/lib/validators'
@@ -90,7 +90,11 @@
                });
         },
         methods: {
-            goToNext() {
+            ...mapActions({
+                saveObjective: 'campaign/saveObjective',
+                savePlacement: 'campaign/savePlacement'
+            }),
+            async goToNext() {
                 let self = this;
                 self.$v.$touch()
                 if (self.$v.$invalid) {
@@ -101,8 +105,9 @@
                     }
                 } else {
                     this.campaignObjective.slug  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
-                    this.$store.dispatch('campaign/saveObjective', this.campaignObjective)
-                    this.$router.push({ name: 'create-campaign-placement' })
+                   /* this.$store.dispatch('campaign/saveObjective', this.campaignObjective)*/
+                    await this.saveObjective(this.campaignObjective);
+                   // this.$router.push({ name: 'create-campaign-placement' })
                 }
             }
         }

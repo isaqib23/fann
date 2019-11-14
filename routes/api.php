@@ -73,6 +73,7 @@ Route::group(['middleware' => ['jwt']], function() {
 
         // ----- get campaign objectives list
         Route::get('objectives', 'CampaignsController@getCampaignObjectives');
+        Route::post('save', 'CampaignsController@store');
     });
 
 });
