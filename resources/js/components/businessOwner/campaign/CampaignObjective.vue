@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="pl-12">
-                        <v-radio-group v-model="campaignObjective.id">
+                        <v-radio-group v-model="campaignObjective.ObjectiveId">
                             <span v-for="(objective, objectiveIndex)  in objectives.main" :key="objectiveIndex">
                             <v-radio off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate"
                                      :slug="objective.slug"
@@ -58,7 +58,7 @@
         data: () => ({
             self: this,
             campaignObjective: {
-                id:null,
+                ObjectiveId:null,
                 slug:null,
                 name:null
             },
@@ -66,7 +66,7 @@
         }),
         validations: {
             campaignObjective:{
-                id: {
+                ObjectiveId: {
                     required,
                 },
                 name: {
@@ -98,7 +98,7 @@
                 let self = this;
                 self.$v.$touch()
                 if (self.$v.$invalid) {
-                    if(self.$v.campaignObjective.id.$error) {
+                    if(self.$v.campaignObjective.ObjectiveId.$error) {
                         this.$toast.error('Campaign Objective is required')
                     }else if(self.$v.campaignObjective.name.$error) {
                         this.$toast.error('Name must have at least '+self.$v.campaignObjective.name.$params.minLength.min+' letters.')
@@ -107,7 +107,7 @@
                     this.campaignObjective.slug  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
                    /* this.$store.dispatch('campaign/saveObjective', this.campaignObjective)*/
                     await this.saveObjective(this.campaignObjective);
-                   // this.$router.push({ name: 'create-campaign-placement' })
+                   this.$router.push({ name: 'create-campaign-placement' })
                 }
             }
         }
