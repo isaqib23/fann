@@ -83,12 +83,11 @@ class CampaignsController extends Controller
      */
     public function store(Request $request)
     {
-        dd('chummi', $request->all());
         try {
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+           // $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $campaign = $this->repository->create($request->all());
+            $campaign = $this->repository->store($request->all());
 
             $response = [
                 'message' => 'Campaign created.',
@@ -96,7 +95,6 @@ class CampaignsController extends Controller
             ];
 
             if ($request->wantsJson()) {
-
                 return response()->json($response);
             }
 

@@ -58,9 +58,9 @@
         data: () => ({
             self: this,
             campaignObjective: {
-                ObjectiveId:null,
-                slug:null,
-                name:null
+                ObjectiveId: null,
+                slug: null,
+                name: null
             },
             getCampaignObjectives: {}
         }),
@@ -78,6 +78,7 @@
         computed: {
             ...mapGetters({
                 campaign: 'campaign/campaignObjective'
+
             })
         },
        mounted() {
@@ -91,10 +92,9 @@
         },
         methods: {
             ...mapActions({
-                saveObjective: 'campaign/saveObjective',
-                savePlacement: 'campaign/savePlacement'
+                saveObjective: 'campaign/saveObjective'
             }),
-            async goToNext() {
+            async goToNext () {
                 let self = this;
                 self.$v.$touch()
                 if (self.$v.$invalid) {
@@ -105,9 +105,9 @@
                     }
                 } else {
                     this.campaignObjective.slug  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
-                   /* this.$store.dispatch('campaign/saveObjective', this.campaignObjective)*/
-                    await this.saveObjective(this.campaignObjective);
-                   this.$router.push({ name: 'create-campaign-placement' })
+                    let savedCampaign =  await this.saveObjective(this.campaignObjective);
+                    console.info(savedCampaign,  'hey response');
+                   // this.$router.push({ name: 'create-campaign-placement', params: { slug: savedCampaign.data.details.slug } })
                 }
             }
         }

@@ -18,6 +18,7 @@
                         <productReview v-else-if="campaignObjective.ObjectiveId == 3"></productReview>
                         <brandShoutOut v-else-if="campaignObjective.ObjectiveId == 4 || campaignObjective.id == 5"></brandShoutOut>
                         <SponsoredContent v-else-if="campaignObjective.ObjectiveId == 6"></SponsoredContent>
+
                         <CreateLeftPane v-else></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
@@ -71,12 +72,12 @@
         mounted() {
             this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
-            if(this.objective == null){
-                this.$router.push({ name: 'create-campaign-objective' })
+            if (this.objective == null) {
+                this.$router.push({name: 'create-campaign-objective'})
             }
 
-            if(this.placement == null){
-                this.$router.push({ name: 'create-campaign-placement' })
+            if (this.placement == null) {
+                this.$router.push({name: 'create-campaign-placement'})
             }
         },
         data: () => {
