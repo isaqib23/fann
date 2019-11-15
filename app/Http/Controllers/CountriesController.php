@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Http\Response;
 use PragmaRX\Countries\Package\Services\Config;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -47,38 +48,25 @@ class CountriesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        //$this->repository->pushCriteria(app(RequestCriteria::class));
-        //$countries = $this->repository->all();
-        //$countries = new Collection(); sprite, flag-icon, flag-icon-squared, world-flags-sprite, svg, svg_path
-        //->pluck('name.common','flag.svg_path')
-        $countries = countries();
-        $list = [];
 
-        foreach ($countries as $key => $value){
-            $list[] = [
-                'name'  => $value['name'],
-                'flag'  => strtolower($value['iso_3166_1_alpha2'])
-            ];
-        }
+        $list = $this->repository->all();
+
         return response()->json([
             'countries' => $list,
         ]);
-
-        //return view('countries.index', compact('countries'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  CountryCreateRequest $request
+     * @param CountryCreateRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function store(CountryCreateRequest $request)
     {
@@ -116,7 +104,7 @@ class CountriesController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -137,7 +125,7 @@ class CountriesController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -154,7 +142,7 @@ class CountriesController extends Controller
      *
      * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws ValidatorException
      */
     public function update(CountryUpdateRequest $request, $id)
     {
@@ -195,7 +183,7 @@ class CountriesController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
