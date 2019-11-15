@@ -31,10 +31,12 @@ export const actions = {
         commit('setObjective', payload);
         return await CampaignAxios.saveCampaign(payload);
     },
+    async fetchAllPlacements() {
+        return await CampaignAxios.getAllPlacements();
+    },
    savePlacement({ commit }, payload) {
         commit('setPlacement',payload);
-    },
-
+    }
 }
 
 /**
@@ -53,6 +55,17 @@ let CampaignAxios = class {
     static saveCampaign (payload) {
      return axios.post(api.path('campaign.save'), payload)
             .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
+    }
+
+    static getAllPlacements () {
+        return axios.get(api.path('campaign.allPlacements'))
+            .then(resp => {
+                console.info('resp', resp);
                 return resp.data;
             })
             .catch(err => {

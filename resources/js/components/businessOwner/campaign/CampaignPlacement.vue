@@ -8,24 +8,19 @@
                         <div class="card_radio placement_radio">
                             <v-radio-group v-model="campaignPlacement.platform" row class="mt-0 full_width">
 
-                                <v-radio color="primary" value="instagram" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate">
-                                    <template slot="label">
-                                <span class="subtitle-1 text-uppercase black--text font-weight-bold">
-                                    <v-icon class="display-2 primary--text">mdi-instagram</v-icon>
-                                    Instagram
-                                </span>
-                                    </template>
+                                <v-radio color="primary" :value="placementItem.id"
+                                         off-icon="mdi-checkbox-blank-outline"
+                                         on-icon="mdi-checkbox-intermediate"
+                                         v-for="(placementItem, placementIndex) in loadPlacements"
+                                         :key="placementIndex"
+                                >
+                                <template slot="label">
+                                    <span class="subtitle-1 text-uppercase black--text font-weight-bold">
+                                        <v-icon class="display-2 primary--text">{{placementItem.image}}</v-icon>
+                                        {{placementItem.name}}
+                                    </span>
+                                </template>
                                 </v-radio>
-
-                                <v-radio color="primary" value="youtube" off-icon="mdi-checkbox-blank-outline" on-icon="mdi-checkbox-intermediate" class="you_radio">
-                                    <template slot="label">
-                                <span class="subtitle-1 text-uppercase black--text font-weight-bold youtube_radio">
-                                    <v-icon class="display-2 primary--text">mdi-youtube</v-icon>
-                                    Youtube
-                                </span>
-                                    </template>
-                                </v-radio>
-
                             </v-radio-group>
                         </div>
                     </v-flex>
@@ -40,7 +35,6 @@
                     <v-flex lg12 sm12 xs12 class="text-center">
                         <div class="card_radio campaign_radio">
                             <v-radio-group v-model="campaignPlacement.type" row class="mt-0 full_width">
-
                                 <v-radio value="paid" active-class="active_card_radio">
                                     <template slot="label">
                                         <v-card class="text-center" outlined max-width="200">
@@ -139,7 +133,7 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapActions} from 'vuex';
     import { required } from 'vuelidate/lib/validators'
     export default {
 
@@ -150,6 +144,7 @@
                 barterProduct:false,
                 payForProduct:false,
             },
+            loadPlacements:null
         }),
         validations: {
             campaignPlacement:{
@@ -169,36 +164,40 @@
         },
         mounted() {
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
-            if(this.campaignObjective == null){
-                this.$router.push({ name: 'create-campaign-objective' })
-            }else if(this.campaignObjective.id == 1 || this.campaignObjective.id == 2){
+            if (this.campaignObjective == null) {
+                this.$router.push({name: 'create-campaign-objective'})
+            } else if (this.campaignObjective.id == 1 || this.campaignObjective.id == 2) {
                 this.campaignPlacement.type = 'barter';
-            }else if(this.campaignObjective.id == 3){
+            } else if (this.campaignObjective.id == 3) {
                 this.campaignPlacement.type = 'paid';
             }
         },
-        created() {
-            console.info(this.campaignObjective);
-        },
         methods: {
-            goToNext(){
+            ...mapActions({
+                fetchAllPlacements: 'campaign/fetchAllPlacements'
+            }),
+            goToNext() {
                 let self = this;
                 self.$v.$touch()
                 if (self.$v.$invalid) {
-                    if(self.$v.campaignPlacement.platform.$error) {
+                    if (self.$v.campaignPlacement.platform.$error) {
                         this.$toast.error('Campaign Placement is required')
-                    }else if(self.$v.campaignPlacement.type.$error) {
+                    } else if (self.$v.campaignPlacement.type.$error) {
                         this.$toast.error('Campaign Type is required')
                     }
                 } else {
                     this.$store.dispatch('campaign/savePlacement', this.campaignPlacement)
-                    this.$router.push({ name: 'create-campaign-requirements' })
+                    this.$router.push({name: 'create-campaign-requirements'})
                 }
             },
-            goToBack(){
+            goToBack() {
                 this.$store.dispatch('campaign/savePlacement', this.campaignPlacement)
-                this.$router.push({ name: 'create-campaign-objective' })
+                this.$router.push({name: 'create-campaign-objective'})
             }
+        },
+        async created() {
+            let fetchAllPlacements = await this.fetchAllPlacements();
+            this.loadPlacements = fetchAllPlacements.details;
         }
     }
 </script>

@@ -2,11 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Models\Placement;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\PlacementRepository;
-use App\Models\Placements;
-use App\Validators\PlacementsValidator;
+use App\Validators\PlacementValidator;
 
 /**
  * Class PlacementsRepositoryEloquent.
@@ -22,7 +22,7 @@ class PlacementRepositoryEloquent extends BaseRepository implements PlacementRep
      */
     public function model()
     {
-        return Placements::class;
+        return Placement::class;
     }
 
 

@@ -68,12 +68,12 @@ export default [
                     component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
                     children  : [
                         {
-                            path      : 'campaign-name',
+                            path      : 'campaign-objective',
                             name      : 'create-campaign-objective',
                             component : require('$comp/businessOwner/campaign/CampaignObjective').default
                         },
                         {
-                            path      : 'objective/:slug',
+                            path      : 'placement/:slug',
                             name      : 'create-campaign-placement',
                             component : require('$comp/businessOwner/campaign/CampaignPlacement').default
                         },

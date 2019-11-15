@@ -18,6 +18,8 @@ class CreatePlacementsTable extends Migration
 		Schema::create('placements', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('image', 255)->unique();
             $table->softDeletes();
             $table->timestamps();
 		});
