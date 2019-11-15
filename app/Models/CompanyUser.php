@@ -22,4 +22,9 @@ class CompanyUser extends Model implements Transformable
      */
     protected $fillable = [];
 
+    public function company()
+    {
+        return $this->hasOne(Company::class, 'id','company_id');
+    }
+
 }

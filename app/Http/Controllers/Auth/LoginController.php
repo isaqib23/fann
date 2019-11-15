@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -22,20 +23,23 @@ class LoginController extends Controller
     /**
      * Get the authenticated User.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function me()
     {
         $user = auth()->user();
+        if(auth()->user()->CompanyUser !=null) {
+            $company = auth()->user()->CompanyUser->company;
+        }
 
-        return response()->json(compact('user'));
+        return response()->json(compact('user','company'));
     }
 
      /**
      * Get a JWT via given credentials.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return JsonResponse
      */
     public function login(Request $request)
     {
@@ -46,14 +50,17 @@ class LoginController extends Controller
         }
 
         $user = $request->user();
+        if(auth()->user()->CompanyUser !=null) {
+            $company = auth()->user()->CompanyUser->company;
+        }
 
-        return response()->json(compact('token', 'user'));
+        return response()->json(compact('token', 'user', 'company'));
     }
 
     /**
      * Refresh a token.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function refresh()
     {
@@ -65,7 +72,7 @@ class LoginController extends Controller
     /**
      * Log the user out.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function logout()
     {

@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
+use Illuminate\Http\Response;
 use App\Http\Requests\StateCreateRequest;
 use App\Http\Requests\StateUpdateRequest;
 use App\Contracts\StateRepository;
@@ -33,32 +32,27 @@ class StatesController extends Controller
      * StatesController constructor.
      *
      * @param StateRepository $repository
-     * @param StateValidator $validator
      */
-    public function __construct(StateRepository $repository, StateValidator $validator)
+    public function __construct(StateRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $states = $this->repository->all();
 
-        if (request()->wantsJson()) {
+        $states = $this->repository->findByField('country_id',$request->input('country_id'));
 
-            return response()->json([
-                'data' => $states,
-            ]);
-        }
+        return response()->json([
+            'states' => $states,
+        ]);
 
-        return view('states.index', compact('states'));
     }
 
     /**
@@ -66,9 +60,9 @@ class StatesController extends Controller
      *
      * @param  StateCreateRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws ValidatorException
      */
     public function store(StateCreateRequest $request)
     {
@@ -106,7 +100,7 @@ class StatesController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -127,7 +121,7 @@ class StatesController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -144,7 +138,7 @@ class StatesController extends Controller
      *
      * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws ValidatorException
      */
     public function update(StateUpdateRequest $request, $id)
     {
@@ -185,7 +179,7 @@ class StatesController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
