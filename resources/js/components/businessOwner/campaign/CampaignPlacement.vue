@@ -168,13 +168,13 @@
         },
         mounted() {
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
-            /*if (this.campaignObjective == null) {
+            if (this.campaignObjective == null) {
                 this.$router.push({name: 'create-campaign-objective'})
             } else if (this.campaignObjective.id == 1 || this.campaignObjective.id == 2) {
                 this.campaignPlacement.type = 'barter';
             } else if (this.campaignObjective.id == 3) {
                 this.campaignPlacement.type = 'paid';
-            }*/
+            }
         },
         methods: {
             ...mapActions({
