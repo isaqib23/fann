@@ -82,6 +82,9 @@ export const api = Object.assign(new URL(apiUrl), {
     countryList: {
         'url': 'country/all'
     },
+    stateList: {
+        'url': 'country/states'
+    },
 
     campaign: campaign,
     setting:setting

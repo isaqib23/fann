@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Company;
+use App\Models\CompanyUser;
 use App\Models\Shop;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -75,8 +76,8 @@ class User extends Authenticatable implements JWTSubject
     /**
      * @return HasOne
      */
-    public function company()
+    public function CompanyUser()
     {
-        return $this->hasOne(Company::class);
+        return $this->hasOne(CompanyUser::class);
     }
 }

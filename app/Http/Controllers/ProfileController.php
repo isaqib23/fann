@@ -15,6 +15,8 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
+        echo "<pre>";print_r($request->all());
+        echo "<pre>";print_r($request->file('file'));exit;
         $rules = [
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,' . $request->user()->id,

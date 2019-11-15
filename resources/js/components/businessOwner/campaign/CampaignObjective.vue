@@ -107,7 +107,7 @@
                     this.campaignObjective.slug  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
                     let savedCampaign =  await this.saveObjective(this.campaignObjective);
                     console.info(savedCampaign,  'hey response');
-                   // this.$router.push({ name: 'create-campaign-placement', params: { slug: savedCampaign.data.details.slug } })
+                   this.$router.push({ name: 'create-campaign-placement', params: { slug: savedCampaign.details.slug } })
                 }
             }
         }
