@@ -168,13 +168,7 @@
         },
         mounted() {
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
-            if (this.campaignObjective == null) {
-                this.$router.push({name: 'create-campaign-objective'})
-            } else if (this.campaignObjective.id == 1 || this.campaignObjective.id == 2) {
-                this.campaignPlacement.type = 'barter';
-            } else if (this.campaignObjective.id == 3) {
-                this.campaignPlacement.type = 'paid';
-            }
+            this.assignDefaultPayment();
         },
         methods: {
             ...mapActions({
@@ -197,6 +191,16 @@
             goToBack() {
                 this.$store.dispatch('campaign/savePlacement', this.campaignPlacement)
                 this.$router.push({name: 'create-campaign-objective'})
+            },
+            assignDefaultPayment()
+            {
+                if (this.campaignObjective == null) {
+                    this.$router.push({name: 'create-campaign-objective'})
+                } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2) {
+                    this.campaignPlacement.type = 'barter';
+                } else if (this.campaignObjective.ObjectiveId == 3) {
+                    this.campaignPlacement.type = 'paid';
+                }
             }
         },
         async created() {
