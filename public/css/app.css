@@ -5595,8 +5595,11 @@
     width: 100% !important;
 }
 [data-v-36b9a546] .card_radio .v-radio{
-    width: 50% !important;
     margin-right: 0px !important;
+}
+[data-v-36b9a546] .card_radio .last_radio{
+    float: right !important;
+    padding-right: 0px !important;
 }
 [data-v-36b9a546] .card_radio .v-label{
     width: 100% !important;
@@ -5624,9 +5627,6 @@
 }
 .youtube_radio[data-v-36b9a546]{
     margin-left: -70px !important;
-}
-[data-v-36b9a546] .placement_radio .v-label:last-child{
-    width: 50% !important;
 }
 [data-v-36b9a546] .placement_radio .you_radio .v-input--selection-controls__input{
     margin: 0 auto !important;
