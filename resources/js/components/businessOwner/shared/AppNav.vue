@@ -12,12 +12,12 @@
         <v-list class="py-0">
             <v-list-item class="accent">
                 <v-list-item-icon v-show="$vuetify.breakpoint.mdAndUp && mini">
-                    <img class="brand-logo-mini" src="/images/brand-mini.png"/>
+                    <img class="brand-logo-mini" src="/images/faan-mini.png"/>
                 </v-list-item-icon>
 
                 <v-list-item-content class="py-0">
                     <v-list-item-title>
-                        <img class="brand-logo" src="/images/brand.png"/>
+                        <img class="brand-logo" src="/images/faan.png"/>
                     </v-list-item-title>
                 </v-list-item-content>
                 <v-list-item-icon>

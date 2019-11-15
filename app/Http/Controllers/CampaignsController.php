@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Contracts\PlacementRepository;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -41,18 +42,26 @@ class CampaignsController extends Controller
     protected $campaignObjectiveRepository;
 
     /**
+     * @var PlacementRepository
+     */
+    private $placementRepository;
+
+    /**
      * CampaignsController constructor.
      *
      * @param CampaignRepository $repository
      * @param CampaignObjectiveRepository $campaignObjectiveRepository
+     * @param PlacementRepository $placementRepository
      */
     public function __construct(
         CampaignRepository $repository,
-        CampaignObjectiveRepository $campaignObjectiveRepository
+        CampaignObjectiveRepository $campaignObjectiveRepository,
+        PlacementRepository $placementRepository
     )
     {
         $this->repository = $repository;
         $this->campaignObjectiveRepository = $campaignObjectiveRepository;
+        $this->placementRepository = $placementRepository;
     }
 
     /**
@@ -221,6 +230,18 @@ class CampaignsController extends Controller
         return response()->json([
             'details' => $objectives,
 
+        ]);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function getAllPlacements()
+    {
+        $placements =  $this->placementRepository->all(['id', 'name', 'slug', 'image']);
+
+        return response()->json([
+            'details' => $placements
         ]);
     }
 

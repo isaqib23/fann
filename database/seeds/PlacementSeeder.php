@@ -14,8 +14,14 @@ class PlacementSeeder extends Seeder
      *
      */
     private $types  = [
-        1 => 'Instagram',
-        2 => 'Youtube'
+        1 => [
+            'name' => 'Instagram',
+            'image' => 'mdi-instagram'
+        ],
+        2 => [
+            'name' =>  'Youtube',
+            'image' => 'mdi-youtube',
+        ]
     ];
 
     /**
@@ -30,7 +36,10 @@ class PlacementSeeder extends Seeder
             $dateNow = $dt->toDateTimeString();
 
             \DB::table('placements')->insert([
-                'name' => $type,
+                'id'   => $index,
+                'name' => $type['name'],
+                'slug' => Str::slug($type['name']),
+                'image' => $type['image'],
                 'created_at' => $dateNow,
                 'updated_at' => $dateNow,
             ]);

@@ -26,7 +26,7 @@
                     </v-tab-item>
                     <v-tab-item class="full_width">
                         <Promote></Promote>
-                    </v-tab-item>
+                    </v-tab-item>a
                 </v-tabs>
             </v-card>
         </v-flex>
