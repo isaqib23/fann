@@ -174,7 +174,8 @@
         },
         methods: {
             ...mapActions({
-                fetchAllPlacements: 'campaign/fetchAllPlacements'
+                fetchAllPlacements: 'campaign/fetchAllPlacements',
+                savePlacement: 'campaign/savePlacement',
             }),
             goToNext() {
                 let self = this;
@@ -191,7 +192,7 @@
                 }
             },
             goToBack() {
-                this.$store.dispatch('campaign/savePlacement', this.campaignPlacement)
+                this.savePlacement(this.campaignPlacement)
                 this.$router.push({name: 'create-campaign-objective'})
             }
         },
