@@ -34,8 +34,7 @@
       maxSize: 1024
     }),
     props: {
-    // Use "value" to enable using v-model
-      value: Object,
+
     },
     methods: {
       launchFilePicker(){
@@ -43,7 +42,7 @@
       },
       onFileChange(fieldName, file) {
         const { maxSize } = this
-        let imageFile = file[0]
+        let imageFile = this.$refs.file.files[0]
 
         if (file.length>0) {
           let size = imageFile.size / maxSize / maxSize
@@ -61,7 +60,7 @@
             let imageURL = URL.createObjectURL(imageFile)
             formData.append(fieldName, imageFile)
             // Emit the FormData and image URL to the parent component
-            this.$emit('input', { formData, imageURL })
+            this.$emit('input', { imageFile, imageURL })
           }
         }
       }

@@ -12,7 +12,7 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $path = storage_path() . "/assets/countries.json";
+        $path = public_path() . "/assets/countries.json";
         $countries = json_decode(file_get_contents($path), true);
 
         foreach ($countries['countries'] as $key => $country) {
