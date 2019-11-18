@@ -123,7 +123,7 @@
             }
         },
         mounted() {
-            this.username = this.auth.name
+            this.username = this.auth.first_name
         },
         watch: {
             loading (val) {

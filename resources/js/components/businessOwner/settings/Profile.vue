@@ -16,7 +16,7 @@
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">First Name</label>
                                     <v-text-field
-                                        v-model="user.name"
+                                        v-model="user.first_name"
                                         label="First Name"
                                         solo
                                         class="mt-1 custom_dropdown"
@@ -25,6 +25,7 @@
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Last Name</label>
                                     <v-text-field
+                                        v-model="user.last_name"
                                         label="Last Name"
                                         solo
                                         class="mt-1 custom_dropdown"
@@ -51,9 +52,8 @@
                                         placeholder="Pick an Company Logo"
                                         prepend-icon="mdi-camera"
                                         label="Company Logo"
-                                        @change="onFileChange"
                                         v-model="file"
-                                        ref="files"
+                                        ref="file"
                                     ></v-file-input>
                                 </v-col>
                             </v-row>
@@ -134,7 +134,6 @@
                                         solo
                                         append-icon="keyboard_arrow_down"
                                         class="custom_dropdown"
-                                        return-object
                                         item-text="name"
                                         item-value="id"
                                     ></v-autocomplete>
@@ -166,7 +165,8 @@
             ],
             items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             user: {
-                name: null,
+                first_name: null,
+                last_name: null,
                 email: null,
                 file: null,
                 company_user:{
@@ -207,8 +207,15 @@
             },
             submit() {
                 this.loading = true
-
-                axios.put(api.path('profile'), this.user)
+                let formData = new FormData();
+                formData.append('file', this.file);
+                this.user.file = formData;
+                console.log(formData);
+                axios.put(api.path('profile'), this.user, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
                     .then(res => {
                         this.$toast.success('Your profile successfully updated.')
                         this.$emit('success', res.data)
@@ -221,8 +228,8 @@
                     })
             },
             onFileChange() {
-                this.user.file = this.$refs.file.files[0];
-                console.log(this.user.file);
+                //this.user.file = this.$refs.file.file[0];
+                console.log(this.$refs.file);
             }
         },
         mounted() {

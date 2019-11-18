@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CompanyRepository;
 use App\Models\Company;
 use App\Validators\CompanyValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class CompanyRepositoryEloquent.
@@ -25,7 +26,7 @@ class CompanyRepositoryEloquent extends BaseRepository implements CompanyReposit
         return Company::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +35,27 @@ class CompanyRepositoryEloquent extends BaseRepository implements CompanyReposit
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    /**
+     * @param $request
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($request)
+    {
+
+        return $this->update([
+            'name'   => $request->input('company_user.company.name'),
+            'address'   => $request->input('company_user.company.address'),
+            'timezone'   => $request->input('company_user.company.timezone'),
+            'logo'     => ($request->has('company_user.company.logo')) ? $request->has('company_user.company.logo') : '',
+            'niche'   => ($request->has('company_user.company.niche')) ? $request->has('company_user.company.niche') : '',
+            'state_id' => $request->input('company_user.company.state_id'),
+            'country_id'  => $request->input('company_user.company.country_id'),
+            'website'   => $request->input('company_user.company.website'),
+            'phone'     => $request->input('company_user.company.phone'),
+        ], $request->input('company_user.company.id'));
+
+    }
+
 }

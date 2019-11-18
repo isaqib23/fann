@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\SettingsRepository;
 use App\Models\Settings;
 use App\Validators\SettingsValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class SettingsRepositoryEloquent.
@@ -25,7 +26,7 @@ class SettingsRepositoryEloquent extends BaseRepository implements SettingsRepos
         return Settings::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +35,7 @@ class SettingsRepositoryEloquent extends BaseRepository implements SettingsRepos
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+
+
 }
