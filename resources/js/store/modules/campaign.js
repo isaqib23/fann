@@ -34,8 +34,9 @@ export const actions = {
     async fetchAllPlacements() {
         return await CampaignAxios.getAllPlacements();
     },
-    async savePlacement({ commit }, payload) {
+    async savePlacementAndPaymentType({ commit }, payload) {
         commit('setPlacement',payload);
+       // return await CampaignAxios.savePlacementAndPaymentType(payload);
     }
 }
 
@@ -63,7 +64,7 @@ let CampaignAxios = class {
     }
 
     static savePlacementAndPaymentType (payload) {
-        return axios.post(api.path('campaign.savePlacementAndPaymentType'), payload)
+        return axios.put(api.path('campaign.savePlacementAndPaymentType'), payload)
             .then(resp => {
                 return resp.data;
             })

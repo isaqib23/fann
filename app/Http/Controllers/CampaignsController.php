@@ -245,5 +245,18 @@ class CampaignsController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function savePlacementAndPaymentType(Request $request)
+    {
+        $response =  $this->repository->savePlacementAndPayment($request->all());
+
+        return response()->json([
+            'details' => $response
+        ]);
+    }
+
 
 }
