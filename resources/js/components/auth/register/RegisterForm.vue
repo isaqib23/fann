@@ -1,12 +1,20 @@
 <template>
   <v-form ref="form" @submit.prevent="submit" lazy-validation v-model="valid">
     <v-text-field
-      :label="labels.name"
-      v-model="form.name"
-      :error-messages="errors.name"
-      :rules="[rules.required('name')]"
+      :label="labels.first_name"
+      v-model="form.first_name"
+      :error-messages="errors.first_name"
+      :rules="[rules.required('first_name')]"
       :disabled="loading"
     ></v-text-field>
+
+  <v-text-field
+      :label="labels.last_name"
+      v-model="form.last_name"
+      :error-messages="errors.last_name"
+      :rules="[rules.required('last_name')]"
+      :disabled="loading"
+  ></v-text-field>
 
     <v-text-field
       :label="labels.email"
@@ -81,7 +89,8 @@ export default {
     passwordHidden: true,
 
     form: {
-      name: null,
+      first_name: null,
+      last_name: null,
       email: null,
       type: 'businessOwner',
       password: null,
@@ -93,7 +102,7 @@ export default {
     submit() {
       if (this.$refs.form.validate()) {
         this.loading = true
-          
+
         axios.post(api.path('register'), this.form)
           .then(res => {
             this.$toast.success('You have been successfully registered!')

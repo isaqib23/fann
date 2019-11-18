@@ -99,6 +99,7 @@ class SettingsController extends Controller
                 'funding' => $card->funding,
                 'last4' => $card->last4
             ]);
+
             // Save User Card Details
             $this->creditCardRepository->store($request);
 
