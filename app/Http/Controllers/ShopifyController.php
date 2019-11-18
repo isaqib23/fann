@@ -6,6 +6,7 @@ use App\Contracts\ShopRepository;
 use App\Contracts\ShopRepository as ShopRepositoryAlias;
 use App\Services\BillingService;
 use App\Services\IntegrityService;
+use App\Services\ShopifyProductService;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Contracts\View\Factory;
@@ -26,12 +27,22 @@ class ShopifyController extends Controller
     protected $repository;
 
     /**
+     * @var ShopifyProductService
+     */
+    private $productService;
+
+    /**
      * ShopifyController constructor.
      * @param ShopRepositoryAlias $shopRepository
+     * @param ShopifyProductService $productService
      */
-    public function __construct(ShopRepository $shopRepository)
+    public function __construct(
+        ShopRepository $shopRepository,
+        ShopifyProductService $productService
+    )
     {
         $this->repository = $shopRepository;
+        $this->productService = $productService;
     }
 
     /**
@@ -210,6 +221,24 @@ class ShopifyController extends Controller
         }
 
         return response()->json($responses);
+    }
+
+    /**
+     * @param $title
+     * @param Request $request
+     * @return mixed
+     */
+    public function findProducts($input, Request $request)
+    {
+        //$shop = $request->get('shop');
+        $shop = 'umer-aov';
+        $shopObj = $this->repository->findByField('name', $shop)->first();
+
+        $this->productService->setShop($shopObj);
+
+        return response()->json(
+            $this->productService->findByInput($input)
+        );
     }
 
 }

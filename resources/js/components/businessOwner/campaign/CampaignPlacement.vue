@@ -184,7 +184,7 @@
                     } else if (self.$v.campaignPlacement.paymentType.$error) {
                         this.$toast.error('Campaign Type is required')
                     }
-                } else { console.info('Else Case');
+                } else {
                     this.savePlacementAndPaymentType(this.campaignPlacement)
                     this.$router.push({name: 'create-campaign-requirements'})
                 }

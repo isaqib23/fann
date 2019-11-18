@@ -71,13 +71,12 @@ export const api = Object.assign(new URL(apiUrl), {
         url: 'profile'
     },
     shopify: {
-        'url': 'shopify/install/:shop'
-    },
-    shopifyCleanUninstall: {
-        'url': 'shopify/clean-uninstall'
-    },
-    linkedShops: {
-        'url': 'shopify/linked-shops'
+        'url': 'shopify',
+
+        'install'                : 'install/:shop',
+        'findProducts'           : 'findProducts/',
+        'linkedShops'            : 'linked-shops',
+        'shopifyCleanUninstall'  : 'clean-uninstall',
     },
     countryList: {
         'url': 'country/all'

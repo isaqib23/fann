@@ -11,11 +11,13 @@ import VueInternationalization from 'vue-i18n';
 import Locale from './vue-i18n-locales.generated';
 import Vuelidate from 'vuelidate'
 import VueCreditCardField from 'vue-credit-card-field';
+import axios from 'axios';
 
 
 
 window.Vue = Vue;
 window._ = _;
+window.axios = axios;
 Vue.use(Vuelidate);
 Vue.use(VueInternationalization);
 Vue.use(VueCreditCardField);

@@ -53,6 +53,9 @@ Route::group(['middleware' => ['jwt']], function() {
         'uses'  => 'ShopifyController@cleanUninstall'
     ]);
 
+    // ----- code Generator find Products
+    Route::get('/shopify/findProducts/{input}', 'ShopifyController@findProducts');
+
     // ----- Countries related api's
     Route::prefix('/country')->group(function () {
 

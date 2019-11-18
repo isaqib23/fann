@@ -72,13 +72,13 @@
         mounted() {
             this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
-            if (this.objective == null) {
+          /*  if (this.objective == null) {
                 this.$router.push({name: 'create-campaign-objective'})
             }
 
             if (this.placement == null) {
                 this.$router.push({name: 'create-campaign-placement'})
-            }
+            }*/
         },
         data: () => {
            return  {

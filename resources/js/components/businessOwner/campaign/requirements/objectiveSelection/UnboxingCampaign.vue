@@ -51,6 +51,49 @@
                             <v-card-title>
                                 <div class="subtitle-1 mb-2"><strong>Unboxing Product</strong></div>
                             </v-card-title>
+
+                            <v-row class="mx-auto my-5"> FILED SHOULD BE SHOWN
+                                <v-flex>
+                                    <v-combobox
+                                        clearable
+                                        filled
+                                        solo
+                                        v-model="product"
+                                        :items="options"
+                                        :loading="lookingUp"
+                                        :search-input.sync="search"
+                                        hide-no-data
+                                        hide-selected
+                                        item-text="title"
+                                        item-value="id"
+                                        item-avatar="image.src"
+                                        hide-label
+                                        placeholder="Start typing a product name (at least 3 characters) or enter product ID"
+                                        return-object>
+                                        <template v-slot:selection="data" role="listitem">
+                                            <v-list-item-avatar>
+                                                <img v-if="data.item.image != null" :src="data.item.image.src">
+                                                <v-icon v-else>layers</v-icon>
+                                            </v-list-item-avatar>
+                                            <v-list-item-content class="productSelection">
+                                                <v-list-item-title v-html="data.item.title"></v-list-item-title>
+                                                <v-list-item-subtitle><b>ID :</b> {{data.item.id}}, <b>Variants : </b>{{data.item.variants == undefined ? '' : data.item.variants.length}}</v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </template>
+                                        <template v-slot:item="data">
+                                            <v-list-item-avatar>
+                                                <img v-if="data.item.image != null" :src="data.item.image.src">
+                                                <v-icon v-else>layers</v-icon>
+                                            </v-list-item-avatar>
+                                            <v-list-item-content>
+                                                <v-list-item-title v-html="data.item.title"></v-list-item-title>
+                                                <v-list-item-subtitle><b>ID :</b> {{data.item.id}}, <b>Variants : </b>{{data.item.variants == undefined ? '' : data.item.variants.length}}</v-list-item-subtitle>
+                                            </v-list-item-content>
+                                        </template>
+                                    </v-combobox>
+                                </v-flex>
+                            </v-row>
+
                             <v-row class="mx-auto my-5">
                                 <v-flex xl2 lg2 md2 sm1 xs2>
                                     <v-list-item-avatar height="45" min-width="100%" width="100%" class="ma-0 field_icon">
@@ -232,65 +275,107 @@
 
 <script>
     import ImageInput from '../../../../general/ImageInput';
+    import axios from 'axios'
+    import {api} from '~/config'
 
     export default {
         components: {
             ImageInput: ImageInput
         },
-        data: () => {
+        data ()  {
            return  {
-               tabsLength: 1,
-               currentTab: 0,
-               guideLines: 1,
-               model: 0,
-               e1: 0,
-               kind: '1',
-               checkbox2: true,
-               checkbox1: false,
-               items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-               select2: '',
-               select: ['Vuetify', 'Programming'],
-               avatar: null,
-               saving: false,
-               saved: false,
-               menu1: false,
-               menu2: false,
-               date: new Date().toISOString().substr(0, 10),
+               tabsLength : 1,
+               currentTab : 0,
+               guideLines : 1,
+               model      : 0,
+               e1         : 0,
+               kind       : '1',
+               checkbox2  : true,
+               checkbox1  : false,
+               items      : ['Foo', 'Bar', 'Fizz', 'Buzz'],
+               select2    : '',
+               select     : ['Vuetify', 'Programming'],
+               avatar     : null,
+               saving     : false,
+               saved      : false,
+               menu1      : false,
+               menu2      : false,
+               date       : new Date().toISOString().substr(0, 10),
+               bouncer    : _.debounce(this.getProducts, 750),
+               options    : [],
+               search     : '',
+               product    : null,
+               lookingUp  : false
             }
         },
         methods: {
-            nextTab(){
-                if(this.currentTab === this.tabsLength - 1){
+            nextTab() {
+                if (this.currentTab === this.tabsLength - 1) {
                     return false;
                 }
                 this.currentTab = this.currentTab + 1;
             },
-            preTab(){
-                if(this.currentTab === 0){
+            preTab() {
+                if (this.currentTab === 0) {
                     return false;
                 }
                 this.currentTab = this.currentTab - 1;
             },
-            addTouchPoint(){
+            addTouchPoint() {
                 this.tabsLength = this.tabsLength + 1;
                 this.currentTab = this.currentTab + 1;
             },
-            removeTouchPooint(){
-                if(this.tabsLength === 1){
+            removeTouchPooint() {
+                if (this.tabsLength === 1) {
                     return false;
                 }
                 this.tabsLength = this.tabsLength - 1;
                 this.currentTab = this.currentTab - 1;
             },
-            addGuide(){
+            addGuide() {
                 this.guideLines = this.guideLines + 1;
             },
-            removeGuide(){
-                if(this.guideLines === 1){
+            removeGuide() {
+                if (this.guideLines === 1) {
                     return false;
                 }
                 this.guideLines = this.guideLines - 1;
+            },
+            getProducts(val) {
+                let self = this;
+
+                if (self.search == '' || self.search == null || self.search.length <=2 || self.lookingUp) return;
+
+                self.lookingUp = true;
+                axios.get(api.path('shopify.findProducts') + self.search).then(function(response){
+                    self.lookingUp = false;
+                    response.data.forEach(function(prod){
+                        prod.title = prod.title + ' - ' + prod.id;
+                    });
+                    self.options = response.data;
+                });
             }
+        },
+        watch: {
+            search () {
+                let self = this;
+                //_.debounce(function(){
+                   // self.getProducts(this.search);
+                //}, 750);
+                self.tempFunction();
+            },
+            variants: function() {
+                let self = this;
+                self.reportedValue = 0;
+                self.variants.forEach(function(variant){
+                    self.reportedValue += parseFloat(variant.price);
+                });
+                self.reportedValue = parseFloat(self.reportedValue).toFixed(2);
+            }
+        },
+        created() {
+            let self = this;
+            self.tempFunction = _.debounce( this.getProducts, 750);
         }
     }
 </script>
