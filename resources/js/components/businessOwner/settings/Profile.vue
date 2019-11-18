@@ -46,15 +46,22 @@
                             <v-row>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Upload Logo</label>
-                                    <v-file-input
-                                        :rules="rules"
-                                        accept="image/png, image/jpeg, image/bmp"
-                                        placeholder="Pick an Company Logo"
-                                        prepend-icon="mdi-camera"
-                                        label="Company Logo"
-                                        v-model="file"
-                                        ref="file"
-                                    ></v-file-input>
+                                    <image-input v-model="file">
+                                        <div slot="activator">
+                                            <v-avatar size="175px" v-ripple v-if="!file" class="grey lighten-3 mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
+                                                <v-img
+                                                    src="/images/placeholder.png"
+                                                >
+                                                </v-img>
+                                            </v-avatar>
+                                            <v-avatar size="175px" v-else class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
+                                                <v-img
+                                                    class="white--text align-end"
+                                                    :src="file.imageURL" alt="avatar">
+                                                </v-img>
+                                            </v-avatar>
+                                        </div>
+                                    </image-input>
                                 </v-col>
                             </v-row>
 
@@ -157,8 +164,12 @@
     import axios from 'axios'
     import { api } from '~/config'
     import Form from '~/mixins/form'
+    import ImageInput from '../../general/ImageInput';
     export default {
         mixins: [Form],
+        components:{
+            ImageInput: ImageInput
+        },
         data: () => ({
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
@@ -168,7 +179,7 @@
                 first_name: null,
                 last_name: null,
                 email: null,
-                file: null,
+                file: {},
                 company_user:{
                     company:{}
                 }
@@ -176,7 +187,7 @@
             states : [],
             countries : [],
             selectedCountry : null,
-            file: null,
+            file: {},
             imageUrl: null
         }),
 
@@ -207,11 +218,12 @@
             },
             submit() {
                 this.loading = true
+
                 let formData = new FormData();
-                formData.append('file', this.file);
-                this.user.file = formData;
-                console.log(formData);
-                axios.put(api.path('profile'), this.user, {
+                formData.append("user", JSON.stringify(this.user));
+                formData.append("image", this.file.imageFile);
+
+                axios.post(api.path('profile'), formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -226,10 +238,6 @@
                     .then(() => {
                         this.loading = false
                     })
-            },
-            onFileChange() {
-                //this.user.file = this.$refs.file.file[0];
-                console.log(this.$refs.file);
             }
         },
         mounted() {

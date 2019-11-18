@@ -27,7 +27,7 @@ Route::group(['middleware' => ['jwt']], function() {
     Route::post('logout', 'Auth\LoginController@logout');
 
     Route::get('me', 'Auth\LoginController@me');
-    Route::put('profile', 'ProfileController@update');
+    Route::post('profile', 'ProfileController@update');
 
     // ----- shopify handshake
     Route::get('shopify/install/{shop}', [

@@ -80,6 +80,13 @@
                 </template>
 
                 <v-list>
+                    <v-list-item @click="changeShop(shop.id)" v-for="(shop, index) in shops" :key="index">
+                        <v-list-item-title
+                            :class="(selectedShop == shop.id) ? 'primary--text' : ''"
+                        >
+                            {{ shop.name }}
+                        </v-list-item-title>
+                    </v-list-item>
                     <v-list-item @click="logout">
                         <v-list-item-title>Logout</v-list-item-title>
                     </v-list-item>
@@ -92,6 +99,8 @@
 <script>
     import {settings} from '~/config'
     import {mapGetters} from 'vuex'
+    import axios from 'axios'
+    import {api} from '~/config'
 
     export default {
         data: () => ({
@@ -99,6 +108,8 @@
             avatar: '',
             username: '',
             loading: false,
+            shops: [],
+            selectedShop:null,
             items: [
                 { title: 'Click Me' },
                 { title: 'Click Me' },
@@ -120,17 +131,39 @@
                 await this.$store.dispatch('auth/logout');
                 this.$toast.info('You are logged out.');
                 this.$router.push({name: 'login'});
+            },
+            getLinkedShops: function () {
+                let self = this;
+                self.busy = true;
+                axios
+                    .get(api.path('linkedShops'))
+                    .then(function (resp) {
+                        self.shops = resp.data;
+                        self.busy = false;
+                        if(self.selectedShop === null){
+                            console.log('selectedShop SHop: ',self.selectedShop);
+                            self.selectedShop = self.shops[0].id;
+                        }
+                    });
+            },
+            changeShop: function (shopId) {
+                localStorage.selectedShop = shopId;
+                this.selectedShop = shopId;
             }
         },
         mounted() {
-            this.username = this.auth.first_name
+            this.username = this.auth.first_name;
+            this.getLinkedShops();
+            if (localStorage.selectedShop) {
+                this.selectedShop = localStorage.selectedShop;
+            }
         },
         watch: {
             loading (val) {
                 if (!val) return
 
                 setTimeout(() => (this.loading = false), 3000)
-            },
+            }
         }
     }
 </script>
@@ -140,5 +173,8 @@
     }
     .border_top{
         border-top: 1px solid #EDEDED;
+    }
+    >>>.highlighted {
+        background: red !important;
     }
 </style>

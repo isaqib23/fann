@@ -36,7 +36,6 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-        echo "<pre>";print_r($request->file('file'));
         exit;
         $rules = [
             'first_name' => 'required|string|max:191',

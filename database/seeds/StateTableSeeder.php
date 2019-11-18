@@ -11,11 +11,11 @@ class StateTableSeeder extends Seeder
      */
     public function run()
     {
-        $path = storage_path() . "/assets/states.json";
+        $path = public_path() . "/assets/states.json";
         $states = json_decode(file_get_contents($path), true);
 
         foreach ($states['states'] as $key => $state) {
-            
+
             DB::table('states')->insert([
                 'id'          => $state['id'],
                 'name'          => $state['name'],
