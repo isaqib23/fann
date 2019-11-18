@@ -77,6 +77,7 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::get('objectives', 'CampaignsController@getCampaignObjectives');
         Route::get('allPlacements', 'CampaignsController@getAllPlacements');
         Route::post('save', 'CampaignsController@store');
+        Route::put('savePlacementAndPaymentType', 'CampaignsController@savePlacementAndPaymentType');
     });
 
 });
