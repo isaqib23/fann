@@ -7,8 +7,8 @@
                     <v-radio-group v-model="campaignPlacement.platform" row class="mt-0 full_width">
                         <v-row justify="space-between">
                             <v-col col="6"
-                                    v-for="(placementItem, placementIndex) in loadPlacements"
-                                    :key="placementIndex"
+                                   v-for="(placementItem, placementIndex) in loadPlacements"
+                                   :key="placementIndex"
                             >
                                 <v-radio color="primary" :value="placementItem.id"
                                          off-icon="mdi-checkbox-blank-outline"
@@ -33,10 +33,10 @@
             <v-card-title class="pb-8 justify-center">Select Your Campaign Type</v-card-title>
             <v-card-text class="mb-12 text_field_width ma-auto">
                 <div class="card_radio campaign_radio">
-                    <v-radio-group v-model="campaignPlacement.paymentType" row class="mt-0 full_width">
+                    <v-radio-group v-model="campaignPlacement.paymentType" row class="mt-0 full_width" @change="onAdditional()">
                         <v-row justify="space-between">
                             <v-col col="6">
-                                <v-radio value="paid" active-class="active_card_radio">
+                                <v-radio value="paid" active-class="active_card_radio" :disabled="campaignPlacement.Disabledpaid" >
                                     <template slot="label">
                                         <v-card class="text-center" outlined max-width="200">
                                             <div class="triangle-topright" v-if="campaignPlacement.paymentType == 'paid'">
@@ -56,7 +56,7 @@
                                 </v-radio>
                             </v-col>
                             <v-col col="6">
-                                <v-radio style="float: right" value="barter" active-class="active_card_radio">
+                                <v-radio style="float: right" value="barter" active-class="active_card_radio" :disabled="campaignPlacement.Disabledbarter">
                                     <template slot="label">
                                         <v-card class="text-center mx-auto" outlined max-width="200">
                                             <div class="triangle-topright" v-if="campaignPlacement.paymentType == 'barter'">
@@ -83,40 +83,50 @@
                     <v-radio-group v-model="campaignPlacement.paymentType" row class="mt-0 full_width">
                         <v-row justify="space-between">
                             <v-col col="6">
-                                <v-radio-group v-model="campaignPlacement.additionalPayAsBarter" row class="mt-0 full_width">
-                                    <v-radio :value="true" active-class="active_card_radio">
-                                        <template slot="label">
-                                            <v-card class="text-center" outlined max-width="200">
-                                                <div class="triangle-topright" v-if="campaignPlacement.additionalPayAsBarter == true">
-                                                    <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
-                                                </div>
-                                                <v-card-text class="px-2">
-                                                    <p>
-                                                        Would you like barter this product?
-                                                    </p>
-                                                </v-card-text>
-                                            </v-card>
-                                        </template>
-                                    </v-radio>
-                                </v-radio-group>
+
+                                <v-checkbox
+                                    v-model="campaignPlacement.additionalPayAsBarter"
+                                    hide-details
+                                    class="active_card_radio"
+                                    :disabled="campaignPlacement.additionalbarter"
+                                    style="float: left"
+                                >
+                                    <template slot="label">
+                                        <v-card class="text-center mx-auto" outlined max-width="200">
+                                            <div class="triangle-topright" v-if="campaignPlacement.additionalPayAsBarter == true">
+                                                <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
+                                            </div>
+                                            <v-card-text class="px-2">
+                                                <p>
+                                                    Would you like barter this product?
+                                                </p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-checkbox>
                             </v-col>
                             <v-col col="6">
-                                <v-radio-group v-model="campaignPlacement.additionalPayAsAmount" row class="mt-0" style="float: right">
-                                    <v-radio :value="true" active-class="active_card_radio">
-                                        <template slot="label">
-                                            <v-card class="text-center mx-auto" outlined max-width="200">
-                                                <div class="triangle-topright" v-if="campaignPlacement.additionalPayAsAmount == true">
-                                                    <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
-                                                </div>
-                                                <v-card-text class="px-2">
-                                                    <p>
-                                                        Would you like pay for this product?
-                                                    </p>
-                                                </v-card-text>
-                                            </v-card>
-                                        </template>
-                                    </v-radio>
-                                </v-radio-group>
+
+                                <v-checkbox
+                                    v-model="campaignPlacement.additionalPayAsAmount"
+                                    hide-details
+                                    class="active_card_radio"
+                                    :disabled="campaignPlacement.additionalpaid"
+                                    style="float: right"
+                                >
+                                    <template slot="label">
+                                        <v-card class="text-center mx-auto" outlined max-width="200">
+                                            <div class="triangle-topright" v-if="campaignPlacement.additionalPayAsAmount == true">
+                                                <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
+                                            </div>
+                                            <v-card-text class="px-2">
+                                                <p>
+                                                    Would you like pay for this product?
+                                                </p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-checkbox>
                             </v-col>
                         </v-row>
                     </v-radio-group>
@@ -147,6 +157,11 @@
                 paymentType:null,
                 additionalPayAsBarter:false,
                 additionalPayAsAmount:false,
+                Disabledpaid:false,
+                Disabledbarter:false,
+                additionalpaid:false,
+                additionalbarter:false,
+
             },
             loadPlacements:null
         }),
@@ -171,6 +186,17 @@
             this.assignDefaultPayment();
         },
         methods: {
+            onAdditional(){
+
+                if(this.campaignPlacement.paymentType == 'paid'){
+                    this.campaignPlacement.additionalpaid = true;
+                    this.campaignPlacement.additionalbarter = false;
+                }else if(this.campaignPlacement.paymentType == 'barter'){
+                    this.campaignPlacement.additionalbarter = true;
+                    this.campaignPlacement.additionalpaid = false;
+                }
+            },
+
             ...mapActions({
                 fetchAllPlacements: 'campaign/fetchAllPlacements',
                 savePlacementAndPaymentType: 'campaign/savePlacementAndPaymentType'
@@ -184,14 +210,14 @@
                     } else if (self.$v.campaignPlacement.paymentType.$error) {
                         this.$toast.error('Campaign Type is required')
                     }
-                } else {
+                } else { console.info('Else Case');
                     this.savePlacementAndPaymentType(this.campaignPlacement)
                     this.$router.push({name: 'create-campaign-requirements'})
                 }
             },
             goToBack() {
                 this.savePlacement(this.campaignPlacement)
-                //this.$router.push({name: 'create-campaign-objective'})
+                this.$router.push({name: 'create-campaign-objective'})
             },
             assignDefaultPayment()
             {
@@ -199,8 +225,14 @@
                     this.$router.push({name: 'create-campaign-objective'})
                 } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2) {
                     this.campaignPlacement.paymentType = 'barter';
+                    this.campaignPlacement.Disabledpaid = true;
+                    this.campaignPlacement.additionalbarter = true;
                 } else if (this.campaignObjective.ObjectiveId == 3) {
                     this.campaignPlacement.paymentType = 'paid';
+                    this.campaignPlacement.Disabledbarter = true;
+                    this.campaignPlacement.additionalpaid = true;
+                }else{
+
                 }
             }
         },

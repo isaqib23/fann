@@ -5653,7 +5653,11 @@ and (-webkit-min-device-pixel-ratio: 1) {
 .paymentRadio[data-v-36b9a546] .v-input__control{
     margin-left: 0px !important;
 }
-
+/** Ripples */
+/** Elements */
+.v-input--checkbox.v-input--indeterminate.v-input--is-disabled {
+  opacity: 0.6;
+}
 [data-v-9ccdcda8] .v-tabs-items,[data-v-9ccdcda8] .v-card{
     background-color:#F7F7FF !important;
 }
@@ -6198,11 +6202,7 @@ v-tabs[data-v-9ccdcda8] {
 [data-v-2ad2201c] .kind_active .v-input--selection-controls__input{
     margin-right: 0px !important;
 }
-/** Ripples */
-/** Elements */
-.v-input--checkbox.v-input--indeterminate.v-input--is-disabled {
-  opacity: 0.6;
-}.v-autocomplete.v-input > .v-input__control > .v-input__slot {
+.v-autocomplete.v-input > .v-input__control > .v-input__slot {
   cursor: text;
 }
 .v-autocomplete input {
