@@ -191,9 +191,11 @@
                 if(this.campaignPlacement.paymentType == 'paid'){
                     this.campaignPlacement.additionalpaid = true;
                     this.campaignPlacement.additionalbarter = false;
+                    this.campaignPlacement.additionalPayAsAmount = false;
                 }else if(this.campaignPlacement.paymentType == 'barter'){
                     this.campaignPlacement.additionalbarter = true;
                     this.campaignPlacement.additionalpaid = false;
+                    this.campaignPlacement.additionalPayAsBarter = false;
                 }
             },
 
