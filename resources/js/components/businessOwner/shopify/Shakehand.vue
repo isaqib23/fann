@@ -73,7 +73,6 @@
 
 <script>
 
-    import axios from 'axios'
     import {api} from '~/config'
     import deleteable from "../shared/deleteable"
 
@@ -92,7 +91,7 @@
                 let self = this;
                 if (this.$refs.form.validate()) {
                     axios
-                        .get(api.path('shopify', {'shop': this.shop}))
+                        .get(api.path('shopify.install', {'shop': this.shop}))
                         .then(function (resp) {
                             if (!resp.data.status) {
                                 self.$toast.error(resp.data.message)
@@ -106,7 +105,7 @@
                 let self = this;
                 self.busy = true;
                 axios
-                    .get(api.path('linkedShops'))
+                    .get(api.path('shopify.linkedShops'))
                     .then(function (resp) {
                         self.shops = resp.data;
                         self.busy = false;
@@ -116,7 +115,7 @@
                 let self = this;
                 self.busy = true;
                 axios
-                    .patch(api.path('shopifyCleanUninstall'), shop)
+                    .patch(api.path('shopify.shopifyCleanUninstall'), shop)
                     .then(function (resp) {
                         if (resp.data.status == true) {
                             self.shops.splice(self.shops.indexOf(shop), 1);

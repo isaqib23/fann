@@ -51,6 +51,11 @@
                             <v-card-title>
                                 <div class="subtitle-1 mb-2"><strong>Unboxing Product</strong></div>
                             </v-card-title>
+
+                            <v-row class="mx-auto my-5">
+                                <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
+                            </v-row>
+
                             <v-row class="mx-auto my-5">
                                 <v-flex xl2 lg2 md2 sm1 xs2>
                                     <v-list-item-avatar height="45" min-width="100%" width="100%" class="ma-0 field_icon">
@@ -68,9 +73,6 @@
                                     ></v-select>
                                 </v-flex>
                             </v-row>
-
-
-
 
                             <v-card flat class="mx-auto"
                             >
@@ -186,14 +188,13 @@
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
                                 <v-flex lg9 sm9 m9 pl-3>
-                                    <v-select
-                                        :items="items"
-                                        label="Same as Unboxing"
-                                        solo
-                                        dense
-                                        append-icon="keyboard_arrow_down"
-                                        class="custom_dropdown product_left_border"
-                                    ></v-select>
+                                    <products-search
+                                        :emit-as="'barterProduct'"
+                                        :placeholder="'Same as Unboxing'"
+                                        @selected-product="selectedProduct"
+                                    >
+                                    </products-search>
+
                                 </v-flex>
                             </v-layout>
                             <v-layout row wrap pl-3 pr-3 mt-3>
@@ -232,65 +233,75 @@
 
 <script>
     import ImageInput from '../../../../general/ImageInput';
+    import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
 
     export default {
         components: {
-            ImageInput: ImageInput
+            ImageInput: ImageInput,
+            productsSearch : shopifyProductsPredictiveSearch
         },
-        data: () => {
+        data ()  {
            return  {
-               tabsLength: 1,
-               currentTab: 0,
-               guideLines: 1,
-               model: 0,
-               e1: 0,
-               kind: '1',
-               checkbox2: true,
-               checkbox1: false,
-               items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-               select2: '',
-               select: ['Vuetify', 'Programming'],
-               avatar: null,
-               saving: false,
-               saved: false,
-               menu1: false,
-               menu2: false,
-               date: new Date().toISOString().substr(0, 10),
+               tabsLength : 1,
+               currentTab : 0,
+               guideLines : 1,
+               model      : 0,
+               e1         : 0,
+               kind       : '1',
+               checkbox2  : true,
+               checkbox1  : false,
+               items      : ['Foo', 'Bar', 'Fizz', 'Buzz'],
+               select2    : '',
+               select     : ['Vuetify', 'Programming'],
+               avatar     : null,
+               saving     : false,
+               saved      : false,
+               menu1      : false,
+               menu2      : false,
+               date       : new Date().toISOString().substr(0, 10),
+               touchPointProducts : []
             }
         },
         methods: {
-            nextTab(){
-                if(this.currentTab === this.tabsLength - 1){
+            nextTab() {
+                if (this.currentTab === this.tabsLength - 1) {
                     return false;
                 }
                 this.currentTab = this.currentTab + 1;
             },
-            preTab(){
-                if(this.currentTab === 0){
+            preTab() {
+                if (this.currentTab === 0) {
                     return false;
                 }
                 this.currentTab = this.currentTab - 1;
             },
-            addTouchPoint(){
+            addTouchPoint() {
                 this.tabsLength = this.tabsLength + 1;
                 this.currentTab = this.currentTab + 1;
             },
-            removeTouchPooint(){
-                if(this.tabsLength === 1){
+            removeTouchPooint() {
+                if (this.tabsLength === 1) {
                     return false;
                 }
                 this.tabsLength = this.tabsLength - 1;
                 this.currentTab = this.currentTab - 1;
             },
-            addGuide(){
+            addGuide() {
                 this.guideLines = this.guideLines + 1;
             },
-            removeGuide(){
-                if(this.guideLines === 1){
+            removeGuide() {
+                if (this.guideLines === 1) {
                     return false;
                 }
                 this.guideLines = this.guideLines - 1;
+            },
+            selectedProduct (e) {
+                let self = this;
+                let targetInput = `${ e.bindTo }`;
+                self.touchPointProducts[targetInput] = e.item;
+                console.info(self.touchPointProducts);
             }
+
         }
     }
 </script>
