@@ -10,6 +10,7 @@
                     </v-card-title>
 
                     <v-textarea
+                        v-model="campaignDescription"
                         label="Write your campaign description here"
                         auto-grow
                         outlined
@@ -41,6 +42,7 @@
                             </v-card-title>
 
                             <v-text-field
+                                v-model="touchPoint.name"
                                 label="Create a unboxing video on youtube"
                                 solo
                                 dense
@@ -81,6 +83,7 @@
                                 </v-card-title>
 
                                 <v-textarea
+                                    v-model="touchPoint.caption"
                                     label="Write suggested caption here!"
                                     auto-grow
                                     outlined
@@ -155,6 +158,7 @@
                                     <div class="subtitle-2 mb-2"><strong>Hashtags</strong></div>
                                     <div class="overline mb-2">Seprate with (,)</div>
                                     <v-text-field
+                                        v-model="touchPoint.hashtags"
                                         solo
                                         label="Fitness,Gym"
                                         prepend-icon="#"
@@ -165,6 +169,7 @@
                                     <div class="subtitle-2 mb-2"><strong>Brand Mention</strong></div>
                                     <div class="overline mb-2">Seperate with (,)</div>
                                     <v-text-field
+                                        v-model="touchPoint.mentions"
                                         solo
                                         label="Nike,Nuchey"
                                         prepend-icon="@"
@@ -203,6 +208,7 @@
                                 </v-flex>
                                 <v-flex lg9 sm9 m9 pl-3>
                                     <v-text-field
+                                        v-model="touchPoint.amount"
                                         solo
                                         label="$100"
                                         class="custom_dropdown"
@@ -216,8 +222,7 @@
 
         </v-card>
 
-        <v-flex
-        >
+        <v-flex>
             <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
                 <div class="text-center mt-4">
                     <v-btn block height="20" class="task_btn text-capitalize" @click="addTouchPoint">+ Add another contest or giveaway</v-btn>
@@ -240,6 +245,9 @@
             ImageInput: ImageInput,
             productsSearch : shopifyProductsPredictiveSearch
         },
+        props : {
+            touchPoint : {},
+        },
         data ()  {
            return  {
                tabsLength : 1,
@@ -259,7 +267,9 @@
                menu1      : false,
                menu2      : false,
                date       : new Date().toISOString().substr(0, 10),
-               touchPointProducts : []
+               touchPointProducts : [],
+
+               campaignDescription : null,
             }
         },
         methods: {
@@ -301,6 +311,9 @@
                 self.touchPointProducts[targetInput] = e.item;
                 console.info(self.touchPointProducts);
             }
+
+        },
+        watch () {
 
         }
     }

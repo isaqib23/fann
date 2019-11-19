@@ -13,7 +13,7 @@
                         <SetupLeftPane></SetupLeftPane>
                     </v-tab-item>-->
                     <v-tab-item>
-                        <UnboxingCampaign v-if="campaignObjective.ObjectiveId == 1"></UnboxingCampaign>
+                        <UnboxingCampaign :touch-point="touchPoint" v-if="campaignObjective.ObjectiveId == 1"></UnboxingCampaign>
                         <contestsGiveways v-else-if="campaignObjective.ObjectiveId == 2"></contestsGiveways>
                         <productReview v-else-if="campaignObjective.ObjectiveId == 3"></productReview>
                         <brandShoutOut v-else-if="campaignObjective.ObjectiveId == 4 || campaignObjective.id == 5"></brandShoutOut>
@@ -80,7 +80,7 @@
                 this.$router.push({name: 'create-campaign-placement'})
             }*/
         },
-        data: () => {
+        data ()  {
            return  {
                active_tab: 0,
                campaignObjective: {
@@ -91,7 +91,8 @@
                campaignPlacement:{
                    platform:null,
                    type:null
-               }
+               },
+               touchPoint : {},
             }
         },
         methods: {},
