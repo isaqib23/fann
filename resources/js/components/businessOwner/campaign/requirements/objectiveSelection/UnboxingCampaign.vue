@@ -52,46 +52,8 @@
                                 <div class="subtitle-1 mb-2"><strong>Unboxing Product</strong></div>
                             </v-card-title>
 
-                            <v-row class="mx-auto my-5"> FILED SHOULD BE SHOWN
-                                <v-flex>
-                                    <v-combobox
-                                        clearable
-                                        filled
-                                        solo
-                                        v-model="product"
-                                        :items="options"
-                                        :loading="lookingUp"
-                                        :search-input.sync="search"
-                                        hide-no-data
-                                        hide-selected
-                                        item-text="title"
-                                        item-value="id"
-                                        item-avatar="image.src"
-                                        hide-label
-                                        placeholder="Start typing a product name (at least 3 characters) or enter product ID"
-                                        return-object>
-                                        <template v-slot:selection="data" role="listitem">
-                                            <v-list-item-avatar>
-                                                <img v-if="data.item.image != null" :src="data.item.image.src">
-                                                <v-icon v-else>layers</v-icon>
-                                            </v-list-item-avatar>
-                                            <v-list-item-content class="productSelection">
-                                                <v-list-item-title v-html="data.item.title"></v-list-item-title>
-                                                <v-list-item-subtitle><b>ID :</b> {{data.item.id}}, <b>Variants : </b>{{data.item.variants == undefined ? '' : data.item.variants.length}}</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </template>
-                                        <template v-slot:item="data">
-                                            <v-list-item-avatar>
-                                                <img v-if="data.item.image != null" :src="data.item.image.src">
-                                                <v-icon v-else>layers</v-icon>
-                                            </v-list-item-avatar>
-                                            <v-list-item-content>
-                                                <v-list-item-title v-html="data.item.title"></v-list-item-title>
-                                                <v-list-item-subtitle><b>ID :</b> {{data.item.id}}, <b>Variants : </b>{{data.item.variants == undefined ? '' : data.item.variants.length}}</v-list-item-subtitle>
-                                            </v-list-item-content>
-                                        </template>
-                                    </v-combobox>
-                                </v-flex>
+                            <v-row class="mx-auto my-5">
+                                <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
                             </v-row>
 
                             <v-row class="mx-auto my-5">
@@ -111,9 +73,6 @@
                                     ></v-select>
                                 </v-flex>
                             </v-row>
-
-
-
 
                             <v-card flat class="mx-auto"
                             >
@@ -229,14 +188,13 @@
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
                                 <v-flex lg9 sm9 m9 pl-3>
-                                    <v-select
-                                        :items="items"
-                                        label="Same as Unboxing"
-                                        solo
-                                        dense
-                                        append-icon="keyboard_arrow_down"
-                                        class="custom_dropdown product_left_border"
-                                    ></v-select>
+                                    <products-search
+                                        :emit-as="'barterProduct'"
+                                        :placeholder="'Same as Unboxing'"
+                                        @selected-product="selectedProduct"
+                                    >
+                                    </products-search>
+
                                 </v-flex>
                             </v-layout>
                             <v-layout row wrap pl-3 pr-3 mt-3>
@@ -275,12 +233,12 @@
 
 <script>
     import ImageInput from '../../../../general/ImageInput';
-    import axios from 'axios'
-    import {api} from '~/config'
+    import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
 
     export default {
         components: {
-            ImageInput: ImageInput
+            ImageInput: ImageInput,
+            productsSearch : shopifyProductsPredictiveSearch
         },
         data ()  {
            return  {
@@ -301,11 +259,7 @@
                menu1      : false,
                menu2      : false,
                date       : new Date().toISOString().substr(0, 10),
-               bouncer    : _.debounce(this.getProducts, 750),
-               options    : [],
-               search     : '',
-               product    : null,
-               lookingUp  : false
+               touchPointProducts : []
             }
         },
         methods: {
@@ -341,41 +295,13 @@
                 }
                 this.guideLines = this.guideLines - 1;
             },
-            getProducts(val) {
+            selectedProduct (e) {
                 let self = this;
-
-                if (self.search == '' || self.search == null || self.search.length <=2 || self.lookingUp) return;
-
-                self.lookingUp = true;
-                axios.get(api.path('shopify.findProducts') + self.search).then(function(response){
-                    self.lookingUp = false;
-                    response.data.forEach(function(prod){
-                        prod.title = prod.title + ' - ' + prod.id;
-                    });
-                    self.options = response.data;
-                });
+                let targetInput = `${ e.bindTo }`;
+                self.touchPointProducts[targetInput] = e.item;
+                console.info(self.touchPointProducts);
             }
-        },
-        watch: {
-            search () {
-                let self = this;
-                //_.debounce(function(){
-                   // self.getProducts(this.search);
-                //}, 750);
-                self.tempFunction();
-            },
-            variants: function() {
-                let self = this;
-                self.reportedValue = 0;
-                self.variants.forEach(function(variant){
-                    self.reportedValue += parseFloat(variant.price);
-                });
-                self.reportedValue = parseFloat(self.reportedValue).toFixed(2);
-            }
-        },
-        created() {
-            let self = this;
-            self.tempFunction = _.debounce( this.getProducts, 750);
+
         }
     }
 </script>
