@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\NicheRepository;
 use App\Contracts\UserCreditCardRepository;
-use App\Models\UserCreditCard;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Requests\SettingsCreateRequest;
 use App\Http\Requests\SettingsUpdateRequest;
 use App\Contracts\SettingsRepository;
 use App\Services\StripeService;
 use Illuminate\Http\Response;
-use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class SettingsController.
@@ -38,19 +35,27 @@ class SettingsController extends Controller
     protected $stripe;
 
     /**
+     * @var NicheRepository
+     */
+    private $nicheRepository;
+
+    /**
      * SettingsController constructor.
      *
      * @param SettingsRepository $repository
      * @param UserCreditCardRepository $creditCardRepository
+     * @param NicheRepository $nicheRepository
      */
     public function __construct(
         SettingsRepository $repository,
-        UserCreditCardRepository $creditCardRepository
+        UserCreditCardRepository $creditCardRepository,
+        NicheRepository $nicheRepository
     )
     {
         $this->repository = $repository;
         $this->creditCardRepository = $creditCardRepository;
         $this->stripe = new StripeService();
+        $this->nicheRepository = $nicheRepository;
     }
 
     /**
@@ -119,13 +124,16 @@ class SettingsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
-     *
-     * @return Response
+     * @param Request $request
+     * @return void
      */
-    public function show($id)
+    public function getNiches(Request $request)
     {
+        $niches = $this->nicheRepository->all(['id', 'name']);
 
+        return response()->json([
+            'details' => $niches
+        ]);
     }
 
     /**

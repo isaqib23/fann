@@ -27,7 +27,6 @@ class CompanyRepositoryEloquent extends BaseRepository implements CompanyReposit
     }
 
 
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -43,18 +42,27 @@ class CompanyRepositoryEloquent extends BaseRepository implements CompanyReposit
      */
     public function store($request)
     {
+        // Save Company Logo
+        if($request->file('logo')){
+            $image = $request->file('logo');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('/images/');
+            $image->move($destinationPath, $name);
+        }
 
-        return $this->update([
-            'name'   => $request->input('company_user.company.name'),
-            'address'   => $request->input('company_user.company.address'),
-            'timezone'   => $request->input('company_user.company.timezone'),
-            'logo'     => ($request->has('company_user.company.logo')) ? $request->has('company_user.company.logo') : '',
-            'niche'   => ($request->has('company_user.company.niche')) ? $request->has('company_user.company.niche') : '',
-            'state_id' => $request->input('company_user.company.state_id'),
-            'country_id'  => $request->input('company_user.company.country_id'),
-            'website'   => $request->input('company_user.company.website'),
-            'phone'     => $request->input('company_user.company.phone'),
-        ], $request->input('company_user.company.id'));
+        return $this->updateOrCreate(
+            ['id' => $request->input('company_user.company.id')],
+            [
+                'name' => $request->input('company_user.company.name'),
+                'address' => $request->input('company_user.company.address'),
+                'timezone' => $request->input('company_user.company.timezone'),
+                'logo' => ($request->file('logo')) ? $name : $request->input('company_user.company.logo'),
+                'niche' => $request->input('company_user.company.niche'),
+                'state_id' => $request->input('company_user.company.state_id'),
+                'country_id' => $request->input('company_user.company.country_id'),
+                'website' => $request->input('company_user.company.website'),
+                'phone' => $request->input('company_user.company.phone'),
+            ]);
 
     }
 

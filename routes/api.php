@@ -67,6 +67,7 @@ Route::group(['middleware' => ['jwt']], function() {
         // ----- get campaign objectives list
         Route::post('saveUserCard', 'SettingsController@store')->name('user.save_card');
         Route::get('getUserCard', 'SettingsController@index')->name('user.get_cards');
+        Route::get('getNiches', 'SettingsController@getNiches')->name('user.get_niches');
     });
 
 

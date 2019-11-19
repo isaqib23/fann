@@ -29,7 +29,7 @@ Route::post('/shopify/uninstall', [
 ]);
 
 Route::get('get-image', 'UploadZipsController@renderImage');
-Route::get('test_route', 'SettingsController@index');
+Route::get('test_route', 'SettingsController@show');
 
 Route::post('upload-file', 'UploadZipsController@uploadFile');
 Route::any('{all}', function () {
