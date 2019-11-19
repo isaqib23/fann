@@ -15,6 +15,9 @@ use App\Contracts\CityRepository;
 use App\Contracts\CompanyRepository;
 use App\Contracts\CompanyUserRepository;
 use App\Contracts\CountryRepository;
+use App\Contracts\NicheRepository;
+use App\Contracts\NotificationRepository;
+use App\Contracts\NotificationTypeRepository;
 use App\Contracts\PaymentTypeRepository;
 use App\Contracts\PlacementRepository;
 use App\Contracts\SettingsRepository;
@@ -35,6 +38,9 @@ use App\Repositories\CityRepositoryEloquent;
 use App\Repositories\CompanyRepositoryEloquent;
 use App\Repositories\CompanyUserRepositoryEloquent;
 use App\Repositories\CountryRepositoryEloquent;
+use App\Repositories\NicheRepositoryEloquent;
+use App\Repositories\NotificationRepositoryEloquent;
+use App\Repositories\NotificationTypeRepositoryEloquent;
 use App\Repositories\PaymentTypeRepositoryEloquent;
 use App\Repositories\PlacementRepositoryEloquent;
 use App\Repositories\SettingsRepositoryEloquent;
@@ -87,6 +93,13 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CompanyUserRepository::class, CompanyUserRepositoryEloquent::class);
         $this->app->bind(StateRepository::class, StateRepositoryEloquent::class);
         $this->app->bind(CityRepository::class, CityRepositoryEloquent::class);
+        $this->app->bind(NotificationRepository::class, NotificationRepositoryEloquent::class);
+        $this->app->bind(NotificationTypeRepository::class, NotificationTypeRepositoryEloquent::class);
+
+
+
+        $this->app->bind(NicheRepository::class, NicheRepositoryEloquent::class);
+
         //:end-bindings:
     }
 }

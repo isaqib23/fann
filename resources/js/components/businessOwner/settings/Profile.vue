@@ -35,7 +35,7 @@
                                     <label class="font-weight-bold">Email</label>
                                     <v-text-field
                                         v-model="user.email"
-                                        label="First Name"
+                                        label="Email"
                                         solo
                                         class="mt-1 custom_dropdown"
                                     ></v-text-field>
@@ -48,11 +48,8 @@
                                     <label class="font-weight-bold">Upload Logo</label>
                                     <image-input v-model="file">
                                         <div slot="activator">
-                                            <v-avatar size="175px" v-ripple v-if="!file" class="grey lighten-3 mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
-                                                <v-img
-                                                    src="/images/placeholder.png"
-                                                >
-                                                </v-img>
+                                            <v-avatar size="175px" v-ripple v-if="!file" class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
+                                                <img src="/images/placeholder.png">
                                             </v-avatar>
                                             <v-avatar size="175px" v-else class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
                                                 <v-img
@@ -62,6 +59,15 @@
                                             </v-avatar>
                                         </div>
                                     </image-input>
+                                </v-col>
+                                <v-col cols="12" sm="4">
+                                    <label class="font-weight-bold">Name</label>
+                                    <v-text-field
+                                        label="Company Name"
+                                        solo
+                                        class="mt-1 custom_dropdown"
+                                        v-model="user.company_user.company.name"
+                                    ></v-text-field>
                                 </v-col>
                             </v-row>
 
@@ -77,14 +83,16 @@
                                 </v-col>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Niche</label>
-                                    <v-select
-                                        :items="items"
+                                    <v-autocomplete
+                                        :items="niches"
                                         label="Health & fitness"
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
                                         v-model="user.company_user.company.niche"
-                                    ></v-select>
+                                        item-text="name"
+                                        item-value="id"
+                                    ></v-autocomplete>
                                 </v-col>
                             </v-row>
 
@@ -130,7 +138,7 @@
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
                                         item-text="name"
-                                        @change="getCountryStates"
+                                        @change="getStates(user.company_user.company)"
                                         item-value="id"
                                     ></v-autocomplete>
                                     <label class="font-weight-bold">State</label>
@@ -160,7 +168,7 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
     import axios from 'axios'
     import { api } from '~/config'
     import Form from '~/mixins/form'
@@ -174,7 +182,6 @@
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
             ],
-            items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             user: {
                 first_name: null,
                 last_name: null,
@@ -184,67 +191,52 @@
                     company:{}
                 }
             },
-            states : [],
-            countries : [],
             selectedCountry : null,
-            file: {},
+            file: null,
             imageUrl: null
         }),
 
         computed: mapGetters({
-            auth: 'auth/user'
+            auth: 'auth/user',
+            countries: 'settings/countries',
+            states: 'settings/states',
+            niches: 'settings/niches',
         }),
         methods: {
-            getCountries: function(){
-                let self = this;
-                self.busy = true;
-                axios
-                    .get(api.path('countryList'))
-                    .then(function(resp){
-                        self.countries = resp.data.countries;
-                    });
+            ...mapActions({
+                getCountries: 'settings/getCountries',
+                getStates: 'settings/getStates',
+                updateProfile: 'settings/updateProfile',
+                getNiches: 'settings/getNiches'
+            }),
+            getLogo(){
+                this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.user.company_user.company.logo});
+                console.log(this.file,'here');
             },
-            getCountryStates: function(){
-                console.log(this.user.company_user.company);
-                let self = this;
-                self.busy = true;
-                this.states = [],
-                axios
-                    .post(api.path('stateList'),this.user.company_user.company)
-                    .then(function(resp){
-                        self.states = resp.data.states;
-                        console.log(self.states);
-                    });
-            },
-            submit() {
+            async submit() {
                 this.loading = true
 
                 let formData = new FormData();
                 formData.append("user", JSON.stringify(this.user));
-                formData.append("image", this.file.imageFile);
+                formData.append("logo", this.file.imageFile);
 
-                axios.post(api.path('profile'), formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                    .then(res => {
-                        this.$toast.success('Your profile successfully updated.')
-                        this.$emit('success', res.data)
-                    })
-                    .catch(err => {
-                        this.handleErrors(err.response.data.errors)
-                    })
-                    .then(() => {
-                        this.loading = false
-                    })
+                let response = await this.updateProfile(formData);
+                this.$toast.success('Your profile successfully updated.')
+                this.$emit('success', response)
+
             }
         },
-        mounted() {
+       async mounted() {
             this.user = Object.assign(this.user, this.auth);
-            this.getCountries();
+            await this.getCountries();
+            await this.getNiches();
             if(this.user.company_user !== null) {
-                this.getCountryStates();
+                await this.getStates(this.user.company_user.company);
+                this.getLogo();
+            }
+
+            if(this.user.company_user === null) {
+                this.user.company_user = {company:{}};
             }
         }
     }

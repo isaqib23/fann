@@ -20,7 +20,7 @@ class CompanyUser extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['user_id', 'company_id'];
 
     public function company()
     {

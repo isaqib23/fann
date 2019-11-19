@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CompanyUserRepository;
 use App\Models\CompanyUser;
 use App\Validators\CompanyUserValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class CompanyUserRepositoryEloquent.
@@ -25,7 +26,7 @@ class CompanyUserRepositoryEloquent extends BaseRepository implements CompanyUse
         return CompanyUser::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +35,19 @@ class CompanyUserRepositoryEloquent extends BaseRepository implements CompanyUse
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    /**
+     * @param $company_id
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($company_id)
+    {
+
+        return $this->create([
+            'user_id'   => auth()->user()->id,
+            'company_id'   => $company_id,
+        ]);
+
+    }
 }

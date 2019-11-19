@@ -59,7 +59,10 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         $token = auth()->login($user);
-        return response()->json(compact('token', 'user'));
+        if(auth()->user()->CompanyUser !=null) {
+            $company = auth()->user()->CompanyUser->company;
+        }
+        return response()->json(compact('token', 'user', 'company'));
     }
 
     /**
