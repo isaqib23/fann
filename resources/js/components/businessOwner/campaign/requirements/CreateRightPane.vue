@@ -144,7 +144,7 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
-                            <p class="ma-0" :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'"> {{touchPoint.caption}}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p class="ma-0" :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                         </v-flex>
                     </v-layout>
                 </v-card>
