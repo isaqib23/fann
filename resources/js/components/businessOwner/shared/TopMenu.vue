@@ -136,7 +136,7 @@
                 let self = this;
                 self.busy = true;
                 axios
-                    .get(api.path('linkedShops'))
+                    .get(api.path('shopify.linkedShops'))
                     .then(function (resp) {
                         self.shops = resp.data;
                         self.busy = false;
