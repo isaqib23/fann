@@ -152,17 +152,13 @@
     export default {
 
         data: () => ({
-
-
             disabledPaid:false,
             disabledBarter:false,
-
             campaignPlacement:{
                 platform:null,
                 paymentType:null,
                 additionalPayAsBarter:false,
                 additionalPayAsAmount:false,
-
             },
             loadPlacements:null
         }),
@@ -188,10 +184,12 @@
         },
         methods: {
             onAdditional(){
-
-                if(this.campaignPlacement.paymentType == 'paid'){
+                if(this.campaignPlacement.paymentType == 'paid')
+                {
                     this.campaignPlacement.additionalPayAsAmount = false;
-                }else if(this.campaignPlacement.paymentType == 'barter'){
+                }
+                else if(this.campaignPlacement.paymentType == 'barter')
+                {
                     this.campaignPlacement.additionalPayAsBarter = false;
                 }
             },
@@ -220,18 +218,18 @@
             },
             assignDefaultPayment()
             {
-                if (this.campaignObjective == null) {
+                if (this.campaignObjective == null)
+                {
                     this.$router.push({name: 'create-campaign-objective'})
-                } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2) {
+                } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2)
+                {
                     this.campaignPlacement.paymentType = 'barter';
                     this.disabledPaid = true;
 
-                } else if (this.campaignObjective.ObjectiveId == 3) {
+                } else if (this.campaignObjective.ObjectiveId == 3)
+                {
                     this.campaignPlacement.paymentType = 'paid';
                     this.disabledBarter = true;
-
-                }else{
-
                 }
             }
         },
