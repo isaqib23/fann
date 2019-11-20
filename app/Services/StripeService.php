@@ -69,6 +69,20 @@ class StripeService
         return $card;
     }
 
+    public function make_charge($request){
+        \Stripe\Stripe::setApiKey($this->stripeSettings->secret);
+
+        $charge = \Stripe\Charge::create([
+            'amount' => \bcmul($request->input('payment'), 100),
+            'currency' => 'usd',
+            'customer' => $request->input('customer_id'),
+            'source' => $request->input('card_id'),
+            'description' => 'Funds from '.$request->input('first_name').' ('.$request->input('email').')',
+        ]);
+
+        return $charge->id;
+    }
+
     public function create_token($card){
         \Stripe\Stripe::setApiKey($this->stripeSettings->secret);
         $token = \Stripe\Token::create([

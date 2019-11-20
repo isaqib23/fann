@@ -12,11 +12,16 @@
 
                         <v-row justify="start">
                             <v-col cols="12" sm="6" md="8">
-                                <v-btn class="mr-1" color="darkSecondary" outlined>$50</v-btn>
-                                <v-btn class="mx-1" color="darkSecondary" outlined>$100</v-btn>
-                                <v-btn class="mx-1" color="darkSecondary" outlined>$500</v-btn>
-                                <v-btn class="mx-1" color="darkSecondary" outlined>$1000</v-btn>
-                                <v-btn class="mx-1" color="darkSecondary" outlined>$5000</v-btn>
+                                <v-btn v-for="(payment, index) in payments"
+                                   :key="index"
+                                   class="mr-1"
+                                   color="darkSecondary"
+                                   outlined
+                                   @click="showDialog('funds',payment)"
+                                >
+                                    ${{ payment }}
+                                </v-btn>
+
                             </v-col>
                         </v-row>
 
@@ -26,7 +31,7 @@
                                     <v-card-title class="subtitle-1 font-weight-black" color="gray">
                                         Billing Method
                                         <v-spacer></v-spacer>
-                                        <v-btn color="primary" class="caption text-capitalize" @click="showDialog">Add Method</v-btn>
+                                        <v-btn v-if="this.user.stripe_customer_id === null" color="primary" class="caption text-capitalize" @click="showDialog('method')">Add Method</v-btn>
 
                                     </v-card-title>
                                     <v-card-text>
@@ -68,50 +73,82 @@
                 </v-flex>
             </v-row>
         </v-card>
-        <stripePopup :dialog="dialog" @updateDialog="dialog = $event" />
+        <stripePopup
+            :methodDialog="methodDialog"
+            @updateMethodDialog="getUserCards"
+        />
+        <confirmDialog
+            :fundDialog="fundDialog"
+            :msg="msg"
+            :payment="payment"
+            @updateFundDialog="addFundsToAccount"
+        />
+
     </v-flex>
 
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
     import stripePopup from '../popups/stripePopup'
-    import axios from 'axios'
-    import { api } from '~/config'
+    import confirmDialog from '../../general/confirmDialog'
 
     export default {
         components: {
             stripePopup:stripePopup,
+            confirmDialog:confirmDialog,
         },
         data: () => ({
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
             ],
-            items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+            payments: ['50', '100', '500', '1000', '5000'],
             user: {
                 name: null,
                 email: null,
             },
-            dialog: false,
-            cards:[]
+            methodDialog : false,
+            fundDialog : false,
+            msg: "Are you sure want to Add Funds to your account?",
+            payment: null
         }),
 
         computed: mapGetters({
-            auth: 'auth/user'
+            auth: 'auth/user',
+            cards: 'settings/cards',
         }),
         methods: {
-            getCards: function(){
-                let self = this;
-                self.busy = true;
-                axios
-                    .get(api.path('setting.getUserCard'))
-                    .then(function(resp){
-                        self.cards = resp.data.cards;
-                        console.log(self.cards);
-                    });
+            ...mapActions({
+                addFunds: 'settings/addFunds',
+                getCards: 'settings/getCards',
+                fetchUser: 'auth/fetchUser'
+            }),
+            showDialog(val,payment) {
+                if(val == 'funds'){
+                    if(this.user.stripe_customer_id === null){
+                        return this.$toast.error('You need to add Payment Method before add funds to your account!')
+                    }
+                    this.payment = payment;
+                    return this.fundDialog = true;
+                }
+                this.methodDialog = true;
             },
-            showDialog() {
-                this.dialog = true;
+            async addFundsToAccount(response){
+                if(response.status){
+                    await this.addFunds(response.payment);
+                    this.$toast.success('$ '+response.payment+' added to your funds Successfully!');
+                }
+                this.fundDialog = false;
+            },
+            async getUserCards(response){
+                if(response.status){
+                    await this.getCards();
+                    await this.fetchUser();
+                    this.user = Object.assign(this.user, this.auth);
+                    this.methodDialog = false;
+                    console.log(this.user);
+                }
+                this.methodDialog = false;
             }
         },
         mounted() {

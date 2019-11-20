@@ -1,6 +1,6 @@
 <template>
     <v-flex>
-        <v-dialog v-model="dialog" persistent max-width="30%" transition="slide-y-reverse-transition">
+        <v-dialog v-model="methodDialog" persistent max-width="30%" transition="slide-y-reverse-transition">
             <v-card>
                 <v-toolbar dark color="primary" flat>
                     <v-toolbar-title>Credit Card Information</v-toolbar-title>
@@ -35,15 +35,13 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
     import Form from '~/mixins/form'
-    import axios from 'axios'
-    import { api } from '~/config'
 
     export default {
         mixins: [Form],
         props: {
-            dialog: { type: Boolean, default: false }
+            methodDialog: { type: Boolean, default: false }
         },
         components: {
             InlineCreditCardField: () => import('vue-credit-card-field/src/Components/InlineCreditCardField'),
@@ -58,6 +56,9 @@
             valid:true
         }),
         methods: {
+            ...mapActions({
+                saveUserCard: 'settings/saveUserCard'
+            }),
             onChange() {
                 this.valid = (arguments[0].input.valid) ? false : true;
                 if(!this.valid){
@@ -66,26 +67,16 @@
                 }
             },
 
-            submit() {
+          async  submit() {
                 this.loading = true
-
-                axios.post(api.path('setting.saveUserCard'), this.card)
-                    .then(res => {
-                        this.$toast.success('User Card added Successfully!');
-                        this.$emit('updateDialog', false);
-                    })
-                    .catch(err => {
-                        this.handleErrors(err.response.data.errors)
-                    })
-                    .then(() => {
-                        this.loading = false
-                    })
+                await this.saveUserCard(this.card);
+                this.$toast.success('User Card added Successfully!');
+                this.$emit('updateMethodDialog', {status: true});
+                this.loading = false
             },
 
-
-
             show() {
-                this.$emit('updateDialog', false);
+                this.$emit('updateMethodDialog', {status: false});
             }
         }
     }

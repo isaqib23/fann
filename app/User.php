@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Company;
 use App\Models\CompanyUser;
 use App\Models\Shop;
+use App\Models\UserCreditCard;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -79,5 +80,13 @@ class User extends Authenticatable implements JWTSubject
     public function CompanyUser()
     {
         return $this->hasOne(CompanyUser::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function UserCard()
+    {
+        return $this->hasOne(UserCreditCard::class);
     }
 }
