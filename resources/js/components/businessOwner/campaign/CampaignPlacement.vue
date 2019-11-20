@@ -43,7 +43,12 @@
                                                 <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                             </div>
                                             <v-card-title>
-                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="campaignPlacement.paymentType == 'paid' ? 'primary' : ''">mdi-currency-usd</v-icon></p>
+                                                <p class="icon_border ma-auto">
+                                                    <v-icon class="display-2"
+                                                            :color="campaignPlacement.paymentType == 'paid' ? 'primary' : ''"
+                                                    >
+                                                        mdi-currency-usd
+                                                    </v-icon></p>
                                             </v-card-title>
                                             <v-card-text class="px-2">
                                                 <p class="title">PAID</p>
@@ -63,7 +68,12 @@
                                                 <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                             </div>
                                             <v-card-title>
-                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="campaignPlacement.paymentType == 'barter' ? 'primary' : ''">mdi-ballot-recount-outline</v-icon></p>
+                                                <p class="icon_border ma-auto">
+                                                    <v-icon class="display-2"
+                                                            :color="campaignPlacement.paymentType == 'barter' ? 'primary' : ''"
+                                                    >
+                                                        mdi-ballot-recount-outline
+                                                    </v-icon></p>
                                             </v-card-title>
                                             <v-card-text class="px-2">
                                                 <p class="title">BARTER</p>
@@ -93,7 +103,9 @@
                                 >
                                     <template slot="label">
                                         <v-card class="text-center mx-auto" outlined max-width="200">
-                                            <div class="triangle-topright" v-if="campaignPlacement.additionalPayAsBarter == true">
+                                            <div class="triangle-topright"
+                                                 v-if="campaignPlacement.additionalPayAsBarter == true"
+                                            >
                                                 <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                             </div>
                                             <v-card-text class="px-2">
@@ -116,7 +128,9 @@
                                 >
                                     <template slot="label">
                                         <v-card class="text-center mx-auto" outlined max-width="200">
-                                            <div class="triangle-topright" v-if="campaignPlacement.additionalPayAsAmount == true">
+                                            <div class="triangle-topright"
+                                                 v-if="campaignPlacement.additionalPayAsAmount == true"
+                                            >
                                                 <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                             </div>
                                             <v-card-text class="px-2">
@@ -134,7 +148,10 @@
 
             </v-card-text>
             <v-card-actions class="float-right action_btns mt-n12">
-                <v-btn color="grey lighten-2" depressed dark large @click="goToBack()" class="text-capitalize mr-2 grey--text">
+                <v-btn color="grey lighten-2"
+                       depressed dark large @click="goToBack()"
+                       class="text-capitalize mr-2 grey--text"
+                >
                     {{ $t('labels.campaign.name_backBtn') }}
                 </v-btn>
                 <v-btn color="primary" depressed dark large @click="goToNext()" class="text-capitalize">
@@ -150,7 +167,6 @@
     import {mapGetters, mapActions} from 'vuex';
     import { required } from 'vuelidate/lib/validators'
     export default {
-
         data: () => ({
             disabledPaid:false,
             disabledBarter:false,
@@ -183,17 +199,14 @@
             this.assignDefaultPayment();
         },
         methods: {
-            onAdditional(){
-                if(this.campaignPlacement.paymentType == 'paid')
-                {
+            onAdditional() {
+                if (this.campaignPlacement.paymentType == 'paid') {
                     this.campaignPlacement.additionalPayAsAmount = false;
                 }
-                else if(this.campaignPlacement.paymentType == 'barter')
-                {
+                else if (this.campaignPlacement.paymentType == 'barter') {
                     this.campaignPlacement.additionalPayAsBarter = false;
                 }
             },
-
             ...mapActions({
                 fetchAllPlacements: 'campaign/fetchAllPlacements',
                 savePlacementAndPaymentType: 'campaign/savePlacementAndPaymentType'
@@ -216,18 +229,14 @@
                 this.savePlacement(this.campaignPlacement)
                 this.$router.push({name: 'create-campaign-objective'})
             },
-            assignDefaultPayment()
-            {
-                if (this.campaignObjective == null)
-                {
+            assignDefaultPayment() {
+                if (this.campaignObjective == null) {
                     this.$router.push({name: 'create-campaign-objective'})
-                } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2)
-                {
+                } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2) {
                     this.campaignPlacement.paymentType = 'barter';
                     this.disabledPaid = true;
 
-                } else if (this.campaignObjective.ObjectiveId == 3)
-                {
+                } else if (this.campaignObjective.ObjectiveId == 3) {
                     this.campaignPlacement.paymentType = 'paid';
                     this.disabledBarter = true;
                 }
