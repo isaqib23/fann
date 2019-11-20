@@ -61,6 +61,7 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
+                            {{touchPoint.caption}}
                             <v-list class="list_cards">
                                 <v-list-item v-for="i in 3" :key="i" :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'">
                                     <v-list-item-icon class="mr-0 mt-5">
@@ -144,7 +145,7 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
-                            <p class="ma-0" :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'"> {{touchPoint.caption}}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p class="ma-0" :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                         </v-flex>
                     </v-layout>
                 </v-card>
@@ -226,14 +227,12 @@
                     </v-layout>
                 </v-card>
             </v-flex>
-
-
-
         </v-card>
     </v-flex>
 </template>
 
 <script>
+    import {mapGetters, mapActions, mapMutations} from 'vuex';
     export default {
         components: {
 
@@ -245,10 +244,16 @@
                    { number: 2, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
                    { number: 3, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'}
                ],
+               captions:null
             }
         },
         methods: {
 
+        },
+        computed: {
+            ...mapGetters({
+                touchPoint: 'campaign/touchPoint'
+            })
         }
     }
 </script>

@@ -6,7 +6,8 @@ import { api } from '~/config'
  */
 export const state = {
   campaignObjective: null,
-  campaignPlacement: null
+  campaignPlacement: null,
+  touchPoint: []
 }
 
 /**
@@ -19,6 +20,10 @@ export const mutations = {
 
     setPlacement(state, objective) {
         state.campaignPlacement = objective
+    },
+
+    setTouchPoint(state, [index, val]) {
+        Vue.set(state.touchPoint, index, val)
     }
 }
 
@@ -45,7 +50,8 @@ export const actions = {
  */
 export const getters = {
     campaignObjective: state => state.campaignObjective,
-    campaignPlacement: state => state.campaignPlacement
+    campaignPlacement: state => state.campaignPlacement,
+    touchPoint: state => state.touchPoint
 }
 
 /**

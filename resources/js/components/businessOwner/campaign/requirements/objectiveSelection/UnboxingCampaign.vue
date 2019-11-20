@@ -76,14 +76,15 @@
                                 </v-flex>
                             </v-row>
 
-                            <v-card flat class="mx-auto"
-                            >
+                            <v-card flat class="mx-auto">
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Suggested Caption</strong></div>
                                 </v-card-title>
 
+                                <!--@input="$store.commit('setTouchPoint', ['caption', $event.target.value])"-->
                                 <v-textarea
                                     v-model="touchPoint.caption"
+
                                     label="Write suggested caption here!"
                                     auto-grow
                                     outlined
@@ -239,6 +240,7 @@
 <script>
     import ImageInput from '../../../../general/ImageInput';
     import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
+    import {mapGetters, mapActions, mapMutations} from 'vuex';
 
     export default {
         components: {
@@ -270,9 +272,13 @@
                touchPointProducts : [],
 
                campaignDescription : null,
+               caption : ''
             }
         },
         methods: {
+            ...mapMutations({
+                setTouchPoint : 'campaign/setTouchPoint'
+            }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
@@ -313,8 +319,14 @@
             }
 
         },
-        watch () {
-
+        watch: {
+            'touchPoint.caption' : {
+                handler: function(val) {
+                    this.setTouchPoint(['caption', val]);
+                },
+                immediate: true,
+                deep: true
+            }
         }
     }
 </script>
