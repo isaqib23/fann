@@ -36,7 +36,7 @@
                     <v-radio-group v-model="campaignPlacement.paymentType" row class="mt-0 full_width" @change="onAdditional()">
                         <v-row justify="space-between">
                             <v-col col="6">
-                                <v-radio value="paid" active-class="active_card_radio" :disabled="campaignPlacement.Disabledpaid" >
+                                <v-radio value="paid" active-class="active_card_radio" :disabled="disabledPaid" >
                                     <template slot="label">
                                         <v-card class="text-center" outlined max-width="200">
                                             <div class="triangle-topright" v-if="campaignPlacement.paymentType == 'paid'">
@@ -56,7 +56,7 @@
                                 </v-radio>
                             </v-col>
                             <v-col col="6">
-                                <v-radio style="float: right" value="barter" active-class="active_card_radio" :disabled="campaignPlacement.Disabledbarter">
+                                <v-radio style="float: right" value="barter" active-class="active_card_radio" :disabled="disabledBarter">
                                     <template slot="label">
                                         <v-card class="text-center mx-auto" outlined max-width="200">
                                             <div class="triangle-topright" v-if="campaignPlacement.paymentType == 'barter'">
@@ -88,7 +88,7 @@
                                     v-model="campaignPlacement.additionalPayAsBarter"
                                     hide-details
                                     class="active_card_radio"
-                                    :disabled="campaignPlacement.additionalbarter"
+                                    :disabled="campaignPlacement.paymentType=='barter'"
                                     style="float: left"
                                 >
                                     <template slot="label">
@@ -111,7 +111,7 @@
                                     v-model="campaignPlacement.additionalPayAsAmount"
                                     hide-details
                                     class="active_card_radio"
-                                    :disabled="campaignPlacement.additionalpaid"
+                                    :disabled="campaignPlacement.paymentType=='paid'"
                                     style="float: right"
                                 >
                                     <template slot="label">
@@ -152,15 +152,16 @@
     export default {
 
         data: () => ({
+
+
+            disabledPaid:false,
+            disabledBarter:false,
+
             campaignPlacement:{
                 platform:null,
                 paymentType:null,
                 additionalPayAsBarter:false,
                 additionalPayAsAmount:false,
-                Disabledpaid:false,
-                Disabledbarter:false,
-                additionalpaid:false,
-                additionalbarter:false,
 
             },
             loadPlacements:null
@@ -189,12 +190,8 @@
             onAdditional(){
 
                 if(this.campaignPlacement.paymentType == 'paid'){
-                    this.campaignPlacement.additionalpaid = true;
-                    this.campaignPlacement.additionalbarter = false;
                     this.campaignPlacement.additionalPayAsAmount = false;
                 }else if(this.campaignPlacement.paymentType == 'barter'){
-                    this.campaignPlacement.additionalbarter = true;
-                    this.campaignPlacement.additionalpaid = false;
                     this.campaignPlacement.additionalPayAsBarter = false;
                 }
             },
@@ -212,7 +209,7 @@
                     } else if (self.$v.campaignPlacement.paymentType.$error) {
                         this.$toast.error('Campaign Type is required')
                     }
-                } else { console.info('Else Case');
+                } else {
                     this.savePlacementAndPaymentType(this.campaignPlacement)
                     this.$router.push({name: 'create-campaign-requirements'})
                 }
@@ -227,12 +224,12 @@
                     this.$router.push({name: 'create-campaign-objective'})
                 } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2) {
                     this.campaignPlacement.paymentType = 'barter';
-                    this.campaignPlacement.Disabledpaid = true;
-                    this.campaignPlacement.additionalbarter = true;
+                    this.disabledPaid = true;
+
                 } else if (this.campaignObjective.ObjectiveId == 3) {
                     this.campaignPlacement.paymentType = 'paid';
-                    this.campaignPlacement.Disabledbarter = true;
-                    this.campaignPlacement.additionalpaid = true;
+                    this.disabledBarter = true;
+
                 }else{
 
                 }
