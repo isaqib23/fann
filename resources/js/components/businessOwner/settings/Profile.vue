@@ -169,8 +169,6 @@
 
 <script>
     import { mapGetters, mapActions } from 'vuex'
-    import axios from 'axios'
-    import { api } from '~/config'
     import Form from '~/mixins/form'
     import ImageInput from '../../general/ImageInput';
     export default {

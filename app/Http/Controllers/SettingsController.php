@@ -188,4 +188,28 @@ class SettingsController extends Controller
 
         return $customer;
     }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+
+    public function addFundsToStripe(Request $request)
+    {
+        $user = auth()->user();
+
+        $request->merge([
+            'user_id'       => $user->id,
+            'customer_id'   => $user->stripe_customer_id,
+            'card_id'   => $user->UserCard->card_id,
+            'first_name'    => $user->first_name,
+            'email'         => $user->email
+        ]);
+
+        $charge = $this->stripe->make_charge($request);
+
+        return response()->json([
+        'details' => $charge
+    ]);;
+    }
 }

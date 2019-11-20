@@ -7,7 +7,8 @@ import { api } from '~/config'
 export const state = {
     countries: [],
     niches: [],
-    states: []
+    states: [],
+    cards: []
 }
 
 /**
@@ -17,13 +18,14 @@ export const mutations = {
     getCountries(state, payload) {
         state.countries = payload
     },
-
     getStates(state, payload) {
         state.states = payload
     },
-
     getNiches(state, payload) {
         state.niches = payload
+    },
+    getCards(state, payload) {
+        state.cards = payload
     },
 }
 
@@ -50,6 +52,21 @@ export const actions = {
         commit('getNiches', await SettingAxios.getNiches());
 
     },
+    async addFunds({commit}, payload) {
+
+        await SettingAxios.addFunds({"payment" : payload});
+
+    },
+    async getCards({commit}, payload) {
+
+        commit('getCards', await SettingAxios.getCards());
+
+    },
+    async saveUserCard({commit}, payload) {
+
+        await SettingAxios.saveUserCard(payload);
+
+    },
 }
 
 /**
@@ -58,7 +75,8 @@ export const actions = {
 export const getters = {
     countries: state => state.countries,
     states: state => state.states,
-    niches: state => state.niches
+    niches: state => state.niches,
+    cards: state => state.cards
 }
 
 /**
@@ -100,6 +118,36 @@ let SettingAxios = class {
         return axios.get(api.path('setting.getNiches'))
             .then(resp => {
                 return resp.data.details;
+            })
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
+    }
+
+    static addFunds (payload) {
+        return axios.post(api.path('setting.addFunds'),payload)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
+    }
+
+    static getCards () {
+        return axios.get(api.path('setting.getUserCard'))
+            .then(resp => {
+                return resp.data.cards;
+            })
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
+    }
+
+    static saveUserCard (payload) {
+        return axios.post(api.path('setting.saveUserCard'),payload)
+            .then(resp => {
+                return resp.data;
             })
             .catch(err => {
                 console.info(err.response.data.errors);

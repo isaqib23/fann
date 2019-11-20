@@ -3,7 +3,8 @@ let setting = {
 
     saveUserCard       : 'saveUserCard',
     getUserCard        : 'getUserCard',
-    getNiches          : 'getNiches'
+    getNiches          : 'getNiches',
+    addFunds           : 'addFunds'
 };
 
 export default setting;
