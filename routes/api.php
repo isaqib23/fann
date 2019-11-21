@@ -72,6 +72,7 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('addFunds', 'SettingsController@addFundsToStripe')->name('user.addFunds');
         Route::get('getUserCard', 'SettingsController@index')->name('user.get_cards');
         Route::get('getNiches', 'SettingsController@getNiches')->name('user.get_niches');
+        Route::post('login', 'UserPlatformsController@index');
     });
 
 
@@ -84,6 +85,8 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('save', 'CampaignsController@store');
         Route::put('savePlacementAndPaymentType', 'CampaignsController@savePlacementAndPaymentType');
     });
+
+
 
 });
 

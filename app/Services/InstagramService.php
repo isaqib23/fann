@@ -24,6 +24,7 @@ class InstagramService
     /**
      * InstagramService constructor.
      */
+
     public function __construct()
     {
         $this->client = new Client([
@@ -31,9 +32,33 @@ class InstagramService
         ]);
     }
 
+
+    public function getAccessToken($code){
+        $client = new Client();
+        $response = $client->post('https://api.instagram.com/oauth/access_token',
+            [
+                'form_params' => [
+                    'client_id' => config('services.instagram.client_id'),
+                    'client_secret' => config('services.instagram.client_secret'),
+                    'grant_type' => 'authorization_code',
+                    'redirect_uri' => config('services.instagram.redirect'),
+                    'code' => $code
+            ]
+                ]);
+
+        $result = json_decode($response->getBody()->getContents());
+
+        // set Access Token
+        $this->setAccessToken($result->access_token);
+        // Get User Data
+        $result->user = $this->getUser();
+
+        return $result;
+    }
     /**
      * @param $token
      */
+
     public function setAccessToken($token)
     {
         $this->access_token = $token;
@@ -43,6 +68,7 @@ class InstagramService
      * @return array
      * @throws GuzzleException
      */
+
     public function getUser()
     {
         if ($this->access_token) {
@@ -60,6 +86,7 @@ class InstagramService
      * @return array
      * @throws GuzzleException
      */
+
     public function getPosts()
     {
         if ($this->access_token) {
@@ -78,6 +105,7 @@ class InstagramService
      * @return array
      * @throws GuzzleException
      */
+
     public function getTagPosts($tags)
     {
         if ($this->access_token) {
@@ -95,6 +123,7 @@ class InstagramService
      * @return array
      * @throws GuzzleException
      */
+
     public function getUsersFollows()
     {
         if ($this->access_token) {
@@ -108,4 +137,5 @@ class InstagramService
         }
         return [];
     }
+
 }

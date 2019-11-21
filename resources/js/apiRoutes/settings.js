@@ -4,7 +4,8 @@ let setting = {
     saveUserCard       : 'saveUserCard',
     getUserCard        : 'getUserCard',
     getNiches          : 'getNiches',
-    addFunds           : 'addFunds'
+    addFunds           : 'addFunds',
+    socialLogin        : 'login'
 };
 
 export default setting;
