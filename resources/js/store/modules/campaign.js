@@ -7,7 +7,12 @@ import { api } from '~/config'
 export const state = {
   campaignObjective: null,
   campaignPlacement: null,
-  touchPoint: []
+  touchPoint: {
+      caption: null,
+      hashtags: null,
+      mentions: null,
+      guideLines: {},
+  }
 }
 
 /**
@@ -24,6 +29,8 @@ export const mutations = {
 
     setTouchPoint(state, [index, val]) {
         Vue.set(state.touchPoint, index, val)
+        //Vue.set(state.touchPoint.guideLines, index, val)
+        //console.info(state.touchPoint, "dashy");
     }
 }
 
