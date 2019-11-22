@@ -134,7 +134,7 @@
 
                             <v-layout row wrap pl-3 pr-3 mt-3>
                                 <v-flex lg4 sm4 m4 pr-3 class="text-center">
-                                    <image-input v-model="avatar">
+                                    <MultiImageInput v-model="avatar">
                                         <div slot="activator">
                                             <v-avatar size="40" v-ripple v-if="!avatar" class="mb-3" tile>
                                                 <v-icon class="display-1">mdi-image-filter</v-icon>
@@ -146,7 +146,7 @@
                                                 </v-img>
                                             </v-avatar>
                                         </div>
-                                    </image-input>
+                                    </MultiImageInput>
                                 </v-flex>
                                 <v-flex lg8 sm8 m8 pl-3>
                                     <v-btn height="38" depressed block class="text-capitalize" color="primary">Upload Images</v-btn>
@@ -237,12 +237,12 @@
 </template>
 
 <script>
-    import ImageInput from '../../../../general/ImageInput';
+    import MultiImageInput from '../../../../general/MultiImageInput';
     import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
 
     export default {
         components: {
-            ImageInput: ImageInput,
+            MultiImageInput: MultiImageInput,
             productsSearch : shopifyProductsPredictiveSearch
         },
         props : {
