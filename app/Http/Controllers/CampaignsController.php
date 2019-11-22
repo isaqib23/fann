@@ -3,7 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Contracts\CampaignPaymentRepository;
+use App\Contracts\CampaignTouchPointAdditionalRepository;
+use App\Contracts\CampaignTouchPointMediaRepository;
+use App\Contracts\CampaignTouchPointPlacementRepository;
+use App\Contracts\CampaignTouchPointProductRepository;
+use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\PlacementRepository;
+use App\Models\CampaignTouchPointPlacement;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -47,21 +54,69 @@ class CampaignsController extends Controller
     private $placementRepository;
 
     /**
+     * @var CampaignTouchPointMediaRepository
+     */
+    private $campaignTouchPointMediaRepository;
+
+    /**
+     * @var CampaignTouchPointRepository
+     */
+    private $campaignTouchPointRepository;
+
+    /**
+     * @var CampaignTouchPointPlacementRepository
+     */
+    private $campaignTouchPointPlacementRepository;
+
+    /**
+     * @var CampaignTouchPointAdditionalRepository
+     */
+    private $campaignTouchPointAdditionalRepository;
+
+    /**
+     * @var CampaignPaymentRepository
+     */
+    private $campaignPaymentRepository;
+
+    /**
+     * @var CampaignTouchPointProductRepository
+     */
+    private $campaignTouchPointProductRepository;
+
+    /**
      * CampaignsController constructor.
      *
      * @param CampaignRepository $repository
      * @param CampaignObjectiveRepository $campaignObjectiveRepository
      * @param PlacementRepository $placementRepository
+     * @param CampaignTouchPointMediaRepository $campaignTouchPointMediaRepository
+     * @param CampaignTouchPointRepository $campaignTouchPointRepository
+     * @param CampaignTouchPointPlacementRepository $campaignTouchPointPlacementRepository
+     * @param CampaignTouchPointAdditionalRepository $campaignTouchPointAdditionalRepository
+     * @param CampaignPaymentRepository $campaignPaymentRepository
+     * @param CampaignTouchPointProductRepository $campaignTouchPointProductRepository
      */
     public function __construct(
         CampaignRepository $repository,
         CampaignObjectiveRepository $campaignObjectiveRepository,
-        PlacementRepository $placementRepository
+        PlacementRepository $placementRepository,
+        CampaignTouchPointMediaRepository $campaignTouchPointMediaRepository,
+        CampaignTouchPointRepository $campaignTouchPointRepository,
+        CampaignTouchPointPlacementRepository $campaignTouchPointPlacementRepository,
+        CampaignTouchPointAdditionalRepository $campaignTouchPointAdditionalRepository,
+        CampaignPaymentRepository $campaignPaymentRepository,
+        CampaignTouchPointProductRepository $campaignTouchPointProductRepository
     )
     {
         $this->repository = $repository;
         $this->campaignObjectiveRepository = $campaignObjectiveRepository;
         $this->placementRepository = $placementRepository;
+        $this->campaignTouchPointMediaRepository = $campaignTouchPointMediaRepository;
+        $this->campaignTouchPointRepository = $campaignTouchPointRepository;
+        $this->campaignTouchPointPlacementRepository = $campaignTouchPointPlacementRepository;
+        $this->campaignTouchPointAdditionalRepository = $campaignTouchPointAdditionalRepository;
+        $this->campaignPaymentRepository = $campaignPaymentRepository;
+        $this->campaignTouchPointProductRepository = $campaignTouchPointProductRepository;
     }
 
     /**
@@ -258,5 +313,20 @@ class CampaignsController extends Controller
         ]);
     }
 
+    public function saveTouchPoint(Request $request)
+    {
+        $data = $request->all();
+
+dd($data, $data['touchPoint']['campaignDescription']);
+
+        $this->repository->update(
+            [ 'description' => $data['touchPoint']['campaignDescription'] ],
+            $request['campaignId']
+        );
+
+        $this->campaignTouchPointProductRepository->store($data);
+
+        $this->campaignTouchPointPlacementRepository->create();
+    }
 
 }

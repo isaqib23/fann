@@ -25,7 +25,7 @@ class CampaignTouchPointProductRepositoryEloquent extends BaseRepository impleme
         return CampaignTouchPointProduct::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,12 @@ class CampaignTouchPointProductRepositoryEloquent extends BaseRepository impleme
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    public function store($data)
+    {
+        return $this->create([
+
+        ]);
+    }
+
 }

@@ -82,7 +82,6 @@
                                 </v-card-title>
                                 <v-textarea
                                     v-model="touchPoint.caption"
-
                                     label="Write suggested caption here!"
                                     auto-grow
                                     outlined
@@ -107,9 +106,8 @@
                                         </v-flex>
                                         <v-flex xl11 lg11 md11 sm11 xs10>
                                             <v-text-field
-                                                v-model="touchPoint.guideLines"
+                                                v-model="touchPoint.guideLines[n]"
                                                 :count="n"
-                                                @focus="currentGuideLine(n)"
                                                 label="For e.g: please follow our brand"
                                                 solo
                                                 dense
@@ -281,6 +279,9 @@
             ...mapMutations({
                 setTouchPoint : 'campaign/setTouchPoint'
             }),
+            ...mapActions({
+                saveTouchPoint: 'campaign/saveTouchPoint'
+            }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
@@ -293,9 +294,12 @@
                 }
                 this.currentTab = this.currentTab - 1;
             },
-            addTouchPoint() {
-                this.tabsLength = this.tabsLength + 1;
-                this.currentTab = this.currentTab + 1;
+            async addTouchPoint() {
+               let response =  await this.saveTouchPoint();
+               if (response) {
+                   this.tabsLength = this.tabsLength + 1;
+                   this.currentTab = this.currentTab + 1;
+               }
             },
             removeTouchPooint() {
                 if (this.tabsLength === 1) {
@@ -317,13 +321,9 @@
                 let self = this;
                 let targetInput = `${ e.bindTo }`;
                 self.touchPointProducts[targetInput] = e.item;
+                this.setTouchPoint([targetInput, e.item]);
                 console.info(self.touchPointProducts);
-            },
-            currentGuideLine (number) {
-                this.guideLineNumber = number;
-                console.info(number, "NUMBER")
             }
-
         },
         watch: {
             'touchPoint.caption' : {
@@ -349,11 +349,28 @@
             },
             'touchPoint.guideLines': {
                 handler: function(val) {
-                   // console.info(this.guideLineNumber, "heloo");
-                    //let countGuideLines = this.guideLines;
-
-                    let guideLinesArr = [];
-                    this.setTouchPoint([this.guideLineNumber, {id: this.guideLineNumber, val: val}]);
+                    this.setTouchPoint(['guideLines', _.values(val)]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.amount': {
+                handler: function(val) {
+                    this.setTouchPoint(['amount', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.name': {
+                handler: function(val) {
+                    this.setTouchPoint(['name', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'campaignDescription': {
+                handler: function(val) {
+                    this.setTouchPoint(['campaignDescription', val]);
                 },
                 immediate: true,
                 deep: true
