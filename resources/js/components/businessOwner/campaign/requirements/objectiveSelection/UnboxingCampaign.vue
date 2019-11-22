@@ -41,17 +41,19 @@
                                 </v-btn>
                             </v-card-title>
 
+
                             <v-text-field
+
                                 v-model="touchPoint.name"
                                 label="Create a unboxing video on youtube"
                                 solo
                                 dense
-                                prepend-inner-icon="mdi-instagram"
+                                :prepend-inner-icon="icon"
                                 class="custom_dropdown"
                             ></v-text-field>
 
                             <v-card-title>
-                                <div class="subtitle-1 mb-2"><strong>Unboxing Product</strong></div>
+                                <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ objective.slug.replace('-',' ') }}</strong></div>
                             </v-card-title>
 
                             <v-row class="mx-auto my-5">
@@ -197,6 +199,7 @@
                                         :emit-as="'barterProduct'"
                                         :placeholder="'Same as Unboxing'"
                                         @selected-product="selectedProduct"
+                                        :disabledSearch=disabledBarter
                                     >
                                     </products-search>
 
@@ -212,6 +215,7 @@
                                         solo
                                         label="$100"
                                         class="custom_dropdown"
+                                        :disabled=disabledPaid
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
@@ -239,6 +243,7 @@
 <script>
     import ImageInput from '../../../../general/ImageInput';
     import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
+    import {mapGetters} from 'vuex';
 
     export default {
         components: {
@@ -247,6 +252,7 @@
         },
         props : {
             touchPoint : {},
+            objective : {}
         },
         data ()  {
            return  {
@@ -268,11 +274,41 @@
                menu2      : false,
                date       : new Date().toISOString().substr(0, 10),
                touchPointProducts : [],
-
                campaignDescription : null,
+               paymentMethod: {},
+
+               disabledPaid:false,
+               disabledBarter:false,
+               icon:null,
             }
         },
+        computed: {
+            ...mapGetters({
+                placement: 'campaign/campaignPlacement',
+
+            })
+        },
+        mounted() {
+            this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
+            this.setPayment();
+            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+
+        },
+
         methods: {
+            setPayment(){
+                if(this.paymentMethod.paymentType=='barter' && this.paymentMethod.additionalPayAsAmount==false) {
+                    this.disabledPaid = true;
+                    this.disabledBarter = false;
+                }else if(this.paymentMethod.paymentType=='paid' && this.paymentMethod.additionalPayAsBarter==false) {
+                    this.disabledBarter = true;
+                    this.disabledPaid = false;
+                }else{
+                    this.disabledBarter = false;
+                    this.disabledPaid = false;
+                }
+
+            },
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
