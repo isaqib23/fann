@@ -78,14 +78,13 @@
                                 </v-flex>
                             </v-row>
 
-                            <v-card flat class="mx-auto"
-                            >
+                            <v-card flat class="mx-auto">
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Suggested Caption</strong></div>
                                 </v-card-title>
-
                                 <v-textarea
                                     v-model="touchPoint.caption"
+
                                     label="Write suggested caption here!"
                                     auto-grow
                                     outlined
@@ -110,6 +109,9 @@
                                         </v-flex>
                                         <v-flex xl11 lg11 md11 sm11 xs10>
                                             <v-text-field
+                                                v-model="touchPoint.guideLines"
+                                                :count="n"
+                                                @focus="currentGuideLine(n)"
                                                 label="For e.g: please follow our brand"
                                                 solo
                                                 dense
@@ -243,7 +245,7 @@
 <script>
     import ImageInput from '../../../../general/ImageInput';
     import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
-    import {mapGetters} from 'vuex';
+    import {mapGetters, mapActions, mapMutations} from 'vuex';
 
     export default {
         components: {
@@ -276,10 +278,12 @@
                touchPointProducts : [],
                campaignDescription : null,
                paymentMethod: {},
-
                disabledPaid:false,
                disabledBarter:false,
                icon:null,
+               caption : '',
+               guideLineNumber : 0
+
             }
         },
         computed: {
@@ -296,18 +300,20 @@
         },
 
         methods: {
+            ...mapMutations({
+                setTouchPoint : 'campaign/setTouchPoint'
+            }),
             setPayment(){
-                if(this.paymentMethod.paymentType=='barter' && this.paymentMethod.additionalPayAsAmount==false) {
+                if (this.paymentMethod.paymentType == 'barter' && this.paymentMethod.additionalPayAsAmount == false) {
                     this.disabledPaid = true;
                     this.disabledBarter = false;
-                }else if(this.paymentMethod.paymentType=='paid' && this.paymentMethod.additionalPayAsBarter==false) {
+                } else if (this.paymentMethod.paymentType == 'paid' && this.paymentMethod.additionalPayAsBarter == false) {
                     this.disabledBarter = true;
                     this.disabledPaid = false;
-                }else{
+                } else {
                     this.disabledBarter = false;
                     this.disabledPaid = false;
                 }
-
             },
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
@@ -346,11 +352,46 @@
                 let targetInput = `${ e.bindTo }`;
                 self.touchPointProducts[targetInput] = e.item;
                 console.info(self.touchPointProducts);
+            },
+            currentGuideLine (number) {
+                this.guideLineNumber = number;
+                console.info(number, "NUMBER")
             }
 
         },
-        watch () {
+        watch: {
+            'touchPoint.caption' : {
+                handler: function(val) {
+                    this.setTouchPoint(['caption', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.hashtags' : {
+                handler: function(val) {
+                    this.setTouchPoint(['hashtags', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.mentions' : {
+                handler: function(val) {
+                    this.setTouchPoint(['mentions', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.guideLines': {
+                handler: function(val) {
+                   // console.info(this.guideLineNumber, "heloo");
+                    //let countGuideLines = this.guideLines;
 
+                    let guideLinesArr = [];
+                    this.setTouchPoint([this.guideLineNumber, {id: this.guideLineNumber, val: val}]);
+                },
+                immediate: true,
+                deep: true
+            }
         }
     }
 </script>

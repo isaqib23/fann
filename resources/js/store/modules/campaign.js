@@ -6,7 +6,13 @@ import { api } from '~/config'
  */
 export const state = {
   campaignObjective: null,
-  campaignPlacement: null
+  campaignPlacement: null,
+  touchPoint: {
+      caption: null,
+      hashtags: null,
+      mentions: null,
+      guideLines: {},
+  }
 }
 
 /**
@@ -19,6 +25,12 @@ export const mutations = {
 
     setPlacement(state, objective) {
         state.campaignPlacement = objective
+    },
+
+    setTouchPoint(state, [index, val]) {
+        Vue.set(state.touchPoint, index, val)
+        //Vue.set(state.touchPoint.guideLines, index, val)
+        //console.info(state.touchPoint, "dashy");
     }
 }
 
@@ -45,7 +57,8 @@ export const actions = {
  */
 export const getters = {
     campaignObjective: state => state.campaignObjective,
-    campaignPlacement: state => state.campaignPlacement
+    campaignPlacement: state => state.campaignPlacement,
+    touchPoint: state => state.touchPoint
 }
 
 /**
