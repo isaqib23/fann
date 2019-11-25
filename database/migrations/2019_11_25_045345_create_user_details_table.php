@@ -34,6 +34,7 @@ class CreateUserDetailsTable extends Migration
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('state_id')->references('id')->on('states');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('niche_id')->references('id')->on('niches');
 		});
 	}
 

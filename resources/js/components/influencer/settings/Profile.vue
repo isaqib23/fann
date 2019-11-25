@@ -96,7 +96,7 @@
                                     <v-select
                                         :items="niches"
                                         label="Health & fitness"
-                                        v-model="userDetail.niche"
+                                        v-model="userDetail.niche_id"
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"

@@ -13,18 +13,18 @@ export const state = {
         bio         : null,
         picture     : null,
         website     : null,
-        niche       : null,
+        niche_id       : null,
         phone       : null,
         timezone    : null,
         address     : null,
         country_id  : null,
         state_id    : null
     },
-    userComapny:{
+    userCompany:{
         name        : null,
         logo        : null,
         website     : null,
-        niche       : null,
+        niche_id       : null,
         phone       : null,
         timezone    : null,
         address     : null,
@@ -56,7 +56,7 @@ export const mutations = {
     },
     getUserCompany(state, payload) {
         if(payload !== null) {
-            state.userComapny = payload
+            state.userCompany = payload
         }
     },
 }
@@ -127,7 +127,7 @@ export const getters = {
     niches: state => state.niches,
     cards: state => state.cards,
     userDetail: state => state.userDetail,
-    userComapny: state => state.userComapny
+    userCompany: state => state.userCompany
 }
 
 /**

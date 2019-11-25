@@ -47,19 +47,20 @@ class ProfileController extends Controller
     {
 
         $request->merge(json_decode($request->input('user'),true));
-        
+
         $rules = [
             'data.*.first_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,' . $request->user()->id,
             'password' => 'nullable|string|min:6|confirmed',
             'logo'=> 'required',
-            'userComapny.name' => 'required|string|max:191',
-            'userComapny.website' => 'required|url',
-            'userComapny.phone' => 'required|numeric',
-            'userComapny.address' => 'required',
-            'userComapny.state_id' => 'required',
-            'userComapny.country_id' => 'required'
+            'userCompany.name' => 'required|string|max:191',
+            'userCompany.website' => 'required|url',
+            'userCompany.phone' => 'required|numeric',
+            'userCompany.address' => 'required',
+            'userCompany.state_id' => 'required',
+            'userCompany.country_id' => 'required',
+            'userCompany.niche_id' => 'required'
         ];
 
         $this->validate($request, $rules);

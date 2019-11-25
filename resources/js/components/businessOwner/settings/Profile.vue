@@ -66,7 +66,7 @@
                                         label="Company Name"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="userComapny.name"
+                                        v-model="userCompany.name"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -78,7 +78,7 @@
                                         label="www.abc.com"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="userComapny.website"
+                                        v-model="userCompany.website"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -89,7 +89,7 @@
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
-                                        v-model="userComapny.niche"
+                                        v-model="userCompany.niche_id"
                                         item-text="name"
                                         item-value="id"
                                     ></v-autocomplete>
@@ -103,7 +103,7 @@
                                         label="123456789"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="userComapny.phone"
+                                        v-model="userCompany.phone"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -112,7 +112,7 @@
                                         label="Europe"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="userComapny.timezone"
+                                        v-model="userCompany.timezone"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -125,26 +125,26 @@
                                         label="Solo textarea ......"
                                         rows="7"
                                         class="custom_dropdown"
-                                        v-model="userComapny.address"
+                                        v-model="userCompany.address"
                                     ></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Country</label>
                                     <v-autocomplete
                                         :items="countries"
-                                        v-model="userComapny.country_id"
+                                        v-model="userCompany.country_id"
                                         label="Pakistan"
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
                                         item-text="name"
-                                        @change="getStates(userComapny)"
+                                        @change="getStates(userCompany)"
                                         item-value="id"
                                     ></v-autocomplete>
                                     <label class="font-weight-bold">State</label>
                                     <v-autocomplete
                                         :items="states"
-                                        v-model="userComapny.state_id"
+                                        v-model="userCompany.state_id"
                                         label="Islamabad"
                                         solo
                                         append-icon="keyboard_arrow_down"
@@ -196,7 +196,7 @@
             countries: 'settings/countries',
             states: 'settings/states',
             niches: 'settings/niches',
-            userComapny: 'settings/userComapny',
+            userCompany: 'settings/userCompany',
         }),
         methods: {
             ...mapActions({
@@ -207,12 +207,11 @@
                 getUserCompany: 'settings/getUserCompany'
             }),
             getLogo() {
-                this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userComapny.logo});
-                console.log(this.file,'here');
+                this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
             },
             async submit() {
                 this.loading = true
-                this.user.userComapny = this.userComapny;
+                this.user.userCompany = this.userCompany;
                 let formData = new FormData();
                 formData.append("user", JSON.stringify(this.user));
                 formData.append("logo", this.file.imageFile);
@@ -230,11 +229,10 @@
             await this.getUserCompany();
             await this.getCountries();
             await this.getNiches();
-            if(this.userComapny.state_id !== null) {
-                await this.getStates(this.userComapny);
+            if(this.userCompany.state_id !== null) {
+                await this.getStates(this.userCompany);
                 this.getLogo();
             }
-            console.log(this.userComapny,'compannyyyyyyyyy');
         }
     }
 </script>
