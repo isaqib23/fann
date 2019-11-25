@@ -9,7 +9,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  *
  * @package namespace App\Contracts;
  */
-interface CampaignTouchPointPlacementRepository extends RepositoryInterface
+interface CampaignTouchPointPlacementActionRepository extends RepositoryInterface
 {
     //
 }

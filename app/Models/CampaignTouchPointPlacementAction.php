@@ -11,7 +11,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  *
  * @package namespace App\Models;
  */
-class CampaignTouchPointPlacement extends Model implements Transformable
+class CampaignTouchPointPlacementAction extends Model implements Transformable
 {
     use TransformableTrait;
 

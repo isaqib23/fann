@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Contracts\CampaignTouchPointPlacementActionRepository;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\CampaignTouchPointPlacementRepository;
 use App\Models\CampaignTouchPointPlacement;
 use App\Validators\CampaignTouchPointPlacementValidator;
 
@@ -13,7 +13,7 @@ use App\Validators\CampaignTouchPointPlacementValidator;
  *
  * @package namespace App\Repositories;
  */
-class CampaignTouchPointPlacementRepositoryEloquent extends BaseRepository implements CampaignTouchPointPlacementRepository
+class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository implements CampaignTouchPointPlacementActionRepository
 {
     /**
      * Specify Model class name
@@ -25,7 +25,7 @@ class CampaignTouchPointPlacementRepositoryEloquent extends BaseRepository imple
         return CampaignTouchPointPlacement::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,5 @@ class CampaignTouchPointPlacementRepositoryEloquent extends BaseRepository imple
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
 }

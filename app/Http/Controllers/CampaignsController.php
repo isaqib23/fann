@@ -324,9 +324,7 @@ dd($data, $data['touchPoint']['campaignDescription']);
             $request['campaignId']
         );
 
-        $this->campaignTouchPointProductRepository->store($data);
-
-        $this->campaignTouchPointPlacementRepository->create();
+        $this->campaignTouchPointRepository->saveCampaignInHierarchy($data);
     }
 
 }
