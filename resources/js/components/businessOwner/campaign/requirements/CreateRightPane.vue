@@ -224,17 +224,15 @@
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
                             <v-list>
                                 <v-list-item
-                                    v-for="item in list_items"
-                                    :key="item.title"
-                                    @click=""
+                                    v-for="(guideline, guidelineIndex) in touchPoint.guideLines"
+                                    :key="guidelineIndex"
                                 >
                                     <v-list-item-icon class="mr-0">
-                                        <strong class="primary--text">{{item.number}}.</strong>
+                                        <strong class="primary--text">{{ guidelineIndex }}.</strong>
                                     </v-list-item-icon>
                                     <v-list-item-content>
                                         <v-list-item-subtitle>
-
-                                            {{item.title}}
+                                            {{ guideline }}
                                         </v-list-item-subtitle>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -255,11 +253,6 @@
         },
         data: () => {
            return  {
-               list_items: [
-                   { number: 1, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-                   { number: 2, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-                   { number: 3, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'}
-               ],
                hashtags : null,
                mentions : null,
             }

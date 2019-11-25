@@ -7,6 +7,7 @@ let campaign = {
     objectives                  : 'objectives',
     allPlacements               : 'allPlacements',
     savePlacementAndPaymentType : 'savePlacementAndPaymentType',
+    saveTouchPoint              : 'saveTouchPoint',
 };
 
 export default campaign;
