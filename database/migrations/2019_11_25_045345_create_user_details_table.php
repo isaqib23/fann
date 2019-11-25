@@ -21,7 +21,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('bio');
             $table->string('address');
             $table->string('picture');
-            $table->unsignedInteger('niche');
+            $table->unsignedInteger('niche_id');
             $table->string('timezone')->nullable();
             $table->unsignedInteger('state_id');
             $table->unsignedInteger('country_id');

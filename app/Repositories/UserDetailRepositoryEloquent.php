@@ -33,7 +33,6 @@ class UserDetailRepositoryEloquent extends BaseRepository implements UserDetailR
     */
     public function validator()
     {
-
         return UserDetailValidator::class;
     }
 

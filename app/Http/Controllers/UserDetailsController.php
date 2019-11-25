@@ -50,7 +50,6 @@ class UserDetailsController extends Controller
      */
     public function index()
     {
-
         $userDetails = $this->repository->findByField('user_id',auth()->user()->id)->first();
 
         return response()->json([
@@ -73,24 +72,23 @@ class UserDetailsController extends Controller
         try {
 
             $rules = [
-                'userDetail.bio' => 'required|string|max:191',
-                'userDetail.address'=> 'required',
-                'logo'=> 'required',
-                'userDetail.niche'=> 'required',
-                'userDetail.timezone'=> 'required',
-                'userDetail.state_id'=> 'required',
-                'userDetail.country_id'=> 'required',
-                'userDetail.website'=> 'required|url',
-                'userDetail.phone' => 'required|numeric'
+                'userDetail.bio'        => 'required|string|max:191',
+                'userDetail.address'    => 'required',
+                'logo'                  => 'required',
+                'userDetail.niche'      => 'required',
+                'userDetail.timezone'   => 'required',
+                'userDetail.state_id'   => 'required',
+                'userDetail.country_id' => 'required',
+                'userDetail.website'    => 'required|url',
+                'userDetail.phone'      => 'required|numeric'
             ];
 
             $this->validate($request, $rules);
-            //dd($request->all());
+
             $request->merge([
                 'user_id' => auth()->user()->id,
             ]);
-            //dd($request->all());
-            //echo "<pre>";print_r($request->all());exit;
+
             $userDetail = $this->repository->store($request);
 
             return response()->json([

@@ -206,7 +206,7 @@
                 getNiches: 'settings/getNiches',
                 getUserCompany: 'settings/getUserCompany'
             }),
-            getLogo(){
+            getLogo() {
                 this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userComapny.logo});
                 console.log(this.file,'here');
             },
