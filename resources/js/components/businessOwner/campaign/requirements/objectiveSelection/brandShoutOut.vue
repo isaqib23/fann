@@ -40,6 +40,14 @@
                                 </v-btn>
                             </v-card-title>
 
+                            <v-card-title>
+                                <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ objective.slug.replace('-',' ') }}</strong></div>
+                            </v-card-title>
+
+                            <v-row class="mx-auto my-5">
+                                <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
+                            </v-row>
+
                             <v-text-field
                                 label="Create a unboxing video on youtube"
                                 solo
@@ -216,14 +224,12 @@
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
                                 <v-flex lg9 sm9 m9 pl-3>
-                                    <v-select
-                                        :items="items"
-                                        label="Same as Unboxing"
-                                        solo
-                                        dense
-                                        append-icon="keyboard_arrow_down"
-                                        class="custom_dropdown product_left_border"
-                                    ></v-select>
+                                    <products-search
+                                        :emit-as="'barterProduct'"
+                                        :placeholder="'Same as Unboxing'"
+                                        @selected-product="selectedProduct"
+                                        :disabledSearch=disabledBarter
+                                    ></products-search>
                                 </v-flex>
                             </v-layout>
                             <v-layout row wrap pl-3 pr-3 mt-3>
@@ -232,9 +238,11 @@
                                 </v-flex>
                                 <v-flex lg9 sm9 m9 pl-3>
                                     <v-text-field
+                                        v-model="touchPoint.amount"
                                         solo
                                         label="$100"
                                         class="custom_dropdown"
+                                        :disabled=disabledPaid
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
@@ -263,33 +271,73 @@
 
 <script>
     import ImageInput from '../../../../general/ImageInput';
+    import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
+    import {mapGetters} from 'vuex';
 
     export default {
         components: {
-            ImageInput: ImageInput
+            ImageInput: ImageInput,
+            productsSearch : shopifyProductsPredictiveSearch
+        },
+        props :{
+            touchPoint : {},
+            objective : {}
         },
         data: () => {
-           return  {
-               tabsLength: 1,
-               guideLines: 1,
-               currentTab: 0,
-               model: 0,
-               e1: 0,
-               kind: '1',
-               checkbox2: true,
-               checkbox1: false,
-               items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-               select2: '',
-               select: ['Vuetify', 'Programming'],
-               avatar: null,
-               saving: false,
-               saved: false,
-               menu1: false,
-               menu2: false,
-               date: new Date().toISOString().substr(0, 10),
+            return  {
+                tabsLength : 1,
+                currentTab : 0,
+                guideLines : 1,
+                model      : 0,
+                e1         : 0,
+                kind       : '1',
+                checkbox2  : true,
+                checkbox1  : false,
+                items      : ['Foo', 'Bar', 'Fizz', 'Buzz'],
+                select2    : '',
+                select     : ['Vuetify', 'Programming'],
+                avatar     : null,
+                saving     : false,
+                saved      : false,
+                menu1      : false,
+                menu2      : false,
+                date       : new Date().toISOString().substr(0, 10),
+                touchPointProducts : [],
+                campaignDescription : null,
+                paymentMethod: {},
+
+                disabledPaid:false,
+                disabledBarter:false,
+                icon:null,
             }
         },
+        computed: {
+            ...mapGetters({
+                placement: 'campaign/campaignPlacement',
+
+            })
+        },
+        mounted() {
+            this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
+            this.setPayment();
+            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+
+        },
+
         methods: {
+            setPayment(){
+                if(this.paymentMethod.paymentType=='barter' && this.paymentMethod.additionalPayAsAmount==false) {
+                    this.disabledPaid = true;
+                    this.disabledBarter = false;
+                }else if(this.paymentMethod.paymentType=='paid' && this.paymentMethod.additionalPayAsBarter==false) {
+                    this.disabledBarter = true;
+                    this.disabledPaid = false;
+                }else{
+                    this.disabledBarter = false;
+                    this.disabledPaid = false;
+                }
+
+            },
             nextTab(){
                 if(this.currentTab === this.tabsLength - 1){
                     return false;

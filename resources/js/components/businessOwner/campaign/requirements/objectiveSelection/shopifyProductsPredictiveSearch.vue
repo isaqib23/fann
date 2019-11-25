@@ -1,23 +1,30 @@
 <template>
-    <div>
-        <v-flex>
+    <div style="width:100%">
+
+        <v-flex xl12 lg12 md12 sm12 xs12>
             <v-combobox
+                :disabled="disabledSearch"
                 clearable
-                filled
-                solo
+                outlined
+                light
                 v-model="product"
                 :items="options"
                 :loading="lookingUp"
                 :search-input.sync="search"
                 :placeholder="placeholder"
+                background-color="white"
+                :allow-overflow="false"
                 hide-no-data
                 hide-selected
                 item-text="title"
                 item-value="id"
                 item-avatar="image.src"
                 hide-label
-                return-object>
-                <template v-slot:selection="data" role="listitem">
+                :menu-props="{maxWidth:440,marginTop:20}"
+                return-object
+                class="comboboxClass custom_dropdown"
+            >
+                <template v-slot:selection="data" role="listitem" class="mt-n12">
                     <v-list-item-avatar>
                         <img v-if="data.item.image != null" :src="data.item.image.src">
                         <v-icon v-else>layers</v-icon>
@@ -32,7 +39,7 @@
                         <img v-if="data.item.image != null" :src="data.item.image.src">
                         <v-icon v-else>layers</v-icon>
                     </v-list-item-avatar>
-                    <v-list-item-content>
+                    <v-list-item-content >
                         <v-list-item-title v-html="data.item.title"></v-list-item-title>
                         <v-list-item-subtitle><b>ID :</b> {{data.item.id}}, <b>Variants : </b>{{data.item.variants == undefined ? '' : data.item.variants.length}}</v-list-item-subtitle>
                     </v-list-item-content>
@@ -53,11 +60,11 @@
             </div>
         </v-flex>
         <v-flex class="xs12 pt-2 pb-3"><hr /></v-flex>
-        <v-flex class="xs12 md3">
+        <v-flex class="xs12 md12">
             <v-subheader class="pa-0">Selected Variants</v-subheader>
         </v-flex>
-        <v-flex class="xs12 md9">
-            <v-chip label close color="blue lighten-2" class="productVariantChip selectedVariant mr-2 mb-2" v-for="(variant, indx) in variants"
+        <v-flex class="xs12 md12">
+            <v-chip   label close color="white" class="productVariantChip selectedVariant mr-2 mb-2"  v-for="(variant, indx) in variants"
                     :key="indx" @click:close="(e) => removeVariant(e, variant)">
                 <v-avatar left>
                     <img v-if="variant.image != null" :src="variant.image">
@@ -71,9 +78,9 @@
 
 <script>
     import {api} from '~/config'
-
     export default {
         props : {
+            disabledSearch : null,
             emitAs : {
                 type: String,
                 required: true,
@@ -93,9 +100,10 @@
                 lookingUp  : false,
                 variants   : [],
                 ld         : _,
-               selectedVariant : {}
+               selectedVariant : {},
             }
         },
+
         methods: {
             getProducts(val) {
                 let self = this;
@@ -156,4 +164,52 @@
     }
 </script>
 
-<style scoped></style>
+<style scoped>
+    >>>.theme--light.v-chip:hover::before{
+        opacity: 0;
+    }
+    >>>.comboboxClass {
+        width:auto !important;
+    }
+    >>>.comboboxClass .v-select__selections{
+       width:250px !important;
+        /*max-width:350px !important;*/
+    }
+    >>>.custom_dropdown .v-input__control{
+        min-height: 50px !important;
+    }
+    >>>.custom_dropdown .v-input__control > .v-input__slot{
+        box-shadow: none !important;
+        border: 1px solid #cccccc;
+    }
+    >>>.custom_dropdown .v-input__prepend-inner .v-input__icon, >>>.product_field .v-input__prepend-inner .v-input__icon{
+        background: #EE6F6F;
+        padding: 24px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+    >>>.custom_dropdown .v-input__prepend-inner .v-icon.v-icon, >>>.product_field .v-input__prepend-inner .v-icon.v-icon{
+        color: #ffffff !important;
+    }
+    >>>.custom_dropdown .v-input__prepend-inner, >>>.product_field  .v-input__prepend-inner{
+        margin-top: 0px !important;
+        margin-left: -14px;
+        margin-right: 10px;
+    }
+    >>>.custom_dropdown .v-input__control{
+        min-height: 45px !important;
+    }
+    >>>.custom_dropdown .v-input__control > .v-input__slot{
+        box-shadow: none !important;
+        border: 1px solid #cccccc;
+    }
+    >>>.vertical_divider{
+        height: 25px !important;
+        margin-left: 45px !important;
+        border-color: black !important;
+        margin-bottom: -3px !important;
+    }
+    >>>.custom_dropdown .v-input__slot{
+        margin-bottom: 0px !important;
+    }
+</style>
