@@ -34,6 +34,8 @@ class CreateCampaignTouchPointAdditionalsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('campaign_touch_point_additionals');
+        Schema::disableForeignKeyConstraints();
+        Schema::drop('campaign_touch_point_additionals');
+        Schema::enableForeignKeyConstraints();
 	}
 }

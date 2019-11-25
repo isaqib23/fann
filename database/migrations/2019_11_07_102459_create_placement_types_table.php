@@ -31,6 +31,9 @@ class CreatePlacementTypesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('placement_types');
+        Schema::disableForeignKeyConstraints();
+        Schema::drop('placement_types');
+        Schema::enableForeignKeyConstraints();
+
 	}
 }
