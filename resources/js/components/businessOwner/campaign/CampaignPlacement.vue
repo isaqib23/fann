@@ -7,8 +7,8 @@
                     <v-radio-group v-model="campaignPlacement.platform" row class="mt-0 full_width">
                         <v-row justify="space-between">
                             <v-col col="6"
-                                    v-for="(placementItem, placementIndex) in loadPlacements"
-                                    :key="placementIndex"
+                                   v-for="(placementItem, placementIndex) in loadPlacements"
+                                   :key="placementIndex"
                             >
                                 <v-radio color="primary" :value="placementItem.id"
                                          off-icon="mdi-checkbox-blank-outline"
@@ -33,17 +33,22 @@
             <v-card-title class="pb-8 justify-center">Select Your Campaign Type</v-card-title>
             <v-card-text class="mb-12 text_field_width ma-auto">
                 <div class="card_radio campaign_radio">
-                    <v-radio-group v-model="campaignPlacement.paymentType" row class="mt-0 full_width">
+                    <v-radio-group v-model="campaignPlacement.paymentType" row class="mt-0 full_width" @change="onAdditional()">
                         <v-row justify="space-between">
                             <v-col col="6">
-                                <v-radio value="paid" active-class="active_card_radio">
+                                <v-radio value="paid" active-class="active_card_radio" :disabled="disabledPaid" >
                                     <template slot="label">
                                         <v-card class="text-center" outlined max-width="200">
                                             <div class="triangle-topright" v-if="campaignPlacement.paymentType == 'paid'">
                                                 <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                             </div>
                                             <v-card-title>
-                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="campaignPlacement.paymentType == 'paid' ? 'primary' : ''">mdi-currency-usd</v-icon></p>
+                                                <p class="icon_border ma-auto">
+                                                    <v-icon class="display-2"
+                                                            :color="campaignPlacement.paymentType == 'paid' ? 'primary' : ''"
+                                                    >
+                                                        mdi-currency-usd
+                                                    </v-icon></p>
                                             </v-card-title>
                                             <v-card-text class="px-2">
                                                 <p class="title">PAID</p>
@@ -56,14 +61,19 @@
                                 </v-radio>
                             </v-col>
                             <v-col col="6">
-                                <v-radio style="float: right" value="barter" active-class="active_card_radio">
+                                <v-radio style="float: right" value="barter" active-class="active_card_radio" :disabled="disabledBarter">
                                     <template slot="label">
                                         <v-card class="text-center mx-auto" outlined max-width="200">
                                             <div class="triangle-topright" v-if="campaignPlacement.paymentType == 'barter'">
                                                 <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
                                             </div>
                                             <v-card-title>
-                                                <p class="icon_border ma-auto"><v-icon class="display-2" :color="campaignPlacement.paymentType == 'barter' ? 'primary' : ''">mdi-ballot-recount-outline</v-icon></p>
+                                                <p class="icon_border ma-auto">
+                                                    <v-icon class="display-2"
+                                                            :color="campaignPlacement.paymentType == 'barter' ? 'primary' : ''"
+                                                    >
+                                                        mdi-ballot-recount-outline
+                                                    </v-icon></p>
                                             </v-card-title>
                                             <v-card-text class="px-2">
                                                 <p class="title">BARTER</p>
@@ -83,40 +93,54 @@
                     <v-radio-group v-model="campaignPlacement.paymentType" row class="mt-0 full_width">
                         <v-row justify="space-between">
                             <v-col col="6">
-                                <v-radio-group v-model="campaignPlacement.additionalPayAsBarter" row class="mt-0 full_width">
-                                    <v-radio :value="true" active-class="active_card_radio">
-                                        <template slot="label">
-                                            <v-card class="text-center" outlined max-width="200">
-                                                <div class="triangle-topright" v-if="campaignPlacement.additionalPayAsBarter == true">
-                                                    <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
-                                                </div>
-                                                <v-card-text class="px-2">
-                                                    <p>
-                                                        Would you like barter this product?
-                                                    </p>
-                                                </v-card-text>
-                                            </v-card>
-                                        </template>
-                                    </v-radio>
-                                </v-radio-group>
+
+                                <v-checkbox
+                                    v-model="campaignPlacement.additionalPayAsBarter"
+                                    hide-details
+                                    class="active_card_radio"
+                                    :disabled="campaignPlacement.paymentType=='barter'"
+                                    style="float: left"
+                                >
+                                    <template slot="label">
+                                        <v-card class="text-center mx-auto" outlined max-width="200">
+                                            <div class="triangle-topright"
+                                                 v-if="campaignPlacement.additionalPayAsBarter == true"
+                                            >
+                                                <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
+                                            </div>
+                                            <v-card-text class="px-2">
+                                                <p>
+                                                    Would you like barter this product?
+                                                </p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-checkbox>
                             </v-col>
                             <v-col col="6">
-                                <v-radio-group v-model="campaignPlacement.additionalPayAsAmount" row class="mt-0" style="float: right">
-                                    <v-radio :value="true" active-class="active_card_radio">
-                                        <template slot="label">
-                                            <v-card class="text-center mx-auto" outlined max-width="200">
-                                                <div class="triangle-topright" v-if="campaignPlacement.additionalPayAsAmount == true">
-                                                    <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
-                                                </div>
-                                                <v-card-text class="px-2">
-                                                    <p>
-                                                        Would you like pay for this product?
-                                                    </p>
-                                                </v-card-text>
-                                            </v-card>
-                                        </template>
-                                    </v-radio>
-                                </v-radio-group>
+
+                                <v-checkbox
+                                    v-model="campaignPlacement.additionalPayAsAmount"
+                                    hide-details
+                                    class="active_card_radio"
+                                    :disabled="campaignPlacement.paymentType=='paid'"
+                                    style="float: right"
+                                >
+                                    <template slot="label">
+                                        <v-card class="text-center mx-auto" outlined max-width="200">
+                                            <div class="triangle-topright"
+                                                 v-if="campaignPlacement.additionalPayAsAmount == true"
+                                            >
+                                                <v-icon align-end color="white" class="float-right title">mdi-check-circle</v-icon>
+                                            </div>
+                                            <v-card-text class="px-2">
+                                                <p>
+                                                    Would you like pay for this product?
+                                                </p>
+                                            </v-card-text>
+                                        </v-card>
+                                    </template>
+                                </v-checkbox>
                             </v-col>
                         </v-row>
                     </v-radio-group>
@@ -124,7 +148,10 @@
 
             </v-card-text>
             <v-card-actions class="float-right action_btns mt-n12">
-                <v-btn color="grey lighten-2" depressed dark large @click="goToBack()" class="text-capitalize mr-2 grey--text">
+                <v-btn color="grey lighten-2"
+                       depressed dark large @click="goToBack()"
+                       class="text-capitalize mr-2 grey--text"
+                >
                     {{ $t('labels.campaign.name_backBtn') }}
                 </v-btn>
                 <v-btn color="primary" depressed dark large @click="goToNext()" class="text-capitalize">
@@ -140,8 +167,9 @@
     import {mapGetters, mapActions} from 'vuex';
     import { required } from 'vuelidate/lib/validators'
     export default {
-
         data: () => ({
+            disabledPaid:false,
+            disabledBarter:false,
             campaignPlacement:{
                 platform:null,
                 paymentType:null,
@@ -171,6 +199,14 @@
             this.assignDefaultPayment();
         },
         methods: {
+            onAdditional() {
+                if (this.campaignPlacement.paymentType == 'paid') {
+                    this.campaignPlacement.additionalPayAsAmount = false;
+                }
+                else if (this.campaignPlacement.paymentType == 'barter') {
+                    this.campaignPlacement.additionalPayAsBarter = false;
+                }
+            },
             ...mapActions({
                 fetchAllPlacements: 'campaign/fetchAllPlacements',
                 savePlacementAndPaymentType: 'campaign/savePlacementAndPaymentType'
@@ -191,16 +227,18 @@
             },
             goToBack() {
                 this.savePlacement(this.campaignPlacement)
-                //this.$router.push({name: 'create-campaign-objective'})
+                this.$router.push({name: 'create-campaign-objective'})
             },
-            assignDefaultPayment()
-            {
+            assignDefaultPayment() {
                 if (this.campaignObjective == null) {
                     this.$router.push({name: 'create-campaign-objective'})
                 } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2) {
                     this.campaignPlacement.paymentType = 'barter';
+                    this.disabledPaid = true;
+
                 } else if (this.campaignObjective.ObjectiveId == 3) {
                     this.campaignPlacement.paymentType = 'paid';
+                    this.disabledBarter = true;
                 }
             }
         },
