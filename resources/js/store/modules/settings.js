@@ -8,7 +8,18 @@ export const state = {
     countries: [],
     niches: [],
     states: [],
-    cards: []
+    cards: [],
+    userDetail: {
+        bio         : null,
+        picture     : null,
+        website     : null,
+        niche       : null,
+        phone       : null,
+        timezone    : null,
+        address     : null,
+        country_id  : null,
+        state_id    : null
+    }
 }
 
 /**
@@ -26,6 +37,9 @@ export const mutations = {
     },
     getCards(state, payload) {
         state.cards = payload
+    },
+    getUserDetail(state, payload) {
+        state.userDetail = payload
     },
 }
 
@@ -67,6 +81,15 @@ export const actions = {
         await SettingAxios.saveUserCard(payload);
 
     },
+    async getUserDetail({commit}, payload) {
+
+        commit('getUserDetail', await SettingAxios.getUserDetail());
+
+    },
+    async saveUserDetail({ commit }, payload) {
+
+        return await SettingAxios.saveUserDetail(payload);
+    },
 }
 
 /**
@@ -76,7 +99,8 @@ export const getters = {
     countries: state => state.countries,
     states: state => state.states,
     niches: state => state.niches,
-    cards: state => state.cards
+    cards: state => state.cards,
+    userDetail: state => state.userDetail
 }
 
 /**
@@ -146,6 +170,26 @@ let SettingAxios = class {
 
     static saveUserCard (payload) {
         return axios.post(api.path('setting.saveUserCard'),payload)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
+    }
+
+    static getUserDetail () {
+        return axios.get(api.path('setting.getUserDetail'))
+            .then(resp => {
+                return resp.data.details;
+            })
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
+    }
+
+    static saveUserDetail (payload) {
+        return axios.post(api.path('setting.saveUserDetail'),payload)
             .then(resp => {
                 return resp.data;
             })

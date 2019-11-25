@@ -49,7 +49,7 @@
                                     <image-input v-model="file">
                                         <div slot="activator">
                                             <v-avatar size="175px" v-ripple v-if="!file" class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
-                                                <img src="/images/placeholder.png">
+                                                <img src="/images/icons/company_placeholder.png">
                                             </v-avatar>
                                             <v-avatar size="175px" v-else class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
                                                 <v-img

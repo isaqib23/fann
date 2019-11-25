@@ -25,6 +25,7 @@ use App\Contracts\PlacementTypeRepository;
 use App\Contracts\ShopRepository;
 use App\Contracts\StateRepository;
 use App\Contracts\UserCreditCardRepository;
+use App\Contracts\UserDetailRepository;
 use App\Repositories\CampaignObjectiveCategoryRepositoryEloquent;
 use App\Repositories\CampaignObjectiveRepositoryEloquent;
 use App\Repositories\CampaignPaymentRepositoryEloquent;
@@ -48,6 +49,7 @@ use App\Repositories\PlacementTypeRepositoryEloquent;
 use App\Repositories\ShopRepositoryEloquent;
 use App\Repositories\StateRepositoryEloquent;
 use App\Repositories\UserCreditCardRepositoryEloquent;
+use App\Repositories\UserDetailRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -95,11 +97,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CityRepository::class, CityRepositoryEloquent::class);
         $this->app->bind(NotificationRepository::class, NotificationRepositoryEloquent::class);
         $this->app->bind(NotificationTypeRepository::class, NotificationTypeRepositoryEloquent::class);
-
-
-
         $this->app->bind(NicheRepository::class, NicheRepositoryEloquent::class);
-
+        $this->app->bind(UserDetailRepository::class, UserDetailRepositoryEloquent::class);
         //:end-bindings:
     }
 }

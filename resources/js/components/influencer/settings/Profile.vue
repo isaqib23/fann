@@ -1,158 +1,176 @@
 <template>
     <v-flex class="my-12 mx-auto card_wrapper">
-        <div class="subtitle-1 mb-2 text-uppercase"><strong>Influender's Profile</strong></div>
+        <div class="subtitle-1 mb-2 text-uppercase"><strong>Influencer's Profile</strong></div>
         <v-card class="pa-6">
             <v-row class="mx-auto">
                 <v-flex xl12 lg12 md12 sm12 sx12 class="mr-12">
-                    <v-card-title>
-                        <div class="subtitle-1 mb-2"><strong>Personal Details</strong></div>
-                    </v-card-title>
-                    <v-card-text>
-                        <v-row justify="start">
-                            <v-col cols="12" sm="3">
-                                <image-input v-model="avatar">
-                                    <div slot="activator">
-                                        <v-avatar size="175px" v-ripple v-if="!avatar" class="grey lighten-3 mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
-                                            <v-img
-                                                class="white--text align-end"
-                                                src="/images/icons/user_placeholder.svg"
-                                            >
-                                                <p class="placeholder_text pt-1 white--text">
-                                                    <v-icon class="body-2 d-inline white--text">mdi-camera</v-icon>
-                                                    <span class="caption">Upload Profile Picture</span>
-                                                </p>
-                                            </v-img>
-                                        </v-avatar>
-                                        <v-avatar size="175px" v-else class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
-                                            <v-img
-                                                class="white--text align-end"
-                                                :src="avatar.imageURL" alt="avatar">
-                                            </v-img>
-                                            <p class="placeholder_text pt-1 white--text" style="position: absolute">
-                                                <v-icon class="body-2 d-inline white--text">mdi-camera</v-icon>
-                                                <span class="caption">Upload Profile Picture</span>
-                                            </p>
-                                        </v-avatar>
-                                    </div>
-                                </image-input>
-                            </v-col>
-                            <v-col cols="12" sm="8">
-                                <v-row justify="start">
-                                    <v-col cols="12" sm="6" class="py-0">
-                                        <label class="font-weight-bold">First Name</label>
-                                        <v-text-field
-                                            v-model="user.name"
-                                            label="First Name"
-                                            solo
-                                            class="mt-1 custom_dropdown"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" class="py-0">
-                                        <label class="font-weight-bold">Last Name</label>
-                                        <v-text-field
-                                            label="Last Name"
-                                            solo
-                                            class="mt-1 custom_dropdown"
-                                        ></v-text-field>
-                                    </v-col>
-                                </v-row>
-                                <v-row justify="start">
-                                    <v-col cols="12" sm="6" class="py-0">
-                                        <label class="font-weight-bold">Email</label>
-                                        <v-text-field
-                                            v-model="user.email"
-                                            label="First Name"
-                                            solo
-                                            class="mt-1 custom_dropdown"
-                                        ></v-text-field>
-                                    </v-col>
-                                    <v-col cols="12" sm="6" class="py-0">
-                                        <label class="font-weight-bold">Bio</label>
-                                        <v-text-field
-                                            label="Write About Yourself"
-                                            solo
-                                            class="mt-1 custom_dropdown"
-                                        ></v-text-field>
-                                    </v-col>
-                                </v-row>
-                            </v-col>
-                        </v-row>
+                    <v-form ref="form" @submit.prevent="submit" enctype="multipart/form-data">
+                        <v-card-title>
+                            <div class="subtitle-1 mb-2"><strong>Personal Details</strong></div>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-row justify="start">
+                                <v-col cols="12" sm="3">
+                                    <image-input v-model="file">
+                                        <div slot="activator">
+                                            <v-avatar size="175px" v-ripple v-if="!file.imageURL" class="grey lighten-3 mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
+                                                <v-img
+                                                    class="white--text align-end"
+                                                    src="/images/icons/user_placeholder.png"
+                                                >
+                                                    <p class="placeholder_text pt-1 white--text">
+                                                        <v-icon class="body-2 d-inline white--text">mdi-camera</v-icon>
+                                                        <span class="caption">Upload Profile Picture</span>
+                                                    </p>
+                                                </v-img>
+                                            </v-avatar>
+                                            <v-avatar size="175px" v-else class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
+                                                <v-img
+                                                    class="white--text align-end"
+                                                    :src="file.imageURL" alt="avatar">
+                                                    <p class="placeholder_text pt-1 white--text">
+                                                        <v-icon class="body-2 d-inline white--text">mdi-camera</v-icon>
+                                                        <span class="caption">Change Profile Picture</span>
+                                                    </p>
+                                                </v-img>
+                                            </v-avatar>
+                                        </div>
+                                    </image-input>
+                                </v-col>
+                                <v-col cols="12" sm="8">
+                                    <v-row justify="start">
+                                        <v-col cols="12" sm="6" class="py-0">
+                                            <label class="font-weight-bold">First Name</label>
+                                            <v-text-field
+                                                v-model="form.first_name"
+                                                label="First Name"
+                                                solo
+                                                class="mt-1 custom_dropdown"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" class="py-0">
+                                            <label class="font-weight-bold">Last Name</label>
+                                            <v-text-field
+                                                label="Last Name"
+                                                v-model="form.last_name"
+                                                solo
+                                                class="mt-1 custom_dropdown"
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                    <v-row justify="start">
+                                        <v-col cols="12" sm="6" class="py-0">
+                                            <label class="font-weight-bold">Email</label>
+                                            <v-text-field
+                                                v-model="form.email"
+                                                label="First Name"
+                                                solo
+                                                class="mt-1 custom_dropdown"
+                                            ></v-text-field>
+                                        </v-col>
+                                        <v-col cols="12" sm="6" class="py-0">
+                                            <label class="font-weight-bold">Bio</label>
+                                            <v-text-field
+                                                label="Write About Yourself"
+                                                v-model="userDetail.bio"
+                                                solo
+                                                class="mt-1 custom_dropdown"
+                                            ></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </v-col>
+                            </v-row>
 
-                        <v-row justify="start">
-                            <v-col cols="12" sm="4" class="py-0">
-                                <label class="font-weight-bold">Website</label>
-                                <v-text-field
-                                    label="www.abc.com"
-                                    solo
-                                    class="mt-1 custom_dropdown"
-                                ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="4" class="py-0">
-                                <label class="font-weight-bold">Niche</label>
-                                <v-select
-                                    :items="items"
-                                    label="Health & fitness"
-                                    solo
-                                    class="custom_dropdown"
-                                    append-icon="keyboard_arrow_down"
-                                ></v-select>
-                            </v-col>
-                        </v-row>
+                            <v-row justify="start">
+                                <v-col cols="12" sm="4" class="py-0">
+                                    <label class="font-weight-bold">Website</label>
+                                    <v-text-field
+                                        label="www.abc.com"
+                                        v-model="userDetail.website"
+                                        solo
+                                        class="mt-1 custom_dropdown"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="4" class="py-0">
+                                    <label class="font-weight-bold">Niche</label>
+                                    <v-select
+                                        :items="niches"
+                                        label="Health & fitness"
+                                        v-model="userDetail.niche"
+                                        solo
+                                        class="custom_dropdown"
+                                        append-icon="keyboard_arrow_down"
+                                        item-text="name"
+                                        item-value="id"
+                                    ></v-select>
+                                </v-col>
+                            </v-row>
 
-                        <v-row justify="start">
-                            <v-col cols="12" sm="4" class="py-0">
-                                <label class="font-weight-bold">Phone</label>
-                                <v-text-field
-                                    label="123456789"
-                                    solo
-                                    class="mt-1 custom_dropdown"
-                                ></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="4" class="py-0">
-                                <label class="font-weight-bold">Time Zone</label>
-                                <v-text-field
-                                    label="Europe"
-                                    solo
-                                    class="mt-1 custom_dropdown"
-                                ></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-row justify="start">
-                            <v-col cols="12" sm="4" class="py-0">
-                                <label class="font-weight-bold">Business Address</label>
-                                <v-textarea
-                                    solo
-                                    name="input-7-4"
-                                    label="Solo textarea ......"
-                                    rows="7"
-                                    class="custom_dropdown"
-                                ></v-textarea>
-                            </v-col>
-                            <v-col cols="12" sm="4" class="py-0">
-                                <label class="font-weight-bold">State</label>
-                                <v-select
-                                    :items="items"
-                                    label="Islamabad"
-                                    solo
-                                    append-icon="keyboard_arrow_down"
-                                    class="custom_dropdown"
-                                ></v-select>
-                                <label class="font-weight-bold">Country</label>
-                                <v-select
-                                    :items="items"
-                                    label="Pakistan"
-                                    solo
-                                    class="custom_dropdown"
-                                    append-icon="keyboard_arrow_down"
-                                ></v-select>
-                            </v-col>
-                        </v-row>
-                    </v-card-text>
+                            <v-row justify="start">
+                                <v-col cols="12" sm="4" class="py-0">
+                                    <label class="font-weight-bold">Phone</label>
+                                    <v-text-field
+                                        label="123456789"
+                                        v-model="userDetail.phone"
+                                        solo
+                                        class="mt-1 custom_dropdown"
+                                    ></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="4" class="py-0">
+                                    <label class="font-weight-bold">Time Zone</label>
+                                    <v-text-field
+                                        label="Europe"
+                                        v-model="userDetail.timezone"
+                                        solo
+                                        class="mt-1 custom_dropdown"
+                                    ></v-text-field>
+                                </v-col>
+                            </v-row>
+                            <v-row justify="start">
+                                <v-col cols="12" sm="4" class="py-0">
+                                    <label class="font-weight-bold">Business Address</label>
+                                    <v-textarea
+                                        solo
+                                        name="input-7-4"
+                                        label="Solo textarea ......"
+                                        v-model="userDetail.address"
+                                        rows="7"
+                                        class="custom_dropdown"
+                                    ></v-textarea>
+                                </v-col>
+                                <v-col cols="12" sm="4" class="py-0">
+                                    <label class="font-weight-bold">Country</label>
+                                    <v-autocomplete
+                                        :items="countries"
+                                        label="Pakistan"
+                                        solo
+                                        class="custom_dropdown"
+                                        append-icon="keyboard_arrow_down"
+                                        v-model="userDetail.country_id"
+                                        item-text="name"
+                                        @change="getStates(userDetail.country_id)"
+                                        item-value="id"
+                                    ></v-autocomplete>
+                                    <label class="font-weight-bold">State</label>
+                                    <v-autocomplete
+                                        :items="states"
+                                        label="Islamabad"
+                                        solo
+                                        append-icon="keyboard_arrow_down"
+                                        v-model="userDetail.state_id"
+                                        class="custom_dropdown"
+                                        item-text="name"
+                                        item-value="id"
+                                    ></v-autocomplete>
+                                </v-col>
+                            </v-row>
+                        </v-card-text>
 
-                    <v-card-actions class="text-right float-right">
-                        <v-btn class="caption mr-3 text-capitalize" large height="40" depressed>Back</v-btn>
-                        <v-btn color="primary" class="caption text-capitalize" large height="40" depressed>Submit</v-btn>
-                    </v-card-actions>
+                        <v-card-actions class="text-right float-right">
+                            <v-btn class="caption mr-3 text-capitalize" large height="40" depressed>Back</v-btn>
+                            <v-btn type="submit" :loading="loading" color="primary" class="caption text-capitalize" large height="40" depressed>Submit</v-btn>
+                        </v-card-actions>
+                    </v-form>
                 </v-flex>
             </v-row>
         </v-card>
@@ -160,10 +178,12 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
+    import Form from '~/mixins/form'
     import ImageInput from '../../general/ImageInput';
 
     export default {
+        mixins: [Form],
         components:{
             ImageInput: ImageInput
         },
@@ -172,39 +192,63 @@
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
             ],
             items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-            user: {
-                name: null,
+            form: {
+                first_name: null,
+                last_name: null,
                 email: null,
             },
-            avatar: null,
+            file: {
+                imageFile: null,
+                imageURL: null
+            },
             saving: false,
             saved: false
         }),
 
         computed: mapGetters({
-            auth: 'auth/user'
+            auth: 'auth/user',
+            countries: 'settings/countries',
+            states: 'settings/states',
+            niches: 'settings/niches',
+            userDetail: 'settings/userDetail',
         }),
-
-        mounted() {
-            this.user = Object.assign(this.user, this.auth)
-        },
         methods:{
-            uploadImage() {
-                this.saving = true;
-                setTimeout(() => this.savedAvatar(), 1000)
+            ...mapActions({
+                getCountries: 'settings/getCountries',
+                getStates: 'settings/getStates',
+                getNiches: 'settings/getNiches',
+                getUserDetail: 'settings/getUserDetail',
+                saveUserDetail: 'settings/saveUserDetail'
+            }),
+            getLogo(){
+                this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userDetail.picture});
             },
-            savedAvatar() {
-                this.saving = false;
-                this.saved = true;
+            async submit() {
+                this.loading = true
+                this.form.userDetail = this.userDetail;
+                console.log(this.form);
+                let formData = new FormData();
+                formData.append("user", JSON.stringify(this.form));
+                formData.append("logo", this.file.imageFile);
+
+                let response = await this.saveUserDetail(formData);
+                if(response !== undefined) {
+                    this.$toast.success('Your profile successfully updated.')
+                }
+                this.loading = false
+
             }
         },
-        watch:{
-            avatar: {
-                handler: function() {
-                    this.saved = false
-                },
-                deep: true
+        async mounted() {
+            this.form = Object.assign(this.form, this.auth);
+            await this.getUserDetail();
+            await this.getCountries();
+            await this.getNiches();
+            if(this.userDetail.state_id !== null) {
+                await this.getStates(this.userDetail.country_id);
+                this.getLogo();
             }
+            console.log(this.userDetail);
         }
     }
 </script>
