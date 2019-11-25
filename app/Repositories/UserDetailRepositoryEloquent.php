@@ -69,7 +69,7 @@ class UserDetailRepositoryEloquent extends BaseRepository implements UserDetailR
                 'address' => $request->input('userDetail.address'),
                 'timezone' => $request->input('userDetail.timezone'),
                 'picture' => ($request->file('logo')) ? $name : $request->input('userDetail.picture'),
-                'niche' => $request->input('userDetail.niche'),
+                'niche_id' => $request->input('userDetail.niche_id'),
                 'state_id' => $request->input('userDetail.state_id'),
                 'country_id' => $request->input('userDetail.country_id'),
                 'website' => $request->input('userDetail.website'),

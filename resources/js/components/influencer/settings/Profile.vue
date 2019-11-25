@@ -226,7 +226,6 @@
             async submit() {
                 this.loading = true
                 this.form.userDetail = this.userDetail;
-                console.log(this.form);
                 let formData = new FormData();
                 formData.append("user", JSON.stringify(this.form));
                 formData.append("logo", this.file.imageFile);
@@ -248,7 +247,6 @@
                 await this.getStates(this.userDetail.country_id);
                 this.getLogo();
             }
-            console.log(this.userDetail);
         }
     }
 </script>

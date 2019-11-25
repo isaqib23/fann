@@ -75,7 +75,7 @@ class UserDetailsController extends Controller
                 'userDetail.bio'        => 'required|string|max:191',
                 'userDetail.address'    => 'required',
                 'logo'                  => 'required',
-                'userDetail.niche'      => 'required',
+                'userDetail.niche_id'      => 'required',
                 'userDetail.timezone'   => 'required',
                 'userDetail.state_id'   => 'required',
                 'userDetail.country_id' => 'required',

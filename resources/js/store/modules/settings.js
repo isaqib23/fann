@@ -141,7 +141,7 @@ let SettingAxios = class {
                 return resp.data.countries;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -151,7 +151,7 @@ let SettingAxios = class {
                 return resp.data.states;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -161,7 +161,7 @@ let SettingAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -171,7 +171,7 @@ let SettingAxios = class {
                 return resp.data.details;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -181,7 +181,7 @@ let SettingAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -191,7 +191,7 @@ let SettingAxios = class {
                 return resp.data.cards;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -201,7 +201,7 @@ let SettingAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -211,7 +211,7 @@ let SettingAxios = class {
                 return resp.data.details;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -221,7 +221,7 @@ let SettingAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -231,7 +231,7 @@ let SettingAxios = class {
                 return resp.data.details;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -241,7 +241,7 @@ let SettingAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 

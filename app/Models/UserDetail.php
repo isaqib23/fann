@@ -25,7 +25,7 @@ class UserDetail extends Model implements Transformable
         'bio',
         'address',
         'picture',
-        'niche',
+        'niche_id',
         'timezone',
         'state_id',
         'country_id',
