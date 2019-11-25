@@ -235,7 +235,6 @@
                 } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2) {
                     this.campaignPlacement.paymentType = 'barter';
                     this.disabledPaid = true;
-
                 } else if (this.campaignObjective.ObjectiveId == 3) {
                     this.campaignPlacement.paymentType = 'paid';
                     this.disabledBarter = true;
