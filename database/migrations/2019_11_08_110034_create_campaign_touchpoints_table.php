@@ -32,8 +32,6 @@ class CreateCampaignTouchPointsTable extends Migration
             $table->foreign('barter_product')->references('id')->on('campaign_touch_point_products');
             $table->foreign('campaign_id')->references('id')->on('campaigns');
             $table->foreign('placement_id')->references('id')->on('placements');
-
-
 		});
 	}
 
@@ -44,6 +42,8 @@ class CreateCampaignTouchPointsTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('campaign_touch_points');
+        Schema::enableForeignKeyConstraints();
 	}
 }
