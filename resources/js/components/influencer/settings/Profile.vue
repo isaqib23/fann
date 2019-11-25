@@ -148,7 +148,7 @@
                                         append-icon="keyboard_arrow_down"
                                         v-model="userDetail.country_id"
                                         item-text="name"
-                                        @change="getStates(userDetail.country_id)"
+                                        @change="getStates(userDetail)"
                                         item-value="id"
                                     ></v-autocomplete>
                                     <label class="font-weight-bold">State</label>

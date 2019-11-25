@@ -63,9 +63,10 @@ class UserDetailRepositoryEloquent extends BaseRepository implements UserDetailR
         }
 
         return $this->updateOrCreate(
-            ['id' => $request->input('user_id')],
+            ['user_id' => $request->input('user_id')],
             [
                 'bio' => $request->input('userDetail.bio'),
+                'user_id' => $request->input('user_id'),
                 'address' => $request->input('userDetail.address'),
                 'timezone' => $request->input('userDetail.timezone'),
                 'picture' => ($request->file('logo')) ? $name : $request->input('userDetail.picture'),

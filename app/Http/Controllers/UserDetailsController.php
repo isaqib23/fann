@@ -75,7 +75,7 @@ class UserDetailsController extends Controller
             $rules = [
                 'userDetail.bio' => 'required|string|max:191',
                 'userDetail.address'=> 'required',
-                'userDetail.picture'=> 'required',
+                'logo'=> 'required',
                 'userDetail.niche'=> 'required',
                 'userDetail.timezone'=> 'required',
                 'userDetail.state_id'=> 'required',
@@ -89,14 +89,13 @@ class UserDetailsController extends Controller
             $request->merge([
                 'user_id' => auth()->user()->id,
             ]);
-            $userDetail = $this->repository->store(['user_id' => auth()->user()->id],$request->all());
+            //dd($request->all());
+            //echo "<pre>";print_r($request->all());exit;
+            $userDetail = $this->repository->store($request);
 
-            $response = [
-                'message' => 'UserDetail created.',
-                'data'    => $userDetail->toArray(),
-            ];
-
-            return response()->json($response);
+            return response()->json([
+                'details'    => $userDetail,
+            ]);
 
         } catch (ValidatorException $e) {
             return response()->json([

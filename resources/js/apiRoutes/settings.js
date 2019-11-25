@@ -6,7 +6,9 @@ let setting = {
     getNiches          : 'getNiches',
     addFunds           : 'addFunds',
     getUserDetail      : 'getUserDetail',
-    saveUserDetail     : 'saveUserDetail'
+    saveUserDetail     : 'saveUserDetail',
+    getUserCompany     : 'getUserCompany',
+    saveUserCompany     : 'saveUserCompany'
 };
 
 export default setting;

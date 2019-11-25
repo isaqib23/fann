@@ -51,17 +51,17 @@ class CompanyRepositoryEloquent extends BaseRepository implements CompanyReposit
         }
 
         return $this->updateOrCreate(
-            ['id' => $request->input('company_user.company.id')],
+            ['id' => $request->input('userComapny.id')],
             [
-                'name' => $request->input('company_user.company.name'),
-                'address' => $request->input('company_user.company.address'),
-                'timezone' => $request->input('company_user.company.timezone'),
-                'logo' => ($request->file('logo')) ? $name : $request->input('company_user.company.logo'),
-                'niche' => $request->input('company_user.company.niche'),
-                'state_id' => $request->input('company_user.company.state_id'),
-                'country_id' => $request->input('company_user.company.country_id'),
-                'website' => $request->input('company_user.company.website'),
-                'phone' => $request->input('company_user.company.phone'),
+                'name' => $request->input('userComapny.name'),
+                'address' => $request->input('userComapny.address'),
+                'timezone' => $request->input('userComapny.timezone'),
+                'logo' => ($request->file('logo')) ? $name : $request->input('userComapny.logo'),
+                'niche' => $request->input('userComapny.niche'),
+                'state_id' => $request->input('userComapny.state_id'),
+                'country_id' => $request->input('userComapny.country_id'),
+                'website' => $request->input('userComapny.website'),
+                'phone' => $request->input('userComapny.phone'),
             ]);
 
     }

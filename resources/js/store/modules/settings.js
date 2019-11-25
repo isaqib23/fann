@@ -19,6 +19,17 @@ export const state = {
         address     : null,
         country_id  : null,
         state_id    : null
+    },
+    userComapny:{
+        name        : null,
+        logo        : null,
+        website     : null,
+        niche       : null,
+        phone       : null,
+        timezone    : null,
+        address     : null,
+        country_id  : null,
+        state_id    : null
     }
 }
 
@@ -39,7 +50,14 @@ export const mutations = {
         state.cards = payload
     },
     getUserDetail(state, payload) {
-        state.userDetail = payload
+        if(payload !== null) {
+            state.userDetail = payload
+        }
+    },
+    getUserCompany(state, payload) {
+        if(payload !== null) {
+            state.userComapny = payload
+        }
     },
 }
 
@@ -90,6 +108,14 @@ export const actions = {
 
         return await SettingAxios.saveUserDetail(payload);
     },
+    async getUserCompany({ commit }, payload) {
+
+        commit('getUserCompany', await SettingAxios.getUserCompany());
+    },
+    async saveUserCompany({ commit }, payload) {
+
+        return await SettingAxios.saveUserCompany(payload);
+    },
 }
 
 /**
@@ -100,7 +126,8 @@ export const getters = {
     states: state => state.states,
     niches: state => state.niches,
     cards: state => state.cards,
-    userDetail: state => state.userDetail
+    userDetail: state => state.userDetail,
+    userComapny: state => state.userComapny
 }
 
 /**
@@ -190,6 +217,26 @@ let SettingAxios = class {
 
     static saveUserDetail (payload) {
         return axios.post(api.path('setting.saveUserDetail'),payload)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
+    }
+
+    static getUserCompany () {
+        return axios.get(api.path('setting.getUserCompany'))
+            .then(resp => {
+                return resp.data.details;
+            })
+            .catch(err => {
+                console.info(err.response.data.errors);
+            });
+    }
+
+    static saveUserCompany (payload) {
+        return axios.post(api.path('setting.saveUserCompany'),payload)
             .then(resp => {
                 return resp.data;
             })
