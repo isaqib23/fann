@@ -33,6 +33,10 @@ class CreateCampaignPaymentsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('campaign_payments');
+
+        Schema::disableForeignKeyConstraints();
+        Schema::drop('campaign_payments');
+        Schema::enableForeignKeyConstraints();
+
 	}
 }

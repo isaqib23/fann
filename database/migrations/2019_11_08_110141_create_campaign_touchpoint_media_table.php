@@ -24,8 +24,6 @@ class CreateCampaignTouchPointMediaTable extends Migration
             $table->timestamps();
 
             $table->foreign('campaign_touch_point_id')->references('id')->on('campaign_touch_points');
-
-
 		});
 	}
 
@@ -36,6 +34,8 @@ class CreateCampaignTouchPointMediaTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('campaign_touch_point_media');
+        Schema::disableForeignKeyConstraints();
+        Schema::drop('campaign_touch_point_media');
+        Schema::enableForeignKeyConstraints();
 	}
 }
