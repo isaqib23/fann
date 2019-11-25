@@ -76,12 +76,10 @@
                                 </v-flex>
                             </v-row>
 
-                            <v-card flat class="mx-auto"
-                            >
+                            <v-card flat class="mx-auto">
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Suggested Caption</strong></div>
                                 </v-card-title>
-
                                 <v-textarea
                                     v-model="touchPoint.caption"
                                     label="Write suggested caption here!"
@@ -108,6 +106,8 @@
                                         </v-flex>
                                         <v-flex xl11 lg11 md11 sm11 xs10>
                                             <v-text-field
+                                                v-model="touchPoint.guideLines[n]"
+                                                :count="n"
                                                 label="For e.g: please follow our brand"
                                                 solo
                                                 dense
@@ -239,6 +239,7 @@
 <script>
     import ImageInput from '../../../../general/ImageInput';
     import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
+    import {mapGetters, mapActions, mapMutations} from 'vuex';
 
     export default {
         components: {
@@ -270,9 +271,17 @@
                touchPointProducts : [],
 
                campaignDescription : null,
+               caption : '',
+               guideLineNumber : 0
             }
         },
         methods: {
+            ...mapMutations({
+                setTouchPoint : 'campaign/setTouchPoint'
+            }),
+            ...mapActions({
+                saveTouchPoint: 'campaign/saveTouchPoint'
+            }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
@@ -285,9 +294,12 @@
                 }
                 this.currentTab = this.currentTab - 1;
             },
-            addTouchPoint() {
-                this.tabsLength = this.tabsLength + 1;
-                this.currentTab = this.currentTab + 1;
+            async addTouchPoint() {
+               let response =  await this.saveTouchPoint();
+               if (response) {
+                   this.tabsLength = this.tabsLength + 1;
+                   this.currentTab = this.currentTab + 1;
+               }
             },
             removeTouchPooint() {
                 if (this.tabsLength === 1) {
@@ -309,12 +321,60 @@
                 let self = this;
                 let targetInput = `${ e.bindTo }`;
                 self.touchPointProducts[targetInput] = e.item;
+                this.setTouchPoint([targetInput, e.item]);
                 console.info(self.touchPointProducts);
             }
-
         },
-        watch () {
-
+        watch: {
+            'touchPoint.caption' : {
+                handler: function(val) {
+                    this.setTouchPoint(['caption', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.hashtags' : {
+                handler: function(val) {
+                    this.setTouchPoint(['hashtags', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.mentions' : {
+                handler: function(val) {
+                    this.setTouchPoint(['mentions', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.guideLines': {
+                handler: function(val) {
+                    this.setTouchPoint(['guideLines', _.values(val)]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.amount': {
+                handler: function(val) {
+                    this.setTouchPoint(['amount', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.name': {
+                handler: function(val) {
+                    this.setTouchPoint(['name', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'campaignDescription': {
+                handler: function(val) {
+                    this.setTouchPoint(['campaignDescription', val]);
+                },
+                immediate: true,
+                deep: true
+            }
         }
     }
 </script>

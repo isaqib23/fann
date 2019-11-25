@@ -92,7 +92,16 @@
                    platform:null,
                    type:null
                },
-               touchPoint : {},
+               touchPoint : {
+                   caption: null,
+                   hashtags: null,
+                   mentions: null,
+                   guideLines : [],
+                   dispatchProduct : {},
+                   barterProduct : {},
+                   amount : 0,
+                   campaignDescription : null
+               },
             }
         },
         methods: {},

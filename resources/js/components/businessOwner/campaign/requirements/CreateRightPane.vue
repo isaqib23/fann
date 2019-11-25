@@ -108,8 +108,16 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12>
-                            <v-btn class="ma-3 text-capitalize" color="grey lighten-2" depressed height="42">#Hashtag 1</v-btn>
-                            <v-btn class="ma-3 text-capitalize" color="grey lighten-2" depressed height="42">#Hashtag 1</v-btn>
+                            <v-btn
+                                   v-for="(hashtag, index) in hashtags"
+                                   :key="index"
+                                   v-if="hashtag"
+                                   class="ma-3 text-capitalize"
+                                   color="grey lighten-2"
+                                   depressed height="42"
+                            >
+                                #{{hashtag}}
+                            </v-btn>
                         </v-flex>
                     </v-layout>
                 </v-card>
@@ -126,8 +134,17 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12>
-                            <v-btn class="ma-3 text-lowercase" color="grey lighten-2" depressed height="42">@Mentions 1</v-btn>
-                            <v-btn class="ma-3 text-lowercase" color="grey lighten-2" depressed height="42">@Mentions 2</v-btn>
+                            <v-btn
+                                v-for="(mention, index) in mentions"
+                                :key="index"
+                                v-if="mention"
+                                class="ma-3 text-lowercase"
+                                color="grey lighten-2"
+                                depressed height="42"
+                            >
+                                @{{mention}}
+                            </v-btn>
+
                         </v-flex>
                     </v-layout>
                 </v-card>
@@ -144,7 +161,7 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
-                            <p class="ma-0" :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'"> {{touchPoint.caption}}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p class="ma-0" :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'">{{ touchPoint.caption }}</p>
                         </v-flex>
                     </v-layout>
                 </v-card>
@@ -207,17 +224,15 @@
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
                             <v-list>
                                 <v-list-item
-                                    v-for="item in list_items"
-                                    :key="item.title"
-                                    @click=""
+                                    v-for="(guideline, guidelineIndex) in touchPoint.guideLines"
+                                    :key="guidelineIndex"
                                 >
                                     <v-list-item-icon class="mr-0">
-                                        <strong class="primary--text">{{item.number}}.</strong>
+                                        <strong class="primary--text">{{ guidelineIndex }}.</strong>
                                     </v-list-item-icon>
                                     <v-list-item-content>
                                         <v-list-item-subtitle>
-
-                                            {{item.title}}
+                                            {{ guideline }}
                                         </v-list-item-subtitle>
                                     </v-list-item-content>
                                 </v-list-item>
@@ -226,29 +241,45 @@
                     </v-layout>
                 </v-card>
             </v-flex>
-
-
-
         </v-card>
     </v-flex>
 </template>
 
 <script>
+    import {mapGetters, mapActions, mapMutations} from 'vuex';
     export default {
         components: {
 
         },
         data: () => {
            return  {
-               list_items: [
-                   { number: 1, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-                   { number: 2, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
-                   { number: 3, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'}
-               ],
+               hashtags : null,
+               mentions : null,
             }
         },
         methods: {
 
+        },
+        computed: {
+            ...mapGetters({
+                touchPoint: 'campaign/touchPoint'
+            })
+        },
+        watch : {
+            'touchPoint.hashtags' : {
+                handler: function(newVal, oldVal) {
+                    this.hashtags = newVal.split(',');
+                 },
+                immediate: false,
+                deep: false
+            },
+            'touchPoint.mentions' : {
+                handler: function(newVal, oldVal) {
+                    this.mentions = newVal.split(',');
+                },
+                immediate: false,
+                deep: false
+            }
         }
     }
 </script>
