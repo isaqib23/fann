@@ -19,7 +19,7 @@ class UserMeta extends Model implements Transformable
      * @var array
      */
     protected $casts = [
-        'meta_json'         => 'array'
+        'meta_json' => 'array'
     ];
 
     /**

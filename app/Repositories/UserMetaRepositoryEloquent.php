@@ -43,7 +43,6 @@ class UserMetaRepositoryEloquent extends BaseRepository implements UserMetaRepos
      */
     public function store($data)
     {
-
         return $this->updateOrCreate(
             [
                 'user_id' => $data->user_id
