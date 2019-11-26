@@ -227,14 +227,14 @@
                                     v-for="(guideline, guidelineIndex) in touchPoint.guideLines"
                                     :key="guidelineIndex"
                                 >
-                                    <v-list-item-icon class="mr-0">
-                                        <strong class="primary--text">{{ guidelineIndex }}.</strong>
-                                    </v-list-item-icon>
-                                    <v-list-item-content>
-                                        <v-list-item-subtitle>
-                                            {{ guideline }}
-                                        </v-list-item-subtitle>
-                                    </v-list-item-content>
+                                        <v-list-item-icon class="mr-0" v-if="guidelineIndex != 0">
+                                            <strong class="primary--text">{{ guidelineIndex }}.</strong>
+                                        </v-list-item-icon>
+                                        <v-list-item-content v-if="guidelineIndex != 0">
+                                            <v-list-item-subtitle>
+                                                {{ guideline }}
+                                            </v-list-item-subtitle>
+                                        </v-list-item-content>
                                 </v-list-item>
                             </v-list>
                         </v-flex>

@@ -11,7 +11,7 @@ use App\Models\CampaignTouchPoint;
 use App\Validators\CampaignTouchpointValidator;
 
 /**
- * Class CampaignTouchpointRepositoryEloquent.
+ * Class CampaignTouchPointRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
@@ -21,26 +21,35 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
      * @var CampaignTouchPointProductRepository
      */
     private $campaignTouchPointProductRepository;
+
     /**
      * @var CampaignTouchPointAdditionalRepositoryEloquent
      */
     private $campaignTouchPointAdditionalRepositoryEloquent;
 
     /**
+     * @var CampaignPaymentRepositoryEloquent
+     */
+    private $campaignPaymentRepositoryEloquent;
+
+    /**
      * CampaignTouchPointRepositoryEloquent constructor.
      * @param Application $app
      * @param CampaignTouchPointProductRepository $campaignTouchPointProductRepository
      * @param CampaignTouchPointAdditionalRepositoryEloquent $campaignTouchPointAdditionalRepositoryEloquent
+     * @param CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent
      */
     public function __construct(
         Application $app,
         CampaignTouchPointProductRepository $campaignTouchPointProductRepository,
-        CampaignTouchPointAdditionalRepositoryEloquent $campaignTouchPointAdditionalRepositoryEloquent
+        CampaignTouchPointAdditionalRepositoryEloquent $campaignTouchPointAdditionalRepositoryEloquent,
+        CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent
     )
     {
         parent::__construct($app);
         $this->campaignTouchPointProductRepository = $campaignTouchPointProductRepository;
         $this->campaignTouchPointAdditionalRepositoryEloquent = $campaignTouchPointAdditionalRepositoryEloquent;
+        $this->campaignPaymentRepositoryEloquent = $campaignPaymentRepositoryEloquent;
     }
 
     /**
@@ -61,30 +70,45 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public function saveCampaignInHierarchy($data)
+    public function saveInHierarchy($data)
     {
         $barterProduct = $dispatchProduct =  null;
         $touchPoint = $data['touchPoint'];
 
+        //---- dispatch product
         if (!empty($touchPoint['dispatchProduct'])) {
             $dispatchProduct = $this->campaignTouchPointProductRepository->store($touchPoint['dispatchProduct']);
         }
 
+        //---- shipment product
         if (!empty($touchPoint['barterProduct'])) {
             $barterProduct = $this->campaignTouchPointProductRepository->store($touchPoint['barterProduct']);
         }
 
-        $savedTouchPoint =  $this->updateOrCreate([],[
-            'name'              => $touchPoint['caption'],
-            'description'       => $touchPoint['name'],
-            'dispatch_product'  => $dispatchProduct->id,
-            'barter_product'    => $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id,
-            'campaign_id'       => $data['id'],
-            'placement_id'      => $data['payment']['platform'],
-            'amount'            => $touchPoint['amount']
+        //---- multiple Payments
+        if (!empty($data['payment'])) {
+            $barterProduct = $this->campaignPaymentRepositoryEloquent->storeMultiple($data['payment'], $data['campaignId']);
+        }
+
+        //---- Touch Point
+        $savedTouchPoint =  $this->create([
+            'name'                => $touchPoint['caption'],
+            'description'         => $touchPoint['name'],
+            'dispatch_product'    => $dispatchProduct->id,
+            'barter_product'      => $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id,
+            'campaign_id'         => $data['campaignId'],
+            'placement_id'        => $data['payment']['platform'],
+            'barter_as_dispatch'  => 1,
+            'amount'              => $touchPoint['amount']
         ]);
 
-        $this->campaignTouchPointAdditionalRepositoryEloquent->store($data, (array) $savedTouchPoint);
+        //---- additionals
+        $this->campaignTouchPointAdditionalRepositoryEloquent->store($touchPoint, $savedTouchPoint);
+
+
+        //---- actions
+
+
     }
 
 }

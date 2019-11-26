@@ -294,25 +294,14 @@
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
             this.setPayment();
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
-
         },
-
         methods: {
             ...mapMutations({
                 setTouchPoint : 'campaign/setTouchPoint'
             }),
-            setPayment(){
-                if (this.paymentMethod.paymentType == 'barter' && this.paymentMethod.additionalPayAsAmount == false) {
-                    this.disabledPaid = true;
-                    this.disabledBarter = false;
-                } else if (this.paymentMethod.paymentType == 'paid' && this.paymentMethod.additionalPayAsBarter == false) {
-                    this.disabledBarter = true;
-                    this.disabledPaid = false;
-                } else {
-                    this.disabledBarter = false;
-                    this.disabledPaid = false;
-                }
-            },
+            ...mapActions({
+                saveTouchPoint: 'campaign/saveTouchPoint'
+            }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
@@ -354,6 +343,18 @@
                 self.touchPointProducts[targetInput] = e.item;
                 this.setTouchPoint([targetInput, e.item]);
                 console.info(self.touchPointProducts);
+            },
+            setPayment() {
+                if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
+                    this.disabledPaid = true;
+                    this.disabledBarter = false;
+                } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
+                    this.disabledBarter = true;
+                    this.disabledPaid = false;
+                } else {
+                    this.disabledBarter = false;
+                    this.disabledPaid = false;
+                }
             }
         },
         watch: {
@@ -382,7 +383,7 @@
                 handler: function(val) {
                     this.setTouchPoint(['guideLines', _.values(val)]);
                 },
-                immediate: true,
+                immediate: false,
                 deep: true
             },
             'touchPoint.amount': {

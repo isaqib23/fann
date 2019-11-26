@@ -316,14 +316,14 @@ class CampaignsController extends Controller
     {
         $data = $request->all();
 
-dd($data, $data['touchPoint']['campaignDescription']);
+///dd($data, $data['touchPoint']['campaignDescription']);
 
         $this->repository->update(
             [ 'description' => $data['touchPoint']['campaignDescription'] ],
-            $request['campaignId']
+            $data['campaignId']
         );
 
-        $this->campaignTouchPointRepository->saveCampaignInHierarchy($data);
+        $this->campaignTouchPointRepository->saveInHierarchy($data);
     }
 
 }
