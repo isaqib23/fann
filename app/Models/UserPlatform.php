@@ -7,11 +7,11 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class CampaignTouchPointPlacement.
+ * Class UserPlatform.
  *
  * @package namespace App\Models;
  */
-class CampaignTouchPointPlacement extends Model implements Transformable
+class UserPlatform extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -20,6 +20,9 @@ class CampaignTouchPointPlacement extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'slug'
+    ];
 
 }

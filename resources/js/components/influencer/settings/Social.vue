@@ -11,13 +11,13 @@
 
                         <v-row justify="start">
                             <v-col class="px-0" cols="12" sm="6" md="4">
-                                <v-card max-width="285">
+                                <v-card max-width="285" @click="goToLogin('instagram')">
                                     <v-list-item>
-                                        <v-list-item-avatar color="blue" class="mr-2">
-                                            <v-icon color="white">mdi-facebook</v-icon>
+                                        <v-list-item-avatar color="primary" class="mr-2">
+                                            <v-icon color="white">mdi-instagram</v-icon>
                                         </v-list-item-avatar>
                                         <v-list-item-content>
-                                            <v-list-item-title class="headline">Facebook</v-list-item-title>
+                                            <v-list-item-title class="headline">Instagram</v-list-item-title>
                                             <v-list-item-subtitle>Connected account</v-list-item-subtitle>
                                         </v-list-item-content>
                                         <v-icon color="success" class="mt-n5">mdi-check-circle</v-icon>
@@ -36,7 +36,7 @@
                                 </v-card>
                             </v-col>
                             <v-col class="px-0 ml-n10" cols="12" sm="6" md="4">
-                                <v-card max-width="285">
+                                <v-card max-width="285" @click="goToLogin('youtube')">
                                     <v-list-item>
                                         <v-list-item-avatar color="red" class="mr-2">
                                             <v-icon color="white">mdi-youtube</v-icon>
@@ -79,7 +79,8 @@
 
 <script>
     import {mapGetters} from 'vuex'
-
+    import { api } from '~/config'
+    import NProgress from 'nprogress';
     export default {
         data: () => ({
             rules: [
@@ -89,12 +90,30 @@
             user: {
                 name: null,
                 email: null,
-            }
+            },
+            route: { type: '/dfdsfdsf', required: true }
         }),
 
         computed: mapGetters({
             auth: 'auth/user'
         }),
+        methods:{
+            goToLogin(provider){
+                NProgress.start();
+                console.log(provider);
+                axios.post(api.path('setting.socialLogin'),{"provider":provider})
+                    .then(res => {
+                        //window.location.href = res.data.url;
+                    })
+                    .catch(err => {
+                        NProgress.done();
+                        this.handleErrors(err.response.data.errors)
+                    })
+                    .then(() => {
+                        NProgress.done();
+                    })
+            }
+        },
 
         mounted() {
             this.user = Object.assign(this.user, this.auth)

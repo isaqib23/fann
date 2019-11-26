@@ -53,12 +53,14 @@ class ProfileController extends Controller
             'last_name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,' . $request->user()->id,
             'password' => 'nullable|string|min:6|confirmed',
-            'company_user.company.name' => 'required|string|max:191',
-            'company_user.company.website' => 'required|url',
-            'company_user.company.phone' => 'required|numeric',
-            'company_user.company.address' => 'required',
-            'company_user.company.state_id' => 'required',
-            'company_user.company.country_id' => 'required'
+            'logo'=> 'required',
+            'userCompany.name' => 'required|string|max:191',
+            'userCompany.website' => 'required|url',
+            'userCompany.phone' => 'required|numeric',
+            'userCompany.address' => 'required',
+            'userCompany.state_id' => 'required',
+            'userCompany.country_id' => 'required',
+            'userCompany.niche_id' => 'required'
         ];
 
         $this->validate($request, $rules);

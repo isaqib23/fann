@@ -28,11 +28,8 @@ class LoginController extends Controller
     public function me()
     {
         $user = auth()->user();
-        if(auth()->user()->CompanyUser !=null) {
-            $company = auth()->user()->CompanyUser->company;
-        }
 
-        return response()->json(compact('user','company'));
+        return response()->json(compact('user'));
     }
 
      /**
@@ -50,11 +47,8 @@ class LoginController extends Controller
         }
 
         $user = $request->user();
-        if(auth()->user()->CompanyUser !=null) {
-            $company = auth()->user()->CompanyUser->company;
-        }
 
-        return response()->json(compact('token', 'user', 'company'));
+        return response()->json(compact('token', 'user'));
     }
 
     /**

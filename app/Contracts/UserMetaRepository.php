@@ -5,11 +5,11 @@ namespace App\Contracts;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface CampaignTouchPointPlacementRepository.
+ * Interface UserMetaRepository.
  *
  * @package namespace App\Contracts;
  */
-interface CampaignTouchPointPlacementRepository extends RepositoryInterface
+interface UserMetaRepository extends RepositoryInterface
 {
     //
 }

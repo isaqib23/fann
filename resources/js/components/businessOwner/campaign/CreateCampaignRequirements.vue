@@ -13,11 +13,11 @@
                         <SetupLeftPane></SetupLeftPane>
                     </v-tab-item>-->
                     <v-tab-item>
-                        <UnboxingCampaign :touch-point="touchPoint" v-if="campaignObjective.ObjectiveId == 1"></UnboxingCampaign>
-                        <contestsGiveways v-else-if="campaignObjective.ObjectiveId == 2"></contestsGiveways>
-                        <productReview v-else-if="campaignObjective.ObjectiveId == 3"></productReview>
-                        <brandShoutOut v-else-if="campaignObjective.ObjectiveId == 4 || campaignObjective.id == 5"></brandShoutOut>
-                        <SponsoredContent v-else-if="campaignObjective.ObjectiveId == 6"></SponsoredContent>
+                        <UnboxingCampaign :objective="campaignObjective" :touch-point="touchPoint" v-if="campaignObjective.ObjectiveId == 1"></UnboxingCampaign>
+                        <productReview :objective="campaignObjective" :touch-point="touchPoint" v-else-if="campaignObjective.ObjectiveId == 2"></productReview>
+                        <contestsGiveways :objective="campaignObjective" :touch-point="touchPoint" v-else-if="campaignObjective.ObjectiveId == 3"></contestsGiveways>
+                        <brandShoutOut :objective="campaignObjective" :touch-point="touchPoint" v-else-if="campaignObjective.ObjectiveId == 4 || campaignObjective.id == 5"></brandShoutOut>
+                        <SponsoredContent :objective="campaignObjective" :touch-point="touchPoint" v-else-if="campaignObjective.ObjectiveId == 6"></SponsoredContent>
 
                         <CreateLeftPane v-else></CreateLeftPane>
                     </v-tab-item>
@@ -26,7 +26,7 @@
                     </v-tab-item>
                     <v-tab-item class="full_width">
                         <Promote></Promote>
-                    </v-tab-item>a
+                    </v-tab-item>
                 </v-tabs>
             </v-card>
         </v-flex>

@@ -164,7 +164,6 @@ return [
         \App\Providers\RepositoryServiceProvider::class,
         App\Providers\RocketShopify\ShopifyServiceProvider::class,
         MartinLindhe\VueInternationalizationGenerator\GeneratorProvider::class,
-        \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*
          * Package Service Providers...
