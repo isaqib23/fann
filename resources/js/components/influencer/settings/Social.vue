@@ -103,7 +103,7 @@
                 console.log(provider);
                 axios.post(api.path('setting.socialLogin'),{"provider":provider})
                     .then(res => {
-                        //window.location.href = res.data.url;
+                        window.location.href = res.data.url;
                     })
                     .catch(err => {
                         NProgress.done();

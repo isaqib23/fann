@@ -18,87 +18,81 @@ class YoutubeService
     private $youtube;
 
     /**
+     * @var Youtube
+     */
+    private $google;
+
+    /**
+     * @var
+     */
+    private $access_token;
+
+    /**
      * YoutubeService constructor.
      */
     public function __construct()
     {
-        $this->youtube = new Youtube([
-            'key' => config('services.youtube.key')
+        $this->google = new \Google_Client();
+        $this->google->setAuthConfig(public_path(env('YOUTUBE_CLIENT_CREDENTIALS_PATH')));
+
+        $this->google->addScope([
+            \Google_Service_YouTube::YOUTUBE,
+            \Google_Service_YouTube::YOUTUBE_FORCE_SSL,
+            \Google_Service_YouTube::YOUTUBE_READONLY,
+            //\Google_Service_YouTube_ChannelAuditDetails::class
         ]);
+        $this->google->setScopes(['profile']);
+
+        $this->google->setRedirectUri(env('YOUTUBE_REDIRECT_URI'));
+
     }
 
     /**
-     * @param string $video_id
-     * @return JsonResponse
-     * @throws Exception
+     *
+     * @param $user_id
+     * @return string
      */
-    public function getVideoInfo(string $video_id): JsonResponse
+    public function getAuthUrl($user_id)
     {
-        return response()->json($this->youtube->getVideoInfo($video_id));
+        $this->google->setState($user_id);
+
+        return $this->google->createAuthUrl();
     }
 
     /**
-     * @param string $channel_id
-     * @return JsonResponse
-     * @throws Exception
+     * @param $code
+     * @return mixed
      */
-    public function getChannelById(string $channel_id): JsonResponse
+    public function authenticateToken($code)
     {
-        return response()->json($this->youtube->getChannelById($channel_id));
+        return $this->google->authenticate($code);
     }
 
     /**
-     * @param string $channel_url
-     * @return JsonResponse
-     * @throws Exception
+     * @param $token
      */
-    public function getChannelFromURL(string $channel_url): JsonResponse
+    public function setAccessToken($token)
     {
-        return response()->json($this->youtube->getChannelFromURL($channel_url));
+        $this->google->setAccessToken($token);
+    }
+
+    public function getUserInfo(){
+
+        $userInfo = new \Google_Service_Oauth2($this->google);
+
+        return $userInfo->userinfo->get();
+
     }
 
     /**
-     * @param string $string
-     * @return JsonResponse
-     * @throws Exception
-     * @description Search playlists, channels and videos
+     * @return
      */
-    public function search(string $string): JsonResponse
+    public function getChannelsList()
     {
-        return response()->json($this->youtube->search($string));
-    }
-
-    /**
-     * @param string $string
-     * @return JsonResponse
-     * @throws Exception
-     * @description Search only Videos
-     */
-    public function searchVideos(string $string): JsonResponse
-    {
-        return response()->json($this->youtube->searchVideos($string));
-    }
-
-    /**
-     * @param string $string
-     * @param string $channel_id
-     * @param int $results
-     * @return JsonResponse
-     * @description Search only Videos in a given channel
-     */
-    public function searchChannelVideos(string $string, string $channel_id, int $results = 50): JsonResponse
-    {
-        return response()->json($this->youtube->searchChannelVideos($string, $channel_id, $results));
-    }
-
-    /**
-     * @param array $params
-     * @return JsonResponse
-     * @throws Exception
-     * @Params eg: ['q' => 'Android', 'type' => 'video', 'part' => 'id, snippet', 'maxResults' => 50]
-     */
-    public function searchAdvanced(array $params): JsonResponse
-    {
-        return response()->json($this->youtube->searchAdvanced($params));
+        $this->youtube = new \Google_Service_YouTube($this->google);
+        $queryParams = [
+            'mine' => true
+        ];
+        return $this->youtube->channels->listChannels('contentOwnerDetails,snippet,contentDetails,statistics', array('mine' => $queryParams));
     }
 }
