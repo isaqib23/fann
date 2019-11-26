@@ -73,7 +73,7 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::get('getUserCard', 'SettingsController@index')->name('user.get_cards');
         Route::get('getNiches', 'SettingsController@getNiches')->name('user.get_niches');
 
-        Route::post('login', 'UserPlatformsController@index');
+        Route::post('socialPlatformLogin', 'UserPlatformsController@index');
 
         Route::post('saveUserDetail', 'UserDetailsController@create')->name('user.saveUserDetail');
         Route::get('getUserDetail', 'UserDetailsController@index')->name('user.getUserDetail');
