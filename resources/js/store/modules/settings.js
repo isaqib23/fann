@@ -8,7 +8,29 @@ export const state = {
     countries: [],
     niches: [],
     states: [],
-    cards: []
+    cards: [],
+    userDetail: {
+        bio         : null,
+        picture     : null,
+        website     : null,
+        niche_id       : null,
+        phone       : null,
+        timezone    : null,
+        address     : null,
+        country_id  : null,
+        state_id    : null
+    },
+    userCompany:{
+        name        : null,
+        logo        : null,
+        website     : null,
+        niche_id       : null,
+        phone       : null,
+        timezone    : null,
+        address     : null,
+        country_id  : null,
+        state_id    : null
+    }
 }
 
 /**
@@ -26,6 +48,16 @@ export const mutations = {
     },
     getCards(state, payload) {
         state.cards = payload
+    },
+    getUserDetail(state, payload) {
+        if(payload !== null) {
+            state.userDetail = payload
+        }
+    },
+    getUserCompany(state, payload) {
+        if(payload !== null) {
+            state.userCompany = payload
+        }
     },
 }
 
@@ -67,6 +99,23 @@ export const actions = {
         await SettingAxios.saveUserCard(payload);
 
     },
+    async getUserDetail({commit}, payload) {
+
+        commit('getUserDetail', await SettingAxios.getUserDetail());
+
+    },
+    async saveUserDetail({ commit }, payload) {
+
+        return await SettingAxios.saveUserDetail(payload);
+    },
+    async getUserCompany({ commit }, payload) {
+
+        commit('getUserCompany', await SettingAxios.getUserCompany());
+    },
+    async saveUserCompany({ commit }, payload) {
+
+        return await SettingAxios.saveUserCompany(payload);
+    },
 }
 
 /**
@@ -76,7 +125,9 @@ export const getters = {
     countries: state => state.countries,
     states: state => state.states,
     niches: state => state.niches,
-    cards: state => state.cards
+    cards: state => state.cards,
+    userDetail: state => state.userDetail,
+    userCompany: state => state.userCompany
 }
 
 /**
@@ -90,7 +141,7 @@ let SettingAxios = class {
                 return resp.data.countries;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -100,7 +151,7 @@ let SettingAxios = class {
                 return resp.data.states;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -110,7 +161,7 @@ let SettingAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -120,7 +171,7 @@ let SettingAxios = class {
                 return resp.data.details;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -130,7 +181,7 @@ let SettingAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -140,7 +191,7 @@ let SettingAxios = class {
                 return resp.data.cards;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
             });
     }
 
@@ -150,7 +201,47 @@ let SettingAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return err.response.data.errors;
+            });
+    }
+
+    static getUserDetail () {
+        return axios.get(api.path('setting.getUserDetail'))
+            .then(resp => {
+                return resp.data.details;
+            })
+            .catch(err => {
+                return err.response.data.errors;
+            });
+    }
+
+    static saveUserDetail (payload) {
+        return axios.post(api.path('setting.saveUserDetail'),payload)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+                return err.response.data.errors;
+            });
+    }
+
+    static getUserCompany () {
+        return axios.get(api.path('setting.getUserCompany'))
+            .then(resp => {
+                return resp.data.details;
+            })
+            .catch(err => {
+                return err.response.data.errors;
+            });
+    }
+
+    static saveUserCompany (payload) {
+        return axios.post(api.path('setting.saveUserCompany'),payload)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err => {
+                return err.response.data.errors;
             });
     }
 

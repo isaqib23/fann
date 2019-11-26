@@ -39,6 +39,8 @@ class CreateUserCreditCardsTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('user_credit_cards');
+        Schema::enableForeignKeyConstraints();
 	}
 }
