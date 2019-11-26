@@ -36,7 +36,7 @@
 
         },
         methods: {
-            launchFilePicker(){
+            launchFilePicker() {
                 this.$refs.file.click();
             },
             onFileChange(fieldName, file) {

@@ -5,10 +5,12 @@ let setting = {
     getUserCard        : 'getUserCard',
     getNiches          : 'getNiches',
     addFunds           : 'addFunds',
+    socialLogin        : 'socialPlatformLogin',
     getUserDetail      : 'getUserDetail',
     saveUserDetail     : 'saveUserDetail',
     getUserCompany     : 'getUserCompany',
-    saveUserCompany     : 'saveUserCompany'
+    saveUserCompany    : 'saveUserCompany'
+
 };
 
 export default setting;

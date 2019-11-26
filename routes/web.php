@@ -32,6 +32,13 @@ Route::get('get-image', 'UploadZipsController@renderImage');
 Route::get('test_route', 'SettingsController@show');
 
 Route::post('upload-file', 'UploadZipsController@uploadFile');
+
+// ----- Social Login related routes
+Route::prefix('/social')->group(function () {
+    Route::get('instagram/callback', 'UserPlatformsController@handleProviderInstagramCallback');
+});
+
+
 Route::any('{all}', function () {
     return view('app');
 })->where(['all' => '.*']);
