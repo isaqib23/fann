@@ -28,11 +28,12 @@ trait ShopifyTrait
         $secret = env('SHOPIFY_API_SECRET');
 
         $token = $shop instanceof Shop ? $shop->token : $token;
+        $domain = $shop instanceof Shop ? $shop->domain : $shop;
 
         return \App::make('ShopifyAPI', [
             'API_KEY'       => $apikey,
             'API_SECRET'    => $secret,
-            'SHOP_DOMAIN'   => $shop->domain,
+            'SHOP_DOMAIN'   => $domain,
             'ACCESS_TOKEN'  => $token
         ]);
     }

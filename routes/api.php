@@ -72,6 +72,9 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('addFunds', 'SettingsController@addFundsToStripe')->name('user.addFunds');
         Route::get('getUserCard', 'SettingsController@index')->name('user.get_cards');
         Route::get('getNiches', 'SettingsController@getNiches')->name('user.get_niches');
+        Route::post('saveUserDetail', 'UserDetailsController@create')->name('user.saveUserDetail');
+        Route::get('getUserDetail', 'UserDetailsController@index')->name('user.getUserDetail');
+        Route::get('getUserCompany', 'CompanyUsersController@index')->name('user.getUserCompany');
     });
 
 

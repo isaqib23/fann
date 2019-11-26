@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
+use Illuminate\Http\Response;
 use App\Http\Requests\CompanyUserCreateRequest;
 use App\Http\Requests\CompanyUserUpdateRequest;
 use App\Contracts\CompanyUserRepository;
@@ -25,40 +24,31 @@ class CompanyUsersController extends Controller
     protected $repository;
 
     /**
-     * @var CompanyUserValidator
-     */
-    protected $validator;
-
-    /**
      * CompanyUsersController constructor.
      *
      * @param CompanyUserRepository $repository
-     * @param CompanyUserValidator $validator
      */
-    public function __construct(CompanyUserRepository $repository, CompanyUserValidator $validator)
+    public function __construct(CompanyUserRepository $repository)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $companyUsers = $this->repository->all();
+        $userCompany = null;
 
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $companyUsers,
-            ]);
+        if(auth()->user()->CompanyUser !=null) {
+            $userCompany = auth()->user()->CompanyUser->company;
         }
 
-        return view('companyUsers.index', compact('companyUsers'));
+        return response()->json([
+            'details' => $userCompany,
+        ]);
     }
 
     /**
@@ -66,9 +56,9 @@ class CompanyUsersController extends Controller
      *
      * @param  CompanyUserCreateRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws ValidatorException
      */
     public function store(CompanyUserCreateRequest $request)
     {
@@ -106,7 +96,7 @@ class CompanyUsersController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -127,7 +117,7 @@ class CompanyUsersController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -144,7 +134,7 @@ class CompanyUsersController extends Controller
      *
      * @return Response
      *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws ValidatorException
      */
     public function update(CompanyUserUpdateRequest $request, $id)
     {
@@ -185,7 +175,7 @@ class CompanyUsersController extends Controller
      *
      * @param  int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

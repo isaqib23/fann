@@ -48,8 +48,8 @@
                                     <label class="font-weight-bold">Upload Logo</label>
                                     <image-input v-model="file">
                                         <div slot="activator">
-                                            <v-avatar size="175px" v-ripple v-if="!file" class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
-                                                <img src="/images/placeholder.png">
+                                            <v-avatar size="175px" v-ripple v-if="!file.imageURL" class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
+                                                <img src="/images/icons/company_placeholder.png">
                                             </v-avatar>
                                             <v-avatar size="175px" v-else class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
                                                 <v-img
@@ -66,7 +66,7 @@
                                         label="Company Name"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="user.company_user.company.name"
+                                        v-model="userCompany.name"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -78,7 +78,7 @@
                                         label="www.abc.com"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="user.company_user.company.website"
+                                        v-model="userCompany.website"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -89,7 +89,7 @@
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
-                                        v-model="user.company_user.company.niche"
+                                        v-model="userCompany.niche_id"
                                         item-text="name"
                                         item-value="id"
                                     ></v-autocomplete>
@@ -103,7 +103,7 @@
                                         label="123456789"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="user.company_user.company.phone"
+                                        v-model="userCompany.phone"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -112,7 +112,7 @@
                                         label="Europe"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="user.company_user.company.timezone"
+                                        v-model="userCompany.timezone"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -125,26 +125,26 @@
                                         label="Solo textarea ......"
                                         rows="7"
                                         class="custom_dropdown"
-                                        v-model="user.company_user.company.address"
+                                        v-model="userCompany.address"
                                     ></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Country</label>
                                     <v-autocomplete
                                         :items="countries"
-                                        v-model="user.company_user.company.country_id"
+                                        v-model="userCompany.country_id"
                                         label="Pakistan"
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
                                         item-text="name"
-                                        @change="getStates(user.company_user.company)"
+                                        @change="getStates(userCompany)"
                                         item-value="id"
                                     ></v-autocomplete>
                                     <label class="font-weight-bold">State</label>
                                     <v-autocomplete
                                         :items="states"
-                                        v-model="user.company_user.company.state_id"
+                                        v-model="userCompany.state_id"
                                         label="Islamabad"
                                         solo
                                         append-icon="keyboard_arrow_down"
@@ -183,15 +183,12 @@
             user: {
                 first_name: null,
                 last_name: null,
-                email: null,
-                file: {},
-                company_user:{
-                    company:{}
-                }
+                email: null
             },
-            selectedCountry : null,
-            file: null,
-            imageUrl: null
+            file: {
+                imageFile: null,
+                imageURL: null
+            },
         }),
 
         computed: mapGetters({
@@ -199,42 +196,42 @@
             countries: 'settings/countries',
             states: 'settings/states',
             niches: 'settings/niches',
+            userCompany: 'settings/userCompany',
         }),
         methods: {
             ...mapActions({
                 getCountries: 'settings/getCountries',
                 getStates: 'settings/getStates',
                 updateProfile: 'settings/updateProfile',
-                getNiches: 'settings/getNiches'
+                getNiches: 'settings/getNiches',
+                getUserCompany: 'settings/getUserCompany'
             }),
-            getLogo(){
-                this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.user.company_user.company.logo});
-                console.log(this.file,'here');
+            getLogo() {
+                this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
             },
             async submit() {
                 this.loading = true
-
+                this.user.userCompany = this.userCompany;
                 let formData = new FormData();
                 formData.append("user", JSON.stringify(this.user));
                 formData.append("logo", this.file.imageFile);
 
                 let response = await this.updateProfile(formData);
-                this.$toast.success('Your profile successfully updated.')
-                this.$emit('success', response)
+                if(response !== undefined) {
+                    this.$toast.success('Your profile successfully updated.')
+                }
+                this.loading = false
 
             }
         },
        async mounted() {
             this.user = Object.assign(this.user, this.auth);
+            await this.getUserCompany();
             await this.getCountries();
             await this.getNiches();
-            if(this.user.company_user !== null) {
-                await this.getStates(this.user.company_user.company);
+            if(this.userCompany.state_id !== null) {
+                await this.getStates(this.userCompany);
                 this.getLogo();
-            }
-
-            if(this.user.company_user === null) {
-                this.user.company_user = {company:{}};
             }
         }
     }
