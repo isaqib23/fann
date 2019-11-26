@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignTouchPointProductRepository;
 use App\Models\CampaignTouchPointProduct;
 use App\Validators\CampaignTouchPointProductValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class CampaignTouchPointProductRepositoryEloquent.
@@ -25,7 +26,7 @@ class CampaignTouchPointProductRepositoryEloquent extends BaseRepository impleme
         return CampaignTouchPointProduct::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +35,21 @@ class CampaignTouchPointProductRepositoryEloquent extends BaseRepository impleme
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    /**
+     * @param $data
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($data)
+    {
+        return $this->create([
+            'name' => $data['title'],
+            'outside_product_id' => $data['productId'],
+            'outside_product_variant_id' => $data['id'],
+            'outside_platform' => 'Shopify',
+            'outside_product_image' => $data['pImage'],
+        ]);
+    }
+
 }

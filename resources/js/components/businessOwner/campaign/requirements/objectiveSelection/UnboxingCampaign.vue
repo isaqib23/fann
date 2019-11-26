@@ -41,17 +41,19 @@
                                 </v-btn>
                             </v-card-title>
 
+
                             <v-text-field
+
                                 v-model="touchPoint.name"
                                 label="Create a unboxing video on youtube"
                                 solo
                                 dense
-                                prepend-inner-icon="mdi-instagram"
+                                :prepend-inner-icon="icon"
                                 class="custom_dropdown"
                             ></v-text-field>
 
                             <v-card-title>
-                                <div class="subtitle-1 mb-2"><strong>Unboxing Product</strong></div>
+                                <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ objective.slug.replace('-',' ') }}</strong></div>
                             </v-card-title>
 
                             <v-row class="mx-auto my-5">
@@ -76,12 +78,10 @@
                                 </v-flex>
                             </v-row>
 
-                            <v-card flat class="mx-auto"
-                            >
+                            <v-card flat class="mx-auto">
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Suggested Caption</strong></div>
                                 </v-card-title>
-
                                 <v-textarea
                                     v-model="touchPoint.caption"
                                     label="Write suggested caption here!"
@@ -108,6 +108,8 @@
                                         </v-flex>
                                         <v-flex xl11 lg11 md11 sm11 xs10>
                                             <v-text-field
+                                                v-model="touchPoint.guideLines[n]"
+                                                :count="n"
                                                 label="For e.g: please follow our brand"
                                                 solo
                                                 dense
@@ -197,6 +199,7 @@
                                         :emit-as="'barterProduct'"
                                         :placeholder="'Same as Unboxing'"
                                         @selected-product="selectedProduct"
+                                        :disabledSearch=disabledBarter
                                     >
                                     </products-search>
 
@@ -212,6 +215,7 @@
                                         solo
                                         label="$100"
                                         class="custom_dropdown"
+                                        :disabled=disabledPaid
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
@@ -239,6 +243,7 @@
 <script>
     import MultiImageInput from '../../../../general/MultiImageInput';
     import shopifyProductsPredictiveSearch from "./shopifyProductsPredictiveSearch";
+    import {mapGetters, mapActions, mapMutations} from 'vuex';
 
     export default {
         components: {
@@ -247,32 +252,67 @@
         },
         props : {
             touchPoint : {},
+            objective : {}
         },
         data ()  {
            return  {
-               tabsLength : 1,
-               currentTab : 0,
-               guideLines : 1,
-               model      : 0,
-               e1         : 0,
-               kind       : '1',
-               checkbox2  : true,
-               checkbox1  : false,
-               items      : ['Foo', 'Bar', 'Fizz', 'Buzz'],
-               select2    : '',
-               select     : ['Vuetify', 'Programming'],
-               avatar     : null,
-               saving     : false,
-               saved      : false,
-               menu1      : false,
-               menu2      : false,
-               date       : new Date().toISOString().substr(0, 10),
-               touchPointProducts : [],
 
-               campaignDescription : null,
+               tabsLength            : 1,
+               currentTab            : 0,
+               guideLines            : 1,
+               model                 : 0,
+               e1                    : 0,
+               kind                  : '1',
+               checkbox2             : true,
+               checkbox1             : false,
+               items                 : ['Foo', 'Bar', 'Fizz', 'Buzz'],
+               select2               : '',
+               select                : ['Vuetify', 'Programming'],
+               avatar                : null,
+               saving                : false,
+               saved                 : false,
+               menu1                 : false,
+               menu2                 : false,
+               date                  : new Date().toISOString().substr(0, 10),
+               touchPointProducts    : [],
+               campaignDescription   : null,
+               caption               : '',
+               guideLineNumber       : 0,
+               paymentMethod         : {},
+               disabledPaid          :false,
+               disabledBarter        :false,
+               icon                  :null,
             }
         },
+        computed: {
+            ...mapGetters({
+                placement: 'campaign/campaignPlacement',
+
+            })
+        },
+        mounted() {
+            this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
+            this.setPayment();
+            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+
+        },
+
         methods: {
+            ...mapMutations({
+                setTouchPoint : 'campaign/setTouchPoint'
+            }),
+            setPayment(){
+                if (this.paymentMethod.paymentType == 'barter' && this.paymentMethod.additionalPayAsAmount == false) {
+                    this.disabledPaid = true;
+                    this.disabledBarter = false;
+                } else if (this.paymentMethod.paymentType == 'paid' && this.paymentMethod.additionalPayAsBarter == false) {
+                    this.disabledBarter = true;
+                    this.disabledPaid = false;
+                } else {
+                    this.disabledBarter = false;
+                    this.disabledPaid = false;
+                }
+            },
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
@@ -285,9 +325,12 @@
                 }
                 this.currentTab = this.currentTab - 1;
             },
-            addTouchPoint() {
-                this.tabsLength = this.tabsLength + 1;
-                this.currentTab = this.currentTab + 1;
+            async addTouchPoint() {
+               let response =  await this.saveTouchPoint();
+               if (response) {
+                   this.tabsLength = this.tabsLength + 1;
+                   this.currentTab = this.currentTab + 1;
+               }
             },
             removeTouchPooint() {
                 if (this.tabsLength === 1) {
@@ -309,12 +352,60 @@
                 let self = this;
                 let targetInput = `${ e.bindTo }`;
                 self.touchPointProducts[targetInput] = e.item;
+                this.setTouchPoint([targetInput, e.item]);
                 console.info(self.touchPointProducts);
             }
-
         },
-        watch () {
-
+        watch: {
+            'touchPoint.caption' : {
+                handler: function(val) {
+                    this.setTouchPoint(['caption', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.hashtags' : {
+                handler: function(val) {
+                    this.setTouchPoint(['hashtags', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.mentions' : {
+                handler: function(val) {
+                    this.setTouchPoint(['mentions', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.guideLines': {
+                handler: function(val) {
+                    this.setTouchPoint(['guideLines', _.values(val)]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.amount': {
+                handler: function(val) {
+                    this.setTouchPoint(['amount', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.name': {
+                handler: function(val) {
+                    this.setTouchPoint(['name', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'campaignDescription': {
+                handler: function(val) {
+                    this.setTouchPoint(['campaignDescription', val]);
+                },
+                immediate: true,
+                deep: true
+            }
         }
     }
 </script>

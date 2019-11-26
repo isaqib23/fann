@@ -20,7 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('logo');
-            $table->unsignedInteger('niche');
+            $table->unsignedInteger('niche_id');
             $table->string('timezone')->nullable();
             $table->unsignedInteger('state_id');
             $table->unsignedInteger('country_id');
@@ -32,6 +32,7 @@ class CreateCompaniesTable extends Migration
 
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('niche_id')->references('id')->on('niches');
 		});
 	}
 
@@ -42,6 +43,8 @@ class CreateCompaniesTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('companies');
+        Schema::enableForeignKeyConstraints();
 	}
 }

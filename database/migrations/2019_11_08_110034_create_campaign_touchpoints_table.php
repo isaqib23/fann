@@ -22,6 +22,7 @@ class CreateCampaignTouchPointsTable extends Migration
             $table->unsignedInteger('dispatch_product')->default(0);
             $table->unsignedInteger('barter_product')->default(0);
             $table->unsignedInteger('campaign_id');
+            $table->unsignedInteger('placement_id');
             $table->boolean('barter_as_dispatch');
             $table->double('amount', 10, 2);
             $table->softDeletes();
@@ -30,8 +31,7 @@ class CreateCampaignTouchPointsTable extends Migration
             $table->foreign('dispatch_product')->references('id')->on('campaign_touch_point_products');
             $table->foreign('barter_product')->references('id')->on('campaign_touch_point_products');
             $table->foreign('campaign_id')->references('id')->on('campaigns');
-
-
+            $table->foreign('placement_id')->references('id')->on('placements');
 		});
 	}
 
@@ -42,6 +42,8 @@ class CreateCampaignTouchPointsTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('campaign_touch_points');
+        Schema::enableForeignKeyConstraints();
 	}
 }

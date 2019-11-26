@@ -7,6 +7,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignTouchPointAdditionalRepository;
 use App\Models\CampaignTouchPointAdditional;
 use App\Validators\CampaignTouchPointAdditionalValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class CampaignTouchPointAdditionalRepositoryEloquent.
@@ -25,8 +26,6 @@ class CampaignTouchPointAdditionalRepositoryEloquent extends BaseRepository impl
         return CampaignTouchPointAdditional::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -34,5 +33,20 @@ class CampaignTouchPointAdditionalRepositoryEloquent extends BaseRepository impl
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    /**
+     * @param $data
+     * @param $campaign
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($data, $campaign)
+    {
+        return $this->create([
+            'campaign_touch_point_id' => $campaign['id'],
+            'tags'                    => $data['hashtags'],
+            'mentions'                => $data['mentions']
+        ]);
+    }
+
 }

@@ -34,6 +34,8 @@ class CreateCitiesTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('cities');
+        Schema::enableForeignKeyConstraints();
 	}
 }
