@@ -34,6 +34,8 @@ class UserMeta extends Model implements Transformable
         'provider_id',
         'provider_name',
         'provider_photo',
+        'followers',
+        'followings',
         'meta_json'
     ];
 

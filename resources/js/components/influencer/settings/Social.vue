@@ -10,67 +10,48 @@
                         <div class="subtitle-1 mb-2 black--text"><strong>Connected Social Accounts</strong></div>
 
                         <v-row justify="start">
-                            <v-col class="px-0" cols="12" sm="6" md="4">
-                                <v-card max-width="285" @click="goToLogin('instagram')">
+                            <v-col class="px-0" cols="12" sm="6" md="4" v-for="(platform, index) in platforms">
+                                <v-card
+                                    max-width="285"
+                                    v-on="platform.userPlatforms === null ? { click: () => goToSocialLogin(platform.name) } : {}"
+                                >
                                     <v-list-item>
-                                        <v-list-item-avatar color="primary" class="mr-2">
-                                            <v-icon color="white">mdi-instagram</v-icon>
+                                        <v-list-item-avatar
+                                            :color="platform.userPlatforms === null ? 'grey' : platform.name != 'instagram' ? 'red' : 'primary'"
+                                            class="mr-2"
+                                        >
+                                            <v-icon color="white">mdi-{{platform.name}}</v-icon>
                                         </v-list-item-avatar>
                                         <v-list-item-content>
-                                            <v-list-item-title class="headline">Instagram</v-list-item-title>
-                                            <v-list-item-subtitle>Connected account</v-list-item-subtitle>
+                                            <v-list-item-title class="headline text-capitalize">{{platform.name}}</v-list-item-title>
+                                            <v-list-item-subtitle>
+                                                {{(platform.userPlatforms === null) ? 'Connected' : 'Not Connected'}}
+                                            </v-list-item-subtitle>
                                         </v-list-item-content>
-                                        <v-icon color="success" class="mt-n5">mdi-check-circle</v-icon>
+                                        <v-icon
+                                            :color="platform.userPlatforms === null ? 'grey' : platform.name != 'instagram' ? 'success' : 'primary'"
+                                            class="mt-n5"
+                                        >mdi-check-circle</v-icon>
                                     </v-list-item>
 
                                     <v-card-actions class="px-5">
                                         <p class="mb-0 text-center">
-                                            Followers<br><span class="title">47.5K</span>
+                                            Followers<br><span class="title">
+                                            {{(platform.userPlatforms === null) ? '-' : platform.userPlatforms.followers}}
+                                        </span>
                                         </p>
 
                                         <v-spacer></v-spacer>
                                         <p class="mb-0 text-center">
-                                            Following<br><span class="title">652</span>
-                                        </p>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-col>
-                            <v-col class="px-0 ml-n10" cols="12" sm="6" md="4">
-                                <v-card max-width="285" @click="goToLogin('youtube')">
-                                    <v-list-item>
-                                        <v-list-item-avatar color="red" class="mr-2">
-                                            <v-icon color="white">mdi-youtube</v-icon>
-                                        </v-list-item-avatar>
-                                        <v-list-item-content>
-                                            <v-list-item-title class="headline">Youtube</v-list-item-title>
-                                            <v-list-item-subtitle>Connected account</v-list-item-subtitle>
-                                        </v-list-item-content>
-
-                                        <v-icon color="success" class="mt-n5">mdi-check-circle</v-icon>
-                                    </v-list-item>
-
-                                    <v-card-actions class="px-5">
-                                        <p class="mb-0 text-center">
-                                            Followers<br><span class="title">47.5K</span>
-                                        </p>
-
-                                        <v-spacer></v-spacer>
-                                        <p class="mb-0 text-center">
-                                            Following<br><span class="title">652</span>
+                                            Following<br><span class="title">
+                                            {{(platform.userPlatforms === null) ? '-' : platform.userPlatforms.followings}}
+                                        </span>
                                         </p>
                                     </v-card-actions>
                                 </v-card>
                             </v-col>
                         </v-row>
-                        <v-card-actions class="px-0 ml-n3">
-                            <v-btn color="primary" class="caption text-capitalize" large height="40" depressed>Add another social account</v-btn>
-                        </v-card-actions>
                     </v-card-text>
-
-                    <v-card-actions class="text-right float-right">
-                        <v-btn class="caption mr-3 text-capitalize" large height="40" depressed>Back</v-btn>
-                        <v-btn color="primary" class="caption text-capitalize" large height="40" depressed>Submit</v-btn>
-                    </v-card-actions>
                 </v-flex>
             </v-row>
         </v-card>
@@ -78,10 +59,16 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
+    import notConnectedSocial from './notConnectedSocial';
+    import connectedSocial from './connectedSocial';
     import { api } from '~/config'
     import NProgress from 'nprogress';
     export default {
+        components: {
+            notConnectedSocial: notConnectedSocial,
+            connectedSocial: connectedSocial
+        },
         data: () => ({
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
@@ -95,12 +82,15 @@
         }),
 
         computed: mapGetters({
-            auth: 'auth/user'
+            auth            : 'auth/user',
+            platforms   : 'settings/userPlatforms'
         }),
         methods:{
-            goToLogin(provider){
+            ...mapActions({
+                getUserPlatforms: 'settings/getUserPlatforms'
+            }),
+            goToSocialLogin(provider){
                 NProgress.start();
-                console.log(provider);
                 axios.post(api.path('setting.socialLogin'),{"provider":provider})
                     .then(res => {
                         window.location.href = res.data.url;
@@ -115,8 +105,9 @@
             }
         },
 
-        mounted() {
-            this.user = Object.assign(this.user, this.auth)
+        async mounted() {
+            this.user = Object.assign(this.user, this.auth);
+            await this.getUserPlatforms();
         }
     }
 </script>

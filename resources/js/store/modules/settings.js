@@ -9,6 +9,7 @@ export const state = {
     niches: [],
     states: [],
     cards: [],
+    userPlatforms: [],
     userDetail: {
         bio         : null,
         picture     : null,
@@ -57,6 +58,11 @@ export const mutations = {
     getUserCompany(state, payload) {
         if(payload !== null) {
             state.userCompany = payload
+        }
+    },
+    getUserPlatforms(state, payload) {
+        if(payload !== null) {
+            state.userPlatforms = payload
         }
     },
 }
@@ -116,6 +122,10 @@ export const actions = {
 
         return await SettingAxios.saveUserCompany(payload);
     },
+    async getUserPlatforms({ commit }, payload) {
+
+        commit('getUserPlatforms', await SettingAxios.getUserPlatforms());
+    },
 }
 
 /**
@@ -127,7 +137,8 @@ export const getters = {
     niches: state => state.niches,
     cards: state => state.cards,
     userDetail: state => state.userDetail,
-    userCompany: state => state.userCompany
+    userCompany: state => state.userCompany,
+    userPlatforms: state => state.userPlatforms
 }
 
 /**
@@ -239,6 +250,16 @@ let SettingAxios = class {
         return axios.post(api.path('setting.saveUserCompany'),payload)
             .then(resp => {
                 return resp.data;
+            })
+            .catch(err => {
+                return err.response.data.errors;
+            });
+    }
+
+    static getUserPlatforms () {
+        return axios.get(api.path('setting.getUserPlatforms'))
+            .then(resp => {
+                return resp.data.details;
             })
             .catch(err => {
                 return err.response.data.errors;

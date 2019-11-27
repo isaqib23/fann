@@ -112,7 +112,6 @@ class UserPlatformsController extends Controller
     public function handleProviderInstagramCallback(Request $request)
     {
         $userData = $this->instagram->getAccessToken($request->input('code'));
-
         // Create Meta object for saving
         $metaObject = $this->createMetaObject($userData, 'instagram', $request->input('state'));
 
@@ -131,9 +130,6 @@ class UserPlatformsController extends Controller
     {
         // Authenticate Token
         $token = $this->youtube->authenticateToken($request->input('code'));
-
-        // Set Access Token
-        $this->youtube->setAccessToken($token);
 
         // Get User Info Object
         $getUserInfo = $this->youtube->getUserInfo($token);
@@ -163,7 +159,11 @@ class UserPlatformsController extends Controller
             $metaObject->provider_id = $payload->user->id;
             $metaObject->provider_name = $payload->user->full_name;
             $metaObject->provider_photo = $payload->user->profile_picture;
+            $metaObject->followers = $payload->user->counts->follows;
+            $metaObject->followings = $payload->user->counts->followed_by;
             $metaObject->meta_json = json_encode($payload);
+
+            return $metaObject;
         }
 
         $metaObject->user_id = $user_id;
@@ -172,9 +172,40 @@ class UserPlatformsController extends Controller
         $metaObject->provider_id = $payload->id;
         $metaObject->provider_name = $payload->name;
         $metaObject->provider_photo = $payload->picture;
+        $metaObject->followers = $this->getYoutubeFollowers();
+        $metaObject->followings = 0;
         $metaObject->meta_json = json_encode($payload);
 
         return $metaObject;
     }
 
+    private function getYoutubeFollowers()
+    {
+        $followers = 0;
+        $channels = $this->youtube->getChannelsList();
+
+        foreach ($channels as $key => $value)
+        {
+            $followers += $value->statistics->subscriberCount;
+        }
+
+        return $followers;
+    }
+
+    public function getUserPlatforms(Request $request)
+    {
+        $platforms = $this->userPlatformRepository->all();
+
+        foreach ($platforms as $key => $value){
+            $platforms[$key]->userPlatforms = $this->userMetaRepository->findWhere([
+                'user_id'    => auth()->user()->id,
+                'provider'   => $value->name,
+            ])->first();
+        }
+
+        return response()->json([
+            'details' => $platforms
+        ]);
+
+    }
 }

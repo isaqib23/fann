@@ -19,10 +19,12 @@ class CreateUserMetasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->enum('provider', ['instagram', 'youtube']);
-            $table->longText('provider_id');
+            $table->string('provider_id');
             $table->string('provider_name');
-            $table->text('access_token');
+            $table->longText('access_token');
             $table->string('provider_photo');
+            $table->string('followers');
+            $table->string('followings');
             $table->json('meta_json');
 
             $table->softDeletes();

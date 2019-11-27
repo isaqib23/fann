@@ -13,19 +13,9 @@ use Madcoda\Youtube\Youtube;
 class YoutubeService
 {
     /**
-     * @var Youtube
-     */
-    private $youtube;
-
-    /**
-     * @var Youtube
+     * @var Google Client
      */
     private $google;
-
-    /**
-     * @var
-     */
-    private $access_token;
 
     /**
      * YoutubeService constructor.
@@ -42,7 +32,7 @@ class YoutubeService
             //\Google_Service_YouTube_ChannelAuditDetails::class
         ]);
         $this->google->setScopes(['profile']);
-
+        $this->google->setIncludeGrantedScopes(true);
         $this->google->setRedirectUri(env('YOUTUBE_REDIRECT_URI'));
 
     }
@@ -65,7 +55,10 @@ class YoutubeService
      */
     public function authenticateToken($code)
     {
-        return $this->google->authenticate($code);
+        $tokenObject = $this->google->authenticate($code);
+        $this->setAccessToken($tokenObject);
+
+        return $tokenObject;
     }
 
     /**
@@ -89,10 +82,10 @@ class YoutubeService
      */
     public function getChannelsList()
     {
-        $this->youtube = new \Google_Service_YouTube($this->google);
+        $youtube = new \Google_Service_YouTube($this->google);
         $queryParams = [
             'mine' => true
         ];
-        return $this->youtube->channels->listChannels('contentOwnerDetails,snippet,contentDetails,statistics', array('mine' => $queryParams));
+        return $youtube->channels->listChannels('contentOwnerDetails,snippet,contentDetails,statistics', array('mine' => $queryParams));
     }
 }
