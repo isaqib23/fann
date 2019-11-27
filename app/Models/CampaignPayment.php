@@ -20,6 +20,9 @@ class CampaignPayment extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'campaign_id',
+        'payment_type_id'
+    ];
 
 }

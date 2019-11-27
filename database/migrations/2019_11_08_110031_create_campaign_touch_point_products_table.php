@@ -18,9 +18,9 @@ class CreateCampaignTouchPointProductsTable extends Migration
 		Schema::create('campaign_touch_point_products', function(Blueprint $table) {
             $table->increments('id');
             $table->text('name');
-            $table->integer('outside_product_id');
+            $table->bigInteger('outside_product_id');
             $table->text('outside_product_link')->nullable();
-            $table->integer('outside_product_variant_id');
+            $table->bigInteger('outside_product_variant_id');
             $table->enum('outside_platform',
                 ['Shopify', 'Magento', 'WooCommerce', 'BigCommerce', 'OpenCart', 'PrestaShop', 'OsCommerce', 'ZenCart', 'Joomla', 'Drupal']
             );

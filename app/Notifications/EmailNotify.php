@@ -11,12 +11,17 @@ class EmailNotify extends Notification
 {
     use Queueable;
 
+    /**
+     * @var
+     */
     public $template;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
+
     public function __construct($template)
     {
         $this->template = $template;
@@ -25,7 +30,7 @@ class EmailNotify extends Notification
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function via($notifiable)
@@ -36,7 +41,7 @@ class EmailNotify extends Notification
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
@@ -44,19 +49,17 @@ class EmailNotify extends Notification
         return (new MailMessage)
             ->from($notifiable->email)
             ->view($this->template);
-
     }
 
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param  mixed $notifiable
      * @return array
      */
     public function toArray($notifiable)
     {
-        return [
-            //
-        ];
+        return [];
     }
+
 }

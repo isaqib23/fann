@@ -190,7 +190,7 @@
                                     </v-card-text>
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3>
+                            <v-layout row wrap pl-3 pr-3 v-if="!disabledBarter">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
@@ -199,13 +199,12 @@
                                         :emit-as="'barterProduct'"
                                         :placeholder="'Same as Unboxing'"
                                         @selected-product="selectedProduct"
-                                        :disabledSearch=disabledBarter
                                     >
                                     </products-search>
 
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3 mt-3>
+                            <v-layout row wrap pl-3 pr-3 mt-3 v-if="!disabledPaid">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Payment</v-btn>
                                 </v-flex>
@@ -215,7 +214,6 @@
                                         solo
                                         label="$100"
                                         class="custom_dropdown"
-                                        :disabled=disabledPaid
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
@@ -294,25 +292,14 @@
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
             this.setPayment();
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
-
         },
-
         methods: {
             ...mapMutations({
                 setTouchPoint : 'campaign/setTouchPoint'
             }),
-            setPayment(){
-                if (this.paymentMethod.paymentType == 'barter' && this.paymentMethod.additionalPayAsAmount == false) {
-                    this.disabledPaid = true;
-                    this.disabledBarter = false;
-                } else if (this.paymentMethod.paymentType == 'paid' && this.paymentMethod.additionalPayAsBarter == false) {
-                    this.disabledBarter = true;
-                    this.disabledPaid = false;
-                } else {
-                    this.disabledBarter = false;
-                    this.disabledPaid = false;
-                }
-            },
+            ...mapActions({
+                saveTouchPoint: 'campaign/saveTouchPoint'
+            }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
@@ -354,6 +341,18 @@
                 self.touchPointProducts[targetInput] = e.item;
                 this.setTouchPoint([targetInput, e.item]);
                 console.info(self.touchPointProducts);
+            },
+            setPayment() {
+                if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
+                    this.disabledPaid = true;
+                    this.disabledBarter = false;
+                } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
+                    this.disabledBarter = true;
+                    this.disabledPaid = false;
+                } else {
+                    this.disabledBarter = false;
+                    this.disabledPaid = false;
+                }
             }
         },
         watch: {
@@ -382,7 +381,7 @@
                 handler: function(val) {
                     this.setTouchPoint(['guideLines', _.values(val)]);
                 },
-                immediate: true,
+                immediate: false,
                 deep: true
             },
             'touchPoint.amount': {

@@ -20,6 +20,11 @@ class CampaignTouchPointAdditional extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'campaign_touch_point_id',
+        'tags',
+        'mentions',
+        'guidelines'
+    ];
 
 }
