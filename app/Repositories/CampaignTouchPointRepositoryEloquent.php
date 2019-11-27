@@ -33,23 +33,31 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
     private $campaignPaymentRepositoryEloquent;
 
     /**
+     * @var CampaignTouchPointMediaRepositoryEloquent
+     */
+    private $campaignTouchPointMediaRepositoryEloquent;
+
+    /**
      * CampaignTouchPointRepositoryEloquent constructor.
      * @param Application $app
      * @param CampaignTouchPointProductRepository $campaignTouchPointProductRepository
      * @param CampaignTouchPointAdditionalRepositoryEloquent $campaignTouchPointAdditionalRepositoryEloquent
      * @param CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent
+     * @param CampaignTouchPointMediaRepositoryEloquent $campaignTouchPointMediaRepositoryEloquent
      */
     public function __construct(
         Application $app,
         CampaignTouchPointProductRepository $campaignTouchPointProductRepository,
         CampaignTouchPointAdditionalRepositoryEloquent $campaignTouchPointAdditionalRepositoryEloquent,
-        CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent
+        CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent,
+        CampaignTouchPointMediaRepositoryEloquent $campaignTouchPointMediaRepositoryEloquent
     )
     {
         parent::__construct($app);
         $this->campaignTouchPointProductRepository = $campaignTouchPointProductRepository;
         $this->campaignTouchPointAdditionalRepositoryEloquent = $campaignTouchPointAdditionalRepositoryEloquent;
         $this->campaignPaymentRepositoryEloquent = $campaignPaymentRepositoryEloquent;
+        $this->campaignTouchPointMediaRepositoryEloquent = $campaignTouchPointMediaRepositoryEloquent;
     }
 
     /**
@@ -105,6 +113,10 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         //---- additionals
         $this->campaignTouchPointAdditionalRepositoryEloquent->store($touchPoint, $savedTouchPoint);
 
+        //---- multiple Images
+        if (!empty($data['images'])) {
+            $barterProduct = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($data['images'], $savedTouchPoint);
+        }
 
         //---- actions
 

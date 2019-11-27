@@ -16,7 +16,8 @@ export const state = {
       dispatchProduct : null,
       barterProduct : null,
       amount : 0,
-      campaignDescription : null
+      campaignDescription : null,
+      images : null
   }
 }
 
@@ -128,7 +129,10 @@ let CampaignAxios = class {
                 return resp.data;
             })
             .catch(err => {
-                console.info(err.response.data.errors);
+                return {
+                    status : err.response.status,
+                    errors : err.response.data.errors
+                };
             });
     }
 

@@ -60,24 +60,6 @@
                                 <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
                             </v-row>
 
-                            <v-row class="mx-auto my-5">
-                                <v-flex xl2 lg2 md2 sm1 xs2>
-                                    <v-list-item-avatar height="45" min-width="100%" width="100%" class="ma-0 field_icon">
-                                        <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
-                                    </v-list-item-avatar>
-                                </v-flex>
-                                <v-flex xl10 lg10 md10 sm11 xs10>
-                                    <v-select
-                                        :items="items"
-                                        label="Instagram image post"
-                                        solo
-                                        dense
-                                        append-icon="keyboard_arrow_down"
-                                        class="custom_dropdown product_left_border"
-                                    ></v-select>
-                                </v-flex>
-                            </v-row>
-
                             <v-card flat class="mx-auto">
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Suggested Caption</strong></div>
@@ -136,15 +118,15 @@
 
                             <v-layout row wrap pl-3 pr-3 mt-3>
                                 <v-flex lg4 sm4 m4 pr-3 class="text-center">
-                                    <MultiImageInput v-model="avatar">
+                                    <MultiImageInput v-model="touchPoint.images">
                                         <div slot="activator">
-                                            <v-avatar size="40" v-ripple v-if="!avatar" class="mb-3" tile>
+                                            <v-avatar size="40" v-ripple v-if="!touchPoint.images" class="mb-3" tile>
                                                 <v-icon class="display-1">mdi-image-filter</v-icon>
                                             </v-avatar>
                                             <v-avatar size="40" v-else class="mb-3" tile>
                                                 <v-img
                                                     class="white--text align-end"
-                                                    :src="avatar.imageURL" alt="avatar">
+                                                    :src="touchPoint.images.imageURL" alt="avatar">
                                                 </v-img>
                                             </v-avatar>
                                         </div>
@@ -314,6 +296,7 @@
             },
             async addTouchPoint() {
                let response =  await this.saveTouchPoint();
+               console.info(response);
                if (response) {
                    this.tabsLength = this.tabsLength + 1;
                    this.currentTab = this.currentTab + 1;
@@ -401,6 +384,33 @@
             'campaignDescription': {
                 handler: function(val) {
                     this.setTouchPoint(['campaignDescription', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.images': {
+                handler: function (val) {
+                    if (!val.file) {
+                        return;
+                    }
+
+                    let readFiles = [];
+
+                    for (let i = 0; i < val.file.length; i++) {
+                        let file = val.file[i];
+                        let reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            readFiles[i] = {
+                                name: file.name,
+                                size: file.size,
+                                type: file.type,
+                                src: e.target.result
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                    this.setTouchPoint(['images', readFiles]);
                 },
                 immediate: true,
                 deep: true

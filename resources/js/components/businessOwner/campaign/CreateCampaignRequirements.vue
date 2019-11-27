@@ -100,7 +100,8 @@
                    dispatchProduct : {},
                    barterProduct : {},
                    amount : 0,
-                   campaignDescription : null
+                   campaignDescription : null,
+                   images : []
                },
             }
         },
