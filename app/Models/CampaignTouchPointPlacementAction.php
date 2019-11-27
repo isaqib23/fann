@@ -20,6 +20,11 @@ class CampaignTouchPointPlacementAction extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'campaign_touch_point_id',
+        'placement_type_id',
+        'link',
+        'link_type'
+    ];
 
 }

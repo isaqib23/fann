@@ -36,16 +36,23 @@ class CampaignTouchPointAdditionalRepositoryEloquent extends BaseRepository impl
 
     /**
      * @param $data
-     * @param $campaign
+     * @param $touchPoint
      * @return mixed
      * @throws ValidatorException
      */
-    public function store($data, $campaign)
+    public function store($data, $touchPoint)
     {
+        $touchPoint = is_object($touchPoint) ? $touchPoint->toArray() : $touchPoint;
+
+        if (array_key_exists(0 , $data['guideLines']) && is_null($data['guideLines'][0])) {
+            unset($data['guideLines'][0]);
+        }
+
         return $this->create([
-            'campaign_touch_point_id' => $campaign['id'],
+            'campaign_touch_point_id' => $touchPoint['id'],
             'tags'                    => $data['hashtags'],
-            'mentions'                => $data['mentions']
+            'mentions'                => $data['mentions'],
+            'guidelines'              => json_encode($data['guideLines'], JSON_FORCE_OBJECT )
         ]);
     }
 

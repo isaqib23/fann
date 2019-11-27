@@ -18,8 +18,9 @@ class CreateCampaignTouchPointAdditionalsTable extends Migration
 		Schema::create('campaign_touch_point_additionals', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_touch_point_id');
-            $table->json('tags');
-            $table->json('mentions');
+            $table->text('tags');
+            $table->text('mentions');
+            $table->json('guidelines');
 
             $table->foreign('campaign_touch_point_id')->references('id')->on('campaign_touch_points');
 

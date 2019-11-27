@@ -3,10 +3,9 @@
 namespace App\Repositories;
 
 use App\Contracts\CampaignTouchPointPlacementActionRepository;
+use App\Models\CampaignTouchPointPlacementAction;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Models\CampaignTouchPointPlacement;
-use App\Validators\CampaignTouchPointPlacementValidator;
 
 /**
  * Class CampaignTouchPointPlacementRepositoryEloquent.
@@ -22,7 +21,7 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
      */
     public function model()
     {
-        return CampaignTouchPointPlacement::class;
+        return CampaignTouchPointPlacementAction::class;
     }
 
 

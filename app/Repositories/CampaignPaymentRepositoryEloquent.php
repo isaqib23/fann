@@ -2,11 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Contracts\PaymentTypeRepository;
+use Illuminate\Container\Container as Application;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignPaymentRepository;
 use App\Models\CampaignPayment;
 use App\Validators\CampaignPaymentValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class CampaignPaymentRepositoryEloquent.
@@ -15,6 +18,26 @@ use App\Validators\CampaignPaymentValidator;
  */
 class CampaignPaymentRepositoryEloquent extends BaseRepository implements CampaignPaymentRepository
 {
+
+    /**
+     * @var PaymentTypeRepository
+     */
+    private $paymentTypeRepository;
+
+    /**
+     * CampaignPaymentRepositoryEloquent constructor.
+     * @param Application $app
+     * @param PaymentTypeRepository $paymentTypeRepository
+     */
+    public function __construct(
+        Application $app,
+        PaymentTypeRepository $paymentTypeRepository
+    )
+    {
+        parent::__construct($app);
+        $this->paymentTypeRepository = $paymentTypeRepository;
+    }
+
     /**
      * Specify Model class name
      *
@@ -25,7 +48,7 @@ class CampaignPaymentRepositoryEloquent extends BaseRepository implements Campai
         return CampaignPayment::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +57,71 @@ class CampaignPaymentRepositoryEloquent extends BaseRepository implements Campai
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    /**
+     * @param $data
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($data)
+    {
+        if ($data['payment_type_id'] != 0) {
+            return $this->create([
+                'campaign_id'     => $data['campaign_id'],
+                'payment_type_id' => $data['payment_type_id']
+            ]);
+        }
+    }
+
+    /**
+     * @param $data
+     * @param $campaignId
+     * @throws ValidatorException
+     */
+    public function storeMultiple($data, $campaignId)
+    {
+        if (array_key_exists('platform', $data)) {
+            unset($data['platform']);
+        }
+
+        foreach ($data as $key =>  $value)
+        {
+            $this->store([
+                'campaign_id'     => $campaignId,
+                'payment_type_id' => $this->fieldsMapper($key, $value)
+                ]);
+        }
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     * @return int
+     */
+    public function fieldsMapper($key, $value)
+    {
+        $payment_id = 0;
+
+        switch(true)
+        {
+            case ($key == 'paymentType'):
+                $resp = $this->paymentTypeRepository->findByField('slug', $value)->first();
+                $payment_id = $resp->id;
+                break;
+            case ($key == 'additionalPayAsBarter' && $value == 'true'):
+                $resp = $this->paymentTypeRepository->findByField('slug', 'barter')->first();
+                $payment_id = $resp->id;
+                break;
+            case ($key == 'additionalPayAsAmount' && $value == 'true'):
+                $resp = $this->paymentTypeRepository->findByField('slug', 'paid')->first();
+                $payment_id = $resp->id;
+                break;
+            default:
+                'nothing';
+                break;
+        }
+
+        return $payment_id;
+    }
+
 }

@@ -175,7 +175,7 @@
                                     </v-card-text>
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3>
+                            <v-layout row wrap pl-3 pr-3 v-if="!disabledBarter">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
@@ -184,11 +184,10 @@
                                         :emit-as="'barterProduct'"
                                         :placeholder="'Same as Unboxing'"
                                         @selected-product="selectedProduct"
-                                        :disabledSearch=disabledBarter
                                     ></products-search>
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3 mt-3>
+                            <v-layout row wrap pl-3 pr-3 mt-3 v-if="!disabledPaid">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Payment</v-btn>
                                 </v-flex>
@@ -198,7 +197,6 @@
                                         solo
                                         label="$100"
                                         class="custom_dropdown"
-                                        :disabled=disabledPaid
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>

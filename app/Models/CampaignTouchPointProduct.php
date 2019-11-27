@@ -20,6 +20,13 @@ class CampaignTouchPointProduct extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'outside_product_id',
+        'outside_product_link',
+        'outside_product_variant_id',
+        'outside_platform',
+        'outside_product_image',
+    ];
 
 }

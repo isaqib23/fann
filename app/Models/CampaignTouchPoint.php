@@ -20,6 +20,15 @@ class CampaignTouchPoint extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'description',
+        'dispatch_product',
+        'barter_product',
+        'campaign_id',
+        'placement_id',
+        'barter_as_dispatch',
+        'amount'
+    ];
 
 }
