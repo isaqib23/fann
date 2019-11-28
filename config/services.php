@@ -64,6 +64,7 @@ return [
         'redirect' => env('INSTAGRAM_REDIRECT_URI')
     ],
     'youtube' => [
-        'key' => env('YOUTUBE_API_KEY'),
+        'client_credentials' => env('YOUTUBE_CLIENT_CREDENTIALS_PATH'),
+        'redirect_uri' => env('YOUTUBE_REDIRECT_URI'),
     ]
 ];

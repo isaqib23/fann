@@ -45,7 +45,8 @@ class UserMetaRepositoryEloquent extends BaseRepository implements UserMetaRepos
     {
         return $this->updateOrCreate(
             [
-                'user_id' => $data->user_id
+                'user_id' => $data->user_id,
+                'provider' => $data->provider
             ],
             [
             'user_id'           => $data->user_id,
@@ -54,6 +55,8 @@ class UserMetaRepositoryEloquent extends BaseRepository implements UserMetaRepos
             'provider_id'       => $data->provider_id,
             'provider_name'     => $data->provider_name,
             'provider_photo'    => $data->provider_photo,
+            'followers'         => $data->followers,
+            'followings'        => $data->followings,
             'meta_json'         => $data->meta_json
         ]);
 

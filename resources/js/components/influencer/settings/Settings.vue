@@ -28,14 +28,12 @@
 import LeftTabs from './LeftTabs';
 import Profile from './Profile';
 import Social from './Social';
-import Integrations from './Integrations';
 
     export default {
         components: {
             LeftTabs: LeftTabs,
             Profile: Profile,
-            Social:Social,
-            Integrations:Integrations
+            Social:Social
         },
         data: () => {
            return  {

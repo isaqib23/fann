@@ -171,6 +171,11 @@ return [
         Jenssegers\Mongodb\MongodbServiceProvider::class,
 
         /*
+         * Intervention Service Provider
+         */
+        \Intervention\Image\ImageServiceProvider::class,
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -228,7 +233,8 @@ return [
         'Str' => Illuminate\Support\Str::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
-        'View' => Illuminate\Support\Facades\View::class
+        'View' => Illuminate\Support\Facades\View::class,
+        'Image' => \Intervention\Image\ImageManagerStatic::class
     ],
 
 ];

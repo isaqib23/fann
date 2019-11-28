@@ -36,6 +36,7 @@ Route::post('upload-file', 'UploadZipsController@uploadFile');
 // ----- Social Login related routes
 Route::prefix('/social')->group(function () {
     Route::get('instagram/callback', 'UserPlatformsController@handleProviderInstagramCallback');
+    Route::get('youtube/callback', 'UserPlatformsController@handleProviderYoutubeCallback');
 });
 
 
