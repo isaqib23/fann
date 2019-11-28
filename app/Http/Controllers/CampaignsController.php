@@ -10,11 +10,12 @@ use App\Contracts\CampaignTouchPointPlacementActionRepository;
 use App\Contracts\CampaignTouchPointProductRepository;
 use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\PlacementRepository;
+use App\Http\Requests\TouchPointRequest;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Requests;
 use Illuminate\Http\Response;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -24,6 +25,7 @@ use App\Http\Requests\CampaignUpdateRequest;
 use App\Contracts\CampaignRepository;
 use App\Validators\CampaignValidator;
 use App\Contracts\CampaignObjectiveRepository;
+use Prettus\Validator\LaravelValidator;
 
 /**
  * Class CampaignsController.
@@ -94,6 +96,7 @@ class CampaignsController extends Controller
      * @param CampaignTouchPointAdditionalRepository $campaignTouchPointAdditionalRepository
      * @param CampaignPaymentRepository $campaignPaymentRepository
      * @param CampaignTouchPointProductRepository $campaignTouchPointProductRepository
+     * @param LaravelValidator $validator
      */
     public function __construct(
         CampaignRepository $repository,
@@ -104,7 +107,8 @@ class CampaignsController extends Controller
         CampaignTouchPointPlacementActionRepository $campaignTouchPointPlacementActionRepository,
         CampaignTouchPointAdditionalRepository $campaignTouchPointAdditionalRepository,
         CampaignPaymentRepository $campaignPaymentRepository,
-        CampaignTouchPointProductRepository $campaignTouchPointProductRepository
+        CampaignTouchPointProductRepository $campaignTouchPointProductRepository,
+        LaravelValidator $validator
     )
     {
         $this->repository = $repository;
@@ -116,6 +120,7 @@ class CampaignsController extends Controller
         $this->campaignTouchPointAdditionalRepository = $campaignTouchPointAdditionalRepository;
         $this->campaignPaymentRepository = $campaignPaymentRepository;
         $this->campaignTouchPointProductRepository = $campaignTouchPointProductRepository;
+        $this->validator  = $validator;
     }
 
     /**
@@ -312,11 +317,51 @@ class CampaignsController extends Controller
         ]);
     }
 
-    public function saveTouchPoint(Request $request)
+    public function saveTouchPoint(TouchPointRequest $request)
     {
-        $data = $request->all();
+        try {
 
-///dd($data, $data['touchPoint']['campaignDescription']);
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+
+            $data = $request->all();
+
+            $this->repository->update(
+                [ 'description' => $data['touchPoint']['campaignDescription'] ],
+                $data['campaignId']
+            );
+
+           $saveTouchPoint =  $this->campaignTouchPointRepository->saveInHierarchy($data);
+
+            $response = [
+                'message'    => 'Touch Point Created.',
+                'details'    => $saveTouchPoint->toArray(),
+            ];
+
+            if ($request->wantsJson()) {
+
+                return response()->json($response);
+            }
+
+            return redirect()->back()->with('message', $response['message']);
+        } catch (ValidatorException $e) {
+
+            if ($request->wantsJson()) {
+
+                return response()->json([
+                    'error'   => true,
+                    'message' => $e->getMessageBag()
+                ]);
+            }
+
+            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        }
+
+
+
+
+
+dd($data);
+
 
         $this->repository->update(
             [ 'description' => $data['touchPoint']['campaignDescription'] ],
