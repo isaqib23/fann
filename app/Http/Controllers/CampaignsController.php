@@ -120,7 +120,7 @@ class CampaignsController extends Controller
         $this->campaignTouchPointAdditionalRepository = $campaignTouchPointAdditionalRepository;
         $this->campaignPaymentRepository = $campaignPaymentRepository;
         $this->campaignTouchPointProductRepository = $campaignTouchPointProductRepository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -320,10 +320,9 @@ class CampaignsController extends Controller
     public function saveTouchPoint(TouchPointRequest $request)
     {
         try {
+            $data = $request->all();
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $data = $request->all();
 
             $this->repository->update(
                 [ 'description' => $data['touchPoint']['campaignDescription'] ],
@@ -334,7 +333,7 @@ class CampaignsController extends Controller
 
             $response = [
                 'message'    => 'Touch Point Created.',
-                'details'    => $saveTouchPoint->toArray(),
+                'details'    => $saveTouchPoint,
             ];
 
             if ($request->wantsJson()) {
@@ -346,7 +345,6 @@ class CampaignsController extends Controller
         } catch (ValidatorException $e) {
 
             if ($request->wantsJson()) {
-
                 return response()->json([
                     'error'   => true,
                     'message' => $e->getMessageBag()
@@ -355,20 +353,6 @@ class CampaignsController extends Controller
 
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
-
-
-
-
-
-dd($data);
-
-
-        $this->repository->update(
-            [ 'description' => $data['touchPoint']['campaignDescription'] ],
-            $data['campaignId']
-        );
-
-        $this->campaignTouchPointRepository->saveInHierarchy($data);
     }
 
 }

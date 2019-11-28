@@ -95,7 +95,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
         //---- multiple Payments
         if (!empty($data['payment'])) {
-            $barterProduct = $this->campaignPaymentRepositoryEloquent->storeMultiple($data['payment'], $data['campaignId']);
+            $savedPayments = $this->campaignPaymentRepositoryEloquent->storeMultiple($data['payment'], $data['campaignId']);
         }
 
         //---- Touch Point
@@ -114,13 +114,13 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         $this->campaignTouchPointAdditionalRepositoryEloquent->store($touchPoint, $savedTouchPoint);
 
         //---- multiple Images
-        if (!empty($data['images'])) {
-            $barterProduct = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($data['images'], $savedTouchPoint);
+        if (!empty($touchPoint['images'])) {
+            $savedImages = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($touchPoint['images'], $savedTouchPoint);
         }
 
         //---- actions
 
-
+        return $savedTouchPoint;
     }
 
 }

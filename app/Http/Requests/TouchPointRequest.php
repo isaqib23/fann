@@ -2,6 +2,11 @@
 
 namespace App\Http\Requests;
 
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class TouchPointRequest extends FormRequest
@@ -26,18 +31,31 @@ class TouchPointRequest extends FormRequest
         return [
             'campaignId' => 'required|numeric',
             'platformId' => 'required|numeric',
+            'touchPoint.campaignDescription'=> 'required',
             'touchPoint.name'=> 'required',
             'touchPoint.caption'=> 'required',
             'touchPoint.amount'=> 'nullable|numeric|min:1',
         ];
     }
 
-    public function messages()
+    /**
+     * @return array
+     */
+    public static function staticRules()
     {
-        return [
-            'touchPoint.amount' => "The touch point.amount must be at least 1.",
-            'touchPoint.caption' => "The touch point.caption field is required.",
-            'touchPoint.name' => "The touch point.name field is required.",
-        ];
+        return (new TouchPointRequest)->rules();
     }
+
+    /**
+     * @param Validator $validator
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'message' => $validator->messages()->first()
+            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+        );
+    }
+
 }

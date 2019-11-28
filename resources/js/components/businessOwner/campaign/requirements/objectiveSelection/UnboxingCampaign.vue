@@ -236,7 +236,6 @@
         },
         data ()  {
            return  {
-
                tabsLength            : 1,
                currentTab            : 0,
                guideLines            : 1,
@@ -296,8 +295,8 @@
             },
             async addTouchPoint() {
                let response =  await this.saveTouchPoint();
-               console.info(response);
-               if (response) {
+console.info('response', response);
+               if (response.status === 200) {
                    this.tabsLength = this.tabsLength + 1;
                    this.currentTab = this.currentTab + 1;
                }
