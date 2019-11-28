@@ -38,6 +38,7 @@ class URL {
 
 import campaign from '../js/apiRoutes/campaign';
 import setting from '../js/apiRoutes/settings';
+import shopify from '../js/apiRoutes/shopify';
 
 export const api = Object.assign(new URL(apiUrl), {
     url: '',
@@ -66,17 +67,8 @@ export const api = Object.assign(new URL(apiUrl), {
         single: ':id',
         restore: ':id/restore'
     },
-
     profile: {
         url: 'profile'
-    },
-    shopify: {
-        'url': 'shopify',
-
-        'install'                : 'install/:shop',
-        'findProducts'           : 'findProducts/',
-        'linkedShops'            : 'linked-shops',
-        'shopifyCleanUninstall'  : 'clean-uninstall',
     },
     countryList: {
         'url': 'country/all'
@@ -86,6 +78,7 @@ export const api = Object.assign(new URL(apiUrl), {
     },
 
     campaign: campaign,
-    setting:setting
+    setting:  setting,
+    shopify:  shopify,
 
 })

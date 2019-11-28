@@ -10,7 +10,10 @@
                         <div class="subtitle-1 mb-2 black--text"><strong>Connected Social Accounts</strong></div>
 
                         <v-row justify="start">
-                            <v-col class="px-0" cols="12" sm="6" md="4" v-for="(platform, index) in platforms">
+                            <v-col class="px-0" cols="12" sm="6" md="4"
+                                   v-for="(platform, index) in platforms"
+                                   :key="index"
+                            >
                                 <v-card
                                     max-width="285"
                                     v-on="platform.userPlatforms === null ? { click: () => goToSocialLogin(platform.name) } : {}"
@@ -60,8 +63,8 @@
 
 <script>
     import { mapGetters, mapActions } from 'vuex'
-    import { api } from '~/config'
     import NProgress from 'nprogress';
+
     export default {
         data: () => ({
             rules: [
@@ -71,10 +74,8 @@
             user: {
                 name: null,
                 email: null,
-            },
-            route: { type: '/dfdsfdsf', required: true }
+            }
         }),
-
         computed: mapGetters({
             auth        : 'auth/user',
             platforms   : 'settings/userPlatforms'

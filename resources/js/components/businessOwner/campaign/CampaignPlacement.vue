@@ -226,7 +226,7 @@
                 }
             },
             goToBack() {
-                this.savePlacement(this.campaignPlacement)
+                this.savePlacementAndPaymentType(this.campaignPlacement)
                 this.$router.push({name: 'create-campaign-objective'})
             },
             assignDefaultPayment() {
