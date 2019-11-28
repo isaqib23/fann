@@ -24,11 +24,11 @@ class SendEmail implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  object  $event
-     * @return void
+     * @param EmailNotification $event
      */
     public function handle(EmailNotification $event)
     {
         Notification::send($event->user,new EmailNotify($event->template));
     }
+
 }

@@ -18,12 +18,18 @@ class EmailNotification
      * @var
      */
     public $user;
+
+    /**
+     * @var
+     */
     public $template;
 
     /**
-     * Create a new event instance.
+     *  Create a new event instance.
      *
-     * @return void
+     * EmailNotification constructor.
+     * @param $user
+     * @param $template
      */
     public function __construct($user,$template)
     {
@@ -34,10 +40,11 @@ class EmailNotification
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return \Illuminate\Broadcasting\Channel|array
+     * @return Channel|array
      */
     public function broadcastOn()
     {
         return new PrivateChannel('channel-name');
     }
+
 }

@@ -19,9 +19,9 @@ class EmailNotify extends Notification
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * EmailNotify constructor.
+     * @param $template
      */
-
     public function __construct($template)
     {
         $this->template = $template;
@@ -42,7 +42,7 @@ class EmailNotify extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable)
     {
