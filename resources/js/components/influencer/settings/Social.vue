@@ -60,15 +60,9 @@
 
 <script>
     import { mapGetters, mapActions } from 'vuex'
-    import notConnectedSocial from './notConnectedSocial';
-    import connectedSocial from './connectedSocial';
     import { api } from '~/config'
     import NProgress from 'nprogress';
     export default {
-        components: {
-            notConnectedSocial: notConnectedSocial,
-            connectedSocial: connectedSocial
-        },
         data: () => ({
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
@@ -82,16 +76,16 @@
         }),
 
         computed: mapGetters({
-            auth            : 'auth/user',
+            auth        : 'auth/user',
             platforms   : 'settings/userPlatforms'
         }),
         methods:{
             ...mapActions({
                 getUserPlatforms: 'settings/getUserPlatforms'
             }),
-            goToSocialLogin(provider){
+            goToSocialLogin(provider) {
                 NProgress.start();
-                axios.post(api.path('setting.socialLogin'),{"provider":provider})
+                axios.post(api.path('setting.socialLogin'), {"provider": provider})
                     .then(res => {
                         window.location.href = res.data.url;
                     })
@@ -104,7 +98,6 @@
                     })
             }
         },
-
         async mounted() {
             this.user = Object.assign(this.user, this.auth);
             await this.getUserPlatforms();
