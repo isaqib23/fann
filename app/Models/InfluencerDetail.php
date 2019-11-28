@@ -20,6 +20,18 @@ class InfluencerDetail extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'user_meta_id',
+        'user_id',
+        'rating',
+        'eng_rate',
+        'work_rate',
+        'tags',
+        'post_count',
+        'comment_count',
+        'like_count',
+        'follower_count',
+        'following_count'
+    ];
 
 }

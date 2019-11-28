@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
          $this->call(NicheTableSeeder::class);
          $this->call(CountriesTableSeeder::class);
          $this->call(StateTableSeeder::class);
+         $this->call(UsersTableSeeder::class);
+         $this->call(CampaignInviteTableSeeder::class);
          $this->call(CityTableSeeder::class);
     }
 }
