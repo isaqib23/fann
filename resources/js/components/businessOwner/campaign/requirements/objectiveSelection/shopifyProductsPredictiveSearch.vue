@@ -77,7 +77,6 @@
 </template>
 
 <script>
-    import {api} from '~/config'
     export default {
         props : {
             disabledSearch : null,

@@ -10,7 +10,10 @@
                         <div class="subtitle-1 mb-2 black--text"><strong>Connected Social Accounts</strong></div>
 
                         <v-row justify="start">
-                            <v-col class="px-0" cols="12" sm="6" md="4" v-for="(platform, index) in platforms">
+                            <v-col class="px-0" cols="12" sm="6" md="4"
+                                   v-for="(platform, index) in platforms"
+                                   :key="index"
+                            >
                                 <v-card
                                     max-width="285"
                                     v-on="platform.userPlatforms === null ? { click: () => goToSocialLogin(platform.name) } : {}"
@@ -60,15 +63,9 @@
 
 <script>
     import { mapGetters, mapActions } from 'vuex'
-    import notConnectedSocial from './notConnectedSocial';
-    import connectedSocial from './connectedSocial';
-    import { api } from '~/config'
     import NProgress from 'nprogress';
+
     export default {
-        components: {
-            notConnectedSocial: notConnectedSocial,
-            connectedSocial: connectedSocial
-        },
         data: () => ({
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
@@ -77,21 +74,19 @@
             user: {
                 name: null,
                 email: null,
-            },
-            route: { type: '/dfdsfdsf', required: true }
+            }
         }),
-
         computed: mapGetters({
-            auth            : 'auth/user',
+            auth        : 'auth/user',
             platforms   : 'settings/userPlatforms'
         }),
         methods:{
             ...mapActions({
                 getUserPlatforms: 'settings/getUserPlatforms'
             }),
-            goToSocialLogin(provider){
+            goToSocialLogin(provider) {
                 NProgress.start();
-                axios.post(api.path('setting.socialLogin'),{"provider":provider})
+                axios.post(api.path('setting.socialLogin'), {"provider": provider})
                     .then(res => {
                         window.location.href = res.data.url;
                     })
@@ -104,7 +99,6 @@
                     })
             }
         },
-
         async mounted() {
             this.user = Object.assign(this.user, this.auth);
             await this.getUserPlatforms();

@@ -50,8 +50,6 @@
 
 <script>
     import { mapGetters, mapActions } from 'vuex';
-    import axios from 'axios'
-    import { api } from '~/config'
     import { required, minLength } from 'vuelidate/lib/validators'
     export default {
 
