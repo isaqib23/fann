@@ -32,6 +32,17 @@ class InstagramService
     }
 
     /**
+     *
+     * @param $user_id
+     * @return string
+     */
+    public function getAuthUrl($user_id)
+    {
+        $authUrl = 'https://api.instagram.com/oauth/authorize/?client_id=' . config('services.instagram.client_id') . '&redirect_uri=' . config('services.instagram.redirect') . '&response_type=code&state=' . $user_id;
+        return $authUrl;
+    }
+
+    /**
      * @param $code
      * @return mixed
      * @throws GuzzleException

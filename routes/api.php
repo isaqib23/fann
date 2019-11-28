@@ -74,6 +74,7 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::get('getNiches', 'SettingsController@getNiches')->name('user.get_niches');
 
         Route::post('socialPlatformLogin', 'UserPlatformsController@index');
+        Route::get('getUserPlatforms', 'UserPlatformsController@getUserPlatforms')->name('user.getUserPlatforms');
 
         Route::post('saveUserDetail', 'UserDetailsController@create')->name('user.saveUserDetail');
         Route::get('getUserDetail', 'UserDetailsController@index')->name('user.getUserDetail');

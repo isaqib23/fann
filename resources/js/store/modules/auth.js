@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { api } from '~/config'
 import * as types from '../mutation-types'
-
+import store from "../index"
 /**
  * Initial state
  */
@@ -59,7 +59,8 @@ export const actions = {
 
   async logout({ commit }) {
     await axios.post(api.path('logout'))
-    commit(types.LOGOUT)
+    commit(types.LOGOUT);
+    store.commit('resetState');
   },
 
   destroy({ commit }) {

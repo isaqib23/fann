@@ -18,5 +18,12 @@ const modules = requireContext.keys()
   }, {})
 
 export default new Vuex.Store({
-  modules
+    modules: _.cloneDeep(modules),
+    mutations: {
+        resetState(state) {
+            _.forOwn(modules, (value, key) => {
+                state[key] = _.cloneDeep(value.state);
+            });
+        },
+    }
 })
