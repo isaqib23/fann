@@ -14,8 +14,12 @@ class EmailNotification
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    /**
+     * @var
+     */
     public $user;
     public $template;
+
     /**
      * Create a new event instance.
      *

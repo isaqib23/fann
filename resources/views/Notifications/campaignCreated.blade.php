@@ -30,7 +30,6 @@
 
                             <tr>
                                 <td align="center" height="70" style="height:70px;">
-
                                     {{--<a href="" style="display: block; border-style: none !important; border: 0 !important;">--}}
                                         {{--<img width="100" border="0" style="display: block; width: 100px;" src="https://mdbootstrap.com/img/logo/mdb-email.png" alt="" /></a>--}}
                                 </td>

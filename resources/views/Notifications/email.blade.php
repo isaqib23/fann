@@ -13,8 +13,6 @@
         <link href="{{  env('APP_URL').'/css/app.css'  }}" rel="stylesheet">
 
         <link rel="shortcut icon" type="image/x-icon" href="/images/brand.png" />
-
-
     </head>
     <body>
         @yield('content')
