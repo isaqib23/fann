@@ -15,6 +15,7 @@ use App\Contracts\CityRepository;
 use App\Contracts\CompanyRepository;
 use App\Contracts\CompanyUserRepository;
 use App\Contracts\CountryRepository;
+use App\Contracts\InfluencerDetailRepository;
 use App\Contracts\NicheRepository;
 use App\Contracts\NotificationRepository;
 use App\Contracts\NotificationTypeRepository;
@@ -41,6 +42,7 @@ use App\Repositories\CityRepositoryEloquent;
 use App\Repositories\CompanyRepositoryEloquent;
 use App\Repositories\CompanyUserRepositoryEloquent;
 use App\Repositories\CountryRepositoryEloquent;
+use App\Repositories\InfluencerDetailRepositoryEloquent;
 use App\Repositories\NicheRepositoryEloquent;
 use App\Repositories\NotificationRepositoryEloquent;
 use App\Repositories\NotificationTypeRepositoryEloquent;
@@ -105,7 +107,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserPlatformRepository::class, UserPlatformRepositoryEloquent::class);
         $this->app->bind(UserMetaRepository::class, UserMetaRepositoryEloquent::class);
         $this->app->bind(UserDetailRepository::class, UserDetailRepositoryEloquent::class);
-
+        $this->app->bind(InfluencerDetailRepository::class, InfluencerDetailRepositoryEloquent::class);
         //:end-bindings:
     }
 }
