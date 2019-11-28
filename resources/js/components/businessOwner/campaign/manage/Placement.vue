@@ -194,7 +194,9 @@
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="float-right">
                                                 <div class="d_block">
-                                                    <v-icon class="custom_font black--text px-1">mdi-chat</v-icon>
+                                                    <v-btn small icon @click="chatBox">
+                                                        <v-icon class="custom_font black--text px-1">mdi-chat</v-icon>
+                                                    </v-btn>
                                                     <v-icon class="custom_font black--text px-1">cancel</v-icon>
                                                     <v-icon class="custom_font black--text px-1">mdi-refresh</v-icon>
                                                 </div>
@@ -237,14 +239,24 @@
                     </template>
                 </v-list>
         </v-flex>
+        <v-flex>
+            <chatWindow></chatWindow>
+        </v-flex>
+
+
     </v-layout>
 
 </template>
 
 <script>
 
+    import chatWindow from  '../../../general/ChatWindow';
     export default {
+        components:{
+          chatWindow : chatWindow
+        },
         data: () => ({
+            showChatWindow : false,
             rating: 3,
             expanded: [],
             singleExpand: true,
@@ -343,7 +355,14 @@
                     title: 'Recipe to try',
                 },
             ]
-        })
+        }),
+        methods:{
+            chatBox(){
+                console.info("here");
+                this.showChatWindow = true;
+            }
+        }
+
     }
 </script>
 <style scoped>
