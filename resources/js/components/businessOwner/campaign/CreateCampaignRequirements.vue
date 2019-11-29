@@ -101,7 +101,11 @@
                    barterProduct : {},
                    amount : 0,
                    campaignDescription : null,
-                   images : []
+                   images : [],
+                   instaPost : null,
+                   instaBioLink : null,
+                   instaStory : null,
+                   instaStoryLink : null,
                },
             }
         },

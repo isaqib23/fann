@@ -15,7 +15,6 @@ use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Requests;
 use Illuminate\Http\Response;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -317,6 +316,10 @@ class CampaignsController extends Controller
         ]);
     }
 
+    /**
+     * @param TouchPointRequest $request
+     * @return JsonResponse|RedirectResponse
+     */
     public function saveTouchPoint(TouchPointRequest $request)
     {
         try {

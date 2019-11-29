@@ -14,7 +14,11 @@ export const state = {
       barterProduct : null,
       amount : 0,
       campaignDescription : null,
-      images : null
+      instaPost : null,
+      instaBioLink : null,
+      instaStory : null,
+      instaStoryLink : null,
+      images : null,
   }
 }
 
