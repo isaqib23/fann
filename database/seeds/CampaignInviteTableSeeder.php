@@ -13,17 +13,19 @@ class CampaignInviteTableSeeder extends Seeder
      */
     public function run()
     {
+        static $campaign = 1001;
+        static $touchPoint = 1001;
         $faker = Faker::create();
         foreach (range(1,20) as $index) {
             $dt = Carbon::now();
             $dateNow = $dt->toDateTimeString();
 
             $last_id = DB::table('campaign_invites')->insertGetId([
-                'user_id'           => $faker->numberBetween(10,20),
-                'campaign_id'       => $faker->numberBetween(1,20),
-                'touch_point_id'    => $faker->numberBetween(1,5),
-                'sender_id'         => $faker->numberBetween(1,10),
-                'sent_from'         => ($index >= 10) ? 'businessOwner' : 'influencer',
+                'user_id'           => $faker->numberBetween(21,30),
+                'campaign_id'       => $campaign++,
+                'touch_point_id'    => $touchPoint++,
+                'sender_id'         => $faker->numberBetween(11,20),
+                'sent_from'         => ($index >= 20) ? 'businessOwner' : 'influencer',
                 'original_price'    => $faker->randomNumber(2),
                 'influencer_price'  => $faker->randomNumber(2),
                 'status'            => 'active',
@@ -44,7 +46,7 @@ class CampaignInviteTableSeeder extends Seeder
 
             DB::table('influencer_jobs')->insertGetId([
                 'user_id'            => $get_campaign_invite->user_id,
-                'campaign_invite_id' => $get_campaign_invite->campaign_id,
+                'campaign_invite_id' => $get_campaign_invite->id,
                 'status'             => 'active',
                 'created_at'         => $dateNow,
                 'updated_at'         => $dateNow

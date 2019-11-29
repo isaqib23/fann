@@ -14,15 +14,16 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1,20) as $index) {
+        foreach (range(11,30) as $index) {
             $dt = Carbon::now();
             $dateNow = $dt->toDateTimeString();
 
             DB::table('users')->insertGetId([
+                'id'                    => $index,
                 'first_name'            => $faker->firstName,
                 'last_name'             => $faker->lastName,
                 'email'                 => $faker->freeEmail,
-                'type'                  => ($index >= 10) ? 'businessOwner' : 'influencer',
+                'type'                  => ($index >= 20) ? 'businessOwner' : 'influencer',
                 'password'              => bcrypt('123456')
             ]);
         }
