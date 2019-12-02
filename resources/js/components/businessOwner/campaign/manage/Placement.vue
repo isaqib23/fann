@@ -194,7 +194,7 @@
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="float-right">
                                                 <div class="d_block">
-                                                    <v-btn small icon @click="chatBox">
+                                                    <v-btn small icon @click="chatBox(item)">
                                                         <v-icon class="custom_font black--text px-1">mdi-chat</v-icon>
                                                     </v-btn>
                                                     <v-icon class="custom_font black--text px-1">cancel</v-icon>
@@ -236,13 +236,21 @@
                             </v-list-item-content>
                         </v-list-item>
                         </v-card>
+
                     </template>
                 </v-list>
         </v-flex>
-        <v-flex>
-            <chatWindow></chatWindow>
-        </v-flex>
+        <v-layout  row wrap align-end justify-end class="chatbox-holder">
+            <chatWindow
+                class="d-inline col-md-4"
+                v-for="(box, boxIndex) in listOfChatBox"
+                :key="boxIndex"
+                :propItem="box"
+                v-on:close-window="closeWindow"
+            >
 
+            </chatWindow>
+        </v-layout>
 
     </v-layout>
 
@@ -257,6 +265,7 @@
         },
         data: () => ({
             showChatWindow : false,
+            listOfChatBox:[],
             rating: 3,
             expanded: [],
             singleExpand: true,
@@ -331,41 +340,66 @@
             ],
             items: [
                 {
+                    id: 1,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
                     title: 'Brunch this weekend?',
                 },
                 { divider: true, inset: true },
                 {
+                    id: 2,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
                     title: 'Summer BBQ',
                 },
                 { divider: true, inset: true },
                 {
+                    id: 3,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
                     title: 'Oui oui',
                 },
                 { divider: true, inset: true },
                 {
+                    id: 4,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
                     title: 'Birthday gift',
                 },
                 { divider: true, inset: true },
                 {
+                    id:5,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
                     title: 'Recipe to try',
                 },
             ]
         }),
         methods:{
-            chatBox(){
-                console.info("here");
-                this.showChatWindow = true;
+            chatBox(item){
+                this.listOfChatBox.push(item);
+            },
+            closeWindow(e) {
+               let toRemove =  _.findIndex(this.listOfChatBox, function(obj) {
+                    return obj.id === e.chatBox.id;
+                });
+                this.listOfChatBox.splice(toRemove, 1) // remove it from array
             }
         }
-
     }
 </script>
 <style scoped>
+    >>>.chatbox-holder{
+        right:0;
+        bottom:0;
+        position:fixed;
+        width:50%;
+    }
+    >>>.chatbox_min{
+        margin-bottom: -320px;
+    }
+    >>>.chatbox_min .chatbox-avatar{
+        width:50px;
+        height:50px;
+    }
+    >>>.chatbox_min .chat-box-title{
+        padding:0 0 0 75px;
+    }
     >>>.v-rating .v-icon{
         padding:0px;
     }

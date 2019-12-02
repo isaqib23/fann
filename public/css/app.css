@@ -8736,6 +8736,60 @@ v-tabs[data-v-b18a2312] {
   opacity: 0.32;
   top: calc(50% - 14px);
 }
+[data-v-2ff01b1a] .my-message{
+    background-color:#4e8cff !important;
+    border-radius:10px !important;
+}
+[data-v-2ff01b1a] .message{
+    border-radius:10px !important;
+    background-color: #eaeaea !important;
+}
+[data-v-2ff01b1a] .input-field.v-input input{
+    max-height:0px !important;
+    padding-bottom: 10px !important;
+}
+[data-v-2ff01b1a] .input-icons{
+    height:30px !important;
+    width:30px !important;
+}
+[data-v-2ff01b1a] .input-icons .v-icon{
+    font-size: 20px !important;
+}
+[data-v-2ff01b1a] .input-color{
+    color:#1473e6 !important;
+}
+[data-v-2ff01b1a] ::-webkit-input-placeholder{
+    color:#1473e6 !important;
+}
+[data-v-2ff01b1a] ::-moz-placeholder{
+    color:#1473e6 !important;
+}
+[data-v-2ff01b1a] :-ms-input-placeholder{
+    color:#1473e6 !important;
+}
+[data-v-2ff01b1a] ::-ms-input-placeholder{
+    color:#1473e6 !important;
+}
+[data-v-2ff01b1a] ::placeholder{
+    color:#1473e6 !important;
+}
+
+[data-v-5fb02803] .chatbox-holder{
+    right:0;
+    bottom:0;
+    position:fixed;
+    width:50%;
+}
+[data-v-5fb02803] .chatbox_min{
+    margin-bottom: -320px;
+}
+[data-v-5fb02803] .chatbox_min .chatbox-avatar{
+    width:50px;
+    height:50px;
+}
+[data-v-5fb02803] .chatbox_min .chat-box-title{
+    padding:0 0 0 75px;
+}
 [data-v-5fb02803] .v-rating .v-icon{
     padding:0px;
 }
