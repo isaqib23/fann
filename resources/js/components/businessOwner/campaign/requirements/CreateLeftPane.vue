@@ -1,296 +1,259 @@
 <template>
     <div>
-        <v-flex
-        >
-            <v-card class="elevation-4 mx-auto pa-3 transition-swing"
+        <v-card>
+            <v-flex>
+                <v-card class="elevation-4 mx-auto pa-3 transition-swing">
+                    <v-card-title>
+                        <div class="subtitle-1 mb-2"><strong>Campaign Description</strong></div>
+                    </v-card-title>
+
+                    <v-textarea
+                        v-model="campaignDescription"
+                        label="Write your campaign description here"
+                        auto-grow
+                        outlined
+                        rows="5"
+                        row-height="15"
+                    ></v-textarea>
+                </v-card>
+            </v-flex>
+            <v-tabs
+                v-model="currentTab"
+                background-color="red lighten-2"
+                dark
+                next-icon="keyboard_arrow_right"
+                prev-icon="keyboard_arrow_left"
+                show-arrows
             >
-                <v-card-title>
-                    <div class="subtitle-1 mb-2"><strong>Campaign Description</strong></div>
-                </v-card-title>
-                <v-textarea
-                    label="Write your campaign description here"
-                    auto-grow
-                    outlined
-                    rows="5"
-                    row-height="15"
-                ></v-textarea>
-            </v-card>
-        </v-flex>
+                <v-tab-item v-for="n in tabsLength" :key="n">
+                    <v-flex>
+                        <v-card class="elevation-4  mx-auto pa-3 mt-3">
+                            <v-card-title>
+                                <v-btn icon @click="preTab()" class="px-0 ml-n10">
+                                    <v-icon right>keyboard_arrow_left</v-icon>
+                                </v-btn>
+                                <div class="subtitle-1 mb-2"><strong>Touch Point # {{n}}</strong></div>
+                                <v-spacer></v-spacer>
+                                <v-btn icon @click="nextTab()" class="px-0 mr-n6">
+                                    <v-icon right>keyboard_arrow_right</v-icon>
+                                </v-btn>
+                            </v-card-title>
+
+
+                            <v-text-field
+                                v-model="touchPoint.name"
+                                label="Create a unboxing video on youtube"
+                                solo
+                                dense
+                                :prepend-inner-icon="icon"
+                                class="custom_dropdown"
+                            ></v-text-field>
+
+                            <v-card-title>
+                                <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ objective.slug.replace('-',' ') }}</strong></div>
+                            </v-card-title>
+
+                            <v-row class="mx-auto my-5">
+                                <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
+                            </v-row>
+
+                            <v-layout>
+                                <v-flex lg12 sm12 m12>
+                                    <v-card-title>
+                                        <div class="subtitle-1 mb-2"><strong>Format</strong></div>
+                                    </v-card-title>
+                                </v-flex>
+                            </v-layout>
+                            <v-layout row wrap pl-3 pr-3>
+                                <v-flex lg4 sm4 m4 pr-3>
+                                    <v-checkbox class="mt-0 pt-0" color="primary" label="Instagram Post"
+                                                v-model="touchPoint.instaPost"
+                                                @click="disabledBioLink = !disabledBioLink"
+                                                value="post"
+                                    ></v-checkbox>
+                                </v-flex>
+                                <v-flex lg8 sm8 m8 pl-3>
+                                    <v-text-field
+                                        solo
+                                        label="Bio Link"
+                                        class="custom_dropdown"
+                                        v-model="touchPoint.instaBioLink"
+                                        :disabled="disabledBioLink"
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-layout>
+                            <v-layout row wrap pl-3 pr-3 mt-3>
+                                <v-flex lg4 sm4 m4 pr-3>
+                                    <v-checkbox class="mt-0 pt-0" color="primary" label="Instagram Story"
+                                                v-model="touchPoint.instaStory"
+                                                @click="disabledStoryLink = !disabledStoryLink"
+                                                value="story"
+                                    ></v-checkbox>
+                                </v-flex>
+                                <v-flex lg8 sm8 m8 pl-3>
+                                    <v-text-field
+                                        solo
+                                        label="Story Link"
+                                        class="custom_dropdown"
+                                        v-model="touchPoint.instaStoryLink"
+                                        :disabled="disabledStoryLink"
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-layout>
+
+                            <v-card flat class="mx-auto">
+                                <v-card-title>
+                                    <div class="subtitle-1 mb-2"><strong>Suggested Caption</strong></div>
+                                </v-card-title>
+                                <v-textarea
+                                    v-model="touchPoint.caption"
+                                    label="Write suggested caption here!"
+                                    auto-grow
+                                    outlined
+                                    rows="5"
+                                    row-height="15"
+                                ></v-textarea>
+                            </v-card>
+
+                            <v-flex>
+                                <v-card-title>
+                                    <div class="subtitle-1 mb-2"><strong>Guidelines</strong></div>
+                                </v-card-title>
+                                <v-badge v-for="n in guideLines" :key="n" class="full_width">
+                                    <template v-slot:badge v-if="n > 1">
+                                        <v-icon @click="removeGuide" color="white">mdi-minus</v-icon>
+                                    </template>
+                                    <v-row class="mx-auto my-2">
+                                        <v-flex xl1 lg1 md1 sm1 xs2>
+                                            <v-list-item-icon class="mt-3 ml-2">
+                                                <strong class="primary--text">{{n}}</strong>
+                                            </v-list-item-icon>
+                                        </v-flex>
+                                        <v-flex xl11 lg11 md11 sm11 xs10>
+                                            <v-text-field
+                                                v-model="touchPoint.guideLines[n]"
+                                                :count="n"
+                                                label="For e.g: please follow our brand"
+                                                solo
+                                                dense
+                                                class="custom_dropdown product_left_border"
+                                            ></v-text-field>
+                                        </v-flex>
+                                    </v-row>
+                                </v-badge>
+                                <v-btn small icon color="primary" @click="addGuide">
+                                    <v-icon>mdi-plus-circle</v-icon>
+                                </v-btn>
+                            </v-flex>
+
+                            <v-layout>
+                                <v-flex lg12 sm12 m12>
+                                    <v-card-title>
+                                        <div class="subtitle-1 mb-2"><strong>Images</strong></div>
+                                    </v-card-title>
+                                    <v-card-text>
+                                        Adding images can help influencer create a better Unboxing video!
+                                    </v-card-text>
+                                </v-flex>
+                            </v-layout>
+
+                            <v-layout row wrap pl-3 pr-3 mt-3>
+                                <v-flex lg4 sm4 m4 pr-3 class="text-center">
+                                    <MultiImageInput v-model="touchPoint.images">
+                                        <div slot="activator">
+                                            <v-avatar size="40" v-ripple v-if="!touchPoint.images" class="mb-3" tile>
+                                                <v-icon class="display-1">mdi-image-filter</v-icon>
+                                            </v-avatar>
+                                            <v-avatar size="40" v-else class="mb-3" tile>
+                                                <v-img
+                                                    class="white--text align-end"
+                                                    :src="touchPoint.images.imageURL" alt="avatar">
+                                                </v-img>
+                                            </v-avatar>
+                                        </div>
+                                    </MultiImageInput>
+                                </v-flex>
+                                <v-flex lg8 sm8 m8 pl-3>
+                                    <v-btn height="38" depressed block class="text-capitalize" color="primary">Upload Images</v-btn>
+                                </v-flex>
+                            </v-layout>
+
+                            <v-layout row wrap pl-3 pr-3 mt-5>
+                                <v-flex lg6 sm6 m6 pr-3>
+                                    <div class="subtitle-2 mb-2"><strong>Hashtags</strong></div>
+                                    <div class="overline mb-2">Seprate with (,)</div>
+                                    <v-text-field
+                                        v-model="touchPoint.hashtags"
+                                        solo
+                                        label="Fitness,Gym"
+                                        prepend-icon="#"
+                                        class="tag_field"
+                                    ></v-text-field>
+                                </v-flex>
+                                <v-flex lg6 sm6 m6 pl-3>
+                                    <div class="subtitle-2 mb-2"><strong>Brand Mention</strong></div>
+                                    <div class="overline mb-2">Seperate with (,)</div>
+                                    <v-text-field
+                                        v-model="touchPoint.mentions"
+                                        solo
+                                        label="Nike,Nuchey"
+                                        prepend-icon="@"
+                                        class="tag_field"
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-layout>
+
+                            <v-layout>
+                                <v-flex lg12 sm12 m12>
+                                    <v-card-title>
+                                        <div class="subtitle-1 mb-2"><strong>Payment</strong></div>
+                                    </v-card-title>
+                                    <v-card-text>
+                                        Please specify incentives to complete this touch point!
+                                    </v-card-text>
+                                </v-flex>
+                            </v-layout>
+                            <v-layout row wrap pl-3 pr-3 v-if="!disabledBarter">
+                                <v-flex lg3 sm3 m3 pr-3>
+                                    <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
+                                </v-flex>
+                                <v-flex lg9 sm9 m9 pl-3>
+                                    <products-search
+                                        :emit-as="'barterProduct'"
+                                        :placeholder="'Same as Unboxing'"
+                                        @selected-product="selectedProduct"
+                                    >
+                                    </products-search>
+
+                                </v-flex>
+                            </v-layout>
+                            <v-layout row wrap pl-3 pr-3 mt-3 v-if="!disabledPaid">
+                                <v-flex lg3 sm3 m3 pr-3>
+                                    <v-btn outlined class="text-capitalize" color="grey">Payment</v-btn>
+                                </v-flex>
+                                <v-flex lg9 sm9 m9 pl-3>
+                                    <v-text-field
+                                        v-model="touchPoint.amount"
+                                        solo
+                                        label="$100"
+                                        class="custom_dropdown"
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-layout>
+                        </v-card>
+                    </v-flex>
+                </v-tab-item>
+            </v-tabs>
+        </v-card>
 
         <v-flex>
             <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
-                <v-card-title>
-                    <div class="subtitle-1 mb-2"><strong>Touch Point # 1</strong></div>
-                </v-card-title>
-
-                <v-select
-                    :items="items"
-                    label="Instagram image post"
-                    solo
-                    dense
-                    append-icon="keyboard_arrow_down"
-                    prepend-inner-icon="mdi-instagram"
-                    class="custom_dropdown"
-                ></v-select>
-
-                <v-row class="mx-auto my-5">
-                    <v-flex xl10 lg10 md10 sm11 xs11>
-
-                        <v-combobox
-                            v-model="select2"
-                            :items="items"
-                            label="Instagram image post"
-                            append-icon="keyboard_arrow_down"
-                            prepend-inner-icon="mdi-instagram"
-                            class="custom_dropdown product_right_border"
-                            solo
-                            dense
-                        ></v-combobox>
-                    </v-flex>
-                    <v-flex xl2 lg2 md2 sm1 xs1>
-                        <v-list-item-avatar height="50" min-width="45" width="45" class="ma-0 field_right_icon" color="grey lighten-2">
-                            <span>$25</span>
-                        </v-list-item-avatar>
-                    </v-flex>
-                </v-row>
-
-                <v-row class="mx-auto my-5">
-                    <v-flex xl2 lg2 md2 sm1 xs2>
-                        <v-list-item-avatar height="45" min-width="100%" width="100%" class="ma-0 field_icon">
-                            <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
-                        </v-list-item-avatar>
-                    </v-flex>
-                    <v-flex xl8 lg8 md8 sm10 xs8>
-                        <v-text-field
-                            label="Instagram image post"
-                            solo
-                            dense
-                            class="custom_dropdown product_right_border product_left_border"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex xl2 lg2 md2 sm1 xs2>
-                        <v-list-item-avatar height="45" min-width="45" width="45" class="ma-0 field_right_icon" color="grey lighten-2">
-                            <span>$25</span>
-                        </v-list-item-avatar>
-                    </v-flex>
-                </v-row>
-
-                <div class="d-inline-block full_width promotions mb-2 mt-4">
-                    <v-btn color="primary pl-3 pr-3" class="text-capitalize">
-                        Product Promotion
-                    </v-btn>
-                    <v-btn color="white float-right" class="text-capitalize">
-                        Brand Promotion
-                    </v-btn>
-                </div>
-
-                <v-row class="mx-auto my-5">
-                    <v-flex xl2 lg2 md2 sm1 xs2>
-                        <v-list-item-avatar height="45" min-width="100%" width="100%" class="ma-0 field_icon">
-                            <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
-                        </v-list-item-avatar>
-                    </v-flex>
-                    <v-flex xl10 lg10 md10 sm11 xs10>
-                        <v-select
-                            :items="items"
-                            label="Instagram image post"
-                            solo
-                            dense
-                            append-icon="keyboard_arrow_down"
-                            class="custom_dropdown product_left_border"
-                        ></v-select>
-                    </v-flex>
-                </v-row>
-
-
-
-
-                <v-tabs fixed-tabs class="fields_tabs" active-class="active_tab">
-                    <v-tab class="text-capitalize">
-                        Guidelines
-                    </v-tab>
-                    <v-tab class="text-capitalize">
-                        Captions
-                    </v-tab>
-                    <v-tab class="text-capitalize">
-                        Upload images
-                    </v-tab>
-                    <v-tab-item>
-                        <v-textarea
-                            label="Write your campaign description here"
-                            auto-grow
-                            outlined
-                            rows="5"
-                            row-height="15"
-                        ></v-textarea>
-                    </v-tab-item>
-                    <v-tab-item>
-                        <v-textarea
-                            label="Write your campaign description here"
-                            auto-grow
-                            outlined
-                            rows="5"
-                            row-height="15"
-                        ></v-textarea>
-                    </v-tab-item>
-                    <v-tab-item>
-                        <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
-                    </v-tab-item>
-                </v-tabs>
-                <div class="d-inline-block full_width promotions mb-2 mt-4">
-                    <div class="age_group">
-                        <v-radio-group v-model="kind" row class="mt-0">
-                            <v-radio label="IG Story" value="1" active-class="kind_active"></v-radio>
-                            <v-radio label="IG Post" value="2" active-class="kind_active"></v-radio>
-                        </v-radio-group>
-                    </div>
-                </div>
-
-                <v-card flat>
-                    <v-card-title class="pa-0">
-                        <div class="subtitle-1 text-uppercase d-block"><strong>Criteria</strong></div>
-                    </v-card-title>
-                    <v-card-text class="pa-0 pb-2">
-                        <p class="mb-0">Choose Giveaway Criteria</p>
-                    </v-card-text>
-                    <v-card outlined class="pa-3">
-                        <v-select
-                            :items="criteria"
-                            label="Choose Giveaway Criteria"
-                            solo
-                            class="custom_dropdown mb-0"
-                            append-icon="keyboard_arrow_down"
-                        ></v-select>
-                        <v-divider vertical class="vertical_divider"></v-divider>
-                        <div class="d-block">
-                            <v-combobox
-                                v-model="select"
-                                label="Enter Tags"
-                                multiple
-                                chips
-                            ></v-combobox>
-                        </div>
-                    </v-card>
-                    <v-divider vertical class="vertical_divider"></v-divider>
-                    <v-card-text class="px-0 pt-0">
-                        <v-btn outlined small color="grey" class="black--text pr-10">+ Add</v-btn>
-                    </v-card-text>
-                </v-card>
-
-
-                <v-card flat>
-                    <v-card-title>
-                        <div class="subtitle-1 ml-n3"><strong>Select Barter Product</strong></div>
-                    </v-card-title>
-                    <v-select
-                        :items="items"
-                        label="Select from here"
-                        solo
-                        dense
-                        class="custom_dropdown"
-                        append-icon="keyboard_arrow_down"
-                    ></v-select>
-
-
-                    <v-row class="mx-auto my-5" justify="space-between">
-                        <v-flex xl5 lg5 md5 sm12 xs12>
-                            <v-menu
-                                v-model="menu1"
-                                :close-on-content-click="false"
-                                max-width="290"
-                            >
-                                <template v-slot:activator="{ on }">
-                                    <label class="font-weight-bold">Start Date</label>
-                                    <v-text-field
-                                        clearable
-                                        label="Start Date"
-                                        readonly
-                                        solo
-                                        class="custom_datepickr"
-                                        v-on="on"
-                                    ></v-text-field>
-                                </template>
-                                <v-date-picker
-                                    v-model="date"
-                                    @change="menu1 = false"
-                                ></v-date-picker>
-                            </v-menu>
-                        </v-flex>
-                        <v-flex xl5 lg5 md5 sm12 xs12>
-                            <v-menu
-                                v-model="menu2"
-                                :close-on-content-click="false"
-                                max-width="290"
-                            >
-                                <template v-slot:activator="{ on }">
-                                    <label class="font-weight-bold">End Date</label>
-                                    <v-text-field
-                                        clearable
-                                        label="End Date"
-                                        readonly
-                                        solo
-                                        class="custom_datepickr"
-                                        v-on="on"
-                                    ></v-text-field>
-                                </template>
-                                <v-date-picker
-                                    v-model="date"
-                                    @change="menu2 = false"
-                                ></v-date-picker>
-                            </v-menu>
-                        </v-flex>
-                    </v-row>
-                    <v-row class="mx-auto my-5">
-                        <v-flex md12>
-                            <label class="font-weight-bold">The amount you are paying to influencer.</label>
-                            <v-text-field
-                                label="$100"
-                                solo
-                                class="custom_datepickr"
-                            ></v-text-field>
-                        </v-flex>
-                    </v-row>
-
-                </v-card>
-
-                <v-card flat>
-                    <v-card-title>
-                        <div class="subtitle-1"><strong>Shipment</strong></div>
-                    </v-card-title>
-                    <v-checkbox v-model="checkbox2" label="I will be shipping this product to influencers" color="primary"></v-checkbox>
-                </v-card>
-
-            </v-card>
-        </v-flex>
-
-        <v-flex
-        >
-            <v-card class="elevation-4  mx-auto pa-3 transition-swing mt-3">
                 <div class="text-center mt-4">
-                    <v-btn block height="20" class="task_btn text-capitalize">+ Add another contest or giveaway</v-btn>
+                    <v-btn block height="20" class="task_btn text-capitalize" @click="addTouchPoint">+ Add another contest or giveaway</v-btn>
                 </div>
-                <v-layout row wrap pl-3 pr-3 mt-5>
-                    <v-flex lg6 sm6 m6 pr-3>
-                        <div class="subtitle-2 mb-2"><strong>Hashtags</strong></div>
-                        <div class="overline mb-2">Seprate with (,)</div>
-                        <v-text-field
-                            solo
-                            label="Fitness,Gym"
-                            prepend-icon="#"
-                            class="tag_field"
-                        ></v-text-field>
-                    </v-flex>
-                    <v-flex lg6 sm6 m6 pl-3>
-                        <div class="subtitle-2 mb-2"><strong>Brand Mention</strong></div>
-                        <div class="overline mb-2">Seperate with (,)</div>
-                        <v-text-field
-                            solo
-                            label="Nike,Nuchey"
-                            prepend-icon="@"
-                            class="tag_field"
-                        ></v-text-field>
-                    </v-flex>
-                </v-layout>
+                <div class="text-center mt-4">
+                    <v-btn block height="20" color="primary" class="task_btn text-capitalize" @click="removeTouchPooint">- Remove contest or giveaway</v-btn>
+                </div>
             </v-card>
         </v-flex>
 
@@ -298,43 +261,224 @@
 </template>
 
 <script>
-    import vue2Dropzone from 'vue2-dropzone';
-    import { mapGetters } from 'vuex';
+    import MultiImageInput from '../../../general/MultiImageInput';
+    import shopifyProductsPredictiveSearch from "./objectiveSelection/shopifyProductsPredictiveSearch";
+    import {mapGetters, mapActions, mapMutations} from 'vuex';
+
     export default {
         components: {
-            vueDropzone: vue2Dropzone,
+            MultiImageInput: MultiImageInput,
+            productsSearch : shopifyProductsPredictiveSearch
         },
-        data: () => {
-           return  {
-               e1: 0,
-               kind: '1',
-               checkbox2: true,
-               checkbox1: false,
-               items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-               select2: '',
-               select: ['Vuetify', 'Programming'],
-               criteria: ['Tag Friends (Number Field)', 'Mention Brand (Instagram / YouTube Handle)', 'Follow (Instagram Handle)', 'Hashtag (#)'],
-               dropzoneOptions: {
-                   url: 'https://httpbin.org/post',
-                   maxFilesize: 0.5,
-                   thumbnailHeight: 100,
-                   acceptedFiles:'image/*',
-                   addRemoveLinks: true,
-                   dictDefaultMessage: "<div class='text-center'><i class='material-icons'>cloud_upload</i><br>Drag & Drop<br><span class='overline'>your files to assets, or <span class='primary--text'>browse</span></span></div>"
-               },
-               menu1: false,
-               menu2: false,
-               date: new Date().toISOString().substr(0, 10),
+        props : {
+            touchPoint : {},
+            objective : {}
+        },
+        data ()  {
+            return  {
+                tabsLength            : 1,
+                currentTab            : 0,
+                guideLines            : 1,
+                model                 : 0,
+                e1                    : 0,
+                kind                  : '1',
+                checkbox2             : true,
+                checkbox1             : false,
+                items                 : ['Foo', 'Bar', 'Fizz', 'Buzz'],
+                select2               : '',
+                select                : ['Vuetify', 'Programming'],
+                avatar                : null,
+                saving                : false,
+                saved                 : false,
+                menu1                 : false,
+                menu2                 : false,
+                date                  : new Date().toISOString().substr(0, 10),
+                touchPointProducts    : [],
+                campaignDescription   : null,
+                caption               : '',
+                guideLineNumber       : 0,
+                paymentMethod         : {},
+                disabledPaid          :false,
+                disabledBarter        :false,
+                icon                  :null,
+                disabledBioLink       :true,
+                disabledStoryLink     :true,
             }
         },
-        methods: {},
-        computed : {
+        computed: {
             ...mapGetters({
-              campaignObjective : 'campaign/campaignObjective'
+                placement: 'campaign/campaignPlacement',
             })
         },
-        created() {
-            console.info(this.campaignObjective);
+        mounted() {
+            this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
+            this.setPayment();
+            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+        },
+        methods: {
+            ...mapMutations({
+                setTouchPoint : 'campaign/setTouchPoint'
+            }),
+            ...mapActions({
+                saveTouchPoint: 'campaign/saveTouchPoint'
+            }),
+            nextTab() {
+                if (this.currentTab === this.tabsLength - 1) {
+                    return false;
+                }
+                this.currentTab = this.currentTab + 1;
+            },
+            preTab() {
+                if (this.currentTab === 0) {
+                    return false;
+                }
+                this.currentTab = this.currentTab - 1;
+            },
+            async addTouchPoint() {
+                let response =  await this.saveTouchPoint();
+
+                if (response.status === 200) {
+                    // this.tabsLength = this.tabsLength + 1;
+                    //  this.currentTab = this.currentTab + 1;
+                }
+            },
+            removeTouchPooint() {
+                if (this.tabsLength === 1) {
+                    return false;
+                }
+                this.tabsLength = this.tabsLength - 1;
+                this.currentTab = this.currentTab - 1;
+            },
+            addGuide() {
+                this.guideLines = this.guideLines + 1;
+            },
+            removeGuide() {
+                if (this.guideLines === 1) {
+                    return false;
+                }
+                this.guideLines = this.guideLines - 1;
+            },
+            selectedProduct (e) {
+                let self = this;
+                let targetInput = `${ e.bindTo }`;
+                self.touchPointProducts[targetInput] = e.item;
+                this.setTouchPoint([targetInput, e.item]);
+                console.info(self.touchPointProducts);
+            },
+            setPayment() {
+                if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
+                    this.disabledPaid = true;
+                    this.disabledBarter = false;
+                } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
+                    this.disabledBarter = true;
+                    this.disabledPaid = false;
+                } else {
+                    this.disabledBarter = false;
+                    this.disabledPaid = false;
+                }
+            }
+        },
+        watch: {
+            'touchPoint.caption' : {
+                handler: function(val) {
+                    this.setTouchPoint(['caption', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.hashtags' : {
+                handler: function(val) {
+                    this.setTouchPoint(['hashtags', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.mentions' : {
+                handler: function(val) {
+                    this.setTouchPoint(['mentions', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.guideLines': {
+                handler: function(val) {
+                    this.setTouchPoint(['guideLines', _.values(val)]);
+                },
+                immediate: false,
+                deep: true
+            },
+            'touchPoint.amount': {
+                handler: function(val) {
+                    this.setTouchPoint(['amount', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.name': {
+                handler: function(val) {
+                    this.setTouchPoint(['name', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'campaignDescription': {
+                handler: function(val) {
+                    this.setTouchPoint(['campaignDescription', val]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.images': {
+                handler: function (val) {
+                    if (!val.file) {
+                        return;
+                    }
+
+                    let readFiles = [];
+
+                    for (let i = 0; i < val.file.length; i++) {
+                        let file = val.file[i];
+                        let reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            readFiles[i] = {
+                                name: file.name,
+                                size: file.size,
+                                type: file.type,
+                                src: e.target.result
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                    this.setTouchPoint(['images', readFiles]);
+                },
+                immediate: true,
+                deep: true
+            },
+            'touchPoint.instaPost': {
+                handler: function(val) {
+                    this.setTouchPoint(['instaPost', val]);
+                },
+                immediate: true
+            },
+            'touchPoint.instaBioLink': {
+                handler: function(val) {
+                    this.setTouchPoint(['instaBioLink', val]);
+                },
+                immediate: true
+            },
+            'touchPoint.instaStory': {
+                handler: function(val) {
+                    this.setTouchPoint(['instaStory', val]);
+                },
+                immediate: true
+            },
+            'touchPoint.instaStoryLink': {
+                handler: function(val) {
+                    this.setTouchPoint(['instaStoryLink', val]);
+                },
+                immediate: true
+            }
         }
     }
 </script>
@@ -527,5 +671,8 @@
     }
     >>>.kind_active .v-input--selection-controls__input{
         margin-right: 0px !important;
+    }
+    >>>.v-tabs-bar{
+        display: none !important;
     }
 </style>

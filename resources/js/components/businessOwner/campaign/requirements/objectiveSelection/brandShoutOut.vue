@@ -248,7 +248,6 @@
                     </v-flex>
                 </v-tab-item>
             </v-tabs>
-
         </v-card>
 
         <v-flex

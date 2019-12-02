@@ -9,17 +9,8 @@
                         flat icons-and-text background-color="decent" color="gutter">
                     <LeftTabs></LeftTabs>
 
-                    <!--<v-tab-item>
-                        <SetupLeftPane></SetupLeftPane>
-                    </v-tab-item>-->
                     <v-tab-item>
-                        <UnboxingCampaign :objective="campaignObjective" :touch-point="touchPoint" v-if="campaignObjective.ObjectiveId == 1"></UnboxingCampaign>
-                        <productReview :objective="campaignObjective" :touch-point="touchPoint" v-else-if="campaignObjective.ObjectiveId == 2"></productReview>
-                        <contestsGiveways :objective="campaignObjective" :touch-point="touchPoint" v-else-if="campaignObjective.ObjectiveId == 3"></contestsGiveways>
-                        <brandShoutOut :objective="campaignObjective" :touch-point="touchPoint" v-else-if="campaignObjective.ObjectiveId == 4 || campaignObjective.id == 5"></brandShoutOut>
-                        <SponsoredContent :objective="campaignObjective" :touch-point="touchPoint" v-else-if="campaignObjective.ObjectiveId == 6"></SponsoredContent>
-
-                        <CreateLeftPane v-else></CreateLeftPane>
+                        <CreateLeftPane :objective="campaignObjective" :touch-point="touchPoint"></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
                         <InviteLeftPane></InviteLeftPane>
@@ -43,11 +34,6 @@
 <script>
     import LeftTabs from './requirements/LeftTabs';
     import CreateLeftPane from './requirements/CreateLeftPane';
-    import UnboxingCampaign from './requirements/objectiveSelection/UnboxingCampaign';
-    import contestsGiveways from './requirements/objectiveSelection/contestsGiveways';
-    import productReview from './requirements/objectiveSelection/productReview';
-    import brandShoutOut from './requirements/objectiveSelection/brandShoutOut';
-    import SponsoredContent from './requirements/objectiveSelection/SponsoredContent';
     import InviteLeftPane from './requirements/InviteLeftPane';
     import CreateRightPane from './requirements/CreateRightPane';
     import InviteRightPaneListView from './requirements/InviteRightPaneListView';
@@ -58,16 +44,11 @@
         components: {
             LeftTabs: LeftTabs,
             CreateLeftPane: CreateLeftPane,
-            UnboxingCampaign: UnboxingCampaign,
-            contestsGiveways: contestsGiveways,
-            productReview: productReview,
             InviteLeftPane: InviteLeftPane,
             CreateRightPane: CreateRightPane,
             InviteRightPaneListView: InviteRightPaneListView,
             InviteRightPaneGridView: InviteRightPaneGridView,
-            Promote: Promote,
-            brandShoutOut: brandShoutOut,
-            SponsoredContent: SponsoredContent
+            Promote: Promote
         },
         mounted() {
             this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
