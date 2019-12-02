@@ -1,10 +1,8 @@
 <template>
     <div>
         <v-card>
-            <v-flex
-            >
-                <v-card class="elevation-4 mx-auto pa-3 transition-swing"
-                >
+            <v-flex>
+                <v-card class="elevation-4 mx-auto pa-3 transition-swing">
                     <v-card-title>
                         <div class="subtitle-1 mb-2"><strong>Campaign Description</strong></div>
                     </v-card-title>
@@ -43,7 +41,6 @@
 
 
                             <v-text-field
-
                                 v-model="touchPoint.name"
                                 label="Create a unboxing video on youtube"
                                 solo
@@ -59,6 +56,50 @@
                             <v-row class="mx-auto my-5">
                                 <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
                             </v-row>
+
+                            <v-layout>
+                                <v-flex lg12 sm12 m12>
+                                    <v-card-title>
+                                        <div class="subtitle-1 mb-2"><strong>Format</strong></div>
+                                    </v-card-title>
+                                </v-flex>
+                            </v-layout>
+                            <v-layout row wrap pl-3 pr-3>
+                                <v-flex lg4 sm4 m4 pr-3>
+                                    <v-checkbox class="mt-0 pt-0" color="primary" label="Instagram Post"
+                                                v-model="touchPoint.instaPost"
+                                                @click="disabledBioLink = !disabledBioLink"
+                                                value="post"
+                                    ></v-checkbox>
+                                </v-flex>
+                                <v-flex lg8 sm8 m8 pl-3>
+                                    <v-text-field
+                                        solo
+                                        label="Bio Link"
+                                        class="custom_dropdown"
+                                        v-model="touchPoint.instaBioLink"
+                                        :disabled="disabledBioLink"
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-layout>
+                            <v-layout row wrap pl-3 pr-3 mt-3>
+                                <v-flex lg4 sm4 m4 pr-3>
+                                    <v-checkbox class="mt-0 pt-0" color="primary" label="Instagram Story"
+                                                v-model="touchPoint.instaStory"
+                                                @click="disabledStoryLink = !disabledStoryLink"
+                                                value="story"
+                                    ></v-checkbox>
+                                </v-flex>
+                                <v-flex lg8 sm8 m8 pl-3>
+                                    <v-text-field
+                                        solo
+                                        label="Story Link"
+                                        class="custom_dropdown"
+                                        v-model="touchPoint.instaStoryLink"
+                                        :disabled="disabledStoryLink"
+                                    ></v-text-field>
+                                </v-flex>
+                            </v-layout>
 
                             <v-card flat class="mx-auto">
                                 <v-card-title>
@@ -236,7 +277,6 @@
         },
         data ()  {
            return  {
-
                tabsLength            : 1,
                currentTab            : 0,
                guideLines            : 1,
@@ -262,12 +302,13 @@
                disabledPaid          :false,
                disabledBarter        :false,
                icon                  :null,
+               disabledBioLink       :true,
+               disabledStoryLink     :true,
             }
         },
         computed: {
             ...mapGetters({
                 placement: 'campaign/campaignPlacement',
-
             })
         },
         mounted() {
@@ -296,10 +337,10 @@
             },
             async addTouchPoint() {
                let response =  await this.saveTouchPoint();
-               console.info(response);
-               if (response) {
-                   this.tabsLength = this.tabsLength + 1;
-                   this.currentTab = this.currentTab + 1;
+
+               if (response.status === 200) {
+                  // this.tabsLength = this.tabsLength + 1;
+                 //  this.currentTab = this.currentTab + 1;
                }
             },
             removeTouchPooint() {
@@ -414,6 +455,30 @@
                 },
                 immediate: true,
                 deep: true
+            },
+            'touchPoint.instaPost': {
+                handler: function(val) {
+                    this.setTouchPoint(['instaPost', val]);
+                },
+                immediate: true
+            },
+            'touchPoint.instaBioLink': {
+                handler: function(val) {
+                    this.setTouchPoint(['instaBioLink', val]);
+                },
+                immediate: true
+            },
+            'touchPoint.instaStory': {
+                handler: function(val) {
+                    this.setTouchPoint(['instaStory', val]);
+                },
+                immediate: true
+            },
+            'touchPoint.instaStoryLink': {
+                handler: function(val) {
+                    this.setTouchPoint(['instaStoryLink', val]);
+                },
+                immediate: true
             }
         }
     }

@@ -36,6 +36,10 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
      * @var CampaignTouchPointMediaRepositoryEloquent
      */
     private $campaignTouchPointMediaRepositoryEloquent;
+    /**
+     * @var CampaignTouchPointPlacementActionRepositoryEloquent
+     */
+    private $campaignTouchPointPlacementActionRepositoryEloquent;
 
     /**
      * CampaignTouchPointRepositoryEloquent constructor.
@@ -44,13 +48,15 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
      * @param CampaignTouchPointAdditionalRepositoryEloquent $campaignTouchPointAdditionalRepositoryEloquent
      * @param CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent
      * @param CampaignTouchPointMediaRepositoryEloquent $campaignTouchPointMediaRepositoryEloquent
+     * @param CampaignTouchPointPlacementActionRepositoryEloquent $campaignTouchPointPlacementActionRepositoryEloquent
      */
     public function __construct(
         Application $app,
         CampaignTouchPointProductRepository $campaignTouchPointProductRepository,
         CampaignTouchPointAdditionalRepositoryEloquent $campaignTouchPointAdditionalRepositoryEloquent,
         CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent,
-        CampaignTouchPointMediaRepositoryEloquent $campaignTouchPointMediaRepositoryEloquent
+        CampaignTouchPointMediaRepositoryEloquent $campaignTouchPointMediaRepositoryEloquent,
+        CampaignTouchPointPlacementActionRepositoryEloquent $campaignTouchPointPlacementActionRepositoryEloquent
     )
     {
         parent::__construct($app);
@@ -58,6 +64,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         $this->campaignTouchPointAdditionalRepositoryEloquent = $campaignTouchPointAdditionalRepositoryEloquent;
         $this->campaignPaymentRepositoryEloquent = $campaignPaymentRepositoryEloquent;
         $this->campaignTouchPointMediaRepositoryEloquent = $campaignTouchPointMediaRepositoryEloquent;
+        $this->campaignTouchPointPlacementActionRepositoryEloquent = $campaignTouchPointPlacementActionRepositoryEloquent;
     }
 
     /**
@@ -95,7 +102,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
         //---- multiple Payments
         if (!empty($data['payment'])) {
-            $barterProduct = $this->campaignPaymentRepositoryEloquent->storeMultiple($data['payment'], $data['campaignId']);
+            $savedPayments = $this->campaignPaymentRepositoryEloquent->storeMultiple($data['payment'], $data['campaignId']);
         }
 
         //---- Touch Point
@@ -114,12 +121,30 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         $this->campaignTouchPointAdditionalRepositoryEloquent->store($touchPoint, $savedTouchPoint);
 
         //---- multiple Images
-        if (!empty($data['images'])) {
-            $barterProduct = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($data['images'], $savedTouchPoint);
+        if (!empty($touchPoint['images'])) {
+            $savedImages = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($touchPoint['images'], $savedTouchPoint);
         }
 
         //---- actions
+        if (!empty($touchPoint['images'])) {
+            $savedImages = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($touchPoint['images'], $savedTouchPoint);
+        }
 
+
+        // @TODO needs to be complete
+        if (!empty($touchPoint['instaPost'])) {
+            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
+                'link_type'               => 'instaBioLink',
+                'link'                    => $touchPoint['instaBioLink'],
+                'slug'                    => $touchPoint['instaPost'],
+                'campaign_touch_point_id' => $savedTouchPoint->id
+            ]);
+        }
+
+        dd($data);
+
+
+        return $savedTouchPoint;
 
     }
 

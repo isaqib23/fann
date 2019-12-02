@@ -15,7 +15,6 @@ use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Intervention\Image\ImageManagerStatic as Image;
 use App\Http\Requests;
 use Illuminate\Http\Response;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -120,7 +119,7 @@ class CampaignsController extends Controller
         $this->campaignTouchPointAdditionalRepository = $campaignTouchPointAdditionalRepository;
         $this->campaignPaymentRepository = $campaignPaymentRepository;
         $this->campaignTouchPointProductRepository = $campaignTouchPointProductRepository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -317,13 +316,16 @@ class CampaignsController extends Controller
         ]);
     }
 
+    /**
+     * @param TouchPointRequest $request
+     * @return JsonResponse|RedirectResponse
+     */
     public function saveTouchPoint(TouchPointRequest $request)
     {
         try {
+            $data = $request->all();
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $data = $request->all();
 
             $this->repository->update(
                 [ 'description' => $data['touchPoint']['campaignDescription'] ],
@@ -334,7 +336,7 @@ class CampaignsController extends Controller
 
             $response = [
                 'message'    => 'Touch Point Created.',
-                'details'    => $saveTouchPoint->toArray(),
+                'details'    => $saveTouchPoint,
             ];
 
             if ($request->wantsJson()) {
@@ -346,7 +348,6 @@ class CampaignsController extends Controller
         } catch (ValidatorException $e) {
 
             if ($request->wantsJson()) {
-
                 return response()->json([
                     'error'   => true,
                     'message' => $e->getMessageBag()
@@ -355,20 +356,6 @@ class CampaignsController extends Controller
 
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
-
-
-
-
-
-dd($data);
-
-
-        $this->repository->update(
-            [ 'description' => $data['touchPoint']['campaignDescription'] ],
-            $data['campaignId']
-        );
-
-        $this->campaignTouchPointRepository->saveInHierarchy($data);
     }
 
 }

@@ -14,7 +14,11 @@ export const state = {
       barterProduct : null,
       amount : 0,
       campaignDescription : null,
-      images : null
+      instaPost : null,
+      instaBioLink : null,
+      instaStory : null,
+      instaStoryLink : null,
+      images : null,
   }
 }
 
@@ -34,7 +38,6 @@ export const mutations = {
     },
     setTouchPoint(state, [index, val]) {
         Vue.set(state.touchPoint, index, val)
-        //console.info(state.touchPoint, "dashy");
     }
 }
 
@@ -123,12 +126,15 @@ let CampaignAxios = class {
     static saveTouchPoint (payload) {
         return axios.post(api.path('campaign.saveTouchPoint'), payload)
             .then(resp => {
-                return resp.data;
+                return {
+                    status : 200,
+                    details : resp.data.details
+                };
             })
             .catch(err => {
                 return {
                     status : err.response.status,
-                    errors : err.response.data.errors
+                    details : []
                 };
             });
     }
