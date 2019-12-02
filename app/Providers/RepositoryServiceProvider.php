@@ -17,8 +17,10 @@ use App\Contracts\CityRepository;
 use App\Contracts\CompanyRepository;
 use App\Contracts\CompanyUserRepository;
 use App\Contracts\CountryRepository;
+use App\Contracts\InfluencerCampaignStatisticsRepository;
 use App\Contracts\InfluencerDetailRepository;
 use App\Contracts\InfluencerJobRepository;
+use App\Contracts\InfluencerStatisticsRepository;
 use App\Contracts\NicheRepository;
 use App\Contracts\NotificationRepository;
 use App\Contracts\NotificationTypeRepository;
@@ -47,8 +49,10 @@ use App\Repositories\CityRepositoryEloquent;
 use App\Repositories\CompanyRepositoryEloquent;
 use App\Repositories\CompanyUserRepositoryEloquent;
 use App\Repositories\CountryRepositoryEloquent;
+use App\Repositories\InfluencerCampaignStatisticsRepositoryEloquent;
 use App\Repositories\InfluencerDetailRepositoryEloquent;
 use App\Repositories\InfluencerJobRepositoryEloquent;
+use App\Repositories\InfluencerStatisticsRepositoryEloquent;
 use App\Repositories\NicheRepositoryEloquent;
 use App\Repositories\NotificationRepositoryEloquent;
 use App\Repositories\NotificationTypeRepositoryEloquent;
@@ -117,6 +121,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CampaignInviteRepository::class, CampaignInviteRepositoryEloquent::class);
         $this->app->bind(CampaignOfferRepository::class, CampaignOfferRepositoryEloquent::class);
         $this->app->bind(InfluencerJobRepository::class, InfluencerJobRepositoryEloquent::class);
+        $this->app->bind(InfluencerStatisticsRepository::class, InfluencerStatisticsRepositoryEloquent::class);
+        $this->app->bind(InfluencerCampaignStatisticsRepository::class, InfluencerCampaignStatisticsRepositoryEloquent::class);
         //:end-bindings:
     }
 }
