@@ -18,7 +18,7 @@ export const state = {
       instaBioLink : null,
       instaStory : null,
       instaStoryLink : null,
-      images : null,
+      images : [],
   }
 }
 

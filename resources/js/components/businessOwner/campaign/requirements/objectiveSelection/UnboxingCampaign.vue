@@ -442,12 +442,13 @@
                         let reader = new FileReader();
 
                         reader.onload = function (e) {
-                            readFiles[i] = {
-                                name: file.name,
-                                size: file.size,
-                                type: file.type,
-                                src: e.target.result
-                            }
+                            readFiles.push({
+                                name     : file.name,
+                                size     : file.size,
+                                type     : file.type,
+                                src      : e.target.result,
+                                imageURL : URL.createObjectURL(file)
+                            });
                         };
                         reader.readAsDataURL(file);
                     }
