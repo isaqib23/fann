@@ -39,15 +39,17 @@
                                 </v-btn>
                             </v-card-title>
 
+                            <TouchPointTitle
+                                v-if="campaignTouchPointFields.title"
+                                :touchPoint="touchPoint"
+                                :paymentMethod="paymentMethod"
+                            ></TouchPointTitle>
 
-                            <v-text-field
-                                v-model="touchPoint.name"
-                                label="Create a unboxing video on youtube"
-                                solo
-                                dense
-                                :prepend-inner-icon="icon"
-                                class="custom_dropdown"
-                            ></v-text-field>
+                            <TouchPointProduct
+                                v-if="campaignTouchPointFields.product"
+                                :touchPoint="touchPoint"
+                                :paymentMethod="paymentMethod"
+                            ></TouchPointProduct>
 
                             <v-card-title>
                                 <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ objective.slug.replace('-',' ') }}</strong></div>
@@ -57,49 +59,11 @@
                                 <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
                             </v-row>
 
-                            <v-layout>
-                                <v-flex lg12 sm12 m12>
-                                    <v-card-title>
-                                        <div class="subtitle-1 mb-2"><strong>Format</strong></div>
-                                    </v-card-title>
-                                </v-flex>
-                            </v-layout>
-                            <v-layout row wrap pl-3 pr-3>
-                                <v-flex lg4 sm4 m4 pr-3>
-                                    <v-checkbox class="mt-0 pt-0" color="primary" label="Instagram Post"
-                                                v-model="touchPoint.instaPost"
-                                                @click="disabledBioLink = !disabledBioLink"
-                                                value="post"
-                                    ></v-checkbox>
-                                </v-flex>
-                                <v-flex lg8 sm8 m8 pl-3>
-                                    <v-text-field
-                                        solo
-                                        label="Bio Link"
-                                        class="custom_dropdown"
-                                        v-model="touchPoint.instaBioLink"
-                                        :disabled="disabledBioLink"
-                                    ></v-text-field>
-                                </v-flex>
-                            </v-layout>
-                            <v-layout row wrap pl-3 pr-3 mt-3>
-                                <v-flex lg4 sm4 m4 pr-3>
-                                    <v-checkbox class="mt-0 pt-0" color="primary" label="Instagram Story"
-                                                v-model="touchPoint.instaStory"
-                                                @click="disabledStoryLink = !disabledStoryLink"
-                                                value="story"
-                                    ></v-checkbox>
-                                </v-flex>
-                                <v-flex lg8 sm8 m8 pl-3>
-                                    <v-text-field
-                                        solo
-                                        label="Story Link"
-                                        class="custom_dropdown"
-                                        v-model="touchPoint.instaStoryLink"
-                                        :disabled="disabledStoryLink"
-                                    ></v-text-field>
-                                </v-flex>
-                            </v-layout>
+                            <TouchPointPostFormat
+                                v-if="campaignTouchPointFields.instagramFormat"
+                                :touchPoint="touchPoint"
+                                :paymentMethod="paymentMethod"
+                            ></TouchPointPostFormat>
 
                             <v-card flat class="mx-auto">
                                 <v-card-title>
@@ -213,7 +177,7 @@
                                     </v-card-text>
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3 v-if="!disabledBarter">
+                            <v-layout row wrap pl-3 pr-3 v-if="!campaignTouchPointFields.disabledBarter">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
@@ -227,7 +191,7 @@
 
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3 mt-3 v-if="!disabledPaid">
+                            <v-layout row wrap pl-3 pr-3 mt-3 v-if="!campaignTouchPointFields.disabledPaid">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Payment</v-btn>
                                 </v-flex>
@@ -240,6 +204,7 @@
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
+
                         </v-card>
                     </v-flex>
                 </v-tab-item>
@@ -262,13 +227,19 @@
 
 <script>
     import MultiImageInput from '../../../general/MultiImageInput';
+    import TouchPointTitle from './objectiveSelection/TouchPointTitle';
+    import TouchPointPostFormat from './objectiveSelection/TouchPointPostFormat';
+    import TouchPointProduct from './objectiveSelection/TouchPointProduct';
     import shopifyProductsPredictiveSearch from "./objectiveSelection/shopifyProductsPredictiveSearch";
     import {mapGetters, mapActions, mapMutations} from 'vuex';
 
     export default {
         components: {
             MultiImageInput: MultiImageInput,
-            productsSearch : shopifyProductsPredictiveSearch
+            productsSearch : shopifyProductsPredictiveSearch,
+            TouchPointTitle : TouchPointTitle,
+            TouchPointPostFormat : TouchPointPostFormat,
+            TouchPointProduct : TouchPointProduct
         },
         props : {
             touchPoint : {},
@@ -298,29 +269,37 @@
                 caption               : '',
                 guideLineNumber       : 0,
                 paymentMethod         : {},
-                disabledPaid          :false,
-                disabledBarter        :false,
                 icon                  :null,
                 disabledBioLink       :true,
                 disabledStoryLink     :true,
+                campaignTouchPointFields : {
+                    title             : false,
+                    instagramFormat   : false,
+                    paymentFormat     : false,
+                    disabledPaid      : false,
+                    disabledBarter    : false,
+                    product           : false,
+                }
             }
         },
         computed: {
             ...mapGetters({
                 placement: 'campaign/campaignPlacement',
+                campaignObjective: 'campaign/campaignObjective'
             })
         },
         mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
-            this.setPayment();
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+            this.setTouchPointFields();
         },
         methods: {
             ...mapMutations({
                 setTouchPoint : 'campaign/setTouchPoint'
             }),
             ...mapActions({
-                saveTouchPoint: 'campaign/saveTouchPoint'
+                saveTouchPoint: 'campaign/saveTouchPoint',
+                saveTouchPointField: 'campaign/saveTouchPointField'
             }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
@@ -363,19 +342,25 @@
                 let targetInput = `${ e.bindTo }`;
                 self.touchPointProducts[targetInput] = e.item;
                 this.setTouchPoint([targetInput, e.item]);
-                console.info(self.touchPointProducts);
             },
-            setPayment() {
+            setTouchPointFields(){
+
                 if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
-                    this.disabledPaid = true;
-                    this.disabledBarter = false;
+                    this.campaignTouchPointFields.disabledPaid = true;
+                    this.campaignTouchPointFields.disabledBarter = false;
                 } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
-                    this.disabledBarter = true;
-                    this.disabledPaid = false;
+                    this.campaignTouchPointFields.disabledBarter = true;
+                    this.campaignTouchPointFields.disabledPaid = false;
                 } else {
-                    this.disabledBarter = false;
-                    this.disabledPaid = false;
+                    this.campaignTouchPointFields.disabledBarter = false;
+                    this.campaignTouchPointFields.disabledPaid = false;
                 }
+
+                this.campaignTouchPointFields.title = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
+                this.campaignTouchPointFields.instagramFormat = (this.paymentMethod.platform == 1) ? true : false;
+                this.campaignTouchPointFields.product = (this.campaignObjective.slug === 'unboxing') ? false : true;
+
+                this.saveTouchPointField(this.campaignTouchPointFields)
             }
         },
         watch: {
