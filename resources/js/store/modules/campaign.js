@@ -19,14 +19,14 @@ export const state = {
       instaStory : null,
       instaStoryLink : null,
       images : [],
-  },
-  touchPointFields : {
-      title             : false,
-      instagramFormat   : false,
-      paymentFormat     : false,
-      disabledPaid      : false,
-      disabledBarter    : false,
-      product           : false,
+      touchPointConditionalFields : {
+          title             : false,
+          instagramFormat   : false,
+          paymentFormat     : false,
+          disabledPaid      : false,
+          disabledBarter    : false,
+          product           : false,
+      }
   }
 }
 
@@ -48,7 +48,7 @@ export const mutations = {
         Vue.set(state.touchPoint, index, val)
     },
     setTouchPointField(state, touchPointFields) {
-        state.touchPointFields = touchPointFields
+        state.touchPoint.touchPointConditionalFields = touchPointFields
     }
 }
 
@@ -86,7 +86,7 @@ export const actions = {
          return response;
     },
     async saveTouchPointField({ commit }, payload) {
-        console.log(payload, 'saveTouchPointField');
+
         commit('setTouchPointField',payload);
 
     },
@@ -99,8 +99,7 @@ export const getters = {
     campaignObjective: state => state.campaignObjective,
     campaignPlacement: state => state.campaignPlacement,
     campaignInformation: state => state.campaignInformation,
-    touchPoint: state => state.touchPoint,
-    touchPointFields: state => state.touchPointFields
+    touchPoint: state => state.touchPoint
 
 }
 

@@ -52,7 +52,7 @@
                             ></touch-point-product-field>
 
                             <v-card-title>
-                                <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ objective.slug.replace('-',' ') }}</strong></div>
+                                <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ campaignObjective.slug.replace('-',' ') }}</strong></div>
                             </v-card-title>
 
                             <v-row class="mx-auto my-5">
@@ -242,8 +242,7 @@
             TouchPointProductField : TouchPointProductField
         },
         props : {
-            touchPoint : {},
-            objective : {}
+            touchPoint : {}
         },
         data ()  {
             return  {
@@ -317,8 +316,8 @@
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
-                    // this.tabsLength = this.tabsLength + 1;
-                    //  this.currentTab = this.currentTab + 1;
+                     this.tabsLength = this.tabsLength + 1;
+                     this.currentTab = this.currentTab + 1;
                 }
             },
             removeTouchPooint() {
