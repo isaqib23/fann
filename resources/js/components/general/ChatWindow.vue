@@ -63,7 +63,7 @@
 
                 <input type="file" ref="image" @change="handleImage" style="display: none;" accept="image/*"/>
 
-                <emoji-picker @emoji="insert" :search="search" style="display:inline !important">
+                <emoji-picker @emoji="insert" :search="search" style="display:inline !important;float: left;">
                     <div
                         class="emoji-invoker"
                         slot="emoji-invoker"
@@ -77,7 +77,7 @@
 
                     </div>
                     <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
-                        <div class="emoji-picker" style="bottom:40px !important;">
+                        <div class="emoji-picker" style="bottom:60px !important;">
                             <div class="emoji-picker__search">
                                 <input type="text" v-model="search">
                             </div>
@@ -159,18 +159,18 @@
 </script>
 <style scoped>
     >>>.emoji-picker {
-        position: absolute !important;
-        z-index: 1 !important;
-        font-family: Montserrat !important;
-        border: 1px solid #ccc !important;
-        width: 15rem !important;
+        position: absolute ;
+        z-index: 1 ;
+        font-family: Montserrat ;
+        border: 1px solid #ccc ;
+        width: 15rem ;
         height: 20rem ;
-        overflow: scroll !important;
-        padding: 1rem !important;
-        box-sizing: border-box !important;
-        border-radius: 0.5rem !important;
-        background: #fff !important;
-        box-shadow: 1px 1px 8px #c7dbe6 !important;
+        overflow: scroll ;
+        padding: 1rem ;
+        box-sizing: border-box ;
+        border-radius: 0.5rem ;
+        background: #fff ;
+        box-shadow: 1px 1px 8px #c7dbe6 ;
     }
     >>>.emoji-picker__search {
         display: flex;

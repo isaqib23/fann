@@ -282,6 +282,7 @@
                     <v-row class="mx-auto mt-3">
                         <v-flex xl10 lg10 md10 sm10 xs10>
                             <v-textarea
+                                v-model="input"
                                 outlined
                                 name="input-7-4"
                                 label="Outlined textarea"
@@ -294,6 +295,40 @@
                             <v-btn color="grayLighten" depressed class="px-1 ml-3 mt-3">
                                 <v-icon>mdi-attachment</v-icon>
                             </v-btn>
+                            <emoji-picker @emoji="insert" :search="search" style="display:inline !important">
+                                <div
+                                    class="emoji-invoker"
+                                    slot="emoji-invoker"
+                                    slot-scope="{ events: { click: clickEvent } }"
+                                    @click.stop="clickEvent"
+                                    style="display:inline !important"
+                                >
+                                    <v-btn color="grayLighten" depressed class="px-1 ml-3 mt-3">
+                                        <v-icon>tag_faces</v-icon>
+                                    </v-btn>
+
+                                </div>
+                                <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
+                                    <div class="emoji-picker" style="bottom:65px !important;right:0">
+                                        <div class="emoji-picker__search">
+                                            <input type="text" v-model="search">
+                                        </div>
+                                        <div>
+                                            <div v-for="(emojiGroup, category) in emojis" :key="category">
+                                                <h5>{{ category }}</h5>
+                                                <div class="emojis">
+                                        <span
+                                            v-for="(emoji, emojiName) in emojiGroup"
+                                            :key="emojiName"
+                                            @click="insert(emoji)"
+                                            :title="emojiName"
+                                        >{{ emoji }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </emoji-picker>
                         </v-flex>
                     </v-row>
                 </v-card-text>
@@ -304,9 +339,13 @@
 </template>
 
 <script>
-
+    import EmojiPicker from 'vue-emoji-picker'
     export default {
+        components: {
+            EmojiPicker,
+        },
         data: () => ({
+            input:'',
             rating: 3,
             expanded: [],
             singleExpand: true,
@@ -422,10 +461,65 @@
                 { id:'28', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' }
 
             ]
-        })
+        }),
+        methods: {
+            insert(emoji) {
+                this.input += emoji
+            },
+        }
     }
 </script>
 <style scoped>
+    >>>.emoji-picker {
+        position: absolute !important;
+        z-index: 1 !important;
+        font-family: Montserrat !important;
+        border: 1px solid #ccc !important;
+        width: 15rem !important;
+        height: 20rem ;
+        overflow: scroll !important;
+        padding: 1rem !important;
+        box-sizing: border-box !important;
+        border-radius: 0.5rem !important;
+        background: #fff !important;
+        box-shadow: 1px 1px 8px #c7dbe6 !important;
+    }
+    >>>.emoji-picker__search {
+        display: flex;
+    }
+    >>>.emoji-picker__search > input {
+        flex: 1;
+        border-radius: 10rem;
+        border: 1px solid #ccc;
+        padding: 0.5rem 1rem;
+        outline: none;
+    }
+    >>>.emoji-picker h5 {
+        margin-bottom: 0;
+        color: #b1b1b1;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        cursor: default;
+    }
+    >>>.emoji-picker .emojis {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    >>>.emoji-picker .emojis:after {
+        content: "";
+        flex: auto;
+    }
+    >>>.emoji-picker .emojis span {
+        padding: 0.2rem;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    >>>.emoji-picker .emojis span:hover {
+        background: #ececec;
+        cursor: pointer;
+    }
+
     >>>.v-rating .v-icon{
         padding:0px;
     }

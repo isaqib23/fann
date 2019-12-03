@@ -8737,18 +8737,18 @@ v-tabs[data-v-b18a2312] {
   top: calc(50% - 14px);
 }
 [data-v-2ff01b1a] .emoji-picker {
-    position: absolute !important;
-    z-index: 1 !important;
-    font-family: Montserrat !important;
-    border: 1px solid #ccc !important;
-    width: 15rem !important;
+    position: absolute ;
+    z-index: 1 ;
+    font-family: Montserrat ;
+    border: 1px solid #ccc ;
+    width: 15rem ;
     height: 20rem ;
-    overflow: scroll !important;
-    padding: 1rem !important;
-    box-sizing: border-box !important;
-    border-radius: 0.5rem !important;
-    background: #fff !important;
-    box-shadow: 1px 1px 8px #c7dbe6 !important;
+    overflow: scroll ;
+    padding: 1rem ;
+    box-sizing: border-box ;
+    border-radius: 0.5rem ;
+    background: #fff ;
+    box-shadow: 1px 1px 8px #c7dbe6 ;
 }
 [data-v-2ff01b1a] .emoji-picker__search {
     display: flex;
@@ -9207,6 +9207,55 @@ and (-webkit-min-device-pixel-ratio: 1) {
   height: inherit;
   margin: 0;
   width: inherit;
+}
+[data-v-d3694022] .emoji-picker {
+    position: absolute !important;
+    z-index: 1 !important;
+    font-family: Montserrat !important;
+    border: 1px solid #ccc !important;
+    width: 15rem !important;
+    height: 20rem ;
+    overflow: scroll !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+    border-radius: 0.5rem !important;
+    background: #fff !important;
+    box-shadow: 1px 1px 8px #c7dbe6 !important;
+}
+[data-v-d3694022] .emoji-picker__search {
+    display: flex;
+}
+[data-v-d3694022] .emoji-picker__search > input {
+    flex: 1;
+    border-radius: 10rem;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    outline: none;
+}
+[data-v-d3694022] .emoji-picker h5 {
+    margin-bottom: 0;
+    color: #b1b1b1;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    cursor: default;
+}
+[data-v-d3694022] .emoji-picker .emojis {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+[data-v-d3694022] .emoji-picker .emojis:after {
+    content: "";
+    flex: auto;
+}
+[data-v-d3694022] .emoji-picker .emojis span {
+    padding: 0.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+[data-v-d3694022] .emoji-picker .emojis span:hover {
+    background: #ececec;
+    cursor: pointer;
 }
 [data-v-d3694022] .v-rating .v-icon{
     padding:0px;
