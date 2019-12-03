@@ -130,8 +130,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
             $savedImages = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($touchPoint['images'], $savedTouchPoint);
         }
 
-
-        // @TODO needs to be complete
+        // In case of Insta story or post
         if (!empty($touchPoint['instaPost'])) {
             $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
                 'link_type'               => 'instaBioLink',
@@ -141,8 +140,14 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
             ]);
         }
 
-        dd($data);
-
+        if (!empty($touchPoint['instaStory'])) {
+            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
+                'link_type'               => 'instaStoryLink',
+                'link'                    => $touchPoint['instaStoryLink'],
+                'slug'                    => $touchPoint['instaStory'],
+                'campaign_touch_point_id' => $savedTouchPoint->id
+            ]);
+        }
 
         return $savedTouchPoint;
 

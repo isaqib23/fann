@@ -18,7 +18,7 @@ export const state = {
       instaBioLink : null,
       instaStory : null,
       instaStoryLink : null,
-      images : null,
+      images : [],
   },
   touchPointFields : {
       title             : false,
@@ -47,8 +47,8 @@ export const mutations = {
     setTouchPoint(state, [index, val]) {
         Vue.set(state.touchPoint, index, val)
     },
-    setTouchPointField(state, [index, val]) {
-        Vue.set(state.touchPointFields, index, val)
+    setTouchPointField(state, touchPointFields) {
+        state.touchPointFields = touchPointFields
     }
 }
 
