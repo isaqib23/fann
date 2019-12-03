@@ -240,7 +240,7 @@
                     </template>
                 </v-list>
         </v-flex>
-        <v-layout  row wrap align-end justify-end class="chatbox-holder">
+        <v-layout row wrap align-end justify-end class="chatbox-holder">
             <chatWindow
                 class="d-inline col-md-4"
                 v-for="(box, boxIndex) in listOfChatBox"
@@ -248,12 +248,9 @@
                 :propItem="box"
                 v-on:close-window="closeWindow"
             >
-
             </chatWindow>
         </v-layout>
-
     </v-layout>
-
 </template>
 
 <script>
@@ -265,7 +262,7 @@
         },
         data: () => ({
             showChatWindow : false,
-            listOfChatBox:[],
+            listOfChatBox  : [],
             rating: 3,
             expanded: [],
             singleExpand: true,
@@ -372,10 +369,16 @@
         }),
         methods:{
             chatBox(item){
-                this.listOfChatBox.push(item);
+                let find = _.find(this.listOfChatBox,function(obj){
+                    return obj.id === item.id;
+                });
+
+               if( _.isEmpty(find)  &&  _.size(this.listOfChatBox) < 3){
+                    this.listOfChatBox.push(item);
+                }
             },
             closeWindow(e) {
-               let toRemove =  _.findIndex(this.listOfChatBox, function(obj) {
+               let toRemove = _.findIndex(this.listOfChatBox, function(obj) {
                     return obj.id === e.chatBox.id;
                 });
                 this.listOfChatBox.splice(toRemove, 1) // remove it from array
@@ -384,26 +387,26 @@
     }
 </script>
 <style scoped>
-    >>>.chatbox-holder{
+    >>>.chatbox-holder {
         right:0;
         bottom:0;
         position:fixed;
         width:50%;
     }
-    >>>.chatbox_min{
+    >>>.chatbox_min {
         margin-bottom: -320px;
     }
-    >>>.chatbox_min .chatbox-avatar{
+    >>>.chatbox_min .chatbox-avatar {
         width:50px;
         height:50px;
     }
-    >>>.chatbox_min .chat-box-title{
+    >>>.chatbox_min .chat-box-title {
         padding:0 0 0 75px;
     }
     >>>.v-rating .v-icon{
         padding:0px;
     }
-    >>>.list_cards .v-avatar{
+    >>>.list_cards .v-avatar {
         border-radius: 10px !important;
     }
     >>>.v-badge__badge{
