@@ -343,16 +343,16 @@
                 self.touchPointProducts[targetInput] = e.item;
                 this.setTouchPoint([targetInput, e.item]);
             },
-            setTouchPointFields(){
+            setTouchPointFields() {
+
+                this.campaignTouchPointFields.disabledBarter = false;
+                this.campaignTouchPointFields.disabledPaid = false;
 
                 if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
                     this.campaignTouchPointFields.disabledPaid = true;
                     this.campaignTouchPointFields.disabledBarter = false;
                 } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
                     this.campaignTouchPointFields.disabledBarter = true;
-                    this.campaignTouchPointFields.disabledPaid = false;
-                } else {
-                    this.campaignTouchPointFields.disabledBarter = false;
                     this.campaignTouchPointFields.disabledPaid = false;
                 }
 

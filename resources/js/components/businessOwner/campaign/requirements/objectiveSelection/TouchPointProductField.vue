@@ -24,19 +24,17 @@
 </template>
 
 <script>
-
     export default {
         props : {
-            touchPoint : {},
+            touchPoint    : {},
             paymentMethod : {},
         },
         data ()  {
             return  {
-                items                 : ['Foo', 'Bar', 'Fizz', 'Buzz'],
+                items     : ['Foo', 'Bar', 'Fizz', 'Buzz'],
             }
         },
         mounted() {
-
         }
     }
 </script>

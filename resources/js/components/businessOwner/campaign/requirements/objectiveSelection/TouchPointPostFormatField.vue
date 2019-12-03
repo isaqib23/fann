@@ -50,7 +50,7 @@
 
     export default {
         props : {
-            touchPoint : {},
+            touchPoint    : {},
             paymentMethod : {}
         },
         data ()  {
@@ -60,7 +60,7 @@
                 disabledStoryLink     :true,
             }
         },
-        mounted() {
+        mounted () {
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
         }
     }

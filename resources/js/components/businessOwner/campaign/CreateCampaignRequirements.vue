@@ -63,30 +63,30 @@
         },
         data ()  {
            return  {
-               active_tab: 0,
-               campaignObjective: {
-                   ObjectiveId:null,
-                   slug:null,
-                   name:null
+               active_tab         : 0,
+               campaignObjective  : {
+                   ObjectiveId    : null,
+                   slug           : null,
+                   name           : null
                },
-               campaignPlacement:{
-                   platform:null,
-                   type:null
+               campaignPlacement : {
+                   platform      : null,
+                   type          : null
                },
-               touchPoint : {
-                   caption: null,
-                   hashtags: null,
-                   mentions: null,
-                   guideLines : [],
-                   dispatchProduct : {},
-                   barterProduct : {},
-                   amount : 0,
-                   campaignDescription : null,
-                   images : [],
-                   instaPost : null,
-                   instaBioLink : null,
-                   instaStory : null,
-                   instaStoryLink : null,
+               touchPoint        : {
+                   caption              : null,
+                   hashtags             : null,
+                   mentions             : null,
+                   guideLines           : [],
+                   dispatchProduct      : {},
+                   barterProduct        : {},
+                   amount               : 0,
+                   campaignDescription  : null,
+                   images               : [],
+                   instaPost            : null,
+                   instaBioLink         : null,
+                   instaStory           : null,
+                   instaStoryLink       : null,
                },
             }
         },

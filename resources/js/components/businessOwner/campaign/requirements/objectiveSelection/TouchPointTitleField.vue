@@ -15,15 +15,15 @@
 
     export default {
         props : {
-            touchPoint : {},
+            touchPoint    : {},
             paymentMethod : {}
         },
         data ()  {
             return  {
-                icon                  :null
+                icon      :null
             }
         },
-        mounted() {
+        mounted () {
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
         }
     }
