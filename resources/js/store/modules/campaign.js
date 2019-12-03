@@ -20,12 +20,15 @@ export const state = {
       instaStoryLink : null,
       images : [],
       touchPointConditionalFields : {
-          title             : false,
-          instagramFormat   : false,
-          paymentFormat     : false,
-          disabledPaid      : false,
-          disabledBarter    : false,
-          product           : false,
+          touchPointTitle          : false,
+          touchPointInstagramFormat: false,
+          touchPointPaymentFormat  : false,
+          isPaid                   : false,
+          isBarter                 : false,
+          additionalPayAsBarter    : false,
+          additionalPayAsAmount    : false,
+          touchPointProduct        : false,
+          touchPointBrand          : false
       }
   }
 }

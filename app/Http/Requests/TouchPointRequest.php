@@ -21,13 +21,39 @@ class TouchPointRequest extends BaseFormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'campaignId'                     => 'required|numeric',
             'platformId'                     => 'required|numeric',
             'touchPoint.campaignDescription' => 'required',
             'touchPoint.name'                => 'required',
             'touchPoint.caption'             => 'required',
-            'touchPoint.amount'              => 'nullable|numeric|min:1',
         ];
+
+        if($this->input('touchPoint.touchPointConditionalFields.isPaid') ||
+            $this->input('touchPoint.touchPointConditionalFields.additionalPayAsAmount')
+        ) {
+            $rules['touchPoint.amount'] = 'nullable|numeric|min:1';
+        }
+
+        if($this->input('touchPoint.touchPointConditionalFields.touchPointproduct')
+        ) {
+            $rules['touchPoint.barterProduct'] = 'required';
+        }
+
+        if($this->input('touchPoint.touchPointConditionalFields.touchPointInstagramFormat')
+        ) {
+            if(is_null($this->input('touchPoint.instaPost')) && is_null($this->input('touchPoint.instaStory'))
+            ) {
+                $rules['touchPoint.instaPost'] = 'required';
+            }
+
+            if(!is_null($this->input('touchPoint.instaPost')) ) {
+                $rules['touchPoint.instaBioLink'] = 'required';
+            }elseif(!is_null($this->input('touchPoint.instaStory')) ) {
+                $rules['touchPoint.instaStoryLink'] = 'required';
+            }
+        }
+
+        return $rules;
     }
 }

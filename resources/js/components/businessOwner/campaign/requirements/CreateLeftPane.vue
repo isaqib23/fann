@@ -40,27 +40,31 @@
                             </v-card-title>
 
                             <touch-point-title-field
-                                v-if="campaignTouchPointFields.title"
+                                v-if="campaignTouchPointFields.touchPointTitle"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
                             ></touch-point-title-field>
-
-                            <touch-point-product-field
-                                v-if="campaignTouchPointFields.product"
-                                :touchPoint="touchPoint"
-                                :paymentMethod="paymentMethod"
-                            ></touch-point-product-field>
 
                             <v-card-title>
                                 <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ campaignObjective.slug.replace('-',' ') }}</strong></div>
                             </v-card-title>
 
                             <v-row class="mx-auto my-5">
-                                <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
+                                <touch-point-brand-field
+                                    v-if="campaignTouchPointFields.touchPointBrand"
+                                    :touchPoint="touchPoint"
+                                    :paymentMethod="paymentMethod"
+                                ></touch-point-brand-field>
+
+                                <products-search
+                                    v-if="campaignTouchPointFields.touchPointProduct"
+                                    :emit-as="'dispatchProduct'"
+                                    @selected-product="selectedProduct"
+                                ></products-search>
                             </v-row>
 
                             <touch-point-post-format-field
-                                v-if="campaignTouchPointFields.instagramFormat"
+                                v-if="campaignTouchPointFields.touchPointInstagramFormat"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
                             ></touch-point-post-format-field>
@@ -177,7 +181,7 @@
                                     </v-card-text>
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3 v-if="!campaignTouchPointFields.disabledBarter">
+                            <v-layout row wrap pl-3 pr-3 v-if="!disabledBarter">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
@@ -191,7 +195,7 @@
 
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3 mt-3 v-if="!campaignTouchPointFields.disabledPaid">
+                            <v-layout row wrap pl-3 pr-3 mt-3 v-if="!disabledPaid">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Payment</v-btn>
                                 </v-flex>
@@ -229,7 +233,7 @@
     import MultiImageInput from '../../../general/MultiImageInput';
     import TouchPointTitleField from './objectiveSelection/TouchPointTitleField';
     import TouchPointPostFormatField from './objectiveSelection/TouchPointPostFormatField';
-    import TouchPointProductField from './objectiveSelection/TouchPointProductField';
+    import TouchPointBrandField from './objectiveSelection/TouchPointBrandField';
     import shopifyProductsPredictiveSearch from "./objectiveSelection/shopifyProductsPredictiveSearch";
     import {mapGetters, mapActions, mapMutations} from 'vuex';
 
@@ -239,7 +243,7 @@
             productsSearch : shopifyProductsPredictiveSearch,
             TouchPointTitleField : TouchPointTitleField,
             TouchPointPostFormatField : TouchPointPostFormatField,
-            TouchPointProductField : TouchPointProductField
+            TouchPointBrandField : TouchPointBrandField
         },
         props : {
             touchPoint : {}
@@ -271,13 +275,18 @@
                 icon                  :null,
                 disabledBioLink       :true,
                 disabledStoryLink     :true,
+                disabledPaid          : false,
+                disabledBarter        : false,
                 campaignTouchPointFields : {
-                    title             : false,
-                    instagramFormat   : false,
-                    paymentFormat     : false,
-                    disabledPaid      : false,
-                    disabledBarter    : false,
-                    product           : false,
+                    touchPointTitle          : false,
+                    touchPointInstagramFormat: false,
+                    touchPointPaymentFormat  : false,
+                    isPaid                   : false,
+                    isBarter                 : false,
+                    additionalPayAsBarter    : false,
+                    additionalPayAsAmount    : false,
+                    touchPointProduct        : false,
+                    touchPointBrand          : false
                 }
             }
         },
@@ -289,6 +298,7 @@
         },
         mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
+            this.setPayment();
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
             this.setTouchPointFields();
         },
@@ -342,21 +352,28 @@
                 self.touchPointProducts[targetInput] = e.item;
                 this.setTouchPoint([targetInput, e.item]);
             },
+            setPayment() {
+                if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
+                    this.disabledPaid = true;
+                    this.disabledBarter = false;
+                } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
+                    this.disabledBarter = true;
+                    this.disabledPaid = false;
+                } else {
+                    this.disabledBarter = false;
+                    this.disabledPaid = false;
+                }
+            },
             setTouchPointFields() {
 
-                this.campaignTouchPointFields.disabledBarter = false;
-                this.campaignTouchPointFields.disabledPaid = false;
-
-                if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
-                    this.campaignTouchPointFields.disabledPaid = true;
-                    this.campaignTouchPointFields.disabledBarter = false;
-                } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
-                    this.campaignTouchPointFields.disabledBarter = true;
-                    this.campaignTouchPointFields.disabledPaid = false;
-                }
-
-                this.campaignTouchPointFields.title = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
-                this.campaignTouchPointFields.instagramFormat = (this.paymentMethod.platform == 1) ? true : false;
+                this.campaignTouchPointFields.touchPointBrand = (this.campaignObjective.slug === 'unboxing' || this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
+                this.campaignTouchPointFields.touchPointProduct = (this.campaignObjective.slug === 'unboxing' || this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? true : false;
+                this.campaignTouchPointFields.touchPointTitle = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
+                this.campaignTouchPointFields.isBarter = (this.paymentMethod.paymentType === 'barter') ? true : false;
+                this.campaignTouchPointFields.isPaid = (this.paymentMethod.paymentType == 'paid') ? true : false;
+                this.campaignTouchPointFields.touchPointInstagramFormat = (this.paymentMethod.platform == 1) ? true : false;
+                this.campaignTouchPointFields.additionalPayAsAmount = this.paymentMethod.additionalPayAsAmount;
+                this.campaignTouchPointFields.additionalPayAsBarter = this.paymentMethod.additionalPayAsBarter;
 
                 this.saveTouchPointField(this.campaignTouchPointFields)
             }
