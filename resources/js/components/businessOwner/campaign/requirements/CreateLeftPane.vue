@@ -39,17 +39,17 @@
                                 </v-btn>
                             </v-card-title>
 
-                            <TouchPointTitle
+                            <touch-point-title-field
                                 v-if="campaignTouchPointFields.title"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
-                            ></TouchPointTitle>
+                            ></touch-point-title-field>
 
-                            <TouchPointProduct
+                            <touch-point-product-field
                                 v-if="campaignTouchPointFields.product"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
-                            ></TouchPointProduct>
+                            ></touch-point-product-field>
 
                             <v-card-title>
                                 <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ objective.slug.replace('-',' ') }}</strong></div>
@@ -59,11 +59,11 @@
                                 <products-search :emit-as="'dispatchProduct'" @selected-product="selectedProduct"></products-search>
                             </v-row>
 
-                            <TouchPointPostFormat
+                            <touch-point-post-format-field
                                 v-if="campaignTouchPointFields.instagramFormat"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
-                            ></TouchPointPostFormat>
+                            ></touch-point-post-format-field>
 
                             <v-card flat class="mx-auto">
                                 <v-card-title>
@@ -227,9 +227,9 @@
 
 <script>
     import MultiImageInput from '../../../general/MultiImageInput';
-    import TouchPointTitle from './objectiveSelection/TouchPointTitle';
-    import TouchPointPostFormat from './objectiveSelection/TouchPointPostFormat';
-    import TouchPointProduct from './objectiveSelection/TouchPointProduct';
+    import TouchPointTitleField from './objectiveSelection/TouchPointTitleField';
+    import TouchPointPostFormatField from './objectiveSelection/TouchPointPostFormatField';
+    import TouchPointProductField from './objectiveSelection/TouchPointProductField';
     import shopifyProductsPredictiveSearch from "./objectiveSelection/shopifyProductsPredictiveSearch";
     import {mapGetters, mapActions, mapMutations} from 'vuex';
 
@@ -237,9 +237,9 @@
         components: {
             MultiImageInput: MultiImageInput,
             productsSearch : shopifyProductsPredictiveSearch,
-            TouchPointTitle : TouchPointTitle,
-            TouchPointPostFormat : TouchPointPostFormat,
-            TouchPointProduct : TouchPointProduct
+            TouchPointTitleField : TouchPointTitleField,
+            TouchPointPostFormatField : TouchPointPostFormatField,
+            TouchPointProductField : TouchPointProductField
         },
         props : {
             touchPoint : {},
@@ -358,7 +358,6 @@
 
                 this.campaignTouchPointFields.title = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
                 this.campaignTouchPointFields.instagramFormat = (this.paymentMethod.platform == 1) ? true : false;
-                this.campaignTouchPointFields.product = (this.campaignObjective.slug === 'unboxing') ? false : true;
 
                 this.saveTouchPointField(this.campaignTouchPointFields)
             }
