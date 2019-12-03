@@ -339,8 +339,8 @@
                let response =  await this.saveTouchPoint();
 
                if (response.status === 200) {
-                  // this.tabsLength = this.tabsLength + 1;
-                 //  this.currentTab = this.currentTab + 1;
+                   this.tabsLength = this.tabsLength + 1;
+                   this.currentTab = this.currentTab + 1;
                }
             },
             removeTouchPooint() {
