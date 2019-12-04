@@ -126,7 +126,7 @@
                 search      : ''
             }
         },
-        methods:{
+        methods: {
             sendMsg() {
                 this.messages.push(this.textMsg);
                 this.textMsg = '';
