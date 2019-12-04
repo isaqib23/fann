@@ -26,16 +26,16 @@
 
             <v-divider></v-divider>
 
-            <div class="pa-5" style="height:200px;">
-                <div class="d-block col-md-6 pa-2 mb-2 my-message white--text" v-for="me in messages" style="word-wrap: break-word;">
+            <div class="pa-5 msg-box">
+                <div class="d-block col-md-6 pa-2 mb-2 my-message white--text" v-for="me in messages" >
                     {{ me }}
                 </div>
-                <div class="d-block col-md-6  pa-2 mb-2 message black--text" style="float:right">their</div>
+                <div class="d-block col-md-6  pa-2 mb-2 message black--text float-right">their</div>
             </div>
 
             <v-divider></v-divider>
 
-            <v-card-text style="height:20px;">
+            <v-card-text class="pa-0">
                 <v-text-field
                     v-model="textMsg"
                     placeholder="Type your message here..."
@@ -55,21 +55,20 @@
                     <v-icon>attachment</v-icon>
                 </v-btn>
 
-                <input type='file' id='file-input' ref="file" @change="handleFile" style="display:none;"/>
+                <input type='file' id='file-input' ref="file" @change="handleFile" class="d-none"/>
 
                 <v-btn icon class="input-icons input-color" @click="$refs.image.click()">
                     <v-icon>local_movies</v-icon>
                 </v-btn>
 
-                <input type="file" ref="image" @change="handleImage" style="display: none;" accept="image/*"/>
+                <input type="file" ref="image" @change="handleImage" class="d-none" accept="image/*"/>
 
-                <emoji-picker @emoji="insert" :search="search" style="display:inline !important;float: left;">
+                <emoji-picker @emoji="insert" :search="search" class="d-inline float-left">
                     <div
-                        class="emoji-invoker"
+                        class="emoji-invoker d-inline"
                         slot="emoji-invoker"
                         slot-scope="{ events: { click: clickEvent } }"
                         @click.stop="clickEvent"
-                        style="display:inline !important"
                     >
                         <v-btn icon class="input-icons input-color">
                             <v-icon>tag_faces</v-icon>
@@ -77,7 +76,7 @@
 
                     </div>
                     <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
-                        <div class="emoji-picker" style="bottom:60px !important;">
+                        <div class="emoji-picker" >
                             <div class="emoji-picker__search">
                                 <input type="text" v-model="search">
                             </div>
@@ -98,7 +97,7 @@
                     </div>
                 </emoji-picker>
 
-                <v-btn icon  class="input-icons input-color" style="display:inline;float:right;" @click="sendMsg">
+                <v-btn icon  class="input-icons input-color d-inline float-right"  @click="sendMsg">
                     <v-icon>send</v-icon>
                 </v-btn>
             </v-card-text>
@@ -171,6 +170,7 @@
         border-radius: 0.5rem ;
         background: #fff ;
         box-shadow: 1px 1px 8px #c7dbe6 ;
+        bottom:60px !important;
     }
     >>>.emoji-picker__search {
         display: flex;
@@ -207,27 +207,33 @@
         background: #ececec;
         cursor: pointer;
     }
-
-    >>>.my-message {
+    .msg-box {
+        height:200px;
+    }
+    .my-message {
+        word-wrap: break-word;
         background-color:#4e8cff !important;
         border-radius:10px !important;
     }
-    >>>.message {
+    .message {
         border-radius:10px !important;
         background-color: #eaeaea !important;
+    }
+    >>>.input-field{
+        height:20px !important;
     }
     >>>.input-field.v-input input {
         max-height:0px !important;
         padding-bottom: 10px !important;
     }
-    >>>.input-icons {
+    .input-icons {
         height:30px !important;
         width:30px !important;
     }
-    >>>.input-icons .v-icon {
+    .input-icons .v-icon {
         font-size: 20px !important;
     }
-    >>>.input-color {
+    .input-color {
         color:#1473e6 !important;
     }
     >>>::placeholder {

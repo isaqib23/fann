@@ -295,13 +295,12 @@
                             <v-btn color="grayLighten" depressed class="px-1 ml-3 mt-3">
                                 <v-icon>mdi-attachment</v-icon>
                             </v-btn>
-                            <emoji-picker @emoji="insert" :search="search" style="display:inline !important">
+                            <emoji-picker @emoji="insert" :search="search" class="d-inline">
                                 <div
-                                    class="emoji-invoker"
+                                    class="emoji-invoker d-inline"
                                     slot="emoji-invoker"
                                     slot-scope="{ events: { click: clickEvent } }"
                                     @click.stop="clickEvent"
-                                    style="display:inline !important"
                                 >
                                     <v-btn color="grayLighten" depressed class="px-1 ml-3 mt-3">
                                         <v-icon>tag_faces</v-icon>
@@ -309,7 +308,7 @@
 
                                 </div>
                                 <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
-                                    <div class="emoji-picker" style="bottom:65px !important;right:0">
+                                    <div class="emoji-picker">
                                         <div class="emoji-picker__search">
                                             <input type="text" v-model="search">
                                         </div>
@@ -483,6 +482,8 @@
         border-radius: 0.5rem !important;
         background: #fff !important;
         box-shadow: 1px 1px 8px #c7dbe6 !important;
+        bottom:65px !important;
+        right:0;
     }
     >>>.emoji-picker__search {
         display: flex;
