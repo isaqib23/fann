@@ -62,7 +62,7 @@
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
                             <v-list class="list_cards">
-                                <v-list-item v-for="i in 3" :key="i" :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'">
+                                <v-list-item :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'">
                                     <v-list-item-icon class="mr-0 mt-5">
                                         <strong class="primary--text">1.</strong>
                                     </v-list-item-icon>
@@ -180,16 +180,18 @@
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
                             <v-row :class="$vuetify.breakpoint.smAndUp ? '' : 'fix_width mx-auto'">
                                 <v-col
-                                    v-for="n in 6"
-                                    :key="n"
+                                    v-for="(image, imageIndex) in touchPoint.images"
+                                    :key="imageIndex"
                                     class="xl3 lg3 md3 sm4 xs12"
                                 >
                                     <v-card flat tile class="d-flex">
                                         <v-img
-                                            :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
-                                            :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+                                            :src="image.imageURL"
+                                            :lazy-src="`https://picsum.photos/10/6?image=${imageIndex * 5 + 10}`"
                                             aspect-ratio="1"
                                             class="grey lighten-2"
+                                            max-height="100"
+                                            max-width="100"
                                         >
                                             <template v-slot:placeholder>
                                                 <v-row
@@ -270,15 +272,13 @@
                 handler: function(newVal, oldVal) {
                     this.hashtags = newVal.split(',');
                  },
-                immediate: false,
-                deep: false
+                immediate: false
             },
             'touchPoint.mentions' : {
                 handler: function(newVal, oldVal) {
                     this.mentions = newVal.split(',');
                 },
-                immediate: false,
-                deep: false
+                immediate: false
             }
         }
     }

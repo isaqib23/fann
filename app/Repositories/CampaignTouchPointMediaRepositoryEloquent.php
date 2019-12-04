@@ -42,7 +42,7 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
     public function store($data)
     {
         return $this->create([
-            'campaign_touch_point_id' => $data['campaign_id'],
+            'campaign_touch_point_id' => $data['campaign_touch_point_id'],
             'path' => $data['path'],
             'format' => $data['format']
         ]);
@@ -63,7 +63,7 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
 
             $this->store([
                 'campaign_touch_point_id' => $touchPoint['id'],
-                'path'                    => $path,
+                'path'                    => env('CAMPAIGN_IMAGES_PATH') .$value['name'],
                 'format'                  => 'image'
             ]);
         }

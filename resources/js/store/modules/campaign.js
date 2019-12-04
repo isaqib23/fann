@@ -14,7 +14,19 @@ export const state = {
       barterProduct : null,
       amount : 0,
       campaignDescription : null,
-      images : null
+      instaPost : null,
+      instaBioLink : null,
+      instaStory : null,
+      instaStoryLink : null,
+      images : [],
+  },
+  touchPointFields : {
+      title             : false,
+      instagramFormat   : false,
+      paymentFormat     : false,
+      disabledPaid      : false,
+      disabledBarter    : false,
+      product           : false,
   }
 }
 
@@ -34,7 +46,9 @@ export const mutations = {
     },
     setTouchPoint(state, [index, val]) {
         Vue.set(state.touchPoint, index, val)
-        //console.info(state.touchPoint, "dashy");
+    },
+    setTouchPointField(state, touchPointFields) {
+        state.touchPointFields = touchPointFields
     }
 }
 
@@ -54,12 +68,12 @@ export const actions = {
         return await CampaignAxios.getAllPlacements();
     },
     async savePlacementAndPaymentType({ commit }, payload) {
+
         commit('setPlacement',payload);
-       // return await CampaignAxios.savePlacementAndPaymentType(payload);
+
     },
     async saveTouchPoint({commit, state}) {
 
-       // console.info(state.touchPoint, state.campaignObjective, state.campaignPlacement, state.campaignInformation);
          let payload  = {
              'campaignId'  : state.campaignInformation.details.id,
              'payment'     : state.campaignPlacement,
@@ -70,7 +84,12 @@ export const actions = {
          let response = await CampaignAxios.saveTouchPoint(payload);
 
          return response;
-    }
+    },
+    async saveTouchPointField({ commit }, payload) {
+        console.log(payload, 'saveTouchPointField');
+        commit('setTouchPointField',payload);
+
+    },
 }
 
 /**
@@ -80,7 +99,8 @@ export const getters = {
     campaignObjective: state => state.campaignObjective,
     campaignPlacement: state => state.campaignPlacement,
     campaignInformation: state => state.campaignInformation,
-    touchPoint: state => state.touchPoint
+    touchPoint: state => state.touchPoint,
+    touchPointFields: state => state.touchPointFields
 
 }
 
@@ -123,12 +143,15 @@ let CampaignAxios = class {
     static saveTouchPoint (payload) {
         return axios.post(api.path('campaign.saveTouchPoint'), payload)
             .then(resp => {
-                return resp.data;
+                return {
+                    status : 200,
+                    details : resp.data.details
+                };
             })
             .catch(err => {
                 return {
                     status : err.response.status,
-                    errors : err.response.data.errors
+                    details : []
                 };
             });
     }
