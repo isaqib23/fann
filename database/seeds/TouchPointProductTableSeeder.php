@@ -13,7 +13,7 @@ class TouchPointProductTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        foreach (range(1,10) as $index) {
+        foreach (range(51,60) as $index) {
             $dt = Carbon::now();
             $dateNow = $dt->toDateTimeString();
 
