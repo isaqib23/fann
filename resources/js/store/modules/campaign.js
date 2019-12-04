@@ -27,7 +27,8 @@ export const state = {
       disabledPaid      : false,
       disabledBarter    : false,
       product           : false,
-  }
+  },
+    listOfChatBox  : []
 }
 
 /**
@@ -49,6 +50,12 @@ export const mutations = {
     },
     setTouchPointField(state, touchPointFields) {
         state.touchPointFields = touchPointFields
+    },
+    setChatBox(state,chatBox) {
+        state.listOfChatBox.push(chatBox)
+    },
+    delChatBox(state, val) {
+      state.listOfChatBox.splice(val,1);
     }
 }
 
@@ -90,6 +97,12 @@ export const actions = {
         commit('setTouchPointField',payload);
 
     },
+     saveChatBox({ commit }, payload){
+        commit('setChatBox',payload);
+    },
+    deleteChatBox({ commit }, payload){
+        commit('delChatBox',payload);
+    }
 }
 
 /**
@@ -100,7 +113,8 @@ export const getters = {
     campaignPlacement: state => state.campaignPlacement,
     campaignInformation: state => state.campaignInformation,
     touchPoint: state => state.touchPoint,
-    touchPointFields: state => state.touchPointFields
+    touchPointFields: state => state.touchPointFields,
+    chatBox: state => state.listOfChatBox
 
 }
 

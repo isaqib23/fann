@@ -8,6 +8,16 @@
                 <transition name="fade" mode="out-in">
                     <router-view></router-view>
                 </transition>
+                <v-layout row wrap align-end justify-end class="chatbox-holder">
+                    <chatWindow
+                        class="d-inline col-md-4"
+                        v-for="(box, boxIndex) in listOfChatBox"
+                        :key="boxIndex"
+                        :propItem="box"
+                        v-on:close-window="closeWindow"
+                    >
+                    </chatWindow>
+                </v-layout>
             </v-container>
         </v-content>
 
@@ -19,22 +29,64 @@
 import AppNav from './shared/AppNav'
 import TopMenu from './shared/TopMenu'
 import AppFooter from './shared/AppFooter'
+import chatWindow from  '../general/ChatWindow';
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
     data: () => ({
-        mini: false
+        mini: false,
+        listOfChatBox  : []
     }),
-
     components: {
+        chatWindow : chatWindow,
         AppNav,
         TopMenu,
         AppFooter
     },
-
+    computed : {
+        ...mapGetters({
+            chatBox : 'campaign/chatBox'
+        }),
+    },
     methods: {
+        ...mapActions({
+            deleteChatBox : 'campaign/deleteChatBox'
+        }),
+        closeWindow(e) {
+            let toRemove = _.findIndex(this.listOfChatBox, function (obj) {
+                return obj.id === e.chatBox.id;
+            });
+
+            this.deleteChatBox(toRemove)
+        },
         navToggle() {
             this.mini = !this.mini
+        }
+    },
+    watch: {
+        chatBox: function (val) {
+            console.info(val,"vuex list");
+            this.listOfChatBox = val;
+            console.info(this.listOfChatBox,"list");
         }
     }
 }
 </script>
+<style scoped>
+    >>>.chatbox-holder {
+        right:0;
+        bottom:0;
+        position:fixed;
+        width:50%;
+    }
+    >>>.chatbox_min {
+        margin-bottom: -320px;
+    }
+    >>>.chatbox_min .chatbox-avatar {
+        width:50px;
+        height:50px;
+    }
+    >>>.chatbox_min .chat-box-title {
+        padding:0 0 0 75px;
+    }
+</style>

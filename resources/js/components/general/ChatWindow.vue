@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ chatbox_min: isMinimize }">
+    <div :class="{ chatbox_min: isMinimize } ">
         <v-card class="mt-auto">
             <v-list-item>
                 <v-list-item-avatar
@@ -157,6 +157,22 @@
     }
 </script>
 <style scoped>
+    >>>.chatbox-holder {
+        right:0;
+        bottom:0;
+        position:fixed;
+        width:50%;
+    }
+    >>>.chatbox_min {
+        margin-bottom: -300px;
+    }
+    >>>.chatbox_min .chatbox-avatar {
+        width:50px;
+        height:50px;
+    }
+    >>>.chatbox_min .chat-box-title {
+        padding:0 0 0 75px;
+    }
     >>>.emoji-picker {
         position: absolute ;
         z-index: 1 ;

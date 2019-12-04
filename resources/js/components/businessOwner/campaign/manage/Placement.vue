@@ -194,7 +194,7 @@
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="float-right">
                                                 <div class="d_block">
-                                                    <v-btn small icon @click="chatBox(item)">
+                                                    <v-btn small icon @click="openChatBox(item)">
                                                         <v-icon class="custom_font black--text px-1">mdi-chat</v-icon>
                                                     </v-btn>
                                                     <v-icon class="custom_font black--text px-1">cancel</v-icon>
@@ -240,29 +240,15 @@
                     </template>
                 </v-list>
         </v-flex>
-        <v-layout row wrap align-end justify-end class="chatbox-holder">
-            <chatWindow
-                class="d-inline col-md-4"
-                v-for="(box, boxIndex) in listOfChatBox"
-                :key="boxIndex"
-                :propItem="box"
-                v-on:close-window="closeWindow"
-            >
-            </chatWindow>
-        </v-layout>
     </v-layout>
 </template>
 
 <script>
 
-    import chatWindow from  '../../../general/ChatWindow';
+    import {mapActions, mapGetters} from 'vuex';
+
     export default {
-        components:{
-          chatWindow : chatWindow
-        },
         data: () => ({
-            showChatWindow : false,
-            listOfChatBox  : [],
             rating: 3,
             expanded: [],
             singleExpand: true,
@@ -367,42 +353,28 @@
                 },
             ]
         }),
-        methods:{
-            chatBox(item){
-                let find = _.find(this.listOfChatBox,function(obj){
-                    return obj.id === item.id;
-                });
-
-               if( _.isEmpty(find)  &&  _.size(this.listOfChatBox) < 3){
-                    this.listOfChatBox.push(item);
+        computed : {
+            ...mapGetters({
+                chatBox : 'campaign/chatBox'
+            }),
+        },
+        methods: {
+            ...mapActions({
+                saveChatBox : 'campaign/saveChatBox'
+             }),
+            openChatBox(item) {
+                let find = _.find(this.chatBox,function(obj){
+                        return obj.id === item.id;
+                    });
+               if( _.isEmpty(find)  &&  _.size(this.chatBox) < 3){
+                   this.saveChatBox(item);
                 }
-            },
-            closeWindow(e) {
-               let toRemove = _.findIndex(this.listOfChatBox, function(obj) {
-                    return obj.id === e.chatBox.id;
-                });
-                this.listOfChatBox.splice(toRemove, 1) // remove it from array
             }
         }
     }
 </script>
 <style scoped>
-    >>>.chatbox-holder {
-        right:0;
-        bottom:0;
-        position:fixed;
-        width:50%;
-    }
-    >>>.chatbox_min {
-        margin-bottom: -320px;
-    }
-    >>>.chatbox_min .chatbox-avatar {
-        width:50px;
-        height:50px;
-    }
-    >>>.chatbox_min .chat-box-title {
-        padding:0 0 0 75px;
-    }
+
     >>>.v-rating .v-icon{
         padding:0px;
     }
