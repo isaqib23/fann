@@ -143,9 +143,9 @@ class SettingsController extends Controller
      *
      * @return Response
      */
-    public function edit($id)
+    public function show()
     {
-
+        
     }
 
     /**
