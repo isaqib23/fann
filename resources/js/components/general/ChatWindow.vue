@@ -26,11 +26,11 @@
 
             <v-divider></v-divider>
 
-            <div class="pa-5" style="height:200px;overflow:auto;">
-                <div class="d-block  col-md-4 pa-2 mb-2 my-message white--text" v-for="me in messages">
+            <div class="pa-5" style="height:200px;">
+                <div class="d-block col-md-6 pa-2 mb-2 my-message white--text" v-for="me in messages" style="word-wrap: break-word;">
                     {{ me }}
                 </div>
-                <div class="d-block col-md-4  pa-2 mb-2 message black--text" style="float:right">their</div>
+                <div class="d-block col-md-6  pa-2 mb-2 message black--text" style="float:right">their</div>
             </div>
 
             <v-divider></v-divider>
