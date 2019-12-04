@@ -54,7 +54,7 @@ Route::group(['middleware' => ['jwt']], function() {
     ]);
 
     // ----- code Generator find Products
-    Route::get('/shopify/findProducts/{input}', 'ShopifyController@findProducts');
+    Route::post('/shopify/findProducts', 'ShopifyController@findProducts');
 
     // ----- Countries related api's
     Route::prefix('/country')->group(function () {

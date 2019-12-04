@@ -10,7 +10,7 @@
                     <LeftTabs></LeftTabs>
 
                     <v-tab-item>
-                        <CreateLeftPane :objective="campaignObjective" :touch-point="touchPoint"></CreateLeftPane>
+                        <CreateLeftPane :touch-point="touchPoint"></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
                         <InviteLeftPane></InviteLeftPane>

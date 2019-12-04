@@ -110,7 +110,11 @@
                 if (self.search == '' || self.search == null || self.search.length <=2 || self.lookingUp) return;
 
                 self.lookingUp = true;
-                axios.get(api.path('shopify.findProducts') + self.search).then(function(response){
+
+                axios.post(api.path('shopify.findProducts') , {
+                    keyword:self.search,
+                    shop: localStorage.selectedShop
+                }).then(function(response){
                     self.lookingUp = false;
                     response.data.forEach(function(prod) {
                         prod.title = prod.title + ' - ' + prod.id;

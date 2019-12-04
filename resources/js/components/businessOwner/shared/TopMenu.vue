@@ -141,7 +141,6 @@
                         self.shops = resp.data;
                         self.busy = false;
                         if(self.selectedShop === null){
-                            console.log('selectedShop SHop: ',self.selectedShop);
                             self.selectedShop = self.shops[0].id;
                         }
                     });
@@ -151,9 +150,9 @@
                 this.selectedShop = shopId;
             }
         },
-        mounted() {
+        async mounted() {
             this.username = this.auth.first_name;
-            this.getLinkedShops();
+            await this.getLinkedShops();
             if (localStorage.selectedShop) {
                 this.selectedShop = localStorage.selectedShop;
             }
@@ -163,6 +162,9 @@
                 if (!val) return
 
                 setTimeout(() => (this.loading = false), 3000)
+            },
+            selectedShop (val) {
+                localStorage.selectedShop = this.selectedShop;
             }
         }
     }
