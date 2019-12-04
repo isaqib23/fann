@@ -5,16 +5,21 @@
                 <v-card-title>
                     <div class="subtitle-1 mb-2"><strong>Select Niche / Industry</strong></div>
                 </v-card-title>
-                <v-select
-                    :items="items"
-                    label="Health Care"
+
+                <v-autocomplete
+                    :items="niches"
+                    v-model="inviteSearchParams.niche"
+                    label="Health & fitness"
                     solo
                     class="custom_dropdown"
-                ></v-select>
+                    append-icon="keyboard_arrow_down"
+                    item-text="name"
+                    item-value="id"
+                ></v-autocomplete>
 
                 <div class="kind_group">
                     <div class="subtitle-2 mt-0 mb-2">What kind of Influencers you are looking for?</div>
-                    <v-radio-group v-model="kind" row class="mt-0">
+                    <v-radio-group v-model="inviteSearchParams.placement" row class="mt-0">
                         <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="radio-1" active-class="kind_active"></v-radio>
                         <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="radio-2" active-class="kind_active"></v-radio>
 
@@ -24,31 +29,32 @@
                 <div class="kind_group">
                     <div class="subtitle-2 mt-6 mb-2">Followers</div>
                     <v-range-slider
-                        v-model="range"
+                        v-model="inviteSearchParams.followers"
                         :max="max"
                         :min="min"
                         hide-details
                         class="align-center"
                     ></v-range-slider>
-                    <p style="font-size: 10px">{{range[0]}} - {{range[1]}} Followers</p>
+                    <p style="font-size: 10px">{{inviteSearchParams.followers[0]}} - {{inviteSearchParams.followers[1]}} Followers</p>
                 </div>
 
                 <div class="kind_group">
                     <div class="subtitle-2 mt-6 mb-2">Likes per Post</div>
                     <v-range-slider
-                        v-model="range"
+                        v-model="inviteSearchParams.likes"
                         :max="max"
                         :min="min"
                         hide-details
                         class="align-center"
                     ></v-range-slider>
-                    <p style="font-size: 10px">{{range[0]}} - {{range[1]}} Likes</p>
+                    <p style="font-size: 10px">{{inviteSearchParams.likes[0]}} - {{inviteSearchParams.likes[1]}} Likes</p>
                 </div>
 
                 <div class="kind_group">
                     <div class="subtitle-2 mt-6 mb-0">Engagement Rate</div>
                     <v-select
                         :items="items"
+                        v-model="inviteSearchParams.eng_rate"
                         label="10% to 15% Min"
                         solo
                         class="custom_dropdown"
@@ -57,7 +63,7 @@
 
                 <div class="kind_group">
                     <div class="subtitle-2 mt-0 mb-2">Rating</div>
-                    <v-rating v-model="rating" background-color="grey"></v-rating>
+                    <v-rating v-model="inviteSearchParams.rating" background-color="grey"></v-rating>
                 </div>
             </v-card>
         </v-flex>
@@ -70,7 +76,7 @@
 
                 <div class="gender_group">
                     <div class="subtitle-2 mb-2">Gender</div>
-                    <v-radio-group v-model="kind" row class="mt-0">
+                    <v-radio-group v-model="inviteSearchParams.gender" row class="mt-0">
                         <v-radio label="Male" off-icon="mdi-human-male" on-icon="mdi-human-male" value="radio-4" active-class="kind_active"></v-radio>
                         <v-radio label="Female" off-icon="mdi-human-female" on-icon="mdi-human-female" value="radio-5" active-class="kind_active"></v-radio>
                     </v-radio-group>
@@ -78,7 +84,7 @@
 
                 <div class="age_group">
                     <div class="subtitle-2 mb-2">Age Range</div>
-                    <v-radio-group v-model="kind" row class="mt-0">
+                    <v-radio-group v-model="inviteSearchParams.age_range" row class="mt-0">
                         <v-radio label="13 - 17" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-6" active-class="kind_active"></v-radio>
                         <v-radio label="18 - 24" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-7" active-class="kind_active"></v-radio>
                         <v-radio label="25 - 34" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-8" active-class="kind_active"></v-radio>
@@ -91,12 +97,12 @@
                     <div class="subtitle-2 mb-2">Country</div>
                     <v-autocomplete
                         :items="countries"
-                        v-model="selected"
+                        v-model="inviteSearchParams.country"
                         label="Select"
                         solo
                         class="custom_dropdown"
-                        return-object
                         item-text="name"
+                        item-value="id"
                     >
                         <template slot="selection" slot-scope="data">
                             <v-avatar size="36" class="mr-2" tile >
@@ -117,16 +123,15 @@
                                     lazy-src="/images/placeholder.png"
                                 >
                             </v-list-item-avatar>
-                            <v-list-tile-content>
-                                <v-list-tile-title> {{ data.item.name }}
-                                </v-list-tile-title>
-                            </v-list-tile-content>
+                            <v-list-item-content>
+                                <v-list-item-title> {{ data.item.name }}  </v-list-item-title>
+                            </v-list-item-content>
                         </template>
                     </v-autocomplete>
                 </div>
 
                 <v-card-actions class="action_btns mt-0 mb-3">
-                    <v-btn color="primary" dark large block class="text-capitalize">
+                    <v-btn color="primary" dark large block class="text-capitalize" @click="searchResults()">
                         Apply Search Filters
                     </v-btn>
                 </v-card-actions>
@@ -136,43 +141,58 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import { api } from '~/config'
+    import {mapActions, mapGetters} from "vuex";
+
     export default {
         components: {
 
         },
         data: () => {
            return  {
-               kind: null,
-               min: 0,
-               max: 1000,
-               range: [100, 600],
-               rating:3,
-               selected: null,
-               countries : []
+               min                : 0,
+               max                : 1000,
+               range              : [0, 0],
+               rating             : 3,
+               items              : [],
+               inviteSearchParams : {
+                   niche     : null,
+                   placement : null,
+                   followers :  [0, 0],
+                   likes     :  [0, 0],
+                   eng_rate  : null,
+                   gender    : null,
+                   age_range : null,
+                   country   : null,
+                   rating    : null
+               }
             }
+        },
+        computed: {
+            ...mapGetters({
+                countries: 'settings/countries',
+                niches: 'settings/niches',
+            })
         },
         methods: {
-            getCountries: function(){
-                let self = this;
-                self.busy = true;
-                axios
-                    .get(api.path('countryList'))
-                    .then(function(resp){
-                        self.countries = resp.data.countries;
-                        console.log(self.countries);
-                    });
-            },
-            getFlag(name){
+            ...mapActions({
+                getCountries: 'settings/getCountries',
+                getNiches: 'settings/getNiches',
+            }),
+            getFlag (name) {
                 return '/images/flags/'+name;
             },
-            imageUrlAlt(event) {
+            imageUrlAlt (event) {
                 event.target.src = "/images/placeholder.png"
+            },
+            searchResults () {
+                _.forEach(this.inviteSearchParams, function(value, key) {
+                    console.log(key, value, "kaan baj rhay hian");
+                });
             }
         },
-        mounted() {
-            this.getCountries();
+        async mounted() {
+            await this.getCountries();
+            await this.getNiches();
         },
     }
 </script>
