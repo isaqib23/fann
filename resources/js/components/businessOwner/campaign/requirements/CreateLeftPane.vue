@@ -279,6 +279,11 @@
                     disabledPaid      : false,
                     disabledBarter    : false,
                     product           : false,
+                },
+                touchPointTabsState   : {
+                    preTab  : null,
+                    currentTab  : null,
+                    nextTab  : null
                 }
             }
         },
@@ -292,6 +297,7 @@
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
             this.setTouchPointFields();
+            console.log(this.touchPoint, 'touchPoint');
         },
         methods: {
             ...mapMutations({
