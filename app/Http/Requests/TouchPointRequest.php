@@ -29,31 +29,76 @@ class TouchPointRequest extends BaseFormRequest
             'touchPoint.caption'             => 'required',
         ];
 
-        if($this->input('touchPoint.touchPointConditionalFields.isPaid') ||
+        $rules = $this->checkTouchPointAmount($rules);
+
+        $rules = $this->checkTouchPointInstagramFormat($rules);
+
+        $rules = $this->checkBarterProduct($rules);
+
+        $rules = $this->checkProductBrand($rules);
+
+        return $rules;
+    }
+
+    /**
+     * @param array $rules
+     * @return array
+     */
+    private function checkTouchPointAmount(array $rules): array
+    {
+        if ($this->input('touchPoint.touchPointConditionalFields.isPaid') ||
             $this->input('touchPoint.touchPointConditionalFields.additionalPayAsAmount')
         ) {
             $rules['touchPoint.amount'] = 'nullable|numeric|min:1';
         }
+        return $rules;
+    }
 
-        if($this->input('touchPoint.touchPointConditionalFields.touchPointproduct')
+    /**
+     * @param array $rules
+     * @return array
+     */
+    private function checkTouchPointInstagramFormat(array $rules): array
+    {
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointInstagramFormat')
         ) {
-            $rules['touchPoint.barterProduct'] = 'required';
-        }
-
-        if($this->input('touchPoint.touchPointConditionalFields.touchPointInstagramFormat')
-        ) {
-            if(is_null($this->input('touchPoint.instaPost')) && is_null($this->input('touchPoint.instaStory'))
+            if (is_null($this->input('touchPoint.instaPost')) && is_null($this->input('touchPoint.instaStory'))
             ) {
                 $rules['touchPoint.instaPost'] = 'required';
             }
 
-            if(!is_null($this->input('touchPoint.instaPost')) ) {
+            if (!is_null($this->input('touchPoint.instaPost'))) {
                 $rules['touchPoint.instaBioLink'] = 'required';
-            }elseif(!is_null($this->input('touchPoint.instaStory')) ) {
+            } elseif (!is_null($this->input('touchPoint.instaStory'))) {
                 $rules['touchPoint.instaStoryLink'] = 'required';
             }
         }
+        return $rules;
+    }
 
+    /**
+     * @param array $rules
+     * @return array
+     */
+    private function checkBarterProduct(array $rules): array
+    {
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointProduct')
+        ) {
+            $rules['touchPoint.barterProduct'] = 'required';
+        }
+        return $rules;
+    }
+
+    /**
+     * @param array $rules
+     * @return array
+     */
+    private function checkProductBrand(array $rules): array
+    {
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointBrand')
+        ) {
+            $rules['touchPoint.productBrand'] = 'required';
+        }
         return $rules;
     }
 }
