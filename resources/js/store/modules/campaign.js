@@ -18,7 +18,15 @@ export const state = {
       instaBioLink : null,
       instaStory : null,
       instaStoryLink : null,
-      images : null,
+      images : [],
+  },
+  touchPointFields : {
+      title             : false,
+      instagramFormat   : false,
+      paymentFormat     : false,
+      disabledPaid      : false,
+      disabledBarter    : false,
+      product           : false,
   }
 }
 
@@ -38,6 +46,9 @@ export const mutations = {
     },
     setTouchPoint(state, [index, val]) {
         Vue.set(state.touchPoint, index, val)
+    },
+    setTouchPointField(state, touchPointFields) {
+        state.touchPointFields = touchPointFields
     }
 }
 
@@ -57,12 +68,12 @@ export const actions = {
         return await CampaignAxios.getAllPlacements();
     },
     async savePlacementAndPaymentType({ commit }, payload) {
+
         commit('setPlacement',payload);
-       // return await CampaignAxios.savePlacementAndPaymentType(payload);
+
     },
     async saveTouchPoint({commit, state}) {
 
-       // console.info(state.touchPoint, state.campaignObjective, state.campaignPlacement, state.campaignInformation);
          let payload  = {
              'campaignId'  : state.campaignInformation.details.id,
              'payment'     : state.campaignPlacement,
@@ -73,7 +84,12 @@ export const actions = {
          let response = await CampaignAxios.saveTouchPoint(payload);
 
          return response;
-    }
+    },
+    async saveTouchPointField({ commit }, payload) {
+        console.log(payload, 'saveTouchPointField');
+        commit('setTouchPointField',payload);
+
+    },
 }
 
 /**
@@ -83,7 +99,8 @@ export const getters = {
     campaignObjective: state => state.campaignObjective,
     campaignPlacement: state => state.campaignPlacement,
     campaignInformation: state => state.campaignInformation,
-    touchPoint: state => state.touchPoint
+    touchPoint: state => state.touchPoint,
+    touchPointFields: state => state.touchPointFields
 
 }
 
