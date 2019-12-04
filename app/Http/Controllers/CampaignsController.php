@@ -322,7 +322,6 @@ class CampaignsController extends Controller
      */
     public function saveTouchPoint(TouchPointRequest $request)
     {
-        dd($request->all());
         try {
             $data = $request->all();
 

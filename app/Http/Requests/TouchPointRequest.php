@@ -51,6 +51,7 @@ class TouchPointRequest extends BaseFormRequest
         ) {
             $rules['touchPoint.amount'] = 'nullable|numeric|min:1';
         }
+
         return $rules;
     }
 
@@ -73,6 +74,7 @@ class TouchPointRequest extends BaseFormRequest
                 $rules['touchPoint.instaStoryLink'] = 'required';
             }
         }
+
         return $rules;
     }
 
@@ -86,6 +88,7 @@ class TouchPointRequest extends BaseFormRequest
         ) {
             $rules['touchPoint.barterProduct'] = 'required';
         }
+
         return $rules;
     }
 
@@ -99,6 +102,7 @@ class TouchPointRequest extends BaseFormRequest
         ) {
             $rules['touchPoint.productBrand'] = 'required';
         }
+        
         return $rules;
     }
 }
