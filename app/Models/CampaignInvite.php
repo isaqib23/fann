@@ -7,20 +7,13 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class UserMeta.
+ * Class CampaignInvite.
  *
  * @package namespace App\Models;
  */
-class UserMeta extends Model implements Transformable
+class CampaignInvite extends Model implements Transformable
 {
     use TransformableTrait;
-
-    /**
-     * @var array
-     */
-    protected $casts = [
-        'meta_json' => 'array'
-    ];
 
     /**
      * The attributes that are mass assignable.
@@ -29,13 +22,13 @@ class UserMeta extends Model implements Transformable
      */
     protected $fillable = [
         'user_id',
-        'access_token',
-        'provider',
-        'provider_id',
-        'provider_name',
-        'provider_photo',
-        'meta_json'
+        'campaign_id',
+        'touch_point_id',
+        'sender_id',
+        'sent_from',
+        'original_price',
+        'influencer_price',
+        'status'
     ];
-
 
 }

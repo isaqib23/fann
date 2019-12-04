@@ -23,8 +23,6 @@ class CreateUserMetasTable extends Migration
             $table->string('provider_name');
             $table->longText('access_token');
             $table->string('provider_photo');
-            $table->string('followers');
-            $table->string('followings');
             $table->json('meta_json');
 
             $table->softDeletes();
