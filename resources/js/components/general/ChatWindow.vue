@@ -1,6 +1,7 @@
 <template>
-    <div :class="{ chatbox_min: isMinimize } ">
-        <v-card class="mt-auto">
+    <div :class="{ chatbox_min: isMinimize } "
+         :style="($vuetify.breakpoint.smAndDown && isMinimize == true) ? {bottom:minBottom + 'px !important' } :''">
+        <v-card class="mt-auto lg12 sm12 xl12 md12 xs12">
             <v-list-item>
                 <v-list-item-avatar
                     height="50"
@@ -50,7 +51,7 @@
                 >
                 </v-text-field>
            </v-card-text>
-            <v-card-text>
+            <v-card-text class="footer">
                 <v-btn icon class="input-icons input-color" @click="$refs.file.click()">
                     <v-icon>attachment</v-icon>
                 </v-btn>
@@ -113,17 +114,18 @@
         },
         props: {
             propItem:{},
+            minBottom : 0
         },
         data() {
             return {
-                textMsg     : '',
-                messages    : [],
-                type        : 'influencer',
-                isMinimize  : false,
+                textMsg: '',
+                messages: [],
+                type: 'influencer',
+                isMinimize: false,
                 theirMessage: [],
-                file        : null,
-                image       : null,
-                search      : ''
+                file: null,
+                image: null,
+                search: ''
             }
         },
         methods: {
@@ -147,6 +149,7 @@
             },
             minimize() {
                 this.isMinimize = !this.isMinimize ;
+
             },
             closeWindow() {
                 this.$emit('close-window',{
@@ -157,18 +160,22 @@
     }
 </script>
 <style scoped>
-    >>>.chatbox-holder {
-        right:0;
-        bottom:0;
-        position:fixed;
-        width:50%;
+    @media (max-width: 425px){
+        .checker {
+            max-width: 100% !important;
+        }
     }
+    @media (max-width: 768px){
+        >>>.input-icons{
+            width:auto !important;
+        }
+        }
     >>>.chatbox_min {
         margin-bottom: -300px;
     }
     >>>.chatbox_min .chatbox-avatar {
-        width:50px;
-        height:50px;
+        width:10%;
+        height:50%;
     }
     >>>.chatbox_min .chat-box-title {
         padding:0 0 0 75px;
@@ -244,10 +251,10 @@
     }
     .input-icons {
         height:30px !important;
-        width:30px !important;
+        width:30px;
     }
     .input-icons .v-icon {
-        font-size: 20px !important;
+        font-size: 20px;
     }
     .input-color {
         color:#1473e6 !important;

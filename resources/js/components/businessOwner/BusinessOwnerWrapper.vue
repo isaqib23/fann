@@ -8,16 +8,16 @@
                 <transition name="fade" mode="out-in">
                     <router-view></router-view>
                 </transition>
-                <v-layout row wrap align-end justify-end class="chatbox-holder">
-                    <chatWindow
-                        class="d-inline col-md-4"
-                        v-for="(box, boxIndex) in listOfChatBox"
-                        :key="boxIndex"
-                        :propItem="box"
-                        v-on:close-window="closeWindow"
-                    >
-                    </chatWindow>
-                </v-layout>
+                <chatWindow
+                    class="float-right checker"
+                    v-for="(box, boxIndex) in listOfChatBox"
+                    :key="boxIndex"
+                    :propItem="box"
+                    :minBottom="(3 - boxIndex)*(3 - boxIndex) * 20"
+                    v-on:close-window="closeWindow"
+                    :style="$vuetify.breakpoint.smAndUp ? {right: boxIndex*20 +'%'} : {right: boxIndex*0 +'%'}"
+                >
+                </chatWindow>
             </v-container>
         </v-content>
 
@@ -65,22 +65,20 @@ export default {
     },
     watch: {
         chatBox: function (val) {
-            console.info(val,"vuex list");
             this.listOfChatBox = val;
-            console.info(this.listOfChatBox,"list");
         }
     }
 }
 </script>
 <style scoped>
-    >>>.chatbox-holder {
-        right:0;
-        bottom:0;
-        position:fixed;
-        width:50%;
+    .checker{
+        bottom: 0;
+        position: fixed;
+        max-width:18%;
+        flex: 0 0 18%;
     }
     >>>.chatbox_min {
-        margin-bottom: -320px;
+        margin-bottom: -300px;
     }
     >>>.chatbox_min .chatbox-avatar {
         width:50px;
@@ -89,4 +87,6 @@ export default {
     >>>.chatbox_min .chat-box-title {
         padding:0 0 0 75px;
     }
+
 </style>
+

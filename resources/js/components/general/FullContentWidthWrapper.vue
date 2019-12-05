@@ -5,20 +5,19 @@
         <v-content fluid>
                 <transition name="fade" mode="out-in">
                     <router-view></router-view>
-
                 </transition>
-<!--            <v-layout row wrap align-end justify-end class="chatbox-holder">-->
+
                 <chatWindow
-                    class="col-md-3 float-right checker"
+                    class="float-right checker"
                     v-for="(box, boxIndex) in listOfChatBox"
                     :key="boxIndex"
                     :propItem="box"
+                    :minBottom="(3 - boxIndex)*(3 - boxIndex) * 20"
                     v-on:close-window="closeWindow"
+                    :style="$vuetify.breakpoint.smAndUp ? {right: boxIndex*20 +'%'} : {right: boxIndex*0 +'%'}"
                 >
                 </chatWindow>
-<!--            </v-layout>-->
         </v-content>
-
         <app-footer></app-footer>
     </div>
 </template>
@@ -34,8 +33,7 @@
     export default {
         data: () => ({
             mini: false,
-            listOfChatBox  : [],
-            positioning: 0,
+            listOfChatBox  : []
         }),
         components: {
             chatWindow : chatBox,
@@ -43,12 +41,10 @@
             TopMenu,
             AppFooter
         },
-
         computed : {
             ...mapGetters({
                 chatBox : 'campaign/chatBox'
             }),
-
         },
         methods: {
             ...mapActions({
@@ -67,9 +63,7 @@
         },
         watch: {
             chatBox: function (val) {
-
                 this.listOfChatBox = val;
-                this.positioning= this.positioning+25;
             }
         }
     }
@@ -78,12 +72,8 @@
     .checker{
         bottom: 0;
         position: fixed;
-    }
-    >>>.chatbox-holder {
-        right:0;
-        bottom:0;
-        position:fixed;
-        width:50%;
+        max-width:18%;
+        flex: 0 0 18%;
     }
     >>>.chatbox_min {
         margin-bottom: -300px;
