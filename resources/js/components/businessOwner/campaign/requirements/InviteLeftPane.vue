@@ -20,9 +20,8 @@
                 <div class="kind_group">
                     <div class="subtitle-2 mt-0 mb-2">What kind of Influencers you are looking for?</div>
                     <v-radio-group v-model="inviteSearchParams.placement" row class="mt-0">
-                        <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="radio-1" active-class="kind_active"></v-radio>
-                        <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="radio-2" active-class="kind_active"></v-radio>
-
+                        <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="insatgram" active-class="kind_active"></v-radio>
+                        <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="youtube" active-class="kind_active"></v-radio>
                     </v-radio-group>
                 </div>
 
@@ -85,11 +84,11 @@
                 <div class="age_group">
                     <div class="subtitle-2 mb-2">Age Range</div>
                     <v-radio-group v-model="inviteSearchParams.age_range" row class="mt-0">
-                        <v-radio label="13 - 17" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-6" active-class="kind_active"></v-radio>
-                        <v-radio label="18 - 24" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-7" active-class="kind_active"></v-radio>
-                        <v-radio label="25 - 34" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-8" active-class="kind_active"></v-radio>
-                        <v-radio label="35 - 44" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-9" active-class="kind_active"></v-radio>
-                        <v-radio label="60+" off-icon="mdi-human-males" on-icon="mdi-human-males" value="radio-10" active-class="kind_active"></v-radio>
+                        <v-radio label="13 - 17" off-icon="mdi-human-males" on-icon="mdi-human-males" value="[13, 17]" active-class="kind_active"></v-radio>
+                        <v-radio label="18 - 24" off-icon="mdi-human-males" on-icon="mdi-human-males" value="[18, 24]" active-class="kind_active"></v-radio>
+                        <v-radio label="25 - 34" off-icon="mdi-human-males" on-icon="mdi-human-males" value="[25, 34]" active-class="kind_active"></v-radio>
+                        <v-radio label="35 - 44" off-icon="mdi-human-males" on-icon="mdi-human-males" value="[35, 44]" active-class="kind_active"></v-radio>
+                        <v-radio label="60+" off-icon="mdi-human-males" on-icon="mdi-human-males" value="['46+']" active-class="kind_active"></v-radio>
                     </v-radio-group>
                 </div>
 
@@ -175,8 +174,7 @@
         },
         methods: {
             ...mapActions({
-                getCountries: 'settings/getCountries',
-                getNiches: 'settings/getNiches',
+                inviteSearch : 'campaign/inviteSearch'
             }),
             getFlag (name) {
                 return '/images/flags/'+name;
@@ -185,15 +183,11 @@
                 event.target.src = "/images/placeholder.png"
             },
             searchResults () {
-                _.forEach(this.inviteSearchParams, function(value, key) {
-                    console.log(key, value, "kaan baj rhay hian");
-                });
+                this.inviteSearch (
+                    this.inviteSearchParams
+                );
             }
-        },
-        async mounted() {
-            await this.getCountries();
-            await this.getNiches();
-        },
+        }
     }
 </script>
 

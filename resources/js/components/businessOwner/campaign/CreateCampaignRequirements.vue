@@ -39,7 +39,7 @@
     import InviteRightPaneListView from './requirements/InviteRightPaneListView';
     import InviteRightPaneGridView from './requirements/InviteRightPaneGridView';
     import Promote from './requirements/Promote';
-    import {mapGetters} from 'vuex';
+    import {mapActions, mapGetters} from 'vuex';
     export default {
         components: {
             LeftTabs: LeftTabs,
@@ -90,7 +90,12 @@
                }
             }
         },
-        methods: {},
+        methods: {
+            ...mapActions({
+                getCountries: 'settings/getCountries',
+                getNiches: 'settings/getNiches',
+            }),
+        },
         computed: {
             paneClass: function() {
                 return (this.active_tab == 2) ? 'lg12 sm12 xl12 md4 xs12' : 'xl4 lg4 md4 sm12 xs12';
@@ -102,6 +107,10 @@
                 objective: 'campaign/campaignObjective',
                 placement: 'campaign/campaignPlacement'
             })
+        },
+        async mounted() {
+            await this.getNiches();
+            await this.getCountries();
         }
     }
 </script>

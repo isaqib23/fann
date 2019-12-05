@@ -1,12 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\Company;
-use App\Models\CompanyUser;
-use App\Models\Shop;
-use App\Models\UserCreditCard;
-use App\Models\UserMeta;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -24,7 +19,12 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'first_name', 'email', 'password', 'type', 'stripe_customer_id', 'last_name'
+        'first_name',
+        'email',
+        'password',
+        'type',
+        'stripe_customer_id',
+        'last_name'
     ];
 
     /**
@@ -38,6 +38,9 @@ class User extends Authenticatable implements JWTSubject
 
     /**
      * Generate random password
+     *
+     * @param int $length
+     * @return string
      */
     public static function generatePassword($length = 32)
     {
@@ -98,5 +101,13 @@ class User extends Authenticatable implements JWTSubject
     public function UserPlatforms()
     {
         return $this->hasMany(UserMeta::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function InfluencerDetail()
+    {
+        return $this->hasOne(InfluencerDetail::class);
     }
 }
