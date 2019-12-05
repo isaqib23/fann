@@ -363,10 +363,10 @@
                 saveChatBox : 'campaign/saveChatBox'
              }),
             openChatBox(item) {
-                let find = _.find(this.chatBox,function(obj){
+                let find = _.find(this.chatBox,function(obj) {
                         return obj.id === item.id;
                     });
-               if( _.isEmpty(find)  &&  _.size(this.chatBox) < 3){
+               if( _.isEmpty(find)  &&  _.size(this.chatBox) < 3) {
                    this.saveChatBox(item);
                 }
             }

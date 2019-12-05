@@ -19,16 +19,19 @@ export const state = {
       instaStory : null,
       instaStoryLink : null,
       images : [],
+      touchPointConditionalFields : {
+          touchPointTitle          : false,
+          touchPointInstagramFormat: false,
+          touchPointPaymentFormat  : false,
+          isPaid                   : false,
+          isBarter                 : false,
+          additionalPayAsBarter    : false,
+          additionalPayAsAmount    : false,
+          touchPointProduct        : false,
+          touchPointBrand          : false
+      }
   },
-  touchPointFields : {
-      title             : false,
-      instagramFormat   : false,
-      paymentFormat     : false,
-      disabledPaid      : false,
-      disabledBarter    : false,
-      product           : false,
-  },
-    listOfChatBox  : []
+  listOfChatBox  : [],
 }
 
 /**
@@ -49,10 +52,10 @@ export const mutations = {
         Vue.set(state.touchPoint, index, val)
     },
     setTouchPointField(state, touchPointFields) {
-        state.touchPointFields = touchPointFields
+        state.touchPoint.touchPointConditionalFields = touchPointFields
     },
-    setChatBox(state,chatBox) {
-        state.listOfChatBox.push(chatBox)
+    setChatBox(state, payload) {
+        state.listOfChatBox.push(payload)
     },
     delChatBox(state, val) {
       state.listOfChatBox.splice(val,1);
@@ -93,7 +96,7 @@ export const actions = {
          return response;
     },
     async saveTouchPointField({ commit }, payload) {
-        console.log(payload, 'saveTouchPointField');
+
         commit('setTouchPointField',payload);
 
     },
@@ -112,10 +115,8 @@ export const getters = {
     campaignObjective: state => state.campaignObjective,
     campaignPlacement: state => state.campaignPlacement,
     campaignInformation: state => state.campaignInformation,
-    touchPoint: state => state.touchPoint,
-    touchPointFields: state => state.touchPointFields,
-    chatBox: state => state.listOfChatBox
-
+    chatBox: state => state.listOfChatBox,
+    touchPoint: state => state.touchPoint
 }
 
 /**

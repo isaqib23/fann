@@ -27,7 +27,6 @@
     import TopMenu from '../businessOwner/shared/TopMenu'
     import AppFooter from '../businessOwner/shared/AppFooter'
     import { mapGetters,mapActions } from "vuex";
-    import chatWindows from "./ChatWindow";
     import chatBox from  '../general/ChatWindow';
 
     export default {
