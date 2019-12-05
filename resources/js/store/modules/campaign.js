@@ -6,19 +6,19 @@ export const state = {
   campaignPlacement: null,
   campaignInformation: null,
   touchPoint: {
-      caption: null,
-      hashtags: null,
-      mentions: null,
-      guideLines: null,
-      dispatchProduct : null,
-      barterProduct : null,
-      amount : 0,
-      campaignDescription : null,
-      instaPost : null,
-      instaBioLink : null,
-      instaStory : null,
-      instaStoryLink : null,
-      images : [],
+      caption              : null,
+      hashtags             : null,
+      mentions             : null,
+      guideLines           : [],
+      dispatchProduct      : {},
+      barterProduct        : {},
+      amount               : 0,
+      campaignDescription  : null,
+      images               : [],
+      instaPost            : null,
+      instaBioLink         : null,
+      instaStory           : null,
+      instaStoryLink       : null,
       touchPointConditionalFields : {
           touchPointTitle          : false,
           touchPointInstagramFormat: false,
@@ -54,9 +54,7 @@ export const mutations = {
         state.touchPoint.touchPointConditionalFields = touchPointFields
     },
     resetTouchPoint(state) {
-        _.forOwn(state.touchPoint,(value, key) => {
-            state[key] = _.cloneDeep(value.state);
-        });
+        state.touchPoint = state;
     },
 }
 
@@ -98,8 +96,9 @@ export const actions = {
         commit('setTouchPointField',payload);
 
     },
-    async resetTouchPoint({ commit }) {
-        commit('resetTouchPoint');
+    async resetTouchPoint({ commit },payload) {
+        console.log(payload, 'vuex axtion');
+        commit('resetTouchPoint',payload);
     },
 }
 
@@ -164,6 +163,21 @@ let CampaignAxios = class {
                     details : []
                 };
             });
+    }
+
+    static resetState (value) {
+        if (_.isString(value)) {
+            return null
+        };
+        if (_.isNumber(value)) {
+            return 0;
+        };
+        if (_.isArray(value)) {
+            return [];
+        };
+        if (_.isObject(value)) {
+            return null
+        };
     }
 
 };

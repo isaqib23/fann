@@ -269,13 +269,24 @@
         },
         watch : {
             'touchPoint.hashtags' : {
+
+
                 handler: function(newVal, oldVal) {
+
+
+                    console.log(newVal,oldVal ,'touchPoint.hashtags');
+                    if (!newVal) {
+                        return;
+                    }
                     this.hashtags = newVal.split(',');
                  },
                 immediate: false
             },
             'touchPoint.mentions' : {
                 handler: function(newVal, oldVal) {
+                    if (!newVal) {
+                        return;
+                    }
                     this.mentions = newVal.split(',');
                 },
                 immediate: false

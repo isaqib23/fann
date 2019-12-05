@@ -87,19 +87,19 @@
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Guidelines</strong></div>
                                 </v-card-title>
-                                <v-badge v-for="n in guideLines" :key="n" class="full_width">
-                                    <template v-slot:badge v-if="n > 1">
+                                <v-badge v-for="g in guideLines" :key="g" class="full_width">
+                                    <template v-slot:badge v-if="g > 1">
                                         <v-icon @click="removeGuide" color="white">mdi-minus</v-icon>
                                     </template>
                                     <v-row class="mx-auto my-2">
                                         <v-flex xl1 lg1 md1 sm1 xs2>
                                             <v-list-item-icon class="mt-3 ml-2">
-                                                <strong class="primary--text">{{n}}</strong>
+                                                <strong class="primary--text">{{g}}</strong>
                                             </v-list-item-icon>
                                         </v-flex>
                                         <v-flex xl11 lg11 md11 sm11 xs10>
                                             <v-text-field
-                                                v-model="touchPoint.guideLines[n]"
+
                                                 :count="n"
                                                 label="For e.g: please follow our brand"
                                                 solo
@@ -221,7 +221,7 @@
                     <v-btn block height="20" class="task_btn text-capitalize" @click="addTouchPoint">+ Add another contest or giveaway</v-btn>
                 </div>
                 <div class="text-center mt-4">
-                    <v-btn block height="20" color="primary" class="task_btn text-capitalize" @click="removeTouchPooint">- Remove contest or giveaway</v-btn>
+                    <v-btn block height="20" color="primary" class="task_btn text-capitalize" @click="removeTouchPoint">- Remove contest or giveaway</v-btn>
                 </div>
             </v-card>
         </v-flex>
@@ -246,10 +246,26 @@
             TouchPointBrandField : TouchPointBrandField
         },
         props : {
-            touchPoint : {}
+            //touchPoint : {}
         },
         data ()  {
             return  {
+               // touchPoint : this.touchPointObj,
+                /*touchPoint : {
+                    caption              : null,
+                    hashtags             : null,
+                    mentions             : null,
+                    guideLines           : [],
+                    dispatchProduct      : {},
+                    barterProduct        : {},
+                    amount               : 0,
+                    campaignDescription  : null,
+                    images               : [],
+                    instaPost            : null,
+                    instaBioLink         : null,
+                    instaStory           : null,
+                    instaStoryLink       : null,
+                },*/
                 tabsLength            : 1,
                 currentTab            : 0,
                 guideLines            : 1,
@@ -298,8 +314,9 @@
         },
         computed: {
             ...mapGetters({
-                placement: 'campaign/campaignPlacement',
-                campaignObjective: 'campaign/campaignObjective'
+                placement           : 'campaign/campaignPlacement',
+                campaignObjective   : 'campaign/campaignObjective',
+                touchPoint          : 'campaign/touchPoint'
             })
         },
         mounted() {
@@ -337,11 +354,18 @@
                     this.touchPoints.push(response.details);
                     this.tabsLength = this.tabsLength + 1;
                     this.currentTab = this.currentTab + 1;
-                    this.resetTouchPoint();
-                    console.log(this.touchPoints, 'touchPoints array');
+                    this.touchPointTabsState.preTouchPoint = response.details.id;
+                    this.touchPointTabsState.currentTouchPoint = this.touchPoint.id;
+                    this.touchPoint = JSON.parse(localStorage.getItem('touchPoint'));
+                    this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
+
+                    console.log(this.tabsLength, 'tabsLength');
+                    console.log(this.currentTab, 'currentTab');
+                    console.log(this.touchPointTabsState, 'touchPointTabsState');
+                    console.log(this.touchPoint, 'touchPoint');
                 }
             },
-            removeTouchPooint() {
+            removeTouchPoint() {
                 if (this.tabsLength === 1) {
                     return false;
                 }
@@ -411,7 +435,7 @@
                 immediate: true,
                 deep: true
             },
-            'touchPoint.guideLines': {
+            'touchPoint.guideLines' : {
                 handler: function(val) {
                     this.setTouchPoint(['guideLines', _.values(val)]);
                 },
@@ -489,6 +513,12 @@
                     this.setTouchPoint(['instaStoryLink', val]);
                 },
                 immediate: true
+            },
+            touchPoint: {
+                handler: function(val) {
+                    this.touchPoint = val;
+                    console.log(val, 'updated touchPoint');
+                }
             }
         }
     }

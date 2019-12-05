@@ -10,7 +10,7 @@
                     <LeftTabs></LeftTabs>
 
                     <v-tab-item>
-                        <CreateLeftPane :touch-point="touchPoint"></CreateLeftPane>
+                        <CreateLeftPane></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
                         <InviteLeftPane></InviteLeftPane>
@@ -39,7 +39,7 @@
     import InviteRightPaneListView from './requirements/InviteRightPaneListView';
     import InviteRightPaneGridView from './requirements/InviteRightPaneGridView';
     import Promote from './requirements/Promote';
-    import {mapGetters} from 'vuex';
+    import { mapGetters, mapActions } from 'vuex';
     export default {
         components: {
             LeftTabs: LeftTabs,
@@ -53,6 +53,11 @@
         mounted() {
             this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
+//localStorage.removeItem('');
+            if (!localStorage.hasOwnProperty("touchPoint")) {
+                localStorage.setItem('touchPoint', JSON.stringify(this.touchPoint));
+            }
+            console.log(JSON.parse(localStorage.getItem('touchPoint')), 'from parent');
           /*  if (this.objective == null) {
                 this.$router.push({name: 'create-campaign-objective'})
             }
@@ -73,7 +78,7 @@
                    platform      : null,
                    type          : null
                },
-               touchPoint        : {
+               /*touchPoint        : {
                    caption              : null,
                    hashtags             : null,
                    mentions             : null,
@@ -87,7 +92,7 @@
                    instaBioLink         : null,
                    instaStory           : null,
                    instaStoryLink       : null,
-               },
+               },*/
             }
         },
         methods: {},
@@ -100,7 +105,8 @@
             },
             ...mapGetters({
                 objective: 'campaign/campaignObjective',
-                placement: 'campaign/campaignPlacement'
+                placement: 'campaign/campaignPlacement',
+                touchPoint          : 'campaign/touchPoint'
             })
         }
     }
