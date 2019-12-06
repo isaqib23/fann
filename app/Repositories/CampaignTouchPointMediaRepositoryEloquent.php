@@ -8,6 +8,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Exceptions\ValidatorException;
+use App\Helpers\ImageHelper;
 
 /**
  * Class CampaignTouchPointImageRepositoryEloquent.
@@ -58,14 +59,24 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
         $touchPoint = is_object($touchPoint) ? $touchPoint->toArray() : $touchPoint;
         foreach ($data as $key =>  $value)
         {
-            $path = public_path( env('CAMPAIGN_IMAGES_PATH') .$value['name']);
-            Image::make($value['src'])->save($path);
+//            $path = public_path( env('CAMPAIGN_IMAGES_PATH') .$value['name']);
+//            Image::make($value['src'])->save($path);
+
+//            $this->store([
+//                'campaign_touch_point_id' => $touchPoint['id'],
+//                'path'                    => env('CAMPAIGN_IMAGES_PATH') .$value['name'],
+//                'format'                  => 'image'
+//            ]);
+
+            $Image = new ImageHelper();
+            $storedImage = $Image->storeImage($data);
 
             $this->store([
                 'campaign_touch_point_id' => $touchPoint['id'],
-                'path'                    => env('CAMPAIGN_IMAGES_PATH') .$value['name'],
+                'path'                    => $storedImage['path'].'/'.$storedImage['name'],
                 'format'                  => 'image'
             ]);
+
         }
     }
 
