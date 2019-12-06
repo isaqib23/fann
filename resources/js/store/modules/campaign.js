@@ -178,7 +178,7 @@ let CampaignAxios = class {
             });
     }
     static getInfluencersToInvite (payload) {
-        return axios.post(api.path('campaign.saveTouchPoint'), payload)
+        return axios.post(api.path('user.search'), payload)
             .then(resp => {
                 return {
                     status : 200,

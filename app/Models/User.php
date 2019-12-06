@@ -96,18 +96,27 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * @return HasOne
+     */
+    public function UserDetail()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
+    /**
      * @return HasMany
      */
     public function UserPlatforms()
     {
-        return $this->hasMany(UserMeta::class);
+        return $this->hasMany(UserPlatform::class);
     }
 
     /**
-     * @return HasOne
+     * @return HasMany
      */
-    public function InfluencerDetail()
+    public function UserPlatformMeta()
     {
-        return $this->hasOne(InfluencerDetail::class);
+        return $this->hasMany(UserPlatformMeta::class);
     }
+
 }
