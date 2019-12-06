@@ -40,14 +40,15 @@
                                     <v-card-actions class="px-5">
                                         <p class="mb-0 text-center">
                                             Followers<br><span class="title">
-                                            {{(platform.userPlatforms === null) ? '-' : platform.userPlatforms.followers}}
+                                            {{getFollowerCount(platform.user_platforms, platform.slug)}}
+
                                         </span>
                                         </p>
 
                                         <v-spacer></v-spacer>
                                         <p class="mb-0 text-center">
                                             Following<br><span class="title">
-                                            {{(platform.userPlatforms === null) ? '-' : platform.userPlatforms.followings}}
+                                            {{getFollowingCount(platform.user_platforms, platform.slug)}}
                                         </span>
                                         </p>
                                     </v-card-actions>
@@ -97,6 +98,18 @@
                     .then(() => {
                         NProgress.done();
                     })
+            },
+            getFollowerCount(platforms, provider){
+
+                let result = _.find(platforms, ['provider', provider]);
+
+                return (_.isNil(result.user_platform_meta)) ? '-' : result.user_platform_meta.follower_count;
+            },
+            getFollowingCount(platforms, provider){
+
+                let result = _.find(platforms, ['provider', provider]);
+
+                return (_.isNil(result.user_platform_meta)) ? '-' : result.user_platform_meta.following_count;
             }
         },
         async mounted() {

@@ -14,6 +14,7 @@ use App\Contracts\UserPlatformRepository;
 use App\Validators\UserPlatformValidator;
 use App\Services\InstagramService;
 use App\Services\YoutubeService;
+use function foo\func;
 
 
 /**
@@ -205,15 +206,18 @@ class UserPlatformsController extends Controller
 
     public function getUserPlatforms(Request $request)
     {
-        $platforms = $this->placementRepository->all();
-
-        foreach ($platforms as $key => $value){
-            $platforms[$key]->userPlatforms = $this->repository->findWhere([
+        $platforms = $this->placementRepository->with(['userPlatforms' => function($query){
+            $query->with(['userPlatformMeta']);
+        }])->all();
+/*dd($platforms);
+        foreach ($platforms as $key => $placement){
+            dd($placement->userPlatforms);
+            /*$platforms[$key]->userPlatforms = $this->repository->findWhere([
                 'user_id'    => auth()->user()->id,
                 'provider'   => $value->slug,
             ])->first();
         }
-
+*/
         return response()->json([
             'details' => $platforms
         ]);
