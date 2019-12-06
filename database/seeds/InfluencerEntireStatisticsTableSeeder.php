@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 
-class InfluencerStatisticsTableSeeder extends Seeder
+class InfluencerEntireStatisticsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

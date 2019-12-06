@@ -21,7 +21,7 @@ class UserPlatformMeta extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
-        'user_meta_id',
+        'platform_id',
         'user_id',
         'rating',
         'eng_rate',
