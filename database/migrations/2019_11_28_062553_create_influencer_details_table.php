@@ -17,7 +17,7 @@ class CreateInfluencerDetailsTable extends Migration
 	{
 		Schema::create('user_platform_metas', function(Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_meta_id');
+            $table->unsignedInteger('user_platform_id');
             $table->unsignedInteger('user_id');
             $table->integer('rating')->nullable();
             $table->integer('eng_rate')->nullable();
@@ -33,7 +33,7 @@ class CreateInfluencerDetailsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('user_meta_id')->references('id')->on('user_metas');
+            $table->foreign('user_platform_id')->references('id')->on('user_platforms');
             $table->foreign('user_id')->references('id')->on('users');
 		});
 	}
