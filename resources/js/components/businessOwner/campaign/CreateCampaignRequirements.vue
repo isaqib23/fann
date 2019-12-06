@@ -50,14 +50,16 @@
             InviteRightPaneGridView: InviteRightPaneGridView,
             Promote: Promote
         },
-        mounted() {
-            this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
-            this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
-//localStorage.removeItem('');
+        created(){
             if (!localStorage.hasOwnProperty("touchPoint")) {
                 localStorage.setItem('touchPoint', JSON.stringify(this.touchPoint));
             }
             console.log(JSON.parse(localStorage.getItem('touchPoint')), 'from parent');
+        },
+        mounted() {
+            this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
+            this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
+
           /*  if (this.objective == null) {
                 this.$router.push({name: 'create-campaign-objective'})
             }

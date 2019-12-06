@@ -97,7 +97,6 @@ export const actions = {
 
     },
     async resetTouchPoint({ commit },payload) {
-        console.log(payload, 'vuex axtion');
         commit('resetTouchPoint',payload);
     },
 }

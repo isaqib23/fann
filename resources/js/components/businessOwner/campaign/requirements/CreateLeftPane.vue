@@ -87,19 +87,19 @@
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Guidelines</strong></div>
                                 </v-card-title>
-                                <v-badge v-for="g in guideLines" :key="g" class="full_width">
-                                    <template v-slot:badge v-if="g > 1">
+                                <v-badge v-for="n in guideLines" :key="n" class="full_width">
+                                    <template v-slot:badge v-if="n > 1">
                                         <v-icon @click="removeGuide" color="white">mdi-minus</v-icon>
                                     </template>
                                     <v-row class="mx-auto my-2">
                                         <v-flex xl1 lg1 md1 sm1 xs2>
                                             <v-list-item-icon class="mt-3 ml-2">
-                                                <strong class="primary--text">{{g}}</strong>
+                                                <strong class="primary--text">{{n}}</strong>
                                             </v-list-item-icon>
                                         </v-flex>
                                         <v-flex xl11 lg11 md11 sm11 xs10>
                                             <v-text-field
-
+                                                v-model="touchPoint.guideLines[n]"
                                                 :count="n"
                                                 label="For e.g: please follow our brand"
                                                 solo
@@ -250,8 +250,7 @@
         },
         data ()  {
             return  {
-               // touchPoint : this.touchPointObj,
-                /*touchPoint : {
+                touchPoint : {
                     caption              : null,
                     hashtags             : null,
                     mentions             : null,
@@ -265,7 +264,7 @@
                     instaBioLink         : null,
                     instaStory           : null,
                     instaStoryLink       : null,
-                },*/
+                },
                 tabsLength            : 1,
                 currentTab            : 0,
                 guideLines            : 1,
@@ -316,15 +315,15 @@
             ...mapGetters({
                 placement           : 'campaign/campaignPlacement',
                 campaignObjective   : 'campaign/campaignObjective',
-                touchPoint          : 'campaign/touchPoint'
+                //touchPoint          : 'campaign/touchPoint'
             })
         },
-        mounted() {
+        async mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
             this.setPayment();
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
             this.setTouchPointFields();
-            console.log(this.touchPoint, 'touchPoint');
+            await this.findTouchPoint(this.touchPointTabsState.currentTouchPoint);
         },
         methods: {
             ...mapMutations({
@@ -339,29 +338,51 @@
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
                 }
+
+                this.findTouchPoint(this.touchPointTabsState.nextTouchPoint);
                 this.currentTab = this.currentTab + 1;
             },
             preTab() {
                 if (this.currentTab === 0) {
                     return false;
                 }
+
+                this.findTouchPoint(this.touchPointTabsState.preTouchPoint);
                 this.currentTab = this.currentTab - 1;
+            },
+            findTouchPoint(id){
+                let result = _.find(this.touchPoints, ['id', id]);
+                console.log(this.touchPoint, 'at the start');
+                if(_.isNil(this.touchPointTabsState.preTouchPoint) || _.isNil(result)){
+                    this.touchPoint = JSON.parse(localStorage.getItem('touchPoint'));
+                    this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
+
+                    console.log(this.touchPoint, 'at the if');
+                    console.log(JSON.parse(localStorage.getItem('touchPoint')), 'at the local');
+                    return;
+                }
+
+                this.touchPoint = _.find(this.touchPoints, ['id', id]);
+                this.resetTouchPoint(this.touchPoint);
+
+                console.log(this.touchPoint, 'at the else');
+                return;
             },
             async addTouchPoint() {
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
-                    this.touchPoints.push(response.details);
+                    this.touchPoint.id = response.details.id;
+                    this.touchPoints.push(this.touchPoint);
                     this.tabsLength = this.tabsLength + 1;
                     this.currentTab = this.currentTab + 1;
                     this.touchPointTabsState.preTouchPoint = response.details.id;
                     this.touchPointTabsState.currentTouchPoint = this.touchPoint.id;
                     this.touchPoint = JSON.parse(localStorage.getItem('touchPoint'));
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
+                    this.guideLines = 1;
 
-                    console.log(this.tabsLength, 'tabsLength');
-                    console.log(this.currentTab, 'currentTab');
-                    console.log(this.touchPointTabsState, 'touchPointTabsState');
+                    console.log(this.touchPoints, 'touchPoints Item');
                     console.log(this.touchPoint, 'touchPoint');
                 }
             },
@@ -465,6 +486,7 @@
             },
             'touchPoint.images': {
                 handler: function (val) {
+                    return false;
                     if (!val.file) {
                         return;
                     }
@@ -513,12 +535,6 @@
                     this.setTouchPoint(['instaStoryLink', val]);
                 },
                 immediate: true
-            },
-            touchPoint: {
-                handler: function(val) {
-                    this.touchPoint = val;
-                    console.log(val, 'updated touchPoint');
-                }
             }
         }
     }
