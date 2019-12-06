@@ -4,16 +4,16 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\InfluencerStatisticsRepository;
-use App\Models\InfluencerStatistics;
-use App\Validators\InfluencerStatisticsValidator;
+use App\Contracts\InfluencerEntireStatisticsRepository;
+use App\Models\InfluencerEntireStatistics;
+use App\Validators\InfluencerEntireStatisticsValidator;
 
 /**
  * Class InfluencerStatisticsRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class InfluencerStatisticsRepositoryEloquent extends BaseRepository implements InfluencerStatisticsRepository
+class InfluencerEntireStatisticsRepositoryEloquent extends BaseRepository implements InfluencerEntireStatisticsRepository
 {
     /**
      * Specify Model class name
@@ -25,7 +25,7 @@ class InfluencerStatisticsRepositoryEloquent extends BaseRepository implements I
         return InfluencerStatistics::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,5 @@ class InfluencerStatisticsRepositoryEloquent extends BaseRepository implements I
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
 }

@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateInfluencerStatisticsTable.
+ * Class CreateInfluencerDetailsTable.
  */
-class CreateInfluencerStatisticsTable extends Migration
+class CreateInfluencerDetailsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -15,9 +15,9 @@ class CreateInfluencerStatisticsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('influencer_statistics', function(Blueprint $table) {
+		Schema::create('user_platform_metas', function(Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('platform_id');
+            $table->unsignedInteger('user_platform_id');
             $table->unsignedInteger('user_id');
             $table->integer('rating')->nullable();
             $table->integer('eng_rate')->nullable();
@@ -33,7 +33,7 @@ class CreateInfluencerStatisticsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('platform_id')->references('id')->on('user_platforms');
+            $table->foreign('user_platform_id')->references('id')->on('user_platforms');
             $table->foreign('user_id')->references('id')->on('users');
 		});
 	}
@@ -45,6 +45,6 @@ class CreateInfluencerStatisticsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('influencer_statistics');
+		Schema::drop('user_platform_metas');
 	}
 }

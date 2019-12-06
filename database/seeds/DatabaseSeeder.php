@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
          $this->call(PaymentTypeSeeder::class);
          $this->call(PlacementSeeder::class);
          $this->call(PlacementTypeSeeder::class);
-         $this->call(UserPlatformSeeder::class);
          $this->call(NicheTableSeeder::class);
          $this->call(CountriesTableSeeder::class);
          $this->call(StateTableSeeder::class);
@@ -24,7 +23,7 @@ class DatabaseSeeder extends Seeder
          $this->call(TouchPointProductTableSeeder::class);
          $this->call(CampaignTableSeeder::class);
          $this->call(CampaignInviteTableSeeder::class);
-         $this->call(InfluencerStatisticsTableSeeder::class);
+         $this->call(InfluencerEntireStatisticsTableSeeder::class);
          $this->call(InfluencerCampaignStatisticsTableSeeder::class);
          $this->call(CityTableSeeder::class);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\PlacementRepository;
 use App\Contracts\UserMetaRepository;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Collection;
@@ -37,33 +38,25 @@ class UserPlatformsController extends Controller
     protected $youtube;
 
     /**
-     * @var UserPlatformRepository
+     * @var PlacementRepository
      */
-    private $userPlatformRepository;
-
-    /**
-     * @var UserMetaRepository
-     */
-    private $userMetaRepository;
+    private $placementRepository;
 
     /**
      * UserPlatformsController constructor.
      *
      * @param UserPlatformRepository $repository
-     * @param UserPlatformRepository $userPlatformRepository
-     * @param UserMetaRepository $userMetaRepository
+     * @param PlacementRepository $placementRepository
      */
     public function __construct(
         UserPlatformRepository $repository,
-        UserPlatformRepository $userPlatformRepository,
-        UserMetaRepository $userMetaRepository
+        PlacementRepository $placementRepository
     )
     {
         $this->repository = $repository;
-        $this->userPlatformRepository = $userPlatformRepository;
-        $this->userMetaRepository = $userMetaRepository;
         $this->instagram = new InstagramService();
         $this->youtube = new YoutubeService();
+        $this->placementRepository = $placementRepository;
     }
 
     /**
@@ -75,7 +68,7 @@ class UserPlatformsController extends Controller
 
     public function index(Request $request)
     {
-        $userPlatform = $this->userPlatformRepository->findByField('name',$request->input('provider'));
+        $userPlatform = $this->placementRepository->findByField('slug',$request->input('provider'));
 
         if($userPlatform->count() > 0){
             return $this->platformsLogin($request->input('provider'));
@@ -115,7 +108,7 @@ class UserPlatformsController extends Controller
         // Create Meta object for saving
         $metaObject = $this->createMetaObject($userData, 'instagram', $request->input('state'));
 
-        $this->userMetaRepository->store($metaObject);
+        $this->repository->store($metaObject);
 
         return redirect()->to('settings/profile');
     }
@@ -137,7 +130,7 @@ class UserPlatformsController extends Controller
         // Create Meta object for saving
         $metaObject = $this->createMetaObject($getUserInfo, 'youtube', $request->input('state'),$token);
 
-        $this->userMetaRepository->store($metaObject);
+        $this->repository->store($metaObject);
 
         return redirect()->to('settings/profile');
     }
@@ -194,12 +187,12 @@ class UserPlatformsController extends Controller
 
     public function getUserPlatforms(Request $request)
     {
-        $platforms = $this->userPlatformRepository->all();
+        $platforms = $this->placementRepository->all();
 
         foreach ($platforms as $key => $value){
-            $platforms[$key]->userPlatforms = $this->userMetaRepository->findWhere([
+            $platforms[$key]->userPlatforms = $this->repository->findWhere([
                 'user_id'    => auth()->user()->id,
-                'provider'   => $value->name,
+                'provider'   => $value->slug,
             ])->first();
         }
 
