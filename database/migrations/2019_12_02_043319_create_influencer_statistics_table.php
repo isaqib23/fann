@@ -33,7 +33,7 @@ class CreateInfluencerStatisticsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('platform_id')->references('id')->on('user_platforms');
+            $table->foreign('platform_id')->references('id')->on('placements');
             $table->foreign('user_id')->references('id')->on('users');
 		});
 	}

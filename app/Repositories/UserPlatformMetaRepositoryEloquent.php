@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\InfluencerDetailRepository;
+use App\Contracts\UserPlatformMetaRepository;
 use App\Models\InfluencerDetail;
 use App\Validators\InfluencerDetailValidator;
 
@@ -13,7 +13,7 @@ use App\Validators\InfluencerDetailValidator;
  *
  * @package namespace App\Repositories;
  */
-class InfluencerDetailRepositoryEloquent extends BaseRepository implements InfluencerDetailRepository
+class UserPlatformMetaRepositoryEloquent extends BaseRepository implements UserPlatformMetaRepository
 {
     /**
      * Specify Model class name
@@ -25,7 +25,7 @@ class InfluencerDetailRepositoryEloquent extends BaseRepository implements Influ
         return InfluencerDetail::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,5 @@ class InfluencerDetailRepositoryEloquent extends BaseRepository implements Influ
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
 }

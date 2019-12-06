@@ -5,11 +5,11 @@ namespace App\Contracts;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface UserMetaRepository.
+ * Interface InfluencerDetailRepository.
  *
  * @package namespace App\Contracts;
  */
-interface UserMetaRepository extends RepositoryInterface
+interface UserPlatformMetaRepository extends RepositoryInterface
 {
     //
 }

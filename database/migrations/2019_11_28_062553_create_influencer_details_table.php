@@ -15,7 +15,7 @@ class CreateInfluencerDetailsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('influencer_details', function(Blueprint $table) {
+		Schema::create('user_platform_metas', function(Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_meta_id');
             $table->unsignedInteger('user_id');
@@ -45,6 +45,6 @@ class CreateInfluencerDetailsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('influencer_details');
+		Schema::drop('user_platform_metas');
 	}
 }

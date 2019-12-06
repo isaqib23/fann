@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
          $this->call(PaymentTypeSeeder::class);
          $this->call(PlacementSeeder::class);
          $this->call(PlacementTypeSeeder::class);
-         $this->call(UserPlatformSeeder::class);
          $this->call(NicheTableSeeder::class);
          $this->call(CountriesTableSeeder::class);
          $this->call(StateTableSeeder::class);
