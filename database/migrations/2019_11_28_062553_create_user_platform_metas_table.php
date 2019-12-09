@@ -3,10 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-/**
- * Class CreateInfluencerDetailsTable.
- */
-class CreateInfluencerDetailsTable extends Migration
+class CreateUserPlatformMetasTable extends Migration
 {
 	/**
 	 * Run the migrations.

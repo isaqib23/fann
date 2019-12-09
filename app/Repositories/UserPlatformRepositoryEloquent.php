@@ -52,6 +52,7 @@ class UserPlatformRepositoryEloquent extends BaseRepository implements UserPlatf
                 'user_id'           => $data->user_id,
                 'access_token'      => $data->access_token,
                 'provider'          => $data->provider,
+                'placement_id'       => $data->placement_id,
                 'provider_id'       => $data->provider_id,
                 'provider_name'     => $data->provider_name,
                 'provider_photo'    => $data->provider_photo,

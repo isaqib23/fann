@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -21,7 +22,7 @@ class UserPlatformMeta extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
-        'platform_id',
+        'user_platform_id',
         'user_id',
         'rating',
         'eng_rate',
@@ -33,5 +34,22 @@ class UserPlatformMeta extends Model implements Transformable
         'follower_count',
         'following_count'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return BelongsTo
+     *
+     */
+    public function userPlatform()
+    {
+        return $this->belongsTo(UserPlatformMeta::class);
+    }
 
 }

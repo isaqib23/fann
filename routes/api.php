@@ -76,8 +76,8 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('socialPlatformLogin', 'UserPlatformsController@index');
         Route::get('getUserPlatforms', 'UserPlatformsController@getUserPlatforms')->name('user.getUserPlatforms');
 
-        Route::post('saveUserDetail', 'UserDetailsController@create')->name('user.saveUserDetail');
-        Route::get('getUserDetail', 'UserDetailsController@index')->name('user.getUserDetail');
+        Route::post('saveUserDetail', 'UserController@create')->name('user.saveUserDetail');
+        Route::get('getUserDetail', 'UserController@index')->name('user.getUserDetail');
         Route::get('getUserCompany', 'CompanyUsersController@index')->name('user.getUserCompany');
 
     });
@@ -92,6 +92,12 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('save', 'CampaignsController@store');
         Route::post('saveTouchPoint', 'CampaignsController@saveTouchPoint');
         Route::put('savePlacementAndPaymentType', 'CampaignsController@savePlacementAndPaymentType');
+    });
+
+    // ----- User related api's
+    Route::prefix('/user')->group(function () {
+
+        Route::post('search', 'UserController@search');
     });
 
 
