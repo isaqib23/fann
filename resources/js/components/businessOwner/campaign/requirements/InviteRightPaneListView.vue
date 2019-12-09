@@ -24,8 +24,12 @@
         <v-layout row wrap>
             <v-flex xl12 lg12 md12 sm12 xs12>
                     <v-list two-line color="transparent" class="list_cards">
-                        <template v-for="(searchItem, searchIndex) in influencerSearchResults">
+
+                        <template
+                            v-if="influencerSearchResults.data !== null"
+                            v-for="(searchItem, searchIndex) in influencerSearchResults.data">
                             <v-card class="mx-auto user_card full_width mt-4 mb-4">
+                                {{influencerSearchResults.total}}
                                 <v-list-item :key="searchIndex">
                                     <v-list-item-avatar height="80" min-width="80" width="80">
                                         <v-img :src="searchItem.provider_photo"></v-img>
@@ -78,7 +82,8 @@
         <div class="text-right">
             <v-pagination
                 v-model="page"
-                :length="6"
+                :length="totalPages()"
+                :total-visible="totalVisible"
             ></v-pagination>
         </div>
     </v-flex>
@@ -94,19 +99,31 @@
            return  {
                rating: 3,
                page: 1,
+               totalVisible: 10,
                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             }
         },
         methods: {
             goToProfile(){
                 this.$router.push({name:'influencer-profile'});
+            },
+            totalPages () {
+                return !_.isNil(this.influencerSearchResults) ? this.influencerSearchResults.total  : 0
             }
+
         },
         computed: {
             ...mapGetters({
                 influencerSearchResults: 'campaign/influencerSearchResults'
             })
         },
+        watch : {
+            page : {
+                handler: function(val) {
+                    console.info('adfadfaf', val);
+                }
+            }
+        }
     }
 </script>
 

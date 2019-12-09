@@ -41,7 +41,16 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
                 ->join('user_platform_metas', 'user_platform_metas.user_platform_id', '=', 'user_platforms.id')
                 ->where('users.type', 'influencer');
 
-        $user = $user->get();
+        $user = $user->paginate(1);
+
+       /* $user['pagination'] = [
+            'total' => $user->total(),
+            'per_page' => $user->perPage(),
+            'current_page' => $user->currentPage(),
+            'last_page' => $user->lastPage(),
+            'from' => $user->firstItem(),
+            'to' => $user->lastItem()
+        ];*/
 
         return $user;
 
