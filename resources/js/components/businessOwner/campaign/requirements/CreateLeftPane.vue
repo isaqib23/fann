@@ -351,24 +351,19 @@
                 this.currentTab = this.currentTab - 1;
             },
             findTouchPoint(id){
+                console.log(id, 'previous id');
                 let result = _.find(this.touchPoints, ['id', id]);
-                console.log(this.touchPoint, 'at the start');
+
                 if(_.isNil(this.touchPointTabsState.preTouchPoint) || _.isNil(result)){
                     this.touchPoint = JSON.parse(localStorage.getItem('touchPoint'));
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
-
-                    console.log(this.touchPoint, 'at the if');
-                    console.log(JSON.parse(localStorage.getItem('touchPoint')), 'at the local');
-                    return;
+                }else{
+                    this.touchPoint = result;
+                    //this.resetTouchPoint(result);
                 }
-
-                this.touchPoint = _.find(this.touchPoints, ['id', id]);
-                this.resetTouchPoint(this.touchPoint);
-
-                console.log(this.touchPoint, 'at the else');
-                return;
             },
             async addTouchPoint() {
+                console.log(this.touchPoint, 'component payload');
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {

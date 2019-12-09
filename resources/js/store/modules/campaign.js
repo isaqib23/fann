@@ -53,8 +53,8 @@ export const mutations = {
     setTouchPointField(state, touchPointFields) {
         state.touchPoint.touchPointConditionalFields = touchPointFields
     },
-    resetTouchPoint(state) {
-        state.touchPoint = state;
+    resetTouchPoint(state, touchPoint) {
+        state.touchPoint = touchPoint;
     },
 }
 
@@ -86,7 +86,7 @@ export const actions = {
              'platformId'  : state.campaignPlacement.platform,
              'touchPoint'  : state.touchPoint
          }
-
+        console.log(payload, 'action payload');
          let response = await CampaignAxios.saveTouchPoint(payload);
 
          return response;
@@ -149,6 +149,7 @@ let CampaignAxios = class {
     }
 
     static saveTouchPoint (payload) {
+        console.log(payload, 'axios payload');
         return axios.post(api.path('campaign.saveTouchPoint'), payload)
             .then(resp => {
                 return {
