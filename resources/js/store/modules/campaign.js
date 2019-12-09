@@ -5,6 +5,7 @@ export const state = {
   campaignObjective: null,
   campaignPlacement: null,
   campaignInformation: null,
+  touchPoints        : [],
   touchPoint: {
       caption              : null,
       hashtags             : null,
@@ -56,6 +57,9 @@ export const mutations = {
     resetTouchPoint(state, touchPoint) {
         state.touchPoint = touchPoint;
     },
+    saveTouchPoint(state, touchPoint) {
+        state.touchPoints.push(touchPoint);
+    },
 }
 
 /**
@@ -86,7 +90,7 @@ export const actions = {
              'platformId'  : state.campaignPlacement.platform,
              'touchPoint'  : state.touchPoint
          }
-        console.log(payload, 'action payload');
+        commit('saveTouchPoint',state.touchPoint);
          let response = await CampaignAxios.saveTouchPoint(payload);
 
          return response;
@@ -108,7 +112,8 @@ export const getters = {
     campaignObjective: state => state.campaignObjective,
     campaignPlacement: state => state.campaignPlacement,
     campaignInformation: state => state.campaignInformation,
-    touchPoint: state => state.touchPoint
+    touchPoint: state => state.touchPoint,
+    touchPoints: state => state.touchPoints
 
 }
 
@@ -149,7 +154,6 @@ let CampaignAxios = class {
     }
 
     static saveTouchPoint (payload) {
-        console.log(payload, 'axios payload');
         return axios.post(api.path('campaign.saveTouchPoint'), payload)
             .then(resp => {
                 return {
@@ -163,21 +167,6 @@ let CampaignAxios = class {
                     details : []
                 };
             });
-    }
-
-    static resetState (value) {
-        if (_.isString(value)) {
-            return null
-        };
-        if (_.isNumber(value)) {
-            return 0;
-        };
-        if (_.isArray(value)) {
-            return [];
-        };
-        if (_.isObject(value)) {
-            return null
-        };
     }
 
 };

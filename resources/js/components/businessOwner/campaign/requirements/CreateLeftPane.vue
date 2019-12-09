@@ -303,7 +303,6 @@
                     touchPointProduct        : false,
                     touchPointBrand          : false
                 },
-                touchPoints                  : [],
                 touchPointTabsState          :{
                     preTouchPoint       : null,
                     currentTouchPoint   : 0,
@@ -315,7 +314,7 @@
             ...mapGetters({
                 placement           : 'campaign/campaignPlacement',
                 campaignObjective   : 'campaign/campaignObjective',
-                //touchPoint          : 'campaign/touchPoint'
+                touchPoints          : 'campaign/touchPoints'
             })
         },
         async mounted() {
@@ -339,36 +338,30 @@
                     return false;
                 }
 
-                this.findTouchPoint(this.touchPointTabsState.nextTouchPoint);
                 this.currentTab = this.currentTab + 1;
+                this.findTouchPoint(this.currentTab);
             },
             preTab() {
                 if (this.currentTab === 0) {
                     return false;
                 }
 
-                this.findTouchPoint(this.touchPointTabsState.preTouchPoint);
                 this.currentTab = this.currentTab - 1;
+                this.findTouchPoint(this.currentTab);
             },
             findTouchPoint(id){
-                console.log(id, 'previous id');
-                let result = _.find(this.touchPoints, ['id', id]);
-
-                if(_.isNil(this.touchPointTabsState.preTouchPoint) || _.isNil(result)){
-                    this.touchPoint = JSON.parse(localStorage.getItem('touchPoint'));
-                    this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
+                if(this.touchPoints.length > 0 && !_.isNil(this.touchPoints[id])){
+                    console.log(this.touchPoints[id], 'this.touchPoints[id]');
+                    this.touchPoint = this.touchPoints[id];
                 }else{
-                    this.touchPoint = result;
-                    //this.resetTouchPoint(result);
+                    this.touchPoint = JSON.parse(localStorage.getItem('touchPoint'));
                 }
             },
             async addTouchPoint() {
-                console.log(this.touchPoint, 'component payload');
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
                     this.touchPoint.id = response.details.id;
-                    this.touchPoints.push(this.touchPoint);
                     this.tabsLength = this.tabsLength + 1;
                     this.currentTab = this.currentTab + 1;
                     this.touchPointTabsState.preTouchPoint = response.details.id;
@@ -451,13 +444,13 @@
                 immediate: true,
                 deep: true
             },
-            'touchPoint.guideLines' : {
+            /*'touchPoint.guideLines' : {
                 handler: function(val) {
                     this.setTouchPoint(['guideLines', _.values(val)]);
                 },
                 immediate: false,
                 deep: true
-            },
+            },*/
             'touchPoint.amount': {
                 handler: function(val) {
                     this.setTouchPoint(['amount', val]);
