@@ -2,15 +2,11 @@
 
 namespace  App\Helpers;
 
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageHelper
 {
-     /**
-     * @var array
-     */
-    public $image = array();
-
     /**
      * @var string
      */
@@ -18,35 +14,50 @@ class ImageHelper
 
     /**
      * ImageHelper constructor.
-     * @param $data
-     * @param null $format
      */
     public function __construct() {
         $this->publicPath =  public_path( 'images/');
     }
 
     /**
-     * @return string
+     * @param $data
+     * @param null $folder
+     * @param null $format
+     * @param int $width
+     * @param int $height
+     * @return array
      */
-    public function storeImage($data,$format=null)
+    public function storeImage($data, $folder = null, $format = null, $width = 300, $height = 300)
     {
-        $name = date('Ymd').'_'.$data['name'];
+        $name = date('Ymdhms').'_'.$data['name'];
+        $folder = $folder == null ? 'default' : strtolower($folder);
 
-        $pathOriginal = $this->publicPath.$data['type'].'/'.$data['id'].'/'.'original'.'/'.$name;
-        Image::make($data['src'])->save($pathOriginal);
+        //---original
+        $pathOriginal = $this->publicPath.$folder.'/'.$data['campaign_id'].'/'.'original';
+        if(!file_exists($pathOriginal)) {
+             File::makeDirectory($pathOriginal,777,true);
+        }
+        Image::make($data['src'])->save($pathOriginal.'/'.$name);
 
-        $pathThumb = $this->publicPath.$data['type'].'/'.$data['id'].'/'.'thumbnail'.'/'.$name;
-        Image::make($data['src'])->resize(100, 100)->save($pathThumb);
+        //---thumbnail
+        $pathThumb = $this->publicPath.$folder.'/'.$data['campaign_id'].'/'.'thumbnail';
+        if(!file_exists($pathThumb)) {
+             File::makeDirectory($pathThumb,777,true);
+        }
+        Image::make($data['src'])->resize(100, 100)->save($pathThumb.'/'.$name);
 
-        if($this.format != null ){
-            $path = $this->publicPath.$data['type'].'/'.$data['id'].'/'.$this.format.'/'.$name;
-            Image::make($data['src'])->resize(100, 100)->save($path);
+        //--custom format
+        if($format != null ){
+            $path = $this->publicPath.$folder.'/'.$data['campaign_id'].'/'.$format;
+            if(!file_exists($path)) {
+                File::makeDirectory($path,777,true);
+            }
+            Image::make($data['src'])->resize($width, $height)->save($path.'/'.$name);
         }
 
-        $this.image.push($name);
-        $this.image.push('images/'.$data['type'].'/'.$data['id']);
-
-        dd($this.image);
-        return $this.image;
+        $image = array();
+        $image['name'] = $name;
+        $image['path'] = 'images/'.$folder.'/'.$data['campaign_id'];
+        return $image;
     }
 }
