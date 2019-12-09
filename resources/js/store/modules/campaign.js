@@ -5,6 +5,7 @@ export const state = {
   campaignObjective               : null,
   campaignPlacement               : null,
   campaignInformation             : null,
+  influencerSearchResults         : null,
   touchPoint                    : {
       caption                     : null,
       hashtags                    : null,
@@ -67,6 +68,10 @@ export const mutations = {
     setInviteSearchParams(state, [index, val]) {
         Vue.set(state.inviteSearchParams, index, val)
     },
+    setInfluencerSearchResults(state, info) {
+        state.influencerSearchResults = info
+    },
+
 }
 
 /**
@@ -85,7 +90,7 @@ export const actions = {
         return await CampaignAxios.getAllPlacements();
     },
     async savePlacementAndPaymentType({ commit }, payload) {
-        commit('setPlacement',payload);
+
     },
     async saveTouchPoint({commit, state}) {
 
@@ -111,7 +116,9 @@ export const actions = {
 
         let response =  await CampaignAxios.getInfluencersToInvite( state.inviteSearchParams );
 
-        console.log(response, "dashy");
+        if (response.status == 200) {
+            commit('setInfluencerSearchResults', response.details);
+        }
     }
 }
 
@@ -124,6 +131,7 @@ export const getters = {
     campaignInformation: state => state.campaignInformation,
     touchPoint: state => state.touchPoint,
     inviteSearchParams: state => state.inviteSearchParams,
+    influencerSearchResults: state => state.influencerSearchResults,
 }
 
 /**
@@ -178,7 +186,7 @@ let CampaignAxios = class {
             });
     }
     static getInfluencersToInvite (payload) {
-        return axios.post(api.path('user.search'), payload)
+        return axios.post(api.path('user.searchInfluencers'), payload)
             .then(resp => {
                 return {
                     status : 200,

@@ -34,15 +34,17 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public function searchByCriteria($data)
+    public function searchInfluencersByCriteria($data)
     {
-        dd($this->model
-            ->join('user_platforms', 'users.id', '=', 'user_platforms.user_id')
-            ->get());
-        //$user  = $this->model
-          //            ->join('');
+        $user = $this->model
+                ->join('user_platforms', 'users.id', '=', 'user_platforms.user_id')
+                ->join('user_platform_metas', 'user_platform_metas.user_platform_id', '=', 'user_platforms.id')
+                ->where('users.type', 'influencer');
 
-            dd('all', $data);
+        $user = $user->get();
+
+        return $user;
+
     }
 
 }
