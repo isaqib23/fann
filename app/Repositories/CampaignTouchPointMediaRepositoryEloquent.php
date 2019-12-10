@@ -44,7 +44,8 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
         return $this->create([
             'campaign_touch_point_id' => $data['campaign_touch_point_id'],
             'path' => $data['path'],
-            'format' => $data['format']
+            'format' => $data['format'],
+            'name'  => $data['name']
         ]);
     }
 
@@ -56,14 +57,14 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
     public function storeMultiple($data, $touchPoint)
     {
         $touchPoint = is_object($touchPoint) ? $touchPoint->toArray() : $touchPoint;
-        foreach ($data as $key =>  $value)
-        {
+        foreach ($data as $key =>  $value) {
             $Image = new ImageHelper();
-            $storedImage = $Image->storeImage($value,'all','campaigns', $touchPoint['campaign_id'],200,300);
+            $storedImage = $Image->storeImage($value, 'campaigns', $touchPoint['campaign_id']);
 
             $this->store([
                 'campaign_touch_point_id' => $touchPoint['id'],
-                'path'                    => $storedImage['path'].'/'.$storedImage['name'],
+                'path'                    => $storedImage['path'],
+                'name'                    => $storedImage['name'],
                 'format'                  => 'image'
             ]);
 

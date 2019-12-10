@@ -3,80 +3,46 @@
 namespace  App\Helpers;
 
 use Illuminate\Support\Facades\File;
-//use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageHelper
 {
     /**
-     * ImageHelper constructor.
-     */
-    public function __construct() {
-    }
-
-    /**
      * @param $data
-     * @param string $format
-     * @param null $folder
+     * @param $folder
      * @param $sub_folder
-     * @param null $size
+     * @param null $format
+     * @param int $width
+     * @param int $height
      * @return array
      */
-    public function storeImage($data, $format = 'all',  $folder = null, $sub_folder, $width = 100, $height = 100 )
+    public function storeImage($data, $folder, $sub_folder, $format = null, $width =300 ,$height =200)
     {
-        $name = date('Ymdhms').'_'.$data['name'];
-        $folder = $folder == null ? 'default' : strtolower($folder);
-        $path = 'images/'.$folder.'/'.$sub_folder;
+        $name   = date('Ymdhms').'_'.$data['name'];
+        $folder = strtolower($folder);
+        $path   = 'images/'.$folder.'/'.$sub_folder;
 
-        switch($format ) {
-           case 'all':
-               if (env('STORAGE_LOCATION') == 's3') {
-                   $this->storeS3($path, 'original', $name, $data);
-                   $this->storeS3($path, 'thumbnail', $name, $data);
-               } else {
-                   $this->makeImage($path, 'original', $name, $data);
-                   $this->makeImage($path, 'thumbnail', $name, $data,$width,$height);
-               }
-           break;
-           case 'original':
-               if (env('STORAGE_LOCATION') == 's3') {
-                   $this->storeS3($path, $format, $name, $data);
-               } else {
-                   $this->makeImage($path, $format, $name, $data);
-               }
-               break;
-           case 'thumbnail':
-               if (env('STORAGE_LOCATION') == 's3') {
-                   $this->storeS3($path, $format, $name, $data);
-               } else {
-                   $this->makeImage($path, $format, $name, $data,$width,$height);
-               }
-               break;
-           case $format:
-               if (env('STORAGE_LOCATION') == 's3') {
-                   $this->storeS3($path, $format, $name, $data);
-               } else {
-                   $this->makeImage($path, $format, $name, $data,$width,$height);
-               }
-               break;
-         }
+        switch ($folder) {
+            case 'campaigns':
+                $this->makeImage($path, 'original', $name, $data);
+                $this->makeImage($path, 'medium', $name, $data, 450, 450);
+                $this->makeImage($path, 'thumbnail', $name, $data, 100, 100);
+                break;
+            case 'profile':
+                $this->makeImage($path, 'medium', $name, $data, 450, 450);
+                $this->makeImage($path, 'thumbnail', $name, $data, 450, 450);
+                break;
 
-        $image = array();
-        $image['name'] = $name;
-        $image['path'] = $path;
-        return $image;
-    }
-
-    /**
-     * @param $path
-     * @param $format
-     * @param $name
-     * @param $data
-     */
-    public function storeS3($path,$format,$name,$data)
-    {
-        $img =Image::make($data['src'])->resize(100,100);
-        Storage::disk('s3')->put($path.'/'.$format.'/'.$name,$img);
+            case $folder:
+            default:
+                $this->makeImage($path, $format != null ? $format : 'default', $name, $data, $width, $height);
+                break;
+        }
+        return [
+            'name' => $name,
+            'path' => $path
+        ];
     }
 
     /**
@@ -87,19 +53,63 @@ class ImageHelper
      * @param null $width
      * @param null $height
      */
-    public function makeImage($path,$format,$name,$data,$width=null,$height=null)
+    public function makeImage($path,$format,$name,$data,$width = null, $height = null)
+    {
+        if (env('STORAGE_LOCATION') == 's3') {
+            return $this->storeS3($path, $format, $name, $data, $width, $height);
+        }
+        $this->storeLocal($path, $format, $name, $data, $width, $height);
+    }
+
+    /**
+     * @param $path
+     * @param $format
+     * @param $name
+     * @param $data
+     * @param $width
+     * @param $height
+     */
+    public function storeS3($path,$format,$name,$data,$width,$height)
+    {
+        $img = Image::make($data['src'])->resize(100, 100);
+        Storage::disk('s3')->put($path . '/' . $format . '/' . $name, $img);
+    }
+
+    /**
+     * @param $path
+     * @param $format
+     * @param $name
+     * @param $data
+     * @param $width
+     * @param $height
+     * @return \Intervention\Image\Image
+     */
+    public function storeLocal($path,$format,$name,$data,$width,$height)
     {
         $pathOriginal = public_path($path).'/'.$format;
 
-        if(!file_exists($pathOriginal)) {
-            File::makeDirectory($pathOriginal,777,true);
+        if (!file_exists($pathOriginal)) {
+            File::makeDirectory($pathOriginal, 777, true);
         }
 
-        if($format == 'original'){
-            Image::make($data['src'])->save($pathOriginal.'/'.$name);
-        }else{
-            Image::make($data['src'])->resize($width,$height)->save($pathOriginal.'/'.$name);
+        if($format == 'original') {
+            return Image::make($data['src'])->save($pathOriginal.'/'.$name);
         }
-
+        Image::make($data['src'])->resize($width,$height)->save($pathOriginal.'/'.$name);
     }
+
+    /**
+     * @param $path
+     * @param $format
+     * @param $name
+     * @return string
+     */
+    public function getImage($path,$format,$name)
+    {
+        if (env('STORAGE_LOCATION') == 's3') {
+            return Storage::url($path . '/' . $format . '/' . $name);
+        }
+        return public_path($path) . '/' . $format . '/' . $name;
+    }
+
 }
