@@ -224,7 +224,7 @@ class UserController extends Controller
     public function searchInfluencers(Request $request)
     {
         $response = $this->userRepository->searchInfluencersByCriteria(
-            $request->all()
+            $request
         );
 
         if (request()->wantsJson()) {

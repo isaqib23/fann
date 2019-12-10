@@ -81,7 +81,7 @@
         </v-layout>
         <div class="text-right">
             <v-pagination
-                v-model="page"
+                v-model="inviteSearchParams.page"
                 :length="totalPages()"
                 :total-visible="totalVisible"
             ></v-pagination>
@@ -98,13 +98,15 @@
         data: () => {
            return  {
                rating: 3,
-               page: 1,
                totalVisible: 10,
                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             }
         },
         methods: {
-            goToProfile(){
+            ...mapActions({
+                inviteSearch : 'campaign/inviteSearch'
+            }),
+            goToProfile() {
                 this.$router.push({name:'influencer-profile'});
             },
             totalPages () {
@@ -114,13 +116,16 @@
         },
         computed: {
             ...mapGetters({
-                influencerSearchResults: 'campaign/influencerSearchResults'
+                influencerSearchResults: 'campaign/influencerSearchResults',
+                inviteSearchParams: 'campaign/inviteSearchParams',
             })
         },
         watch : {
-            page : {
+            'inviteSearchParams.page' : {
                 handler: function(val) {
-                    console.info('adfadfaf', val);
+                    this.inviteSearch (
+                        this.inviteSearchParams
+                    );
                 }
             }
         }

@@ -35,13 +35,14 @@ export const state = {
   inviteSearchParams        : {
         niche                   : 0,
         placement               : null,
-        followers               : null,
-        likes                   : null,
+        followers               : [0, 0],
+        likes                   : [0, 0],
         eng_rate                : null,
         gender                  : null,
         age_range               : null,
         country                 : null,
-        rating                  : null
+        rating                  : null,
+        page                    : 1,
   }
 
 }
@@ -113,7 +114,7 @@ export const actions = {
         _.forEach(payload, function(value, key) {
             commit('setInviteSearchParams', [key, value]);
         });
-
+console.info( state.inviteSearchParams, "list each");
         let response =  await CampaignAxios.getInfluencersToInvite( state.inviteSearchParams );
 
         if (response.status == 200) {

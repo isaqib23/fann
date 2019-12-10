@@ -152,24 +152,14 @@
                max                : 1000,
                range              : [0, 0],
                rating             : 3,
-               items              : [],
-               inviteSearchParams : {
-                   niche     : null,
-                   placement : null,
-                   followers :  [0, 0],
-                   likes     :  [0, 0],
-                   eng_rate  : null,
-                   gender    : null,
-                   age_range : null,
-                   country   : null,
-                   rating    : null
-               }
+               items              : []
             }
         },
         computed: {
             ...mapGetters({
                 countries: 'settings/countries',
                 niches: 'settings/niches',
+                inviteSearchParams: 'campaign/inviteSearchParams',
             })
         },
         methods: {

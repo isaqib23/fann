@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Container\Container as Application;
+use Illuminate\Http\Request;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\UserRepository;
@@ -34,7 +35,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public function searchInfluencersByCriteria($data)
+    public function searchInfluencersByCriteria(Request $request)
     {
         $user = $this->model
                 ->join('user_platforms', 'users.id', '=', 'user_platforms.user_id')
@@ -42,15 +43,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
                 ->where('users.type', 'influencer');
 
         $user = $user->paginate(1);
-
-       /* $user['pagination'] = [
-            'total' => $user->total(),
-            'per_page' => $user->perPage(),
-            'current_page' => $user->currentPage(),
-            'last_page' => $user->lastPage(),
-            'from' => $user->firstItem(),
-            'to' => $user->lastItem()
-        ];*/
 
         return $user;
 
