@@ -5,7 +5,7 @@ import { api } from '~/config'
  * intial state
  */
 export const state = {
-        profile: {},
+        profile: null,
         posts : {}
 }
 
@@ -28,6 +28,7 @@ export const mutations = {
 export const actions = {
      async getProfile({commit}, payload) {
         let response =  await influencerProfile.getProfile({"user_id" :payload});
+
         commit('setProfile',response);
         return response;
     },
@@ -55,7 +56,8 @@ let influencerProfile = class {
     static getProfile (payload) {
         return axios.put(api.path('influencer.getProfile'),payload)
             .then(resp => {
-                return resp.data;
+
+                return resp.data.details;
              })
             .catch(err =>{
                 return err.response.data.errors;

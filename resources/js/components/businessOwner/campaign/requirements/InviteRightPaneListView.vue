@@ -24,23 +24,27 @@
         <v-layout row wrap>
             <v-flex xl12 lg12 md12 sm12 xs12>
                     <v-list two-line color="transparent" class="list_cards">
-                        <template v-for="i in 15">
+
+                        <template
+                            v-if="influencerSearchResults.data !== null"
+                            v-for="(searchItem, searchIndex) in influencerSearchResults.data">
                             <v-card class="mx-auto user_card full_width mt-4 mb-4">
-                                <v-list-item :key="i">
+                                {{influencerSearchResults.total}}
+                                <v-list-item :key="searchIndex">
                                     <v-list-item-avatar height="80" min-width="80" width="80">
-                                        <v-img src="/images/avtar.png"></v-img>
+                                        <v-img :src="searchItem.provider_photo"></v-img>
                                     </v-list-item-avatar>
 
                                     <v-list-item-content>
                                         <v-row class="mx-auto">
                                             <v-flex xl4 lg4 md4 sm6 xs12>
                                                 <div class="float_class">
-                                                    <div class="subtitle-1 mb-2"><strong>Amanda Nash</strong>
+                                                    <div class="subtitle-1 mb-2"><strong>{{searchItem.provider_name}}</strong>
                                                         <v-rating v-model="rating" size="7" small class="d-inline-block ml-3"></v-rating>
                                                     </div>
                                                     <div class="followers">
                                                         <v-icon>mdi-instagram</v-icon>
-                                                        50.5K Followers
+                                                        {{searchItem.follower_count}} Followers
                                                         <strong class="ml-2 font-weight-bold">$59.00</strong>
                                                     </div>
                                                 </div>
@@ -77,15 +81,16 @@
         </v-layout>
         <div class="text-right">
             <v-pagination
-                v-model="page"
-                :length="6"
+                v-model="inviteSearchParams.page"
+                :length="totalPages()"
+                :total-visible="totalVisible"
             ></v-pagination>
         </div>
     </v-flex>
 </template>
 
 <script>
-
+    import {mapActions, mapGetters} from "vuex";
     export default {
         components: {
 
@@ -93,13 +98,35 @@
         data: () => {
            return  {
                rating: 3,
-               page: 1,
+               totalVisible: 10,
                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             }
         },
         methods: {
-            goToProfile(){
+            ...mapActions({
+                inviteSearch : 'campaign/inviteSearch'
+            }),
+            goToProfile() {
                 this.$router.push({name:'influencer-profile'});
+            },
+            totalPages () {
+                return !_.isNil(this.influencerSearchResults) ? this.influencerSearchResults.total  : 0
+            }
+
+        },
+        computed: {
+            ...mapGetters({
+                influencerSearchResults: 'campaign/influencerSearchResults',
+                inviteSearchParams: 'campaign/inviteSearchParams',
+            })
+        },
+        watch : {
+            'inviteSearchParams.page' : {
+                handler: function(val) {
+                    this.inviteSearch (
+                        this.inviteSearchParams
+                    );
+                }
             }
         }
     }

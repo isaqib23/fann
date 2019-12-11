@@ -15,8 +15,9 @@
                             <v-col class="image_wrapper">
                                 <v-avatar height="150" width="150">
                                     <v-img
-                                        src="{profile.provider_photo}"
+                                        src="https://scontent.cdninstagram.com/v/t51.2885-19/s150x150/66623023_733786327091415_4141988150123692032_n.jpg?_nc_ht=scontent.cdninstagram.com&oh=f70ba79d3012a639fae5a68d07589d36&oe=5E6E6CE3"
                                     ></v-img>
+
                                 </v-avatar>
                             </v-col>
                             <v-col class="text-center inner_wrapper">
@@ -243,6 +244,8 @@
         },
         data: () => {
             return  {
+                youtube : null,
+                instagram : null,
                 selectedPlatform : 1,
                 rating: 3,
                 items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
@@ -256,8 +259,7 @@
                     provider :null,
 
                 },
-                youtube : null,
-                instagram : null
+
             }
         },
         computed:{
@@ -268,7 +270,7 @@
         mounted() {
             // this.platform = this.campaignPlacement['platform'];
            this.profileData();
-           console.log("once");
+
 
         },
         methods: {
@@ -276,16 +278,19 @@
                 getProfile : 'influencer/getProfile',
             }),
             async profileData() {
-                let pros = Object.assign(await this.getProfile(17));
-                // console.log(pros.profiles,"pros");
-                if(pros.profiles.provider == 'instagram'){
+                let self = this;
+                let pros = await this.getProfile(16);
+                _.forEach(pros, function(value) {
 
-                    this.instagram  = pros.profiles;
-                    this.profile = this.instagram;
-                    // console.log(this.instagram,"in");
-                }else{
-                    this.youtube  = pros.profiles;
-                }
+                    if(value.provider === 'instagram'){
+
+                        self.instagram  = value;
+
+                    }else{
+                        self.youtube  = value;
+                    }
+                });
+
                 this.changePlatform(this.selectedPlatform);
 
             },
@@ -297,12 +302,13 @@
                 if(this.selectedPlatform === 1){
                     this.profile = '';
                     this.profile = this.instagram;
+                    console.log(this.profile);
 
 
                 }else if(this.selectedPlatform === 2){
                     this.profile = '';
 
-                    this.profile.provider_name = this.youtube;
+                    this.profile = this.youtube;
 
                 }
             }

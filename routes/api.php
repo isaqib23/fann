@@ -97,7 +97,7 @@ Route::group(['middleware' => ['jwt']], function() {
     // ----- User related api's
     Route::prefix('/user')->group(function () {
 
-        Route::post('search', 'UserController@search');
+        Route::post('searchInfluencers', 'UserController@searchInfluencers');
     });
 
     // ----- Influencer profile related api's

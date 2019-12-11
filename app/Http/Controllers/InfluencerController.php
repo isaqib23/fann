@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use http\Exception;
 use Illuminate\Http\Response;
 use App\Contracts\UserPlatformRepository;
+use App\Services\InstagramService;
 
 class InfluencerController extends Controller
 {
@@ -14,8 +15,14 @@ class InfluencerController extends Controller
      */
     private $userPlatformRepository;
 
+    /**
+     * @var instagramService
+     */
+    private $instagramService;
+
     public function __construct(UserPlatformRepository $userPlatformRepository){
         $this->userPlatformRepository = $userPlatformRepository;
+        $this->instagramService = new InstagramService();
 
     }
     /**
@@ -96,11 +103,14 @@ class InfluencerController extends Controller
     }
 
     public function getProfile(Request $request){
+        //provider access token from platform
+        ///accesstoken instservice
+        /// getposts inst serv
 
-        $profile = $this->userPlatformRepository->findByField('user_id',$request->user_id)->first();
 
+        $profile = $this->userPlatformRepository->findByField('user_id',$request->user_id);
         return response()->json([
-            'profiles' => $profile
+             'details' => $profile
         ]);
     }
 }
