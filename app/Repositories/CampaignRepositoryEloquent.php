@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\CampaignTouchPointProduct;
 use Exception;
 use Illuminate\Support\Str;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -91,11 +92,129 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             ->get();
     }
 
+    public function presentor($campaign){
+        $return = [
+            'id'            => (int) $campaign->id,
+            'name'          => (string) $campaign->name,
+            'slug'          => (string) $campaign->slug,
+            'description'   => (string) $campaign->description,
+        ];
+
+        // campaign objective Presentor
+            $return = $this->CampaignObjectivePresentor($campaign, $return);
+        // campaign payment Presentor
+            $return = $this->CampaignPaymentPresentor($campaign, $return);
+        // Touch Points Presentor
+        if($campaign->touchPoint) {
+            $return = $this->touchPointPresentor($campaign, $return);
+        }
+        return $return;
+    }
+
+    /**
+     * @param $touchPoint
+     * @return mixed
+     *
+     */
+    public function touchPointProductPresentor($touchPoint){
+
+        $campaignTouchPointProduct = new CampaignTouchPointProduct();
+
+        $productId = ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $touchPoint->barter_product : $touchPoint->dispatch_product;
+
+        return $campaignTouchPointProduct
+            ->select([
+                'id',
+                'name AS title',
+                'outside_product_id',
+                'outside_product_link',
+                'outside_product_variant_id',
+                'outside_platform',
+                'outside_product_image AS image'
+            ])
+            ->find($productId);
+    }
+
+    public function getCampaignTouchPointWithPresenter($request){
+        $campaign = $this->with([
+            'payment'  => function($query){
+                $query->with(['paymentType']);
+            },
+            'touchPoint' => function($query){
+                $query->with(['additional']);
+            },
+            'objective'
+        ])
+            ->findWhere(['slug' => $request->input('slug')])
+            ->first();
+
+        $campaign = $this->presentor($campaign);
+
+        return $campaign;
+    }
 
     public function savePlacementAndPayment($request)
     {
+    }
 
+    /**
+     * @param $campaign
+     * @param array $return
+     * @return array
+     */
+    private function touchPointPresentor($campaign, array $return): array
+    {
+        foreach ($campaign->touchPoint as $key => $touchPoint) {
+            $return['touchPoints'][] = [
+                'id'                => $touchPoint->id,
+                'name'              => $touchPoint->name,
+                'caption'           => $touchPoint->description,
+                'placement_id'      => $touchPoint->placement_id,
+                'hashtags'          => $touchPoint->additional->tags,
+                'mentions'          => $touchPoint->additional->mentions,
+                'guideLines'        => json_decode($touchPoint->additional->guidelines, true),
+                'amount'            => $touchPoint->amount,
+                'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint),
+                'barterProduct'     => ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $this->touchPointProductPresentor($touchPoint) : null,
+                'instaPost'         => null,
+                'instaBioLink'      => null,
+                'instaStory'        => null,
+                'instaStoryLink'    => null,
+                'images'            => [],
+            ];
+        }
+        return $return;
+    }
 
+    /**
+     * @param $campaign
+     * @param array $return
+     * @return array
+     */
+    private function CampaignObjectivePresentor($campaign, array $return): array
+    {
+        $return['campaignObjective'] = [
+            'ObjectiveId'   => $campaign->objective->id,
+            'name'          => $campaign->objective->slug,
+            'slug'          => $campaign->objective->slug
+        ];
+        return $return;
+    }
+
+    /**
+     * @param $campaign
+     * @param array $return
+     * @return array
+     */
+    private function CampaignPaymentPresentor($campaign, array $return): array
+    {
+        $return['payment'] = [
+            'additionalPayAsAmount'     => ($campaign['payment']->paymentType->slug == 'barter') ? (boolean)$campaign['payment']->is_primary : false,
+            'additionalPayAsBarter'     => ($campaign['payment']->paymentType->slug == 'paid') ? (boolean)$campaign['payment']->is_primary : false,
+            'paymentType'               => $campaign['payment']->paymentType->slug,
+            'platform'                  => $campaign['payment']->payment_type_id,
+        ];
+        return $return;
     }
 
 }

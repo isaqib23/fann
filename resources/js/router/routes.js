@@ -78,7 +78,7 @@ export default [
                             component : require('$comp/businessOwner/campaign/CampaignPlacement').default
                         },
                         {
-                            path      : 'requirements',
+                            path      : 'requirements/:slug',
                             name      : 'create-campaign-requirements',
                             component : require('$comp/businessOwner/campaign/CreateCampaignRequirements').default
                         }

@@ -222,7 +222,7 @@
                     }
                 } else {
                     this.savePlacementAndPaymentType(this.campaignPlacement)
-                    this.$router.push({name: 'create-campaign-requirements'})
+                    this.$router.push({name: 'create-campaign-requirements', params: { slug: this.$router.currentRoute.params.slug }})
                 }
             },
             goToBack() {

@@ -5,6 +5,7 @@ export const state = {
   campaignObjective: null,
   campaignPlacement: null,
   campaignInformation: null,
+  shopifyProduct: null,
   touchPoints        : [],
   touchPoint: {
       caption              : null,
@@ -60,6 +61,12 @@ export const mutations = {
     saveTouchPoint(state, touchPoint) {
         state.touchPoints.push(touchPoint);
     },
+    saveTouchPoints(state, touchPoint) {
+        state.touchPoints = (touchPoint);
+    },
+    setShopifyProduct(state, shopifyProduct) {
+        state.shopifyProduct = shopifyProduct;
+    },
 }
 
 /**
@@ -90,7 +97,7 @@ export const actions = {
              'platformId'  : state.campaignPlacement.platform,
              'touchPoint'  : state.touchPoint
          }
-        commit('saveTouchPoint',state.touchPoint);
+        //commit('saveTouchPoint',state.touchPoint);
          let response = await CampaignAxios.saveTouchPoint(payload);
 
          return response;
@@ -103,6 +110,20 @@ export const actions = {
     async resetTouchPoint({ commit },payload) {
         commit('resetTouchPoint',payload);
     },
+    async getCampaignTouchPoint({commit, state},payload) {
+
+        let response = await CampaignAxios.getCampaignTouchPoint(payload);
+        commit('saveTouchPoints',response.details.touchPoints);
+        commit('setObjective', response.details.campaignObjective);
+        commit('setPlacement',response.details.payment);
+        return response;
+    },
+    async getShopifyProduct({commit, state},payload) {
+
+        let response = await CampaignAxios.getShopifyProduct(payload);
+
+        commit('setShopifyProduct',response);
+    },
 }
 
 /**
@@ -113,7 +134,8 @@ export const getters = {
     campaignPlacement: state => state.campaignPlacement,
     campaignInformation: state => state.campaignInformation,
     touchPoint: state => state.touchPoint,
-    touchPoints: state => state.touchPoints
+    touchPoints: state => state.touchPoints,
+    shopifyProduct: state => state.shopifyProduct
 
 }
 
@@ -159,6 +181,38 @@ let CampaignAxios = class {
                 return {
                     status : 200,
                     details : resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+
+    static getCampaignTouchPoint (payload) {
+        return axios.post(api.path('campaign.getCampaignTouchPoint'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+
+    static getShopifyProduct (payload) {
+        return axios.post(api.path('shopify.findProduct'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data
                 };
             })
             .catch(err => {

@@ -77,6 +77,7 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
     export default {
         props : {
             disabledSearch : null,
@@ -88,16 +89,17 @@
                 type: String,
                 required: false,
                 default : 'Start typing a product name (at least 3 characters)'
-            }
+            },
+            product    : null,
+            selectedVariants   : null,
         },
         data () {
            return  {
                 bouncer    : _.debounce(this.getProducts, 750),
                 options    : [],
                 search     : '',
-                product    : null,
                 lookingUp  : false,
-                variants   : [],
+                variants   : null,
                 ld         : _,
                selectedVariant : {},
             }
@@ -130,7 +132,7 @@
                     productId   : self.product.id,
                     image       : variant.image_id != null ? self.ld.find(self.product.images, {'id': variant.image_id}).src : null,
                     pImage      : self.product.image.src,
-                    title       : self.product.title + ' - ' + variant.title,
+                    title       : self.product.title + ' - ' + self.product.id + ' - ' + variant.title,
                     price       : variant.price
                 };
                 self.variants = [];
@@ -158,6 +160,10 @@
                     self.reportedValue += parseFloat(variant.price);
                 });
                 self.reportedValue = parseFloat(self.reportedValue).toFixed(2);
+            },
+            selectedVariants(val){
+                this.variants = val;
+                console.log(val,'selectedVariants');
             }
         },
         created() {

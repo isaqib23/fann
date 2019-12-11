@@ -59,6 +59,8 @@
                                 <products-search
                                     v-if="campaignTouchPointFields.touchPointProduct"
                                     :emit-as="'dispatchProduct'"
+                                    :product="dispatchProduct"
+                                    :selectedVariants="dispatchProductVariant"
                                     @selected-product="selectedProduct"
                                 ></products-search>
                             </v-row>
@@ -270,6 +272,8 @@
                 guideLines            : 1,
                 model                 : 0,
                 e1                    : 0,
+                dispatchProduct       : null,
+                dispatchProductVariant: [],
                 kind                  : '1',
                 checkbox2             : true,
                 checkbox1             : false,
@@ -314,24 +318,37 @@
             ...mapGetters({
                 placement           : 'campaign/campaignPlacement',
                 campaignObjective   : 'campaign/campaignObjective',
-                touchPoints          : 'campaign/touchPoints'
+                touchPoints          : 'campaign/touchPoints',
+                shopifyProduct : 'campaign/shopifyProduct',
             })
         },
-        async mounted() {
-            this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
-            this.setPayment();
-            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+        async created() {
+            await this.getCampaignTouchPoint({slug:this.$router.currentRoute.params.slug});
             this.setTouchPointFields();
             await this.findTouchPoint(this.touchPointTabsState.currentTouchPoint);
+            this.tabsLength = (this.touchPoints.length > 0) ? this.touchPoints.length : this.tabsLength;
+            await this.getShopifyProduct({
+                product_id:4326300418119,
+                shop: localStorage.selectedShop
+            });
+
+        },
+        async mounted() {
+            this.paymentMethod = Object.assign(this.paymentMethod, this.placement);
+            console.log(this.placement, 'placement data');
+            this.setPayment();
+            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
         },
         methods: {
             ...mapMutations({
                 setTouchPoint : 'campaign/setTouchPoint'
             }),
             ...mapActions({
-                saveTouchPoint: 'campaign/saveTouchPoint',
-                saveTouchPointField: 'campaign/saveTouchPointField',
-                resetTouchPoint: 'campaign/resetTouchPoint'
+                saveTouchPoint              : 'campaign/saveTouchPoint',
+                saveTouchPointField         : 'campaign/saveTouchPointField',
+                resetTouchPoint             : 'campaign/resetTouchPoint',
+                getCampaignTouchPoint       : 'campaign/getCampaignTouchPoint',
+                getShopifyProduct       : 'campaign/getShopifyProduct'
             }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
@@ -523,7 +540,13 @@
                     this.setTouchPoint(['instaStoryLink', val]);
                 },
                 immediate: true
-            }
+            },
+            'shopifyProduct' (val) {
+                if(!_.isNil(val.details)) {
+                    this.dispatchProduct = val.details;
+                    this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
+                }
+            },
         }
     }
 </script>

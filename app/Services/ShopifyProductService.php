@@ -111,4 +111,29 @@ class ShopifyProductService
     }
 
 
+    public function findById($input)
+    {
+        $shopify = $this->getShopifyObj($this->shop);
+
+        if (ctype_digit($input)) {
+            $options = [
+                'limit' => 10,
+                'fields' => 'id,title,variants,images,image,handle',
+                'ids' => $input
+            ];
+        } else {
+            $options = [
+                'limit' => 10,
+                'fields' => 'id,title,variants,images,image,handle',
+                'title' => $input
+            ];
+        }
+//dd('/admin/products/#{'.$input.'}.json?' . urldecode(http_build_query($options)));
+        $resp = $shopify->call([
+            'URL' => '/admin/products/'.$input.'.json?' . urldecode(http_build_query($options)),
+            'METHOD' => 'GET'
+        ]);
+
+        return $resp->product;
+    }
 }

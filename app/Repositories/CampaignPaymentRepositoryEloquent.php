@@ -67,8 +67,9 @@ class CampaignPaymentRepositoryEloquent extends BaseRepository implements Campai
     {
         if ($data['payment_type_id'] != 0) {
             return $this->create([
-                'campaign_id'     => $data['campaign_id'],
-                'payment_type_id' => $data['payment_type_id']
+                'campaign_id'       => $data['campaign_id'],
+                'payment_type_id'   => $data['payment_type_id'],
+                'is_primary'        => $data['is_primary']
             ]);
         }
     }
@@ -87,8 +88,9 @@ class CampaignPaymentRepositoryEloquent extends BaseRepository implements Campai
         foreach ($data as $key =>  $value)
         {
             $this->store([
-                'campaign_id'     => $campaignId,
-                'payment_type_id' => $this->fieldsMapper($key, $value)
+                'campaign_id'       => $campaignId,
+                'payment_type_id'   => $this->fieldsMapper($key, $value),
+                'is_primary'        => ($value == 'barter') ? $data['additionalPayAsAmount'] : $data['additionalPayAsBarter']
                 ]);
         }
     }

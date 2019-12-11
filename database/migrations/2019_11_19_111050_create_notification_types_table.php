@@ -32,6 +32,8 @@ class CreateNotificationTypesTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('notification_types');
+        Schema::enableForeignKeyConstraints();
 	}
 }

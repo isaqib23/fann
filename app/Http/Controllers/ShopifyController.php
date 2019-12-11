@@ -240,4 +240,20 @@ class ShopifyController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     *
+     */
+    public function findProduct(Request $request)
+    {
+        $shopObj = $this->repository->findByField('id', $request->input('shop'))->first();
+
+        $this->productService->setShop($shopObj);
+
+        return response()->json(
+            $this->productService->findById($request->input('product_id'))
+        );
+    }
+
 }

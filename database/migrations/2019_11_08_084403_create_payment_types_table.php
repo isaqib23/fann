@@ -32,6 +32,8 @@ class CreatePaymentTypesTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('payment_types');
+        Schema::enableForeignKeyConstraints();
 	}
 }

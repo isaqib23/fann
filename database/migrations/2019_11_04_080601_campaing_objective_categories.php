@@ -30,6 +30,8 @@ class CampaingObjectiveCategories extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::drop('campaign_objective_categories');
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -39,6 +39,8 @@ class CreateUserMetasTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('user_metas');
+        Schema::enableForeignKeyConstraints();
 	}
 }

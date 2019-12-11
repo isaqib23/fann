@@ -45,6 +45,8 @@ class CreateInfluencerDetailsTable extends Migration
 	 */
 	public function down()
 	{
+        Schema::disableForeignKeyConstraints();
 		Schema::drop('influencer_details');
+        Schema::enableForeignKeyConstraints();
 	}
 }

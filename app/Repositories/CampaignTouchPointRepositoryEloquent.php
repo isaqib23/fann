@@ -87,6 +87,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
     public function saveInHierarchy($data)
     {
+        //dd($data);
         $barterProduct = $dispatchProduct =  null;
         $touchPoint = $data['touchPoint'];
 
@@ -107,8 +108,8 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
         //---- Touch Point
         $savedTouchPoint =  $this->create([
-            'name'                => $touchPoint['caption'],
-            'description'         => $touchPoint['name'],
+            'name'                => $touchPoint['name'],
+            'description'         => $touchPoint['caption'],
             'dispatch_product'    => $dispatchProduct->id,
             'barter_product'      => $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id,
             'campaign_id'         => $data['campaignId'],
@@ -121,11 +122,6 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         $this->campaignTouchPointAdditionalRepositoryEloquent->store($touchPoint, $savedTouchPoint);
 
         //---- multiple Images
-        if (!empty($touchPoint['images'])) {
-            $savedImages = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($touchPoint['images'], $savedTouchPoint);
-        }
-
-        //---- actions
         if (!empty($touchPoint['images'])) {
             $savedImages = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($touchPoint['images'], $savedTouchPoint);
         }

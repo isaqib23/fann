@@ -358,4 +358,13 @@ class CampaignsController extends Controller
         }
     }
 
+    public function getCampaignTouchPoint (Request $request){
+
+        $campaign = $this->repository->getCampaignTouchPointWithPresenter($request);
+
+        return response()->json([
+            'details'   => $campaign,
+        ]);
+    }
+
 }

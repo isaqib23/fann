@@ -22,7 +22,13 @@ class CampaignPayment extends Model implements Transformable
      */
     protected $fillable = [
         'campaign_id',
-        'payment_type_id'
+        'payment_type_id',
+        'is_primary'
     ];
 
+
+    public function paymentType()
+    {
+        return $this->hasOne(PaymentType::class, 'id', 'payment_type_id');
+    }
 }
