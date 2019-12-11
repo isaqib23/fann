@@ -61,17 +61,26 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
                     ])
                 ->join('user_platforms', 'users.id', '=', 'user_platforms.user_id')
                 ->join('user_platform_metas', 'user_platform_metas.user_platform_id', '=', 'user_platforms.id')
-                ->join('user_details', 'user_details.user_id', '=', 'users.id')
                 ->where('users.type', 'influencer');
 
-        //--- when niche is not empty or null
-        if (!empty($request->niche) && $request->niche != 0 ) {
-            $user->where('user_details.niche_id', $request->niche);
+        //--- when Placement is not empty or null
+        if (!empty($request->placement) ) {
+            $user->where('user_platforms.placement_id', getPlacementIdBySlug($request->placement));
         }
 
-        //--- when country is not empty or null
-        if (!empty($request->country)) {
-            $user->where('user_details.country_id', $request->country);
+        //-- group fields in if condition along with join
+        if ($request->niche != 0 || !empty($request->country) ) {
+            $user->join('user_details', 'user_details.user_id', '=', 'users.id');
+
+            //--- when niche is not empty or null
+            if (!empty($request->niche) && $request->niche != 0 ) {
+                $user->orWhere('user_details.niche_id', $request->niche);
+            }
+
+            //--- when country is not empty or null
+            if (!empty($request->country)) {
+                $user->where('user_details.country_id', $request->country);
+            }
         }
 
         //--- when followers is not empty or null
@@ -86,7 +95,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
         //--- when rating is not empty or null
         if (!empty($request->rating))  {
-            $user->whereBetween('user_platform_metas.rating', $request->rating);
+            $user->where('user_platform_metas.rating', $request->rating);
         }
 
         //--- when eng_rate is not empty or null
