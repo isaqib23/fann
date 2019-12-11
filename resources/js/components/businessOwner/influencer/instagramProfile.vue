@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-flex class="ma-12">
-            <div class="subtitle-1 mb-2"><strong>Amanda's Profile</strong></div>
+            <div class="subtitle-1 mb-2"><strong>{{ profile.provider_name }}</strong></div>
             <v-card class="mx-auto card_wrapper">
                 <span class="primary--text pl-8 pt-8" style="position: absolute"><u>Back</u></span>
                 <v-row class="py-12 mx-auto main_wrapper">
@@ -15,14 +15,14 @@
                             <v-col class="image_wrapper">
                                 <v-avatar height="150" width="150">
                                     <v-img
-                                        src="https://cdn.vuetifyjs.com/images/cards/store.jpg"
+                                        src="{profile.provider_photo}"
                                     ></v-img>
                                 </v-avatar>
                             </v-col>
                             <v-col class="text-center inner_wrapper">
                                 <v-container class="pa-0">
                                     <v-card-title class="my-0 py-0">
-                                        <div class="headline mb-2 mr-4"><strong>Amanda Nash</strong></div>
+                                        <div class="headline mb-2 mr-4"><strong>{{ profile.provider_name }}</strong></div>
                                         <v-rating v-model="rating" color="warning" class="mt-n4"></v-rating>
                                         <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2 text-capitalize" depressed height="30">
                                             Lifestyle
@@ -32,7 +32,7 @@
                                         </v-btn>
                                     </v-card-title>
                                     <div class="text-start ml-4 mt-n2">
-                                        <p class="overline integrityColor--text text-capitalize" color="grayLighten">Amanda Nash</p>
+                                        <p class="overline integrityColor--text text-capitalize" color="grayLighten">{{ profile.provider_name }}</p>
                                     </div>
                                     <div class="icons text-start ml-4">
                                         <v-icon color="primary" large class="mr-3">mdi-instagram</v-icon>
@@ -248,20 +248,26 @@
                 show: true,
                 proposal: false,
                 touchPoint: false,
-                data : {}
+                profile : {
+                    provider_name : null,
+                    provider_photo : null,
+                    user_id : null,
+
+                }
             }
         },
-        computed:{
-
-        },
         mounted() {
-            this.data = Object.assign(this.getProfile(12));
-
+           this.profileData();
         },
         methods: {
             ...mapActions({
                 getProfile : 'influencer/getProfile',
             }),
+           async profileData() {
+                let profiles= await this.getProfile(17);
+                this.profile = Object.assign(this.profile,profiles);
+                console.log(this.profile);
+            }
         }
     }
 </script>

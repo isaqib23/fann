@@ -5,17 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use http\Exception;
 use Illuminate\Http\Response;
+use App\Contracts\UserPlatformRepository;
 
 class InfluencerController extends Controller
 {
+    /**
+     * @var userPlatformRepository
+     */
+    private $userPlatformRepository;
+
+    public function __construct(UserPlatformRepository $userPlatformRepository){
+        $this->userPlatformRepository = $userPlatformRepository;
+
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        dd($request->profile_id);
+
 
     }
 
@@ -83,5 +93,14 @@ class InfluencerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getProfile(Request $request){
+
+        $profile = $this->userPlatformRepository->findByField('user_id',$request->user_id)->first();
+
+        return response()->json([
+            'profiles' => $profile
+        ]);
     }
 }

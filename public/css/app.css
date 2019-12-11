@@ -8106,35 +8106,35 @@ and (-webkit-min-device-pixel-ratio: 1) {
     border-radius: 10px;
 }
 
-.main_wrapper[data-v-9390e05c]{
+.main_wrapper[data-v-6d78311e]{
     width: 85%;
 }
-[data-v-9390e05c] .card_wrapper .v-badge__badge{
+[data-v-6d78311e] .card_wrapper .v-badge__badge{
     margin-top: 20px !important;
     padding: 15px;
     border-radius: 50px;
     height:auto !important;
 }
-[data-v-9390e05c] .v-sheet{
+[data-v-6d78311e] .v-sheet{
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
 }
-[data-v-9390e05c] .gutterDark.v-sheet{
+[data-v-6d78311e] .gutterDark.v-sheet{
     border-top-left-radius: 0px !important;
     border-top-right-radius: 0px !important;
 }
-[data-v-9390e05c] .v-rating .v-icon{
+[data-v-6d78311e] .v-rating .v-icon{
     padding:0px;
 }
-.inner_wrapper[data-v-9390e05c]{
+.inner_wrapper[data-v-6d78311e]{
     max-width: 55% !important;
     float: left !important;
 }
-.image_wrapper[data-v-9390e05c]{
+.image_wrapper[data-v-6d78311e]{
     max-width: 17% !important;
     float: left !important;
 }
-.icons .custom_icon[data-v-9390e05c]{
+.icons .custom_icon[data-v-6d78311e]{
     padding: 4px 2px;
     border-radius: 50px;
     height: auto !important;
@@ -8142,45 +8142,45 @@ and (-webkit-min-device-pixel-ratio: 1) {
     border: 3px solid #fff;
     box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.2);
 }
-.icons .custom_icon[data-v-9390e05c]:nth-child(2) {
+.icons .custom_icon[data-v-6d78311e]:nth-child(2) {
     background: #D8CEFD;
 }
-.icons .custom_icon[data-v-9390e05c]:nth-child(3) {
+.icons .custom_icon[data-v-6d78311e]:nth-child(3) {
     background: #FEF7DA;
 }
-.overline1[data-v-9390e05c]{
+.overline1[data-v-6d78311e]{
     font-size: 11px;
 }
-.overline1 .custom_icon[data-v-9390e05c]{
+.overline1 .custom_icon[data-v-6d78311e]{
     padding: 8px 6px !important;
     border-radius: 50px;
     height: auto !important;
     border: none;
     box-shadow: none;
 }
-[data-v-9390e05c] .v-btn {
+[data-v-6d78311e] .v-btn {
     font-size: 10px !important;
 }
-.action_class[data-v-9390e05c] {
+.action_class[data-v-6d78311e] {
     border-top: 1px solid #ccc;
 }
-[data-v-9390e05c] .custom_dropdown .v-input__control{
+[data-v-6d78311e] .custom_dropdown .v-input__control{
     min-height: 45px !important;
 }
-[data-v-9390e05c] .custom_dropdown .v-input__control > .v-input__slot{
+[data-v-6d78311e] .custom_dropdown .v-input__control > .v-input__slot{
     box-shadow: none !important;
     border: 1px solid #cccccc;
 }
-.bg1[data-v-9390e05c]{
+.bg1[data-v-6d78311e]{
     background: #F7E1F2 !important;
 }
-.bg2[data-v-9390e05c]{
+.bg2[data-v-6d78311e]{
     background: #DCECFC !important;
 }
-.bg3[data-v-9390e05c]{
+.bg3[data-v-6d78311e]{
     background: #FBDFE0 !important;
 }
-.bg4[data-v-9390e05c]{
+.bg4[data-v-6d78311e]{
     background: #FFF6DA !important;
 }
 /** Ripples */

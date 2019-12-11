@@ -13,7 +13,7 @@ export const state = {
  * mutations
  */
 export const mutations = {
-    getProfile(state, payload) {
+    setProfile(state, payload) {
         state.profile = payload
     },
     getPosts(state, payload) {
@@ -27,13 +27,14 @@ export const mutations = {
  */
 export const actions = {
      async getProfile({commit}, payload) {
-        commit('getProfile',await influencerProfile.getProfile({"profile_id" :payload}));
-
+        let response =  await influencerProfile.getProfile({"user_id" :payload});
+        commit('setProfile',response);
+        return response;
     },
      async getPost({commit}, payload) {
-
-        commit('getPosts', await influencerProfile.getPosts());
-
+        let response = await influencerProfile.getPosts();
+        commit('getPosts', response);
+        return response;
     }
 }
 
@@ -54,7 +55,6 @@ let influencerProfile = class {
     static getProfile (payload) {
         return axios.put(api.path('influencer.getProfile'),payload)
             .then(resp => {
-                console.log(resp.data,"dta");
                 return resp.data;
              })
             .catch(err =>{
