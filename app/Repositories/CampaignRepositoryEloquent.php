@@ -43,10 +43,14 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      */
     public function store($request)
     {
-        return $this->create([
+        return $this->updateOrCreate(
+            [
+                'id'    => $request['id'],
+            ],
+            [
             'name' => $request['name'],
             'slug' => $this->createSlug($request['name']),
-            'objective_id'  => $request['ObjectiveId']
+            'objective_id'  => $request['objective_id']
         ]);
     }
 
@@ -93,11 +97,12 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
     }
 
     public function presentor($campaign){
-        $return = [
+        $return['campaignInformation'] = [
             'id'            => (int) $campaign->id,
             'name'          => (string) $campaign->name,
             'slug'          => (string) $campaign->slug,
             'description'   => (string) $campaign->description,
+            'objective_id'  => (int) $campaign->objective_id,
         ];
 
         // campaign objective Presentor
@@ -135,6 +140,11 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             ->find($productId);
     }
 
+    /**
+     * @param $request
+     * @return array
+     *
+     */
     public function getCampaignTouchPointWithPresenter($request){
         $campaign = $this->with([
             'payment'  => function($query){
@@ -151,10 +161,6 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
         $campaign = $this->presentor($campaign);
 
         return $campaign;
-    }
-
-    public function savePlacementAndPayment($request)
-    {
     }
 
     /**
@@ -194,7 +200,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
     private function CampaignObjectivePresentor($campaign, array $return): array
     {
         $return['campaignObjective'] = [
-            'ObjectiveId'   => $campaign->objective->id,
+            'Objective_id'   => $campaign->objective->id,
             'name'          => $campaign->objective->slug,
             'slug'          => $campaign->objective->slug
         ];
@@ -209,12 +215,31 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
     private function CampaignPaymentPresentor($campaign, array $return): array
     {
         $return['payment'] = [
-            'additionalPayAsAmount'     => ($campaign['payment']->paymentType->slug == 'barter') ? (boolean)$campaign['payment']->is_primary : false,
-            'additionalPayAsBarter'     => ($campaign['payment']->paymentType->slug == 'paid') ? (boolean)$campaign['payment']->is_primary : false,
-            'paymentType'               => $campaign['payment']->paymentType->slug,
-            'platform'                  => $campaign['payment']->payment_type_id,
+            'additionalPayAsAmount'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'barter') ? (boolean)$campaign['payment']->is_primary : false,
+            'additionalPayAsBarter'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'paid') ? (boolean)$campaign['payment']->is_primary : false,
+            'paymentType'               => (!is_null($campaign['payment'])) ? $campaign['payment']->paymentType->slug : null,
+            'platform'                  => (!is_null($campaign['payment'])) ? $campaign['payment']->payment_type_id : null,
         ];
         return $return;
+    }
+
+    /**
+     * @param $request
+     * @return array
+     *
+     */
+    public function getCampaignObjectivetWithPresenter($request){
+        $objective = $this->with([
+            'payment'  => function($query){
+                $query->with(['paymentType']);
+            }])
+            ->findWhere([
+                'slug'  => $request->input('slug')
+            ])->first();
+
+        $campaign = $this->CampaignPaymentPresentor($objective,$objective->toArray());
+
+        return $campaign;
     }
 
 }

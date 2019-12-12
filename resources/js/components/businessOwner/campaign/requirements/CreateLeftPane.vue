@@ -8,7 +8,7 @@
                     </v-card-title>
 
                     <v-textarea
-                        v-model="campaignDescription"
+                        :v-model="(campaignInformation != null) ? campaignInformation.description : null"
                         label="Write your campaign description here"
                         auto-grow
                         outlined
@@ -260,7 +260,6 @@
                     dispatchProduct      : {},
                     barterProduct        : {},
                     amount               : 0,
-                    campaignDescription  : null,
                     images               : [],
                     instaPost            : null,
                     instaBioLink         : null,
@@ -287,7 +286,6 @@
                 menu2                 : false,
                 date                  : new Date().toISOString().substr(0, 10),
                 touchPointProducts    : [],
-                campaignDescription   : null,
                 caption               : '',
                 guideLineNumber       : 0,
                 paymentMethod         : {},
@@ -320,22 +318,17 @@
                 campaignObjective   : 'campaign/campaignObjective',
                 touchPoints          : 'campaign/touchPoints',
                 shopifyProduct : 'campaign/shopifyProduct',
+                campaignInformation : 'campaign/campaignInformation',
             })
         },
         async created() {
             await this.getCampaignTouchPoint({slug:this.$router.currentRoute.params.slug});
-            this.setTouchPointFields();
             await this.findTouchPoint(this.touchPointTabsState.currentTouchPoint);
+            this.setTouchPointFields();
             this.tabsLength = (this.touchPoints.length > 0) ? this.touchPoints.length : this.tabsLength;
-            await this.getShopifyProduct({
-                product_id:4326300418119,
-                shop: localStorage.selectedShop
-            });
-
         },
         async mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement);
-            console.log(this.placement, 'placement data');
             this.setPayment();
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
         },
@@ -366,12 +359,18 @@
                 this.currentTab = this.currentTab - 1;
                 this.findTouchPoint(this.currentTab);
             },
-            findTouchPoint(id){
+            async findTouchPoint(id){
                 if(this.touchPoints.length > 0 && !_.isNil(this.touchPoints[id])){
-                    console.log(this.touchPoints[id], 'this.touchPoints[id]');
                     this.touchPoint = this.touchPoints[id];
+                    this.resetTouchPoint(this.touchPoints[id]);
+
+                    await this.getShopifyProduct({
+                        product_id:this.touchPoint.dispatchProduct.outside_product_id,
+                        shop: localStorage.selectedShop
+                    });
                 }else{
                     this.touchPoint = JSON.parse(localStorage.getItem('touchPoint'));
+                    this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                 }
             },
             async addTouchPoint() {
@@ -386,9 +385,6 @@
                     this.touchPoint = JSON.parse(localStorage.getItem('touchPoint'));
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.guideLines = 1;
-
-                    console.log(this.touchPoints, 'touchPoints Item');
-                    console.log(this.touchPoint, 'touchPoint');
                 }
             },
             removeTouchPoint() {
@@ -426,7 +422,6 @@
                 }
             },
             setTouchPointFields() {
-
                 this.campaignTouchPointFields.touchPointBrand = (this.campaignObjective.slug === 'unboxing' || this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
                 this.campaignTouchPointFields.touchPointProduct = (this.campaignObjective.slug === 'unboxing' || this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? true : false;
                 this.campaignTouchPointFields.touchPointTitle = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
@@ -478,13 +473,6 @@
             'touchPoint.name': {
                 handler: function(val) {
                     this.setTouchPoint(['name', val]);
-                },
-                immediate: true,
-                deep: true
-            },
-            'campaignDescription': {
-                handler: function(val) {
-                    this.setTouchPoint(['campaignDescription', val]);
                 },
                 immediate: true,
                 deep: true
@@ -543,10 +531,11 @@
             },
             'shopifyProduct' (val) {
                 if(!_.isNil(val.details)) {
+                    this.dispatchProductVariant = [];
                     this.dispatchProduct = val.details;
                     this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
                 }
-            },
+            }
         }
     }
 </script>

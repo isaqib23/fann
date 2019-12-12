@@ -9,6 +9,7 @@ let campaign = {
     savePlacementAndPaymentType : 'savePlacementAndPaymentType',
     saveTouchPoint              : 'saveTouchPoint',
     getCampaignTouchPoint       : 'getCampaignTouchPoint',
+    getCampaignObjective        : 'getCampaignObjective',
 };
 
 export default campaign;

@@ -107,7 +107,11 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         }
 
         //---- Touch Point
-        $savedTouchPoint =  $this->create([
+        $savedTouchPoint =  $this->updateOrCreate(
+            [
+                'id'              => $touchPoint['id'],
+            ],
+            [
             'name'                => $touchPoint['name'],
             'description'         => $touchPoint['caption'],
             'dispatch_product'    => $dispatchProduct->id,

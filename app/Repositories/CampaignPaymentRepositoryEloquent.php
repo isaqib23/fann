@@ -66,7 +66,11 @@ class CampaignPaymentRepositoryEloquent extends BaseRepository implements Campai
     public function store($data)
     {
         if ($data['payment_type_id'] != 0) {
-            return $this->create([
+            return $this->updateOrCreate(
+                [
+                    'campaign_id' => $data['campaign_id'],
+                ],
+                [
                 'campaign_id'       => $data['campaign_id'],
                 'payment_type_id'   => $data['payment_type_id'],
                 'is_primary'        => $data['is_primary']

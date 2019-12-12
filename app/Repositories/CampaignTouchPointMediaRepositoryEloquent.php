@@ -41,10 +41,11 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
      */
     public function store($data)
     {
-        return $this->create([
-            'campaign_touch_point_id' => $data['campaign_touch_point_id'],
-            'path' => $data['path'],
-            'format' => $data['format']
+        return $this->create(
+            [
+            'campaign_touch_point_id'       => $data['campaign_touch_point_id'],
+            'path'                          => $data['path'],
+            'format'                        => $data['format']
         ]);
     }
 

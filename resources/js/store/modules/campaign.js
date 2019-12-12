@@ -85,19 +85,21 @@ export const actions = {
         return await CampaignAxios.getAllPlacements();
     },
     async savePlacementAndPaymentType({ commit }, payload) {
-
+        console.log(payload, 'placement payload');
         commit('setPlacement',payload);
 
     },
     async saveTouchPoint({commit, state}) {
 
          let payload  = {
-             'campaignId'  : state.campaignInformation.details.id,
-             'payment'     : state.campaignPlacement,
-             'platformId'  : state.campaignPlacement.platform,
-             'touchPoint'  : state.touchPoint
+             'campaignId'           : state.campaignInformation.id,
+             'campaignInformation'  : state.campaignInformation,
+             'payment'              : state.campaignPlacement,
+             'platformId'           : state.campaignPlacement.platform,
+             'touchPoint'           : state.touchPoint
          }
-        //commit('saveTouchPoint',state.touchPoint);
+
+         commit('saveTouchPoint',state.touchPoint);
          let response = await CampaignAxios.saveTouchPoint(payload);
 
          return response;
@@ -113,9 +115,12 @@ export const actions = {
     async getCampaignTouchPoint({commit, state},payload) {
 
         let response = await CampaignAxios.getCampaignTouchPoint(payload);
-        commit('saveTouchPoints',response.details.touchPoints);
+        if(!_.isNil(response.details.touchPoints)) {
+            commit('saveTouchPoints', response.details.touchPoints);
+        }
         commit('setObjective', response.details.campaignObjective);
         commit('setPlacement',response.details.payment);
+        commit('setCampaignInformation',response.details.campaignInformation);
         return response;
     },
     async getShopifyProduct({commit, state},payload) {
@@ -123,6 +128,11 @@ export const actions = {
         let response = await CampaignAxios.getShopifyProduct(payload);
 
         commit('setShopifyProduct',response);
+    },
+    async getCampaignObjective({commit, state},payload) {
+
+        let response = await CampaignAxios.getCampaignObjective(payload);
+        return response.details;
     },
 }
 
@@ -147,7 +157,7 @@ let CampaignAxios = class {
     static saveCampaign (payload) {
      return axios.post(api.path('campaign.save'), payload)
             .then(resp => {
-                return resp.data;
+                return resp.data.details;
             })
             .catch(err => {
                 console.info(err.response.data.errors);
@@ -213,6 +223,22 @@ let CampaignAxios = class {
                 return {
                     status : 200,
                     details : resp.data
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+
+    static getCampaignObjective (payload) {
+        return axios.post(api.path('campaign.getCampaignObjective'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data.details
                 };
             })
             .catch(err => {

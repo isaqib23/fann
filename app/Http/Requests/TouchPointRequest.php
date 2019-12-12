@@ -28,7 +28,7 @@ class TouchPointRequest extends BaseFormRequest
         $rules = [
             'campaignId'                     => 'required|numeric',
             'platformId'                     => 'required|numeric',
-            'touchPoint.campaignDescription' => Rule::requiredIf($this->checkCampaignDescription()),
+            'campaignInformation.description'=> Rule::requiredIf($this->checkCampaignDescription()),
             'touchPoint.name'                => 'required',
             'touchPoint.caption'             => 'required',
         ];

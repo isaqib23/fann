@@ -328,7 +328,7 @@ class CampaignsController extends Controller
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $this->repository->update(
-                [ 'description' => $data['touchPoint']['campaignDescription'] ],
+                [ 'description' => $data['campaignInformation']['description'] ],
                 $data['campaignId']
             );
 
@@ -364,6 +364,15 @@ class CampaignsController extends Controller
 
         return response()->json([
             'details'   => $campaign,
+        ]);
+    }
+
+    public function getCampaignObjective (Request $request){
+
+        $objective = $this->repository->getCampaignObjectivetWithPresenter($request);
+
+        return response()->json([
+            'details'   => $objective,
         ]);
     }
 

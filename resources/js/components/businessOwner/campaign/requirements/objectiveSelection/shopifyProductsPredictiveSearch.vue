@@ -163,7 +163,6 @@
             },
             selectedVariants(val){
                 this.variants = val;
-                console.log(val,'selectedVariants');
             }
         },
         created() {
