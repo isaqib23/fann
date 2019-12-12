@@ -26,10 +26,8 @@
                     <v-list two-line color="transparent" class="list_cards">
 
                         <template
-                            v-if="influencerSearchResults.data !== null"
-                            v-for="(searchItem, searchIndex) in influencerSearchResults.data">
+                            v-for="(searchItem, searchIndex) in fetchResults()">
                             <v-card class="mx-auto user_card full_width mt-4 mb-4">
-                                {{influencerSearchResults.total}}
                                 <v-list-item :key="searchIndex">
                                     <v-list-item-avatar height="80" min-width="80" width="80">
                                         <v-img :src="searchItem.provider_photo"></v-img>
@@ -57,9 +55,9 @@
                                                         <strong class="ml-1">Likes</strong>
                                                     </div>
                                                     <div class="followers">
-                                                        <p class="d-inline-block mb-0 mx-3">43%</p>
-                                                        <p class="d-inline-block mb-0 ml-10 mr-6">2.2K</p>
-                                                        <p class="d-inline-block mb-0 ml-2">5.5K</p>
+                                                        <p class="d-inline-block mb-0 mx-3">{{searchItem.eng_rate}}%</p>
+                                                        <p class="d-inline-block mb-0 ml-10 mr-6">{{searchItem.comment_count}}</p>
+                                                        <p class="d-inline-block mb-0 ml-2">{{searchItem.like_count}}</p>
                                                     </div>
                                                 </div>
                                             </v-flex>
@@ -100,6 +98,7 @@
                rating: 3,
                totalVisible: 10,
                items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+               resultsFound: false
             }
         },
         methods: {
@@ -111,8 +110,17 @@
             },
             totalPages () {
                 return !_.isNil(this.influencerSearchResults) ? this.influencerSearchResults.total  : 0
-            }
+            },
+            fetchResults() {
 
+                let result = [];
+
+                if (_.has(this.influencerSearchResults, 'data') &&  !_.isEmpty(this.influencerSearchResults.data)) {
+                    result = this.influencerSearchResults.data;
+                }
+
+                return result;
+            }
         },
         computed: {
             ...mapGetters({
