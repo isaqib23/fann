@@ -23,7 +23,7 @@ class CampaignInviteTableSeeder extends Seeder
             $last_id = DB::table('campaign_invites')->insertGetId([
                 'user_id'           => $faker->numberBetween(21,30),
                 'campaign_id'       => $campaign++,
-                'touch_point_id'    => $touchPoint++,
+                'placement_id'    => $faker->numberBetween(1,2),
                 'sender_id'         => $faker->numberBetween(11,20),
                 'sent_from'         => ($index >= 20) ? 'businessOwner' : 'influencer',
                 'original_price'    => $faker->randomNumber(2),
@@ -36,12 +36,12 @@ class CampaignInviteTableSeeder extends Seeder
             $get_campaign_invite = DB::table('campaign_invites')->where('id',$last_id)->first();
 
             DB::table('campaign_offers')->insertGetId([
-                'user_id'           => $get_campaign_invite->user_id,
-                'campaign_id'       => $get_campaign_invite->campaign_id,
-                'touch_point_id'    => $get_campaign_invite->touch_point_id,
-                'status'            => 'active',
-                'created_at' => $dateNow,
-                'updated_at' => $dateNow
+                'user_id'            => $get_campaign_invite->user_id,
+                'campaign_id'        => $get_campaign_invite->campaign_id,
+                'campaign_invite_id' => $last_id,
+                'status'             => 'active',
+                'created_at'         => $dateNow,
+                'updated_at'         => $dateNow
             ]);
 
             DB::table('influencer_jobs')->insertGetId([

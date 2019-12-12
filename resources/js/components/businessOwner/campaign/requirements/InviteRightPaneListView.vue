@@ -52,7 +52,7 @@
                                                     <div class="subtitle-2 mb-2 integrityColor--text">
                                                         <strong>Eng. Rate</strong>
                                                         <strong class="ml-2">Comments</strong>
-                                                        <strong class="ml-1">Likes</strong>
+                                                        <strong class="ml-1">Likes</strong>c
                                                     </div>
                                                     <div class="followers">
                                                         <p class="d-inline-block mb-0 mx-3">{{searchItem.eng_rate}}%</p>

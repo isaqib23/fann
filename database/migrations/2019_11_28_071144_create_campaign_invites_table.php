@@ -19,7 +19,7 @@ class CreateCampaignInvitesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('touch_point_id');
+            $table->unsignedInteger('placement_id');
             $table->unsignedInteger('sender_id');
             $table->enum('sent_from', ['businessOwner', 'influencer']);
             $table->integer('original_price')->nullable();
@@ -31,7 +31,7 @@ class CreateCampaignInvitesTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('campaign_id')->references('id')->on('campaigns');
-            $table->foreign('touch_point_id')->references('id')->on('campaign_touch_points');
+            $table->foreign('placement_id')->references('id')->on('placements');
             $table->foreign('sender_id')->references('id')->on('users');
 		});
 	}
