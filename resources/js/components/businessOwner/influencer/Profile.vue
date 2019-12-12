@@ -14,10 +14,9 @@
                         <div class="top_wrapper">
                             <v-col class="image_wrapper">
                                 <v-avatar height="150" width="150">
-                                    <v-img
-                                        src="https://scontent.cdninstagram.com/v/t51.2885-19/s150x150/66623023_733786327091415_4141988150123692032_n.jpg?_nc_ht=scontent.cdninstagram.com&oh=f70ba79d3012a639fae5a68d07589d36&oe=5E6E6CE3"
-                                    ></v-img>
-
+                                    <img
+                                        :src="profile.provider_photo"
+                                    ></img>
                                 </v-avatar>
                             </v-col>
                             <v-col class="text-center inner_wrapper">
@@ -36,23 +35,35 @@
                                         <p class="overline integrityColor--text text-capitalize" color="grayLighten">{{ profile.provider_name }}</p>
                                     </div>
                                     <div class="icons text-start ml-4">
-                                        <v-icon color="primary" large class="mr-3" v-if="instagram!=null" @click="changePlatform(1)">mdi-instagram</v-icon>
-                                        <v-icon color="integrityColor" large v-if="youtube!=null" @click="changePlatform(2)">mdi-youtube</v-icon>
+                                        <v-icon
+                                            :color="selectedPlatform === 1 ? 'primary' : 'integrityColor'"
+                                            large
+                                            class="mr-3"
+                                            v-if="instagram!=null"
+                                            @click="changePlatform(1)"
+
+                                        >mdi-instagram</v-icon>
+                                        <v-icon
+                                            :color="selectedPlatform === 2 ? 'primary' : 'integrityColor'"
+                                            large
+                                            v-if="youtube!=null"
+                                            @click="changePlatform(2)"
+                                        >mdi-youtube</v-icon>
                                     </div>
                                     <div class="followers text-start ml-4 mt-3 body-2">
                                         <span class="mr-3 integrityColor--text">
-                                            <strong class="mr-2 black--text">2.2K</strong>Posts
+                                            <strong class="mr-2 black--text">{{ profile.user_platform_meta.follower_count }}</strong>Followers
                                         </span>
                                         <span class="mr-3 integrityColor--text">
-                                            <strong class="mr-2 black--text">40.2K</strong>Posts
+                                            <strong class="mr-2 black--text">{{ profile.user_platform_meta.following_count }}</strong>Following
                                         </span>
                                         <span class="mr-3 integrityColor--text">
-                                            <strong class="mr-2 black--text">14.2K</strong>Posts
+                                            <strong class="mr-2 black--text">{{ profile.user_platform_meta.post_count}}</strong>Posts
                                         </span>
                                     </div>
                                     <div class="text-start ml-4 mt-2">
                                         <p class="text-justify integrityColor--text caption">
-                                            Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Fusce convallis metus id felis luctus adipiscing.
+                                            {{ bio }}
                                         </p>
                                     </div>
                                     <div class="icons text-start ml-4">
@@ -86,145 +97,8 @@
                 </v-row>
             </v-card>
 
-            <v-card class="mx-auto card_wrapper" color="gutterDark">
-                <v-row class="py-12 mx-auto main_wrapper">
-                    <v-row align="center" class="full_width">
-                        <v-col class="d-flex" cols="4">
-                            <div class="subtitle-1 mb-2"><strong>Instagram Stats Overview</strong></div>
-                        </v-col>
-                        <v-spacer></v-spacer>
-                        <v-col class="d-flex" cols="2">
-                            <v-select :items="items" label="Platform" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
-                        </v-col>
-                        <v-col class="d-flex" cols="2">
-                            <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
-                        </v-col>
-                    </v-row>
-
-                    <v-row class="full_width" align="center">
-                        <v-col class="d-flex" cols="3">
-                            <v-card min-width="100%">
-                                <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
-                                    <v-spacer></v-spacer>
-                                    <div class="icons text-end">
-                                        <span class="custom_icon bg1"><v-icon class="title" color="#C73EA9">mdi-instagram</v-icon></span>
-                                    </div>
-                                </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">178</strong></v-card-text>
-                                <v-card-actions class="pl-5">
-                                    <span class="error--text mr-2">
-                                        <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
-                                    </span>
-                                    <span class="overline1">Less post then ussual.</span>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-                        <v-col class="d-flex" cols="3">
-                            <v-card min-width="100%">
-                                <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
-                                    <v-spacer></v-spacer>
-                                    <div class="icons text-end">
-                                        <span class="custom_icon bg2"><v-icon class="title" color="#1788F9">mdi-account-clock-outline</v-icon></span>
-                                    </div>
-                                </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
-                                <v-card-actions class="pl-5">
-                                    <span class="success--text mr-2">
-                                        <v-icon color="success" small>mdi-arrow-up</v-icon>13.8%
-                                    </span>
-                                    <span class="overline1">Less post then ussual.</span>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-                        <v-col class="d-flex" cols="3">
-                            <v-card min-width="100%">
-                                <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
-                                    <v-spacer></v-spacer>
-                                    <div class="icons text-end">
-                                        <span class="custom_icon bg3"><v-icon class="title" color="primary">mdi-heart</v-icon></span>
-                                    </div>
-                                </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
-                                <v-card-actions class="pl-5">
-                                    <span class="success--text mr-2">
-                                        <v-icon color="success" small>mdi-arrow-down</v-icon>13.8%
-                                    </span>
-                                    <span class="overline1">Less post then ussual.</span>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-                        <v-col class="d-flex" cols="3">
-                            <v-card min-width="100%">
-                                <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
-                                    <v-spacer></v-spacer>
-                                    <div class="icons text-end">
-                                        <span class="custom_icon bg4"><v-icon color="#FDBA2C" class="title">mdi-tooltip</v-icon></span>
-                                    </div>
-                                </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">17.1K</strong></v-card-text>
-                                <v-card-actions class="pl-5">
-                                    <span class="error--text mr-2">
-                                        <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
-                                    </span>
-                                    <span class="overline1">Less post then ussual.</span>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-                    </v-row>
-
-                    <div class="subtitle-1 mb-3 mt-3"><strong>Featured Posts</strong></div>
-
-                    <v-row class="full_width" align="center">
-                        <v-col class="d-flex" cols="4" v-for="i in 15" :key="i">
-                            <v-card
-                                max-width="344"
-                                class="mx-auto"
-                            >
-                                <v-list-item>
-                                    <v-list-item-avatar color="grey"></v-list-item-avatar>
-                                    <v-list-item-content>
-                                        <v-list-item-title class="subtitle-2">Amanda Nash</v-list-item-title>
-                                        <v-list-item-subtitle class="caption">by Kurt Wagner</v-list-item-subtitle>
-                                    </v-list-item-content>
-
-                                    <v-btn color="primary" class="text-capitalize" depressed height="30">
-                                        View Profile
-                                    </v-btn>
-                                </v-list-item>
-
-                                <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
-                                    height="194"
-                                ></v-img>
-
-                                <v-card-text class="py-2">
-                                    <strong class="primary--text">View more on instagram</strong>
-                                </v-card-text>
-
-                                <v-card-actions class="action_class">
-                                    <v-tooltip bottom>
-                                        <template v-slot:activator="{ on }">
-                                            <v-icon v-on="on" class="mr-2">mdi-heart-outline</v-icon>
-                                        </template>
-                                        <span>1,7524 likes</span>
-                                    </v-tooltip>
-                                    <v-icon class="mr-2">mdi-tooltip-outline</v-icon>
-                                    <v-icon>mdi-briefcase-upload-outline</v-icon>
-                                    <div class="flex-grow-1"></div>
-                                    <v-btn icon>
-                                        <v-icon>mdi-share-variant</v-icon>
-                                    </v-btn>
-                                </v-card-actions>
-                            </v-card>
-                        </v-col>
-                    </v-row>
-                    <div class="full_width text-end"><v-btn large text>Back</v-btn></div>
-                </v-row>
-            </v-card>
+           <InstagramProfile v-if="selectedPlatform === 1" platform="1" :userProfile="profile"></InstagramProfile>
+            <YoutubeProfile v-if="selectedPlatform === 2" platform="2" :userProfile="profile"></YoutubeProfile>
         </v-flex>
     </div>
 </template>
@@ -233,9 +107,13 @@
     import Proposal from '../popups/Proposal'
     import TouchPoint from '../popups/TouchPoint'
     import { mapGetters, mapActions} from  'vuex'
+    import InstagramProfile from "./instagramProfile";
+    import YoutubeProfile from "./youtubeProfile";
 
     export default {
         components: {
+            YoutubeProfile,
+            InstagramProfile,
             Proposal:Proposal,
             TouchPoint:TouchPoint
         },
@@ -257,7 +135,7 @@
                     provider_photo : null,
                     user_id : null,
                     provider :null,
-
+                    meta_json : null,
                 },
 
             }
@@ -265,12 +143,20 @@
         computed:{
             ...mapGetters({
                 campaignPlacement : 'campaign/campaignPlacement'
-            })
+            }),
+            bio() {
+
+                let meta = JSON.parse(this.profile.meta_json);
+                if(meta.bio) {
+
+                         return meta.user.bio;
+                 }
+                 return null;
+            }
         },
         mounted() {
             // this.platform = this.campaignPlacement['platform'];
            this.profileData();
-
 
         },
         methods: {
@@ -280,37 +166,28 @@
             async profileData() {
                 let self = this;
                 let pros = await this.getProfile(16);
+
                 _.forEach(pros, function(value) {
-
                     if(value.provider === 'instagram'){
-
                         self.instagram  = value;
-
                     }else{
                         self.youtube  = value;
                     }
                 });
-
                 this.changePlatform(this.selectedPlatform);
-
             },
 
-            changePlatform(val){
-
+            changePlatform(val) {
                 this.selectedPlatform = val;
 
                 if(this.selectedPlatform === 1){
                     this.profile = '';
                     this.profile = this.instagram;
-                    console.log(this.profile);
-
-
                 }else if(this.selectedPlatform === 2){
                     this.profile = '';
-
                     this.profile = this.youtube;
-
                 }
+
             }
         }
     }
@@ -338,7 +215,9 @@
         padding:0px;
     }
     .inner_wrapper{
-        max-width: 55% !important;
+        /*max-width: 55% !important;*/
+        max-width: 700px !important;
+        min-width: 700px !important;
         float: left !important;
     }
     .image_wrapper{

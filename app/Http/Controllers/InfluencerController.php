@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\YoutubeService;
 use Illuminate\Http\Request;
 use http\Exception;
 use Illuminate\Http\Response;
 use App\Contracts\UserPlatformRepository;
+use App\Contracts\UserPlatformMetaRepository;
 use App\Services\InstagramService;
+use Carbon\Carbon;
+
 
 class InfluencerController extends Controller
 {
@@ -20,10 +24,15 @@ class InfluencerController extends Controller
      */
     private $instagramService;
 
-    public function __construct(UserPlatformRepository $userPlatformRepository){
+    /**
+     * @var youtube Service;
+     */
+    private $youtubeService;
+
+    public function __construct( UserPlatformRepository $userPlatformRepository ) {
         $this->userPlatformRepository = $userPlatformRepository;
         $this->instagramService = new InstagramService();
-
+        $this->youtubeService = new YoutubeService();
     }
     /**
      * Display a listing of the resource.
@@ -102,15 +111,42 @@ class InfluencerController extends Controller
         //
     }
 
-    public function getProfile(Request $request){
-        //provider access token from platform
-        ///accesstoken instservice
-        /// getposts inst serv
-
-
-        $profile = $this->userPlatformRepository->findByField('user_id',$request->user_id);
+    public function getProfile(Request $request)
+    {
+        $id = $request->user_id;
+        $profile = $this->userPlatformRepository->with(['userPlatformMeta'])->findByField('user_id',$request->user_id);
         return response()->json([
              'details' => $profile
         ]);
+    }
+
+    public function getPosts(Request $request)
+    {
+//        dd($request);
+        //provider access token from platform
+        $influencer = $this->userPlatformRepository->findByField('id',$request->id)->first();
+//        dd($influencer);
+        if($influencer->provider == "instagram") {
+            $this->instagramService->setAccessToken($influencer->access_token);
+            $posts = $this->instagramService->getPosts();
+
+
+            $today = Carbon::today()->subDays(30)->format("d-m-Y");
+
+
+            $lastPosts = $posts->filter( function ( $post, $key ) use( $today ) {
+                return date("d-m-Y", $post->created_time ) > $today ;
+            });
+//            dd( $lastPosts );
+
+            return response()->json([
+                'posts' => $posts
+            ]);
+        }
+
+        $this->youtubeService->setAccessToken(json_decode($influencer->access_token, true));
+//        dd($this->youtubeService->getChannelsList());
+
+
     }
 }

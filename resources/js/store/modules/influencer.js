@@ -6,7 +6,7 @@ import { api } from '~/config'
  */
 export const state = {
         profile: null,
-        posts : {}
+        posts : null,
 }
 
 /**
@@ -16,7 +16,7 @@ export const mutations = {
     setProfile(state, payload) {
         state.profile = payload
     },
-    getPosts(state, payload) {
+    setPosts(state, payload) {
       state.posts = payload
     },
 }
@@ -27,14 +27,13 @@ export const mutations = {
  */
 export const actions = {
      async getProfile({commit}, payload) {
-        let response =  await influencerProfile.getProfile({"user_id" :payload});
-
+        let response =  await influencer.getProfile({"user_id" :payload});
         commit('setProfile',response);
         return response;
     },
      async getPost({commit}, payload) {
-        let response = await influencerProfile.getPosts();
-        commit('getPosts', response);
+        let response = await influencer.getPosts({"id":payload});
+        commit('setPosts', response);
         return response;
     }
 }
@@ -52,11 +51,10 @@ export const getters = {
  *
  * axios
  */
-let influencerProfile = class {
+let influencer = class {
     static getProfile (payload) {
         return axios.put(api.path('influencer.getProfile'),payload)
             .then(resp => {
-
                 return resp.data.details;
              })
             .catch(err =>{
@@ -64,10 +62,10 @@ let influencerProfile = class {
             });
     }
 
-    static getPosts() {
-        return axios.get(api.path('influencer.posts'),payload)
+    static getPosts(payload) {
+        return axios.put(api.path('influencer.getPosts'),payload)
             .then(resp => {
-                    return resp.data;
+                    return resp.data.posts;
                 })
             .catch(err => {
                 return err.response.data.errors;

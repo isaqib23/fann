@@ -103,6 +103,7 @@ Route::group(['middleware' => ['jwt']], function() {
     // ----- Influencer profile related api's
     route::prefix('/influencer')->group(function(){
         Route::put('getProfile','InfluencerController@getProfile');
+        Route::put('getPosts','InfluencerController@getPosts');
     });
 
 

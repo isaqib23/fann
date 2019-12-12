@@ -1,91 +1,6 @@
 <template>
     <div>
-        <v-flex class="ma-12">
-            <div class="subtitle-1 mb-2"><strong>{{ profile.provider_name }}</strong></div>
-            <v-card class="mx-auto card_wrapper">
-                <span class="primary--text pl-8 pt-8" style="position: absolute"><u>Back</u></span>
-                <v-row class="py-12 mx-auto main_wrapper">
-                    <v-badge color="primary">
-                        <template v-slot:badge>
-                            <v-icon dark>
-                                mdi-chat
-                            </v-icon>
-                        </template>
-                        <div class="top_wrapper">
-                            <v-col class="image_wrapper">
-                                <v-avatar height="150" width="150">
-                                    <v-img
-                                        src="{profile.provider_photo}"
-                                    ></v-img>
-                                </v-avatar>
-                            </v-col>
-                            <v-col class="text-center inner_wrapper">
-                                <v-container class="pa-0">
-                                    <v-card-title class="my-0 py-0">
-                                        <div class="headline mb-2 mr-4"><strong>{{ profile.provider_name }}</strong></div>
-                                        <v-rating v-model="rating" color="warning" class="mt-n4"></v-rating>
-                                        <v-btn color="grayLighten pl-2 pr-2 ml-4 mr-2 text-capitalize" depressed height="30">
-                                            Lifestyle
-                                        </v-btn>
-                                        <v-btn color="grayLighten pl-2 pr-2 ml-1 text-capitalize" depressed height="30">
-                                            Fashion
-                                        </v-btn>
-                                    </v-card-title>
-                                    <div class="text-start ml-4 mt-n2">
-                                        <p class="overline integrityColor--text text-capitalize" color="grayLighten">{{ profile.provider_name }}</p>
-                                    </div>
-                                    <div class="icons text-start ml-4">
-                                        <v-icon color="primary" large class="mr-3">mdi-instagram</v-icon>
-                                        <v-icon color="integrityColor" large>mdi-youtube</v-icon>
-                                    </div>
-                                    <div class="followers text-start ml-4 mt-3 body-2">
-                                        <span class="mr-3 integrityColor--text">
-                                            <strong class="mr-2 black--text">2.2K</strong>Posts
-                                        </span>
-                                        <span class="mr-3 integrityColor--text">
-                                            <strong class="mr-2 black--text">40.2K</strong>Posts
-                                        </span>
-                                        <span class="mr-3 integrityColor--text">
-                                            <strong class="mr-2 black--text">14.2K</strong>Posts
-                                        </span>
-                                    </div>
-                                    <div class="text-start ml-4 mt-2">
-                                        <p class="text-justify integrityColor--text caption">
-                                            Morbi mattis ullamcorper velit. Donec orci lectus, aliquam ut, faucibus non, euismod id, nulla. Fusce convallis metus id felis luctus adipiscing.
-                                        </p>
-                                    </div>
-                                    <div class="icons text-start ml-4">
-                                        <span class="custom_icon"><v-icon color="red">mdi-fire</v-icon></span>
-                                        <span class="custom_icon"><v-icon color="indigo">mdi-shield-half-full</v-icon></span>
-                                        <span class="custom_icon"><v-icon color="warning">mdi-wifi-strength-4</v-icon></span>
-                                    </div>
-                                    <div class="buttons text-right mt-n6">
-                                        <v-spacer></v-spacer>
-                                        <v-dialog v-model="proposal" max-width="70%" transition="slide-y-reverse-transition">
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn color="grayLighten ml-4 mr-2 text-capitalize" depressed height="32" v-on="on">
-                                                    Invite to campaign
-                                                </v-btn>
-                                            </template>
-                                            <Proposal></Proposal>
-                                        </v-dialog>
-                                        <v-dialog v-model="touchPoint" max-width="50%" transition="slide-y-reverse-transition">
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn color="primary ml-1 text-capitalize" depressed height="32" v-on="on">
-                                                    Make Offer
-                                                </v-btn>
-                                            </template>
-                                            <TouchPoint></TouchPoint>
-                                        </v-dialog>
-                                    </div>
-                                </v-container>
-                            </v-col>
-                        </div>
-                    </v-badge>
-                </v-row>
-            </v-card>
-
-            <v-card class="mx-auto card_wrapper" color="gutterDark">
+         <v-card class="mx-auto card_wrapper" color="gutterDark">
                 <v-row class="py-12 mx-auto main_wrapper">
                     <v-row align="center" class="full_width">
                         <v-col class="d-flex" cols="4">
@@ -178,16 +93,18 @@
                     <div class="subtitle-1 mb-3 mt-3"><strong>Featured Posts</strong></div>
 
                     <v-row class="full_width" align="center">
-                        <v-col class="d-flex" cols="4" v-for="i in 15" :key="i">
+                        <v-col class="d-flex" cols="4" v-for="(post,index) in  posts " :key="index">
                             <v-card
                                 max-width="344"
                                 class="mx-auto"
                             >
                                 <v-list-item>
-                                    <v-list-item-avatar color="grey"></v-list-item-avatar>
+                                    <v-list-item-avatar color="grey">
+                                        <img :src="userProfile.provider_photo"></img>
+                                    </v-list-item-avatar>
                                     <v-list-item-content>
-                                        <v-list-item-title class="subtitle-2">Amanda Nash</v-list-item-title>
-                                        <v-list-item-subtitle class="caption">by Kurt Wagner</v-list-item-subtitle>
+                                        <v-list-item-title class="subtitle-2">{{ userProfile.provider_name}}</v-list-item-title>
+                                        <v-list-item-subtitle class="caption">{{ userProfile.user_platform_meta.follower_count }} Followers</v-list-item-subtitle>
                                     </v-list-item-content>
 
                                     <v-btn color="primary" class="text-capitalize" depressed height="30">
@@ -196,7 +113,7 @@
                                 </v-list-item>
 
                                 <v-img
-                                    src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
+                                    :src="post.images.standard_resolution.url"
                                     height="194"
                                 ></v-img>
 
@@ -209,7 +126,7 @@
                                         <template v-slot:activator="{ on }">
                                             <v-icon v-on="on" class="mr-2">mdi-heart-outline</v-icon>
                                         </template>
-                                        <span>1,7524 likes</span>
+                                        <span>{{post.likes.count}}</span>
                                     </v-tooltip>
                                     <v-icon class="mr-2">mdi-tooltip-outline</v-icon>
                                     <v-icon>mdi-briefcase-upload-outline</v-icon>
@@ -224,7 +141,6 @@
                     <div class="full_width text-end"><v-btn large text>Back</v-btn></div>
                 </v-row>
             </v-card>
-        </v-flex>
     </div>
 </template>
 
@@ -239,7 +155,8 @@
             TouchPoint:TouchPoint
         },
         props: {
-          platform : ''
+            platform : null,
+            userProfile : null,
         },
         data: () => {
             return  {
@@ -248,25 +165,29 @@
                 show: true,
                 proposal: false,
                 touchPoint: false,
-                profile : {
-                    provider_name : null,
-                    provider_photo : null,
-                    user_id : null,
+                posts : [],
+                stats : []
 
-                }
             }
         },
+        computed:{
+
+
+        },
         mounted() {
-           this.profileData();
+            this.postsData();
         },
         methods: {
             ...mapActions({
-                getProfile : 'influencer/getProfile',
+                getPost : 'influencer/getPost',
+
             }),
-           async profileData() {
-                let profiles= await this.getProfile(17);
-                this.profile = Object.assign(this.profile,profiles);
-                console.log(this.profile);
+           async postsData() {
+
+                let getPosts= await this.getPost(this.userProfile.id);
+                this.posts = getPosts;
+                console.log(this.posts,"posts");
+
             }
         }
     }
