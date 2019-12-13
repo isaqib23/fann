@@ -334,7 +334,8 @@
         },
         methods: {
             ...mapMutations({
-                setTouchPoint : 'campaign/setTouchPoint'
+                setTouchPoint : 'campaign/setTouchPoint',
+                updateCampaignInformation : 'campaign/updateCampaignInformation'
             }),
             ...mapActions({
                 saveTouchPoint              : 'campaign/saveTouchPoint',
@@ -363,9 +364,9 @@
                 if(this.touchPoints.length > 0 && !_.isNil(this.touchPoints[id])){
                     this.touchPoint = this.touchPoints[id];
                     this.resetTouchPoint(this.touchPoints[id]);
-
+                    console.log(this.touchPoint,'this.touchPoint this.touchPoint');
                     await this.getShopifyProduct({
-                        product_id:this.touchPoint.dispatchProduct.outside_product_id,
+                        product_id:this.touchPoint.dispatchProduct.productId,
                         shop: localStorage.selectedShop
                     });
                 }else{
@@ -374,6 +375,7 @@
                 }
             },
             async addTouchPoint() {
+                console.log(this.campaignInformation, 'campaignInformation campaignInformation');
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
@@ -411,12 +413,15 @@
             },
             setPayment() {
                 if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
+                    console.log('from if');
                     this.disabledPaid = true;
                     this.disabledBarter = false;
                 } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
+                    console.log('from else if');
                     this.disabledBarter = true;
                     this.disabledPaid = false;
                 } else {
+                    console.log('from else');
                     this.disabledBarter = false;
                     this.disabledPaid = false;
                 }
@@ -535,6 +540,10 @@
                     this.dispatchProduct = val.details;
                     this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
                 }
+            },
+            'placement' (val) {
+                this.paymentMethod = Object.assign(this.paymentMethod, val);
+                this.setPayment();
             }
         }
     }

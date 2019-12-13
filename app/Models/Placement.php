@@ -20,6 +20,19 @@ class Placement extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'slug',
+        'image'
+    ];
 
+
+    /**
+     * @return HasOne
+     *
+     */
+    public function placement()
+    {
+        return $this->belongsTo(Campaign::class, 'primary_placement_id','id');
+    }
 }

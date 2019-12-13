@@ -8,6 +8,7 @@ export const state = {
   shopifyProduct: null,
   touchPoints        : [],
   touchPoint: {
+      id                   : null,
       caption              : null,
       hashtags             : null,
       mentions             : null,
@@ -67,6 +68,9 @@ export const mutations = {
     setShopifyProduct(state, shopifyProduct) {
         state.shopifyProduct = shopifyProduct;
     },
+    updateCampaignInformation(state, [index, val]) {
+        Vue.set(state.campaignInformation, index, val)
+    },
 }
 
 /**
@@ -85,8 +89,8 @@ export const actions = {
         return await CampaignAxios.getAllPlacements();
     },
     async savePlacementAndPaymentType({ commit }, payload) {
-        console.log(payload, 'placement payload');
-        commit('setPlacement',payload);
+        let response = await CampaignAxios.savePlacementAndPaymentType(payload);
+        commit('setPlacement',response);
 
     },
     async saveTouchPoint({commit, state}) {

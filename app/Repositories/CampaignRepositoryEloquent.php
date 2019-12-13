@@ -131,11 +131,11 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             ->select([
                 'id',
                 'name AS title',
-                'outside_product_id',
+                'outside_product_id AS productId',
                 'outside_product_link',
                 'outside_product_variant_id',
                 'outside_platform',
-                'outside_product_image AS image'
+                'outside_product_image AS pImage'
             ])
             ->find($productId);
     }
@@ -232,12 +232,17 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
         $objective = $this->with([
             'payment'  => function($query){
                 $query->with(['paymentType']);
-            }])
+            },
+            'placement'
+            ])
             ->findWhere([
                 'slug'  => $request->input('slug')
             ])->first();
 
-        $campaign = $this->CampaignPaymentPresentor($objective,$objective->toArray());
+        $campaign = [];
+        if($objective) {
+            $campaign = $this->CampaignPaymentPresentor($objective, $objective->toArray());
+        }
 
         return $campaign;
     }

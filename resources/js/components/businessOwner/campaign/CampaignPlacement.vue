@@ -201,7 +201,9 @@
         },
         async mounted() {
             this.campaignObjective = Object.assign(this.campaignObjective, await this.getCampaignObjective({slug:this.$router.currentRoute.params.slug}))
-            this.campaignPlacement = Object.assign(this.campaignPlacement, this.campaignObjective.payment)
+            this.campaignPlacement = Object.assign(this.campaignPlacement, this.campaignObjective.payment);
+            this.campaignPlacement.platform = this.campaignObjective.primary_placement_id;
+            this.campaignPlacement.campaign_id = this.campaignObjective.id;
             this.assignDefaultPayment();
         },
         methods: {

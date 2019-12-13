@@ -34,7 +34,8 @@ class Campaign extends Model implements Transformable
         'objective_id',
         'impressions',
         'actions',
-        'eng_rate'
+        'eng_rate',
+        'primary_placement_id'
     ];
 
 
@@ -63,5 +64,14 @@ class Campaign extends Model implements Transformable
     public function objective()
     {
         return $this->hasOne(CampaignObjective::class, 'id', 'objective_id');
+    }
+
+    /**
+     * @return HasOne
+     *
+     */
+    public function placement()
+    {
+        return $this->hasOne(Placement::class, 'id','primary_placement_id');
     }
 }
