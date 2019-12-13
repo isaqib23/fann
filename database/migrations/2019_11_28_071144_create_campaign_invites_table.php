@@ -23,8 +23,8 @@ class CreateCampaignInvitesTable extends Migration
             $table->unsignedInteger('sender_id');
             $table->enum('sent_from', ['businessOwner', 'influencer']);
             $table->integer('original_price')->nullable();
-            $table->integer('influencer_price')->nullable();
-            $table->text('status')->nullable();
+            $table->integer('quoted_price')->nullable();
+            $table->enum('status', ['queued', 'sent', 'price_quoted', 'accept', 'reject']);
 
             $table->softDeletes();
             $table->timestamps();

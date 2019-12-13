@@ -23,14 +23,14 @@ class CampaignInviteTableSeeder extends Seeder
             $last_id = DB::table('campaign_invites')->insertGetId([
                 'user_id'           => $faker->numberBetween(21,30),
                 'campaign_id'       => $campaign++,
-                'placement_id'    => $faker->numberBetween(1,2),
+                'placement_id'      => $faker->numberBetween(1,2),
                 'sender_id'         => $faker->numberBetween(11,20),
                 'sent_from'         => ($index >= 20) ? 'businessOwner' : 'influencer',
                 'original_price'    => $faker->randomNumber(2),
-                'influencer_price'  => $faker->randomNumber(2),
-                'status'            => 'active',
-                'created_at' => $dateNow,
-                'updated_at' => $dateNow
+                'quoted_price'      => $faker->randomNumber(2),
+                'status'            => 'queued',
+                'created_at'        => $dateNow,
+                'updated_at'        => $dateNow
             ]);
 
             $get_campaign_invite = DB::table('campaign_invites')->where('id',$last_id)->first();

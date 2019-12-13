@@ -65,7 +65,7 @@
                                                 <v-btn color="primary pl-3 pr-3" class="text-capitalize" depressed @click="goToProfile">
                                                     View Profile
                                                 </v-btn>
-                                                <v-btn color="success pl-3 pr-3" depressed class="text-capitalize">
+                                                <v-btn color="success pl-3 pr-3" depressed class="text-capitalize" @click="inviteInfluencer(searchItem.id)">
                                                     Invite
                                                 </v-btn>
                                             </v-flex>
@@ -103,29 +103,43 @@
         },
         methods: {
             ...mapActions({
-                inviteSearch : 'campaign/inviteSearch'
+                inviteSearch : 'campaign/inviteSearch',
+                collectInvitation : 'campaign/collectInvitation'
             }),
             goToProfile() {
-                this.$router.push({name:'influencer-profile'});
+                this.$router.push({name: 'influencer-profile'});
             },
-            totalPages () {
-                return !_.isNil(this.influencerSearchResults) ? this.influencerSearchResults.total  : 0
+            totalPages() {
+                return !_.isNil(this.influencerSearchResults) ? this.influencerSearchResults.total : 0
             },
             fetchResults() {
-
                 let result = [];
 
-                if (_.has(this.influencerSearchResults, 'data') &&  !_.isEmpty(this.influencerSearchResults.data)) {
+                if (_.has(this.influencerSearchResults, 'data') && !_.isEmpty(this.influencerSearchResults.data)) {
                     result = this.influencerSearchResults.data;
                 }
 
                 return result;
+            },
+            inviteInfluencer(userId) {
+                let payload =  {
+                    user_id      : userId,
+                    placement_id : this.inviteSearchParams.placement,
+                    campaign_id  : 1001, // hard coded just for testing purpose
+                    sender_id    : this.auth.id,
+                    sent_from    : this.auth.type,
+                    status       : 'queued',
+                    price        : 123,  // hard coded just for testing purpose
+
+                };
+                this.collectInvitation(payload);
             }
         },
         computed: {
             ...mapGetters({
                 influencerSearchResults: 'campaign/influencerSearchResults',
                 inviteSearchParams: 'campaign/inviteSearchParams',
+                auth: 'auth/user'
             })
         },
         watch : {

@@ -114,12 +114,15 @@ export const actions = {
         _.forEach(payload, function(value, key) {
             commit('setInviteSearchParams', [key, value]);
         });
-console.info( state.inviteSearchParams, "list each");
+
         let response =  await CampaignAxios.getInfluencersToInvite( state.inviteSearchParams );
 
         if (response.status == 200) {
             commit('setInfluencerSearchResults', response.details);
         }
+    },
+    async collectInvitation({commit, state}, payload) {
+        let response =  await CampaignAxios.saveInvitation( payload );
     }
 }
 
@@ -163,7 +166,6 @@ let CampaignAxios = class {
     static getAllPlacements () {
         return axios.get(api.path('campaign.allPlacements'))
             .then(resp => {
-                console.info('resp', resp);
                 return resp.data;
             })
             .catch(err => {
@@ -198,6 +200,22 @@ let CampaignAxios = class {
                 return {
                     status : err.response.status,
                     details : []
+                };
+            });
+    }
+
+    static saveInvitation (payload) {
+        return axios.post(api.path('campaign.saveInvitation'), payload)
+            .then(resp => {
+                return {
+                    status: 200,
+                    details: resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status: err.response.status,
+                    details: []
                 };
             });
     }

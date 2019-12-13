@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Contracts\CampaignInviteRepository;
+use App\Contracts\CampaignOfferRepository;
 use App\Contracts\CampaignPaymentRepository;
-use App\Contracts\CampaignTouchPointAdditionalRepository;
-use App\Contracts\CampaignTouchPointMediaRepository;
-use App\Contracts\CampaignTouchPointPlacementActionRepository;
-use App\Contracts\CampaignTouchPointProductRepository;
 use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\PlacementRepository;
 use App\Http\Requests\TouchPointRequest;
@@ -15,11 +13,9 @@ use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Illuminate\Http\Response;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\CampaignCreateRequest;
 use App\Http\Requests\CampaignUpdateRequest;
 use App\Contracts\CampaignRepository;
 use App\Validators\CampaignValidator;
@@ -39,7 +35,7 @@ class CampaignsController extends Controller
     protected $repository;
 
     /**
-     * @var CampaignValidator
+     * @var LaravelValidator
      */
     protected $validator;
 
@@ -54,19 +50,9 @@ class CampaignsController extends Controller
     private $placementRepository;
 
     /**
-     * @var CampaignTouchPointMediaRepository
-     */
-    private $campaignTouchPointMediaRepository;
-
-    /**
      * @var CampaignTouchPointRepository
      */
     private $campaignTouchPointRepository;
-
-    /**
-     * @var CampaignTouchPointAdditionalRepository
-     */
-    private $campaignTouchPointAdditionalRepository;
 
     /**
      * @var CampaignPaymentRepository
@@ -74,14 +60,10 @@ class CampaignsController extends Controller
     private $campaignPaymentRepository;
 
     /**
-     * @var CampaignTouchPointProductRepository
+     * @var CampaignInviteRepository
      */
-    private $campaignTouchPointProductRepository;
+    private $campaignInviteRepository;
 
-    /**
-     * @var CampaignTouchPointPlacementActionRepository
-     */
-    private $campaignTouchPointPlacementActionRepository;
 
     /**
      * CampaignsController constructor.
@@ -89,37 +71,28 @@ class CampaignsController extends Controller
      * @param CampaignRepository $repository
      * @param CampaignObjectiveRepository $campaignObjectiveRepository
      * @param PlacementRepository $placementRepository
-     * @param CampaignTouchPointMediaRepository $campaignTouchPointMediaRepository
      * @param CampaignTouchPointRepository $campaignTouchPointRepository
-     * @param CampaignTouchPointPlacementActionRepository $campaignTouchPointPlacementActionRepository
-     * @param CampaignTouchPointAdditionalRepository $campaignTouchPointAdditionalRepository
      * @param CampaignPaymentRepository $campaignPaymentRepository
-     * @param CampaignTouchPointProductRepository $campaignTouchPointProductRepository
      * @param LaravelValidator $validator
+     * @param CampaignInviteRepository $campaignInviteRepository
      */
     public function __construct(
         CampaignRepository $repository,
         CampaignObjectiveRepository $campaignObjectiveRepository,
         PlacementRepository $placementRepository,
-        CampaignTouchPointMediaRepository $campaignTouchPointMediaRepository,
         CampaignTouchPointRepository $campaignTouchPointRepository,
-        CampaignTouchPointPlacementActionRepository $campaignTouchPointPlacementActionRepository,
-        CampaignTouchPointAdditionalRepository $campaignTouchPointAdditionalRepository,
         CampaignPaymentRepository $campaignPaymentRepository,
-        CampaignTouchPointProductRepository $campaignTouchPointProductRepository,
-        LaravelValidator $validator
+        LaravelValidator $validator,
+        CampaignInviteRepository $campaignInviteRepository
     )
     {
         $this->repository = $repository;
         $this->campaignObjectiveRepository = $campaignObjectiveRepository;
         $this->placementRepository = $placementRepository;
-        $this->campaignTouchPointMediaRepository = $campaignTouchPointMediaRepository;
         $this->campaignTouchPointRepository = $campaignTouchPointRepository;
-        $this->campaignTouchPointPlacementActionRepository = $campaignTouchPointPlacementActionRepository;
-        $this->campaignTouchPointAdditionalRepository = $campaignTouchPointAdditionalRepository;
         $this->campaignPaymentRepository = $campaignPaymentRepository;
-        $this->campaignTouchPointProductRepository = $campaignTouchPointProductRepository;
         $this->validator = $validator;
+        $this->campaignInviteRepository = $campaignInviteRepository;
     }
 
     /**
@@ -356,6 +329,19 @@ class CampaignsController extends Controller
 
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function saveInvitation(Request $request)
+    {
+        $response = $this->campaignInviteRepository->store($request);
+
+        return response()->json([
+            'details' => $response
+        ]);
     }
 
 }
