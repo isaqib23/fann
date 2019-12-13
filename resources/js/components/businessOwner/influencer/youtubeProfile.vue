@@ -163,7 +163,7 @@
                 show: true,
                 proposal: false,
                 touchPoint: false,
-                channels : [],
+                videos : [],
             }
         },
         mounted() {
@@ -174,12 +174,14 @@
         },
         methods: {
             ...mapActions({
-                getPost : 'influencer/getPost',
+                getVideos : 'influencer/getYoutubeVideos',
             }),
             async postsData() {
+                console.log(this.userProfile,"dt");
                 console.log(this.userProfile,"");
-                let getPosts= await this.getPost(this.userProfile.id);
-                this.channels = getPosts;
+                let getPosts= await this.getVideos(this.userProfile.id);
+                this.videos = getPosts;
+                console.log(this.videos);
 
             }
         }

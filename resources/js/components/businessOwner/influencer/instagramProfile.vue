@@ -25,7 +25,7 @@
                                         <span class="custom_icon bg1"><v-icon class="title" color="#C73EA9">mdi-instagram</v-icon></span>
                                     </div>
                                 </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">178</strong></v-card-text>
+                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ data.countLatestPosts}}</strong></v-card-text>
                                 <v-card-actions class="pl-5">
                                     <span class="error--text mr-2">
                                         <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
@@ -37,13 +37,13 @@
                         <v-col class="d-flex" cols="3">
                             <v-card min-width="100%">
                                 <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
+                                    Followers (last 30 days)
                                     <v-spacer></v-spacer>
                                     <div class="icons text-end">
                                         <span class="custom_icon bg2"><v-icon class="title" color="#1788F9">mdi-account-clock-outline</v-icon></span>
                                     </div>
                                 </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
+                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ userProfile.user_platform_meta.follower_count }}</strong></v-card-text>
                                 <v-card-actions class="pl-5">
                                     <span class="success--text mr-2">
                                         <v-icon color="success" small>mdi-arrow-up</v-icon>13.8%
@@ -55,13 +55,13 @@
                         <v-col class="d-flex" cols="3">
                             <v-card min-width="100%">
                                 <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
+                                    Total Likes (last 30 days)
                                     <v-spacer></v-spacer>
                                     <div class="icons text-end">
                                         <span class="custom_icon bg3"><v-icon class="title" color="primary">mdi-heart</v-icon></span>
                                     </div>
                                 </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
+                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ data.countLastLikes}}</strong></v-card-text>
                                 <v-card-actions class="pl-5">
                                     <span class="success--text mr-2">
                                         <v-icon color="success" small>mdi-arrow-down</v-icon>13.8%
@@ -73,13 +73,13 @@
                         <v-col class="d-flex" cols="3">
                             <v-card min-width="100%">
                                 <v-card-title class="overline1">
-                                    Media Posts (last 30 days)
+                                    Total Comments (last 30 days)
                                     <v-spacer></v-spacer>
                                     <div class="icons text-end">
                                         <span class="custom_icon bg4"><v-icon color="#FDBA2C" class="title">mdi-tooltip</v-icon></span>
                                     </div>
                                 </v-card-title>
-                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">17.1K</strong></v-card-text>
+                                <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ data.countLastComments }}</strong></v-card-text>
                                 <v-card-actions class="pl-5">
                                     <span class="error--text mr-2">
                                         <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
@@ -166,12 +166,11 @@
                 proposal: false,
                 touchPoint: false,
                 posts : [],
-                stats : []
+                data : []
 
             }
         },
         computed:{
-
 
         },
         mounted() {
@@ -183,9 +182,9 @@
 
             }),
            async postsData() {
+                this.data = await this.getPost(this.userProfile.id);
 
-                let getPosts= await this.getPost(this.userProfile.id);
-                this.posts = getPosts;
+                this.posts = this.data.posts;
                 console.log(this.posts,"posts");
 
             }

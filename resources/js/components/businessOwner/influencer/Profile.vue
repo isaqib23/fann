@@ -124,7 +124,7 @@
             return  {
                 youtube : null,
                 instagram : null,
-                selectedPlatform : 1,
+                selectedPlatform : 2,
                 rating: 3,
                 items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
                 show: true,
@@ -187,6 +187,7 @@
                     this.profile = '';
                     this.profile = this.youtube;
                 }
+
 
             }
         }

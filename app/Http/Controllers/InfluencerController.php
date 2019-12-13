@@ -122,31 +122,44 @@ class InfluencerController extends Controller
 
     public function getPosts(Request $request)
     {
-//        dd($request);
-        //provider access token from platform
-        $influencer = $this->userPlatformRepository->findByField('id',$request->id)->first();
-//        dd($influencer);
-        if($influencer->provider == "instagram") {
-            $this->instagramService->setAccessToken($influencer->access_token);
-            $posts = $this->instagramService->getPosts();
 
+        $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
 
-            $today = Carbon::today()->subDays(30)->format("d-m-Y");
+//        if($influencer->provider == "instagram") {
+        $this->instagramService->setAccessToken($influencer->access_token);
+        $posts = $this->instagramService->getPosts();
 
+        $postCollection = collect($posts);
 
-            $lastPosts = $posts->filter( function ( $post, $key ) use( $today ) {
-                return date("d-m-Y", $post->created_time ) > $today ;
-            });
-//            dd( $lastPosts );
+        $today = Carbon::today()->subDays(180)->format("d-m-Y");
 
-            return response()->json([
-                'posts' => $posts
-            ]);
-        }
+        $lastPosts = $postCollection->filter(function ($post, $key) use ($today) {
+            if (strtotime(date("d-m-Y", $post->created_time)) > strtotime($today)) {
+                return $post;
+            }
+        });
+//            dd($lastPosts);
+        $data = $postCollection->map(function ($post) {
+            return [
+                'likes' => $post->likes->count,
+                'comments' => $post->comments->count
+            ];
+        });
+//
+        $lastLikes = $data->sum('likes');
+        $lastComments = $data->sum('comments');
 
-        $this->youtubeService->setAccessToken(json_decode($influencer->access_token, true));
-//        dd($this->youtubeService->getChannelsList());
+        return response()->json([
+            'posts' => $posts,
+            'countLatestPosts' => count($lastPosts),
+            'countLastLikes' => $lastLikes,
+            'countLastComments' => $lastComments
 
-
+        ]);
     }
+        public function getYoutubeVideos(Request $request)
+        {
+            $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
+            $videos = $this->youtubeService->getListSearch('video');
+         }
 }

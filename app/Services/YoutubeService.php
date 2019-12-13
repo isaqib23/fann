@@ -84,8 +84,20 @@ class YoutubeService
     {
         $youtube = new \Google_Service_YouTube($this->google);
         $queryParams = [
-            'mine' => true
+            'forUsername' => 'GoogleDevelopers'
         ];
-        return $youtube->channels->listChannels('contentOwnerDetails,snippet,contentDetails,statistics', array('mine' => $queryParams));
+        return $youtube->channels->listChannels('snippet,contentDetails,statistics,invideoPromotion', $queryParams);
     }
+
+    public function getListSearch( $type ){
+        $youtube = new \Google_Service_YouTube($this->google);
+        $queryParams = [
+            'forMine' => true,
+            'maxResults' => 25,
+            'q' => 'fun',
+            'type' => 'video'
+        ];
+        return $youtube->search->listSearch('snippet', $queryParams);
+    }
+
 }

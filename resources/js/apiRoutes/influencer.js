@@ -2,7 +2,8 @@ let influencer = {
     'url' : 'influencer',
 
     getProfile : 'getProfile',
-    getPosts : 'getPosts'
+    getPosts : 'getPosts',
+    getYoutubeVideos : 'getYoutubeVideos'
 
 };
 

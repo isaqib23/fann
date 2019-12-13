@@ -7,6 +7,7 @@ import { api } from '~/config'
 export const state = {
         profile: null,
         posts : null,
+        youtubeVideos : null
 }
 
 /**
@@ -19,6 +20,9 @@ export const mutations = {
     setPosts(state, payload) {
       state.posts = payload
     },
+    setYoutubeVideos(state, payload) {
+        state.youtubeVideos = payload;
+    }
 }
 
 /**
@@ -35,6 +39,11 @@ export const actions = {
         let response = await influencer.getPosts({"id":payload});
         commit('setPosts', response);
         return response;
+    },
+    async getVideos({commit},payload){
+         let response = await influncer.getVideos({"id":payload});
+         commit('setYoutubeVideos',response);
+         return response;
     }
 }
 
@@ -44,7 +53,8 @@ export const actions = {
  */
 export const getters = {
     profile:state => state.profile,
-    posts:state => state.posts
+    posts:state => state.posts,
+    youtubeVideos:state => state.youtubeVideos
 }
 
 /**
@@ -65,10 +75,19 @@ let influencer = class {
     static getPosts(payload) {
         return axios.put(api.path('influencer.getPosts'),payload)
             .then(resp => {
-                    return resp.data.posts;
+                    return resp.data;
                 })
             .catch(err => {
                 return err.response.data.errors;
+            });
+    }
+    static getVideos(payload){
+        return axios.put(api.path('influncer.getYoutubeVideos'),payload)
+            .then(resp => {
+                return resp.data;
+            })
+            .catch(err =>{
+               return err.response.data.errors;
             });
     }
 }
