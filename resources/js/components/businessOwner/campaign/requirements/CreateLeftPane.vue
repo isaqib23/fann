@@ -8,7 +8,7 @@
                     </v-card-title>
 
                     <v-textarea
-                        :v-model="(campaignInformation != null) ? campaignInformation.description : null"
+                        v-model="description"
                         label="Write your campaign description here"
                         auto-grow
                         outlined
@@ -127,26 +127,24 @@
                                 </v-flex>
                             </v-layout>
 
-                            <v-layout row wrap pl-3 pr-3 mt-3>
-                                <v-flex lg4 sm4 m4 pr-3 class="text-center">
-                                    <MultiImageInput v-model="touchPoint.images">
-                                        <div slot="activator">
-                                            <v-avatar size="40" v-ripple v-if="!touchPoint.images" class="mb-3" tile>
-                                                <v-icon class="display-1">mdi-image-filter</v-icon>
-                                            </v-avatar>
-                                            <v-avatar size="40" v-else class="mb-3" tile>
-                                                <v-img
-                                                    class="white--text align-end"
-                                                    :src="touchPoint.images.imageURL" alt="avatar">
-                                                </v-img>
-                                            </v-avatar>
-                                        </div>
-                                    </MultiImageInput>
-                                </v-flex>
-                                <v-flex lg8 sm8 m8 pl-3>
-                                    <v-btn height="38" depressed block class="text-capitalize" color="primary">Upload Images</v-btn>
-                                </v-flex>
-                            </v-layout>
+                            <MultiImageInput v-model="touchPoint.images">
+                                <v-layout row wrap pl-3 pr-3 mt-3 slot="activator">
+                                    <v-flex lg4 sm4 m4 pr-3 class="text-center">
+                                        <v-avatar size="40" v-ripple v-if="touchPoint.images.length == 0" class="mb-3" tile>
+                                            <v-icon class="display-1">mdi-image-filter</v-icon>
+                                        </v-avatar>
+                                        <v-avatar size="40" v-else class="mb-3" tile>
+                                            <v-img
+                                                class="white--text align-end"
+                                                :src="touchPoint.images.length > 0 ? touchPoint.images[0].imageURL : ''" alt="avatar">
+                                            </v-img>
+                                        </v-avatar>
+                                    </v-flex>
+                                    <v-flex lg8 sm8 m8 pl-3>
+                                        <v-btn height="38" depressed block class="text-capitalize" color="primary">Choose Images</v-btn>
+                                    </v-flex>
+                                </v-layout>
+                            </MultiImageInput>
 
                             <v-layout row wrap pl-3 pr-3 mt-5>
                                 <v-flex lg6 sm6 m6 pr-3>
@@ -271,6 +269,7 @@
                 guideLines            : 1,
                 model                 : 0,
                 e1                    : 0,
+                description       : null,
                 dispatchProduct       : null,
                 dispatchProductVariant: [],
                 kind                  : '1',
@@ -364,7 +363,6 @@
                 if(this.touchPoints.length > 0 && !_.isNil(this.touchPoints[id])){
                     this.touchPoint = this.touchPoints[id];
                     this.resetTouchPoint(this.touchPoints[id]);
-                    console.log(this.touchPoint,'this.touchPoint this.touchPoint');
                     await this.getShopifyProduct({
                         product_id:this.touchPoint.dispatchProduct.productId,
                         shop: localStorage.selectedShop
@@ -375,7 +373,6 @@
                 }
             },
             async addTouchPoint() {
-                console.log(this.campaignInformation, 'campaignInformation campaignInformation');
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
@@ -413,15 +410,12 @@
             },
             setPayment() {
                 if (this.paymentMethod.paymentType === 'barter' && this.paymentMethod.additionalPayAsAmount === false) {
-                    console.log('from if');
                     this.disabledPaid = true;
                     this.disabledBarter = false;
                 } else if (this.paymentMethod.paymentType === 'paid' && this.paymentMethod.additionalPayAsBarter === false) {
-                    console.log('from else if');
                     this.disabledBarter = true;
                     this.disabledPaid = false;
                 } else {
-                    console.log('from else');
                     this.disabledBarter = false;
                     this.disabledPaid = false;
                 }
@@ -484,7 +478,6 @@
             },
             'touchPoint.images': {
                 handler: function (val) {
-                    return false;
                     if (!val.file) {
                         return;
                     }
@@ -496,12 +489,14 @@
                         let reader = new FileReader();
 
                         reader.onload = function (e) {
-                            readFiles[i] = {
+                            let imgObject = {
                                 name: file.name,
                                 size: file.size,
                                 type: file.type,
-                                src: e.target.result
-                            }
+                                src: e.target.result,
+                                imageURL: URL.createObjectURL(file)
+                            };
+                            readFiles.push(imgObject);
                         };
                         reader.readAsDataURL(file);
                     }
@@ -533,6 +528,26 @@
                     this.setTouchPoint(['instaStoryLink', val]);
                 },
                 immediate: true
+            },
+            'campaignInformation': {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)) {
+                        self.description = val.description;
+                    }
+                },
+                immediate: true,
+                deep:true
+            },
+            'description': {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)) {
+                        self.campaignInformation.description = val;
+                    }
+                },
+                immediate: true,
+                deep:true
             },
             'shopifyProduct' (val) {
                 if(!_.isNil(val.details)) {

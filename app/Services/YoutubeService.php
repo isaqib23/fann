@@ -67,6 +67,11 @@ class YoutubeService
     public function setAccessToken($token)
     {
         $this->google->setAccessToken($token);
+
+        if($this->google->isAccessTokenExpired()){
+            $this->google->fetchAccessTokenWithRefreshToken($this->google->getRefreshToken());
+            //Update in DB $this->google->getAccessToken();
+        }
     }
 
     public function getUserInfo(){
