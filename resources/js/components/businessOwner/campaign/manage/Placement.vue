@@ -194,7 +194,9 @@
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="float-right">
                                                 <div class="d_block">
-                                                    <v-icon class="custom_font black--text px-1">mdi-chat</v-icon>
+                                                    <v-btn small icon @click="openChatBox(item)">
+                                                        <v-icon class="custom_font black--text px-1">mdi-chat</v-icon>
+                                                    </v-btn>
                                                     <v-icon class="custom_font black--text px-1">cancel</v-icon>
                                                     <v-icon class="custom_font black--text px-1">mdi-refresh</v-icon>
                                                 </div>
@@ -234,14 +236,15 @@
                             </v-list-item-content>
                         </v-list-item>
                         </v-card>
+
                     </template>
                 </v-list>
         </v-flex>
     </v-layout>
-
 </template>
 
 <script>
+    import {mapActions, mapGetters} from 'vuex';
 
     export default {
         data: () => ({
@@ -319,38 +322,62 @@
             ],
             items: [
                 {
+                    id: 1,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
                     title: 'Brunch this weekend?',
                 },
                 { divider: true, inset: true },
                 {
+                    id: 2,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg',
                     title: 'Summer BBQ',
                 },
                 { divider: true, inset: true },
                 {
+                    id: 3,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg',
                     title: 'Oui oui',
                 },
                 { divider: true, inset: true },
                 {
+                    id: 4,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg',
                     title: 'Birthday gift',
                 },
                 { divider: true, inset: true },
                 {
+                    id:5,
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
                     title: 'Recipe to try',
                 },
             ]
-        })
+        }),
+        computed : {
+            ...mapGetters({
+                chatBox : 'campaign/chatBox'
+            })
+        },
+        methods: {
+            ...mapActions({
+                saveChatBox : 'campaign/saveChatBox'
+             }),
+            openChatBox(item) {
+                let find = _.find(this.chatBox, function (obj) {
+                    return obj.id === item.id;
+                });
+                if (_.isEmpty(find) && _.size(this.chatBox) < 3) {
+                    this.saveChatBox(item);
+                }
+            }
+        }
     }
 </script>
 <style scoped>
+
     >>>.v-rating .v-icon{
         padding:0px;
     }
-    >>>.list_cards .v-avatar{
+    >>>.list_cards .v-avatar {
         border-radius: 10px !important;
     }
     >>>.v-badge__badge{
