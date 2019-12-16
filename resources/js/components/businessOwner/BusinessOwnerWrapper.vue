@@ -15,7 +15,7 @@
                     :propItem="box"
                     :minBottom="(3 - boxIndex)*(3 - boxIndex) * 20"
                     v-on:close-window="closeWindow"
-                    :style="$vuetify.breakpoint.smAndUp ? {right: boxIndex*20 +'%'} : {right: boxIndex*0 +'%'}"
+                    :style="$vuetify.breakpoint.smAndUp ? {right: boxIndex*19 +'%'} : {right: boxIndex*0 +'%'}"
                 >
                 </chatWindow>
             </v-container>
@@ -68,11 +68,6 @@ export default {
         navToggle() {
             this.mini = !this.mini
         }
-    },
-    watch: {
-        // chatBox: function (val) {
-        //     this.listOfChatBox = val;
-        // }
     }
 }
 </script>
