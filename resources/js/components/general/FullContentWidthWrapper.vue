@@ -40,6 +40,9 @@
             TopMenu,
             AppFooter
         },
+        mounted(){
+            this.chatBoxes();
+        },
         computed : {
             ...mapGetters({
                 chatBox : 'campaign/chatBox'
@@ -49,6 +52,9 @@
             ...mapActions({
                 deleteChatBox : 'campaign/deleteChatBox'
             }),
+            chatBoxes(){
+                this.listOfChatBox = this.chatBox;
+            },
             closeWindow(e) {
                 let toRemove = _.findIndex(this.listOfChatBox, function (obj) {
                     return obj.id === e.chatBox.id;
@@ -61,9 +67,9 @@
             }
         },
         watch: {
-            chatBox: function (val) {
-                this.listOfChatBox = val;
-            }
+            // chatBox: function (val) {
+            //     this.listOfChatBox = val;
+            // }
         }
     }
 </script>

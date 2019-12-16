@@ -29,8 +29,8 @@
 import AppNav from './shared/AppNav'
 import TopMenu from './shared/TopMenu'
 import AppFooter from './shared/AppFooter'
-import chatWindow from  '../general/ChatWindow';
-import {mapActions, mapGetters} from 'vuex';
+import { mapGetters,mapActions } from "vuex";
+import chatBox from  '../general/ChatWindow';
 
 export default {
     data: () => ({
@@ -38,10 +38,13 @@ export default {
         listOfChatBox  : []
     }),
     components: {
-        chatWindow : chatWindow,
+        chatWindow : chatBox,
         AppNav,
         TopMenu,
         AppFooter
+    },
+    mounted() {
+        this.chatBoxes();
     },
     computed : {
         ...mapGetters({
@@ -52,6 +55,9 @@ export default {
         ...mapActions({
             deleteChatBox : 'campaign/deleteChatBox'
         }),
+        chatBoxes(){
+            this.listOfChatBox = this.chatBox;
+        },
         closeWindow(e) {
             let toRemove = _.findIndex(this.listOfChatBox, function (obj) {
                 return obj.id === e.chatBox.id;
@@ -64,9 +70,9 @@ export default {
         }
     },
     watch: {
-        chatBox: function (val) {
-            this.listOfChatBox = val;
-        }
+        // chatBox: function (val) {
+        //     this.listOfChatBox = val;
+        // }
     }
 }
 </script>
