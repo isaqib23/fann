@@ -2,23 +2,23 @@
  * Initial state
  */
 export const state = {
-  campaignObjective: null,
-  campaignPlacement: null,
-  campaignInformation: null,
-  touchPoint: {
-      caption: null,
-      hashtags: null,
-      mentions: null,
-      guideLines: null,
-      dispatchProduct : null,
-      barterProduct : null,
-      amount : 0,
-      campaignDescription : null,
-      instaPost : null,
-      instaBioLink : null,
-      instaStory : null,
-      instaStoryLink : null,
-      images : [],
+  campaignObjective               : null,
+  campaignPlacement               : null,
+  campaignInformation             : null,
+  touchPoint                    : {
+      caption                     : null,
+      hashtags                    : null,
+      mentions                    : null,
+      guideLines                  : null,
+      dispatchProduct             : null,
+      barterProduct               : null,
+      amount                      : 0,
+      campaignDescription         : null,
+      instaPost                   : null,
+      instaBioLink                : null,
+      instaStory                  : null,
+      instaStoryLink              : null,
+      images                      : [],
       touchPointConditionalFields : {
           touchPointTitle          : false,
           touchPointInstagramFormat: false,
@@ -30,7 +30,19 @@ export const state = {
           touchPointProduct        : false,
           touchPointBrand          : false
       }
+  },
+  inviteSearchParams        : {
+        niche                   : 0,
+        placement               : null,
+        followers               : null,
+        likes                   : null,
+        eng_rate                : null,
+        gender                  : null,
+        age_range               : null,
+        country                 : null,
+        rating                  : null
   }
+
 }
 
 /**
@@ -40,7 +52,6 @@ export const mutations = {
     setObjective(state, objective) {
         state.campaignObjective = objective
     },
-
     setPlacement(state, objective) {
         state.campaignPlacement = objective
     },
@@ -52,7 +63,10 @@ export const mutations = {
     },
     setTouchPointField(state, touchPointFields) {
         state.touchPoint.touchPointConditionalFields = touchPointFields
-    }
+    },
+    setInviteSearchParams(state, [index, val]) {
+        Vue.set(state.inviteSearchParams, index, val)
+    },
 }
 
 /**
@@ -71,9 +85,7 @@ export const actions = {
         return await CampaignAxios.getAllPlacements();
     },
     async savePlacementAndPaymentType({ commit }, payload) {
-
         commit('setPlacement',payload);
-
     },
     async saveTouchPoint({commit, state}) {
 
@@ -89,10 +101,18 @@ export const actions = {
          return response;
     },
     async saveTouchPointField({ commit }, payload) {
-
         commit('setTouchPointField',payload);
-
     },
+    async inviteSearch({commit, state}, payload) {
+
+        _.forEach(payload, function(value, key) {
+            commit('setInviteSearchParams', [key, value]);
+        });
+
+        let response =  await CampaignAxios.getInfluencersToInvite( state.inviteSearchParams );
+
+        console.log(response, "dashy");
+    }
 }
 
 /**
@@ -102,8 +122,8 @@ export const getters = {
     campaignObjective: state => state.campaignObjective,
     campaignPlacement: state => state.campaignPlacement,
     campaignInformation: state => state.campaignInformation,
-    touchPoint: state => state.touchPoint
-
+    touchPoint: state => state.touchPoint,
+    inviteSearchParams: state => state.inviteSearchParams,
 }
 
 /**
@@ -144,6 +164,21 @@ let CampaignAxios = class {
 
     static saveTouchPoint (payload) {
         return axios.post(api.path('campaign.saveTouchPoint'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+    static getInfluencersToInvite (payload) {
+        return axios.post(api.path('user.search'), payload)
             .then(resp => {
                 return {
                     status : 200,

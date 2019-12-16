@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\UserRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,11 +16,11 @@ use App\Contracts\UserDetailRepository;
 use App\Validators\UserDetailValidator;
 
 /**
- * Class UserDetailsController.
+ * Class UserController
  *
- * @package namespace App\Http\Controllers;
+ * @package App\Http\Controllers
  */
-class UserDetailsController extends Controller
+class UserController extends Controller
 {
     /**
      * @var UserDetailRepository
@@ -32,15 +33,26 @@ class UserDetailsController extends Controller
     protected $validator;
 
     /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
      * UserDetailsController constructor.
      *
      * @param UserDetailRepository $repository
      * @param UserDetailValidator $validator
+     * @param UserRepository $userRepository
      */
-    public function __construct(UserDetailRepository $repository, UserDetailValidator $validator)
+    public function __construct(
+        UserDetailRepository $repository,
+        UserDetailValidator $validator,
+        UserRepository $userRepository
+    )
     {
         $this->repository = $repository;
         $this->validator  = $validator;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -202,5 +214,13 @@ class UserDetailsController extends Controller
         }
 
         return redirect()->back()->with('message', 'UserDetail deleted.');
+    }
+
+    public function search(Request $request)
+    {
+        $response = $this->userRepository->searchByCriteria(
+            $request->all()
+        );
+
     }
 }

@@ -10,7 +10,7 @@
                     <LeftTabs></LeftTabs>
 
                     <v-tab-item>
-                        <CreateLeftPane :touch-point="touchPoint"></CreateLeftPane>
+                        <CreateLeftPane :objective="campaignObjective" :touch-point="touchPoint"></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
                         <InviteLeftPane></InviteLeftPane>
@@ -39,7 +39,7 @@
     import InviteRightPaneListView from './requirements/InviteRightPaneListView';
     import InviteRightPaneGridView from './requirements/InviteRightPaneGridView';
     import Promote from './requirements/Promote';
-    import {mapGetters} from 'vuex';
+    import {mapActions, mapGetters} from 'vuex';
     export default {
         components: {
             LeftTabs: LeftTabs,
@@ -87,10 +87,15 @@
                    instaBioLink         : null,
                    instaStory           : null,
                    instaStoryLink       : null,
-               },
+               }
             }
         },
-        methods: {},
+        methods: {
+            ...mapActions({
+                getCountries: 'settings/getCountries',
+                getNiches: 'settings/getNiches',
+            }),
+        },
         computed: {
             paneClass: function() {
                 return (this.active_tab == 2) ? 'lg12 sm12 xl12 md4 xs12' : 'xl4 lg4 md4 sm12 xs12';
@@ -102,6 +107,10 @@
                 objective: 'campaign/campaignObjective',
                 placement: 'campaign/campaignPlacement'
             })
+        },
+        async mounted() {
+            await this.getNiches();
+            await this.getCountries();
         }
     }
 </script>

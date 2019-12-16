@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -22,4 +23,12 @@ class Placement extends Model implements Transformable
      */
     protected $fillable = [];
 
+    /**
+     * @return HasMany
+     *
+     */
+    public function userPlatforms()
+    {
+        return $this->hasMany(UserPlatform::class);
+    }
 }

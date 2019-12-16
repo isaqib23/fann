@@ -33,6 +33,7 @@ use App\Contracts\StateRepository;
 use App\Contracts\UserCreditCardRepository;
 use App\Contracts\UserPlatformRepository;
 use App\Contracts\UserDetailRepository;
+use App\Contracts\UserRepository;
 use App\Repositories\CampaignInviteRepositoryEloquent;
 use App\Repositories\CampaignObjectiveCategoryRepositoryEloquent;
 use App\Repositories\CampaignObjectiveRepositoryEloquent;
@@ -64,6 +65,7 @@ use App\Repositories\StateRepositoryEloquent;
 use App\Repositories\UserCreditCardRepositoryEloquent;
 use App\Repositories\UserPlatformRepositoryEloquent;
 use App\Repositories\UserDetailRepositoryEloquent;
+use App\Repositories\UserRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -120,6 +122,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(InfluencerJobRepository::class, InfluencerJobRepositoryEloquent::class);
         $this->app->bind(InfluencerEntireStatisticsRepository::class, InfluencerEntireStatisticsRepositoryEloquent::class);
         $this->app->bind(InfluencerCampaignStatisticsRepository::class, InfluencerCampaignStatisticsRepositoryEloquent::class);
+        $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
         //:end-bindings:
     }
 }

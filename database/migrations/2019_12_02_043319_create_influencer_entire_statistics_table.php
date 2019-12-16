@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateInfluencerStatisticsTable.
+ * Class CreateInfluencerEntireStatisticsTable
  */
-class CreateInfluencerStatisticsTable extends Migration
+class CreateInfluencerEntireStatisticsTable extends Migration
 {
 	/**
 	 * Run the migrations.
