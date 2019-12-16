@@ -161,5 +161,6 @@ class InfluencerController extends Controller
         {
             $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
             $videos = $this->youtubeService->getListSearch('video');
+            dd($videos);
          }
 }

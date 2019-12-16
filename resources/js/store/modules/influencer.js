@@ -20,7 +20,7 @@ export const mutations = {
     setPosts(state, payload) {
       state.posts = payload
     },
-    setYoutubeVideos(state, payload) {
+    setVideos(state, payload) {
         state.youtubeVideos = payload;
     }
 }
@@ -40,9 +40,9 @@ export const actions = {
         commit('setPosts', response);
         return response;
     },
-    async getVideos({commit},payload){
-         let response = await influncer.getVideos({"id":payload});
-         commit('setYoutubeVideos',response);
+    async getYoutubeVideos({commit},payload){
+         let response = await influencer.getVideos({"id":payload});
+         commit('setVideos',response);
          return response;
     }
 }
@@ -82,7 +82,7 @@ let influencer = class {
             });
     }
     static getVideos(payload){
-        return axios.put(api.path('influncer.getYoutubeVideos'),payload)
+        return axios.put(api.path('influencer.getYoutubeVideos'),payload)
             .then(resp => {
                 return resp.data;
             })

@@ -66,5 +66,6 @@ return [
     'youtube' => [
         'client_credentials' => env('YOUTUBE_CLIENT_CREDENTIALS_PATH'),
         'redirect_uri' => env('YOUTUBE_REDIRECT_URI'),
+        'youtube_api' => env('YOUTUBE_API_KEY'),
     ]
 ];

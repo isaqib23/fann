@@ -33,6 +33,7 @@ class YoutubeService
             'https://www.googleapis.com/auth/youtubepartner-channel-audit',
         ]);
         $this->google->setIncludeGrantedScopes(true);
+        $this->google->setDeveloperKey(env('YOUTUBE_API_KEY'));
         $this->google->setRedirectUri(env('YOUTUBE_REDIRECT_URI'));
 
     }
@@ -67,6 +68,8 @@ class YoutubeService
     public function setAccessToken($token)
     {
         $this->google->setAccessToken($token);
+
+
     }
 
     public function getUserInfo(){
@@ -91,10 +94,10 @@ class YoutubeService
 
     public function getListSearch( $type ){
         $youtube = new \Google_Service_YouTube($this->google);
+
         $queryParams = [
             'forMine' => true,
             'maxResults' => 25,
-            'q' => 'fun',
             'type' => 'video'
         ];
         return $youtube->search->listSearch('snippet', $queryParams);

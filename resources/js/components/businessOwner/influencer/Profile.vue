@@ -165,7 +165,7 @@
             }),
             async profileData() {
                 let self = this;
-                let pros = await this.getProfile(16);
+                let pros = await this.getProfile(8);
 
                 _.forEach(pros, function(value) {
                     if(value.provider === 'instagram'){
