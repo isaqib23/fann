@@ -203,4 +203,24 @@ class UserDetailsController extends Controller
 
         return redirect()->back()->with('message', 'UserDetail deleted.');
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function searchInfluencers(Request $request)
+    {
+        $response = $this->userRepository->searchInfluencersByCriteria(
+            $request
+        );
+
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'message' => 'Influencer data found',
+                'details' => $response,
+            ]);
+        }
+    }
+
 }

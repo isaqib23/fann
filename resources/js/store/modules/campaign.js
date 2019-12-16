@@ -2,26 +2,27 @@
  * Initial state
  */
 export const state = {
-  campaignObjective: null,
-  campaignPlacement: null,
-  campaignInformation: null,
-  shopifyProduct: null,
-  touchPoints        : [],
-  touchPoint: {
-      id                   : null,
-      caption              : null,
-      hashtags             : null,
-      mentions             : null,
-      guideLines           : [],
-      dispatchProduct      : {},
-      barterProduct        : {},
-      amount               : 0,
-      campaignDescription  : null,
-      images               : [],
-      instaPost            : null,
-      instaBioLink         : null,
-      instaStory           : null,
-      instaStoryLink       : null,
+
+  campaignObjective               : null,
+  campaignPlacement               : null,
+  campaignInformation             : null,
+  shopifyProduct                  : null,
+  touchPoints                     : [],
+  influencerSearchResults         : null,
+  touchPoint                    : {
+      caption                     : null,
+      hashtags                    : null,
+      mentions                    : null,
+      guideLines                  : null,
+      dispatchProduct             : null,
+      barterProduct               : null,
+      amount                      : 0,
+      campaignDescription         : null,
+      instaPost                   : null,
+      instaBioLink                : null,
+      instaStory                  : null,
+      instaStoryLink              : null,
+      images                      : [],
       touchPointConditionalFields : {
           touchPointTitle          : false,
           touchPointInstagramFormat: false,
@@ -37,13 +38,14 @@ export const state = {
   inviteSearchParams          : {
         niche                   : 0,
         placement               : null,
-        followers               : null,
-        likes                   : null,
+        followers               : [0, 0],
+        likes                   : [0, 0],
         eng_rate                : null,
         gender                  : null,
         age_range               : null,
         country                 : null,
-        rating                  : null
+        rating                  : null,
+        page                    : 1,
   },
   listOfChatBox  : [],
 }
@@ -83,6 +85,9 @@ export const mutations = {
     updateCampaignInformation(state, [index, val]) {
         Vue.set(state.campaignInformation, index, val)
     },
+    setInfluencerSearchResults(state, info) {
+        state.influencerSearchResults = info
+    },
     setChatBox(state, payload) {
         state.listOfChatBox.push(payload)
     },
@@ -110,7 +115,6 @@ export const actions = {
     async savePlacementAndPaymentType({ commit }, payload) {
         let response = await CampaignAxios.savePlacementAndPaymentType(payload);
         commit('setPlacement',response);
-
     },
     async saveTouchPoint({commit, state}) {
 
@@ -162,7 +166,14 @@ export const actions = {
             commit('setInviteSearchParams', [key, value]);
         });
 
-        let response = await CampaignAxios.getInfluencersToInvite(state.inviteSearchParams);
+        let response =  await CampaignAxios.getInfluencersToInvite( state.inviteSearchParams );
+
+        if (response.status == 200) {
+            commit('setInfluencerSearchResults', response.details);
+        }
+    },
+    async collectInvitation({commit, state}, payload) {
+        let response =  await CampaignAxios.saveInvitation( payload );
     },
     saveChatBox({commit}, payload) {
         commit('setChatBox', payload);
@@ -176,14 +187,16 @@ export const actions = {
  * Getters
  */
 export const getters = {
-    campaignObjective   : state => state.campaignObjective,
-    campaignPlacement   : state => state.campaignPlacement,
-    campaignInformation : state => state.campaignInformation,
-    chatBox             : state => state.listOfChatBox,
-    touchPoint          : state => state.touchPoint,
-    inviteSearchParams  : state => state.inviteSearchParams,
-    touchPoints         : state => state.touchPoints,
-    shopifyProduct      : state => state.shopifyProduct
+    campaignObjective       : state => state.campaignObjective,
+    campaignPlacement       : state => state.campaignPlacement,
+    campaignInformation     : state => state.campaignInformation,
+    chatBox                 : state => state.listOfChatBox,
+    touchPoint              : state => state.touchPoint,
+    inviteSearchParams      : state => state.inviteSearchParams,
+    influencerSearchResults : state => state.influencerSearchResults,
+    touchPoints             : state => state.touchPoints,
+    shopifyProduct          : state => state.shopifyProduct
+
 }
 
 /**
@@ -214,7 +227,6 @@ let CampaignAxios = class {
     static getAllPlacements () {
         return axios.get(api.path('campaign.allPlacements'))
             .then(resp => {
-                console.info('resp', resp);
                 return resp.data;
             })
             .catch(err => {
@@ -237,7 +249,6 @@ let CampaignAxios = class {
                 };
             });
     }
-
     static getCampaignTouchPoint (payload) {
         return axios.post(api.path('campaign.getCampaignTouchPoint'), payload)
             .then(resp => {
@@ -282,6 +293,38 @@ let CampaignAxios = class {
                 return {
                     status : err.response.status,
                     details : []
+                };
+            });
+    }
+
+    static getInfluencersToInvite (payload) {
+        return axios.post(api.path('user.searchInfluencers'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+
+    static saveInvitation (payload) {
+        return axios.post(api.path('campaign.saveInvitation'), payload)
+            .then(resp => {
+                return {
+                    status: 200,
+                    details: resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status: err.response.status,
+                    details: []
                 };
             });
     }

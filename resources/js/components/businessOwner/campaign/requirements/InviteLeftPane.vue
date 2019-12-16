@@ -14,10 +14,9 @@
 
                 <div class="kind_group">
                     <div class="subtitle-2 mt-0 mb-2">What kind of Influencers you are looking for?</div>
-                    <v-radio-group v-model="kind" row class="mt-0">
-                        <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="radio-1" active-class="kind_active"></v-radio>
-                        <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="radio-2" active-class="kind_active"></v-radio>
-
+                    <v-radio-group v-model="inviteSearchParams.placement" row class="mt-0">
+                        <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="instagram" active-class="kind_active"></v-radio>
+                        <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="youtube" active-class="kind_active"></v-radio>
                     </v-radio-group>
                 </div>
 
@@ -144,31 +143,35 @@
         },
         data: () => {
            return  {
-               kind: null,
-               min: 0,
-               max: 1000,
-               range: [100, 600],
-               rating:3,
-               selected: null,
-               countries : []
+               min                : 0,
+               max                : 1000,
+               range              : [0, 0],
+               rating             : 3,
+               items              : []
             }
         },
+        computed: {
+            ...mapGetters({
+                countries: 'settings/countries',
+                niches: 'settings/niches',
+                inviteSearchParams: 'campaign/inviteSearchParams',
+            })
+        },
+
         methods: {
-            getCountries: function(){
-                let self = this;
-                self.busy = true;
-                axios
-                    .get(api.path('countryList'))
-                    .then(function(resp){
-                        self.countries = resp.data.countries;
-                        console.log(self.countries);
-                    });
-            },
-            getFlag(name){
-                return '/images/flags/'+name;
+            ...mapActions({
+                inviteSearch : 'campaign/inviteSearch'
+            }),
+            getFlag(name) {
+                return '/images/flags/' + name;
             },
             imageUrlAlt(event) {
                 event.target.src = "/images/placeholder.png"
+            },
+            searchResults () {
+                this.inviteSearch (
+                    this.inviteSearchParams
+                );
             }
         },
         mounted() {

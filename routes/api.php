@@ -93,9 +93,16 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::get('allPlacements', 'CampaignsController@getAllPlacements');
         Route::post('save', 'CampaignsController@store');
         Route::post('saveTouchPoint', 'CampaignsController@saveTouchPoint');
+        Route::post('saveInvitation', 'CampaignsController@saveInvitation');
         Route::put('savePlacementAndPaymentType', 'CampaignsController@savePlacementAndPaymentType');
         Route::post('getCampaignTouchPoint', 'CampaignsController@getCampaignTouchPoint');
         Route::post('getCampaignObjective', 'CampaignsController@getCampaignObjective');
+
+    });
+
+    // ----- User related api's
+    Route::prefix('/user')->group(function () {
+        Route::post('searchInfluencers', 'UserController@searchInfluencers');
     });
 
 

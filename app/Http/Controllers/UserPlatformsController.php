@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\UserMetaRepository;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -179,6 +180,9 @@ class UserPlatformsController extends Controller
         return $metaObject;
     }
 
+    /**
+     * @return int
+     */
     private function getYoutubeFollowers()
     {
         $followers = 0;
@@ -192,20 +196,19 @@ class UserPlatformsController extends Controller
         return $followers;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function getUserPlatforms(Request $request)
     {
-        $platforms = $this->userPlatformRepository->all();
-
-        foreach ($platforms as $key => $value){
-            $platforms[$key]->userPlatforms = $this->userMetaRepository->findWhere([
-                'user_id'    => auth()->user()->id,
-                'provider'   => $value->name,
-            ])->first();
-        }
+        $platforms = $this->placementRepository->with(['userPlatforms' => function($query){
+            $query->with(['userPlatformMeta']);
+        }])->all();
 
         return response()->json([
             'details' => $platforms
         ]);
-
     }
+
 }
