@@ -160,7 +160,7 @@ class InfluencerController extends Controller
         public function getYoutubeVideos(Request $request)
         {
             $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
-            $videos = $this->youtubeService->getListSearch('video');
+            $videos = $this->youtubeService->getChannelsList();
             dd($videos);
          }
 }

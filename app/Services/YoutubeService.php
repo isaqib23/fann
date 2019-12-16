@@ -58,7 +58,6 @@ class YoutubeService
     {
         $tokenObject = $this->google->authenticate($code);
         $this->setAccessToken($tokenObject);
-
         return $tokenObject;
     }
 
@@ -68,8 +67,9 @@ class YoutubeService
     public function setAccessToken($token)
     {
         $this->google->setAccessToken($token);
-
-
+        if($this->google->isAccessTokenExpired()){
+            $this->google->fetchAccessTokenWithRefreshToken($this->google->getRefreshToken());
+        }
     }
 
     public function getUserInfo(){
@@ -86,13 +86,15 @@ class YoutubeService
     public function getChannelsList()
     {
         $youtube = new \Google_Service_YouTube($this->google);
+        //dd($this->getUserInfo());
         $queryParams = [
-            'forUsername' => 'GoogleDevelopers'
+//            'forUsername' => 'GoogleDevelopers'
+              'mine' => true
         ];
-        return $youtube->channels->listChannels('snippet,contentDetails,statistics,invideoPromotion', $queryParams);
+        return $youtube->channels->listChannels('snippet,contentDetails,statistics', $queryParams);
     }
 
-    public function getListSearch( $type ){
+    public function getListSearch(){
         $youtube = new \Google_Service_YouTube($this->google);
 
         $queryParams = [
