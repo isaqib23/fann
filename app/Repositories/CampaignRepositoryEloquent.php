@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\CampaignTouchPointProduct;
+use App\Transformers\CampaignTransformer;
 use Exception;
 use Illuminate\Support\Str;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -113,32 +114,11 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
         if($campaign->touchPoint) {
             $return = $this->touchPointPresentor($campaign, $return);
         }
+
         return $return;
     }
 
-    /**
-     * @param $touchPoint
-     * @return mixed
-     *
-     */
-    public function touchPointProductPresentor($touchPoint){
 
-        $campaignTouchPointProduct = new CampaignTouchPointProduct();
-
-        $productId = ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $touchPoint->barter_product : $touchPoint->dispatch_product;
-
-        return $campaignTouchPointProduct
-            ->select([
-                'id',
-                'name AS title',
-                'outside_product_id AS productId',
-                'outside_product_link',
-                'outside_product_variant_id',
-                'outside_platform',
-                'outside_product_image AS pImage'
-            ])
-            ->find($productId);
-    }
 
     /**
      * @param $request
@@ -158,70 +138,14 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             ->findWhere(['slug' => $request->input('slug')])
             ->first();
 
-        $campaign = $this->presentor($campaign);
+        $campaign = (new CampaignTransformer)->transform($campaign);
 
         return $campaign;
     }
 
-    /**
-     * @param $campaign
-     * @param array $return
-     * @return array
-     */
-    private function touchPointPresentor($campaign, array $return): array
-    {
-        foreach ($campaign->touchPoint as $key => $touchPoint) {
-            $return['touchPoints'][] = [
-                'id'                => $touchPoint->id,
-                'name'              => $touchPoint->name,
-                'caption'           => $touchPoint->description,
-                'placement_id'      => $touchPoint->placement_id,
-                'hashtags'          => $touchPoint->additional->tags,
-                'mentions'          => $touchPoint->additional->mentions,
-                'guideLines'        => json_decode($touchPoint->additional->guidelines, true),
-                'amount'            => $touchPoint->amount,
-                'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint),
-                'barterProduct'     => ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $this->touchPointProductPresentor($touchPoint) : null,
-                'instaPost'         => null,
-                'instaBioLink'      => null,
-                'instaStory'        => null,
-                'instaStoryLink'    => null,
-                'images'            => [],
-            ];
-        }
-        return $return;
-    }
 
-    /**
-     * @param $campaign
-     * @param array $return
-     * @return array
-     */
-    private function CampaignObjectivePresentor($campaign, array $return): array
-    {
-        $return['campaignObjective'] = [
-            'Objective_id'   => $campaign->objective->id,
-            'name'          => $campaign->objective->slug,
-            'slug'          => $campaign->objective->slug
-        ];
-        return $return;
-    }
 
-    /**
-     * @param $campaign
-     * @param array $return
-     * @return array
-     */
-    private function CampaignPaymentPresentor($campaign, array $return): array
-    {
-        $return['payment'] = [
-            'additionalPayAsAmount'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'barter') ? (boolean)$campaign['payment']->is_primary : false,
-            'additionalPayAsBarter'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'paid') ? (boolean)$campaign['payment']->is_primary : false,
-            'paymentType'               => (!is_null($campaign['payment'])) ? $campaign['payment']->paymentType->slug : null,
-            'platform'                  => (!is_null($campaign['payment'])) ? $campaign['payment']->payment_type_id : null,
-        ];
-        return $return;
-    }
+
 
     /**
      * @param $request
@@ -246,5 +170,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
 
         return $campaign;
     }
+
+
 
 }
