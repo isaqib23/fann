@@ -33,7 +33,19 @@ export const state = {
           touchPointProduct        : false,
           touchPointBrand          : false
       }
-  }
+  },
+  inviteSearchParams          : {
+        niche                   : 0,
+        placement               : null,
+        followers               : null,
+        likes                   : null,
+        eng_rate                : null,
+        gender                  : null,
+        age_range               : null,
+        country                 : null,
+        rating                  : null
+  },
+  listOfChatBox  : [],
 }
 
 /**
@@ -71,6 +83,13 @@ export const mutations = {
     updateCampaignInformation(state, [index, val]) {
         Vue.set(state.campaignInformation, index, val)
     },
+    setChatBox(state, payload) {
+        state.listOfChatBox.push(payload)
+    },
+    delChatBox(state, val) {
+      state.listOfChatBox.splice(val,1);
+    }
+
 }
 
 /**
@@ -138,19 +157,33 @@ export const actions = {
         let response = await CampaignAxios.getCampaignObjective(payload);
         return response.details;
     },
+    async inviteSearch({commit, state}, payload) {
+        _.forEach(payload, function (value, key) {
+            commit('setInviteSearchParams', [key, value]);
+        });
+
+        let response = await CampaignAxios.getInfluencersToInvite(state.inviteSearchParams);
+    },
+    saveChatBox({commit}, payload) {
+        commit('setChatBox', payload);
+    },
+    deleteChatBox({commit}, payload) {
+        commit('delChatBox', payload);
+    }
 }
 
 /**
  * Getters
  */
 export const getters = {
-    campaignObjective: state => state.campaignObjective,
-    campaignPlacement: state => state.campaignPlacement,
-    campaignInformation: state => state.campaignInformation,
-    touchPoint: state => state.touchPoint,
-    touchPoints: state => state.touchPoints,
-    shopifyProduct: state => state.shopifyProduct
-
+    campaignObjective   : state => state.campaignObjective,
+    campaignPlacement   : state => state.campaignPlacement,
+    campaignInformation : state => state.campaignInformation,
+    chatBox             : state => state.listOfChatBox,
+    touchPoint          : state => state.touchPoint,
+    inviteSearchParams  : state => state.inviteSearchParams,
+    touchPoints         : state => state.touchPoints,
+    shopifyProduct      : state => state.shopifyProduct
 }
 
 /**
