@@ -20,7 +20,7 @@
                 <div class="kind_group">
                     <div class="subtitle-2 mt-0 mb-2">What kind of Influencers you are looking for?</div>
                     <v-radio-group v-model="inviteSearchParams.placement" row class="mt-0">
-                        <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="insatgram" active-class="kind_active"></v-radio>
+                        <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="instagram" active-class="kind_active"></v-radio>
                         <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="youtube" active-class="kind_active"></v-radio>
                     </v-radio-group>
                 </div>
@@ -152,24 +152,14 @@
                max                : 1000,
                range              : [0, 0],
                rating             : 3,
-               items              : [],
-               inviteSearchParams : {
-                   niche     : null,
-                   placement : null,
-                   followers :  [0, 0],
-                   likes     :  [0, 0],
-                   eng_rate  : null,
-                   gender    : null,
-                   age_range : null,
-                   country   : null,
-                   rating    : null
-               }
+               items              : []
             }
         },
         computed: {
             ...mapGetters({
                 countries: 'settings/countries',
                 niches: 'settings/niches',
+                inviteSearchParams: 'campaign/inviteSearchParams',
             })
         },
         methods: {

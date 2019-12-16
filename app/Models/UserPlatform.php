@@ -53,7 +53,7 @@ class UserPlatform extends Model implements Transformable
      */
     public function userPlatformMeta()
     {
-        return $this->hasMany(UserPlatformMeta::class);
+        return $this->hasOne(UserPlatformMeta::class);
     }
 
 }

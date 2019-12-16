@@ -5,6 +5,7 @@ export const state = {
   campaignObjective               : null,
   campaignPlacement               : null,
   campaignInformation             : null,
+  influencerSearchResults         : null,
   touchPoint                    : {
       caption                     : null,
       hashtags                    : null,
@@ -34,13 +35,14 @@ export const state = {
   inviteSearchParams          : {
         niche                   : 0,
         placement               : null,
-        followers               : null,
-        likes                   : null,
+        followers               : [0, 0],
+        likes                   : [0, 0],
         eng_rate                : null,
         gender                  : null,
         age_range               : null,
         country                 : null,
-        rating                  : null
+        rating                  : null,
+        page                    : 1,
   },
   listOfChatBox  : [],
 
@@ -68,6 +70,9 @@ export const mutations = {
     setInviteSearchParams(state, [index, val]) {
         Vue.set(state.inviteSearchParams, index, val)
     },
+    setInfluencerSearchResults(state, info) {
+        state.influencerSearchResults = info
+    },
     setChatBox(state, payload) {
         state.listOfChatBox.push(payload)
     },
@@ -93,7 +98,7 @@ export const actions = {
         return await CampaignAxios.getAllPlacements();
     },
     async savePlacementAndPaymentType({ commit }, payload) {
-        commit('setPlacement',payload);
+
     },
     async saveTouchPoint({commit, state}) {
 
@@ -116,7 +121,14 @@ export const actions = {
             commit('setInviteSearchParams', [key, value]);
         });
 
-        let response = await CampaignAxios.getInfluencersToInvite(state.inviteSearchParams);
+        let response =  await CampaignAxios.getInfluencersToInvite( state.inviteSearchParams );
+
+        if (response.status == 200) {
+            commit('setInfluencerSearchResults', response.details);
+        }
+    },
+    async collectInvitation({commit, state}, payload) {
+        let response =  await CampaignAxios.saveInvitation( payload );
     },
     saveChatBox({commit}, payload) {
         commit('setChatBox', payload);
@@ -131,12 +143,14 @@ export const actions = {
  * Getters
  */
 export const getters = {
-    campaignObjective   : state => state.campaignObjective,
-    campaignPlacement   : state => state.campaignPlacement,
-    campaignInformation : state => state.campaignInformation,
-    chatBox             : state => state.listOfChatBox,
-    touchPoint          : state => state.touchPoint,
-    inviteSearchParams  : state => state.inviteSearchParams,
+    campaignObjective       : state => state.campaignObjective,
+    campaignPlacement       : state => state.campaignPlacement,
+    campaignInformation     : state => state.campaignInformation,
+    chatBox                 : state => state.listOfChatBox,
+    touchPoint              : state => state.touchPoint,
+    inviteSearchParams      : state => state.inviteSearchParams,
+    influencerSearchResults : state => state.influencerSearchResults,
+
 }
 
 /**
@@ -167,7 +181,6 @@ let CampaignAxios = class {
     static getAllPlacements () {
         return axios.get(api.path('campaign.allPlacements'))
             .then(resp => {
-                console.info('resp', resp);
                 return resp.data;
             })
             .catch(err => {
@@ -191,7 +204,7 @@ let CampaignAxios = class {
             });
     }
     static getInfluencersToInvite (payload) {
-        return axios.post(api.path('user.search'), payload)
+        return axios.post(api.path('user.searchInfluencers'), payload)
             .then(resp => {
                 return {
                     status : 200,
@@ -202,6 +215,22 @@ let CampaignAxios = class {
                 return {
                     status : err.response.status,
                     details : []
+                };
+            });
+    }
+
+    static saveInvitation (payload) {
+        return axios.post(api.path('campaign.saveInvitation'), payload)
+            .then(resp => {
+                return {
+                    status: 200,
+                    details: resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status: err.response.status,
+                    details: []
                 };
             });
     }

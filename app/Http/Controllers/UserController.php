@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\UserRepository;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -216,11 +217,22 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'UserDetail deleted.');
     }
 
-    public function search(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function searchInfluencers(Request $request)
     {
-        $response = $this->userRepository->searchByCriteria(
-            $request->all()
+        $response = $this->userRepository->searchInfluencersByCriteria(
+            $request
         );
 
+        if (request()->wantsJson()) {
+
+            return response()->json([
+                'message' => 'Influencer data found',
+                'details' => $response,
+            ]);
+        }
     }
 }

@@ -8,6 +8,7 @@ let campaign = {
     allPlacements               : 'allPlacements',
     savePlacementAndPaymentType : 'savePlacementAndPaymentType',
     saveTouchPoint              : 'saveTouchPoint',
+    saveInvitation              : 'saveInvitation',
 };
 
 export default campaign;
