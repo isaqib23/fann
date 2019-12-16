@@ -8,6 +8,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignInviteRepository;
 use App\Models\CampaignInvite;
 use App\Validators\CampaignInviteValidator;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class CampaignInviteRepositoryEloquent.
@@ -34,6 +35,11 @@ class CampaignInviteRepositoryEloquent extends BaseRepository implements Campaig
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws ValidatorException
+     */
     public function store(Request $request)
     {
         return $this->create([
