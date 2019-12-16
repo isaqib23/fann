@@ -31,7 +31,7 @@ export const state = {
           touchPointBrand          : false
       }
   },
-  inviteSearchParams        : {
+  inviteSearchParams          : {
         niche                   : 0,
         placement               : null,
         followers               : null,
@@ -41,7 +41,8 @@ export const state = {
         age_range               : null,
         country                 : null,
         rating                  : null
-  }
+  },
+  listOfChatBox  : [],
 
 }
 
@@ -67,6 +68,13 @@ export const mutations = {
     setInviteSearchParams(state, [index, val]) {
         Vue.set(state.inviteSearchParams, index, val)
     },
+    setChatBox(state, payload) {
+        state.listOfChatBox.push(payload)
+    },
+    delChatBox(state, val) {
+      state.listOfChatBox.splice(val,1);
+    }
+
 }
 
 /**
@@ -104,26 +112,31 @@ export const actions = {
         commit('setTouchPointField',payload);
     },
     async inviteSearch({commit, state}, payload) {
-
-        _.forEach(payload, function(value, key) {
+        _.forEach(payload, function (value, key) {
             commit('setInviteSearchParams', [key, value]);
         });
 
-        let response =  await CampaignAxios.getInfluencersToInvite( state.inviteSearchParams );
-
-        console.log(response, "dashy");
+        let response = await CampaignAxios.getInfluencersToInvite(state.inviteSearchParams);
+    },
+    saveChatBox({commit}, payload) {
+        commit('setChatBox', payload);
+    },
+    deleteChatBox({commit}, payload) {
+        commit('delChatBox', payload);
     }
+
 }
 
 /**
  * Getters
  */
 export const getters = {
-    campaignObjective: state => state.campaignObjective,
-    campaignPlacement: state => state.campaignPlacement,
-    campaignInformation: state => state.campaignInformation,
-    touchPoint: state => state.touchPoint,
-    inviteSearchParams: state => state.inviteSearchParams,
+    campaignObjective   : state => state.campaignObjective,
+    campaignPlacement   : state => state.campaignPlacement,
+    campaignInformation : state => state.campaignInformation,
+    chatBox             : state => state.listOfChatBox,
+    touchPoint          : state => state.touchPoint,
+    inviteSearchParams  : state => state.inviteSearchParams,
 }
 
 /**
