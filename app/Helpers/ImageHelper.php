@@ -17,7 +17,7 @@ class ImageHelper
      * @param int $height
      * @return array
      */
-    public function storeImage($data, $folder, $sub_folder, $format = null, $width =300 ,$height =200)
+    public function storeImage($data, $folder, $sub_folder, $format = null, $width = 300, $height = 200)
     {
         $name   = date('Ymdhms').'_'.$data['name'];
         $folder = strtolower($folder);
@@ -53,7 +53,7 @@ class ImageHelper
      * @param null $width
      * @param null $height
      */
-    public function makeImage($path,$format,$name,$data,$width = null, $height = null)
+    public function makeImage($path, $format, $name, $data, $width = null, $height = null)
     {
         if (env('STORAGE_LOCATION') == 's3') {
             return $this->storeS3($path, $format, $name, $data, $width, $height);
@@ -69,9 +69,9 @@ class ImageHelper
      * @param $width
      * @param $height
      */
-    public function storeS3($path,$format,$name,$data,$width,$height)
+    public function storeS3($path, $format, $name, $data, $width, $height)
     {
-        $img = Image::make($data['src'])->resize(100, 100);
+        $img = Image::make($data['src'])->resize($width, $height);
         Storage::disk('s3')->put($path . '/' . $format . '/' . $name, $img);
     }
 
@@ -84,18 +84,18 @@ class ImageHelper
      * @param $height
      * @return \Intervention\Image\Image
      */
-    public function storeLocal($path,$format,$name,$data,$width,$height)
+    public function storeLocal($path, $format, $name, $data, $width, $height)
     {
-        $pathOriginal = public_path($path).'/'.$format;
+        $pathOriginal = public_path($path) . '/' . $format;
 
         if (!file_exists($pathOriginal)) {
             File::makeDirectory($pathOriginal, 777, true);
         }
 
-        if($format == 'original') {
-            return Image::make($data['src'])->save($pathOriginal.'/'.$name);
+        if ($format == 'original') {
+            return Image::make($data['src'])->save($pathOriginal . '/' . $name);
         }
-        Image::make($data['src'])->resize($width,$height)->save($pathOriginal.'/'.$name);
+        Image::make($data['src'])->resize($width, $height)->save($pathOriginal . '/' . $name);
     }
 
     /**
@@ -104,7 +104,7 @@ class ImageHelper
      * @param $name
      * @return string
      */
-    public function getImage($path,$format,$name)
+    public function getImage($path, $format, $name)
     {
         if (env('STORAGE_LOCATION') == 's3') {
             return Storage::url($path . '/' . $format . '/' . $name);
