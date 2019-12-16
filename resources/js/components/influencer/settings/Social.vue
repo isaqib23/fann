@@ -16,23 +16,23 @@
                             >
                                 <v-card
                                     max-width="285"
-                                    v-on="platform.userPlatforms === null ? { click: () => goToSocialLogin(platform.name) } : {}"
+                                    v-on="platform.userPlatforms === null ? { click: () => goToSocialLogin(platform.slug) } : {}"
                                 >
                                     <v-list-item>
                                         <v-list-item-avatar
-                                            :color="platform.userPlatforms === null ? 'grey' : platform.name != 'instagram' ? 'red' : 'primary'"
+                                            :color="platform.userPlatforms === null ? 'grey' : platform.slug != 'instagram' ? 'red' : 'primary'"
                                             class="mr-2"
                                         >
-                                            <v-icon color="white">mdi-{{platform.name}}</v-icon>
+                                            <v-icon color="white">mdi-{{platform.slug}}</v-icon>
                                         </v-list-item-avatar>
                                         <v-list-item-content>
-                                            <v-list-item-title class="headline text-capitalize">{{platform.name}}</v-list-item-title>
+                                            <v-list-item-title class="headline text-capitalize">{{platform.slug}}</v-list-item-title>
                                             <v-list-item-subtitle>
                                                 {{(platform.userPlatforms === null) ? 'Connected' : 'Not Connected'}}
                                             </v-list-item-subtitle>
                                         </v-list-item-content>
                                         <v-icon
-                                            :color="platform.userPlatforms === null ? 'grey' : platform.name != 'instagram' ? 'success' : 'primary'"
+                                            :color="platform.userPlatforms === null ? 'grey' : platform.slug != 'instagram' ? 'success' : 'primary'"
                                             class="mt-n5"
                                         >mdi-check-circle</v-icon>
                                     </v-list-item>

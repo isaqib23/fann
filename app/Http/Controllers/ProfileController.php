@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Contracts\CompanyRepository;
 use App\Contracts\CompanyUserRepository;
 use Illuminate\Http\Request;
-use App\User;
 use Illuminate\Validation\ValidationException;
 
 class ProfileController extends Controller
@@ -40,7 +39,7 @@ class ProfileController extends Controller
      * Update user
      *
      * @param Request $request
-     * @return App\User
+     * @return App\Models\User;
      * @throws ValidationException
      */
     public function update(Request $request)

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use Faker\Factory as Faker;
 
-class InfluencerStatisticsTableSeeder extends Seeder
+class InfluencerEntireStatisticsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,7 +18,7 @@ class InfluencerStatisticsTableSeeder extends Seeder
             $dt = Carbon::now();
             $dateNow = $dt->toDateTimeString();
 
-            DB::table('influencer_statistics')->insertGetId([
+            DB::table('influencer_entire_statistics')->insertGetId([
                 'platform_id'               => $faker->numberBetween(1,2),
                 'user_id'                   => $faker->numberBetween(11,20),
                 'rating'                    => $faker->randomNumber(2),

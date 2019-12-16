@@ -17,11 +17,20 @@ class CreateUserPlatformsTable extends Migration
 	{
 		Schema::create('user_platforms', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('placement_id');
+            $table->enum('provider', ['instagram', 'youtube']);
+            $table->string('provider_id');
+            $table->string('provider_name');
+            $table->longText('access_token');
+            $table->string('provider_photo');
+            $table->json('meta_json');
 
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('placement_id')->references('id')->on('placements');
 		});
 	}
 

@@ -4,10 +4,11 @@ namespace App\Repositories;
 
 use App\Contracts\CampaignTouchPointMediaRepository;
 use App\Models\CampaignTouchPointMedia;
-use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Container\Container as Application;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Exceptions\ValidatorException;
+use App\Helpers\ImageHelper;
 
 /**
  * Class CampaignTouchPointImageRepositoryEloquent.
@@ -16,6 +17,25 @@ use Prettus\Validator\Exceptions\ValidatorException;
  */
 class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implements CampaignTouchPointMediaRepository
 {
+    /**
+     * @var ImageHelper
+     */
+    private $imageHelper;
+
+    /**
+     * CampaignTouchPointMediaRepositoryEloquent constructor.
+     * @param Application $app
+     * @param ImageHelper $imageHelper
+     */
+    public function __construct(
+        Application $app,
+        ImageHelper $imageHelper
+    )
+    {
+        parent::__construct($app);
+        $this->imageHelper = $imageHelper;
+    }
+
     /**
      * Specify Model class name
      *
@@ -44,7 +64,8 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
         return $this->create([
             'campaign_touch_point_id' => $data['campaign_touch_point_id'],
             'path' => $data['path'],
-            'format' => $data['format']
+            'format' => $data['format'],
+            'name'  => $data['name']
         ]);
     }
 
@@ -56,18 +77,16 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
     public function storeMultiple($data, $touchPoint)
     {
         $touchPoint = is_object($touchPoint) ? $touchPoint->toArray() : $touchPoint;
-        foreach ($data as $key =>  $value)
-        {
-            $path = public_path( env('CAMPAIGN_IMAGES_PATH') .$value['name']);
-            Image::make($value['src'])->save($path);
+        foreach ($data as $key =>  $value) {
+            $storedImage = $this->imageHelper->storeImage($value, 'campaigns', $touchPoint['campaign_id']);
 
             $this->store([
                 'campaign_touch_point_id' => $touchPoint['id'],
-                'path'                    => env('CAMPAIGN_IMAGES_PATH') .$value['name'],
+                'path'                    => $storedImage['path'],
+                'name'                    => $storedImage['name'],
                 'format'                  => 'image'
             ]);
+
         }
     }
-
-
 }
