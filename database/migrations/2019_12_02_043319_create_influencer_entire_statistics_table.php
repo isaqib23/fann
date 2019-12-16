@@ -45,6 +45,8 @@ class CreateInfluencerEntireStatisticsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('influencer_entire_statistics');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('influencer_entire_statistics');
+        Schema::enableForeignKeyConstraints();
 	}
 }

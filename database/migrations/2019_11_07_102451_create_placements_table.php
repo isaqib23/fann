@@ -32,6 +32,8 @@ class CreatePlacementsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('placements');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('placements');
+        Schema::enableForeignKeyConstraints();
 	}
 }

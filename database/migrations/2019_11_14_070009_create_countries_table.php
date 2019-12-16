@@ -32,6 +32,8 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::disableForeignKeyConstraints();
+        Schema::drop('countries');
+        Schema::enableForeignKeyConstraints();
     }
 }

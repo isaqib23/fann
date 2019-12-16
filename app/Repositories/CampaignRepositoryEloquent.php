@@ -42,11 +42,15 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      */
     public function store($request)
     {
-        return $this->create([
-            'name' => $request['name'],
-            'slug' => $this->createSlug($request['name']),
-            'objective_id'  => $request['ObjectiveId']
-        ]);
+        return $this->updateOrCreate(
+            [
+                'id'    => $request['id'],
+            ],
+            [
+                'name' => $request['name'],
+                'slug' => $this->createSlug($request['name']),
+                'objective_id'  => $request['objective_id']
+            ]);
     }
 
     /**

@@ -282,10 +282,24 @@ class CampaignsController extends Controller
      */
     public function savePlacementAndPaymentType(Request $request)
     {
-        $response =  $this->repository->savePlacementAndPayment($request->all());
+        $data = $request->all();
+
+        $this->repository->update(
+            [ 'primary_placement_id' => $data['platform']],
+            $data['campaign_id']
+        );
+
+
+        $data = [
+            'campaign_id'       => $data['campaign_id'],
+            'payment_type_id'   => ($data['paymentType'] == 'barter') ? 2 : 1,
+            'is_primary'        => ($data['paymentType'] == 'barter') ? $data['additionalPayAsAmount'] : $data['additionalPayAsBarter']
+        ];
+
+        $objective = $this->campaignPaymentRepository->store($data);
 
         return response()->json([
-            'details' => $response
+            'details'   => $objective,
         ]);
     }
 
@@ -301,7 +315,7 @@ class CampaignsController extends Controller
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $this->repository->update(
-                [ 'description' => $data['touchPoint']['campaignDescription'] ],
+                [ 'description' => $data['campaignInformation']['description'] ],
                 $data['campaignId']
             );
 
@@ -341,6 +355,32 @@ class CampaignsController extends Controller
 
         return response()->json([
             'details' => $response
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getCampaignTouchPoint(Request $request)
+    {
+        $campaign = $this->repository->getCampaignTouchPointWithPresenter($request);
+
+        return response()->json([
+            'details' => $campaign,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getCampaignObjective(Request $request)
+    {
+        $objective = $this->repository->getCampaignObjectivetWithPresenter($request);
+
+        return response()->json([
+            'details' => $objective,
         ]);
     }
 

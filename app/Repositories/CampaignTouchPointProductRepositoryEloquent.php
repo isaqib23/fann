@@ -43,13 +43,17 @@ class CampaignTouchPointProductRepositoryEloquent extends BaseRepository impleme
      */
     public function store($data)
     {
-        return $this->create([
-            'name' => $data['title'],
-            'outside_product_id' => $data['productId'],
-            'outside_product_variant_id' => $data['id'],
-            'outside_platform' => 'Shopify',
-            'outside_product_image' => $data['pImage'],
-        ]);
+        return $this->updateOrCreate(
+            [
+                'outside_product_id' => $data['productId'],
+            ],
+            [
+                'name' => $data['title'],
+                'outside_product_id' => $data['productId'],
+                'outside_product_variant_id' => $data['id'],
+                'outside_platform' => 'Shopify',
+                'outside_product_image' => $data['pImage'],
+            ]);
     }
 
 }

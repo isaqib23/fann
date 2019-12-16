@@ -270,12 +270,20 @@
         watch : {
             'touchPoint.hashtags' : {
                 handler: function(newVal, oldVal) {
+                    if (_.isNil(newVal)) {
+                        this.hashtags = null;
+                        return;
+                    }
                     this.hashtags = newVal.split(',');
                  },
                 immediate: false
             },
             'touchPoint.mentions' : {
                 handler: function(newVal, oldVal) {
+                    if (_.isNil(newVal)) {
+                        this.mentions = null;
+                        return;
+                    }
                     this.mentions = newVal.split(',');
                 },
                 immediate: false

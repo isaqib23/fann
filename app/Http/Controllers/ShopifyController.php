@@ -228,16 +228,29 @@ class ShopifyController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function findProducts($input, Request $request)
+    public function findProducts(Request $request)
     {
-        //$shop = $request->get('shop');
-        $shop = 'umer-aov';
-        $shopObj = $this->repository->findByField('name', $shop)->first();
+        $shopObj = $this->repository->findByField('id', $request->input('shop'))->first();
 
         $this->productService->setShop($shopObj);
 
         return response()->json(
-            $this->productService->findByInput($input)
+            $this->productService->findByInput($request->input('keyword'))
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function findProduct(Request $request)
+    {
+        $shopObj = $this->repository->findByField('id', $request->input('shop'))->first();
+
+        $this->productService->setShop($shopObj);
+
+        return response()->json(
+            $this->productService->findById($request->input('product_id'))
         );
     }
 

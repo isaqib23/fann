@@ -47,6 +47,8 @@ class CreateInfluencerCampaignStatisticsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('influencer_campaign_statistics');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('influencer_campaign_statistics');
+        Schema::enableForeignKeyConstraints();
 	}
 }

@@ -36,6 +36,8 @@ class CreateInfluencerJobsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('influencer_jobs');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('influencer_jobs');
+        Schema::enableForeignKeyConstraints();
 	}
 }

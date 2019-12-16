@@ -43,7 +43,9 @@ class CreateCampaignInvitesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('campaign_invites');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('campaign_invites');
+        Schema::enableForeignKeyConstraints();
 	}
 }
 

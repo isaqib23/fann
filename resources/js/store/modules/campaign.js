@@ -6,6 +6,8 @@ export const state = {
   campaignPlacement               : null,
   campaignInformation             : null,
   influencerSearchResults         : null,
+  shopifyProduct                  : null,
+  touchPoints                     : [],
   touchPoint                    : {
       caption                     : null,
       hashtags                    : null,
@@ -78,7 +80,22 @@ export const mutations = {
     },
     delChatBox(state, val) {
       state.listOfChatBox.splice(val,1);
-    }
+    },
+    resetTouchPoint(state, touchPoint) {
+        state.touchPoint = touchPoint;
+    },
+    saveTouchPoint(state, touchPoint) {
+        state.touchPoints.push(touchPoint);
+    },
+    saveTouchPoints(state, touchPoint) {
+        state.touchPoints = (touchPoint);
+    },
+    setShopifyProduct(state, shopifyProduct) {
+        state.shopifyProduct = shopifyProduct;
+    },
+    updateCampaignInformation(state, [index, val]) {
+        Vue.set(state.campaignInformation, index, val)
+    },
 
 }
 
@@ -98,7 +115,9 @@ export const actions = {
         return await CampaignAxios.getAllPlacements();
     },
     async savePlacementAndPaymentType({ commit }, payload) {
+        let response = await CampaignAxios.savePlacementAndPaymentType(payload);
 
+        commit('setPlacement',response);
     },
     async saveTouchPoint({commit, state}) {
 
@@ -106,7 +125,8 @@ export const actions = {
              'campaignId'  : state.campaignInformation.details.id,
              'payment'     : state.campaignPlacement,
              'platformId'  : state.campaignPlacement.platform,
-             'touchPoint'  : state.touchPoint
+             'touchPoint'  : state.touchPoint,
+             'campaignInformation'  : state.campaignInformation,
          }
 
          let response = await CampaignAxios.saveTouchPoint(payload);
@@ -135,6 +155,31 @@ export const actions = {
     },
     deleteChatBox({commit}, payload) {
         commit('delChatBox', payload);
+    },
+    async resetTouchPoint({ commit },payload) {
+        commit('resetTouchPoint',payload);
+    },
+    async getCampaignTouchPoint({commit, state},payload) {
+
+        let response = await CampaignAxios.getCampaignTouchPoint(payload);
+        if(!_.isNil(response.details.touchPoints)) {
+            commit('saveTouchPoints', response.details.touchPoints);
+        }
+        commit('setObjective', response.details.campaignObjective);
+        commit('setPlacement',response.details.payment);
+        commit('setCampaignInformation',response.details.campaignInformation);
+        return response;
+    },
+    async getShopifyProduct({commit, state},payload) {
+
+        let response = await CampaignAxios.getShopifyProduct(payload);
+
+        commit('setShopifyProduct',response);
+    },
+    async getCampaignObjective({commit, state},payload) {
+
+        let response = await CampaignAxios.getCampaignObjective(payload);
+        return response.details;
     }
 
 }
@@ -150,6 +195,9 @@ export const getters = {
     touchPoint              : state => state.touchPoint,
     inviteSearchParams      : state => state.inviteSearchParams,
     influencerSearchResults : state => state.influencerSearchResults,
+    touchPoints             : state => state.touchPoints,
+    shopifyProduct          : state => state.shopifyProduct
+
 
 }
 
@@ -231,6 +279,54 @@ let CampaignAxios = class {
                 return {
                     status: err.response.status,
                     details: []
+                };
+            });
+    }
+
+    static getCampaignTouchPoint (payload) {
+        return axios.post(api.path('campaign.getCampaignTouchPoint'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+
+    static getShopifyProduct (payload) {
+        return axios.post(api.path('shopify.findProduct'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+
+    static getCampaignObjective (payload) {
+        return axios.post(api.path('campaign.getCampaignObjective'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
                 };
             });
     }

@@ -60,12 +60,16 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
      */
     public function store($data)
     {
-        return $this->create([
-            'campaign_touch_point_id' => $data['campaign_touch_point_id'],
-            'placement_type_id'       => $data['placement_type_id'],
-            'link'                    => $data['link'],
-            'link_type'               => $data['link_type']
-        ]);
+        return $this->updateOrCreate(
+            [
+                'campaign_touch_point_id'   => $data['campaign_touch_point_id'],
+            ],
+            [
+                'campaign_touch_point_id'       => $data['campaign_touch_point_id'],
+                'placement_type_id'             => $data['placement_type_id'],
+                'link'                          => $data['link'],
+                'link_type'                     => $data['link_type']
+            ]);
     }
 
     /**
