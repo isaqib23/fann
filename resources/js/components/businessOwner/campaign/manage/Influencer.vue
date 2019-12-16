@@ -313,15 +313,17 @@
                                             <input type="text" v-model="search">
                                         </div>
                                         <div>
-                                            <div v-for="(emojiGroup, category) in emojis" :key="category">
+                                            <div :key="category" v-for="(emojiGroup, category) in emojis">
                                                 <h5>{{ category }}</h5>
                                                 <div class="emojis">
-                                        <span
-                                            v-for="(emoji, emojiName) in emojiGroup"
-                                            :key="emojiName"
-                                            @click="insert(emoji)"
-                                            :title="emojiName"
-                                        >{{ emoji }}</span>
+                                                    <span
+                                                        :key="emojiName"
+                                                        :title="emojiName"
+                                                        @click="insert(emoji)"
+                                                        v-for="(emoji, emojiName) in emojiGroup"
+                                                    >
+                                                        {{ emoji }}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
