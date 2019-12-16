@@ -56,7 +56,8 @@ class YoutubeService
      */
     public function authenticateToken($code)
     {
-        $tokenObject = $this->google->authenticate($code);
+        $tokenObject = $this->google->fetchAccessTokenWithAuthCode($code);
+
         $this->setAccessToken($tokenObject);
         return $tokenObject;
     }
@@ -66,10 +67,8 @@ class YoutubeService
      */
     public function setAccessToken($token)
     {
+
         $this->google->setAccessToken($token);
-        if($this->google->isAccessTokenExpired()){
-            $this->google->fetchAccessTokenWithRefreshToken($this->google->getRefreshToken());
-        }
     }
 
     public function getUserInfo(){
@@ -86,10 +85,10 @@ class YoutubeService
     public function getChannelsList()
     {
         $youtube = new \Google_Service_YouTube($this->google);
-        //dd($this->getUserInfo());
-        $queryParams = [
-//            'forUsername' => 'GoogleDevelopers'
-              'mine' => true
+
+          $queryParams = [
+            'forUsername' => 'AbudoCares'
+
         ];
         return $youtube->channels->listChannels('snippet,contentDetails,statistics', $queryParams);
     }
@@ -98,7 +97,7 @@ class YoutubeService
         $youtube = new \Google_Service_YouTube($this->google);
 
         $queryParams = [
-            'forMine' => true,
+            'channelId' => 'UCIjCsQ_4JspfnVbTvlWHfgA',
             'maxResults' => 25,
             'type' => 'video'
         ];

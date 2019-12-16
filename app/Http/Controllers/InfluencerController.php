@@ -125,7 +125,7 @@ class InfluencerController extends Controller
 
         $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
 
-//        if($influencer->provider == "instagram") {
+
         $this->instagramService->setAccessToken($influencer->access_token);
         $posts = $this->instagramService->getPosts();
 
@@ -138,14 +138,14 @@ class InfluencerController extends Controller
                 return $post;
             }
         });
-//            dd($lastPosts);
+
         $data = $postCollection->map(function ($post) {
             return [
                 'likes' => $post->likes->count,
                 'comments' => $post->comments->count
             ];
         });
-//
+
         $lastLikes = $data->sum('likes');
         $lastComments = $data->sum('comments');
 
@@ -160,7 +160,9 @@ class InfluencerController extends Controller
         public function getYoutubeVideos(Request $request)
         {
             $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
-            $videos = $this->youtubeService->getChannelsList();
-            dd($videos);
+            $videos = $this->youtubeService->getListSearch();
+            return response()->json([
+                'videos' => $videos,
+            ]);
          }
 }

@@ -22,7 +22,7 @@
                                 Media Posts (last 30 days)
                                 <v-spacer></v-spacer>
                                 <div class="icons text-end">
-                                    <span class="custom_icon bg1"><v-icon class="title" color="#C73EA9">mdi-instagram</v-icon></span>
+                                    <span class="custom_icon bg1"><v-icon class="title" color="#C73EA9">mdi-youtube</v-icon></span>
                                 </div>
                             </v-card-title>
                             <v-card-text class="display-1 pb-0"><strong color="darkSecondary">178</strong></v-card-text>
@@ -93,7 +93,7 @@
                 <div class="subtitle-1 mb-3 mt-3"><strong>Featured Posts</strong></div>
 
                 <v-row class="full_width" align="center">
-                    <v-col class="d-flex" cols="4" v-for="i in 15" :key="i">
+                    <v-col class="d-flex" cols="4" v-for="(video,index) in videos" :key="index">
                         <v-card
                             max-width="344"
                             class="mx-auto"
@@ -101,8 +101,8 @@
                             <v-list-item>
                                 <v-list-item-avatar color="grey"></v-list-item-avatar>
                                 <v-list-item-content>
-                                    <v-list-item-title class="subtitle-2">Amanda Nash</v-list-item-title>
-                                    <v-list-item-subtitle class="caption">by Kurt Wagner</v-list-item-subtitle>
+                                    <v-list-item-title class="subtitle-2">{{ userProfile.provider_name}}</v-list-item-title>
+                                    <v-list-item-subtitle class="caption">{{ userProfile.user_platform_meta.follower_count }} Followers</v-list-item-subtitle>
                                 </v-list-item-content>
 
                                 <v-btn color="primary" class="text-capitalize" depressed height="30">
@@ -110,10 +110,10 @@
                                 </v-btn>
                             </v-list-item>
 
-                            <v-img
-                                src="https://cdn.vuetifyjs.com/images/cards/mountain.jpg"
-                                height="194"
-                            ></v-img>
+
+                            <iframe src="https://www.youtube.com/embed/{{ video.id.videoId }}" width="411" height="194">
+
+                            </iframe>
 
                             <v-card-text class="py-2">
                                 <strong class="primary--text">View more on instagram</strong>
@@ -180,9 +180,8 @@
                 console.log(this.userProfile,"dt");
                 console.log(this.userProfile,"");
                 let getPosts= await this.getVideos(this.userProfile.id);
-                this.videos = getPosts;
-                console.log(this.videos);
-
+                this.videos = getPosts.videos.items;
+               console.log(this.videos[0].id,"video");
             }
         }
     }
