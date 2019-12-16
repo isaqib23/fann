@@ -129,8 +129,10 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         if (!empty($touchPoint['images'])) {
             $savedImages = $this->campaignTouchPointMediaRepositoryEloquent->storeMultiple($touchPoint['images'], $savedTouchPoint);
         }
-
-        // In case of Insta story or post
+        /**
+         * Actions
+         * In case of Insta story or post
+         */
         if (!empty($touchPoint['instaPost'])) {
             $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
                 'link_type'               => 'instaBioLink',

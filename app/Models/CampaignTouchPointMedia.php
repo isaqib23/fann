@@ -23,7 +23,8 @@ class CampaignTouchPointMedia extends Model implements Transformable
     protected $fillable = [
         'campaign_touch_point_id',
         'path',
-        'format'
+        'format',
+        'name'
     ];
 
 }
