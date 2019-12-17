@@ -351,10 +351,10 @@
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
-                    this.touchPoint.id = response.details.id;
+                    this.touchPoint.id = response.details.touch_point_id;
                     this.tabsLength = this.tabsLength + 1;
                     this.currentTab = this.currentTab + 1;
-                    this.touchPointTabsState.preTouchPoint = response.details.touchPoints[0].id;
+                    this.touchPointTabsState.preTouchPoint = response.details.touch_point_id;
                     this.touchPointTabsState.currentTouchPoint = this.touchPoint.id;
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
