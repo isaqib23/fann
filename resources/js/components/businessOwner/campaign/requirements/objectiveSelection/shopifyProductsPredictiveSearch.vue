@@ -126,9 +126,10 @@
             },
             addVariant: function(e, variant) {
                 let self = this;
-                if (self.ld.find(self.variants, {id: variant.id}) != undefined) return true;
+                if (self.ld.find(self.variants, {id: variant.variantId}) != undefined) return true;
                 self.selectedVariant = {
-                    id          : variant.id,
+                    id          : null,
+                    variantId   : variant.id,
                     productId   : self.product.id,
                     image       : variant.image_id != null ? self.ld.find(self.product.images, {'id': variant.image_id}).src : null,
                     pImage      : self.product.image.src,

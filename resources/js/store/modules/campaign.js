@@ -128,7 +128,7 @@ export const actions = {
          }
 
          let response = await CampaignAxios.saveTouchPoint(payload);
-
+         await CampaignAxios.setCampaignTouchPointData({commit, state},response);
          return response;
     },
     async saveTouchPointField({ commit }, payload) {
@@ -160,12 +160,8 @@ export const actions = {
     async getCampaignTouchPoint({commit, state},payload) {
 
         let response = await CampaignAxios.getCampaignTouchPoint(payload);
-        if(!_.isNil(response.details.touchPoints)) {
-            commit('setSavedTouchPoints', response.details.touchPoints);
-        }
-        commit('setObjective', response.details.campaignObjective);
-        commit('setPlacement',response.details.payment);
-        commit('setCampaignInformation',response.details.campaignInformation);
+
+        await CampaignAxios.setCampaignTouchPointData({commit, state},response);
         return response;
     },
     async getSavedShopifyProduct({commit, state},payload) {
@@ -327,6 +323,15 @@ let CampaignAxios = class {
                     details : []
                 };
             });
+    }
+
+    static setCampaignTouchPointData({commit, state},response) {
+        if(!_.isNil(response.details.touchPoints)) {
+            commit('setSavedTouchPoints', response.details.touchPoints);
+        }
+        commit('setObjective', response.details.campaignObjective);
+        commit('setPlacement',response.details.payment);
+        commit('setCampaignInformation',response.details.campaignInformation);
     }
 
 };

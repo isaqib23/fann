@@ -58,7 +58,8 @@
             campaignObjective: {
                 objective_id: null,
                 slug: null,
-                name: null
+                name: null,
+                id: null
             },
             getCampaignObjectives: {}
         }),

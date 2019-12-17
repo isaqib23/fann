@@ -45,7 +45,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
     {
         return $this->updateOrCreate(
             [
-                'id'    => $request['objective_id'],
+                'id'    => $request['id'],
             ],
             [
                 'name' => $request['name'],

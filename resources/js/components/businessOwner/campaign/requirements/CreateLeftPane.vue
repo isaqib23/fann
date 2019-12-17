@@ -337,12 +337,14 @@
             async findTouchPoint(id) {
                 if (this.savedTouchPoints.length > 0 && !_.isNil(this.savedTouchPoints[id])) {
                     this.resetTouchPoint(this.savedTouchPoints[id]);
+                    this.setTouchPointFields();
                     await this.getSavedShopifyProduct({
                         product_id: this.touchPoint.dispatchProduct.productId,
                         shop: localStorage.selectedShop
                     });
                 } else {
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
+                    this.setTouchPointFields();
                 }
             },
             async addTouchPoint() {
@@ -352,9 +354,10 @@
                     this.touchPoint.id = response.details.id;
                     this.tabsLength = this.tabsLength + 1;
                     this.currentTab = this.currentTab + 1;
-                    this.touchPointTabsState.preTouchPoint = response.details.id;
+                    this.touchPointTabsState.preTouchPoint = response.details.touchPoints[0].id;
                     this.touchPointTabsState.currentTouchPoint = this.touchPoint.id;
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
+                    this.setTouchPointFields();
                     this.guideLines = 1;
                 }
             },
@@ -529,8 +532,6 @@
                     this.dispatchProductVariant = [];
                     this.dispatchProduct = val.details;
                     this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
-
-                    console.log(val,this.dispatchProduct,this.dispatchProductVariant);
                 }
             },
             'placement' (val) {

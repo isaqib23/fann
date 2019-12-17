@@ -89,7 +89,7 @@ class CampaignTransformer extends TransformerAbstract
                 'name AS title',
                 'outside_product_id AS productId',
                 'outside_product_link',
-                'outside_product_variant_id',
+                'outside_product_variant_id AS variantId',
                 'outside_platform',
                 'outside_product_image AS pImage'
             ])

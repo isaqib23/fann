@@ -321,9 +321,13 @@ class CampaignsController extends Controller
 
            $saveTouchPoint =  $this->campaignTouchPointRepository->saveInHierarchy($data);
 
+           // Get Last added Touch Poioint
+           $request->merge(['slug' => $request->input('campaignInformation.slug')]);
+           $savedTouchPoint = $this->repository->getCampaignTouchPointWithPresenter($request);
+
             $response = [
                 'message'    => 'Touch Point Created.',
-                'details'    => $saveTouchPoint,
+                'details'    =>  $savedTouchPoint,
             ];
 
             if ($request->wantsJson()) {
