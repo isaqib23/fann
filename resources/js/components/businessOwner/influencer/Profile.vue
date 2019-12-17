@@ -118,7 +118,8 @@
             TouchPoint:TouchPoint
         },
         props: {
-            platform : ''
+            // selectedPlatform : null,
+            //profileID : null,
         },
         data: () => {
             return  {
@@ -131,13 +132,12 @@
                 proposal: false,
                 touchPoint: false,
                 profile : {
-                    provider_name : null,
+                    provider_name  : null,
                     provider_photo : null,
-                    user_id : null,
-                    provider :null,
-                    meta_json : null,
+                    user_id        : null,
+                    provider       : null,
+                    meta_json      : null,
                 },
-
             }
         },
         computed:{
@@ -145,19 +145,17 @@
                 campaignPlacement : 'campaign/campaignPlacement'
             }),
             bio() {
-
                 let meta = JSON.parse(this.profile.meta_json);
+                console.log(meta.bio,"meta");
                 if(meta.bio) {
-
-                         return meta.user.bio;
-                 }
-                 return null;
+                    return meta.user.bio;
+                }
+                return null;
             }
         },
         mounted() {
             // this.platform = this.campaignPlacement['platform'];
            this.profileData();
-
         },
         methods: {
             ...mapActions({
@@ -187,8 +185,7 @@
                     this.profile = '';
                     this.profile = this.youtube;
                 }
-
-
+                console.log(this.profile,"profile");
             }
         }
     }

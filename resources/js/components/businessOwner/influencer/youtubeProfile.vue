@@ -8,11 +8,20 @@
                     </v-col>
                     <v-spacer></v-spacer>
                     <v-col class="d-flex" cols="2">
-                        <v-select :items="items" label="Platform" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
+                        <v-select
+                            :items="channelList"
+                            item-text="snippet.title"
+                            item-value="id"
+                            label="Platform"
+                            solo
+                            class="custom_dropdown"
+                            append-icon="keyboard_arrow_down"
+                            v-model="defaultSelected"
+                        ></v-select>
                     </v-col>
-                    <v-col class="d-flex" cols="2">
-                        <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
-                    </v-col>
+<!--                    <v-col class="d-flex" cols="2">-->
+<!--                        <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>-->
+<!--                    </v-col>-->
                 </v-row>
 
                 <v-row class="full_width" align="center">
@@ -25,7 +34,7 @@
                                     <span class="custom_icon bg1"><v-icon class="title" color="#C73EA9">mdi-youtube</v-icon></span>
                                 </div>
                             </v-card-title>
-                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">178</strong></v-card-text>
+                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ countLatestVideos }}</strong></v-card-text>
                             <v-card-actions class="pl-5">
                                     <span class="error--text mr-2">
                                         <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
@@ -37,13 +46,13 @@
                     <v-col class="d-flex" cols="3">
                         <v-card min-width="100%">
                             <v-card-title class="overline1">
-                                Media Posts (last 30 days)
+                                Followers (last 30 days)
                                 <v-spacer></v-spacer>
                                 <div class="icons text-end">
                                     <span class="custom_icon bg2"><v-icon class="title" color="#1788F9">mdi-account-clock-outline</v-icon></span>
                                 </div>
                             </v-card-title>
-                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
+                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ userProfile.user_platform_meta.follower_count }}</strong></v-card-text>
                             <v-card-actions class="pl-5">
                                     <span class="success--text mr-2">
                                         <v-icon color="success" small>mdi-arrow-up</v-icon>13.8%
@@ -55,13 +64,13 @@
                     <v-col class="d-flex" cols="3">
                         <v-card min-width="100%">
                             <v-card-title class="overline1">
-                                Media Posts (last 30 days)
+                                Total Comments (last 30 days)
                                 <v-spacer></v-spacer>
                                 <div class="icons text-end">
                                     <span class="custom_icon bg3"><v-icon class="title" color="primary">mdi-heart</v-icon></span>
                                 </div>
                             </v-card-title>
-                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">148.5K</strong></v-card-text>
+                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ channelData.commentCount }}</strong></v-card-text>
                             <v-card-actions class="pl-5">
                                     <span class="success--text mr-2">
                                         <v-icon color="success" small>mdi-arrow-down</v-icon>13.8%
@@ -73,13 +82,13 @@
                     <v-col class="d-flex" cols="3">
                         <v-card min-width="100%">
                             <v-card-title class="overline1">
-                                Media Posts (last 30 days)
+                                Total Subscribers (last 30 days)
                                 <v-spacer></v-spacer>
                                 <div class="icons text-end">
                                     <span class="custom_icon bg4"><v-icon color="#FDBA2C" class="title">mdi-tooltip</v-icon></span>
                                 </div>
                             </v-card-title>
-                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">17.1K</strong></v-card-text>
+                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ channelData.subscriberCount }}</strong></v-card-text>
                             <v-card-actions class="pl-5">
                                     <span class="error--text mr-2">
                                         <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
@@ -90,7 +99,7 @@
                     </v-col>
                 </v-row>
 
-                <div class="subtitle-1 mb-3 mt-3"><strong>Featured Posts</strong></div>
+                <div class="subtitle-1 mb-3 mt-3"><strong>Featured Videos</strong></div>
 
                 <v-row class="full_width" align="center">
                     <v-col class="d-flex" cols="4" v-for="(video,index) in videos" :key="index">
@@ -99,24 +108,23 @@
                             class="mx-auto"
                         >
                             <v-list-item>
-                                <v-list-item-avatar color="grey"></v-list-item-avatar>
+                                <v-list-item-avatar color="white">
+                                    <img :src="userProfile.provider_photo"></img>
+                                </v-list-item-avatar>
                                 <v-list-item-content>
                                     <v-list-item-title class="subtitle-2">{{ userProfile.provider_name}}</v-list-item-title>
                                     <v-list-item-subtitle class="caption">{{ userProfile.user_platform_meta.follower_count }} Followers</v-list-item-subtitle>
                                 </v-list-item-content>
 
                                 <v-btn color="primary" class="text-capitalize" depressed height="30">
-                                    View Profile
+                                    View Channel
                                 </v-btn>
                             </v-list-item>
-
-
-                            <iframe src="https://www.youtube.com/embed/{{ video.id.videoId }}" width="411" height="194">
-
+                            <iframe :src="Src( video.id )" width="100%" height="auto">
                             </iframe>
 
                             <v-card-text class="py-2">
-                                <strong class="primary--text">View more on instagram</strong>
+                                <strong class="primary--text"><a :href="'https://www.youtube.com/channel/' + { channelData.id  }">View more on youtube</a></strong>
                             </v-card-text>
 
                             <v-card-actions class="action_class">
@@ -124,10 +132,16 @@
                                     <template v-slot:activator="{ on }">
                                         <v-icon v-on="on" class="mr-2">mdi-heart-outline</v-icon>
                                     </template>
-                                    <span>1,7524 likes</span>
+                                    <span>{{ video.statistics.likeCount}} likes</span>
                                 </v-tooltip>
-                                <v-icon class="mr-2">mdi-tooltip-outline</v-icon>
-                                <v-icon>mdi-briefcase-upload-outline</v-icon>
+                                <v-tooltip bottom>
+                                    <template v-slot:activator="{ on }">
+                                        <v-icon v-on="on" class="mr-2">mdi-tooltip-outline</v-icon>
+                                    </template>
+                                    <span>{{ video.statistics.commentCount}} Comments</span>
+                                </v-tooltip>
+
+<!--                                <v-icon>mdi-briefcase-upload-outline</v-icon>-->
                                 <div class="flex-grow-1"></div>
                                 <v-btn icon>
                                     <v-icon>mdi-share-variant</v-icon>
@@ -164,10 +178,11 @@
                 proposal: false,
                 touchPoint: false,
                 videos : [],
+                channelData : [],
+                countLatestVideos : null,
+                channelList : null,
+                defaultSelected: {},
             }
-        },
-        mounted() {
-            this.profileData();
         },
         mounted() {
             this.postsData();
@@ -176,12 +191,20 @@
             ...mapActions({
                 getVideos : 'influencer/getYoutubeVideos',
             }),
+            Src(val) {
+                return "https://www.youtube.com/embed/"+val;
+            },
             async postsData() {
-                console.log(this.userProfile,"dt");
-                console.log(this.userProfile,"");
                 let getPosts= await this.getVideos(this.userProfile.id);
+
                 this.videos = getPosts.videos.items;
-               console.log(this.videos[0].id,"video");
+
+                this.channelList =getPosts.channelList;
+
+                this.channelData = getPosts.channelList[0].statistics;
+                console.log(this.channelData,"data");
+                this.defaultSelected = getPosts.channelList[0];
+                this.countLatestVideos = getPosts.countLatestVideos;
             }
         }
     }

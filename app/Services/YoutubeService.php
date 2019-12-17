@@ -35,6 +35,7 @@ class YoutubeService
         $this->google->setIncludeGrantedScopes(true);
         $this->google->setDeveloperKey(env('YOUTUBE_API_KEY'));
         $this->google->setRedirectUri(env('YOUTUBE_REDIRECT_URI'));
+        $this->google->setAccessType('offline');
 
     }
 
@@ -67,8 +68,11 @@ class YoutubeService
      */
     public function setAccessToken($token)
     {
-
         $this->google->setAccessToken($token);
+        if ($this->google->isAccessTokenExpired()) {
+            return $this->refreshAccessToken($token);
+        }
+
     }
 
     public function getUserInfo(){
@@ -85,23 +89,43 @@ class YoutubeService
     public function getChannelsList()
     {
         $youtube = new \Google_Service_YouTube($this->google);
-
           $queryParams = [
-            'forUsername' => 'AbudoCares'
-
+              'mine' => true,
         ];
         return $youtube->channels->listChannels('snippet,contentDetails,statistics', $queryParams);
     }
 
-    public function getListSearch(){
+    public function getListSearch()
+    {
         $youtube = new \Google_Service_YouTube($this->google);
-
         $queryParams = [
-            'channelId' => 'UCIjCsQ_4JspfnVbTvlWHfgA',
-            'maxResults' => 25,
-            'type' => 'video'
+            'maxResults' => 5,
+            'type' => 'video',
+            'forMine' => true,
         ];
         return $youtube->search->listSearch('snippet', $queryParams);
+    }
+
+    public function getVideoList($list)
+    {
+        $youtube = new \Google_Service_YouTube($this->google);
+        $queryParams = [
+            'id' => $list
+        ];
+        return $youtube->videos->listVideos('snippet,statistics', $queryParams);
+    }
+    public function refreshAccessToken($token)
+    {
+        if ($this->google->isAccessTokenExpired()) {
+            // save refresh token to some variable
+            $refreshTokenSaved = $this->google->getRefreshToken();
+            // update access token
+            $this->google->fetchAccessTokenWithRefreshToken($refreshTokenSaved);
+            $this->google->setAccessToken($refreshTokenSaved);
+
+            return $refreshTokenSaved;
+        }
+
     }
 
 }

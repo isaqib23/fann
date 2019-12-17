@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\YoutubeService;
 use Illuminate\Http\Request;
 use http\Exception;
 use Illuminate\Http\Response;
 use App\Contracts\UserPlatformRepository;
 use App\Contracts\UserPlatformMetaRepository;
 use App\Services\InstagramService;
+use App\Services\YoutubeService;
 use Carbon\Carbon;
-
+use Illuminate\Database\Eloquent\Collection;
 
 class InfluencerController extends Controller
 {
+
+
     /**
      * @var userPlatformRepository
      */
@@ -125,14 +127,11 @@ class InfluencerController extends Controller
 
         $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
 
-
         $this->instagramService->setAccessToken($influencer->access_token);
         $posts = $this->instagramService->getPosts();
 
         $postCollection = collect($posts);
-
         $today = Carbon::today()->subDays(180)->format("d-m-Y");
-
         $lastPosts = $postCollection->filter(function ($post, $key) use ($today) {
             if (strtotime(date("d-m-Y", $post->created_time)) > strtotime($today)) {
                 return $post;
@@ -160,9 +159,37 @@ class InfluencerController extends Controller
         public function getYoutubeVideos(Request $request)
         {
             $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
+
+            $refreshedToken = $this->youtubeService->setAccessToken($influencer->access_token);
+            if($refreshedToken !=null) {
+                $influencer->access_token = $refreshedToken;
+                $this->userPlatformRepository->store($influencer);
+            }
+
             $videos = $this->youtubeService->getListSearch();
+            $videos = $videos->items;
+            if( !empty($videos )) {
+                $vid = collect($videos);
+                $list = $vid->pluck('id.videoId');
+                $list = $list->implode(',');
+                $listed = $this->youtubeService->getVideoList($list);
+            }
+
+            $channels = $this->youtubeService->getChannelsList();
+//            dd($channels);
+            $channelList = $channels->items;
+
+            $today = Carbon::today()->subDays(280)->format("d-m-Y");
+             $filtered = array_filter($videos, function ($item) use($today) {
+                 if(strtotime(date("d-m-Y",strtotime($item->snippet->publishedAt))) > strtotime($today)) {
+                     return $item;
+                 }
+             });
+
             return response()->json([
-                'videos' => $videos,
+                'videos' => $listed,
+                'channelList' => $channelList,
+                'countLatestVideos' => count($filtered),
             ]);
          }
 }

@@ -8,10 +8,10 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col class="d-flex" cols="2">
-                            <v-select :items="items" label="Platform" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
+<!--                            <v-select :items="items" label="Platform" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>-->
                         </v-col>
                         <v-col class="d-flex" cols="2">
-                            <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
+<!--                            <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>-->
                         </v-col>
                     </v-row>
 
@@ -118,7 +118,7 @@
                                 ></v-img>
 
                                 <v-card-text class="py-2">
-                                    <strong class="primary--text">View more on instagram</strong>
+                                    <strong class="primary--text"><a href="https://www.instagram.com/saqibiqbal_456">View more on instagram</a></strong>
                                 </v-card-text>
 
                                 <v-card-actions class="action_class">
@@ -129,7 +129,7 @@
                                         <span>{{post.likes.count}}</span>
                                     </v-tooltip>
                                     <v-icon class="mr-2">mdi-tooltip-outline</v-icon>
-                                    <v-icon>mdi-briefcase-upload-outline</v-icon>
+<!--                                    <v-icon>mdi-briefcase-upload-outline</v-icon>-->
                                     <div class="flex-grow-1"></div>
                                     <v-btn icon>
                                         <v-icon>mdi-share-variant</v-icon>
@@ -185,7 +185,7 @@
                 this.data = await this.getPost(this.userProfile.id);
 
                 this.posts = this.data.posts;
-                console.log(this.posts,"posts");
+                console.log(this.userProfile,"profileee");
 
             }
         }
