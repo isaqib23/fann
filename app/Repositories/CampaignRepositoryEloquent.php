@@ -108,13 +108,14 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      * @return array
      *
      */
-    public function getCampaignTouchPointWithPresenter($request){
+    public function getCampaignTouchPointWithPresenter($request)
+    {
         $campaign = $this->with([
             'payment'  => function($query){
                 $query->with(['paymentType']);
             },
             'touchPoint' => function($query){
-                $query->with(['additional']);
+                $query->with(['additional','media']);
             },
             'objective'
         ])
@@ -131,7 +132,8 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      * @return array
      *
      */
-    public function getCampaignObjectivetWithPresenter($request){
+    public function getCampaignObjectivetWithPresenter($request)
+    {
         $objective = $this->with([
             'payment'  => function($query){
                 $query->with(['paymentType']);

@@ -65,7 +65,7 @@ class CampaignTransformer extends TransformerAbstract
                 'instaBioLink'      => null,
                 'instaStory'        => null,
                 'instaStoryLink'    => null,
-                'images'            => [],
+                'images'            => $this->getTouchPointMedia($touchPoint->media),
                 "touchPointConditionalFields" => $this->getTouchPointConditionalFields($return)
             ];
         }
@@ -144,6 +144,26 @@ class CampaignTransformer extends TransformerAbstract
             "touchPointProduct" => false,
             "touchPointBrand" => false
         ];
+        return $return;
+    }
+
+    /**
+     * @param $images
+     * @return array
+     */
+    private function getTouchPointMedia($images)
+    {
+        $return = [];
+        if($images) {
+            foreach ($images as $key => $value){
+                $return[] = [
+                    'campaign_touch_point_id'   => $value->campaign_touch_point_id,
+                    'imageURL'                  => '/'.$value->path.'/medium/'.$value->name,
+                    'format'                    => $value->format,
+                    'name'                      => $value->name,
+                ];
+            }
+        }
         return $return;
     }
 }

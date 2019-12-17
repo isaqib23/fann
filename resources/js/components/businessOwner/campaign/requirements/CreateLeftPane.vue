@@ -61,7 +61,7 @@
                                 <products-search
                                     v-if="touchPoint.touchPointConditionalFields.touchPointProduct"
                                     :emit-as="'dispatchProduct'"
-                                    :product="dispatchProduct"
+                                    :selectedProduct="dispatchProduct"
                                     :selectedVariants="dispatchProductVariant"
                                     @selected-product="selectedProduct"
                                 ></products-search>
@@ -523,11 +523,14 @@
                 immediate: true,
                 deep:true
             },
-            'shopifyProduct' (val) {
+            'savedShopifyProduct' (val) {
+                console.log(val);
                 if(!_.isNil(val.details)) {
                     this.dispatchProductVariant = [];
                     this.dispatchProduct = val.details;
                     this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
+
+                    console.log(val,this.dispatchProduct,this.dispatchProductVariant);
                 }
             },
             'placement' (val) {

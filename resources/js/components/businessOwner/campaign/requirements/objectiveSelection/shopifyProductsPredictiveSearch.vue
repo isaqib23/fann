@@ -90,7 +90,7 @@
                 required: false,
                 default : 'Start typing a product name (at least 3 characters)'
             },
-            product    : null,
+            selectedProduct    : null,
             selectedVariants   : null,
         },
         data () {
@@ -100,7 +100,9 @@
                 search     : '',
                 lookingUp  : false,
                 variants   : null,
-                ld         : _
+                ld         : _,
+                product    : null,
+               selectedVariant : {}
             }
         },
 
@@ -159,8 +161,25 @@
                 });
                 self.reportedValue = parseFloat(self.reportedValue).toFixed(2);
             },
-            selectedVariants(val) {
-                this.variants = val;
+            selectedVariants: {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)){
+                        self.variants = val;
+                    }
+                },
+                immediate: true,
+                deep: true
+            },
+            'selectedProduct': {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)){
+                        self.product = val;
+                    }
+                },
+                immediate: true,
+                deep: true
             }
         },
         created() {

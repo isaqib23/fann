@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
@@ -38,5 +39,13 @@ class CampaignTouchPoint extends Model implements Transformable
     public function additional()
     {
         return $this->hasOne(CampaignTouchPointAdditional::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function media()
+    {
+        return $this->hasMany(CampaignTouchPointMedia::class);
     }
 }
