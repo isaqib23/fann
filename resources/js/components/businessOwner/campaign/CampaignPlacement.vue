@@ -176,7 +176,14 @@
                 additionalPayAsBarter:false,
                 additionalPayAsAmount:false,
             },
-            loadPlacements:null
+            loadPlacements:null,
+            campaignObjective: {
+                id                  : null,
+                objective_id        : null,
+                slug                : null,
+                name                : null,
+                primary_placement_id: null
+            },
         }),
         validations: {
             campaignPlacement:{
@@ -190,12 +197,14 @@
         },
         computed: {
             ...mapGetters({
-                campaignObjective: 'campaign/campaignObjective',
-                placement: 'campaign/campaignPlacement'
+                placement: 'campaign/campaignPlacement',
             })
         },
-        mounted() {
-            this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
+        async mounted() {
+            this.campaignObjective = Object.assign(this.campaignObjective, await this.getCampaignSavedObjective({slug:this.$router.currentRoute.params.slug}))
+            this.campaignPlacement = Object.assign(this.campaignPlacement, this.campaignObjective.payment);
+            this.campaignPlacement.platform = this.campaignObjective.primary_placement_id;
+            this.campaignPlacement.campaign_id = this.campaignObjective.id;
             this.assignDefaultPayment();
         },
         methods: {
@@ -208,8 +217,9 @@
                 }
             },
             ...mapActions({
-                fetchAllPlacements: 'campaign/fetchAllPlacements',
-                savePlacementAndPaymentType: 'campaign/savePlacementAndPaymentType'
+                fetchAllPlacements          : 'campaign/fetchAllPlacements',
+                savePlacementAndPaymentType : 'campaign/savePlacementAndPaymentType',
+                getCampaignSavedObjective        : 'campaign/getCampaignSavedObjective',
             }),
             goToNext() {
                 let self = this;
@@ -222,20 +232,20 @@
                     }
                 } else {
                     this.savePlacementAndPaymentType(this.campaignPlacement)
-                    this.$router.push({name: 'create-campaign-requirements'})
+                    this.$router.push({name: 'create-campaign-requirements', params: { slug: this.$router.currentRoute.params.slug }})
                 }
             },
             goToBack() {
                 this.savePlacementAndPaymentType(this.campaignPlacement)
-                this.$router.push({name: 'create-campaign-objective'})
+                this.$router.push({name: 'create-campaign-objective', params: { slug: this.$router.currentRoute.params.slug }})
             },
             assignDefaultPayment() {
                 if (this.campaignObjective == null) {
                     this.$router.push({name: 'create-campaign-objective'})
-                } else if (this.campaignObjective.ObjectiveId == 1 || this.campaignObjective.ObjectiveId == 2) {
+                } else if (this.campaignObjective.objective_id == 1 || this.campaignObjective.objective_id == 2) {
                     this.campaignPlacement.paymentType = 'barter';
                     this.disabledPaid = true;
-                } else if (this.campaignObjective.ObjectiveId == 3) {
+                } else if (this.campaignObjective.objective_id == 3) {
                     this.campaignPlacement.paymentType = 'paid';
                     this.disabledBarter = true;
                 }

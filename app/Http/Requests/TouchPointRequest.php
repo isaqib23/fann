@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Campaign;
+use Illuminate\Validation\Rule;
+
 class TouchPointRequest extends BaseFormRequest
 {
     /**
@@ -24,7 +27,7 @@ class TouchPointRequest extends BaseFormRequest
         $rules = [
             'campaignId'                     => 'required|numeric',
             'platformId'                     => 'required|numeric',
-            'touchPoint.campaignDescription' => 'required',
+            'campaignInformation.description'=> Rule::requiredIf($this->checkCampaignDescription()),
             'touchPoint.name'                => 'required',
             'touchPoint.caption'             => 'required',
         ];
@@ -86,7 +89,7 @@ class TouchPointRequest extends BaseFormRequest
     {
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointProduct')
         ) {
-            $rules['touchPoint.barterProduct'] = 'required';
+            $rules['touchPoint.dispatchProduct'] = 'required';
         }
 
         return $rules;
@@ -102,7 +105,19 @@ class TouchPointRequest extends BaseFormRequest
         ) {
             $rules['touchPoint.productBrand'] = 'required';
         }
-        
+
         return $rules;
     }
+
+    /**
+     * @return bool
+     */
+    private function checkCampaignDescription()
+    {
+        $data = $this->request->all();
+        $campaign = Campaign::find($data['campaignId']);
+
+        return (is_null($campaign->description)) ? true : false;
+    }
+
 }

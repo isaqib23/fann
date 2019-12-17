@@ -78,15 +78,15 @@ class CampaignTouchPointMediaRepositoryEloquent extends BaseRepository implement
     {
         $touchPoint = is_object($touchPoint) ? $touchPoint->toArray() : $touchPoint;
         foreach ($data as $key =>  $value) {
-            $storedImage = $this->imageHelper->storeImage($value, 'campaigns', $touchPoint['campaign_id']);
-
-            $this->store([
-                'campaign_touch_point_id' => $touchPoint['id'],
-                'path'                    => $storedImage['path'],
-                'name'                    => $storedImage['name'],
-                'format'                  => 'image'
-            ]);
-
+            if(isset($value['src'])) {
+                $storedImage = $this->imageHelper->storeImage($value, 'campaigns', $touchPoint['campaign_id']);
+                $this->store([
+                    'campaign_touch_point_id' => $touchPoint['id'],
+                    'path'                    => $storedImage['path'],
+                    'name'                    => $storedImage['name'],
+                    'format'                  => 'image'
+                ]);
+            }
         }
     }
 }

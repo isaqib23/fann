@@ -54,7 +54,9 @@ Route::group(['middleware' => ['jwt']], function() {
     ]);
 
     // ----- code Generator find Products
-    Route::get('/shopify/findProducts/{input}', 'ShopifyController@findProducts');
+    Route::post('/shopify/findProducts', 'ShopifyController@findProducts');
+    // ----- code Generator find Product
+    Route::post('/shopify/findSingleProduct', 'ShopifyController@findSingleProduct');
 
     // ----- Countries related api's
     Route::prefix('/country')->group(function () {
@@ -93,11 +95,12 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('saveTouchPoint', 'CampaignsController@saveTouchPoint');
         Route::post('saveInvitation', 'CampaignsController@saveInvitation');
         Route::put('savePlacementAndPaymentType', 'CampaignsController@savePlacementAndPaymentType');
+        Route::post('getCampaignTouchPoint', 'CampaignsController@getCampaignTouchPoint');
+        Route::post('getCampaignSavedObjective', 'CampaignsController@getCampaignSavedObjective');
     });
 
     // ----- User related api's
     Route::prefix('/user')->group(function () {
-
         Route::post('searchInfluencers', 'UserController@searchInfluencers');
     });
 

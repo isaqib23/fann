@@ -106,16 +106,20 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         }
 
         //---- Touch Point
-        $savedTouchPoint =  $this->create([
-            'name'                => $touchPoint['caption'],
-            'description'         => $touchPoint['name'],
-            'dispatch_product'    => $dispatchProduct->id,
-            'barter_product'      => $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id,
-            'campaign_id'         => $data['campaignId'],
-            'placement_id'        => $data['payment']['platform'],
-            'barter_as_dispatch'  => 1,
-            'amount'              => $touchPoint['amount']
-        ]);
+        $savedTouchPoint =  $this->updateOrCreate(
+            [
+                'id'              => $touchPoint['id'],
+            ],
+            [
+                'name'                => $touchPoint['name'],
+                'description'         => $touchPoint['caption'],
+                'dispatch_product'    => $dispatchProduct->id,
+                'barter_product'      => $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id,
+                'campaign_id'         => $data['campaignId'],
+                'placement_id'        => $data['payment']['platform'],
+                'barter_as_dispatch'  => 1,
+                'amount'              => $touchPoint['amount']
+            ]);
 
         //---- additionals
         $this->campaignTouchPointAdditionalRepositoryEloquent->store($touchPoint, $savedTouchPoint);

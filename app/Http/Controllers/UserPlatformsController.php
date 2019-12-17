@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\PlacementRepository;
-use App\Contracts\UserMetaRepository;
 use App\Contracts\UserPlatformMetaRepository;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
 use App\Contracts\UserPlatformRepository;
-use App\Validators\UserPlatformValidator;
 use App\Services\InstagramService;
 use App\Services\YoutubeService;
-use function foo\func;
+
 
 
 /**

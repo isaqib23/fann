@@ -38,6 +38,8 @@ class CreateCampaignOffersTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('campaign_offers');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('campaign_offers');
+        Schema::enableForeignKeyConstraints();
 	}
 }

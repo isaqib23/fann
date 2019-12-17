@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Transformers\CampaignTransformer;
 use Exception;
 use Illuminate\Support\Str;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -42,11 +43,15 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      */
     public function store($request)
     {
-        return $this->create([
-            'name' => $request['name'],
-            'slug' => $this->createSlug($request['name']),
-            'objective_id'  => $request['ObjectiveId']
-        ]);
+        return $this->updateOrCreate(
+            [
+                'id'    => $request['id'],
+            ],
+            [
+                'name' => $request['name'],
+                'slug' => $this->createSlug($request['name']),
+                'objective_id'  => $request['objective_id']
+            ]);
     }
 
     /**
@@ -96,6 +101,55 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
     {
 
 
+    }
+
+    /**
+     * @param $request
+     * @return array
+     *
+     */
+    public function getCampaignTouchPointWithPresenter($request)
+    {
+        $campaign = $this->with([
+            'payment'  => function($query){
+                $query->with(['paymentType']);
+            },
+            'touchPoint' => function($query){
+                $query->with(['additional','media']);
+            },
+            'objective'
+        ])
+            ->findWhere(['slug' => $request->input('slug')])
+            ->first();
+
+        $campaign = (new CampaignTransformer)->transform($campaign);
+
+        return $campaign;
+    }
+
+    /**
+     * @param $request
+     * @return array
+     *
+     */
+    public function getCampaignObjectivetWithPresenter($request)
+    {
+        $objective = $this->with([
+            'payment'  => function($query){
+                $query->with(['paymentType']);
+            },
+            'placement'
+        ])
+            ->findWhere([
+                'slug'  => $request->input('slug')
+            ])->first();
+
+        $campaign = [];
+        if($objective) {
+            $campaign = (new CampaignTransformer)->CampaignPaymentPresentor($objective, $objective->toArray());
+        }
+
+        return $campaign;
     }
 
 }

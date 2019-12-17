@@ -19,6 +19,7 @@ class CreateCampaignPaymentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
             $table->unsignedInteger('payment_type_id');
+            $table->boolean('is_primary');
 
             $table->foreign('campaign_id')->references('id')->on('campaigns');
             $table->foreign('payment_type_id')->references('id')->on('payment_types');
@@ -33,10 +34,8 @@ class CreateCampaignPaymentsTable extends Migration
 	 */
 	public function down()
 	{
-
         Schema::disableForeignKeyConstraints();
         Schema::drop('campaign_payments');
         Schema::enableForeignKeyConstraints();
-
 	}
 }

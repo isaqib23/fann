@@ -8,7 +8,7 @@
                     </v-card-title>
 
                     <v-textarea
-                        v-model="campaignDescription"
+                        v-model="description"
                         label="Write your campaign description here"
                         auto-grow
                         outlined
@@ -40,31 +40,35 @@
                             </v-card-title>
 
                             <touch-point-title-field
-                                v-if="campaignTouchPointFields.touchPointTitle"
+                                v-if="touchPoint.touchPointConditionalFields.touchPointTitle"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
                             ></touch-point-title-field>
 
                             <v-card-title>
-                                <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ campaignObjective.slug.replace('-',' ') }}</strong></div>
+                                <div class="subtitle-1 mb-2 text-capitalize"><strong>
+                                    {{ (campaignObjective != null) ? '' : campaignObjective.slug.replace('-',' ') }}
+                                </strong></div>
                             </v-card-title>
 
                             <v-row class="mx-auto my-5">
                                 <touch-point-brand-field
-                                    v-if="campaignTouchPointFields.touchPointBrand"
+                                    v-if="touchPoint.touchPointConditionalFields.touchPointBrand"
                                     :touchPoint="touchPoint"
                                     :paymentMethod="paymentMethod"
                                 ></touch-point-brand-field>
 
                                 <products-search
-                                    v-if="campaignTouchPointFields.touchPointProduct"
+                                    v-if="touchPoint.touchPointConditionalFields.touchPointProduct"
                                     :emit-as="'dispatchProduct'"
+                                    :selectedProduct="dispatchProduct"
+                                    :selectedVariants="dispatchProductVariant"
                                     @selected-product="selectedProduct"
                                 ></products-search>
                             </v-row>
 
                             <touch-point-post-format-field
-                                v-if="campaignTouchPointFields.touchPointInstagramFormat"
+                                v-if="touchPoint.touchPointConditionalFields.touchPointInstagramFormat"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
                             ></touch-point-post-format-field>
@@ -125,26 +129,24 @@
                                 </v-flex>
                             </v-layout>
 
-                            <v-layout row wrap pl-3 pr-3 mt-3>
-                                <v-flex lg4 sm4 m4 pr-3 class="text-center">
-                                    <MultiImageInput v-model="touchPoint.images">
-                                        <div slot="activator">
-                                            <v-avatar size="40" v-ripple v-if="!touchPoint.images" class="mb-3" tile>
-                                                <v-icon class="display-1">mdi-image-filter</v-icon>
-                                            </v-avatar>
-                                            <v-avatar size="40" v-else class="mb-3" tile>
-                                                <v-img
-                                                    class="white--text align-end"
-                                                    :src="touchPoint.images.imageURL" alt="avatar">
-                                                </v-img>
-                                            </v-avatar>
-                                        </div>
-                                    </MultiImageInput>
-                                </v-flex>
-                                <v-flex lg8 sm8 m8 pl-3>
-                                    <v-btn height="38" depressed block class="text-capitalize" color="primary">Upload Images</v-btn>
-                                </v-flex>
-                            </v-layout>
+                            <MultiImageInput v-model="touchPoint.images">
+                                <v-layout row wrap pl-3 pr-3 mt-3 slot="activator">
+                                    <v-flex lg4 sm4 m4 pr-3 class="text-center">
+                                        <v-avatar size="40" v-ripple v-if="touchPoint.images.length == 0" class="mb-3" tile>
+                                            <v-icon class="display-1">mdi-image-filter</v-icon>
+                                        </v-avatar>
+                                        <v-avatar size="40" v-else class="mb-3" tile>
+                                            <v-img
+                                                class="white--text align-end"
+                                                :src="touchPoint.images.length > 0 ? touchPoint.images[0].imageURL : ''" alt="avatar">
+                                            </v-img>
+                                        </v-avatar>
+                                    </v-flex>
+                                    <v-flex lg8 sm8 m8 pl-3>
+                                        <v-btn height="38" depressed block class="text-capitalize" color="primary">Choose Images</v-btn>
+                                    </v-flex>
+                                </v-layout>
+                            </MultiImageInput>
 
                             <v-layout row wrap pl-3 pr-3 mt-5>
                                 <v-flex lg6 sm6 m6 pr-3>
@@ -221,7 +223,7 @@
                     <v-btn block height="20" class="task_btn text-capitalize" @click="addTouchPoint">+ Add another contest or giveaway</v-btn>
                 </div>
                 <div class="text-center mt-4">
-                    <v-btn block height="20" color="primary" class="task_btn text-capitalize" @click="removeTouchPooint">- Remove contest or giveaway</v-btn>
+                    <v-btn block height="20" color="primary" class="task_btn text-capitalize" @click="removeTouchPoint">- Remove contest or giveaway</v-btn>
                 </div>
             </v-card>
         </v-flex>
@@ -245,9 +247,7 @@
             TouchPointPostFormatField : TouchPointPostFormatField,
             TouchPointBrandField : TouchPointBrandField
         },
-        props : {
-            touchPoint : {}
-        },
+        props : ["campObjective"],
         data ()  {
             return  {
                 tabsLength            : 1,
@@ -255,6 +255,9 @@
                 guideLines            : 1,
                 model                 : 0,
                 e1                    : 0,
+                description       : null,
+                dispatchProduct       : null,
+                dispatchProductVariant: [],
                 kind                  : '1',
                 checkbox2             : true,
                 checkbox1             : false,
@@ -277,60 +280,88 @@
                 disabledStoryLink     :true,
                 disabledPaid          : false,
                 disabledBarter        : false,
-                campaignTouchPointFields : {
-                    touchPointTitle          : false,
-                    touchPointInstagramFormat: false,
-                    touchPointPaymentFormat  : false,
-                    isPaid                   : false,
-                    isBarter                 : false,
-                    additionalPayAsBarter    : false,
-                    additionalPayAsAmount    : false,
-                    touchPointProduct        : false,
-                    touchPointBrand          : false
+                touchPointTabsState          :{
+                    preTouchPoint       : null,
+                    currentTouchPoint   : 0,
+                    nextTouchPoint      : null
                 }
             }
         },
         computed: {
             ...mapGetters({
-                placement: 'campaign/campaignPlacement',
-                campaignObjective: 'campaign/campaignObjective'
+                placement           : 'campaign/campaignPlacement',
+                touchPoint          : 'campaign/touchPoint',
+                campaignObjective   : 'campaign/campaignObjective',
+                savedTouchPoints    : 'campaign/savedTouchPoints',
+                savedShopifyProduct : 'campaign/savedShopifyProduct',
+                campaignInformation : 'campaign/campaignInformation',
             })
         },
-        mounted() {
-            this.paymentMethod = Object.assign(this.paymentMethod, this.placement)
+        async created() {
+            await this.getCampaignTouchPoint({slug:this.$router.currentRoute.params.slug});
+            await this.findTouchPoint(this.touchPointTabsState.currentTouchPoint);
+            this.setTouchPointFields();
+            this.tabsLength = (this.savedTouchPoints.length > 0) ? this.savedTouchPoints.length : this.tabsLength;
+        },
+        async mounted() {
+            this.paymentMethod = Object.assign(this.paymentMethod, this.placement);
             this.setPayment();
             this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
-            this.setTouchPointFields();
         },
         methods: {
             ...mapMutations({
-                setTouchPoint : 'campaign/setTouchPoint'
+                setTouchPoint : 'campaign/setTouchPoint',
+                updateCampaignInformation : 'campaign/updateCampaignInformation'
             }),
             ...mapActions({
-                saveTouchPoint: 'campaign/saveTouchPoint',
-                saveTouchPointField: 'campaign/saveTouchPointField'
+                saveTouchPoint              : 'campaign/saveTouchPoint',
+                saveTouchPointField         : 'campaign/saveTouchPointField',
+                resetTouchPoint             : 'campaign/resetTouchPoint',
+                getCampaignTouchPoint       : 'campaign/getCampaignTouchPoint',
+                getSavedShopifyProduct      : 'campaign/getSavedShopifyProduct'
             }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
                     return false;
                 }
                 this.currentTab = this.currentTab + 1;
+                this.findTouchPoint(this.currentTab);
             },
             preTab() {
                 if (this.currentTab === 0) {
                     return false;
                 }
                 this.currentTab = this.currentTab - 1;
+                this.findTouchPoint(this.currentTab);
+            },
+            async findTouchPoint(id) {
+                if (this.savedTouchPoints.length > 0 && !_.isNil(this.savedTouchPoints[id])) {
+                    this.resetTouchPoint(this.savedTouchPoints[id]);
+                    this.setTouchPointFields();
+                    await this.getSavedShopifyProduct({
+                        product_id: this.touchPoint.dispatchProduct.productId,
+                        shop: localStorage.selectedShop
+                    });
+                } else {
+                    this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
+                    this.setTouchPointFields();
+                }
             },
             async addTouchPoint() {
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
-                     this.tabsLength = this.tabsLength + 1;
-                     this.currentTab = this.currentTab + 1;
+                    this.touchPoint.id = response.details.touch_point_id;
+                    this.tabsLength = this.tabsLength + 1;
+                    this.currentTab = this.currentTab + 1;
+                    this.touchPointTabsState.preTouchPoint = response.details.touch_point_id;
+                    this.touchPointTabsState.currentTouchPoint = this.touchPoint.id;
+                    this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
+                    this.setTouchPointFields();
+                    this.guideLines = 1;
                 }
             },
-            removeTouchPooint() {
+            removeTouchPoint() {
                 if (this.tabsLength === 1) {
                     return false;
                 }
@@ -366,16 +397,17 @@
             },
             setTouchPointFields() {
 
-                this.campaignTouchPointFields.touchPointBrand = (this.campaignObjective.slug === 'unboxing' || this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
-                this.campaignTouchPointFields.touchPointProduct = (this.campaignObjective.slug === 'unboxing' || this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? true : false;
-                this.campaignTouchPointFields.touchPointTitle = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
-                this.campaignTouchPointFields.isBarter = (this.paymentMethod.paymentType === 'barter') ? true : false;
-                this.campaignTouchPointFields.isPaid = (this.paymentMethod.paymentType == 'paid') ? true : false;
-                this.campaignTouchPointFields.touchPointInstagramFormat = (this.paymentMethod.platform == 1) ? true : false;
-                this.campaignTouchPointFields.additionalPayAsAmount = this.paymentMethod.additionalPayAsAmount;
-                this.campaignTouchPointFields.additionalPayAsBarter = this.paymentMethod.additionalPayAsBarter;
+                let optFields = this.touchPoint.touchPointConditionalFields;
+                optFields.touchPointBrand = (this.campaignObjective.slug === 'unboxing' || this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
+                optFields.touchPointProduct = (this.campaignObjective.slug === 'unboxing' || this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? true : false;
+                optFields.touchPointTitle = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
+                optFields.isBarter = (this.paymentMethod.paymentType === 'barter') ? true : false;
+                optFields.isPaid = (this.paymentMethod.paymentType == 'paid') ? true : false;
+                optFields.touchPointInstagramFormat = (this.paymentMethod.platform == 1) ? true : false;
+                optFields.additionalPayAsAmount = this.paymentMethod.additionalPayAsAmount;
+                optFields.additionalPayAsBarter = this.paymentMethod.additionalPayAsBarter;
 
-                this.saveTouchPointField(this.campaignTouchPointFields)
+                this.saveTouchPointField(optFields)
             }
         },
         watch: {
@@ -400,13 +432,13 @@
                 immediate: true,
                 deep: true
             },
-            'touchPoint.guideLines': {
+            /*'touchPoint.guideLines': {
                 handler: function(val) {
                     this.setTouchPoint(['guideLines', _.values(val)]);
                 },
                 immediate: false,
                 deep: true
-            },
+            },*/
             'touchPoint.amount': {
                 handler: function(val) {
                     this.setTouchPoint(['amount', val]);
@@ -417,13 +449,6 @@
             'touchPoint.name': {
                 handler: function(val) {
                     this.setTouchPoint(['name', val]);
-                },
-                immediate: true,
-                deep: true
-            },
-            'campaignDescription': {
-                handler: function(val) {
-                    this.setTouchPoint(['campaignDescription', val]);
                 },
                 immediate: true,
                 deep: true
@@ -441,12 +466,14 @@
                         let reader = new FileReader();
 
                         reader.onload = function (e) {
-                            readFiles[i] = {
+                            let imgObject = {
                                 name: file.name,
                                 size: file.size,
                                 type: file.type,
-                                src: e.target.result
-                            }
+                                src: e.target.result,
+                                imageURL: URL.createObjectURL(file)
+                            };
+                            readFiles.push(imgObject);
                         };
                         reader.readAsDataURL(file);
                     }
@@ -478,6 +505,38 @@
                     this.setTouchPoint(['instaStoryLink', val]);
                 },
                 immediate: true
+            },
+            'campaignInformation': {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)) {
+                        self.description = val.description;
+                    }
+                },
+                immediate: true,
+                deep:true
+            },
+            'description': {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)) {
+                        self.campaignInformation.description = val;
+                    }
+                },
+                immediate: true,
+                deep:true
+            },
+            'savedShopifyProduct' (val) {
+                console.log(val);
+                if(!_.isNil(val.details)) {
+                    this.dispatchProductVariant = [];
+                    this.dispatchProduct = val.details;
+                    this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
+                }
+            },
+            'placement' (val) {
+                this.paymentMethod = Object.assign(this.paymentMethod, val);
+                this.setPayment();
             }
         }
     }
