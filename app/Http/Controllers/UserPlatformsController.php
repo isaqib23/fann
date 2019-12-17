@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\UserMetaRepository;
+use App\Contracts\PlacementRepository;
+use App\Contracts\UserPlatformMetaRepository;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
 use App\Contracts\UserPlatformRepository;
-use App\Validators\UserPlatformValidator;
 use App\Services\InstagramService;
 use App\Services\YoutubeService;
+
 
 
 /**
@@ -38,33 +38,32 @@ class UserPlatformsController extends Controller
     protected $youtube;
 
     /**
-     * @var UserPlatformRepository
+     * @var PlacementRepository
      */
-    private $userPlatformRepository;
-
+    private $placementRepository;
     /**
-     * @var UserMetaRepository
+     * @var UserPlatformMetaRepository
      */
-    private $userMetaRepository;
+    private $userPlatformMetaRepository;
 
     /**
      * UserPlatformsController constructor.
      *
      * @param UserPlatformRepository $repository
-     * @param UserPlatformRepository $userPlatformRepository
-     * @param UserMetaRepository $userMetaRepository
+     * @param PlacementRepository $placementRepository
+     * @param UserPlatformMetaRepository $userPlatformMetaRepository
      */
     public function __construct(
         UserPlatformRepository $repository,
-        UserPlatformRepository $userPlatformRepository,
-        UserMetaRepository $userMetaRepository
+        PlacementRepository $placementRepository,
+        UserPlatformMetaRepository $userPlatformMetaRepository
     )
     {
         $this->repository = $repository;
-        $this->userPlatformRepository = $userPlatformRepository;
-        $this->userMetaRepository = $userMetaRepository;
         $this->instagram = new InstagramService();
         $this->youtube = new YoutubeService();
+        $this->placementRepository = $placementRepository;
+        $this->userPlatformMetaRepository = $userPlatformMetaRepository;
     }
 
     /**
@@ -76,7 +75,7 @@ class UserPlatformsController extends Controller
 
     public function index(Request $request)
     {
-        $userPlatform = $this->userPlatformRepository->findByField('name',$request->input('provider'));
+        $userPlatform = $this->placementRepository->findByField('slug',$request->input('provider'));
 
         if($userPlatform->count() > 0){
             return $this->platformsLogin($request->input('provider'));
@@ -116,7 +115,10 @@ class UserPlatformsController extends Controller
         // Create Meta object for saving
         $metaObject = $this->createMetaObject($userData, 'instagram', $request->input('state'));
 
-        $this->userMetaRepository->store($metaObject);
+        $response = $this->repository->store($metaObject);
+
+        // Save user platform Meta
+        $this->userPlatformMetaRepository->store($metaObject,$response);
 
         return redirect()->to('settings/profile');
     }
@@ -135,10 +137,13 @@ class UserPlatformsController extends Controller
         // Get User Info Object
         $getUserInfo = $this->youtube->getUserInfo($token);
 
-        // Create Meta object for saving
+        // Create Meta for saving user platform
         $metaObject = $this->createMetaObject($getUserInfo, 'youtube', $request->input('state'),$token);
 
-        $this->userMetaRepository->store($metaObject);
+        $response = $this->repository->store($metaObject);
+
+        // Save user platform Meta
+        $this->userPlatformMetaRepository->store($metaObject,$response);
 
         return redirect()->to('settings/profile');
     }
@@ -152,11 +157,14 @@ class UserPlatformsController extends Controller
      */
     private function createMetaObject($payload, $provider, $user_id, $token = null)
     {
+        $placement = $this->placementRepository->findWhere(['slug' => $provider])->first();
+
         $metaObject = new Collection();
         if ($provider == 'instagram') {
             $metaObject->user_id = $user_id;
             $metaObject->access_token = $payload->access_token;
             $metaObject->provider = $provider;
+            $metaObject->placement_id = $placement->id;
             $metaObject->provider_id = $payload->user->id;
             $metaObject->provider_name = $payload->user->full_name;
             $metaObject->provider_photo = $payload->user->profile_picture;
@@ -170,6 +178,7 @@ class UserPlatformsController extends Controller
         $metaObject->user_id = $user_id;
         $metaObject->access_token = json_encode($token);
         $metaObject->provider = $provider;
+        $metaObject->placement_id = $placement->id;
         $metaObject->provider_id = $payload->id;
         $metaObject->provider_name = $payload->name;
         $metaObject->provider_photo = $payload->picture;
