@@ -62,7 +62,8 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
     {
         return $this->updateOrCreate(
             [
-                'campaign_touch_point_id'   => $data['campaign_touch_point_id'],
+                'id'                    => $data['id'],
+                'placement_type_id'     => $data['placement_type_id'],
             ],
             [
                 'campaign_touch_point_id'       => $data['campaign_touch_point_id'],
@@ -74,20 +75,34 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
 
     /**
      * @param $data
+     * @param $savedTouchPoint
      * @return mixed
      * @throws ValidatorException
      */
-    public function prepareDataAndStore($data)
+    public function prepareDataAndStore($data,$savedTouchPoint)
     {
-        if (array_key_exists('slug', $data)) {
-            $placementType = $this->placementTypeRepositoryEloquent->findByField('slug', $data['slug'])->first();
+        $result = [
+            'id'                        => $data['id'],
+            'campaign_touch_point_id'   => $savedTouchPoint->id,
+        ];
 
-            $data['placement_type_id'] = $placementType->id;
+        if(!is_null($data['instaBioLink'])){
+            $placementType = $this->placementTypeRepositoryEloquent->findByField('slug', $data['instaPost'])->first();
+            $result['placement_type_id'] = $placementType->id;
+            $result['link']              = $data['instaBioLink'];
+            $result['link_type']         = 'instaBioLink';
 
-            unset($data['slug']);
+            $this->store($result);
         }
 
-        return $this->store($data);
+        if(!is_null($data['instaStoryLink'])){
+            $placementType = $this->placementTypeRepositoryEloquent->findByField('slug', $data['instaStory'])->first();
+            $result['placement_type_id'] = $placementType->id;
+            $result['link']              = $data['instaStoryLink'];
+            $result['link_type']         = 'instaStoryLink ';
+
+            $this->store($result);
+        }
     }
 
 }

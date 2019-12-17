@@ -115,7 +115,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
                 $query->with(['paymentType']);
             },
             'touchPoint' => function($query){
-                $query->with(['additional','media']);
+                $query->with(['additional','media','placementAction']);
             },
             'objective'
         ])

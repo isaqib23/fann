@@ -10,7 +10,7 @@
         <v-layout row wrap pl-3 pr-3>
             <v-flex lg4 sm4 m4 pr-3>
                 <v-checkbox class="mt-0 pt-0" color="primary" label="Instagram Post"
-                            v-model="touchPoint.instaPost"
+                            v-model="touchPoint.instaFormatFields.instaPost"
                             @click="disabledBioLink = !disabledBioLink"
                             value="post"
                 ></v-checkbox>
@@ -20,7 +20,7 @@
                     solo
                     label="Bio Link"
                     class="custom_dropdown"
-                    v-model="touchPoint.instaBioLink"
+                    v-model="touchPoint.instaFormatFields.instaBioLink"
                     :disabled="disabledBioLink"
                 ></v-text-field>
             </v-flex>
@@ -28,7 +28,7 @@
         <v-layout row wrap pl-3 pr-3 mt-3>
             <v-flex lg4 sm4 m4 pr-3>
                 <v-checkbox class="mt-0 pt-0" color="primary" label="Instagram Story"
-                            v-model="touchPoint.instaStory"
+                            v-model="touchPoint.instaFormatFields.instaStory"
                             @click="disabledStoryLink = !disabledStoryLink"
                             value="story"
                 ></v-checkbox>
@@ -38,7 +38,7 @@
                     solo
                     label="Story Link"
                     class="custom_dropdown"
-                    v-model="touchPoint.instaStoryLink"
+                    v-model="touchPoint.instaFormatFields.instaStoryLink"
                     :disabled="disabledStoryLink"
                 ></v-text-field>
             </v-flex>
@@ -61,7 +61,8 @@
             }
         },
         mounted () {
-            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+            console.log(this.touchPoint, 'instgram');
+            this.icon = this.paymentMethod.platform == 2 ? 'mdi-instagram': 'mdi-youtube';
         }
     }
 </script>

@@ -61,10 +61,7 @@ class CampaignTransformer extends TransformerAbstract
                 'amount'            => $touchPoint->amount,
                 'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint),
                 'barterProduct'     => ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $this->touchPointProductPresentor($touchPoint) : null,
-                'instaPost'         => null,
-                'instaBioLink'      => null,
-                'instaStory'        => null,
-                'instaStoryLink'    => null,
+                'instaFormatFields' => $this->getInstaFormatFields($touchPoint->placementAction),
                 'images'            => $this->getTouchPointMedia($touchPoint->media),
                 "touchPointConditionalFields" => $this->getTouchPointConditionalFields($return)
             ];
@@ -164,6 +161,28 @@ class CampaignTransformer extends TransformerAbstract
                 ];
             }
         }
+        return $return;
+    }
+
+    /**
+     * @param $data
+     * @return array
+     */
+    private function getInstaFormatFields($data)
+    {
+        //dd($data);
+        $return = [];
+        /*if($images) {
+            foreach ($data as $key => $value){
+                $return = [
+                    "id"            => null,
+                    "instaPost"     => false,
+                    "instaBioLink"  => null,
+                    "instaStory"    => false,
+                    "instaStoryLink"=> null,
+                ];
+            }
+        }*/
         return $return;
     }
 }

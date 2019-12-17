@@ -48,4 +48,12 @@ class CampaignTouchPoint extends Model implements Transformable
     {
         return $this->hasMany(CampaignTouchPointMedia::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function placementAction()
+    {
+        return $this->hasMany(CampaignTouchPointPlacementAction::class);
+    }
 }
