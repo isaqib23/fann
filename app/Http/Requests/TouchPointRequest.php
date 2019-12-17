@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Campaign;
+use Illuminate\Validation\Rule;
+
 class TouchPointRequest extends BaseFormRequest
 {
     /**

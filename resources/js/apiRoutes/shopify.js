@@ -3,7 +3,7 @@ let shopify = {
 
     'install'                : 'install/:shop',
     'findProducts'           : 'findProducts',
-    'findProduct'            : 'findProduct',
+    'findSingleProduct'      : 'findSingleProduct',
     'linkedShops'            : 'linked-shops',
     'shopifyCleanUninstall'  : 'clean-uninstall',
 };

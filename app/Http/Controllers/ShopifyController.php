@@ -243,7 +243,7 @@ class ShopifyController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function findProduct(Request $request)
+    public function findSingleProduct(Request $request)
     {
         $shopObj = $this->repository->findByField('id', $request->input('shop'))->first();
 

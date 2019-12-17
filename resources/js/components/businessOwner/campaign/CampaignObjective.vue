@@ -75,13 +75,13 @@
         },
         computed: {
             ...mapGetters({
-                campaign: 'campaign/campaignObjective'
+                campaign    : 'campaign/campaignObjective'
 
             })
         },
         async mounted() {
            let self = this;
-           this.campaignObjective = Object.assign(this.campaignObjective, await this.getCampaignObjective({slug:this.$router.currentRoute.params.slug}))
+           this.campaignObjective = Object.assign(this.campaignObjective, await this.getCampaignSavedObjective({slug:this.$router.currentRoute.params.slug}))
            axios
                .get(api.path('campaign.objectives'))
                .then(function (resp) {
@@ -90,8 +90,8 @@
         },
         methods: {
             ...mapActions({
-                saveObjective: 'campaign/saveObjective',
-                getCampaignObjective: 'campaign/getCampaignObjective'
+                saveObjective               : 'campaign/saveObjective',
+                getCampaignSavedObjective   : 'campaign/getCampaignSavedObjective'
             }),
             async goToNext () {
                 let self = this;
@@ -105,8 +105,7 @@
                 } else {
                     this.campaignObjective.slug  = this.$el.querySelector("input[type=radio]:checked").getAttribute('slug')
                     let savedCampaign =  await this.saveObjective(this.campaignObjective);
-                    console.info(savedCampaign,  'hey response');
-                    this.$router.push({ name: 'create-campaign-placement', params: { slug: savedCampaign.slug } })
+                    this.$router.push({ name: 'create-campaign-placement', params: { slug: savedCampaign.details.slug } })
                 }
             }
         }

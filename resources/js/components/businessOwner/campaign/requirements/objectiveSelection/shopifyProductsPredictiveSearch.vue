@@ -98,11 +98,9 @@
                 bouncer    : _.debounce(this.getProducts, 750),
                 options    : [],
                 search     : '',
-                product    : null,
                 lookingUp  : false,
                 variants   : null,
-                ld         : _,
-               selectedVariant : {},
+                ld         : _
             }
         },
 

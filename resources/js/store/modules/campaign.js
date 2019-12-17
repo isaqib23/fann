@@ -2,13 +2,14 @@
  * Initial state
  */
 export const state = {
-  campaignObjective               : null,
+  campaignObjective               : {},
   campaignPlacement               : null,
   campaignInformation             : null,
   influencerSearchResults         : null,
-  shopifyProduct                  : null,
-  touchPoints                     : [],
+  savedShopifyProduct             : null,
+  savedTouchPoints                : [],
   touchPoint                    : {
+      id                          : null,
       caption                     : null,
       hashtags                    : null,
       mentions                    : null,
@@ -84,14 +85,11 @@ export const mutations = {
     resetTouchPoint(state, touchPoint) {
         state.touchPoint = touchPoint;
     },
-    saveTouchPoint(state, touchPoint) {
-        state.touchPoints.push(touchPoint);
+    setSavedTouchPoints(state, touchPoint) {
+        state.savedTouchPoints = (touchPoint);
     },
-    saveTouchPoints(state, touchPoint) {
-        state.touchPoints = (touchPoint);
-    },
-    setShopifyProduct(state, shopifyProduct) {
-        state.shopifyProduct = shopifyProduct;
+    setSavedShopifyProduct(state, shopifyProduct) {
+        state.savedShopifyProduct = shopifyProduct;
     },
     updateCampaignInformation(state, [index, val]) {
         Vue.set(state.campaignInformation, index, val)
@@ -108,7 +106,7 @@ export const actions = {
         commit('setObjective', payload);
         let response =  await CampaignAxios.saveCampaign(payload);
 
-        commit('setCampaignInformation', response);
+        commit('setCampaignInformation', response.details);
         return response;
     },
     async fetchAllPlacements() {
@@ -122,7 +120,7 @@ export const actions = {
     async saveTouchPoint({commit, state}) {
 
          let payload  = {
-             'campaignId'  : state.campaignInformation.details.id,
+             'campaignId'  : state.campaignInformation.id,
              'payment'     : state.campaignPlacement,
              'platformId'  : state.campaignPlacement.platform,
              'touchPoint'  : state.touchPoint,
@@ -163,22 +161,22 @@ export const actions = {
 
         let response = await CampaignAxios.getCampaignTouchPoint(payload);
         if(!_.isNil(response.details.touchPoints)) {
-            commit('saveTouchPoints', response.details.touchPoints);
+            commit('setSavedTouchPoints', response.details.touchPoints);
         }
         commit('setObjective', response.details.campaignObjective);
         commit('setPlacement',response.details.payment);
         commit('setCampaignInformation',response.details.campaignInformation);
         return response;
     },
-    async getShopifyProduct({commit, state},payload) {
+    async getSavedShopifyProduct({commit, state},payload) {
 
-        let response = await CampaignAxios.getShopifyProduct(payload);
+        let response = await CampaignAxios.getSavedShopifyProduct(payload);
 
-        commit('setShopifyProduct',response);
+        commit('setSavedShopifyProduct',response);
     },
-    async getCampaignObjective({commit, state},payload) {
+    async getCampaignSavedObjective({commit, state},payload) {
 
-        let response = await CampaignAxios.getCampaignObjective(payload);
+        let response = await CampaignAxios.getCampaignSavedObjective(payload);
         return response.details;
     }
 
@@ -195,8 +193,8 @@ export const getters = {
     touchPoint              : state => state.touchPoint,
     inviteSearchParams      : state => state.inviteSearchParams,
     influencerSearchResults : state => state.influencerSearchResults,
-    touchPoints             : state => state.touchPoints,
-    shopifyProduct          : state => state.shopifyProduct
+    savedTouchPoints        : state => state.savedTouchPoints,
+    savedShopifyProduct     : state => state.savedShopifyProduct
 
 
 }
@@ -299,8 +297,8 @@ let CampaignAxios = class {
             });
     }
 
-    static getShopifyProduct (payload) {
-        return axios.post(api.path('shopify.findProduct'), payload)
+    static getSavedShopifyProduct (payload) {
+        return axios.post(api.path('shopify.findSingleProduct'), payload)
             .then(resp => {
                 return {
                     status : 200,
@@ -315,8 +313,8 @@ let CampaignAxios = class {
             });
     }
 
-    static getCampaignObjective (payload) {
-        return axios.post(api.path('campaign.getCampaignObjective'), payload)
+    static getCampaignSavedObjective (payload) {
+        return axios.post(api.path('campaign.getCampaignSavedObjective'), payload)
             .then(resp => {
                 return {
                     status : 200,

@@ -10,7 +10,7 @@ let campaign = {
     saveTouchPoint              : 'saveTouchPoint',
     saveInvitation              : 'saveInvitation',
     getCampaignTouchPoint       : 'getCampaignTouchPoint',
-    getCampaignObjective        : 'getCampaignObjective',
+    getCampaignSavedObjective   : 'getCampaignSavedObjective',
 };
 
 export default campaign;

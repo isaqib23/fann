@@ -46,7 +46,9 @@
                             ></touch-point-title-field>
 
                             <v-card-title>
-                                <div class="subtitle-1 mb-2 text-capitalize"><strong>{{ campaignObjective.slug.replace('-',' ') }}</strong></div>
+                                <div class="subtitle-1 mb-2 text-capitalize"><strong>
+                                    {{ (campaignObjective != null) ? '' : campaignObjective.slug.replace('-',' ') }}
+                                </strong></div>
                             </v-card-title>
 
                             <v-row class="mx-auto my-5">
@@ -59,6 +61,8 @@
                                 <products-search
                                     v-if="touchPoint.touchPointConditionalFields.touchPointProduct"
                                     :emit-as="'dispatchProduct'"
+                                    :product="dispatchProduct"
+                                    :selectedVariants="dispatchProductVariant"
                                     @selected-product="selectedProduct"
                                 ></products-search>
                             </v-row>
@@ -243,6 +247,7 @@
             TouchPointPostFormatField : TouchPointPostFormatField,
             TouchPointBrandField : TouchPointBrandField
         },
+        props : ["campObjective"],
         data ()  {
             return  {
                 tabsLength            : 1,
@@ -285,10 +290,10 @@
         computed: {
             ...mapGetters({
                 placement           : 'campaign/campaignPlacement',
-                touchPoint           : 'campaign/touchPoint',
+                touchPoint          : 'campaign/touchPoint',
                 campaignObjective   : 'campaign/campaignObjective',
-                touchPoints          : 'campaign/touchPoints',
-                shopifyProduct : 'campaign/shopifyProduct',
+                savedTouchPoints    : 'campaign/savedTouchPoints',
+                savedShopifyProduct : 'campaign/savedShopifyProduct',
                 campaignInformation : 'campaign/campaignInformation',
             })
         },
@@ -296,7 +301,7 @@
             await this.getCampaignTouchPoint({slug:this.$router.currentRoute.params.slug});
             await this.findTouchPoint(this.touchPointTabsState.currentTouchPoint);
             this.setTouchPointFields();
-            this.tabsLength = (this.touchPoints.length > 0) ? this.touchPoints.length : this.tabsLength;
+            this.tabsLength = (this.savedTouchPoints.length > 0) ? this.savedTouchPoints.length : this.tabsLength;
         },
         async mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement);
@@ -313,7 +318,7 @@
                 saveTouchPointField         : 'campaign/saveTouchPointField',
                 resetTouchPoint             : 'campaign/resetTouchPoint',
                 getCampaignTouchPoint       : 'campaign/getCampaignTouchPoint',
-                getShopifyProduct       : 'campaign/getShopifyProduct'
+                getSavedShopifyProduct      : 'campaign/getSavedShopifyProduct'
             }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
@@ -327,11 +332,12 @@
                     return false;
                 }
                 this.currentTab = this.currentTab - 1;
+                this.findTouchPoint(this.currentTab);
             },
             async findTouchPoint(id) {
-                if (this.touchPoints.length > 0 && !_.isNil(this.touchPoints[id])) {
-                    this.resetTouchPoint(this.touchPoints[id]);
-                    await this.getShopifyProduct({
+                if (this.savedTouchPoints.length > 0 && !_.isNil(this.savedTouchPoints[id])) {
+                    this.resetTouchPoint(this.savedTouchPoints[id]);
+                    await this.getSavedShopifyProduct({
                         product_id: this.touchPoint.dispatchProduct.productId,
                         shop: localStorage.selectedShop
                     });

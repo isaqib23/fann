@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Transformers\CampaignTransformer;
 use Exception;
 use Illuminate\Support\Str;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -44,7 +45,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
     {
         return $this->updateOrCreate(
             [
-                'id'    => $request['id'],
+                'id'    => $request['objective_id'],
             ],
             [
                 'name' => $request['name'],
@@ -100,6 +101,53 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
     {
 
 
+    }
+
+    /**
+     * @param $request
+     * @return array
+     *
+     */
+    public function getCampaignTouchPointWithPresenter($request){
+        $campaign = $this->with([
+            'payment'  => function($query){
+                $query->with(['paymentType']);
+            },
+            'touchPoint' => function($query){
+                $query->with(['additional']);
+            },
+            'objective'
+        ])
+            ->findWhere(['slug' => $request->input('slug')])
+            ->first();
+
+        $campaign = (new CampaignTransformer)->transform($campaign);
+
+        return $campaign;
+    }
+
+    /**
+     * @param $request
+     * @return array
+     *
+     */
+    public function getCampaignObjectivetWithPresenter($request){
+        $objective = $this->with([
+            'payment'  => function($query){
+                $query->with(['paymentType']);
+            },
+            'placement'
+        ])
+            ->findWhere([
+                'slug'  => $request->input('slug')
+            ])->first();
+
+        $campaign = [];
+        if($objective) {
+            $campaign = (new CampaignTransformer)->CampaignPaymentPresentor($objective, $objective->toArray());
+        }
+
+        return $campaign;
     }
 
 }

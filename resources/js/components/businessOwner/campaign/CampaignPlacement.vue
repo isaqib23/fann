@@ -178,10 +178,11 @@
             },
             loadPlacements:null,
             campaignObjective: {
-                id: null,
-                objective_id: null,
-                slug: null,
-                name: null
+                id                  : null,
+                objective_id        : null,
+                slug                : null,
+                name                : null,
+                primary_placement_id: null
             },
         }),
         validations: {
@@ -197,11 +198,10 @@
         computed: {
             ...mapGetters({
                 placement: 'campaign/campaignPlacement',
-                campaignObjective: 'campaign/campaignObjective',
             })
         },
         async mounted() {
-            this.campaignObjective = Object.assign(this.campaignObjective, await this.getCampaignObjective({slug:this.$router.currentRoute.params.slug}))
+            this.campaignObjective = Object.assign(this.campaignObjective, await this.getCampaignSavedObjective({slug:this.$router.currentRoute.params.slug}))
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.campaignObjective.payment);
             this.campaignPlacement.platform = this.campaignObjective.primary_placement_id;
             this.campaignPlacement.campaign_id = this.campaignObjective.id;
@@ -217,9 +217,9 @@
                 }
             },
             ...mapActions({
-                fetchAllPlacements: 'campaign/fetchAllPlacements',
-                savePlacementAndPaymentType: 'campaign/savePlacementAndPaymentType',
-                getCampaignObjective: 'campaign/getCampaignObjective',
+                fetchAllPlacements          : 'campaign/fetchAllPlacements',
+                savePlacementAndPaymentType : 'campaign/savePlacementAndPaymentType',
+                getCampaignSavedObjective        : 'campaign/getCampaignSavedObjective',
             }),
             goToNext() {
                 let self = this;

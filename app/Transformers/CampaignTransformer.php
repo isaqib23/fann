@@ -22,7 +22,7 @@ class CampaignTransformer extends TransformerAbstract
      */
     public function transform(Campaign $campaign)
     {
-        $return = [
+        $return['campaignInformation'] = [
             'id'            => (int) $campaign->id,
             'name'          => (string) $campaign->name,
             'slug'          => (string) $campaign->slug,
@@ -104,7 +104,7 @@ class CampaignTransformer extends TransformerAbstract
     private function CampaignObjectivePresentor($campaign, array $return): array
     {
         $return['campaignObjective'] = [
-            'Objective_id'   => $campaign->objective->id,
+            'objective_id'   => $campaign->objective->id,
             'name'          => $campaign->objective->slug,
             'slug'          => $campaign->objective->slug
         ];
@@ -116,7 +116,7 @@ class CampaignTransformer extends TransformerAbstract
      * @param array $return
      * @return array
      */
-    private function CampaignPaymentPresentor($campaign, array $return): array
+    public function CampaignPaymentPresentor($campaign, array $return): array
     {
         $return['payment'] = [
             'additionalPayAsAmount'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'barter') ? (boolean)$campaign['payment']->is_primary : false,

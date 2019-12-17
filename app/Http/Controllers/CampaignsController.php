@@ -375,7 +375,7 @@ class CampaignsController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function getCampaignObjective(Request $request)
+    public function getCampaignSavedObjective(Request $request)
     {
         $objective = $this->repository->getCampaignObjectivetWithPresenter($request);
 
