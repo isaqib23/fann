@@ -27,11 +27,14 @@ class YoutubeService
 
         $this->google->setScopes([
             'profile',
+            'email',
+            'openid',
             'https://www.googleapis.com/auth/youtube',
             'https://www.googleapis.com/auth/youtube.force-ssl',
             'https://www.googleapis.com/auth/youtube.readonly',
             'https://www.googleapis.com/auth/youtubepartner-channel-audit',
         ]);
+
         $this->google->setIncludeGrantedScopes(true);
         $this->google->setRedirectUri(env('YOUTUBE_REDIRECT_URI'));
 
