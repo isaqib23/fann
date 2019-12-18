@@ -46,12 +46,12 @@
                             ></touch-point-title-field>
 
                             <v-card-title>
-                                <div class="subtitle-1 mb-2 text-capitalize"><strong>
+                                <div class="subtitle-1 mb-1 text-capitalize"><strong>
                                     {{ (campaignObjective != null) ? '' : campaignObjective.slug.replace('-',' ') }}
                                 </strong></div>
                             </v-card-title>
 
-                            <v-row class="mx-auto my-5">
+                            <v-row class="mx-auto my-1">
                                 <touch-point-brand-field
                                     v-if="touchPoint.touchPointConditionalFields.touchPointBrand"
                                     :touchPoint="touchPoint"
