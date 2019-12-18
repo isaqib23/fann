@@ -50,6 +50,9 @@ class CampaignTransformer extends TransformerAbstract
     private function touchPointPresentor($campaign, array $return): array
     {
         foreach ($campaign->touchPoint as $key => $touchPoint) {
+            $guidelines = array_values(json_decode($touchPoint->additional->guidelines,true));
+            array_unshift($guidelines, null);
+
             $return['touchPoints'][] = [
                 'id'                => $touchPoint->id,
                 'name'              => $touchPoint->name,
@@ -57,7 +60,7 @@ class CampaignTransformer extends TransformerAbstract
                 'placement_id'      => $touchPoint->placement_id,
                 'hashtags'          => $touchPoint->additional->tags,
                 'mentions'          => $touchPoint->additional->mentions,
-                'guideLines'        => json_decode($touchPoint->additional->guidelines, true),
+                'guideLines'        => $guidelines,
                 'amount'            => $touchPoint->amount,
                 'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint),
                 'barterProduct'     => ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $this->touchPointProductPresentor($touchPoint) : null,

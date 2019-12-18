@@ -63,9 +63,6 @@
         mounted () {
             this.disabledBioLink = (_.isNil(this.touchPoint.instaFormatFields.instaPost)) ? this.disabledBioLink : false;
             this.disabledStoryLink = (_.isNil(this.touchPoint.instaFormatFields.instaStory)) ? this.disabledBioLink : false;
-            console.log(this.disabledBioLink, 'disabledBioLink');
-            console.log(this.disabledStoryLink, 'disabledStoryLink');
-            console.log(this.touchPoint, 'disabledStoryLink');
             this.icon = this.paymentMethod.platform == 2 ? 'mdi-instagram': 'mdi-youtube';
         }
     }
