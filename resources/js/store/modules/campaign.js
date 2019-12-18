@@ -47,8 +47,7 @@ export const state = {
         rating                  : null,
         page                    : 1,
   },
-  listOfChatBox  : [],
-
+  listOfChatBox  : []
 }
 
 /**
