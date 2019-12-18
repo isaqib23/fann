@@ -70,7 +70,7 @@
                                     <span class="custom_icon bg3"><v-icon class="title" color="primary">mdi-heart</v-icon></span>
                                 </div>
                             </v-card-title>
-                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ channelData.commentCount }}</strong></v-card-text>
+                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ currentChannel.statistics.commentCount }}</strong></v-card-text>
                             <v-card-actions class="pl-5">
                                     <span class="success--text mr-2">
                                         <v-icon color="success" small>mdi-arrow-down</v-icon>13.8%
@@ -88,7 +88,7 @@
                                     <span class="custom_icon bg4"><v-icon color="#FDBA2C" class="title">mdi-tooltip</v-icon></span>
                                 </div>
                             </v-card-title>
-                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ channelData.subscriberCount }}</strong></v-card-text>
+                            <v-card-text class="display-1 pb-0"><strong color="darkSecondary">{{ currentChannel.statistics.subscriberCount }}</strong></v-card-text>
                             <v-card-actions class="pl-5">
                                     <span class="error--text mr-2">
                                         <v-icon color="error" small>mdi-arrow-down</v-icon>13.8%
@@ -116,15 +116,15 @@
                                     <v-list-item-subtitle class="caption">{{ userProfile.user_platform_meta.follower_count }} Followers</v-list-item-subtitle>
                                 </v-list-item-content>
 
-                                <v-btn color="primary" class="text-capitalize" depressed height="30">
+                                <v-btn color="primary" class="text-capitalize" depressed height="30" :href="'https://www.youtube.com/channel/' + currentChannel.id ">
                                     View Channel
                                 </v-btn>
                             </v-list-item>
-                            <iframe :src="Src( video.id )" width="100%" height="auto">
+                            <iframe :src="'https://www.youtube.com/embed/'+video.id" width="100%" height="auto">
                             </iframe>
 
                             <v-card-text class="py-2">
-                                <strong class="primary--text"><a :href="'https://www.youtube.com/channel/' + { channelData.id  }">View more on youtube</a></strong>
+                                <strong class="primary--text"><a :href="'https://www.youtube.com/channel/' + currentChannel.id ">View more on youtube</a></strong>
                             </v-card-text>
 
                             <v-card-actions class="action_class">
@@ -178,7 +178,9 @@
                 proposal: false,
                 touchPoint: false,
                 videos : [],
-                channelData : [],
+                currentChannel : {
+                    statistics : {}
+                },
                 countLatestVideos : null,
                 channelList : null,
                 defaultSelected: {},
@@ -191,9 +193,6 @@
             ...mapActions({
                 getVideos : 'influencer/getYoutubeVideos',
             }),
-            Src(val) {
-                return "https://www.youtube.com/embed/"+val;
-            },
             async postsData() {
                 let getPosts= await this.getVideos(this.userProfile.id);
 
@@ -201,10 +200,11 @@
 
                 this.channelList =getPosts.channelList;
 
-                this.channelData = getPosts.channelList[0].statistics;
-                console.log(this.channelData,"data");
+                this.currentChannel = getPosts.channelList[0];
+
                 this.defaultSelected = getPosts.channelList[0];
                 this.countLatestVideos = getPosts.countLatestVideos;
+
             }
         }
     }

@@ -36,18 +36,18 @@
                                     </div>
                                     <div class="icons text-start ml-4">
                                         <v-icon
-                                            :color="selectedPlatform === 1 ? 'primary' : 'integrityColor'"
+                                            :color="profile.placement_id === 1 ? 'primary' : 'integrityColor'"
                                             large
                                             class="mr-3"
                                             v-if="instagram!=null"
-                                            @click="changePlatform(1)"
+                                            @click="changePlatform(instagram)"
 
                                         >mdi-instagram</v-icon>
                                         <v-icon
-                                            :color="selectedPlatform === 2 ? 'primary' : 'integrityColor'"
+                                            :color="profile.placement_id === 2 ? 'primary' : 'integrityColor'"
                                             large
                                             v-if="youtube!=null"
-                                            @click="changePlatform(2)"
+                                            @click="changePlatform(youtube)"
                                         >mdi-youtube</v-icon>
                                     </div>
                                     <div class="followers text-start ml-4 mt-3 body-2">
@@ -58,7 +58,7 @@
                                             <strong class="mr-2 black--text">{{ profile.user_platform_meta.following_count }}</strong>Following
                                         </span>
                                         <span class="mr-3 integrityColor--text">
-                                            <strong class="mr-2 black--text">{{ profile.user_platform_meta.post_count}}</strong>Posts
+                                            <strong class="mr-2 black--text"> {{uploads}}</strong>Posts
                                         </span>
                                     </div>
                                     <div class="text-start ml-4 mt-2">
@@ -73,14 +73,14 @@
                                     </div>
                                     <div class="buttons text-right mt-n6">
                                         <v-spacer></v-spacer>
-                                        <v-dialog v-model="proposal" max-width="70%" transition="slide-y-reverse-transition">
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn color="grayLighten ml-4 mr-2 text-capitalize" depressed height="32" v-on="on">
-                                                    Invite to campaign
-                                                </v-btn>
-                                            </template>
-                                            <Proposal></Proposal>
-                                        </v-dialog>
+<!--                                        <v-dialog v-model="proposal" max-width="70%" transition="slide-y-reverse-transition">-->
+<!--                                            <template v-slot:activator="{ on }">-->
+<!--                                                <v-btn color="grayLighten ml-4 mr-2 text-capitalize" depressed height="32" v-on="on">-->
+<!--                                                    Invite to campaign-->
+<!--                                                </v-btn>-->
+<!--                                            </template>-->
+<!--                                            <Proposal></Proposal>-->
+<!--                                        </v-dialog>-->
                                         <v-dialog v-model="touchPoint" max-width="50%" transition="slide-y-reverse-transition">
                                             <template v-slot:activator="{ on }">
                                                 <v-btn color="primary ml-1 text-capitalize" depressed height="32" v-on="on">
@@ -97,8 +97,8 @@
                 </v-row>
             </v-card>
 
-           <InstagramProfile v-if="selectedPlatform === 1" platform="1" :userProfile="profile"></InstagramProfile>
-            <YoutubeProfile v-if="selectedPlatform === 2" platform="2" :userProfile="profile"></YoutubeProfile>
+           <InstagramProfile v-if="profile.placement_id === 1" platform="1" :userProfile="profile"></InstagramProfile>
+            <YoutubeProfile v-if="profile.placement_id === 2" platform="2" :userProfile="profile"></YoutubeProfile>
         </v-flex>
     </div>
 </template>
@@ -132,11 +132,13 @@
                 proposal: false,
                 touchPoint: false,
                 profile : {
+                    user_platform_meta : {},
                     provider_name  : null,
                     provider_photo : null,
                     user_id        : null,
                     provider       : null,
-                    meta_json      : null,
+                    meta_json      : null
+
                 },
             }
         },
@@ -145,16 +147,28 @@
                 campaignPlacement : 'campaign/campaignPlacement'
             }),
             bio() {
+
                 let meta = JSON.parse(this.profile.meta_json);
-                console.log(meta.bio,"meta");
-                if(meta.bio) {
+
+                if(_.has(meta, 'user') && !_.isNil(meta)) {
+
                     return meta.user.bio;
                 }
                 return null;
+            },
+            uploads() {
+                if( this.profile.placement_id == 1 ) {
+                    let meta = JSON.parse(this.profile.meta_json);
+                    return meta.user.counts.media;
+                }else{
+                    return this.profile.user_platform_meta.post_count != null ? this.profile.user_platform_meta.post_count : 0 ;
+                }
+
             }
         },
         mounted() {
             // this.platform = this.campaignPlacement['platform'];
+
            this.profileData();
         },
         methods: {
@@ -163,29 +177,25 @@
             }),
             async profileData() {
                 let self = this;
+                let selectedPlatformData = null;
                 let pros = await this.getProfile(8);
 
-                _.forEach(pros, function(value) {
-                    if(value.provider === 'instagram'){
+                _.forEach(pros, function(value, index) {
+
+                    if (self.selectedPlatform == index) {
+                        selectedPlatformData = value;
+                    }
+                    if(value.provider === 'instagram') {
                         self.instagram  = value;
                     }else{
                         self.youtube  = value;
                     }
                 });
-                this.changePlatform(this.selectedPlatform);
+                this.changePlatform(selectedPlatformData);
             },
 
-            changePlatform(val) {
-                this.selectedPlatform = val;
-
-                if(this.selectedPlatform === 1){
-                    this.profile = '';
-                    this.profile = this.instagram;
-                }else if(this.selectedPlatform === 2){
-                    this.profile = '';
-                    this.profile = this.youtube;
-                }
-                console.log(this.profile,"profile");
+            changePlatform(data) {
+                this.profile = data;
             }
         }
     }

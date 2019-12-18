@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Http\Request;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\UserPlatformRepository;
@@ -61,5 +62,20 @@ class UserPlatformRepositoryEloquent extends BaseRepository implements UserPlatf
                 'meta_json'         => $data->meta_json
             ]);
 
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function getUserPlatforms(Request $request)
+    {
+        $platforms = [];
+        $findPlatforms = $this->with(['userPlatformMeta'])->findByField('user_id', $request->user_id);
+
+        foreach ($findPlatforms as $list) {
+            $platforms[$list->placement_id] = $list;
+        }
+        return $platforms;
     }
 }

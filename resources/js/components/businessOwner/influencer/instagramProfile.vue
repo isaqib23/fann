@@ -107,7 +107,7 @@
                                         <v-list-item-subtitle class="caption">{{ userProfile.user_platform_meta.follower_count }} Followers</v-list-item-subtitle>
                                     </v-list-item-content>
 
-                                    <v-btn color="primary" class="text-capitalize" depressed height="30">
+                                    <v-btn color="primary" class="text-capitalize" depressed height="30" :href="'https://www.instagram.com/' +  username ">
                                         View Profile
                                     </v-btn>
                                 </v-list-item>
@@ -118,7 +118,7 @@
                                 ></v-img>
 
                                 <v-card-text class="py-2">
-                                    <strong class="primary--text"><a href="https://www.instagram.com/saqibiqbal_456">View more on instagram</a></strong>
+                                    <strong class="primary--text"><a :href="'https://www.instagram.com/' +  username ">View more on instagram</a></strong>
                                 </v-card-text>
 
                                 <v-card-actions class="action_class">
@@ -128,7 +128,12 @@
                                         </template>
                                         <span>{{post.likes.count}}</span>
                                     </v-tooltip>
-                                    <v-icon class="mr-2">mdi-tooltip-outline</v-icon>
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on }">
+                                            <v-icon v-on="on" class="mr-2">mdi-tooltip-outline</v-icon>
+                                        </template>
+                                        <span>{{post.comments.count}}</span>
+                                    </v-tooltip>
 <!--                                    <v-icon>mdi-briefcase-upload-outline</v-icon>-->
                                     <div class="flex-grow-1"></div>
                                     <v-btn icon>
@@ -166,12 +171,14 @@
                 proposal: false,
                 touchPoint: false,
                 posts : [],
-                data : []
-
+                data : {}
             }
         },
         computed:{
-
+            username() {
+                let meta = JSON.parse(this.userProfile.meta_json);
+                return meta.user.username;
+            }
         },
         mounted() {
             this.postsData();
@@ -179,13 +186,11 @@
         methods: {
             ...mapActions({
                 getPost : 'influencer/getPost',
-
             }),
            async postsData() {
                 this.data = await this.getPost(this.userProfile.id);
 
                 this.posts = this.data.posts;
-                console.log(this.userProfile,"profileee");
 
             }
         }
