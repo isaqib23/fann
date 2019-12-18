@@ -62,8 +62,8 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
     {
         return $this->updateOrCreate(
             [
-                'id'                    => $data['id'],
-                'placement_type_id'     => $data['placement_type_id'],
+                'campaign_touch_point_id'   => $data['campaign_touch_point_id'],
+                'placement_type_id'         => $data['placement_type_id'],
             ],
             [
                 'campaign_touch_point_id'       => $data['campaign_touch_point_id'],
@@ -82,7 +82,6 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
     public function prepareDataAndStore($data,$savedTouchPoint)
     {
         $result = [
-            'id'                        => $data['id'],
             'campaign_touch_point_id'   => $savedTouchPoint->id,
         ];
 
@@ -99,7 +98,7 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
             $placementType = $this->placementTypeRepositoryEloquent->findByField('slug', $data['instaStory'])->first();
             $result['placement_type_id'] = $placementType->id;
             $result['link']              = $data['instaStoryLink'];
-            $result['link_type']         = 'instaStoryLink ';
+            $result['link_type']         = 'instaStoryLink';
 
             $this->store($result);
         }

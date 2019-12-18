@@ -87,7 +87,6 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
     public function saveInHierarchy($data)
     {
-        dd($data);
         $barterProduct = $dispatchProduct =  null;
         $touchPoint = $data['touchPoint'];
 
@@ -139,22 +138,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
                 $touchPoint['instaFormatFields'],
                 $savedTouchPoint
             );
-            /*$this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
-                'link_type'               => 'instaBioLink',
-                'link'                    => $touchPoint['instaBioLink'],
-                'slug'                    => $touchPoint['instaPost'],
-                'campaign_touch_point_id' => $savedTouchPoint->id
-            ]);*/
         }
-
-        /*if (!empty($touchPoint['instaStory'])) {
-            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
-                'link_type'               => 'instaStoryLink',
-                'link'                    => $touchPoint['instaStoryLink'],
-                'slug'                    => $touchPoint['instaStory'],
-                'campaign_touch_point_id' => $savedTouchPoint->id
-            ]);
-        }*/
 
         return $savedTouchPoint;
 

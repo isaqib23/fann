@@ -170,19 +170,16 @@ class CampaignTransformer extends TransformerAbstract
      */
     private function getInstaFormatFields($data)
     {
-        //dd($data);
-        $return = [];
-        /*if($images) {
-            foreach ($data as $key => $value){
-                $return = [
-                    "id"            => null,
-                    "instaPost"     => false,
-                    "instaBioLink"  => null,
-                    "instaStory"    => false,
-                    "instaStoryLink"=> null,
-                ];
-            }
-        }*/
+        $bio_link = $data->firstWhere('link_type', 'instaBioLink');
+        $story_link = $data->firstWhere('link_type', 'instaStoryLink');
+        $return = [
+            "id"            => null,
+            "instaPost"     => (is_null($bio_link)) ? null : 'post',
+            "instaBioLink"  => (is_null($bio_link)) ? false : $bio_link->link,
+            "instaStory"    => (is_null($story_link)) ? null : 'story',
+            "instaStoryLink"=> (is_null($story_link)) ? false : $story_link->link,
+        ];
+
         return $return;
     }
 }

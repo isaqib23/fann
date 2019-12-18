@@ -19,11 +19,10 @@ export const state = {
       amount                      : 0,
       campaignDescription         : null,
       instaFormatFields           : {
-          id                   : null,
-          instaPost                   : null,
-          instaBioLink                : null,
-          instaStory                  : null,
-          instaStoryLink              : null,
+          instaPost               : null,
+          instaBioLink            : null,
+          instaStory              : null,
+          instaStoryLink          : null,
       },
       images                      : [],
       touchPointConditionalFields : {
