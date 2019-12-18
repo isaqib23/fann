@@ -86,8 +86,7 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
         ];
 
         if(!is_null($data['instaBioLink'])){
-            $placementType = $this->placementTypeRepositoryEloquent->findByField('slug', $data['instaPost'])->first();
-            $result['placement_type_id'] = $placementType->id;
+            $result['placement_type_id'] = getPlacementTypeBySlug($data['instaPost']);
             $result['link']              = $data['instaBioLink'];
             $result['link_type']         = 'instaBioLink';
 
@@ -95,8 +94,7 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
         }
 
         if(!is_null($data['instaStoryLink'])){
-            $placementType = $this->placementTypeRepositoryEloquent->findByField('slug', $data['instaStory'])->first();
-            $result['placement_type_id'] = $placementType->id;
+            $result['placement_type_id'] = getPlacementTypeBySlug($data['instaStory']);
             $result['link']              = $data['instaStoryLink'];
             $result['link_type']         = 'instaStoryLink';
 
