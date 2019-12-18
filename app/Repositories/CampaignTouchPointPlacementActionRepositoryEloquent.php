@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\CampaignTouchPointPlacementActionRepository;
 use App\Models\CampaignTouchPointPlacementAction;
 use Illuminate\Container\Container as Application;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -78,6 +79,7 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
      * @param $savedTouchPoint
      * @return mixed
      * @throws ValidatorException
+     * @throws BindingResolutionException
      */
     public function prepareDataAndStore($data,$savedTouchPoint)
     {
@@ -85,7 +87,7 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
             'campaign_touch_point_id'   => $savedTouchPoint->id,
         ];
 
-        if(!is_null($data['instaBioLink'])){
+        if(!is_null($data['instaBioLink'])) {
             $result['placement_type_id'] = getPlacementTypeBySlug($data['instaPost']);
             $result['link']              = $data['instaBioLink'];
             $result['link_type']         = 'instaBioLink';
@@ -93,7 +95,7 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
             $this->store($result);
         }
 
-        if(!is_null($data['instaStoryLink'])){
+        if(!is_null($data['instaStoryLink'])) {
             $result['placement_type_id'] = getPlacementTypeBySlug($data['instaStory']);
             $result['link']              = $data['instaStoryLink'];
             $result['link_type']         = 'instaStoryLink';
