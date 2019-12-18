@@ -13,7 +13,7 @@ export const state = {
       caption                     : null,
       hashtags                    : null,
       mentions                    : null,
-      guideLines                  : null,
+      guideLines                  : [],
       dispatchProduct             : null,
       barterProduct               : null,
       amount                      : 0,
@@ -95,6 +95,9 @@ export const mutations = {
     updateCampaignInformation(state, [index, val]) {
         Vue.set(state.campaignInformation, index, val)
     },
+    deleteTouchPoint(state, [index, val]) {
+        Vue.set(state.touchPoint, index, val)
+    },
 
 }
 
@@ -120,17 +123,19 @@ export const actions = {
     },
     async saveTouchPoint({commit, state}) {
 
-         let payload  = {
-             'campaignId'  : state.campaignInformation.id,
-             'payment'     : state.campaignPlacement,
-             'platformId'  : state.campaignPlacement.platform,
-             'touchPoint'  : state.touchPoint,
-             'campaignInformation'  : state.campaignInformation,
-         }
+        let payload = {
+            'campaignId': state.campaignInformation.id,
+            'payment': state.campaignPlacement,
+            'platformId': state.campaignPlacement.platform,
+            'touchPoint': state.touchPoint,
+            'campaignInformation': state.campaignInformation,
+        }
 
-         let response = await CampaignAxios.saveTouchPoint(payload);
-         await CampaignAxios.setCampaignTouchPointData({commit, state},response);
-         return response;
+        let response = await CampaignAxios.saveTouchPoint(payload);
+        if (response.status === 200) {
+            await CampaignAxios.setCampaignTouchPointData({commit, state}, response);
+        }
+        return response;
     },
     async saveTouchPointField({ commit }, payload) {
         commit('setTouchPointField',payload);
@@ -162,7 +167,9 @@ export const actions = {
 
         let response = await CampaignAxios.getCampaignTouchPoint(payload);
 
-        await CampaignAxios.setCampaignTouchPointData({commit, state},response);
+        if (response.status == 200) {
+            await CampaignAxios.setCampaignTouchPointData({commit, state}, response);
+        }
         return response;
     },
     async getSavedShopifyProduct({commit, state},payload) {
