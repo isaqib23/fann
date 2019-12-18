@@ -13,6 +13,7 @@
         </v-tab>
         <v-tab
             :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
+            :disabled="savedTouchPoints.length == 0"
         >
             <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
             <p class="text-capitalize">invite</p>
@@ -20,6 +21,7 @@
         </v-tab>
         <v-tab
             :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
+            :disabled="savedTouchPoints.length == 0"
         >
             <v-icon left class="hidden-md-and-up">mdi-access-point</v-icon>
             <p class="text-capitalize">promote</p>
@@ -29,6 +31,7 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex';
     export default {
         components: {
 
@@ -38,7 +41,11 @@
 
             }
         },
-        methods: {}
+        computed: {
+            ...mapGetters({
+                savedTouchPoints    : 'campaign/savedTouchPoints'
+            })
+        },
     }
 </script>
 

@@ -46,12 +46,12 @@
                             ></touch-point-title-field>
 
                             <v-card-title>
-                                <div class="subtitle-1 mb-2 text-capitalize"><strong>
+                                <div class="subtitle-1 mb-1 text-capitalize"><strong>
                                     {{ (campaignObjective != null) ? '' : campaignObjective.slug.replace('-',' ') }}
                                 </strong></div>
                             </v-card-title>
 
-                            <v-row class="mx-auto my-5">
+                            <v-row class="mx-auto my-1">
                                 <touch-point-brand-field
                                     v-if="touchPoint.touchPointConditionalFields.touchPointBrand"
                                     :touchPoint="touchPoint"
@@ -298,8 +298,6 @@
             })
         },
         async created() {
-            console.log(this.touchPointTabsState, 'touchPointTabsState');
-            console.log(this.savedTouchPoints, 'savedTouchPoints');
             await this.getCampaignTouchPoint({slug:this.$router.currentRoute.params.slug});
             await this.findTouchPoint(this.touchPointTabsState.currentTouchPoint);
             this.setTouchPointFields();
@@ -460,7 +458,7 @@
                 immediate: true,
                 deep:true
             },
-            /*'description': {
+            'description': {
                 handler: function(val) {
                     let self = this;
                     if(!_.isNil(val)) {
@@ -469,7 +467,7 @@
                 },
                 immediate: true,
                 deep:true
-            },*/
+            },
             'savedShopifyProduct' (val) {
                 if(!_.isNil(val.details)) {
                     this.dispatchProductVariant = [];
