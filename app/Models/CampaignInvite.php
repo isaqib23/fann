@@ -23,11 +23,11 @@ class CampaignInvite extends Model implements Transformable
     protected $fillable = [
         'user_id',
         'campaign_id',
-        'touch_point_id',
+        'placement_id',
         'sender_id',
         'sent_from',
         'original_price',
-        'influencer_price',
+        'quoted_price',
         'status'
     ];
 

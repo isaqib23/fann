@@ -30,6 +30,8 @@ class CreateNichesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('niches');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('niches');
+        Schema::enableForeignKeyConstraints();
 	}
 }

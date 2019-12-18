@@ -77,6 +77,7 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
     export default {
         props : {
             disabledSearch : null,
@@ -88,18 +89,20 @@
                 type: String,
                 required: false,
                 default : 'Start typing a product name (at least 3 characters)'
-            }
+            },
+            selectedProduct    : null,
+            selectedVariants   : null,
         },
         data () {
            return  {
                 bouncer    : _.debounce(this.getProducts, 750),
                 options    : [],
                 search     : '',
-                product    : null,
                 lookingUp  : false,
-                variants   : [],
+                variants   : null,
                 ld         : _,
-               selectedVariant : {},
+                product    : null,
+               selectedVariant : {}
             }
         },
 
@@ -110,7 +113,10 @@
                 if (self.search == '' || self.search == null || self.search.length <=2 || self.lookingUp) return;
 
                 self.lookingUp = true;
-                axios.get(api.path('shopify.findProducts') + self.search).then(function(response){
+                axios.post(api.path('shopify.findProducts') , {
+                    keyword:self.search,
+                    shop: localStorage.selectedShop
+                }).then(function(response){
                     self.lookingUp = false;
                     response.data.forEach(function(prod) {
                         prod.title = prod.title + ' - ' + prod.id;
@@ -120,13 +126,14 @@
             },
             addVariant: function(e, variant) {
                 let self = this;
-                if (self.ld.find(self.variants, {id: variant.id}) != undefined) return true;
+                if (self.ld.find(self.variants, {id: variant.variantId}) != undefined) return true;
                 self.selectedVariant = {
-                    id          : variant.id,
+                    id          : null,
+                    variantId   : variant.id,
                     productId   : self.product.id,
                     image       : variant.image_id != null ? self.ld.find(self.product.images, {'id': variant.image_id}).src : null,
                     pImage      : self.product.image.src,
-                    title       : self.product.title + ' - ' + variant.title,
+                    title       : self.product.title + ' - ' + self.product.id + ' - ' + variant.title,
                     price       : variant.price
                 };
                 self.variants = [];
@@ -154,6 +161,26 @@
                     self.reportedValue += parseFloat(variant.price);
                 });
                 self.reportedValue = parseFloat(self.reportedValue).toFixed(2);
+            },
+            selectedVariants: {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)){
+                        self.variants = val;
+                    }
+                },
+                immediate: true,
+                deep: true
+            },
+            'selectedProduct': {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)){
+                        self.product = val;
+                    }
+                },
+                immediate: true,
+                deep: true
             }
         },
         created() {

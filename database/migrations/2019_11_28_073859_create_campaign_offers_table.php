@@ -19,7 +19,7 @@ class CreateCampaignOffersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('touch_point_id');
+            $table->unsignedInteger('campaign_invite_id');
             $table->text('status')->nullable();
 
             $table->softDeletes();
@@ -27,7 +27,7 @@ class CreateCampaignOffersTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('campaign_id')->references('id')->on('campaigns');
-            $table->foreign('touch_point_id')->references('id')->on('campaign_touch_points');
+            $table->foreign('campaign_invite_id')->references('id')->on('campaign_invites');
 		});
 	}
 
@@ -38,6 +38,8 @@ class CreateCampaignOffersTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('campaign_offers');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('campaign_offers');
+        Schema::enableForeignKeyConstraints();
 	}
 }
