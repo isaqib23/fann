@@ -18,10 +18,12 @@ export const state = {
       barterProduct               : null,
       amount                      : 0,
       campaignDescription         : null,
-      instaPost                   : null,
-      instaBioLink                : null,
-      instaStory                  : null,
-      instaStoryLink              : null,
+      instaFormatFields           : {
+          instaPost               : null,
+          instaBioLink            : null,
+          instaStory              : null,
+          instaStoryLink          : null,
+      },
       images                      : [],
       touchPointConditionalFields : {
           touchPointTitle          : false,

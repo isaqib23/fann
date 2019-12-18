@@ -328,6 +328,7 @@ class CampaignsController extends Controller
             $response = [
                 'message'    => 'Touch Point Created.',
                 'details'    =>  $savedTouchPoint,
+                'touch_point_id'    =>  $saveTouchPoint->id,
             ];
 
             if ($request->wantsJson()) {

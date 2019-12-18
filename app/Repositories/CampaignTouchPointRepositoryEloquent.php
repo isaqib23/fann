@@ -133,22 +133,11 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
          * Actions
          * In case of Insta story or post
          */
-        if (!empty($touchPoint['instaPost'])) {
-            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
-                'link_type'               => 'instaBioLink',
-                'link'                    => $touchPoint['instaBioLink'],
-                'slug'                    => $touchPoint['instaPost'],
-                'campaign_touch_point_id' => $savedTouchPoint->id
-            ]);
-        }
-
-        if (!empty($touchPoint['instaStory'])) {
-            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
-                'link_type'               => 'instaStoryLink',
-                'link'                    => $touchPoint['instaStoryLink'],
-                'slug'                    => $touchPoint['instaStory'],
-                'campaign_touch_point_id' => $savedTouchPoint->id
-            ]);
+        if ($touchPoint['touchPointConditionalFields']['touchPointInstagramFormat']) {
+            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore(
+                $touchPoint['instaFormatFields'],
+                $savedTouchPoint
+            );
         }
 
         return $savedTouchPoint;

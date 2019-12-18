@@ -306,7 +306,7 @@
         async mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement);
             this.setPayment();
-            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+            this.icon = this.paymentMethod.platform === 2 ? 'mdi-instagram': 'mdi-youtube';
         },
         methods: {
             ...mapMutations({
@@ -403,7 +403,7 @@
                 optFields.touchPointTitle = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
                 optFields.isBarter = (this.paymentMethod.paymentType === 'barter') ? true : false;
                 optFields.isPaid = (this.paymentMethod.paymentType == 'paid') ? true : false;
-                optFields.touchPointInstagramFormat = (this.paymentMethod.platform == 1) ? true : false;
+                optFields.touchPointInstagramFormat = (this.paymentMethod.platform == 2) ? true : false;
                 optFields.additionalPayAsAmount = this.paymentMethod.additionalPayAsAmount;
                 optFields.additionalPayAsBarter = this.paymentMethod.additionalPayAsBarter;
 
@@ -527,16 +527,22 @@
                 deep:true
             },
             'savedShopifyProduct' (val) {
-                console.log(val);
                 if(!_.isNil(val.details)) {
                     this.dispatchProductVariant = [];
                     this.dispatchProduct = val.details;
                     this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
                 }
             },
-            'placement' (val) {
-                this.paymentMethod = Object.assign(this.paymentMethod, val);
-                this.setPayment();
+            placement : {
+                handler: function(val) {
+                    let self = this;
+                    if(!_.isNil(val)) {
+                        self.paymentMethod = Object.assign(self.paymentMethod, val);
+                        self.setPayment();
+                    }
+                },
+                immediate: true,
+                deep:true
             }
         }
     }

@@ -66,15 +66,15 @@ class TouchPointRequest extends BaseFormRequest
     {
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointInstagramFormat')
         ) {
-            if (is_null($this->input('touchPoint.instaPost')) && is_null($this->input('touchPoint.instaStory'))
+            if (is_null($this->input('touchPoint.instaFormatFields.instaPost')) && is_null($this->input('touchPoint.instaFormatFields.instaStory'))
             ) {
-                $rules['touchPoint.instaPost'] = 'required';
+                $rules['touchPoint.instaFormatFields.instaPost'] = 'required';
             }
 
-            if (!is_null($this->input('touchPoint.instaPost'))) {
-                $rules['touchPoint.instaBioLink'] = 'required';
-            } elseif (!is_null($this->input('touchPoint.instaStory'))) {
-                $rules['touchPoint.instaStoryLink'] = 'required';
+            if (!is_null($this->input('touchPoint.instaFormatFields.instaPost'))) {
+                $rules['touchPoint.instaFormatFields.instaBioLink'] = 'required';
+            } elseif (!is_null($this->input('touchPoint.instaFormatFields.instaStory'))) {
+                $rules['touchPoint.instaFormatFields.instaStoryLink'] = 'required';
             }
         }
 
