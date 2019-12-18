@@ -51,7 +51,6 @@
             Promote: Promote
         },
         created() {
-            localStorage.removeItem('touchPoint');
             if (!localStorage.hasOwnProperty("touchPoint")) {
                 localStorage.setItem('touchPoint', JSON.stringify(this.touchPoint));
             }

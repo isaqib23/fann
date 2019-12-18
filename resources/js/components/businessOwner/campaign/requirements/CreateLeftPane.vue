@@ -298,6 +298,8 @@
             })
         },
         async created() {
+            console.log(this.touchPointTabsState, 'touchPointTabsState');
+            console.log(this.savedTouchPoints, 'savedTouchPoints');
             await this.getCampaignTouchPoint({slug:this.$router.currentRoute.params.slug});
             await this.findTouchPoint(this.touchPointTabsState.currentTouchPoint);
             this.setTouchPointFields();
@@ -458,7 +460,7 @@
                 immediate: true,
                 deep:true
             },
-            'description': {
+            /*'description': {
                 handler: function(val) {
                     let self = this;
                     if(!_.isNil(val)) {
@@ -467,7 +469,7 @@
                 },
                 immediate: true,
                 deep:true
-            },
+            },*/
             'savedShopifyProduct' (val) {
                 if(!_.isNil(val.details)) {
                     this.dispatchProductVariant = [];

@@ -94,10 +94,7 @@ export const mutations = {
     },
     updateCampaignInformation(state, [index, val]) {
         Vue.set(state.campaignInformation, index, val)
-    },
-    deleteTouchPoint(state, [index, val]) {
-        Vue.set(state.touchPoint, index, val)
-    },
+    }
 
 }
 

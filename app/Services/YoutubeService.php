@@ -33,7 +33,6 @@ class YoutubeService
             'https://www.googleapis.com/auth/youtubepartner-channel-audit',
         ]);
         $this->google->setIncludeGrantedScopes(true);
-        $this->google->addScope(\Google_Service_Plus::class);
         $this->google->setRedirectUri(env('YOUTUBE_REDIRECT_URI'));
 
     }
