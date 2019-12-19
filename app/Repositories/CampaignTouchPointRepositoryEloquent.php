@@ -120,7 +120,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
                 'dispatch_product'    => $dispatchProduct === null ? null : $dispatchProduct->id,
                 'barter_product'      => $barterProduct,
                 'campaign_id'         => $data['campaignId'],
-                'company_id'          => $touchPoint['productBrand'],
+                'company_id'          => isset($touchPoint['productBrand']) ? $touchPoint['productBrand'] : null,
                 'placement_id'        => $data['payment']['platform'],
                 'barter_as_dispatch'  => 1,
                 'amount'              => $touchPoint['amount']
