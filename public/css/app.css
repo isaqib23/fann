@@ -7181,6 +7181,7 @@ v-list-tile-avatar img[data-v-0ce5d27f] {
 }
 .right-pane[data-v-d460765e] {
     width: 75% !important;
+    background: #ffffff;
 }
 .card_box[data-v-d460765e] {
     height: 120px;
@@ -7214,6 +7215,10 @@ v-list-tile-avatar img[data-v-0ce5d27f] {
     margin-top:10px;
     margin-left:10px;
     color: #fff;
+}
+.child_box[data-v-d460765e]::before {
+    content: "\A";
+    white-space: pre;
 }
 .parent_box[data-v-d460765e]:last-child {
     background: red;

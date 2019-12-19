@@ -47,7 +47,7 @@
 
                             <v-card-title>
                                 <div class="subtitle-1 mb-1 text-capitalize"><strong>
-                                    {{ (campaignObjective != null) ? '' : campaignObjective.slug.replace('-',' ') }}
+                                    {{ (campaignObjective.slug !== undefined) ? campaignObjective.slug.replace('-',' ') : ''}}
                                 </strong></div>
                             </v-card-title>
 
@@ -255,7 +255,7 @@
                 guideLines            : 1,
                 model                 : 0,
                 e1                    : 0,
-                description       : null,
+                description           : null,
                 dispatchProduct       : null,
                 dispatchProductVariant: [],
                 kind                  : '1',
