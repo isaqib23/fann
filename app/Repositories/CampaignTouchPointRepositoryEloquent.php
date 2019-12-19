@@ -89,7 +89,6 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
     {
         $barterProduct = $dispatchProduct =  null;
         $touchPoint = $data['touchPoint'];
-
         //---- dispatch product
         if (!empty($touchPoint['dispatchProduct'])) {
             $dispatchProduct = $this->campaignTouchPointProductRepository->store($touchPoint['dispatchProduct']);
@@ -105,6 +104,11 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
             $savedPayments = $this->campaignPaymentRepositoryEloquent->storeMultiple($data['payment'], $data['campaignId']);
         }
 
+        $barterProduct = null;
+        // Prepare Barter Product
+        if($dispatchProduct !== null){
+            $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id;
+        }
         //---- Touch Point
         $savedTouchPoint =  $this->updateOrCreate(
             [
@@ -113,9 +117,10 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
             [
                 'name'                => $touchPoint['name'],
                 'description'         => $touchPoint['caption'],
-                'dispatch_product'    => $dispatchProduct->id,
-                'barter_product'      => $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id,
+                'dispatch_product'    => $dispatchProduct === null ? null : $dispatchProduct->id,
+                'barter_product'      => $barterProduct,
                 'campaign_id'         => $data['campaignId'],
+                'company_id'          => $touchPoint['productBrand'],
                 'placement_id'        => $data['payment']['platform'],
                 'barter_as_dispatch'  => 1,
                 'amount'              => $touchPoint['amount']

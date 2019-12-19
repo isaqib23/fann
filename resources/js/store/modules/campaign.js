@@ -116,7 +116,7 @@ export const actions = {
     async savePlacementAndPaymentType({ commit }, payload) {
         let response = await CampaignAxios.savePlacementAndPaymentType(payload);
 
-        commit('setPlacement',response);
+        commit('setPlacement',payload);
         commit('setSavedTouchPoints', []);
     },
     async saveTouchPoint({commit, state}) {

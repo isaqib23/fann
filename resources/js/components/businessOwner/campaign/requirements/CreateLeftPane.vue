@@ -294,7 +294,7 @@
                 campaignObjective   : 'campaign/campaignObjective',
                 savedTouchPoints    : 'campaign/savedTouchPoints',
                 savedShopifyProduct : 'campaign/savedShopifyProduct',
-                campaignInformation : 'campaign/campaignInformation',
+                campaignInformation : 'campaign/campaignInformation'
             })
         },
         async created() {
@@ -306,7 +306,6 @@
         async mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement);
             this.setPayment();
-            this.icon = this.paymentMethod.platform === 2 ? 'mdi-instagram': 'mdi-youtube';
         },
         methods: {
             ...mapMutations({
@@ -318,7 +317,8 @@
                 saveTouchPointField         : 'campaign/saveTouchPointField',
                 resetTouchPoint             : 'campaign/resetTouchPoint',
                 getCampaignTouchPoint       : 'campaign/getCampaignTouchPoint',
-                getSavedShopifyProduct      : 'campaign/getSavedShopifyProduct'
+                getSavedShopifyProduct      : 'campaign/getSavedShopifyProduct',
+                getUserCompany              : 'settings/getUserCompany'
             }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
@@ -411,7 +411,7 @@
                 optFields.touchPointTitle = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
                 optFields.isBarter = (this.paymentMethod.paymentType === 'barter') ? true : false;
                 optFields.isPaid = (this.paymentMethod.paymentType == 'paid') ? true : false;
-                optFields.touchPointInstagramFormat = (this.paymentMethod.platform == 2) ? true : false;
+                optFields.touchPointInstagramFormat = (this.paymentMethod.platform === 1) ? true : false;
                 optFields.additionalPayAsAmount = this.paymentMethod.additionalPayAsAmount;
                 optFields.additionalPayAsBarter = this.paymentMethod.additionalPayAsBarter;
 
@@ -481,6 +481,7 @@
                     if(!_.isNil(val)) {
                         self.paymentMethod = Object.assign(self.paymentMethod, val);
                         self.setPayment();
+                        self.setTouchPointFields();
                     }
                 },
                 immediate: true,
