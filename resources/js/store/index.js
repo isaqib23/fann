@@ -24,6 +24,7 @@ export default new Vuex.Store({
             _.forOwn(modules, (value, key) => {
                 state[key] = _.cloneDeep(value.state);
             });
+            localStorage.clear();
         },
     }
 })
