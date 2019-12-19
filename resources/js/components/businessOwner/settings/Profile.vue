@@ -217,8 +217,10 @@
                 formData.append("logo", this.file.imageFile);
 
                 let response = await this.updateProfile(formData);
-                if(response !== undefined) {
+                if(response.status === 200) {
                     this.$toast.success('Your profile successfully updated.')
+                } else {
+                    this.handleErrors(response.details)
                 }
                 this.loading = false
 
