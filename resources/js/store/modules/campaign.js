@@ -40,8 +40,8 @@ export const state = {
   inviteSearchParams          : {
         niche                   : 0,
         placement               : null,
-        followers               : null,
-        likes                   : null,
+        followers               : [0,0],
+        likes                   : [0,0],
         eng_rate                : null,
         gender                  : null,
         age_range               : null,

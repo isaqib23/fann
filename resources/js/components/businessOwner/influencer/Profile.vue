@@ -117,15 +117,12 @@
             Proposal:Proposal,
             TouchPoint:TouchPoint
         },
-        props: {
-            // selectedPlatform : null,
-            //profileID : null,
-        },
         data: () => {
             return  {
                 youtube : null,
                 instagram : null,
-                selectedPlatform : 2,
+                selectedPlatform : 2, ////campaign selected platformco
+                profileID : null,
                 rating: 3,
                 items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
                 show: true,
@@ -151,7 +148,6 @@
                 let meta = JSON.parse(this.profile.meta_json);
 
                 if(_.has(meta, 'user') && !_.isNil(meta)) {
-
                     return meta.user.bio;
                 }
                 return null;
@@ -168,8 +164,9 @@
         },
         mounted() {
             // this.platform = this.campaignPlacement['platform'];
-
-           this.profileData();
+            this.profileID = this.$router.currentRoute.params.profileID;
+            console.log(this.profileID,"profileid");
+            this.profileData();
         },
         methods: {
             ...mapActions({
@@ -178,7 +175,7 @@
             async profileData() {
                 let self = this;
                 let selectedPlatformData = null;
-                let pros = await this.getProfile(8);
+                let pros = await this.getProfile(this.profileID);
 
                 _.forEach(pros, function(value, index) {
 

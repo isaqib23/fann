@@ -16,11 +16,11 @@
                             >
                                 <v-card
                                     max-width="285"
-                                    v-on="platform.user_platforms.length === 0 ? { click: () => goToSocialLogin(platform.slug) } : {}"
+                                    v-on="platform.user_platforms == null? { click: () => goToSocialLogin(platform.slug) } : {}"
                                 >
                                     <v-list-item>
                                         <v-list-item-avatar
-                                            :color="platform.user_platforms.length === 0 ? 'grey' : platform.slug != 'instagram' ? 'red' : 'primary'"
+                                            :color="platform.user_platforms == null ? 'grey' : platform.slug != 'instagram' ? 'red' : 'primary'"
                                             class="mr-2"
                                         >
                                             <v-icon color="white">mdi-{{platform.slug}}</v-icon>
@@ -28,11 +28,11 @@
                                         <v-list-item-content>
                                             <v-list-item-title class="headline text-capitalize">{{platform.slug}}</v-list-item-title>
                                             <v-list-item-subtitle>
-                                                {{(platform.user_platforms.length === 0) ? 'Not Connected' : 'Connected'}}
+                                                {{(platform.user_platforms == null) ? 'Not Connected' : 'Connected'}}
                                             </v-list-item-subtitle>
                                         </v-list-item-content>
                                         <v-icon
-                                            :color="platform.user_platforms.length === 0 ? 'grey' : platform.slug != 'instagram' ? 'success' : 'primary'"
+                                            :color="platform.user_platforms == null ? 'grey' : platform.slug != 'instagram' ? 'success' : 'primary'"
                                             class="mt-n5"
                                         >mdi-check-circle</v-icon>
                                     </v-list-item>

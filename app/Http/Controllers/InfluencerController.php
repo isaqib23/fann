@@ -151,12 +151,15 @@ class InfluencerController extends Controller
     {
         $postCollection = collect( $posts );
         $today = Carbon::today()->subDays(180)->format("d-m-Y");
+
         $lastPosts = $postCollection->filter(function ($post, $key) use ( $today ) {
+
             if ( strtotime(date("d-m-Y", $post->created_time)) > strtotime( $today )) {
                 return $post;
             }
         });
         $data = $postCollection->map(function ($post) {
+
             return [
                 'likes' => $post->likes->count,
                 'comments' => $post->comments->count
@@ -167,6 +170,7 @@ class InfluencerController extends Controller
         $values['countLatestPosts'] = count($lastPosts);
         $values['countLastLikes'] = $data->sum('likes');
         $values['countLastComments'] = $data->sum('comments');
+
         return $values;
     }
 
@@ -181,6 +185,7 @@ class InfluencerController extends Controller
         $refreshedToken = $this->youtubeService->setAccessToken($influencer->access_token);
 
         if($refreshedToken !=null) {
+
             $influencer->access_token = $refreshedToken;
             $this->userPlatformRepository->store($influencer);
         }
@@ -200,6 +205,7 @@ class InfluencerController extends Controller
          $videos = $videos->items;
          $listed = $videos;
          if( !empty( $videos )) {
+
              $videoCollect = collect($videos);
              $list = $videoCollect->pluck('id.videoId');
              $list = $list->implode(',');
@@ -210,7 +216,9 @@ class InfluencerController extends Controller
          $channelList = $channels->items;
 
          $today = Carbon::today()->subDays(280)->format("d-m-Y");
+
          $filtered = array_filter($videos, function ($item) use($today) {
+
              if(strtotime(date("d-m-Y",strtotime($item->snippet->publishedAt))) > strtotime($today)) {
                  return $item;
              }

@@ -62,7 +62,7 @@
                                                 </div>
                                             </v-flex>
                                             <v-flex xl4 lg4 md4 sm6 xs12 class="text-center">
-                                                <v-btn color="primary pl-3 pr-3" class="text-capitalize" depressed @click="goToProfile">
+                                                <v-btn color="primary pl-3 pr-3" class="text-capitalize" depressed @click="goToProfile(searchItem.id)">
                                                     View Profile
                                                 </v-btn>
                                                 <v-btn color="success pl-3 pr-3" depressed class="text-capitalize" @click="inviteInfluencer(searchItem.id)">
@@ -106,8 +106,8 @@
                 inviteSearch : 'campaign/inviteSearch',
                 collectInvitation : 'campaign/collectInvitation'
             }),
-            goToProfile() {
-                this.$router.push({name: 'influencer-profile'});
+            goToProfile(profileID) {
+                this.$router.push({name: 'influencer-profile' , params: { profileID: profileID } });
             },
             totalPages() {
                 return !_.isNil(this.influencerSearchResults) ? this.influencerSearchResults.total : 0
