@@ -1,5 +1,3 @@
-import axios from 'axios'
-import { api } from '~/config'
 
 /**
  * Initial state
@@ -169,11 +167,18 @@ let SettingAxios = class {
     static updateProfile (payload) {
         return axios.post(api.path('profile'),payload)
             .then(resp => {
-                return resp.data;
+                return {
+                    status : 200,
+                    details : resp.data
+                };
             })
             .catch(err => {
-                return err.response.data.errors;
+                return {
+                    status : err.response.status,
+                    details : err.response.data.errors
+                };
             });
+
     }
 
     static getNiches () {
