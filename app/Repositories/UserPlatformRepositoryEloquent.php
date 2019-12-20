@@ -60,6 +60,20 @@ class UserPlatformRepositoryEloquent extends BaseRepository implements UserPlatf
                 'followings'        => $data->followings,
                 'meta_json'         => $data->meta_json
             ]);
+    }
 
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function getUserPlatforms(Request $request)
+    {
+        $platforms = [];
+        $findPlatforms = $this->with(['userPlatformMeta'])->findByField('user_id', $request->user_id);
+
+        foreach ($findPlatforms as $list) {
+            $platforms[$list->placement_id] = $list;
+        }
+        return $platforms;
     }
 }

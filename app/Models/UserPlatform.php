@@ -57,4 +57,12 @@ class UserPlatform extends Model implements Transformable
         return $this->hasOne(UserPlatformMeta::class);
     }
 
+    /**
+     * @return BelongsTo
+     */
+    public function placement()
+    {
+        return $this->belongsTo(Placement::class);
+    }
+
 }
