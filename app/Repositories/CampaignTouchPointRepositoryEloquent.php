@@ -106,8 +106,13 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         }
 
         // Prepare Barter Product
-        if($dispatchProduct !== null){
-            $barterProduct = $barterProduct == null ?  $dispatchProduct : $barterProduct;
+        if($dispatchProduct !== null
+            ||
+            (isset($touchPoint['productBrand']) && $touchPoint['touchPointConditionalFields']['additionalPayAsBarter'])
+            ||
+            (isset($touchPoint['productBrand']) && $touchPoint['touchPointConditionalFields']['isBarter'])
+        ) {
+            $barterProduct = $barterProduct !== null ?  $barterProduct->id : $dispatchProduct->id ;
         }
         //---- Touch Point
         $savedTouchPoint =  $this->updateOrCreate(
@@ -118,7 +123,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
                 'name'                => isset($touchPoint['name']) ? $touchPoint['name'] : '',
                 'description'         => $touchPoint['caption'],
                 'dispatch_product'    => $dispatchProduct === null ? null : $dispatchProduct->id,
-                'barter_product'      => $barterProduct->id,
+                'barter_product'      => $barterProduct,
                 'campaign_id'         => $data['campaignId'],
                 'company_id'          => isset($touchPoint['productBrand']) ? $touchPoint['productBrand'] : null,
                 'placement_id'        => $data['payment']['platform'],

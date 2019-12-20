@@ -29,6 +29,9 @@ class TouchPointRequest extends BaseFormRequest
             'platformId'                     => 'required|numeric',
             'campaignInformation.description'=> Rule::requiredIf($this->checkCampaignDescription()),
             'touchPoint.caption'             => 'required',
+            'touchPoint.hashtags'             => 'required',
+            'touchPoint.mentions'             => 'required',
+            'touchPoint.guideLines'             => 'required',
         ];
 
         $rules = $this->checkTouchPointName($rules);
@@ -102,9 +105,19 @@ class TouchPointRequest extends BaseFormRequest
      */
     private function checkProductBrand(array $rules): array
     {
+
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointBrand')
         ) {
             $rules['touchPoint.productBrand'] = 'required';
+        }
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointBrand') &&
+                $this->input('touchPoint.touchPointConditionalFields.additionalPayAsBarter')
+        ) {
+            $rules['touchPoint.barterProduct'] = 'required';
+        }
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointBrand') &&
+            $this->input('touchPoint.touchPointConditionalFields.isBarter')
+        ) {
             $rules['touchPoint.barterProduct'] = 'required';
         }
 
@@ -122,6 +135,10 @@ class TouchPointRequest extends BaseFormRequest
         return (is_null($campaign->description)) ? true : false;
     }
 
+    /**
+     * @param array $rules
+     * @return array
+     */
     private function checkTouchPointName(array $rules): array
     {
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointTitle')
