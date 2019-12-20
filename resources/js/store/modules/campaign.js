@@ -195,7 +195,7 @@ export const actions = {
     async updateCampaign({commit, state},payload) {
 
         let response = await CampaignAxios.updateCampaign(payload);
-        return response.details;
+        return response;
     }
 
 }

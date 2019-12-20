@@ -67,7 +67,7 @@
                                         </p>
                                     </v-card-text>
                                 </v-card>
-                                <v-btn color="primary" large class="mt-8 float-right text-capitalize">
+                                <v-btn color="primary" large class="mt-8 float-right text-capitalize" @click="launchCampaign">
                                     Launch Campaign
                                     <v-icon right>keyboard_arrow_right</v-icon>
                                 </v-btn>
@@ -103,10 +103,12 @@
             async launchCampaign() {
                 let response =  await this.updateCampaign({
                     isFeatured  : this.isFeatured,
-                    campaignId  : this.campaignInformation.id
+                    campaignId  : this.campaignInformation.id,
+                    status      : 'active'
                 });
 
                 if (response.status === 200) {
+                    this.$toast.success('Campaign Created Successfully!');
                     this.$router.push({name: 'manage-campaigns'})
                 }
             },

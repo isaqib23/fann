@@ -145,6 +145,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             ])->first();
 
         $campaign = [];
+
         if($objective) {
             $campaign = (new CampaignTransformer)->CampaignPaymentPresentor($objective, $objective->toArray());
         }
@@ -159,12 +160,31 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      */
     public function updateCampaignStatus($request)
     {
+        if ($request->has('isFeatured')) {
+            $this->updateCampaignFeaturedStatus($request);
+        }
+
+        return $this->update(
+            [
+                'status'      => $request->input('status')
+            ],
+            $request->input('campaignId')
+        );
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function updateCampaignFeaturedStatus($request)
+    {
         return $this->update(
             [
                 'is_featured' => $request->input('isFeatured'),
-                'status'      => 'active'
             ],
-            $request->input('isFeatured')
+            $request->input('campaignId')
         );
+
     }
 }

@@ -395,7 +395,7 @@ class CampaignsController extends Controller
      */
     public function updateCampaignStatus(Request $request)
     {
-        $campaign = $this->repository->updateCampaignStatus();
+        $campaign = $this->repository->updateCampaignStatus($request);
 
         return response()->json([
             'details' => $campaign,
