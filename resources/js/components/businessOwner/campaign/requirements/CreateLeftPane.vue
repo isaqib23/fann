@@ -189,11 +189,10 @@
                                 </v-flex>
                                 <v-flex lg9 sm9 m9 pl-3>
                                     <products-search
-                                        v-if="touchPoint.touchPointConditionalFields.touchPointProduct"
                                         :placeholder="'Same as Unboxing'"
                                         :emit-as="'barterProduct'"
-                                        :selectedProduct="(touchPoint.barter_as_dispatch === 0) ? barterProduct : null"
-                                        :selectedVariants="(touchPoint.barter_as_dispatch === 0) ? barterProductVariant : []"
+                                        :selectedProduct="barterProduct"
+                                        :selectedVariants="barterProductVariant"
                                         @selected-product="selectedProduct"
                                     >
                                     </products-search>
@@ -352,12 +351,10 @@
                         });
                     }
 
-                    if(this.touchPoint.barter_as_dispatch === 0){
                         await this.getSavedBarterProduct({
                             product_id: this.touchPoint.barterProduct.productId,
                             shop: localStorage.selectedShop
                         });
-                    }
                 } else {
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
@@ -492,8 +489,9 @@
                 }
             },
             'savedBarterProduct' (val) {
-                if(!_.isNil(val.details)) {
-                    this.barterProductVariant = [];
+                this.barterProductVariant = [];
+                this.barterProduct = null;
+                if(!_.isNil(val.details) && this.touchPoint.isBarter) {
                     this.barterProduct = val.details;
                     this.barterProductVariant.push(this.touchPoint.barterProduct);
                 }
