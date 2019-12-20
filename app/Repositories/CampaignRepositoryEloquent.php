@@ -152,4 +152,19 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
         return $campaign;
     }
 
+    /**
+     * @param $request
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function updateCampaignStatus($request)
+    {
+        return $this->update(
+            [
+                'is_featured' => $request->input('isFeatured'),
+                'status'      => 'active'
+            ],
+            $request->input('isFeatured')
+        );
+    }
 }

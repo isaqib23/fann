@@ -57,9 +57,9 @@
                                     max-width="full_width" dense outlined
                                 >
                                     <v-card-text>
-                                        <v-checkbox v-model="checkbox2"  color="primary">
+                                        <v-checkbox v-model="isFeatured"  color="primary">
                                             <template slot="label">
-                                                <strong>I will be shipping this product to influencers</strong>
+                                                <strong>want to make this campaign featured?</strong>
                                             </template>
                                         </v-checkbox>
                                         <p>
@@ -84,17 +84,36 @@
 </template>
 
 <script>
-
+    import {mapGetters, mapActions} from 'vuex';
     export default {
-        components: {
-
-        },
         data: () => {
            return  {
-               checkbox2: false,
+               isFeatured: false,
             }
         },
-        methods: {}
+        computed: {
+            ...mapGetters({
+                campaignInformation : 'campaign/campaignInformation'
+            })
+        },
+        methods: {
+            ...mapActions({
+                updateCampaign    : 'campaign/updateCampaign'
+            }),
+            async launchCampaign() {
+                let response =  await this.updateCampaign({
+                    isFeatured  : this.isFeatured,
+                    campaignId  : this.campaignInformation.id
+                });
+
+                if (response.status === 200) {
+                    this.$router.push({name: 'manage-campaigns'})
+                }
+            },
+        },
+        mounted() {
+            console.log(this.campaignInformation);
+        }
     }
 </script>
 

@@ -63,8 +63,9 @@ class CampaignTransformer extends TransformerAbstract
                 'guideLines'        => $guidelines,
                 'amount'            => $touchPoint->amount,
                 'productBrand'      => $touchPoint->company_id,
-                'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint),
-                'barterProduct'     => ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $this->touchPointProductPresentor($touchPoint) : null,
+                'barter_as_dispatch'=> $touchPoint->barter_as_dispatch,
+                'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint->dispatch_product),
+                'barterProduct'     => $this->touchPointProductPresentor($touchPoint->barter_product),
                 'instaFormatFields' => $this->getInstaFormatFields($touchPoint->placementAction),
                 'images'            => $this->getTouchPointMedia($touchPoint->media),
                 "touchPointConditionalFields" => $this->getTouchPointConditionalFields($return)
@@ -74,15 +75,12 @@ class CampaignTransformer extends TransformerAbstract
     }
 
     /**
-     * @param $touchPoint
+     * @param $productId
      * @return mixed
-     *
      */
-    public function touchPointProductPresentor($touchPoint){
+    public function touchPointProductPresentor($productId){
 
         $campaignTouchPointProduct = new CampaignTouchPointProduct();
-
-        $productId = ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $touchPoint->barter_product : $touchPoint->dispatch_product;
 
         return $campaignTouchPointProduct
             ->select([
