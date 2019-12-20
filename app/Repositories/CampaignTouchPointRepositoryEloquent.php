@@ -107,7 +107,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
         // Prepare Barter Product
         if($dispatchProduct !== null){
-            $barterProduct = $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id;
+            $barterProduct = $barterProduct == null ?  $dispatchProduct : $barterProduct;
         }
         //---- Touch Point
         $savedTouchPoint =  $this->updateOrCreate(
