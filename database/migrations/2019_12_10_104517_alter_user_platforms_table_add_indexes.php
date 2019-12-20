@@ -17,7 +17,6 @@ class AlterUserPlatformsTableAddIndexes extends Migration
             $table->index('provider');
             $table->index('provider_id');
             $table->index('provider_name');
-            $table->index('provider_photo');
         });
     }
 
@@ -32,7 +31,6 @@ class AlterUserPlatformsTableAddIndexes extends Migration
             $table->dropIndex(['provider']);
             $table->dropIndex(['provider_id']);
             $table->dropIndex(['provider_name']);
-            $table->dropIndex(['provider_photo']);
         });
     }
 }

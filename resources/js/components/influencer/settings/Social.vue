@@ -16,7 +16,7 @@
                             >
                                 <v-card
                                     max-width="285"
-                                    v-on="platform.user_platforms == null? { click: () => goToSocialLogin(platform.slug) } : {}"
+                                    v-on="platform.user_platforms == null ? { click: () => goToSocialLogin(platform.slug) } : {}"
                                 >
                                     <v-list-item>
                                         <v-list-item-avatar

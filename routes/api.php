@@ -97,6 +97,7 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::put('savePlacementAndPaymentType', 'CampaignsController@savePlacementAndPaymentType');
         Route::post('getCampaignTouchPoint', 'CampaignsController@getCampaignTouchPoint');
         Route::post('getCampaignSavedObjective', 'CampaignsController@getCampaignSavedObjective');
+        Route::post('updateCampaignStatus', 'CampaignsController@updateCampaignStatus');
     });
 
     // ----- User related api's

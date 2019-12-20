@@ -62,8 +62,10 @@ class CampaignTransformer extends TransformerAbstract
                 'mentions'          => $touchPoint->additional->mentions,
                 'guideLines'        => $guidelines,
                 'amount'            => $touchPoint->amount,
-                'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint),
-                'barterProduct'     => ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $this->touchPointProductPresentor($touchPoint) : null,
+                'productBrand'      => $touchPoint->company_id,
+                'barter_as_dispatch'=> $touchPoint->barter_as_dispatch,
+                'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint->dispatch_product),
+                'barterProduct'     => $this->touchPointProductPresentor($touchPoint->barter_product),
                 'instaFormatFields' => $this->getInstaFormatFields($touchPoint->placementAction),
                 'images'            => $this->getTouchPointMedia($touchPoint->media),
                 "touchPointConditionalFields" => $this->getTouchPointConditionalFields($return)
@@ -73,15 +75,12 @@ class CampaignTransformer extends TransformerAbstract
     }
 
     /**
-     * @param $touchPoint
+     * @param $productId
      * @return mixed
-     *
      */
-    public function touchPointProductPresentor($touchPoint){
+    public function touchPointProductPresentor($productId){
 
         $campaignTouchPointProduct = new CampaignTouchPointProduct();
-
-        $productId = ($touchPoint->dispatch_product != $touchPoint->barter_product) ? $touchPoint->barter_product : $touchPoint->dispatch_product;
 
         return $campaignTouchPointProduct
             ->select([
@@ -122,7 +121,7 @@ class CampaignTransformer extends TransformerAbstract
             'additionalPayAsAmount'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'barter') ? (boolean)$campaign['payment']->is_primary : false,
             'additionalPayAsBarter'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'paid') ? (boolean)$campaign['payment']->is_primary : false,
             'paymentType'               => (!is_null($campaign['payment'])) ? $campaign['payment']->paymentType->slug : null,
-            'platform'                  => (!is_null($campaign['payment'])) ? $campaign['payment']->payment_type_id : null,
+            'platform'                  => (!is_null($campaign['payment'])) ? $campaign->primary_placement_id : null,
         ];
         return $return;
     }

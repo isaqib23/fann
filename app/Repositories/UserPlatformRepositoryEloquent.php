@@ -61,7 +61,6 @@ class UserPlatformRepositoryEloquent extends BaseRepository implements UserPlatf
                 'followings'        => $data->followings,
                 'meta_json'         => $data->meta_json
             ]);
-
     }
 
     /**
@@ -78,4 +77,5 @@ class UserPlatformRepositoryEloquent extends BaseRepository implements UserPlatf
         }
         return $platforms;
     }
+
 }

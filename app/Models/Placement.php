@@ -34,7 +34,7 @@ class Placement extends Model implements Transformable
      */
     public function campagin()
     {
-        return $this->belongsTo(Campaign::class, 'primary_placement_id','id');
+        return $this->belongsTo(Campaign::class, 'primary_placement_id', 'id');
     }
 
     /**

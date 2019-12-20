@@ -30,7 +30,8 @@ class CampaignTouchPoint extends Model implements Transformable
         'campaign_id',
         'placement_id',
         'barter_as_dispatch',
-        'amount'
+        'amount',
+        'company_id'
     ];
 
     /**

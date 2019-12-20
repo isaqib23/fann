@@ -3,17 +3,23 @@
         <v-row class="mx-auto my-1">
             <v-flex xl2 lg2 md2 sm1 xs2>
                 <v-list-item-avatar height="50" min-width="100%" width="100%" class="ma-0 field_icon">
-                    <v-img src="https://cdn.vuetifyjs.com/images/lists/1.jpg"></v-img>
+                    <img
+                        :src="(userCompany !== null) ? '/images/'+userCompany.logo : ''"
+                        @error="altImageSource($event)"
+                    >
                 </v-list-item-avatar>
             </v-flex>
             <v-flex xl10 lg10 md10 sm11 xs10>
                 <v-select
                     :items="items"
-                    label="Instagram image post"
+                    v-model="touchPoint.productBrand"
+                    label="User Company"
                     solo
                     dense
                     append-icon="keyboard_arrow_down"
                     class="brand_dropdown product_left_border"
+                    item-text="name"
+                    item-value="id"
                 ></v-select>
             </v-flex>
         </v-row>
@@ -21,6 +27,7 @@
 </template>
 
 <script>
+    import {mapGetters, mapActions, mapMutations} from 'vuex';
     export default {
         props : {
             touchPoint    : {},
@@ -28,10 +35,25 @@
         },
         data ()  {
             return  {
-                items     : ['Foo', 'Bar', 'Fizz', 'Buzz'],
+                items       : []
             }
         },
-        mounted() {
+        computed: {
+            ...mapGetters({
+                userCompany: 'settings/userCompany',
+            })
+        },
+        methods : {
+            ...mapActions({
+                getUserCompany              : 'settings/getUserCompany'
+            }),
+            altImageSource(event) {
+                event.target.src = "/images/icons/company_placeholder.png"
+            }
+        },
+        async mounted() {
+            await this.getUserCompany();
+            this.items.push(this.userCompany);
         }
     }
 </script>

@@ -193,8 +193,6 @@
         },
         mounted() {
             this.inviteSearchParams.placement = this.placement.platform;
-            console.log(this.placement, 'placement');
-            console.log(this.inviteSearchParams, 'inviteSearchParams');
         },
         async created() {
             let fetchAllPlacements = await this.fetchAllPlacements();

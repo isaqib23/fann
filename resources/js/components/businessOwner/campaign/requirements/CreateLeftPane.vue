@@ -47,7 +47,7 @@
 
                             <v-card-title>
                                 <div class="subtitle-1 mb-1 text-capitalize"><strong>
-                                    {{ (campaignObjective != null) ? '' : campaignObjective.slug.replace('-',' ') }}
+                                    {{ (campaignObjective.slug !== undefined) ? campaignObjective.slug.replace('-',' ') : ''}}
                                 </strong></div>
                             </v-card-title>
 
@@ -183,14 +183,17 @@
                                     </v-card-text>
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3 v-if="!disabledBarter">
+                            <v-layout row wrap pl-3 pr-3 pb-5 v-if="!disabledBarter">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
                                 <v-flex lg9 sm9 m9 pl-3>
                                     <products-search
-                                        :emit-as="'barterProduct'"
+                                        v-if="touchPoint.touchPointConditionalFields.touchPointProduct"
                                         :placeholder="'Same as Unboxing'"
+                                        :emit-as="'barterProduct'"
+                                        :selectedProduct="(touchPoint.barter_as_dispatch === 0) ? barterProduct : null"
+                                        :selectedVariants="(touchPoint.barter_as_dispatch === 0) ? barterProductVariant : []"
                                         @selected-product="selectedProduct"
                                     >
                                     </products-search>
@@ -255,9 +258,11 @@
                 guideLines            : 1,
                 model                 : 0,
                 e1                    : 0,
-                description       : null,
+                description           : null,
                 dispatchProduct       : null,
                 dispatchProductVariant: [],
+                barterProduct         : null,
+                barterProductVariant  : [],
                 kind                  : '1',
                 checkbox2             : true,
                 checkbox1             : false,
@@ -293,8 +298,9 @@
                 touchPoint          : 'campaign/touchPoint',
                 campaignObjective   : 'campaign/campaignObjective',
                 savedTouchPoints    : 'campaign/savedTouchPoints',
-                savedShopifyProduct : 'campaign/savedShopifyProduct',
-                campaignInformation : 'campaign/campaignInformation',
+                savedDispatchProduct: 'campaign/savedDispatchProduct',
+                savedBarterProduct  : 'campaign/savedBarterProduct',
+                campaignInformation : 'campaign/campaignInformation'
             })
         },
         async created() {
@@ -306,7 +312,6 @@
         async mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement);
             this.setPayment();
-            this.icon = this.paymentMethod.platform === 2 ? 'mdi-instagram': 'mdi-youtube';
         },
         methods: {
             ...mapMutations({
@@ -318,7 +323,9 @@
                 saveTouchPointField         : 'campaign/saveTouchPointField',
                 resetTouchPoint             : 'campaign/resetTouchPoint',
                 getCampaignTouchPoint       : 'campaign/getCampaignTouchPoint',
-                getSavedShopifyProduct      : 'campaign/getSavedShopifyProduct'
+                getSavedDispatchProduct     : 'campaign/getSavedDispatchProduct',
+                getSavedBarterProduct       : 'campaign/getSavedBarterProduct',
+                getUserCompany              : 'settings/getUserCompany'
             }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
@@ -338,10 +345,19 @@
                 if (this.savedTouchPoints.length > 0 && !_.isNil(this.savedTouchPoints[id])) {
                     this.resetTouchPoint(this.savedTouchPoints[id]);
                     this.setTouchPointFields();
-                    await this.getSavedShopifyProduct({
-                        product_id: this.touchPoint.dispatchProduct.productId,
-                        shop: localStorage.selectedShop
-                    });
+                    if(!_.isNil(this.touchPoint.dispatchProduct)) {
+                        await this.getSavedDispatchProduct({
+                            product_id: this.touchPoint.dispatchProduct.productId,
+                            shop: localStorage.selectedShop
+                        });
+                    }
+
+                    if(this.touchPoint.barter_as_dispatch === 0){
+                        await this.getSavedBarterProduct({
+                            product_id: this.touchPoint.barterProduct.productId,
+                            shop: localStorage.selectedShop
+                        });
+                    }
                 } else {
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
@@ -411,7 +427,7 @@
                 optFields.touchPointTitle = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
                 optFields.isBarter = (this.paymentMethod.paymentType === 'barter') ? true : false;
                 optFields.isPaid = (this.paymentMethod.paymentType == 'paid') ? true : false;
-                optFields.touchPointInstagramFormat = (this.paymentMethod.platform == 2) ? true : false;
+                optFields.touchPointInstagramFormat = (this.paymentMethod.platform === 1) ? true : false;
                 optFields.additionalPayAsAmount = this.paymentMethod.additionalPayAsAmount;
                 optFields.additionalPayAsBarter = this.paymentMethod.additionalPayAsBarter;
 
@@ -468,11 +484,18 @@
                 immediate: true,
                 deep:true
             },
-            'savedShopifyProduct' (val) {
+            'savedDispatchProduct' (val) {
                 if(!_.isNil(val.details)) {
                     this.dispatchProductVariant = [];
                     this.dispatchProduct = val.details;
                     this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
+                }
+            },
+            'savedBarterProduct' (val) {
+                if(!_.isNil(val.details)) {
+                    this.barterProductVariant = [];
+                    this.barterProduct = val.details;
+                    this.barterProductVariant.push(this.touchPoint.barterProduct);
                 }
             },
             placement : {
@@ -481,6 +504,7 @@
                     if(!_.isNil(val)) {
                         self.paymentMethod = Object.assign(self.paymentMethod, val);
                         self.setPayment();
+                        self.setTouchPointFields();
                     }
                 },
                 immediate: true,

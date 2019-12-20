@@ -211,9 +211,8 @@ class UserPlatformsController extends Controller
      */
     public function getUserPlatforms(Request $request)
     {
-        $platforms = $this->placementRepository->with(['userPlatforms' => function($query){
-
-            $query->where('user_id',auth()->user()->id);
+        $platforms = $this->placementRepository->with(['userPlatforms' => function($query) {
+            $query->where('user_id', auth()->user()->id);
             $query->with(['userPlatformMeta']);
 
         }])->all();

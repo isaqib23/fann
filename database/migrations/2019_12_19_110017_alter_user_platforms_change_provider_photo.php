@@ -18,7 +18,9 @@ class AlterUserPlatformsChangeProviderPhoto extends Migration
         });
 
         Schema::table('user_platforms', function (Blueprint $table) {
-            $table->text('provider_photo')->nullable();
+
+            $table->text('provider_photo')->after('provider_name')->nullable();
+
         });
     }
 
@@ -30,7 +32,6 @@ class AlterUserPlatformsChangeProviderPhoto extends Migration
     public function down()
     {
         Schema::table('user_platforms', function (Blueprint $table) {
-            $table->dropIndex(['provider_photo']);
             $table->dropColumn('provider_photo');
         });
     }

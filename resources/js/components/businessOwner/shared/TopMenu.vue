@@ -140,7 +140,7 @@
                     .then(function (resp) {
                         self.shops = resp.data;
                         self.busy = false;
-                        if(self.selectedShop === null){
+                        if(self.selectedShop === null && self.shops[0] !== undefined){
                             self.selectedShop = self.shops[0].id;
                         }
                     });
@@ -153,8 +153,9 @@
        async mounted() {
             this.username = this.auth.first_name;
            await this.getLinkedShops();
-            if (localStorage.selectedShop) {
-                this.selectedShop = localStorage.selectedShop;
+
+           if (localStorage.hasOwnProperty("selectedShop")) {
+                this.selectedShop = localStorage.getItem('selectedShop');
             }
         },
         watch: {
@@ -164,9 +165,9 @@
                 setTimeout(() => (this.loading = false), 3000)
             },
             selectedShop (val) {
-
-                localStorage.selectedShop = this.selectedShop;
-
+                if (!localStorage.hasOwnProperty("selectedShop")) {
+                    localStorage.setItem('selectedShop', this.selectedShop);
+                }
             }
         }
     }

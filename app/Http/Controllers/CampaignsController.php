@@ -389,4 +389,17 @@ class CampaignsController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateCampaignStatus(Request $request)
+    {
+        $campaign = $this->repository->updateCampaignStatus($request);
+
+        return response()->json([
+            'details' => $campaign,
+        ]);
+    }
+
 }
