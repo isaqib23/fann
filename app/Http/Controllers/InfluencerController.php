@@ -14,8 +14,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class InfluencerController extends Controller
 {
-
-
     /**
      * @var userPlatformRepository
      */
@@ -31,86 +29,11 @@ class InfluencerController extends Controller
      */
     private $youtubeService;
 
-    public function __construct( UserPlatformRepository $userPlatformRepository ) {
+    public function __construct(UserPlatformRepository $userPlatformRepository)
+    {
         $this->userPlatformRepository = $userPlatformRepository;
         $this->instagramService = new InstagramService();
         $this->youtubeService = new YoutubeService();
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     /**
@@ -120,9 +43,9 @@ class InfluencerController extends Controller
     public function getProfile( Request $request )
     {
         $id = $request->user_id;
-        $profile = $this->userPlatformRepository->getUserPlatforms( $request );
+        $profile = $this->userPlatformRepository->getUserPlatforms($request);
         return response()->json([
-             'details' => $profile
+            'details' => $profile
         ]);
     }
 
@@ -133,14 +56,14 @@ class InfluencerController extends Controller
      */
     public function getPosts( Request $request )
     {
-        $influencer = $this->userPlatformRepository->findByField('id', $request->id )->first();
+        $influencer = $this->userPlatformRepository->findByField('id', $request->id)->first();
 
-        $this->instagramService->setAccessToken( $influencer->access_token );
+        $this->instagramService->setAccessToken($influencer->access_token);
         $posts = $this->instagramService->getPosts();
 
-        $data = $this->postStats( $posts );
+        $data = $this->postStats($posts);
 
-        return response()->json( $data );
+        return response()->json($data);
     }
 
     /**
@@ -149,12 +72,12 @@ class InfluencerController extends Controller
      */
     public function postStats( $posts )
     {
-        $postCollection = collect( $posts );
+        $postCollection = collect($posts);
         $today = Carbon::today()->subDays(180)->format("d-m-Y");
 
-        $lastPosts = $postCollection->filter(function ($post, $key) use ( $today ) {
+        $lastPosts = $postCollection->filter(function ($post, $key) use ($today) {
 
-            if ( strtotime(date("d-m-Y", $post->created_time)) > strtotime( $today )) {
+            if (strtotime(date("d-m-Y", $post->created_time)) > strtotime($today)) {
                 return $post;
             }
         });
@@ -184,7 +107,7 @@ class InfluencerController extends Controller
 
         $refreshedToken = $this->youtubeService->setAccessToken($influencer->access_token);
 
-        if($refreshedToken !=null) {
+        if ($refreshedToken != null) {
 
             $influencer->access_token = json_encode($refreshedToken);
             $this->userPlatformRepository->store($influencer);
@@ -204,7 +127,7 @@ class InfluencerController extends Controller
      {
          $videos = $videos->items;
          $listed = $videos;
-         if( !empty( $videos )) {
+         if (!empty($videos)) {
 
              $videoCollect = collect($videos);
              $list = $videoCollect->pluck('id.videoId');
@@ -217,9 +140,9 @@ class InfluencerController extends Controller
 
          $today = Carbon::today()->subDays(280)->format("d-m-Y");
 
-         $filtered = array_filter($videos, function ($item) use($today) {
+         $filtered = array_filter($videos, function ($item) use ($today) {
 
-             if(strtotime(date("d-m-Y",strtotime($item->snippet->publishedAt))) > strtotime($today)) {
+             if (strtotime(date("d-m-Y", strtotime($item->snippet->publishedAt))) > strtotime($today)) {
                  return $item;
              }
          });

@@ -56,40 +56,36 @@ class YoutubeService
 
     /**
      * @param $code
-     * @return mixed
+     * @return array
      */
     public function authenticateToken($code)
     {
         $tokenObject = $this->google->fetchAccessTokenWithAuthCode($code);
         $this->setAccessToken($tokenObject);
         return $tokenObject;
-
     }
 
     /**
      * @param $token
-     * @return
+     * @return string|null
      */
     public function setAccessToken($token)
     {
         $this->google->setAccessToken($token);
         return $this->refreshAccessToken($token);
-
     }
 
     /**
      * @return \Google_Service_Oauth2_Userinfoplus
      */
-    public function getUserInfo() {
-
+    public function getUserInfo()
+    {
         $userInfo = new \Google_Service_Oauth2($this->google);
-
         return $userInfo->userinfo->get();
-
     }
 
     /**
-     * @return
+     * @return \Google_Service_YouTube_ChannelListResponse
      */
     public function getChannelsList()
     {
@@ -141,8 +137,8 @@ class YoutubeService
             $refreshToken = $this->google->getRefreshToken();
             // update access token
             $newToken = $this->google->fetchAccessTokenWithRefreshToken($refreshToken);
-//            $this->google->setAccessToken($newToken);
-             return $newToken;
+            //$this->google->setAccessToken($newToken);
+            return $newToken;
         }
     }
 }
