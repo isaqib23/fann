@@ -28,9 +28,10 @@ class TouchPointRequest extends BaseFormRequest
             'campaignId'                     => 'required|numeric',
             'platformId'                     => 'required|numeric',
             'campaignInformation.description'=> Rule::requiredIf($this->checkCampaignDescription()),
-            'touchPoint.name'                => 'required',
             'touchPoint.caption'             => 'required',
         ];
+
+        $rules = $this->checkTouchPointName($rules);
 
         $rules = $this->checkTouchPointAmount($rules);
 
@@ -119,6 +120,16 @@ class TouchPointRequest extends BaseFormRequest
         $campaign = Campaign::find($data['campaignId']);
 
         return (is_null($campaign->description)) ? true : false;
+    }
+
+    private function checkTouchPointName(array $rules): array
+    {
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointTitle')
+        ) {
+            $rules['touchPoint.name'] = 'required';
+        }
+
+        return $rules;
     }
 
 }

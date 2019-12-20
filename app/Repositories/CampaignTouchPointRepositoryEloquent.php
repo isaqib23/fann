@@ -115,7 +115,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
                 'id'              => $touchPoint['id'],
             ],
             [
-                'name'                => $touchPoint['name'],
+                'name'                => isset($touchPoint['name']) ? $touchPoint['name'] : '',
                 'description'         => $touchPoint['caption'],
                 'dispatch_product'    => $dispatchProduct === null ? null : $dispatchProduct->id,
                 'barter_product'      => $barterProduct->id,
