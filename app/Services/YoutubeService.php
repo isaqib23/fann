@@ -120,15 +120,17 @@ class YoutubeService
     }
     public function refreshAccessToken($token)
     {
-        if ($this->google->isAccessTokenExpired()) {
+//        if ($this->google->isAccessTokenExpired($token->access_token)) {
             // save refresh token to some variable
-            $refreshTokenSaved = $this->google->getRefreshToken();
+            $refreshTokenSaved = $this->google->refreshToken($token);
+//            dd($refreshTokenSaved,"hee");
+//            $refreshTokenSaved = $this->google->getRefreshToken($token['refresh_token']);
             // update access token
-            $this->google->fetchAccessTokenWithRefreshToken($refreshTokenSaved);
+//            $this->google->fetchAccessTokenWithRefreshToken($refreshTokenSaved);
             $this->google->setAccessToken($refreshTokenSaved);
 
             return $refreshTokenSaved;
-        }
+
 
     }
 

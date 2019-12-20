@@ -107,7 +107,7 @@
                 collectInvitation : 'campaign/collectInvitation'
             }),
             goToProfile(profileID) {
-                this.$router.push({name: 'influencer-profile' , params: { profileID: profileID } });
+                this.$router.push({name: 'influencer-profile' , query: { profileID: profileID } });
             },
             totalPages() {
                 return !_.isNil(this.influencerSearchResults) ? this.influencerSearchResults.total : 0

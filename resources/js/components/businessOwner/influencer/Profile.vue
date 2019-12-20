@@ -3,7 +3,7 @@
         <v-flex class="ma-12">
             <div class="subtitle-1 mb-2"><strong>{{ profile.provider_name }}</strong></div>
             <v-card class="mx-auto card_wrapper">
-                <span class="primary--text pl-8 pt-8" style="position: absolute"><u>Back</u></span>
+<!--                <span class="primary&#45;&#45;text pl-8 pt-8" style="position: absolute" @click="goBack()"><u>Back</u></span>-->
                 <v-row class="py-12 mx-auto main_wrapper">
                     <v-badge color="primary">
                         <template v-slot:badge>
@@ -54,11 +54,14 @@
                                         <span class="mr-3 integrityColor--text">
                                             <strong class="mr-2 black--text">{{ profile.user_platform_meta.follower_count }}</strong>Followers
                                         </span>
-                                        <span class="mr-3 integrityColor--text">
+                                        <span class="mr-3 integrityColor--text" v-if="profile.placement_id === 1">
                                             <strong class="mr-2 black--text">{{ profile.user_platform_meta.following_count }}</strong>Following
                                         </span>
+                                        <span class="mr-3 integrityColor--text" v-if="profile.placement_id === 2">
+                                            <strong class="mr-2 black--text">{{ profile.user_platform_meta.following_count }}</strong>Playlist
+                                        </span>
                                         <span class="mr-3 integrityColor--text">
-                                            <strong class="mr-2 black--text"> {{uploads}}</strong>Posts
+                                            <strong class="mr-2 black--text"> {{uploads}}</strong>Media
                                         </span>
                                     </div>
                                     <div class="text-start ml-4 mt-2">
@@ -164,8 +167,7 @@
         },
         mounted() {
             // this.platform = this.campaignPlacement['platform'];
-            this.profileID = this.$router.currentRoute.params.profileID;
-            console.log(this.profileID,"profileid");
+            this.profileID = this.$router.currentRoute.query.profileID;
             this.profileData();
         },
         methods: {
@@ -190,9 +192,11 @@
                 });
                 this.changePlatform(selectedPlatformData);
             },
-
             changePlatform(data) {
                 this.profile = data;
+            },
+            goBack(){
+                this.$router.push({name: 'create-campaign-requirements', params: { slug: this.$router.currentRoute.params.slug }})
             }
         }
     }

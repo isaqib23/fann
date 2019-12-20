@@ -251,7 +251,7 @@ let CampaignAxios = class {
             });
     }
     static getInfluencersToInvite (payload) {
-        return axios.post(api.path('user.search'), payload)
+        return axios.post(api.path('user.searchInfluencers'), payload)
             .then(resp => {
                 return {
                     status : 200,
