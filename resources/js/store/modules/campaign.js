@@ -6,7 +6,8 @@ export const state = {
   campaignPlacement               : null,
   campaignInformation             : null,
   influencerSearchResults         : null,
-  savedShopifyProduct             : null,
+  savedDispatchProduct            : null,
+  savedBarterProduct              : null,
   savedTouchPoints                : [],
   touchPoint                    : {
       id                          : null,
@@ -16,6 +17,7 @@ export const state = {
       guideLines                  : [],
       dispatchProduct             : null,
       barterProduct               : null,
+      productBrand                : null,
       amount                      : 0,
       campaignDescription         : null,
       instaFormatFields           : {
@@ -89,8 +91,11 @@ export const mutations = {
     setSavedTouchPoints(state, touchPoint) {
         state.savedTouchPoints = (touchPoint);
     },
-    setSavedShopifyProduct(state, shopifyProduct) {
-        state.savedShopifyProduct = shopifyProduct;
+    setSavedDispatchProduct(state, shopifyProduct) {
+        state.savedDispatchProduct = shopifyProduct;
+    },
+    setSavedBarterProduct(state, shopifyProduct) {
+        state.savedBarterProduct = shopifyProduct;
     },
     updateCampaignInformation(state, [index, val]) {
         Vue.set(state.campaignInformation, index, val)
@@ -170,16 +175,27 @@ export const actions = {
         }
         return response;
     },
-    async getSavedShopifyProduct({commit, state},payload) {
+    async getSavedDispatchProduct({commit, state},payload) {
 
-        let response = await CampaignAxios.getSavedShopifyProduct(payload);
+        let response = await CampaignAxios.getSavedDispatchProduct(payload);
 
-        commit('setSavedShopifyProduct',response);
+        commit('setSavedDispatchProduct',response);
+    },
+    async getSavedBarterProduct({commit, state},payload) {
+
+        let response = await CampaignAxios.getSavedBarterProduct(payload);
+
+        commit('setSavedBarterProduct',response);
     },
     async getCampaignSavedObjective({commit, state},payload) {
 
         let response = await CampaignAxios.getCampaignSavedObjective(payload);
         return response.details;
+    },
+    async updateCampaign({commit, state},payload) {
+
+        let response = await CampaignAxios.updateCampaign(payload);
+        return response;
     }
 
 }
@@ -196,7 +212,8 @@ export const getters = {
     inviteSearchParams      : state => state.inviteSearchParams,
     influencerSearchResults : state => state.influencerSearchResults,
     savedTouchPoints        : state => state.savedTouchPoints,
-    savedShopifyProduct     : state => state.savedShopifyProduct
+    savedDispatchProduct    : state => state.savedDispatchProduct,
+    savedBarterProduct      : state => state.savedBarterProduct
 
 
 }
@@ -299,7 +316,23 @@ let CampaignAxios = class {
             });
     }
 
-    static getSavedShopifyProduct (payload) {
+    static getSavedDispatchProduct (payload) {
+        return axios.post(api.path('shopify.findSingleProduct'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+
+    static getSavedBarterProduct (payload) {
         return axios.post(api.path('shopify.findSingleProduct'), payload)
             .then(resp => {
                 return {
@@ -317,6 +350,22 @@ let CampaignAxios = class {
 
     static getCampaignSavedObjective (payload) {
         return axios.post(api.path('campaign.getCampaignSavedObjective'), payload)
+            .then(resp => {
+                return {
+                    status : 200,
+                    details : resp.data.details
+                };
+            })
+            .catch(err => {
+                return {
+                    status : err.response.status,
+                    details : []
+                };
+            });
+    }
+
+    static updateCampaign (payload) {
+        return axios.post(api.path('campaign.updateCampaignStatus'), payload)
             .then(resp => {
                 return {
                     status : 200,

@@ -12,7 +12,7 @@
                         <div class="card_box"></div>
                     </v-layout>
                     <v-layout class="right-pane mx-auto my-auto pl-7 pt-10">
-                        <v-card-text>
+                        <v-card-text class="black--text">
                         {{ (campaignInformation !== null) ? campaignInformation.description : ''}}
                         </v-card-text>
                     </v-layout>
@@ -237,7 +237,7 @@
                                             <strong class="primary--text">{{ guidelineIndex }}.</strong>
                                         </v-list-item-icon>
                                         <v-list-item-content v-if="guidelineIndex != 0">
-                                            <v-list-item-subtitle>
+                                            <v-list-item-subtitle class="black--text">
                                                 {{ guideline }}
                                             </v-list-item-subtitle>
                                         </v-list-item-content>

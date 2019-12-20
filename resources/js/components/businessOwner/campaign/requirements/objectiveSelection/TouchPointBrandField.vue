@@ -12,7 +12,7 @@
             <v-flex xl10 lg10 md10 sm11 xs10>
                 <v-select
                     :items="items"
-                    :v-model="touchPoint.productBrand"
+                    v-model="touchPoint.productBrand"
                     label="User Company"
                     solo
                     dense
