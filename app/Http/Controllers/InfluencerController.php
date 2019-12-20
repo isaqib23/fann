@@ -186,7 +186,7 @@ class InfluencerController extends Controller
 
         if($refreshedToken !=null) {
 
-            $influencer->access_token = $refreshedToken;
+            $influencer->access_token = json_encode($refreshedToken);
             $this->userPlatformRepository->store($influencer);
         }
 

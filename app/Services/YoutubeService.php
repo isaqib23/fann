@@ -27,6 +27,8 @@ class YoutubeService
 
         $this->google->setScopes([
             'profile',
+            'email',
+            'openid',
             'https://www.googleapis.com/auth/youtube',
             'https://www.googleapis.com/auth/youtube.force-ssl',
             'https://www.googleapis.com/auth/youtube.readonly',
@@ -35,6 +37,7 @@ class YoutubeService
         $this->google->setIncludeGrantedScopes(true);
         $this->google->setDeveloperKey(env('YOUTUBE_API_KEY'));
         $this->google->setRedirectUri(env('YOUTUBE_REDIRECT_URI'));
+        $this->google->setApprovalPrompt("force");
         $this->google->setAccessType('offline');
 
     }
@@ -58,21 +61,19 @@ class YoutubeService
     public function authenticateToken($code)
     {
         $tokenObject = $this->google->fetchAccessTokenWithAuthCode($code);
-
         $this->setAccessToken($tokenObject);
         return $tokenObject;
+
     }
 
     /**
      * @param $token
+     * @return
      */
     public function setAccessToken($token)
     {
         $this->google->setAccessToken($token);
-
-        if ($this->google->isAccessTokenExpired()) {
-            return $this->refreshAccessToken($token);
-        }
+        return $this->refreshAccessToken($token);
 
     }
 
@@ -93,12 +94,18 @@ class YoutubeService
     public function getChannelsList()
     {
         $youtube = new \Google_Service_YouTube($this->google);
-          $queryParams = [
-              'mine' => true,
+        $queryParams = [
+            'mine' => true
         ];
-        return $youtube->channels->listChannels('snippet,contentDetails,statistics', $queryParams);
+        return $youtube->channels->listChannels(
+            'contentOwnerDetails,snippet,contentDetails,statistics',
+            array('mine' => $queryParams)
+        );
     }
 
+    /**
+     * @return \Google_Service_YouTube_SearchListResponse
+     */
     public function getListSearch()
     {
         $youtube = new \Google_Service_YouTube($this->google);
@@ -110,6 +117,10 @@ class YoutubeService
         return $youtube->search->listSearch('snippet', $queryParams);
     }
 
+    /**
+     * @param $list
+     * @return \Google_Service_YouTube_VideoListResponse
+     */
     public function getVideoList($list)
     {
         $youtube = new \Google_Service_YouTube($this->google);
@@ -118,20 +129,20 @@ class YoutubeService
         ];
         return $youtube->videos->listVideos('snippet,statistics', $queryParams);
     }
+
+    /**
+     * @param $token
+     * @return string|null
+     */
     public function refreshAccessToken($token)
     {
-//        if ($this->google->isAccessTokenExpired($token->access_token)) {
+        //if ($this->google->isAccessTokenExpired()) {
             // save refresh token to some variable
-            $refreshTokenSaved = $this->google->refreshToken($token);
-//            dd($refreshTokenSaved,"hee");
-//            $refreshTokenSaved = $this->google->getRefreshToken($token['refresh_token']);
+            $refreshToken = $this->google->getRefreshToken();
             // update access token
-//            $this->google->fetchAccessTokenWithRefreshToken($refreshTokenSaved);
-            $this->google->setAccessToken($refreshTokenSaved);
-
-            return $refreshTokenSaved;
-
-
+            $newToken = $this->google->fetchAccessTokenWithRefreshToken($refreshToken);
+//            $this->google->setAccessToken($newToken);
+             return $newToken;
+        //}
     }
-
 }
