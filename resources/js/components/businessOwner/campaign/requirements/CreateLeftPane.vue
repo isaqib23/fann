@@ -46,12 +46,12 @@
                             ></touch-point-title-field>
 
                             <v-card-title>
-                                <div class="subtitle-1 mb-2 text-capitalize"><strong>
-                                    {{ (campaignObjective != null) ? '' : campaignObjective.slug.replace('-',' ') }}
+                                <div class="subtitle-1 mb-1 text-capitalize"><strong>
+                                    {{ (campaignObjective.slug !== undefined) ? campaignObjective.slug.replace('-',' ') : ''}}
                                 </strong></div>
                             </v-card-title>
 
-                            <v-row class="mx-auto my-5">
+                            <v-row class="mx-auto my-1">
                                 <touch-point-brand-field
                                     v-if="touchPoint.touchPointConditionalFields.touchPointBrand"
                                     :touchPoint="touchPoint"
@@ -92,8 +92,8 @@
                                     <div class="subtitle-1 mb-2"><strong>Guidelines</strong></div>
                                 </v-card-title>
                                 <v-badge v-for="n in guideLines" :key="n" class="full_width">
-                                    <template v-slot:badge v-if="n > 1">
-                                        <v-icon @click="removeGuide" color="white">mdi-minus</v-icon>
+                                    <template v-slot:badge v-if="n !== touchPoint.guideLines.length">
+                                        <v-icon @click="removeGuide(n)" color="white">mdi-minus</v-icon>
                                     </template>
                                     <v-row class="mx-auto my-2">
                                         <v-flex xl1 lg1 md1 sm1 xs2>
@@ -255,7 +255,7 @@
                 guideLines            : 1,
                 model                 : 0,
                 e1                    : 0,
-                description       : null,
+                description           : null,
                 dispatchProduct       : null,
                 dispatchProductVariant: [],
                 kind                  : '1',
@@ -294,7 +294,7 @@
                 campaignObjective   : 'campaign/campaignObjective',
                 savedTouchPoints    : 'campaign/savedTouchPoints',
                 savedShopifyProduct : 'campaign/savedShopifyProduct',
-                campaignInformation : 'campaign/campaignInformation',
+                campaignInformation : 'campaign/campaignInformation'
             })
         },
         async created() {
@@ -306,7 +306,6 @@
         async mounted() {
             this.paymentMethod = Object.assign(this.paymentMethod, this.placement);
             this.setPayment();
-            this.icon = this.paymentMethod.platform === 2 ? 'mdi-instagram': 'mdi-youtube';
         },
         methods: {
             ...mapMutations({
@@ -318,7 +317,8 @@
                 saveTouchPointField         : 'campaign/saveTouchPointField',
                 resetTouchPoint             : 'campaign/resetTouchPoint',
                 getCampaignTouchPoint       : 'campaign/getCampaignTouchPoint',
-                getSavedShopifyProduct      : 'campaign/getSavedShopifyProduct'
+                getSavedShopifyProduct      : 'campaign/getSavedShopifyProduct',
+                getUserCompany              : 'settings/getUserCompany'
             }),
             nextTab() {
                 if (this.currentTab === this.tabsLength - 1) {
@@ -346,6 +346,11 @@
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
                 }
+                this.setGuidelineLenght();
+            },
+            setGuidelineLenght() {
+                let objectLenght = this.touchPoint.guideLines;
+                this.guideLines = (objectLenght.length > 0) ? objectLenght.length : this.guideLines;
             },
             async addTouchPoint() {
                 let response =  await this.saveTouchPoint();
@@ -371,11 +376,14 @@
             addGuide() {
                 this.guideLines = this.guideLines + 1;
             },
-            removeGuide() {
+            removeGuide(n) {
                 if (this.guideLines === 1) {
                     return false;
                 }
                 this.guideLines = this.guideLines - 1;
+                this.touchPoint.guideLines.splice(n, 1);
+                this.setGuidelineLenght();
+                this.setTouchPoint(['guideLines', _.values(this.touchPoint.guideLines)]);
             },
             selectedProduct (e) {
                 let self = this;
@@ -403,7 +411,7 @@
                 optFields.touchPointTitle = (this.campaignObjective.slug === 'product-review' || this.campaignObjective.slug === 'contest-giveways') ? false : true;
                 optFields.isBarter = (this.paymentMethod.paymentType === 'barter') ? true : false;
                 optFields.isPaid = (this.paymentMethod.paymentType == 'paid') ? true : false;
-                optFields.touchPointInstagramFormat = (this.paymentMethod.platform == 2) ? true : false;
+                optFields.touchPointInstagramFormat = (this.paymentMethod.platform === 1) ? true : false;
                 optFields.additionalPayAsAmount = this.paymentMethod.additionalPayAsAmount;
                 optFields.additionalPayAsBarter = this.paymentMethod.additionalPayAsBarter;
 
@@ -411,48 +419,6 @@
             }
         },
         watch: {
-            'touchPoint.caption' : {
-                handler: function(val) {
-                    this.setTouchPoint(['caption', val]);
-                },
-                immediate: true,
-                deep: true
-            },
-            'touchPoint.hashtags' : {
-                handler: function(val) {
-                    this.setTouchPoint(['hashtags', val]);
-                },
-                immediate: true,
-                deep: true
-            },
-            'touchPoint.mentions' : {
-                handler: function(val) {
-                    this.setTouchPoint(['mentions', val]);
-                },
-                immediate: true,
-                deep: true
-            },
-            /*'touchPoint.guideLines': {
-                handler: function(val) {
-                    this.setTouchPoint(['guideLines', _.values(val)]);
-                },
-                immediate: false,
-                deep: true
-            },*/
-            'touchPoint.amount': {
-                handler: function(val) {
-                    this.setTouchPoint(['amount', val]);
-                },
-                immediate: true,
-                deep: true
-            },
-            'touchPoint.name': {
-                handler: function(val) {
-                    this.setTouchPoint(['name', val]);
-                },
-                immediate: true,
-                deep: true
-            },
             'touchPoint.images': {
                 handler: function (val) {
                     if (!val.file) {
@@ -481,30 +447,6 @@
                 },
                 immediate: true,
                 deep: true
-            },
-            'touchPoint.instaPost': {
-                handler: function(val) {
-                    this.setTouchPoint(['instaPost', val]);
-                },
-                immediate: true
-            },
-            'touchPoint.instaBioLink': {
-                handler: function(val) {
-                    this.setTouchPoint(['instaBioLink', val]);
-                },
-                immediate: true
-            },
-            'touchPoint.instaStory': {
-                handler: function(val) {
-                    this.setTouchPoint(['instaStory', val]);
-                },
-                immediate: true
-            },
-            'touchPoint.instaStoryLink': {
-                handler: function(val) {
-                    this.setTouchPoint(['instaStoryLink', val]);
-                },
-                immediate: true
             },
             'campaignInformation': {
                 handler: function(val) {
@@ -539,6 +481,7 @@
                     if(!_.isNil(val)) {
                         self.paymentMethod = Object.assign(self.paymentMethod, val);
                         self.setPayment();
+                        self.setTouchPointFields();
                     }
                 },
                 immediate: true,

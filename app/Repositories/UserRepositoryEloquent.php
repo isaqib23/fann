@@ -65,7 +65,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
         //--- when Placement is not empty or null
         if (!empty($request->placement) ) {
-            $user->where('user_platforms.placement_id', getPlacementIdBySlug($request->placement));
+            $user->where('user_platforms.placement_id', is_int($request->placement) ? $request->placement : getPlacementIdBySlug($request->placement));
         }
 
         //-- group fields in if condition along with join
