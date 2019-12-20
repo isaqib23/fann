@@ -64,6 +64,7 @@ class CampaignTransformer extends TransformerAbstract
                 'amount'            => $touchPoint->amount,
                 'productBrand'      => $touchPoint->company_id,
                 'barter_as_dispatch'=> $touchPoint->barter_as_dispatch,
+                'isBarter'          => $this->checkIsBarter($campaign, $touchPoint),
                 'dispatchProduct'   => $this->touchPointProductPresentor($touchPoint->dispatch_product),
                 'barterProduct'     => $this->touchPointProductPresentor($touchPoint->barter_product),
                 'instaFormatFields' => $this->getInstaFormatFields($touchPoint->placementAction),
@@ -183,5 +184,27 @@ class CampaignTransformer extends TransformerAbstract
         ];
 
         return $return;
+    }
+
+    /**
+     * @param $campaign
+     * @param $touchPoint
+     * @return bool
+     */
+    private function checkIsBarter($campaign, $touchPoint): bool
+    {
+        if ($touchPoint->dispatch_product === $touchPoint->barter_product) {
+            return false;
+        }
+
+        if ($touchPoint->dispatch_product !== $touchPoint->barter_product) {
+            return true;
+        }
+
+        if (is_null($touchPoint->company_id)) {
+            return false;
+        }
+
+        return true;
     }
 }

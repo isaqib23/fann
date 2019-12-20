@@ -36,7 +36,7 @@ class TouchPointRequest extends BaseFormRequest
 
         $rules = $this->checkTouchPointInstagramFormat($rules);
 
-        $rules = $this->checkBarterProduct($rules);
+        $rules = $this->checkDispatchProduct($rules);
 
         $rules = $this->checkProductBrand($rules);
 
@@ -85,7 +85,7 @@ class TouchPointRequest extends BaseFormRequest
      * @param array $rules
      * @return array
      */
-    private function checkBarterProduct(array $rules): array
+    private function checkDispatchProduct(array $rules): array
     {
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointProduct')
         ) {
@@ -104,6 +104,7 @@ class TouchPointRequest extends BaseFormRequest
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointBrand')
         ) {
             $rules['touchPoint.productBrand'] = 'required';
+            $rules['touchPoint.barterProduct'] = 'required';
         }
 
         return $rules;
