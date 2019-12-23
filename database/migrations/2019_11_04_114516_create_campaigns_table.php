@@ -21,7 +21,7 @@ class CreateCampaignsTable extends Migration
             $table->string('name');
             $table->string('slug', 255);
             $table->text('description')->nullable();
-            $table->text('status')->nullable();
+            $table->enum('status',['draft', 'active', 'pending', 'completed'])->default('draft');
             $table->unsignedInteger('primary_placement_id')->nullable();
             $table->unsignedInteger('touch_points')->default(0);
             $table->double('total_amount', 10, 2)->default(0);
@@ -29,6 +29,7 @@ class CreateCampaignsTable extends Migration
             $table->unsignedInteger('impressions')->default(0);
             $table->unsignedInteger('actions')->default(0);
             $table->unsignedInteger('eng_rate')->default(0);
+            $table->boolean('is_featured')->default(0);
 
             $table->softDeletes();
             $table->timestamps();

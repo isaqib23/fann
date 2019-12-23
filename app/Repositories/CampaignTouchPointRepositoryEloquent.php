@@ -87,12 +87,13 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
     public function saveInHierarchy($data)
     {
+        //dd($data);
         $barterProduct = $dispatchProduct =  null;
         $touchPoint = $data['touchPoint'];
         //---- dispatch product
         if (!empty($touchPoint['dispatchProduct'])) {
-            $dispatchProduct = $this->campaignTouchPointProductRepository->store($touchPoint['dispatchProduct']);
-        }
+        $dispatchProduct = $this->campaignTouchPointProductRepository->store($touchPoint['dispatchProduct']);
+    }
 
         //---- shipment product
         if (!empty($touchPoint['barterProduct'])) {
@@ -104,10 +105,14 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
             $savedPayments = $this->campaignPaymentRepositoryEloquent->storeMultiple($data['payment'], $data['campaignId']);
         }
 
-        $barterProduct = null;
         // Prepare Barter Product
-        if($dispatchProduct !== null){
-            $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id;
+        if($dispatchProduct !== null
+            ||
+            (isset($touchPoint['productBrand']) && $touchPoint['touchPointConditionalFields']['additionalPayAsBarter'])
+            ||
+            (isset($touchPoint['productBrand']) && $touchPoint['touchPointConditionalFields']['isBarter'])
+        ) {
+            $barterProduct = $barterProduct !== null ?  $barterProduct->id : $dispatchProduct->id ;
         }
         //---- Touch Point
         $savedTouchPoint =  $this->updateOrCreate(
@@ -115,14 +120,14 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
                 'id'              => $touchPoint['id'],
             ],
             [
-                'name'                => $touchPoint['name'],
+                'name'                => isset($touchPoint['name']) ? $touchPoint['name'] : '',
                 'description'         => $touchPoint['caption'],
                 'dispatch_product'    => $dispatchProduct === null ? null : $dispatchProduct->id,
                 'barter_product'      => $barterProduct,
                 'campaign_id'         => $data['campaignId'],
                 'company_id'          => isset($touchPoint['productBrand']) ? $touchPoint['productBrand'] : null,
                 'placement_id'        => $data['payment']['platform'],
-                'barter_as_dispatch'  => 1,
+                'barter_as_dispatch'  => (!empty($touchPoint['dispatchProduct']) && !empty($touchPoint['barterProduct'])) ? 0 : 1,
                 'amount'              => $touchPoint['amount']
             ]);
 

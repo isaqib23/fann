@@ -106,7 +106,7 @@ class User extends Authenticatable implements JWTSubject
     /**
      * @return HasMany
      */
-    public function UserPlatforms()
+    public function userPlatforms()
     {
         return $this->hasMany(UserPlatform::class);
     }

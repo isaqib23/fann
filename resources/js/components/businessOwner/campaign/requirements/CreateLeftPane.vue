@@ -183,14 +183,16 @@
                                     </v-card-text>
                                 </v-flex>
                             </v-layout>
-                            <v-layout row wrap pl-3 pr-3 v-if="!disabledBarter">
+                            <v-layout row wrap pl-3 pr-3 pb-5 v-if="!disabledBarter">
                                 <v-flex lg3 sm3 m3 pr-3>
                                     <v-btn outlined class="text-capitalize" color="grey">Barter</v-btn>
                                 </v-flex>
                                 <v-flex lg9 sm9 m9 pl-3>
                                     <products-search
-                                        :emit-as="'barterProduct'"
                                         :placeholder="'Same as Unboxing'"
+                                        :emit-as="'barterProduct'"
+                                        :selectedProduct="barterProduct"
+                                        :selectedVariants="barterProductVariant"
                                         @selected-product="selectedProduct"
                                     >
                                     </products-search>
@@ -258,6 +260,8 @@
                 description           : null,
                 dispatchProduct       : null,
                 dispatchProductVariant: [],
+                barterProduct         : null,
+                barterProductVariant  : [],
                 kind                  : '1',
                 checkbox2             : true,
                 checkbox1             : false,
@@ -293,7 +297,8 @@
                 touchPoint          : 'campaign/touchPoint',
                 campaignObjective   : 'campaign/campaignObjective',
                 savedTouchPoints    : 'campaign/savedTouchPoints',
-                savedShopifyProduct : 'campaign/savedShopifyProduct',
+                savedDispatchProduct: 'campaign/savedDispatchProduct',
+                savedBarterProduct  : 'campaign/savedBarterProduct',
                 campaignInformation : 'campaign/campaignInformation'
             })
         },
@@ -317,7 +322,8 @@
                 saveTouchPointField         : 'campaign/saveTouchPointField',
                 resetTouchPoint             : 'campaign/resetTouchPoint',
                 getCampaignTouchPoint       : 'campaign/getCampaignTouchPoint',
-                getSavedShopifyProduct      : 'campaign/getSavedShopifyProduct',
+                getSavedDispatchProduct     : 'campaign/getSavedDispatchProduct',
+                getSavedBarterProduct       : 'campaign/getSavedBarterProduct',
                 getUserCompany              : 'settings/getUserCompany'
             }),
             nextTab() {
@@ -338,10 +344,17 @@
                 if (this.savedTouchPoints.length > 0 && !_.isNil(this.savedTouchPoints[id])) {
                     this.resetTouchPoint(this.savedTouchPoints[id]);
                     this.setTouchPointFields();
-                    await this.getSavedShopifyProduct({
-                        product_id: this.touchPoint.dispatchProduct.productId,
-                        shop: localStorage.selectedShop
-                    });
+                    if(!_.isNil(this.touchPoint.dispatchProduct)) {
+                        await this.getSavedDispatchProduct({
+                            product_id: this.touchPoint.dispatchProduct.productId,
+                            shop: localStorage.selectedShop
+                        });
+                    }
+
+                        await this.getSavedBarterProduct({
+                            product_id: this.touchPoint.barterProduct.productId,
+                            shop: localStorage.selectedShop
+                        });
                 } else {
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
@@ -468,11 +481,19 @@
                 immediate: true,
                 deep:true
             },
-            'savedShopifyProduct' (val) {
+            'savedDispatchProduct' (val) {
                 if(!_.isNil(val.details)) {
                     this.dispatchProductVariant = [];
                     this.dispatchProduct = val.details;
                     this.dispatchProductVariant.push(this.touchPoint.dispatchProduct);
+                }
+            },
+            'savedBarterProduct' (val) {
+                this.barterProductVariant = [];
+                this.barterProduct = null;
+                if(!_.isNil(val.details) && this.touchPoint.isBarter) {
+                    this.barterProduct = val.details;
+                    this.barterProductVariant.push(this.touchPoint.barterProduct);
                 }
             },
             placement : {

@@ -11,6 +11,7 @@ let campaign = {
     saveInvitation              : 'saveInvitation',
     getCampaignTouchPoint       : 'getCampaignTouchPoint',
     getCampaignSavedObjective   : 'getCampaignSavedObjective',
+    updateCampaignStatus        : 'updateCampaignStatus',
 };
 
 export default campaign;
