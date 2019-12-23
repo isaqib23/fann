@@ -1,6 +1,6 @@
+/*import files/objects*/
 import 'babel-polyfill'
 import Vue from 'vue'
-import _ from 'lodash'
 
 import router from '~/router/index'
 import store from '~/store/index'
@@ -13,22 +13,28 @@ import Vuelidate from 'vuelidate'
 import VueCreditCardField from 'vue-credit-card-field';
 import axios from 'axios';
 import { api } from '~/config'
+import _ from 'lodash'
+import '~/pusher/init.'
 
+/*window level objects*/
 window.Vue = Vue;
 window._ = _;
 window.axios = axios;
 window.api = api;
 
+/*use packages*/
 Vue.use(Vuelidate);
 Vue.use(VueInternationalization);
 Vue.use(VueCreditCardField);
 
+/*define constants*/
 const lang = document.documentElement.lang.substr(0, 2);
 const i18n = new VueInternationalization({
     locale: lang,
     messages: Locale
 });
 
+/*initialize VUE instance*/
 export const app = new Vue({
   router,
   store,

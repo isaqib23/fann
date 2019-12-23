@@ -8130,7 +8130,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
   margin: 0;
   width: inherit;
 }
-[data-v-d3694022] .emoji-picker {
+[data-v-110dbe61] .emoji-picker {
     position: absolute !important;
     z-index: 1 !important;
     font-family: Montserrat !important;
@@ -8146,41 +8146,51 @@ and (-webkit-min-device-pixel-ratio: 1) {
     bottom:65px !important;
     right:0;
 }
-[data-v-d3694022] .emoji-picker__search {
+[data-v-110dbe61] .emoji-picker__search {
     display: flex;
 }
-[data-v-d3694022] .emoji-picker__search > input {
+[data-v-110dbe61] .emoji-picker__search > input {
     flex: 1;
     border-radius: 10rem;
     border: 1px solid #ccc;
     padding: 0.5rem 1rem;
     outline: none;
 }
-[data-v-d3694022] .emoji-picker h5 {
+[data-v-110dbe61] .emoji-picker h5 {
     margin-bottom: 0;
     color: #b1b1b1;
     text-transform: uppercase;
     font-size: 0.8rem;
     cursor: default;
 }
-[data-v-d3694022] .emoji-picker .emojis {
+[data-v-110dbe61] .emoji-picker .emojis {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-[data-v-d3694022] .emoji-picker .emojis:after {
+[data-v-110dbe61] .emoji-picker .emojis:after {
     content: "";
     flex: auto;
 }
-[data-v-d3694022] .emoji-picker .emojis span {
+[data-v-110dbe61] .emoji-picker .emojis span {
     padding: 0.2rem;
     cursor: pointer;
     border-radius: 5px;
 }
-[data-v-d3694022] .emoji-picker .emojis span:hover {
+[data-v-110dbe61] .emoji-picker .emojis span:hover {
     background: #ececec;
     cursor: pointer;
 }
+.mail_header[data-v-110dbe61] {
+    border-bottom: 1px solid #cccccc;
+}
+.full_height[data-v-110dbe61]{
+    max-height: 400px !important;
+    min-height: 400px !important;
+    overflow-y: scroll !important;
+}
+
+
 [data-v-d3694022] .v-rating .v-icon{
     padding:0px;
 }
@@ -8250,14 +8260,6 @@ and (-webkit-min-device-pixel-ratio: 1) {
 }
 [data-v-d3694022] .touch_field .v-text-field__details{
     display: none !important;
-}
-.mail_header[data-v-d3694022] {
-    border-bottom: 1px solid #cccccc;
-}
-.full_height[data-v-d3694022]{
-    max-height: 400px !important;
-    min-height: 400px !important;
-    overflow-y: scroll !important;
 }
 [data-v-d3694022] .custom_field .v-input__control{
     min-height: 43px !important;
