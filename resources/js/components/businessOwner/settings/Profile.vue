@@ -3,7 +3,7 @@
         <div class="subtitle-1 mb-2 text-uppercase"><strong>Business Profile</strong></div>
         <v-card class="pa-6">
             <v-row class="mx-auto">
-                <v-form ref="form" @submit.prevent="submit" enctype="multipart/form-data">
+                <v-form ref="form" @submit.prevent="submit" enctype="multipart/form-data" lazy-validation v-model="valid">
                     <v-flex xl12 lg12 md12 sm12 sx12 class="mr-12">
                         <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Business Information</strong></div>
@@ -16,30 +16,39 @@
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">First Name</label>
                                     <v-text-field
-                                        v-model="user.first_name"
-                                        label="First Name"
+                                        v-model="form.first_name"
+                                        :label="labels.first_name"
                                         solo
                                         class="mt-1 custom_dropdown"
+                                        :error-messages="errors.first_name"
+                                        :rules="[rules.required('first_name')]"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Last Name</label>
                                     <v-text-field
-                                        v-model="user.last_name"
-                                        label="Last Name"
+                                        v-model="form.last_name"
+                                        :label="labels.last_name"
                                         solo
                                         class="mt-1 custom_dropdown"
+                                        :error-messages="errors.last_name"
+                                        :rules="[rules.required('last_name')]"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
-                                    <label class="font-weight-bold">Email</label>
-                                    <v-text-field
-                                        v-model="user.email"
-                                        label="Email"
-                                        solo
-                                        class="mt-1 custom_dropdown"
-                                    ></v-text-field>
-                                </v-col>
+                                <label class="font-weight-bold">Email</label>
+                                <v-text-field
+                                    v-model="form.email"
+                                    :label="labels.email"
+                                    solo
+                                    class="mt-1 custom_dropdown"
+                                    :error-messages="errors.email"
+                                    :rules="[rules.required('email')]"
+                                    :disabled="loading"
+                                ></v-text-field>
+                            </v-col>
                             </v-row>
 
                             <div class="subtitle-1 mb-2 black--text"><strong>Company Details</strong></div>
@@ -63,10 +72,13 @@
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Name</label>
                                     <v-text-field
-                                        label="Company Name"
+                                        :label="labels.name"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="userCompany.name"
+                                        v-model="form.userCompany.name"
+                                        :error-messages="errors.userCompany"
+                                        :rules="[rules.required('userCompany.name')]"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -78,7 +90,10 @@
                                         label="www.abc.com"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="userCompany.website"
+                                        v-model="form.userCompany.website"
+                                        :error-messages=" errors.userCompany ? errors.userCompany.website : '' "
+                                        :rules="[rules.required('userCompany.website')]"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -89,7 +104,10 @@
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
-                                        v-model="userCompany.niche_id"
+                                        v-model="form.userCompany.niche_id"
+                                        :error-messages="errors.userCompany"
+                                        :rules="[rules.required('userCompany.niche_id')]"
+                                        :disabled="loading"
                                         item-text="name"
                                         item-value="id"
                                     ></v-autocomplete>
@@ -103,7 +121,10 @@
                                         label="123456789"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="userCompany.phone"
+                                        v-model="form.userCompany.phone"
+                                        :error-messages="errors.userCompany"
+                                        :rules="[rules.required('userCompany.phone')]"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -112,7 +133,10 @@
                                         label="Europe"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="userCompany.timezone"
+                                        v-model="form.userCompany.timezone"
+                                        :error-messages="errors.userCompany"
+                                        :rules="[rules.required('userCompany.timezone')]"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -125,32 +149,41 @@
                                         label="Solo textarea ......"
                                         rows="7"
                                         class="custom_dropdown"
-                                        v-model="userCompany.address"
+                                        v-model="form.userCompany.address"
+                                        :error-messages="errors.userCompany"
+                                        :rules="[rules.required('userCompany.address')]"
+                                        :disabled="loading"
                                     ></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Country</label>
                                     <v-autocomplete
                                         :items="countries"
-                                        v-model="userCompany.country_id"
+                                        v-model="form.userCompany.country_id"
                                         label="Pakistan"
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
                                         item-text="name"
-                                        @change="getStates(userCompany)"
+                                        @change="getStates({'country_id':$event})"
                                         item-value="id"
+                                        :error-messages="errors.userCompany"
+                                        :rules="[rules.required('userCompany.country_id')]"
+                                        :disabled="loading"
                                     ></v-autocomplete>
                                     <label class="font-weight-bold">State</label>
                                     <v-autocomplete
                                         :items="states"
-                                        v-model="userCompany.state_id"
+                                        v-model="form.userCompany.state_id"
                                         label="Islamabad"
                                         solo
                                         append-icon="keyboard_arrow_down"
                                         class="custom_dropdown"
                                         item-text="name"
                                         item-value="id"
+                                        :error-messages="errors.userCompany"
+                                        :rules="[rules.required('userCompany.state_id')]"
+                                        :disabled="loading"
                                     ></v-autocomplete>
                                 </v-col>
                             </v-row>
@@ -158,7 +191,14 @@
 
                         <v-card-actions class="text-right float-right">
                             <v-btn class="caption mr-3 text-capitalize" large>Button</v-btn>
-                            <v-btn type="submit" color="primary" class="caption text-capitalize" large>Submit</v-btn>
+                            <v-btn
+                                type="submit"
+                                color="primary"
+                                class="caption text-capitalize"
+                                large
+                                :loading="loading"
+                                :disabled="loading || !valid"
+                            >Submit</v-btn>
                         </v-card-actions>
                     </v-flex>
                 </v-form>
@@ -180,10 +220,21 @@
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
             ],
-            user: {
+
+            form: {
                 first_name: null,
                 last_name: null,
-                email: null
+                email: null,
+                userCompany: {
+                    name: null,
+                    website: null,
+                    phone: null,
+                    niche_id:null,
+                    country_id:null,
+                    timezone:null,
+                    state_id:null,
+                    address:null,
+                }
             },
             file: {
                 imageFile: null,
@@ -191,13 +242,15 @@
             },
         }),
 
-        computed: mapGetters({
-            auth: 'auth/user',
-            countries: 'settings/countries',
-            states: 'settings/states',
-            niches: 'settings/niches',
-            userCompany: 'settings/userCompany',
-        }),
+        computed: {
+            ...mapGetters({
+                auth: 'auth/user',
+                countries: 'settings/countries',
+                states: 'settings/states',
+                niches: 'settings/niches',
+                userCompany: 'settings/userCompany',
+            })
+        },
         methods: {
             ...mapActions({
                 getCountries: 'settings/getCountries',
@@ -210,24 +263,25 @@
                 this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
             },
             async submit() {
-                this.loading = true
-                this.user.userCompany = this.userCompany;
-                let formData = new FormData();
-                formData.append("user", JSON.stringify(this.user));
-                formData.append("logo", this.file.imageFile);
+                if (this.$refs.form.validate()) {
+                    this.loading = true
+                    this.form.userCompany = this.userCompany;
+                    let formData = new FormData();
+                    formData.append("user", JSON.stringify(this.form));
+                    formData.append("logo", this.file.imageFile);
 
-                let response = await this.updateProfile(formData);
-                if(response.status === 200) {
-                    this.$toast.success('Your profile successfully updated.')
-                } else {
-                    this.handleErrors(response.details)
+                    let response = await this.updateProfile(formData);
+                    if (response.status === 200) {
+                        this.$toast.success('Your profile successfully updated.')
+                    } else {
+                        this.handleErrors(response.details)
+                    }
+                    this.loading = false
                 }
-                this.loading = false
-
             }
         },
        async mounted() {
-            this.user = Object.assign(this.user, this.auth);
+            this.form = Object.assign(this.form, this.auth);
             await this.getUserCompany();
             await this.getCountries();
             await this.getNiches();
@@ -235,6 +289,7 @@
                 await this.getStates(this.userCompany);
                 this.getLogo();
             }
+
         }
     }
 </script>
