@@ -1,6 +1,7 @@
 /*import files/objects*/
 import 'babel-polyfill'
 import Vue from 'vue'
+import _ from 'lodash'
 
 import router from '~/router/index'
 import store from '~/store/index'
@@ -13,8 +14,8 @@ import Vuelidate from 'vuelidate'
 import VueCreditCardField from 'vue-credit-card-field';
 import axios from 'axios';
 import { api } from '~/config'
-import _ from 'lodash'
-import '~/pusher/init.'
+
+import '~/pusher/init'
 
 /*window level objects*/
 window.Vue = Vue;
