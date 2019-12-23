@@ -33,6 +33,9 @@ class YoutubeService
             'https://www.googleapis.com/auth/youtube.force-ssl',
             'https://www.googleapis.com/auth/youtube.readonly',
             'https://www.googleapis.com/auth/youtubepartner-channel-audit',
+            'https://www.googleapis.com/auth/user.phonenumbers.read',
+            'https://www.googleapis.com/auth/user.birthday.read',
+            'https://www.googleapis.com/auth/user.addresses.read',
         ]);
         $this->google->setIncludeGrantedScopes(true);
         $this->google->setDeveloperKey(env('YOUTUBE_API_KEY'));
@@ -86,6 +89,23 @@ class YoutubeService
         $userInfo = new \Google_Service_Oauth2($this->google);
 
         return $userInfo->userinfo->get();
+
+    }
+
+    /**
+     * @return \Google_Service_PeopleService_ListConnectionsResponse
+     */
+    public function getPeopleInfo() {
+
+        $peopleInfo = new \Google_Service_PeopleService($this->google);
+
+        $optParams = array(
+            'pageSize' => 10,
+            'personFields' => 'names,emailAddresses',
+        );
+        $results = $peopleInfo->people_connections->listPeopleConnections('people/me', $optParams);
+
+        return $results;
 
     }
 
