@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Madcoda\Youtube\Youtube;
@@ -85,6 +86,22 @@ class YoutubeService
     }
 
     /**
+     * @param $token
+     * @return string|null
+     */
+    public function refreshAccessToken($token)
+    {
+        if ($this->google->isAccessTokenExpired()) {
+            // save refresh token to some variable
+            $refreshToken = $this->google->getRefreshToken();
+            // update access token
+            $newToken = $this->google->fetchAccessTokenWithRefreshToken($refreshToken);
+            //$this->google->setAccessToken($newToken);
+            return $newToken;
+        }
+    }
+
+    /**
      * @return \Google_Service_YouTube_ChannelListResponse
      */
     public function getChannelsList()
@@ -125,20 +142,39 @@ class YoutubeService
         ];
         return $youtube->videos->listVideos('snippet,statistics', $queryParams);
     }
-
     /**
-     * @param $token
-     * @return string|null
+     * @param $videos
+     * @return mixed
      */
-    public function refreshAccessToken($token)
+    public function videoStats( $videos )
     {
-        if ($this->google->isAccessTokenExpired()) {
-            // save refresh token to some variable
-            $refreshToken = $this->google->getRefreshToken();
-            // update access token
-            $newToken = $this->google->fetchAccessTokenWithRefreshToken($refreshToken);
-            //$this->google->setAccessToken($newToken);
-            return $newToken;
+        $videos = $videos->items;
+        $listed = $videos;
+        if (!empty($videos)) {
+
+            $videoCollect = collect($videos);
+            $list = $videoCollect->pluck('id.videoId');
+            $list = $list->implode(',');
+            $listed = $this->getVideoList($list); ///// to get statistics
         }
+
+        $channels = $this->getChannelsList();
+        $channelList = $channels->items;
+
+        $today = Carbon::today()->subDays(280)->format("d-m-Y");
+
+        $filtered = array_filter($videos, function ($item) use ($today) {
+
+            if (strtotime(date("d-m-Y", strtotime($item->snippet->publishedAt))) > strtotime($today)) {
+                return $item;
+            }
+        });
+
+        $val['videos'] = $listed;
+        $val['channelList'] = $channelList;
+        $val['countLatestVideos'] = count($filtered);
+
+        return $val;
     }
+
 }

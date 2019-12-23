@@ -3,7 +3,7 @@
         <v-flex class="ma-12">
             <div class="subtitle-1 mb-2"><strong>{{ profile.provider_name }}</strong></div>
             <v-card class="mx-auto card_wrapper">
-<!--                <span class="primary&#45;&#45;text pl-8 pt-8" style="position: absolute" @click="goBack()"><u>Back</u></span>-->
+                <a class="primary--text pl-8 pt-8" style="position: absolute" href="" @click.prevent="goBack()"><u>Back</u></a>
                 <v-row class="py-12 mx-auto main_wrapper">
                     <v-badge color="primary">
                         <template v-slot:badge>
@@ -76,14 +76,14 @@
                                     </div>
                                     <div class="buttons text-right mt-n6">
                                         <v-spacer></v-spacer>
-<!--                                        <v-dialog v-model="proposal" max-width="70%" transition="slide-y-reverse-transition">-->
-<!--                                            <template v-slot:activator="{ on }">-->
-<!--                                                <v-btn color="grayLighten ml-4 mr-2 text-capitalize" depressed height="32" v-on="on">-->
-<!--                                                    Invite to campaign-->
-<!--                                                </v-btn>-->
-<!--                                            </template>-->
-<!--                                            <Proposal></Proposal>-->
-<!--                                        </v-dialog>-->
+                                        <v-dialog v-model="proposal" max-width="70%" transition="slide-y-reverse-transition">
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn color="grayLighten ml-4 mr-2 text-capitalize" depressed height="32" v-on="on">
+                                                    Invite to campaign
+                                                </v-btn>
+                                            </template>
+                                            <Proposal></Proposal>
+                                        </v-dialog>
                                         <v-dialog v-model="touchPoint" max-width="50%" transition="slide-y-reverse-transition">
                                             <template v-slot:activator="{ on }">
                                                 <v-btn color="primary ml-1 text-capitalize" depressed height="32" v-on="on">
@@ -124,7 +124,7 @@
             return  {
                 youtube : null,
                 instagram : null,
-                selectedPlatform : 2, ////campaign selected platformco
+                selectedPlatform : 1, ////campaign selected platformco
                 profileID : null,
                 rating: 3,
                 items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
@@ -166,8 +166,8 @@
             }
         },
         mounted() {
-            // this.platform = this.campaignPlacement['platform'];
             this.profileID = this.$router.currentRoute.query.profileID;
+            // this.selectedPlatform = this.campaignPlacement.platform;
             this.profileData();
         },
         methods: {

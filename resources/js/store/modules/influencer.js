@@ -5,9 +5,9 @@ import { api } from '~/config'
  * intial state
  */
 export const state = {
-        profile: null,
-        posts : null,
-        youtubeVideos : null
+        profile:     null,
+        posts:      null,
+        youtubeVideos: null
 }
 
 /**
@@ -35,7 +35,7 @@ export const actions = {
         commit('setProfile',response);
         return response;
     },
-     async getPost({commit}, payload) {
+     async getPosts({commit}, payload) {
         let response = await influencer.getPosts({"id":payload});
         commit('setPosts', response);
         return response;

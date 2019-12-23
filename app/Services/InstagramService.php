@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Client;
 
@@ -147,6 +148,37 @@ class InstagramService
             return json_decode($response->getBody()->getContents())->data;
         }
         return [];
+    }
+
+    /**
+     * @param $posts
+     * @return mixed
+     */
+    public function postStats( $posts )
+    {
+        $postCollection = collect($posts);
+        $today = Carbon::today()->subDays(180)->format("d-m-Y");
+
+        $lastPosts = $postCollection->filter(function ($post, $key) use ($today) {
+
+            if (strtotime(date("d-m-Y", $post->created_time)) > strtotime($today)) {
+                return $post;
+            }
+        });
+        $data = $postCollection->map(function ($post) {
+
+            return [
+                'likes' => $post->likes->count,
+                'comments' => $post->comments->count
+            ];
+        });
+
+        $values['posts'] = $posts;
+        $values['countLatestPosts'] = count($lastPosts);
+        $values['countLastLikes'] = $data->sum('likes');
+        $values['countLastComments'] = $data->sum('comments');
+
+        return $values;
     }
 
 }

@@ -16,12 +16,19 @@
                             solo
                             class="custom_dropdown"
                             append-icon="keyboard_arrow_down"
+                            @change="optionSelected($event)"
                             v-model="defaultSelected"
                         ></v-select>
                     </v-col>
-<!--                    <v-col class="d-flex" cols="2">-->
-<!--                        <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>-->
-<!--                    </v-col>-->
+                    <v-col class="d-flex" cols="2">
+                    <v-select
+                        :items="items"
+                        label="From"
+                        solo
+                        class="custom_dropdown"
+                        append-icon="keyboard_arrow_down"
+                    ></v-select>
+                </v-col>
                 </v-row>
 
                 <v-row class="full_width" align="center">
@@ -140,8 +147,7 @@
                                     </template>
                                     <span>{{ video.statistics.commentCount}} Comments</span>
                                 </v-tooltip>
-
-<!--                                <v-icon>mdi-briefcase-upload-outline</v-icon>-->
+                                <v-icon>mdi-briefcase-upload-outline</v-icon>
                                 <div class="flex-grow-1"></div>
                                 <v-btn icon>
                                     <v-icon>mdi-share-variant</v-icon>
@@ -205,6 +211,9 @@
                 this.defaultSelected = getPosts.channelList[0];
                 this.countLatestVideos = getPosts.countLatestVideos;
 
+            },
+            optionSelected(val) {
+                this.currentChannel = _.find(this.channelList,'id',val);
             }
         }
     }

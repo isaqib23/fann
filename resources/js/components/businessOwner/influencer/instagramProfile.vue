@@ -8,10 +8,10 @@
                         </v-col>
                         <v-spacer></v-spacer>
                         <v-col class="d-flex" cols="2">
-<!--                            <v-select :items="items" label="Platform" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>-->
+                            <v-select :items="items" label="Platform" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
                         </v-col>
                         <v-col class="d-flex" cols="2">
-<!--                            <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>-->
+                            <v-select :items="items" label="From" solo class="custom_dropdown" append-icon="keyboard_arrow_down"></v-select>
                         </v-col>
                     </v-row>
 
@@ -134,7 +134,7 @@
                                         </template>
                                         <span>{{post.comments.count}}</span>
                                     </v-tooltip>
-<!--                                    <v-icon>mdi-briefcase-upload-outline</v-icon>-->
+                                    <v-icon>mdi-briefcase-upload-outline</v-icon>
                                     <div class="flex-grow-1"></div>
                                     <v-btn icon>
                                         <v-icon>mdi-share-variant</v-icon>
@@ -143,7 +143,7 @@
                             </v-card>
                         </v-col>
                     </v-row>
-                    <div class="full_width text-end"><v-btn large text>Back</v-btn></div>
+                    <div class="full_width text-end"><v-btn large text @click="goBack()">Back</v-btn></div>
                 </v-row>
             </v-card>
     </div>
@@ -185,10 +185,10 @@
         },
         methods: {
             ...mapActions({
-                getPost : 'influencer/getPost',
+                getPosts : 'influencer/getPosts',
             }),
            async postsData() {
-                this.data = await this.getPost(this.userProfile.id);
+                this.data = await this.getPosts(this.userProfile.id);
 
                 this.posts = this.data.posts;
 

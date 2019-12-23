@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use http\Exception;
 use Illuminate\Http\Response;
 use App\Contracts\UserPlatformRepository;
-use App\Contracts\UserPlatformMetaRepository;
 use App\Services\InstagramService;
 use App\Services\YoutubeService;
 use Carbon\Carbon;
@@ -38,11 +40,10 @@ class InfluencerController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function getProfile( Request $request )
     {
-        $id = $request->user_id;
         $profile = $this->userPlatformRepository->getUserPlatforms($request);
         return response()->json([
             'details' => $profile
@@ -51,8 +52,8 @@ class InfluencerController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return JsonResponse
+     * @throws GuzzleException
      */
     public function getPosts( Request $request )
     {
@@ -61,45 +62,14 @@ class InfluencerController extends Controller
         $this->instagramService->setAccessToken($influencer->access_token);
         $posts = $this->instagramService->getPosts();
 
-        $data = $this->postStats($posts);
+        $data = $this->instagramService->postStats($posts);
 
         return response()->json($data);
     }
 
     /**
-     * @param $posts
-     * @return mixed
-     */
-    public function postStats( $posts )
-    {
-        $postCollection = collect($posts);
-        $today = Carbon::today()->subDays(180)->format("d-m-Y");
-
-        $lastPosts = $postCollection->filter(function ($post, $key) use ($today) {
-
-            if (strtotime(date("d-m-Y", $post->created_time)) > strtotime($today)) {
-                return $post;
-            }
-        });
-        $data = $postCollection->map(function ($post) {
-
-            return [
-                'likes' => $post->likes->count,
-                'comments' => $post->comments->count
-            ];
-        });
-
-        $values['posts'] = $posts;
-        $values['countLatestPosts'] = count($lastPosts);
-        $values['countLastLikes'] = $data->sum('likes');
-        $values['countLastComments'] = $data->sum('comments');
-
-        return $values;
-    }
-
-    /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function getYoutubeVideos(Request $request)
     {
@@ -114,43 +84,10 @@ class InfluencerController extends Controller
         }
 
         $videos = $this->youtubeService->getListSearch();////videos without statistics
-        $data = $this->videoStats($videos);
+        $data = $this->youtubeService->videoStats($videos);
 
         return response()->json($data);
     }
 
-    /**
-     * @param $videos
-     * @return mixed
-     */
-    public function videoStats( $videos )
-     {
-         $videos = $videos->items;
-         $listed = $videos;
-         if (!empty($videos)) {
 
-             $videoCollect = collect($videos);
-             $list = $videoCollect->pluck('id.videoId');
-             $list = $list->implode(',');
-             $listed = $this->youtubeService->getVideoList($list); ///// to get statistics
-         }
-
-         $channels = $this->youtubeService->getChannelsList();
-         $channelList = $channels->items;
-
-         $today = Carbon::today()->subDays(280)->format("d-m-Y");
-
-         $filtered = array_filter($videos, function ($item) use ($today) {
-
-             if (strtotime(date("d-m-Y", strtotime($item->snippet->publishedAt))) > strtotime($today)) {
-                 return $item;
-             }
-         });
-
-         $val['videos'] = $listed;
-         $val['channelList'] = $channelList;
-         $val['countLatestVideos'] = count($filtered);
-
-         return $val;
-     }
 }
