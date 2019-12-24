@@ -7,6 +7,7 @@
             dense
             :prepend-inner-icon="icon"
             class="custom_dropdown"
+            :error-messages="errorMessage"
         ></v-text-field>
     </div>
 </template>
@@ -16,7 +17,8 @@
     export default {
         props : {
             touchPoint    : {},
-            paymentMethod : {}
+            paymentMethod : {},
+            errorMessage  : null
         },
         data ()  {
             return  {

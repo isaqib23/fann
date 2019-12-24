@@ -24,13 +24,13 @@ class BaseFormRequest extends FormRequest
     /**
      * @param Validator $validator
      */
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            response()->json([
-                'message' => $validator->messages()->first()
-            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
-        );
-    }
+//    protected function failedValidation(Validator $validator)
+//    {
+//        throw new HttpResponseException(
+//            response()->json([
+//                'message' => $validator->messages()->first()
+//            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
+//        );
+//    }
 
 }

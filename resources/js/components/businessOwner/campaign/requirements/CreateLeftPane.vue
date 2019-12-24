@@ -14,6 +14,8 @@
                         outlined
                         rows="5"
                         row-height="15"
+                        :error-messages="errors['campaignInformation']"
+                        :disabled="loading"
                     ></v-textarea>
                 </v-card>
             </v-flex>
@@ -43,6 +45,7 @@
                                 v-if="touchPoint.touchPointConditionalFields.touchPointTitle"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
+                                :errorMessage="errors['touchPoint.name']"
                             ></touch-point-title-field>
 
                             <v-card-title>
@@ -64,6 +67,7 @@
                                     :selectedProduct="dispatchProduct"
                                     :selectedVariants="dispatchProductVariant"
                                     @selected-product="selectedProduct"
+                                    :errorMessage="errors['touchPoint.dispatchProduct']"
                                 ></products-search>
                             </v-row>
 
@@ -77,13 +81,16 @@
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Suggested Caption</strong></div>
                                 </v-card-title>
+
                                 <v-textarea
-                                    v-model="touchPoint.caption"
+                                    v-model="form.touchPoint.caption"
                                     label="Write suggested caption here!"
                                     auto-grow
                                     outlined
                                     rows="5"
                                     row-height="15"
+                                    :error-messages="errors['touchPoint.caption']"
+                                    :disabled="loading"
                                 ></v-textarea>
                             </v-card>
 
@@ -109,6 +116,8 @@
                                                 solo
                                                 dense
                                                 class="custom_dropdown product_left_border"
+                                                :error-messages="errors['touchPoint.guideLines']"
+                                                :disabled="loading"
                                             ></v-text-field>
                                         </v-flex>
                                     </v-row>
@@ -158,6 +167,8 @@
                                         label="Fitness,Gym"
                                         prepend-icon="#"
                                         class="tag_field"
+                                        :error-messages="errors['touchPoint.hashtags']"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-flex>
                                 <v-flex lg6 sm6 m6 pl-3>
@@ -169,6 +180,8 @@
                                         label="Nike,Nuchey"
                                         prepend-icon="@"
                                         class="tag_field"
+                                        :error-messages="errors['touchPoint.mentions']"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
@@ -240,6 +253,7 @@
     import TouchPointBrandField from './objectiveSelection/TouchPointBrandField';
     import shopifyProductsPredictiveSearch from "./objectiveSelection/shopifyProductsPredictiveSearch";
     import {mapGetters, mapActions, mapMutations} from 'vuex';
+    import Form from '~/mixins/form';
 
     export default {
         components: {
@@ -249,6 +263,7 @@
             TouchPointPostFormatField : TouchPointPostFormatField,
             TouchPointBrandField : TouchPointBrandField
         },
+        mixins: [Form],
         props : ["campObjective"],
         data ()  {
             return  {
@@ -301,6 +316,10 @@
                 savedBarterProduct  : 'campaign/savedBarterProduct',
                 campaignInformation : 'campaign/campaignInformation'
             })
+        },
+        beforeMount(){
+            this.form.campaignInformation = null;
+            this.form.touchPoint = Object.assign(this.touchPoint);
         },
         async created() {
             await this.getCampaignTouchPoint({slug:this.$router.currentRoute.params.slug});
@@ -366,6 +385,7 @@
                 this.guideLines = (objectLenght.length > 0) ? objectLenght.length : this.guideLines;
             },
             async addTouchPoint() {
+                this.loading = true
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
@@ -377,7 +397,11 @@
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
                     this.guideLines = 1;
+                } else {
+                    console.log(response,"resp");
+                    this.handleErrors(response.details)
                 }
+                this.loading = false
             },
             removeTouchPoint() {
                 if (this.tabsLength === 1) {
@@ -572,8 +596,8 @@
         border-radius: 0px !important;
         margin-bottom: 0px !important;
     }
-    >>>.v-text-field__details{
-        display:none;
+    >>>.v-text-field__details {
+
     }
     .task_btn >>>.v-btn__content{
         font-size:10px;

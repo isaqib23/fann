@@ -309,10 +309,13 @@ class CampaignsController extends Controller
      */
     public function saveTouchPoint(TouchPointRequest $request)
     {
+
         try {
             $data = $request->all();
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $attributes = [
+                'touchPoint.caption' => 'touch point caption'
+            ];
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE)->setAttributes($attributes);
 
             $this->repository->update(
                 [ 'description' => $data['campaignInformation']['description'] ],
@@ -321,7 +324,7 @@ class CampaignsController extends Controller
 
            $saveTouchPoint =  $this->campaignTouchPointRepository->saveInHierarchy($data);
 
-           // Get Last added Touch Poioint
+           // Get Last added Touch Point
            $request->merge(['slug' => $request->input('campaignInformation.slug')]);
            $savedTouchPoint = $this->repository->getCampaignTouchPointWithPresenter($request);
 

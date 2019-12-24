@@ -22,6 +22,7 @@
                 hide-label
                 :menu-props="{maxWidth:440,marginTop:20}"
                 return-object
+                :error-messages="errorMessage"
                 class="comboboxClass custom_dropdown"
             >
                 <template v-slot:selection="data" role="listitem" class="mt-n12">
@@ -80,6 +81,7 @@
     import { mapGetters } from 'vuex';
     export default {
         props : {
+            errorMessage : null,
             disabledSearch : null,
             emitAs : {
                 type: String,

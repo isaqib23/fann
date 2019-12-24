@@ -9,9 +9,13 @@ export default {
     rules: {},
     errors: {}
   }),
-
   created() {
+      this.rules.required = (field) => ((v) => !!v || 'The ' + (this.labels && this.labels[field] && this.labels[field].toLowerCase() + ' ') + 'field is required')
+    },
+  mounted() {
+      console.log(this.form,"formn")
     for (let key in this.form) {
+        console.log(key,"keys");
       if (this.form[key] !== null && typeof this.form[key] === 'object') {
         for (let i in this.form[key]) {
           let key2 = key + '.' + i
@@ -29,7 +33,6 @@ export default {
       }
     }
 
-    this.rules.required = (field) => ((v) => !!v || 'The ' + (this.labels && this.labels[field] && this.labels[field].toLowerCase() + ' ') + 'field is required')
   },
 
   methods: {
@@ -43,9 +46,14 @@ export default {
     },
 
     setErrors(errors) {
+
       for (let key in this.errors) {
+          console.log(key,"key");
         this.errors[key] = errors[key] || []
       }
+      console.log(this.errors['userCompany.name'],"err");
+
+      console.log(this.errors['touchPoint.caption'],"errors");
     },
 
     clearErrors() {

@@ -264,7 +264,7 @@ let CampaignAxios = class {
             .catch(err => {
                 return {
                     status : err.response.status,
-                    details : []
+                    details : err.response.data.errors
                 };
             });
     }
