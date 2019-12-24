@@ -8708,14 +8708,6 @@ and (-webkit-min-device-pixel-ratio: 1) {
 [data-v-b84a1682] .touch_field .v-text-field__details{
     display: none !important;
 }
-.mail_header[data-v-b84a1682] {
-    border-bottom: 1px solid #cccccc;
-}
-.full_height[data-v-b84a1682]{
-    max-height: 400px !important;
-    min-height: 400px !important;
-    overflow-y: scroll !important;
-}
 [data-v-b84a1682] .custom_field .v-input__control{
     min-height: 43px !important;
 }

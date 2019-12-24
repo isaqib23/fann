@@ -153,7 +153,7 @@
                     <v-btn color="grayLighten" depressed class="px-1 ml-3 mt-3">
                         <v-icon>mdi-attachment</v-icon>
                     </v-btn>
-                    <emoji-picker @emoji="insert" :search="search" class="d-inline">
+                    <emoji-picker @emoji="insert" :search="emojiSearch" class="d-inline">
                         <div
                             class="emoji-invoker d-inline"
                             slot="emoji-invoker"
@@ -168,7 +168,7 @@
                         <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
                             <div class="emoji-picker">
                                 <div class="emoji-picker__search">
-                                    <input type="text" v-model="search">
+                                    <input type="text" v-model="emojiSearch">
                                 </div>
                                 <div>
                                     <div :key="category" v-for="(emojiGroup, category) in emojis">
@@ -198,6 +198,7 @@
     import Vue from 'vue';
     import EmojiPicker from 'vue-emoji-picker';
     import VueChatScroll from 'vue-chat-scroll';
+    import { mapGetters, mapActions } from 'vuex';
     Vue.use(VueChatScroll)
     export default {
         name: "CampaignChatBox",
@@ -208,6 +209,7 @@
         data: () => ({
             input:'',
             rating: 3,
+            emojiSearch : "",
             chats: [
                 { id:'1', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
                 { id:'2', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
@@ -241,9 +243,23 @@
             ]
         }),
         methods: {
+            ...mapActions({
+                initiateCampaignChat : 'campaignManagement/initiateCampaignChat'
+            }),
             insert(emoji) {
                 this.input += emoji
             },
+        },
+        created() {
+            Echo.channel('campaignChat').listen('CampaignChatEvent', event => {
+                console.log(event, "its listening");
+            })
+        },
+        mounted() {
+            let arr = [];
+            arr.push({chatTo:8, chatBy: 7});
+            this.initiateCampaignChat(arr);
+
         }
     }
 </script>

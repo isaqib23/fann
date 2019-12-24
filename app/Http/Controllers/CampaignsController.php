@@ -8,6 +8,7 @@ use App\Contracts\CampaignOfferRepository;
 use App\Contracts\CampaignPaymentRepository;
 use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\PlacementRepository;
+use App\Events\CampaignChatEvent;
 use App\Http\Requests\TouchPointRequest;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
@@ -400,6 +401,11 @@ class CampaignsController extends Controller
         return response()->json([
             'details' => $campaign,
         ]);
+    }
+
+    public function broadcastCampaignChat(Request $request)
+    {
+        broadcast(new CampaignChatEvent($request->chatTo, auth()->id()));
     }
 
 }

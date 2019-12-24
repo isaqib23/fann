@@ -98,6 +98,7 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('getCampaignTouchPoint', 'CampaignsController@getCampaignTouchPoint');
         Route::post('getCampaignSavedObjective', 'CampaignsController@getCampaignSavedObjective');
         Route::post('updateCampaignStatus', 'CampaignsController@updateCampaignStatus');
+        Route::post('broadcastCampaignChat', 'CampaignsController@broadcastCampaignChat');
     });
 
     // ----- User related api's
