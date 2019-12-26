@@ -54,7 +54,7 @@
                             <v-row>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Upload Logo</label>
-                                    <p v-if="userCompany.logo == null" v-for="(error,key) in errors['logo']" class="error--text">{{error}}</p>
+                                    <p  v-for="(error,key) in errors['logo']" class="error--text">{{error}}</p>
                                     <image-input v-model="file">
                                         <div slot="activator">
                                             <v-avatar size="175px" v-ripple v-if="!file.imageURL" class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
@@ -220,7 +220,7 @@
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
             ],
-
+            loading : false,
             user: {
                 first_name: null,
                 last_name: null,
@@ -287,7 +287,6 @@
                 await this.getStates(this.userCompany);
                 this.getLogo();
             }
-
         }
     }
 </script>

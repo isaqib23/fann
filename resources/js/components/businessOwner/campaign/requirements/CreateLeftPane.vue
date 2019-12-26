@@ -305,7 +305,6 @@
                     currentTouchPoint   : 0,
                     nextTouchPoint      : null
                 },
-
             }
         },
         computed: {
@@ -391,7 +390,7 @@
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
-                    this.loading = false
+                    this.loading = false;
                     this.touchPoint.id = response.details.touch_point_id;
                     this.tabsLength = this.tabsLength + 1;
                     this.currentTab = this.currentTab + 1;
@@ -402,10 +401,10 @@
                     this.guideLines = 1;
 
                 } else {
-                    this.loading = true
+                    this.loading = true;
                     this.handleErrors(response.details)
                 }
-                this.loading = false
+                this.loading = false;
             },
             removeTouchPoint() {
                 if (this.tabsLength === 1) {

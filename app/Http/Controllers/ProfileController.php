@@ -46,14 +46,12 @@ class ProfileController extends Controller
     {
         $request->merge(json_decode($request->input('user'),true));
 
-        $logo = $request->userCompany['logo'] == null ? ['logo'=> 'required'] : []; ///to skipp rule if old logo
-
         $rules = [
             'data.*.first_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,' . $request->user()->id,
             'password' => 'nullable|string|min:6|confirmed',
-            $logo,
+            'logo'     => $request->userCompany['logo'] == null ? 'required' : '',///to skipp rule if old logo
             'userCompany.name' => 'required|string|max:191',
             'userCompany.website' => 'required|url',
             'userCompany.phone' => 'required|numeric',
