@@ -359,7 +359,8 @@
         },
         methods: {
             ...mapActions({
-                saveChatBox : 'campaign/saveChatBox'
+                saveChatBox : 'campaign/saveChatBox',
+                getCampaignById : 'campaignManagement/getCampaignById'
              }),
             openChatBox(item) {
                 let find = _.find(this.chatBox, function (obj) {
@@ -369,6 +370,10 @@
                     this.saveChatBox(item);
                 }
             }
+        },
+        async mounted() {
+            await this.getCampaignById({campaign_id:this.$router.history.current.params.slug});
+
         }
     }
 </script>

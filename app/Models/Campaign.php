@@ -33,7 +33,9 @@ class Campaign extends Model implements Transformable
         'impressions',
         'actions',
         'eng_rate',
-        'primary_placement_id'
+        'primary_placement_id',
+        'user_id',
+        'created_by_company_id'
     ];
 
     /**

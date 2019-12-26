@@ -1,17 +1,8 @@
 let campaign = {
-    url                         : 'campaign',
+    url: 'campaign_manage',
 
-    get                         : 'get.json',
-    save                        : 'save',
-    delete                      : 'delete/:id',
-    objectives                  : 'objectives',
-    allPlacements               : 'allPlacements',
-    savePlacementAndPaymentType : 'savePlacementAndPaymentType',
-    saveTouchPoint              : 'saveTouchPoint',
-    saveInvitation              : 'saveInvitation',
-    getCampaignTouchPoint       : 'getCampaignTouchPoint',
-    getCampaignSavedObjective   : 'getCampaignSavedObjective',
-    updateCampaignStatus        : 'updateCampaignStatus',
+    getActiveCampaigns  : 'getActiveCampaigns',
+    getCampaignById     : 'getCampaignById'
 };
 
 export default campaign;

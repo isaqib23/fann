@@ -21,9 +21,6 @@
                     <v-simple-table fixed-header height="auto">
                             <thead>
                             <tr class="font-weight-bold title text-uppercase">
-                                <th class="text-left black--text px-1">
-                                    <v-checkbox value="true" color="primary"></v-checkbox>
-                                </th>
                                 <th class="text-left black--text">Campaign</th>
                                 <th class="text-left black--text">status</th>
                                 <th class="text-left black--text">impressions</th>
@@ -33,23 +30,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="i in 8" :key="i">
-                                <td class="px-1"><v-checkbox value="true" color="primary"></v-checkbox></td>
+                            <tr v-for="(campaign, index) in campaigns" :key="campaign.id">
+                                <td class="px-1">
+                                    <v-radio-group v-model="selectedCampaign" column>
+                                        <v-radio :value="index" color="primary"></v-radio>
+                                    </v-radio-group>
+                                </td>
                                 <td>
                                     <v-list two-line class="list_cards pa-0 mx-0 hover_class" dense>
                                         <v-list-item class="px-0">
                                             <v-list-item-content>
-                                                <v-list-item-title v-html="item.title"></v-list-item-title>
+                                                <v-list-item-title>
+                                                    {{(campaign.name.length > 20) ? campaign.name.substring(0,20)+"..." : campaign.name}}
+                                                </v-list-item-title>
                                                 <v-list-item-subtitle >
                                                     <v-chip-group>
-                                                        <v-chip v-for="tag in item.tags"
-                                                                :key="tag"
-                                                                class="px-2"
-                                                                color="#E5E5E5"
-                                                                text-color="#71737D"
-                                                                label
-                                                        >
-                                                            {{tag}}
+                                                        <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
+                                                            {{(campaign.objective.name.length > 10) ? campaign.objective.name.substring(0,10)+"..." : campaign.objective.name}}
+                                                        </v-chip>
+                                                        <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
+                                                            {{campaign.payment.payment_type.name}}
                                                         </v-chip>
                                                     </v-chip-group>
                                                 </v-list-item-subtitle>
@@ -60,18 +60,18 @@
                                 <td>
                                     <v-switch
                                             flat
-                                            v-model="item.status"
+                                            :v-model="(campaign.status === 'active') ? true : false"
                                             inset
                                             color="error"
                                             hide-details
                                             class="switch_class"
                                     ></v-switch>
                                 </td>
-                                <td class="subtitle-1">{{ item.impression }}</td>
-                                <td class="subtitle-1">{{ item.actions }}</td>
-                                <td class="subtitle-1">{{ item.engRate }}%</td>
+                                <td class="subtitle-1">{{ campaign.impressions }}</td>
+                                <td class="subtitle-1">{{ campaign.actions }}</td>
+                                <td class="subtitle-1">{{ campaign.eng_rate }}%</td>
                                 <td class="px-1">
-                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1" @click="addItem()">
+                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1" @click="getPlacement(campaign)">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
                                     </v-btn>
                                 </td>
@@ -82,7 +82,7 @@
                 </v-card-text>
             </v-card>
         </v-flex>
-        <v-flex xs12 md5 class="pa-2">
+        <v-flex xs12 md5 class="pa-2" v-if="campaigns !== null && campaigns.length > 0">
             <v-card class="pa-2" outlined tile>
 
                 <v-flex xs12>
@@ -94,20 +94,26 @@
 
                 <v-flex xs12 class="ma-2 pa-2">
                     <v-card-title>
-                        <div class="subtitle-1 text-capitalize darken-1" ><strong>Promoting Nike For Winter Collection</strong></div>
+                        <div class="subtitle-1 text-capitalize darken-1 font-weight-bold" >
+                            {{campaigns[selectedCampaign].name}}
+                        </div>
                     </v-card-title>
                     <v-card-text class="pa-0">
                         <div class="d-inline-block ml-4" >
-                            <span class="primary--text">Unboxing</span>
+                            <span class="primary--text">
+                                {{campaigns[selectedCampaign].objective.name}}
+                            </span>
                             <span class="ml-7">
-                                Campaign Type: <span class="primary--text">Barter</span>
+                                Campaign Type: <span class="primary--text">
+                                {{campaigns[selectedCampaign].payment.payment_type.name}}
+                            </span>
                             </span>
                             <span class="ml-7">
                                 Status:
                                 <v-switch
                                         class="float-right pa-0 mx-2 mb-0 mt-1 switch_class"
                                         flat
-                                        v-model="item.status"
+                                        :v-model="(campaigns[selectedCampaign].status === 'active') ? true : false"
                                         inset
                                         color="error"
                                         hide-details
@@ -121,8 +127,10 @@
                 <v-flex xs12 class="ma-2 pa-2">
                     <v-card-text class="pa-0">
                         <div class="ma-2 pa-2" >
-                         <div>Objective: <span class="primary--text ml-10"> Brand Awareness</span></div>
-                         <div class="mt-2 pt-2">Deliverables: <span class="primary--text ml-6"> 13</span> / 20</div>
+                         <div>Objective: <span class="primary--text ml-10">
+                             {{campaigns[selectedCampaign].objective.name}}
+                         </span></div>
+                         <div class="mt-2 pt-2">Deliverables: <span class="primary--text ml-6"> 0</span> / {{campaigns[selectedCampaign].touch_point.length}} </div>
                          <div class="mt-2 pt-2">Influencers: <span class="ml-8"> 09</span> / 20</div>
 
                         </div>
@@ -131,12 +139,13 @@
                 <v-divider></v-divider>
 
                 <v-row>
-
                    <v-col cols="12" xl="4" lg="4" md="4" sm="4" xs="6">
                        <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 pa-2 mx-auto">
                            <v-card-text class="black--text">
                                <div class="subtitle-2 mb-2 text-uppercase text-center">Impressions</div>
-                               <span class="headline pa-2">125K</span>
+                               <span class="headline pa-2">
+                                   {{ campaigns[selectedCampaign].impressions }}
+                               </span>
                            </v-card-text>
                        </v-card>
                    </v-col>
@@ -144,7 +153,9 @@
                        <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 pa-2 mx-auto">
                            <v-card-text class="black--text">
                                <div class="subtitle-2 mb-2 text-uppercase text-center">Actions</div>
-                               <span class="headline pa-2">2.7K</span>
+                               <span class="headline pa-2">
+                                   {{ campaigns[selectedCampaign].actions }}
+                               </span>
                            </v-card-text>
                        </v-card>
                     </v-col>
@@ -152,8 +163,9 @@
                        <v-card color="#EDF2F9" max-height="120" max-width="120" class="my-2 pa-2 mx-auto">
                            <v-card-text class="black--text">
                                <div class="subtitle-2 mb-2 text-uppercase text-center">Eng. rate</div>
-                               <span class="headline pa-2">2.0%</span>
-                           </v-card-text>
+                               <span class="headline pa-2">
+                                   {{ campaigns[selectedCampaign].eng_rate }}%
+                               </span></v-card-text>
                        </v-card>
                    </v-col>
 
@@ -170,7 +182,11 @@
 <script>
 
     export default {
+        props: {
+            campaigns : null
+        },
         data: () => ({
+            selectedCampaign:0,
             item: {
                 title: 'My Awesome Campaign 2019',
                 tags: [
@@ -184,11 +200,12 @@
             },
         }),
         methods: {
-            addItem(item) {
-                this.$nextTick(() => {
-                    this.active_tab = 1
-                })
+            getPlacement(campaign) {
+                this.$router.push({name: 'manage-campaigns-placement', params: { slug: campaign.id }})
             },
+        },
+        async mounted() {
+
         }
     }
 </script>

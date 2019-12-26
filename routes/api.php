@@ -105,6 +105,12 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('searchInfluencers', 'UserController@searchInfluencers');
     });
 
+    // ----- Campaign Manage related api's
+    Route::prefix('/campaign_manage')->group(function () {
+        Route::post('getActiveCampaigns', 'CampaignsController@getActiveCampaigns');
+        Route::post('getCampaignById', 'CampaignsController@getCampaignById');
+    });
+
 
 
 });

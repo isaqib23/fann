@@ -314,39 +314,25 @@ class CampaignsController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $this->repository->update(
-                [ 'description' => $data['campaignInformation']['description'] ],
-                $data['campaignId']
-            );
+            $saveTouchPoint = $this->campaignTouchPointRepository->saveInHierarchy($data);
 
-           $saveTouchPoint =  $this->campaignTouchPointRepository->saveInHierarchy($data);
-
-           // Get Last added Touch Poioint
-           $request->merge(['slug' => $request->input('campaignInformation.slug')]);
-           $savedTouchPoint = $this->repository->getCampaignTouchPointWithPresenter($request);
+            // Get Last added Touch Point
+            $request->merge(['slug' => $request->input('campaignInformation.slug')]);
+            $savedTouchPoint = $this->repository->getCampaignTouchPointWithPresenter($request);
 
             $response = [
-                'message'    => 'Touch Point Created.',
-                'details'    =>  $savedTouchPoint,
-                'touch_point_id'    =>  $saveTouchPoint->id,
+                'message' => 'Touch Point Created.',
+                'details' => $savedTouchPoint,
+                'touch_point_id' => $saveTouchPoint->id,
             ];
 
-            if ($request->wantsJson()) {
+            return response()->json($response);
 
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'error'   => true,
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
 
@@ -402,4 +388,29 @@ class CampaignsController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getActiveCampaigns(Request $request)
+    {
+        $campaigns = $this->repository->getActiveCampaigns($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getCampaignById(Request $request)
+    {
+        $campaigns = $this->repository->getCampaignById($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
 }

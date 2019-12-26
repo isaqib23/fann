@@ -11,6 +11,9 @@ export const state = {
 export const mutations = {
     setCampaigns(state, objective) {
         state.campaigns = objective
+    },
+    setActiveTab(state, objective) {
+        state.activeTab = objective
     }
 }
 
@@ -19,9 +22,15 @@ export const mutations = {
  */
 export const actions = {
     async fetchCampaigns({commit}, payload) {
-        let response =  await CampaignManageAxios.post('campaign_manage.getActiveCampaigns', payload);
+        let response =  await CampaignManageAxios.post('campaignManagement.getActiveCampaigns', payload);
 
         commit('setCampaigns', response.details);
+        return response;
+    },
+
+    async getCampaignById({commit}, payload) {
+        let response =  await CampaignManageAxios.post('campaignManagement.getCampaignById', payload);
+
         return response;
     }
 }
@@ -30,7 +39,8 @@ export const actions = {
  * Getters
  */
 export const getters = {
-    campaigns       : state => state.campaigns
+    campaigns       : state => state.campaigns,
+    activeTab       : state => state.activeTab
 }
 
 /**
@@ -39,7 +49,6 @@ export const getters = {
 let CampaignManageAxios = class {
 
     static post (path, payload=null) {
-        console.log(path,payload);
         return axios.post(api.path(path), payload)
             .then(resp => {
                 return {

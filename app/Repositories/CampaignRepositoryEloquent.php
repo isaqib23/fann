@@ -187,4 +187,51 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
         );
 
     }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getActiveCampaigns($request)
+    {
+        $campaign = $this
+            ->with([
+                'payment'  => function($query){
+                    $query->with(['paymentType']);
+                },
+                'touchPoint' => function($query){
+                    $query->with(['additional','media','placementAction']);
+                },
+                'objective'
+            ])
+        ->findWhere([
+            'status'                => $request->input('status'),
+            'created_by_company_id' => auth()->user()->CompanyUser->company_id
+        ]);
+
+        return $campaign;
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getCampaignById($request)
+    {
+        $campaign = $this
+            ->with([
+                'payment'  => function($query){
+                    $query->with(['paymentType']);
+                },
+                'touchPoint' => function($query){
+                    $query->with(['additional','media','placementAction']);
+                },
+                'objective'
+            ])
+            ->findWhere([
+                'id'                => $request->input('campaign_id')
+            ])->first();
+
+        return $campaign;
+    }
 }
