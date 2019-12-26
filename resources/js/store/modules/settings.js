@@ -23,7 +23,7 @@ export const state = {
         name        : null,
         logo        : null,
         website     : null,
-        niche_id       : null,
+        niche_id    : null,
         phone       : null,
         timezone    : null,
         address     : null,

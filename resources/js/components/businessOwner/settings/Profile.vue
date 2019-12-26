@@ -45,7 +45,6 @@
                                     solo
                                     class="mt-1 custom_dropdown"
                                     :error-messages="errors.email"
-
                                     :disabled="loading"
                                 ></v-text-field>
                             </v-col>
@@ -55,7 +54,7 @@
                             <v-row>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Upload Logo</label>
-
+                                    <p v-if="userCompany.logo == null" v-for="(error,key) in errors['logo']" class="error--text">{{error}}</p>
                                     <image-input v-model="file">
                                         <div slot="activator">
                                             <v-avatar size="175px" v-ripple v-if="!file.imageURL" class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
@@ -78,7 +77,7 @@
                                         :label="labels.name"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="user.userCompany.name"
+                                        v-model="userCompany.name"
                                         :error-messages="errors['userCompany.name']"
 
                                         :disabled="loading"
@@ -93,7 +92,7 @@
                                         label="www.abc.com"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="user.userCompany.website"
+                                        v-model="userCompany.website"
                                         :error-messages="errors['userCompany.website']"
 
                                         :disabled="loading"
@@ -107,7 +106,7 @@
                                         solo
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
-                                        v-model="user.userCompany.niche_id"
+                                        v-model="userCompany.niche_id"
                                         :error-messages="errors['userCompany.niche_id']"
 
                                         :disabled="loading"
@@ -124,7 +123,7 @@
                                         label="123456789"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="user.userCompany.phone"
+                                        v-model="userCompany.phone"
                                         :error-messages="errors['userCompany.phone']"
 
                                         :disabled="loading"
@@ -136,7 +135,7 @@
                                         label="Europe"
                                         solo
                                         class="mt-1 custom_dropdown"
-                                        v-model="user.userCompany.timezone"
+                                        v-model="userCompany.timezone"
                                         :error-messages="errors['userCompany.timezone']"
 
                                         :disabled="loading"
@@ -152,7 +151,7 @@
                                         label="Solo textarea ......"
                                         rows="7"
                                         class="custom_dropdown"
-                                        v-model="user.userCompany.address"
+                                        v-model="userCompany.address"
                                         :error-messages="errors['userCompany.address']"
 
                                         :disabled="loading"
@@ -162,7 +161,7 @@
                                     <label class="font-weight-bold">Country</label>
                                     <v-autocomplete
                                         :items="countries"
-                                        v-model="user.userCompany.country_id"
+                                        v-model="userCompany.country_id"
                                         label="Pakistan"
                                         solo
                                         class="custom_dropdown"
@@ -177,7 +176,7 @@
                                     <label class="font-weight-bold">State</label>
                                     <v-autocomplete
                                         :items="states"
-                                        v-model="user.userCompany.state_id"
+                                        v-model="userCompany.state_id"
                                         label="Islamabad"
                                         solo
                                         append-icon="keyboard_arrow_down"
@@ -226,18 +225,6 @@
                 first_name: null,
                 last_name: null,
                 email: null,
-                userCompany: {
-                    name: null,
-                    website: null,
-                    phone: null,
-                    niche_id:null,
-                    country_id:null,
-                    timezone:null,
-                    state_id:null,
-                    address:null,
-                    logo:null,
-                }
-
             },
             file: {
                 imageFile: null,
@@ -263,11 +250,12 @@
                 getUserCompany: 'settings/getUserCompany'
             }),
             getLogo() {
-                this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
+                this.logo =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
+
             },
             async submit() {
                 if (this.$refs.form.validate()) {
-                    this.loading = true
+
                     this.user.userCompany = this.userCompany;
                     let formData = new FormData();
                     formData.append("user", JSON.stringify(this.user));
@@ -275,9 +263,10 @@
 
                     let response = await this.updateProfile(formData);
                     if (response.status === 200) {
+                        this.loading = false
                         this.$toast.success('Your profile successfully updated.')
                     } else {
-
+                        this.loading = true
                         this.handleErrors(response.details)
                     }
                     this.loading = false
@@ -285,8 +274,9 @@
             }
         },
         created() {
-            console.log(this.user,"data");
             this.form = Object.assign(this.user);
+            this.form.logo = null;
+            this.form.userCompany = Object.assign(this.userCompany);
         },
         async mounted() {
             this.user = Object.assign(this.user, this.auth);

@@ -309,13 +309,10 @@ class CampaignsController extends Controller
      */
     public function saveTouchPoint(TouchPointRequest $request)
     {
-
         try {
             $data = $request->all();
-            $attributes = [
-                'touchPoint.caption' => 'touch point caption'
-            ];
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE)->setAttributes($attributes);
+
+            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
             $this->repository->update(
                 [ 'description' => $data['campaignInformation']['description'] ],

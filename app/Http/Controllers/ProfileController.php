@@ -44,14 +44,16 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-
         $request->merge(json_decode($request->input('user'),true));
+
+        $logo = $request->userCompany['logo'] == null ? ['logo'=> 'required'] : []; ///to skipp rule if old logo
+
         $rules = [
             'data.*.first_name' => 'required|string|max:191',
             'last_name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,' . $request->user()->id,
             'password' => 'nullable|string|min:6|confirmed',
-            'userCompany.logo'=> 'required',
+            $logo,
             'userCompany.name' => 'required|string|max:191',
             'userCompany.website' => 'required|url',
             'userCompany.phone' => 'required|numeric',
@@ -62,7 +64,6 @@ class ProfileController extends Controller
         ];
 
         $attributes = [
-            'userCompany.logo'      => 'user company logo',
             'userCompany.name'      => 'user company name',
             'userCompany.website'   => 'user company website',
             'userCompany.phone'     => 'user company phone',

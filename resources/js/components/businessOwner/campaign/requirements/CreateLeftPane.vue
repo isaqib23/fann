@@ -8,13 +8,13 @@
                     </v-card-title>
 
                     <v-textarea
-                        v-model="description"
+                        v-model="campaignInformation.description"
                         label="Write your campaign description here"
                         auto-grow
                         outlined
                         rows="5"
                         row-height="15"
-                        :error-messages="errors['campaignInformation']"
+                        :error-messages="errors['campaignInformation.description']"
                         :disabled="loading"
                     ></v-textarea>
                 </v-card>
@@ -83,7 +83,7 @@
                                 </v-card-title>
 
                                 <v-textarea
-                                    v-model="form.touchPoint.caption"
+                                    v-model="touchPoint.caption"
                                     label="Write suggested caption here!"
                                     auto-grow
                                     outlined
@@ -267,6 +267,7 @@
         props : ["campObjective"],
         data ()  {
             return  {
+                loading               : false,
                 tabsLength            : 1,
                 currentTab            : 0,
                 guideLines            : 1,
@@ -303,7 +304,8 @@
                     preTouchPoint       : null,
                     currentTouchPoint   : 0,
                     nextTouchPoint      : null
-                }
+                },
+
             }
         },
         computed: {
@@ -318,7 +320,8 @@
             })
         },
         beforeMount(){
-            this.form.campaignInformation = null;
+            this.form.campaignInformation = Object.assign(this.campaignInformation);
+
             this.form.touchPoint = Object.assign(this.touchPoint);
         },
         async created() {
@@ -385,10 +388,10 @@
                 this.guideLines = (objectLenght.length > 0) ? objectLenght.length : this.guideLines;
             },
             async addTouchPoint() {
-                this.loading = true
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
+                    this.loading = false
                     this.touchPoint.id = response.details.touch_point_id;
                     this.tabsLength = this.tabsLength + 1;
                     this.currentTab = this.currentTab + 1;
@@ -397,8 +400,9 @@
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
                     this.guideLines = 1;
+
                 } else {
-                    console.log(response,"resp");
+                    this.loading = true
                     this.handleErrors(response.details)
                 }
                 this.loading = false
@@ -485,26 +489,26 @@
                 immediate: true,
                 deep: true
             },
-            'campaignInformation': {
-                handler: function(val) {
-                    let self = this;
-                    if(!_.isNil(val)) {
-                        self.description = val.description;
-                    }
-                },
-                immediate: true,
-                deep:true
-            },
-            'description': {
-                handler: function(val) {
-                    let self = this;
-                    if(!_.isNil(val)) {
-                        self.campaignInformation.description = val;
-                    }
-                },
-                immediate: true,
-                deep:true
-            },
+            // 'campaignInformation': {
+            //     handler: function(val) {
+            //         let self = this;
+            //         if(!_.isNil(val)) {
+            //             self.description = val.description;
+            //         }
+            //     },
+            //     immediate: true,
+            //     deep:true
+            // },
+            // 'description': {
+            //     handler: function(val) {
+            //         let self = this;
+            //         if(!_.isNil(val)) {
+            //             self.campaignInformation.description = val;
+            //         }
+            //     },
+            //     immediate: true,
+            //     deep:true
+            // },
             'savedDispatchProduct' (val) {
                 if(!_.isNil(val.details)) {
                     this.dispatchProductVariant = [];
