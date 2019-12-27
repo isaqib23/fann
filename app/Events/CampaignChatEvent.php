@@ -36,7 +36,7 @@ class CampaignChatEvent implements ShouldBroadcast
         $this->chatTo = $chatTo;
         $this->chatBy = $chatBy;
 
-       // $this->dontBroadcastToCurrentUser();
+        $this->dontBroadcastToCurrentUser();
     }
 
     /**
@@ -46,10 +46,6 @@ class CampaignChatEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        Log::debug([
-            $this->chatTo,
-        $this->chatBy
-        ]);
         return new Channel('campaignChat');
     }
 
