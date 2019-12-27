@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\CityRepository;
+use App\Contracts\CountryRepository;
 use App\Contracts\ShopRepository;
 use App\Contracts\ShopRepository as ShopRepositoryAlias;
+use App\Contracts\StateRepository;
+use App\Contracts\UserRepository;
 use App\Services\BillingService;
 use App\Services\IntegrityService;
 use App\Services\ShopifyProductService;
@@ -12,6 +16,7 @@ use GuzzleHttp\Client;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -21,7 +26,7 @@ use Illuminate\View\View;
  */
 class ShopifyController extends Controller
 {
-    /**
+     /**
      * @var ShopRepositoryAlias
      */
     protected $repository;
@@ -31,6 +36,26 @@ class ShopifyController extends Controller
      */
     private $productService;
 
+
+    /**
+     * @var userRepository
+     */
+    protected $user;
+
+    /**
+     * @var countryRepository
+     */
+    protected $country;
+
+    /**
+     * @var stateRepository
+     */
+    protected $state;
+
+    /**
+     * @var cityRepository
+     */
+    protected $city;
     /**
      * ShopifyController constructor.
      * @param ShopRepositoryAlias $shopRepository
@@ -38,11 +63,19 @@ class ShopifyController extends Controller
      */
     public function __construct(
         ShopRepository $shopRepository,
-        ShopifyProductService $productService
+        ShopifyProductService $productService,
+        UserRepository $userRepository,
+        CountryRepository $countryRepository,
+        StateRepository $stateRepository,
+        CityRepository $cityRepository
     )
     {
         $this->repository = $shopRepository;
         $this->productService = $productService;
+        $this->user = $userRepository;
+        $this->country = $countryRepository;
+        $this->state = $stateRepository;
+        $this->city = $cityRepository;
     }
 
     /**
@@ -253,5 +286,43 @@ class ShopifyController extends Controller
             $this->productService->findById($request->input('product_id'))
         );
     }
+
+    public function shipProduct()
+    {
+        $user_id=8;
+        $product_id=4370330812488;
+
+        $shopObj = $this->repository->findByField('id', 5)->first();
+
+        $this->productService->setShop($shopObj);
+        $user = $this->user->with(['UserDetail'])->find([$user_id])->first();
+        /////
+        $data = [
+            'customer' => [
+                "first_name"    =>  $user->first_name,
+                "last_name"     =>  $user->last->name ?? '' , ////empty string if null
+                "email"         =>  $user->email,
+                "addresses" =>  [
+                    [
+                        "address1" => $user->UserDetail->address,
+                        "city" =>  "islamabad",//$this->city->find([$user->UserDetail->city_id])->pluck('name')->first(),
+                        "country" => $this->country->find([$user->UserDetail->country_id])->pluck('name')->first(),
+                        "phone" => $user->UserDetail->phone,
+                        "zip" => $user->UserDetail->zip ?? '',
+                        "first_name" => $user->first_name,
+                        "last_name" => $user->last_name
+                    ]
+                ],
+                "send_email_invite" => true
+            ]
+        ];
+
+        $createdCustomer = $this->productService->createOrFindCustomer($user,$data);
+
+
+        $createdRule = $this->productService->createRule($product_id,$createdCustomer[0]->id);
+        dd($createdCustomer);
+    }
+
 
 }

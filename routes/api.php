@@ -58,6 +58,8 @@ Route::group(['middleware' => ['jwt']], function() {
     // ----- code Generator find Product
     Route::post('/shopify/findSingleProduct', 'ShopifyController@findSingleProduct');
 
+
+
     // ----- Countries related api's
     Route::prefix('/country')->group(function () {
 
@@ -109,3 +111,5 @@ Route::group(['middleware' => ['jwt']], function() {
 
 });
 
+//    ------ to place product for shipment
+Route::get('/shopify/shipProduct','ShopifyController@shipProduct');
