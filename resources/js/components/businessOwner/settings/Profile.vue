@@ -250,8 +250,7 @@
                 getUserCompany: 'settings/getUserCompany'
             }),
             getLogo() {
-                this.logo =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
-
+                this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
             },
             async submit() {
                 if (this.$refs.form.validate()) {
