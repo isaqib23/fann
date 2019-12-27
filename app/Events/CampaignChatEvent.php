@@ -9,6 +9,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class CampaignChatEvent implements ShouldBroadcast
 {
@@ -34,7 +35,8 @@ class CampaignChatEvent implements ShouldBroadcast
     {
         $this->chatTo = $chatTo;
         $this->chatBy = $chatBy;
-        $this->dontBroadcastToCurrentUser();
+
+       // $this->dontBroadcastToCurrentUser();
     }
 
     /**
@@ -44,6 +46,23 @@ class CampaignChatEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
+        Log::debug([
+            $this->chatTo,
+        $this->chatBy
+        ]);
         return new Channel('campaignChat');
+    }
+
+    /**
+     * Get the data to broadcast.
+     *
+     * @return array
+     */
+    public function broadcastWith()
+    {
+        return [
+            'chatTo' => $this->chatTo,
+            'chatBy' => $this->chatBy
+        ];
     }
 }

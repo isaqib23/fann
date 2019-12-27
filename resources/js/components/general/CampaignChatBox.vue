@@ -250,16 +250,16 @@
                 this.input += emoji
             },
         },
-        created() {
-            Echo.channel('campaignChat').listen('CampaignChatEvent', event => {
-                console.log(event, "its listening");
-            })
-        },
         mounted() {
-            let arr = [];
-            arr.push({chatTo:8, chatBy: 7});
-            this.initiateCampaignChat(arr);
-
+            this.initiateCampaignChat({
+                chatTo : 8,
+                chatBy : 7
+            });
+        },
+        created() {
+            Echo.channel('campaignChat').listen('CampaignChatEvent', function(data) {
+                console.info(JSON.stringify(data), "listening");
+            })
         }
     }
 </script>

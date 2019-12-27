@@ -22,6 +22,7 @@ use App\Contracts\CampaignRepository;
 use App\Validators\CampaignValidator;
 use App\Contracts\CampaignObjectiveRepository;
 use Prettus\Validator\LaravelValidator;
+use Pusher\Pusher;
 
 /**
  * Class CampaignsController.
@@ -405,7 +406,10 @@ class CampaignsController extends Controller
 
     public function broadcastCampaignChat(Request $request)
     {
-        broadcast(new CampaignChatEvent($request->chatTo, auth()->id()));
+       broadcast(new CampaignChatEvent($request->get('chatTo'), auth()->id()));
+
+        $Pusher = new Pusher(env('PUSHER_APP_KEY'), env('PUSHER_APP_SECRET'), env('PUSHER_APP_ID'));
+        $Pusher->trigger('campaignChat', 'CampaignChatEvent', ['chatTo' , "dashhhhhhhy"]);
     }
 
 }
