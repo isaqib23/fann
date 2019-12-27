@@ -31,7 +31,7 @@ export const actions = {
     async getCampaignById({commit}, payload) {
         let response =  await CampaignManageAxios.post('campaignManagement.getCampaignById', payload);
 
-        return response;
+        return response.details;
     }
 }
 

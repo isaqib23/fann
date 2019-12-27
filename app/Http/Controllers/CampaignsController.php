@@ -413,4 +413,17 @@ class CampaignsController extends Controller
             'details' => $campaigns,
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getPlacementTouchPoint(Request $request)
+    {
+        $campaigns = $this->campaignTouchPointRepository->getPlacementTouchPoint($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
 }

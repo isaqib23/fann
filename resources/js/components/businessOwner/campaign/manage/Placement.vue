@@ -16,15 +16,25 @@
         </v-flex>
         <!-- Top Content -->
         <v-flex xs12 md7 class="pa-2">
+            <v-card class="pa-2" outlined tile v-if="skeleton">
+                <v-card-text>
+                    <v-skeleton-loader
+                        class="mx-auto"
+                        type="table"
+                    ></v-skeleton-loader>
+                </v-card-text>
+            </v-card>
+
             <v-data-table
                 :headers="headers"
-                :items="desserts"
+                :items="campaignPlacement.touch_point"
                 :single-expand="singleExpand"
                 :expanded.sync="expanded"
                 item-key="id"
                 show-expand
                 :hide-default-footer="true"
                 class="elevation-1 table_class"
+                v-if="!skeleton && campaignPlacement.length !== 0"
             >
                 <template v-slot:top>
                     <v-toolbar flat color="white">
@@ -42,17 +52,14 @@
                     <v-list two-line class=" pa-0 mx-0 hover_class" dense>
                         <v-list-item class="px-0">
                             <v-list-item-content>
-                                <v-list-item-title v-html="item.title"></v-list-item-title>
+                                <v-list-item-title v-html="campaignPlacement.name"></v-list-item-title>
                                 <v-list-item-subtitle >
                                     <v-chip-group>
-                                        <v-chip v-for="tag in item.tags"
-                                                :key="tag"
-                                                class="px-2"
-                                                color="#E5E5E5"
-                                                text-color="#71737D"
-                                                label
-                                        >
-                                            {{tag}}
+                                        <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
+                                            {{(campaignPlacement.objective.name.length > 10) ? campaignPlacement.objective.name.substring(0,10)+"..." : campaignPlacement.objective.name}}
+                                        </v-chip>
+                                        <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
+                                            {{campaignPlacement.payment.payment_type.name}}
                                         </v-chip>
                                     </v-chip-group>
                                 </v-list-item-subtitle>
@@ -64,7 +71,7 @@
                 <template v-slot:item.status="{ item }">
                     <v-switch
                         flat
-                        v-model="item.status"
+                        :v-model="(campaignPlacement.status === 'active') ? true : false"
                         inset
                         color="error"
                         hide-details
@@ -73,29 +80,29 @@
                 </template>
 
                 <template v-slot:item.impression="{ item }">
-                    <span class="subtitle-1">{{item.impression}}</span>
+                    <span class="subtitle-1">{{campaignPlacement.impressions}}</span>
                 </template>
                 <template v-slot:item.actions="{ item }">
-                    <span class="subtitle-1">{{item.actions}}</span>
+                    <span class="subtitle-1">{{campaignPlacement.actions}}</span>
                 </template>
                 <template v-slot:item.engRate="{ item }">
                     <div class="mb-0">
-                        <span class="subtitle-1">{{item.engRate}}%</span>
+                        <span class="subtitle-1">{{campaignPlacement.eng_rate}}%</span>
                         <v-btn small color="green accent-4 white--text px-1 ml-6" min-width="20">
                             <v-icon class="body-1">keyboard_arrow_right</v-icon>
                         </v-btn>
                     </div>
                 </template>
 
-                <template v-slot:expanded-item="{ headers }">
-                    <td :colspan="headers.length">
+                <template v-slot:expanded-item="{ item }">
+                    <td colspan="6">
                         <v-timeline
                             dense clipped
                             class="ml-n7"
                         >
                             <v-timeline-item
-                                v-for="n in 3"
-                                :key="n"
+                                v-for="(placementInvite, index) in item.invite"
+                                :key="index"
                                 :fill-dot="true"
                                 icon="mdi-check"
                                 icon-color="white"
@@ -108,13 +115,15 @@
                                     <v-list>
                                         <v-list-item two-line>
                                             <v-list-item-avatar height="50" min-width="50" width="50" class="mr-3">
-                                                <v-img src="/images/avtar.png"></v-img>
+                                                <img
+                                                    src="/images/icons/user_placeholder.png"
+                                                />
                                             </v-list-item-avatar>
 
                                             <v-list-item-content>
                                                 <v-row class="mx-auto">
                                                     <v-flex xl3 lg3 md3 sm6 xs12>
-                                                        <v-list-item-title>Amanda Nash</v-list-item-title>
+                                                        <v-list-item-title>{{placementInvite.influencer_job.user.first_name+' '+placementInvite.influencer_job.user.last_name}}</v-list-item-title>
                                                         <v-list-item-subtitle>
                                                             <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
                                                         </v-list-item-subtitle>
@@ -247,7 +256,9 @@
     import {mapActions, mapGetters} from 'vuex';
 
     export default {
+        inject: ['theme'],
         data: () => ({
+            skeleton:true,
             rating: 3,
             expanded: [],
             singleExpand: true,
@@ -350,7 +361,8 @@
                     avatar: 'https://cdn.vuetifyjs.com/images/lists/5.jpg',
                     title: 'Recipe to try',
                 },
-            ]
+            ],
+            campaignPlacement: []
         }),
         computed : {
             ...mapGetters({
@@ -359,7 +371,7 @@
         },
         methods: {
             ...mapActions({
-                saveChatBox : 'campaign/saveChatBox',
+                saveChatBox     : 'campaign/saveChatBox',
                 getCampaignById : 'campaignManagement/getCampaignById'
              }),
             openChatBox(item) {
@@ -372,8 +384,24 @@
             }
         },
         async mounted() {
-            await this.getCampaignById({campaign_id:this.$router.history.current.params.slug});
+            this.campaignPlacement = await this.getCampaignById({campaign_id:this.$router.history.current.params.slug});
+            console.log(this.campaignPlacement);
 
+        },
+        watch: {
+            'campaignPlacement' : {
+                handler: function(val) {
+                    this.skeleton = true;
+                    if(!_.isNil(val)){
+                        let self = this;
+                        setTimeout(function () {
+                            self.skeleton = false;
+                        } , 1000);
+                    }
+                },
+                immediate: true,
+                deep: true
+            },
         }
     }
 </script>

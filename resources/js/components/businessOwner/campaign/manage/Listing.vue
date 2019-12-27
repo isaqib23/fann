@@ -18,7 +18,12 @@
         <v-flex xs12 md7 class="pa-2">
             <v-card class="pa-2" outlined tile >
                 <v-card-text>
-                    <v-simple-table fixed-header height="auto">
+                    <v-skeleton-loader
+                        class="mx-auto"
+                        type="table"
+                        v-if="skeleton"
+                    ></v-skeleton-loader>
+                    <v-simple-table fixed-header height="auto" v-if="!skeleton && campaigns !== 0">
                             <thead>
                             <tr class="font-weight-bold title text-uppercase">
                                 <th class="text-left black--text">Campaign</th>
@@ -84,7 +89,6 @@
         </v-flex>
         <v-flex xs12 md5 class="pa-2" v-if="campaigns !== null && campaigns.length > 0">
             <v-card class="pa-2" outlined tile>
-
                 <v-flex xs12>
                         <v-icon small class="ml-7 pa-2">edit</v-icon>
                         <v-icon small class="ml-1 pa-2">mdi-content-duplicate</v-icon>
@@ -182,10 +186,12 @@
 <script>
 
     export default {
+        inject: ['theme'],
         props: {
             campaigns : null
         },
         data: () => ({
+            skeleton:true,
             selectedCampaign:0,
             item: {
                 title: 'My Awesome Campaign 2019',
@@ -206,6 +212,21 @@
         },
         async mounted() {
 
+        },
+        watch: {
+            'campaigns' : {
+                handler: function(val) {
+                    this.skeleton = true;
+                    if(!_.isNil(val)){
+                        let self = this;
+                        setTimeout(function () {
+                            self.skeleton = false;
+                        } , 1000);
+                    }
+                },
+                immediate: true,
+                deep: true
+            },
         }
     }
 </script>

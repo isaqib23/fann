@@ -221,16 +221,32 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
         $campaign = $this
             ->with([
                 'payment'  => function($query){
-                    $query->with(['paymentType']);
+                    $query->with(['paymentType' => function($paymentQuery){
+                        $paymentQuery->select(['id', 'name']);
+                    }])->select(['payment_type_id', 'campaign_id']);
                 },
-                'touchPoint' => function($query){
-                    $query->with(['additional','media','placementAction']);
+                'touchPoint' => function($query) use ($request){
+                    $query->with(['invite' => function($inviteQuery) use ($request){
+
+                        $inviteQuery->with(['influencer_job' => function($userQuery){
+                            $userQuery->with(['user' => function($userQuery){
+                                $userQuery->with(['statisticByPlatform' => function($statisticQuery){
+                                    $statisticQuery->where('platform_id')->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
+                                }])->select(['id', 'first_name', 'last_name', 'email']);
+                            }])
+                            ->select(['id', 'user_id', 'campaign_invite_id']);
+                        }])
+                        ->where('campaign_id', $request->input('campaign_id'))
+                        ->select(['id', 'user_id', 'campaign_id', 'placement_id']);
+                    }])
+                    ->select(['id', 'name', 'campaign_id', 'placement_id'])
+                    ->groupBy('placement_id');
                 },
-                'objective'
+                'objective' => function($objectiveQuery){
+                    $objectiveQuery->select(['id', 'name', 'slug']);
+                }
             ])
-            ->findWhere([
-                'id'                => $request->input('campaign_id')
-            ])->first();
+            ->findWhere(['id' => $request->input('campaign_id')])->first();
 
         return $campaign;
     }

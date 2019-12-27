@@ -175,4 +175,15 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
     }
 
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getPlacementTouchPoint($request)
+    {
+        return $this->with(['campaign'])
+            ->findWhere(['campaign_id' => $request->input('campaign_id')])
+            ->groupBy('placement_id');
+    }
+
 }
