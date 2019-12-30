@@ -13,6 +13,7 @@ let campaign = {
     getCampaignSavedObjective   : 'getCampaignSavedObjective',
     updateCampaignStatus        : 'updateCampaignStatus',
     broadcastCampaignChat       : 'broadcastCampaignChat',
+    broadcastCampaignMessage    : 'broadcastCampaignMessage',
 };
 
 export default campaign;

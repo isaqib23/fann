@@ -4,7 +4,8 @@
 export const state = {
 
     campaigns    : [],
-    campaignChat : null
+    campaignChat : null,
+    chatMessage : null
 
 }
 
@@ -17,6 +18,9 @@ export const mutations = {
     },
     setCampaignChat(state, payload) {
         state.campaignChat = payload
+    },
+    setChatMessage(state, payload) {
+        state.chatMessage = payload
     }
 }
 
@@ -34,14 +38,21 @@ export const actions = {
     async initiateCampaignChat({commit}, payload) {
         let response =  await CampaignManageAxios.post('campaign.broadcastCampaignChat', payload);
         return response;
-    }
+    },
+    async sendChatMessage({commit}, payload) {
+        console.info(payload, "messsage");
+        commit('setChatMessage', payload);
+        let response =  await CampaignManageAxios.post('campaign.broadcastCampaignMessage', payload);
+        return response;
+    },
 }
 
 /**
  * Getters
  */
 export const getters = {
-    campaigns       : state => state.campaigns
+    campaigns       : state => state.campaigns,
+    chatMessage     : state => state.chatMessage
 }
 
 /**

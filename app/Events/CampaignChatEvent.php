@@ -24,19 +24,26 @@ class CampaignChatEvent implements ShouldBroadcast
      * @var
      */
     private $chatBy;
+    /**
+     * @var null
+     */
+    private $content;
 
     /**
-     * Create a new event instance.
+     * CampaignChatEvent constructor.
      *
      * @param $chatTo
      * @param $chatBy
+     * @param null $content
      */
-    public function __construct($chatTo, $chatBy)
+    public function __construct($chatTo, $chatBy, $content = null)
     {
         $this->chatTo = $chatTo;
         $this->chatBy = $chatBy;
+        $this->content = $content;
 
         $this->dontBroadcastToCurrentUser();
+
     }
 
     /**
@@ -58,7 +65,8 @@ class CampaignChatEvent implements ShouldBroadcast
     {
         return [
             'chatTo' => $this->chatTo,
-            'chatBy' => $this->chatBy
+            'chatBy' => $this->chatBy,
+            'content' => $this->content
         ];
     }
 }

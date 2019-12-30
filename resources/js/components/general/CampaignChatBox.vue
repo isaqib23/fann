@@ -111,7 +111,7 @@
                     </v-col>
                 </v-row>
 
-                <v-row :justify="chat.align" class="full_width" v-for="chat in chats" :key="chat.id">
+                <v-row :justify="chat.align" class="full_width" v-for="(chat, chatIndex) in chats" :key="chatIndex">
                     <v-col cols="12" md="10" class="pa-0">
                         <v-list class="pa-0">
                             <v-list-item>
@@ -147,7 +147,7 @@
                     ></v-textarea>
                 </v-flex>
                 <v-flex xl2 lg2 md2 sm2 xs2>
-                    <v-btn color="primary" depressed class="text-capitalize px-1 ml-3">
+                    <v-btn color="primary" depressed class="text-capitalize px-1 ml-3" @click="sendMessage()">
                         Send
                     </v-btn>
                     <v-btn color="grayLighten" depressed class="px-1 ml-3 mt-3">
@@ -244,11 +244,22 @@
         }),
         methods: {
             ...mapActions({
-                initiateCampaignChat : 'campaignManagement/initiateCampaignChat'
+                initiateCampaignChat : 'campaignManagement/initiateCampaignChat',
+                sendChatMessage      : 'campaignManagement/sendChatMessage'
             }),
             insert(emoji) {
                 this.input += emoji
             },
+            sendMessage() {
+                if(this.input) {
+                    this.sendChatMessage({
+                        chatTo : 8,
+                        chatBy : 7,
+                        content : this.input
+                    });
+                    this.input = '';
+                }
+            }
         },
         mounted() {
             this.initiateCampaignChat({
@@ -257,9 +268,24 @@
             });
         },
         created() {
-            Echo.channel('campaignChat').listen('CampaignChatEvent', function(data) {
-                console.info(JSON.stringify(data), "listening");
-            })
+            let self = this;
+            Echo.channel('campaignChat').listen('CampaignChatEvent', (data) => {
+                if(!_.isNil(data.content)) {
+                    self.chats.push({ text: data.content, time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' });
+                }
+            });
+            /*.listenForWhisper('typing', (e) => {
+                    console.log(e.name, "is Typing");
+            });*/
+        },
+        watch: {
+            input(value) {
+                if (value) {
+                   /* Echo.channel('campaignChat').whisper('typing', {
+                        name: 'user'
+                    });*/
+                }
+            }
         }
     }
 </script>

@@ -411,4 +411,12 @@ class CampaignsController extends Controller
        broadcast(new CampaignChatEvent($request->get('chatTo'), auth()->id()));
     }
 
+    /**
+     * @param Request $request
+     */
+    public function broadcastCampaignMessage(Request $request)
+    {
+        broadcast(new CampaignChatEvent($request->get('chatTo'), auth()->id(), $request->get('content')));
+    }
+
 }
