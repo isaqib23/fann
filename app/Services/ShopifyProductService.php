@@ -212,42 +212,61 @@ class ShopifyProductService
 //        dd($customer_id);
 //        dd($product_id);
         $shopify = $this->getShopifyObj($this->shop);
+        dd($shopify);
         /////
         $data = [
             'price_rule' => [
                 'title'                      => '100OFF',
                 'target_type'                => 'line_item',
-                'target_selection'=>'entitled',
-                'allocation_method'=> 'across',
-                'customer_selection'=> 'all',
-//                'allocation_method'          =>'each',
+                'target_selection'           => 'entitled',
+                'allocation_method'          => 'across',
+                'customer_selection'         => 'all',
                 'value_type'                 => 'percentage',
-                'value'                      => '-100.0',
-//                'customer_selection'         => 'prerequisite',
-//                'once_per_customer'          => true,
-//                "usage_limit"                => 1,
+                'value'                      => '-10.0',
 //                'prerequisite_customer_ids'  => [
 //                    $customer_id
 //                ],
-//                'prerequisite_product_ids'   => [
-//                    $product_id
-//                ],
+                'entitled_product_ids'   => [
+                    $product_id
+                ],
 //                'prerequisite_quantity_range' => [
 //                    'greater_than_or_equal_to' => 1
 //                ],
 //                'prerequisite_subtotal_range' => [
 //                    'greater_than_or_equal_to' => '00.0'
 //                ],
+////                'once_per_customer'          => true,
+//                "usage_limit"                => 1,
             ]
         ];
-
+//        dd($data);
 
         $resp = $shopify->call([
-            'URL'    => '/admin/price_rules.json',
-            'METHOD' =>'POST',
-            'DATA'   =>$data
+            'URL'   => '/admin/price_rules.json',
+            'METHOD'=> 'POST',
+            'DATA'  => $data
         ]);
 
+        dd($resp);
+    }
+
+    public function createOrder($variant_id,$quantity)
+    {
+        $data = [
+           'order' => [
+                'line_items' => [
+                    'title' => 'Big Brown Bear Boots',
+                    'variant_id' => $variant_id,
+                    'quantity'   => $quantity
+                ]
+            ]
+        ];
+        $shopify = $this->getShopifyObj($this->shop);
+        $resp = $shopify->call([
+            'URL'       => '/admin/orders.json',
+            'METHOD'    => 'POST',
+            'DATA'      => $data
+        ]);
         dd($resp);
     }
 }

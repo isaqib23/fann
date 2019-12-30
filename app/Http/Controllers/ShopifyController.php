@@ -290,7 +290,8 @@ class ShopifyController extends Controller
     public function shipProduct()
     {
         $user_id=8;
-        $product_id=4370330812488;
+        $product_id=4178591612982;
+        $variant_id=30360917180470;
 
         $shopObj = $this->repository->findByField('id', 5)->first();
 
@@ -304,10 +305,10 @@ class ShopifyController extends Controller
                 "email"         =>  $user->email,
                 "addresses" =>  [
                     [
-                        "address1" => $user->UserDetail->address,
+                        "address1" => $user->UserDetail->address??'',
                         "city" =>  "islamabad",//$this->city->find([$user->UserDetail->city_id])->pluck('name')->first(),
-                        "country" => $this->country->find([$user->UserDetail->country_id])->pluck('name')->first(),
-                        "phone" => $user->UserDetail->phone,
+                        "country" => $user->UserDetail? $this->country->find([$user->UserDetail->country_id])->pluck('name')->first():'',
+                        "phone" => $user->UserDetail->phone??'',
                         "zip" => $user->UserDetail->zip ?? '',
                         "first_name" => $user->first_name,
                         "last_name" => $user->last_name
@@ -318,9 +319,11 @@ class ShopifyController extends Controller
         ];
 
         $createdCustomer = $this->productService->createOrFindCustomer($user,$data);
-
+//        dd($createdCustomer);
 
         $createdRule = $this->productService->createRule($product_id,$createdCustomer[0]->id);
+
+        $createdOrder = $this->productService->createOrder($variant_id,$quantity=1);
         dd($createdCustomer);
     }
 
