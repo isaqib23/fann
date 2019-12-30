@@ -181,9 +181,8 @@
 
                 _.forEach(pros, function(value, index) {
 
-                    if (self.selectedPlatform == index) {
                         selectedPlatformData = value;
-                    }
+
                     if(value.provider === 'instagram') {
                         self.instagram  = value;
                     }else{
