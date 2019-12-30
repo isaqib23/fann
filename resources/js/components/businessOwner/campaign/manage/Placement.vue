@@ -123,15 +123,15 @@
                                             <v-list-item-content>
                                                 <v-row class="mx-auto">
                                                     <v-flex xl3 lg3 md3 sm6 xs12>
-                                                        <v-list-item-title>{{placementInvite.influencer_job.user.first_name+' '+placementInvite.influencer_job.user.last_name}}</v-list-item-title>
+                                                        <v-list-item-title>{{placementInvite.influencer_job.assignTo.first_name+' '+placementInvite.influencer_job.assignTo.last_name}}</v-list-item-title>
                                                         <v-list-item-subtitle>
-                                                            <v-rating :v-model="placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'rating')" size="7" small class="d-inline-block"></v-rating>
+                                                            <v-rating :v-model="placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assignTo.statistics,'rating')" size="7" small class="d-inline-block"></v-rating>
                                                         </v-list-item-subtitle>
                                                     </v-flex>
                                                     <v-flex xl2 lg2 md2 sm6 xs12>
                                                         <div class="followers body-2">
                                                             <v-icon class="body-1">{{placementIcon(placementInvite.placement_id)}}</v-icon>
-                                                            {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'follower_count')}}
+                                                            {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assignTo.statistics,'follower_count')}}
                                                             Followers
                                                         </div>
                                                     </v-flex>
@@ -144,13 +144,13 @@
                                                             </div>
                                                             <div class="followers">
                                                                 <p class="d-inline-block mb-0 mx-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'eng_rate')}}%
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assignTo.statistics,'eng_rate')}}%
                                                                 </p>
                                                                 <p class="d-inline-block mb-0 ml-5 mr-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'comment_count')}}
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assignTo.statistics,'comment_count')}}
                                                                 </p>
                                                                 <p class="d-inline-block mb-0 ml-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'like_count')}}
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assignTo.statistics,'like_count')}}
                                                                 </p>
                                                             </div>
                                                         </div>
