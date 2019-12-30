@@ -74,4 +74,11 @@ class Campaign extends Model implements Transformable
         return $this->hasOne(Placement::class, 'id', 'primary_placement_id');
     }
 
+    /**
+     * @return HasMany
+     */
+    public function proposal()
+    {
+        return $this->hasMany(CampaignInvite::class);
+    }
 }

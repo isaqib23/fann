@@ -32,6 +32,12 @@ export const actions = {
         let response =  await CampaignManageAxios.post('campaignManagement.getCampaignById', payload);
 
         return response.details;
+    },
+
+    async getCampaignProposal({commit}, payload) {
+        let response =  await CampaignManageAxios.post('campaignManagement.getCampaignProposal', payload);
+
+        return response.details;
     }
 }
 

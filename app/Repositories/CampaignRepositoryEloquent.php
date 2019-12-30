@@ -218,7 +218,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      */
     public function getCampaignById($request)
     {
-        $campaign = $this
+        return $this
             ->with([
                 'payment'  => function($query){
                     $query->with(['paymentType' => function($paymentQuery){
@@ -230,8 +230,8 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
 
                         $inviteQuery->with(['influencer_job' => function($userQuery){
                             $userQuery->with(['user' => function($userQuery){
-                                $userQuery->with(['statisticByPlatform' => function($statisticQuery){
-                                    $statisticQuery->where('platform_id')->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
+                                $userQuery->with(['statistics' => function($statisticQuery){
+                                    $statisticQuery->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
                                 }])->select(['id', 'first_name', 'last_name', 'email']);
                             }])
                             ->select(['id', 'user_id', 'campaign_invite_id']);
@@ -247,7 +247,23 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
                 }
             ])
             ->findWhere(['id' => $request->input('campaign_id')])->first();
+    }
 
-        return $campaign;
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getCampaignProposal($request)
+    {
+        return $this
+            ->with(['proposal' => function($userQuery){
+                $userQuery->with(['user' => function($userQuery){
+                    $userQuery->with(['statistics' => function($statisticQuery){
+                        $statisticQuery->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
+                    }])->select(['id', 'first_name', 'last_name', 'email']);
+                }])
+                    ->select(['id', 'user_id', 'campaign_id', 'placement_id']);
+            }])
+            ->findWhere(['id' => $request->input('campaign_id')])->first();
     }
 }

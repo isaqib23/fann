@@ -2,7 +2,8 @@ let campaign = {
     url: 'campaign_manage',
 
     getActiveCampaigns  : 'getActiveCampaigns',
-    getCampaignById     : 'getCampaignById'
+    getCampaignById     : 'getCampaignById',
+    getCampaignProposal : 'getCampaignProposal'
 };
 
 export default campaign;

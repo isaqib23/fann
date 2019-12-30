@@ -418,9 +418,9 @@ class CampaignsController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function getPlacementTouchPoint(Request $request)
+    public function getCampaignProposal(Request $request)
     {
-        $campaigns = $this->campaignTouchPointRepository->getPlacementTouchPoint($request);
+        $campaigns = $this->repository->getCampaignProposal($request);
 
         return response()->json([
             'details' => $campaigns,

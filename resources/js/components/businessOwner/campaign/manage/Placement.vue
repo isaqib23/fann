@@ -125,13 +125,14 @@
                                                     <v-flex xl3 lg3 md3 sm6 xs12>
                                                         <v-list-item-title>{{placementInvite.influencer_job.user.first_name+' '+placementInvite.influencer_job.user.last_name}}</v-list-item-title>
                                                         <v-list-item-subtitle>
-                                                            <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
+                                                            <v-rating :v-model="placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'rating')" size="7" small class="d-inline-block"></v-rating>
                                                         </v-list-item-subtitle>
                                                     </v-flex>
                                                     <v-flex xl2 lg2 md2 sm6 xs12>
                                                         <div class="followers body-2">
-                                                            <v-icon class="body-1">mdi-instagram</v-icon>
-                                                            50.5K Followers
+                                                            <v-icon class="body-1">{{placementIcon(placementInvite.placement_id)}}</v-icon>
+                                                            {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'follower_count')}}
+                                                            Followers
                                                         </div>
                                                     </v-flex>
                                                     <v-flex xl4 lg4 md4 sm12 xs12>
@@ -142,9 +143,15 @@
                                                                 <strong class="ml-1 custom_font">Likes</strong>
                                                             </div>
                                                             <div class="followers">
-                                                                <p class="d-inline-block mb-0 mx-3 custom_font">43%</p>
-                                                                <p class="d-inline-block mb-0 ml-5 mr-3 custom_font">2.2K</p>
-                                                                <p class="d-inline-block mb-0 ml-3 custom_font">5.5K</p>
+                                                                <p class="d-inline-block mb-0 mx-3 custom_font">
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'eng_rate')}}%
+                                                                </p>
+                                                                <p class="d-inline-block mb-0 ml-5 mr-3 custom_font">
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'comment_count')}}
+                                                                </p>
+                                                                <p class="d-inline-block mb-0 ml-3 custom_font">
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'like_count')}}
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </v-flex>
@@ -171,21 +178,25 @@
             </v-data-table>
         </v-flex>
         <v-flex xs12 md5 class="pa-2 list_cards">
-                <v-list three-line class="px-5">
+            <v-card class="pa-2" outlined tile v-if="skeleton">
+                <v-card-title class="subtitle-1 text-uppercase darken-1 pa-5" ><strong>Proposals</strong></v-card-title>
+                <v-card-text v-for="n in 5" :key="n">
+                    <v-skeleton-loader
+                        class="mx-auto"
+                        type="list-item-avatar-three-line"
+                    ></v-skeleton-loader>
+                </v-card-text>
+            </v-card>
+                <v-list three-line class="px-5" v-if="!skeleton && campaignProposal.length !== 0">
                     <div class="subtitle-1 text-uppercase darken-1 pa-5" ><strong>Proposals</strong></div>
-                    <template v-for="(item, index) in items">
+
+                    <template v-for="(item, index) in campaignProposal.proposal">
                         <v-card class="mb-2 custom_list">
-                        <v-divider
-                            v-if="item.divider"
-                            :key="index"
-                            :inset="item.inset"
-                        ></v-divider>
                         <v-list-item
-                            v-else
-                            :key="item.title"
+                            :key="index"
                         >
                             <v-list-item-avatar height="80" min-width="80" width="80">
-                                <v-img :src="item.avatar"></v-img>
+                                <img src="/images/icons/user_placeholder.png">
                             </v-list-item-avatar>
 
                             <v-list-item-content>
@@ -193,10 +204,13 @@
                                     <v-row justify="space-between">
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="float-left body-2">
-                                                <strong><u>{{item.title}}</u></strong>
+                                                <strong><u>
+                                                    {{item.user.first_name+' '+item.user.last_name}}
+                                                </u></strong>
                                                 <div class="followers overline">
-                                                    <v-icon class="caption">mdi-instagram</v-icon>
-                                                    50.5K Followers
+                                                    <v-icon class="caption">{{placementIcon(item.placement_id)}}</v-icon>
+                                                    {{placementStatistics(item.placement_id,item.user.statistics,'follower_count')}}
+                                                    Followers
                                                 </div>
                                             </div>
                                         </v-col>
@@ -219,7 +233,7 @@
                                 <v-list-item-subtitle>
                                     <v-row justify="space-between">
                                         <v-col md="6" class="py-0 ma-0">
-                                            <v-rating v-model="rating" size="7" small background-color="grey"></v-rating>
+                                            <v-rating :v-model="placementStatistics(item.placement_id,item.user.statistics,'rating')" size="7" small background-color="grey"></v-rating>
                                         </v-col>
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="subtitle-2 mb-2 integrityColor--text float-right ml-n7">
@@ -235,9 +249,15 @@
                                         </v-col>
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="float-right d-inline-block ml-n7">
-                                                <p class="d-inline-block mb-0 mr-n2 custom_font">43%</p>
-                                                <p class="d-inline-block mb-0 ml-10 mr-6 custom_font">2.2K</p>
-                                                <p class="d-inline-block mb-0 ml-5 custom_font">5.5K</p>
+                                                <p class="d-inline-block mb-0 mr-n2 custom_font">
+                                                    {{placementStatistics(item.placement_id,item.user.statistics,'eng_rate')}}%
+                                                </p>
+                                                <p class="d-inline-block mb-0 ml-10 mr-6 custom_font">
+                                                    {{placementStatistics(item.placement_id,item.user.statistics,'comment_count')}}
+                                                </p>
+                                                <p class="d-inline-block mb-0 ml-5 custom_font">
+                                                    {{placementStatistics(item.placement_id,item.user.statistics,'like_count')}}
+                                                </p>
                                             </div>
                                         </v-col>
                                     </v-row>
@@ -362,7 +382,8 @@
                     title: 'Recipe to try',
                 },
             ],
-            campaignPlacement: []
+            campaignPlacement: [],
+            campaignProposal: []
         }),
         computed : {
             ...mapGetters({
@@ -371,8 +392,9 @@
         },
         methods: {
             ...mapActions({
-                saveChatBox     : 'campaign/saveChatBox',
-                getCampaignById : 'campaignManagement/getCampaignById'
+                saveChatBox         : 'campaign/saveChatBox',
+                getCampaignById     : 'campaignManagement/getCampaignById',
+                getCampaignProposal : 'campaignManagement/getCampaignProposal',
              }),
             openChatBox(item) {
                 let find = _.find(this.chatBox, function (obj) {
@@ -381,11 +403,22 @@
                 if (_.isEmpty(find) && _.size(this.chatBox) < 3) {
                     this.saveChatBox(item);
                 }
+            },
+            placementIcon(id){
+                return (id === 1) ? 'mdi-instagram' : 'mdi-youtube';
+            },
+            placementStatistics(id,statistics,field){
+                let stat = _.find(statistics, ['platform_id', id]);
+                if(_.isNil(stat)){
+                    return 0;
+                }
+                return stat[field];
             }
         },
         async mounted() {
             this.campaignPlacement = await this.getCampaignById({campaign_id:this.$router.history.current.params.slug});
-            console.log(this.campaignPlacement);
+            this.campaignProposal = await this.getCampaignProposal({campaign_id:this.$router.history.current.params.slug});
+            console.log(this.campaignPlacement,this.campaignProposal);
 
         },
         watch: {

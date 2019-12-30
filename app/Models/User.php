@@ -119,8 +119,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(UserPlatformMeta::class);
     }
 
-    public function statisticByPlatform()
+    /**
+     * @return HasMany
+     */
+    public function statistics()
     {
-        return $this->hasOne(InfluencerStatistics::class);
+        return $this->hasMany(InfluencerStatistics::class);
     }
 }

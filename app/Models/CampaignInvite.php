@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -31,8 +32,19 @@ class CampaignInvite extends Model implements Transformable
         'status'
     ];
 
+    /**
+     * @return HasOne
+     */
     public function influencer_job()
     {
         return $this->hasOne(InfluencerJob::class,'campaign_invite_id', 'id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }
