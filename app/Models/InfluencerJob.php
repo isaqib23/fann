@@ -47,4 +47,12 @@ class InfluencerJob extends Model implements Transformable
     {
         return $this->hasOne(CampaignTouchPoint::class,'id', 'campaign_touch_point_id');
     }
+
+    /**
+     * @return HasOne
+     */
+    public function campaign()
+    {
+        return $this->hasOne(Campaign::class,'id', 'campaign_id');
+    }
 }

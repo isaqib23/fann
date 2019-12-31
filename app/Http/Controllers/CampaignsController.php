@@ -447,4 +447,17 @@ class CampaignsController extends Controller
             'details' => $campaigns,
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getInfluencerCampaign(Request $request)
+    {
+        $campaigns = $this->influencerJobRepository->getInfluencerCampaign($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
 }

@@ -4,7 +4,8 @@ let campaign = {
     getActiveCampaigns            : 'getActiveCampaigns',
     getCampaignById               : 'getCampaignById',
     getCampaignProposal           : 'getCampaignProposal',
-    getInfluencerAssignTouchPoint : 'getInfluencerAssignTouchPoint'
+    getInfluencerAssignTouchPoint : 'getInfluencerAssignTouchPoint',
+    getInfluencerCampaign         : 'getInfluencerCampaign'
 };
 
 export default campaign;
