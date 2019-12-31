@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -30,8 +32,19 @@ class InfluencerJob extends Model implements Transformable
         'status'
     ];
 
-    public function assignTo()
+    /**
+     * @return HasOne
+     */
+    public function assign_to()
     {
         return $this->hasOne(User::class,'id', 'assign_to_id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function touch_point()
+    {
+        return $this->hasOne(CampaignTouchPoint::class,'id', 'campaign_touch_point_id');
     }
 }

@@ -25,7 +25,7 @@ class InfluencerJobRepositoryEloquent extends BaseRepository implements Influenc
         return InfluencerJob::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +34,19 @@ class InfluencerJobRepositoryEloquent extends BaseRepository implements Influenc
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
+    public function getInfluencerAssignTouchPoint($request)
+    {
+        return $this->with(['assign_to'  => function($userQuery){
+            $userQuery->with(['statistics' => function($statisticQuery){
+                $statisticQuery->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
+            }])->select(['id', 'first_name', 'last_name', 'email']);
+        }
+        ,'touch_point'
+        ])
+            ->findWhere([
+                'assign_to_id' => $request->input('user_id'),
+                'campaign_id' => $request->input('campaign_id')
+            ])->groupBy('campaign_invite_id');
+    }
 }

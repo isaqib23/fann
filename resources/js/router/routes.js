@@ -115,7 +115,7 @@ export default [
                                     component : require('$comp/businessOwner/campaign/manage/Placement').default
                                 },
                                 {
-                                    path      : 'influencer/:slug',
+                                    path      : 'influencer/:slug/:user',
                                     name      : 'manage-campaigns-influencer',
                                     component : require('$comp/businessOwner/campaign/manage/Influencer').default
                                 }
