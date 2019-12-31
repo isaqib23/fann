@@ -39,10 +39,10 @@ export const actions = {
         let response =  await CampaignManageAxios.post('campaign.broadcastCampaignChat', payload);
         return response;
     },
-    async sendChatMessage({commit}, payload) {
+    sendChatMessage({commit}, payload) {
         console.info(payload, "messsage");
         commit('setChatMessage', payload);
-        let response =  await CampaignManageAxios.post('campaign.broadcastCampaignMessage', payload);
+        let response =  CampaignManageAxios.post('campaign.broadcastCampaignMessage', payload);
         return response;
     },
 }

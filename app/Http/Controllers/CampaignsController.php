@@ -10,6 +10,7 @@ use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\PlacementRepository;
 use App\Events\CampaignChatEvent;
 use App\Http\Requests\TouchPointRequest;
+use App\Repositories\CampaignChatRepositoryMongo;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -416,7 +417,9 @@ class CampaignsController extends Controller
      */
     public function broadcastCampaignMessage(Request $request)
     {
+        $mongoChat = new CampaignChatRepositoryMongo('campaign_2_2');
         broadcast(new CampaignChatEvent($request->get('chatTo'), auth()->id(), $request->get('content')));
+        $mongoChat->store($request);
     }
 
 }
