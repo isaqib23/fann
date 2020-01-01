@@ -17,6 +17,8 @@ return [
         'read_orders',
         'write_orders',
         'read_customers',
-        'write_customers'
+        'write_customers',
+        'write_price_rules',
+        'read_price_rules'
     ]
 ];

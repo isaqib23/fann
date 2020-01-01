@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Contracts\ShopRepository;
 use App\Models\Shop;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Traits\ShopifyTrait;
 use GuzzleHttp\Client;
@@ -149,7 +150,7 @@ class ShopifyProductService
      * @param $data
      * @return mixed
      */
-    public function createOrFindCustomer($user,$data)
+    public function createOrFindCustomer($user)
     {
         $options = [
             'email' => $user->email
@@ -158,7 +159,7 @@ class ShopifyProductService
         $found = $this->searchCustomer($options);
 
         if( $found == null) {
-            $resp = $this->createCustomer($data);
+            $resp = $this->createCustomer($user);
             return $resp;
         }
 
@@ -169,9 +170,28 @@ class ShopifyProductService
      * @param $data
      * @return mixed
      */
-    public function createCustomer($data)
+    public function createCustomer($user)
     {
         $shopify = $this->getShopifyObj($this->shop);
+        $data = [
+            'customer' => [
+                "first_name"    => $user->first_name,
+                "last_name"     => $user->last->name ?? '', ////empty string if null
+                "email"         => $user->email,
+                "addresses"     => [
+                    [
+                        "address1"      => $user->UserDetail->address ?? '',
+                        "city"          => $user->UserDetail ? $this->city->find([$user->UserDetail->city_id])->pluck('name')->first() : '',
+                        "country"       => $user->UserDetail ? $this->country->find([$user->UserDetail->country_id])->pluck('name')->first() : '',
+                        "phone"         => $user->UserDetail->phone ?? '',
+                        "zip"           => $user->UserDetail->zip ?? '',
+                        "first_name"    => $user->first_name,
+                        "last_name"     => $user->last_name
+                    ]
+                ],
+                "send_email_invite" => true
+            ]
+        ];
         $resp = $shopify->call([
             'URL'   => '/admin/customers.json',
             'METHOD'=> 'POST',
@@ -189,84 +209,138 @@ class ShopifyProductService
         $shopify = $this->getShopifyObj($this->shop);
         $resp = $shopify->call([
             'URL'     => '/admin/customers/search.json?'.urldecode(http_build_query($options)),
-            'METHOD' => 'GET',
+            'METHOD'  => 'GET',
         ]);
 
         return $resp->customers;
     }
 
     /**
+     * @param $product_id
+     * @param $customer_id
      * @return mixed
      */
-    public function allCustomers()
+    public function createDiscountRule($product_id, $customer_id)
     {
-        $shopify = $this->getShopifyObj($this->shop);
-        $resp = $shopify->call([
-            'URL'     => '/admin/customers.json',
-            'METHOD' => 'GET',
-        ]);
-        return $resp->customers;
-    }
-    public function createRule($product_id, $customer_id)
-    {
-//        dd($customer_id);
-//        dd($product_id);
-        $shopify = $this->getShopifyObj($this->shop);
-        dd($shopify);
-        /////
         $data = [
-            'price_rule' => [
-                'title'                      => '100OFF',
-                'target_type'                => 'line_item',
-                'target_selection'           => 'entitled',
-                'allocation_method'          => 'across',
-                'customer_selection'         => 'all',
-                'value_type'                 => 'percentage',
-                'value'                      => '-10.0',
-//                'prerequisite_customer_ids'  => [
-//                    $customer_id
-//                ],
-                'entitled_product_ids'   => [
-                    $product_id
-                ],
-//                'prerequisite_quantity_range' => [
-//                    'greater_than_or_equal_to' => 1
-//                ],
-//                'prerequisite_subtotal_range' => [
-//                    'greater_than_or_equal_to' => '00.0'
-//                ],
-////                'once_per_customer'          => true,
-//                "usage_limit"                => 1,
+            "price_rule"    => [
+                "title"                 => "100BARTERRULE_".rand(),
+                "target_type"           => "line_item",
+                "target_selection"      => "entitled",
+                "allocation_method"     => "across",
+                "value_type"            => "percentage",
+                "value"                 => "-15.0",
+                "customer_selection"    => "prerequisite",
+                "starts_at"             => Carbon::now(),
+                "usage_limit"           => 1,
+                "entitled_product_ids"  => [
+                        $product_id
+                    ],
+                "prerequisite_customer_ids"=> [
+                        $customer_id
+                ]
             ]
         ];
-//        dd($data);
+
+        $shopify = $this->getShopifyObj($this->shop);
 
         $resp = $shopify->call([
             'URL'   => '/admin/price_rules.json',
             'METHOD'=> 'POST',
             'DATA'  => $data
         ]);
-
-        dd($resp);
+//        dd($resp,"rule");
+        return $this->createDiscountCode($resp->price_rule->id);
     }
 
-    public function createOrder($variant_id,$quantity)
+    /**
+     * @param $rule_id
+     * @return mixed
+     */
+    public function createDiscountCode($rule_id)
     {
         $data = [
-           'order' => [
-                'line_items' => [
-                    'title' => 'Big Brown Bear Boots',
-                    'variant_id' => $variant_id,
-                    'quantity'   => $quantity
+            "discount_code" => [
+                "code" => "100BARTERCODE_".rand()
+            ]
+        ];
+        $shopify = $this->getShopifyObj($this->shop);
+        $resp = $shopify->call([
+            'URL'   => '/admin/price_rules/'.$rule_id.'/discount_codes.json',
+            'METHOD'=> 'POST',
+            'DATA'  => $data
+        ]);
+
+        return $resp->discount_code;
+    }
+
+    /**
+     * @param $variant_id
+     * @param $quantity
+     * @param $customer
+     * @return mixed
+     */
+    public function createOrder($variant_id, $quantity, $customer)
+    {
+        $data = [
+            'order' => [
+                "customer" => [
+                    "id" => $customer->id
+                ],
+                //"send_fulfillment_receipt"=>true,
+                "requires_shipping" => true,
+                "line_items" => [
+                    [
+                        'variant_id' => $variant_id,
+                        'quantity'   => $quantity,
+                        "taxable"    => false,
+                    ]
+                ],
+                "discount_codes" => [
+                    [
+                        "code"      => "100BARTERCODE",
+                        "amount"    => "100.0",
+                        "type"      => "percentage"
+                    ]
+                ],
+                "shipping_address" => $customer->addresses[0],
+                "tax_lines" => [
+                    [
+                        "price" => 00.00,
+                        "rate"  => 0.00,
+                        "title" => "Tax Free"
+                    ]
+                ],
+                "shipping_lines" => [
+                    [
+                        "title"              => "Free Shipping",
+                        "price"              => "0.00",
+                        "code"               => "Free Shipping",
+                        "source"             => "shopify",
+                        "carrier_identifier" => null,
+                        "discounted_price"   => "0.00",
+                        "tax_lines"          => [],
+                        "price_set"          => [
+                            "shop_money"     => [
+                                "amount"            => "0.00",
+                                "currency_code"     => "USD"
+                            ],
+                            "presentment_money"=> [
+                                "amount"            => "0.00",
+                                "currency_code"     => "USD"
+                            ]
+                        ]
+                    ]
                 ]
             ]
         ];
+
         $shopify = $this->getShopifyObj($this->shop);
         $resp = $shopify->call([
             'URL'       => '/admin/orders.json',
             'METHOD'    => 'POST',
             'DATA'      => $data
         ]);
-        dd($resp);
+        return $resp->order;
     }
 }

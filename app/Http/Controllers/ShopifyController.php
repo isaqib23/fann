@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\CampaignTouchPointProductShippmentRepository;
 use App\Contracts\CityRepository;
 use App\Contracts\CountryRepository;
 use App\Contracts\ShopRepository;
@@ -56,10 +57,21 @@ class ShopifyController extends Controller
      * @var cityRepository
      */
     protected $city;
+
+    /**
+     * @var productShipmentRepository
+     */
+    protected $shippment;
+
     /**
      * ShopifyController constructor.
      * @param ShopRepositoryAlias $shopRepository
      * @param ShopifyProductService $productService
+     * @param UserRepository $userRepository
+     * @param CountryRepository $countryRepository
+     * @param StateRepository $stateRepository
+     * @param CityRepository $cityRepository
+     * @param CampaignTouchPointProductShippmentRepository $ProductShippmentRepository
      */
     public function __construct(
         ShopRepository $shopRepository,
@@ -67,7 +79,8 @@ class ShopifyController extends Controller
         UserRepository $userRepository,
         CountryRepository $countryRepository,
         StateRepository $stateRepository,
-        CityRepository $cityRepository
+        CityRepository $cityRepository,
+        CampaignTouchPointProductShippmentRepository $ProductShippmentRepository
     )
     {
         $this->repository = $shopRepository;
@@ -76,12 +89,13 @@ class ShopifyController extends Controller
         $this->country = $countryRepository;
         $this->state = $stateRepository;
         $this->city = $cityRepository;
+        $this->shippment = $ProductShippmentRepository;
     }
 
     /**
      * helper method to perform shopify auth
      *
-     * @param                          $shop
+     * @param $shop
      * @param Request $request
      *
      * @return Factory|View
@@ -289,42 +303,23 @@ class ShopifyController extends Controller
 
     public function shipProduct()
     {
-        $user_id=8;
-        $product_id=4178591612982;
-        $variant_id=30360917180470;
-
-        $shopObj = $this->repository->findByField('id', 5)->first();
-
-        $this->productService->setShop($shopObj);
-        $user = $this->user->with(['UserDetail'])->find([$user_id])->first();
-        /////
-        $data = [
-            'customer' => [
-                "first_name"    =>  $user->first_name,
-                "last_name"     =>  $user->last->name ?? '' , ////empty string if null
-                "email"         =>  $user->email,
-                "addresses" =>  [
-                    [
-                        "address1" => $user->UserDetail->address??'',
-                        "city" =>  "islamabad",//$this->city->find([$user->UserDetail->city_id])->pluck('name')->first(),
-                        "country" => $user->UserDetail? $this->country->find([$user->UserDetail->country_id])->pluck('name')->first():'',
-                        "phone" => $user->UserDetail->phone??'',
-                        "zip" => $user->UserDetail->zip ?? '',
-                        "first_name" => $user->first_name,
-                        "last_name" => $user->last_name
-                    ]
-                ],
-                "send_email_invite" => true
-            ]
+        $details = [
+            'send_by'                => 31,
+            'touch_point_id'         => 1061,
+            'touch_point_product_id' => 11
         ];
+        $user_id = 8;
+        $variant_id = 30360911642678;
 
-        $createdCustomer = $this->productService->createOrFindCustomer($user,$data);
-//        dd($createdCustomer);
+        $shopObj = $this->repository->findByField('id', 7)->first(); ///SHOP id
+        $this->productService->setShop($shopObj);
 
-        $createdRule = $this->productService->createRule($product_id,$createdCustomer[0]->id);
+        $user = $this->user->with(['UserDetail'])->find([$user_id])->first();
 
-        $createdOrder = $this->productService->createOrder($variant_id,$quantity=1);
-        dd($createdCustomer);
+        $createdCustomer = $this->productService->createOrFindCustomer($user);
+        $createdOrder = $this->productService->createOrder($variant_id, $quantity=1, $createdCustomer[0]);
+
+        $this->shippment->createShippment($createdOrder, $details);
     }
 
 
