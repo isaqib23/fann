@@ -417,8 +417,9 @@ class CampaignsController extends Controller
      */
     public function broadcastCampaignMessage(Request $request)
     {
-        $mongoChat = new CampaignChatRepositoryMongo('campaign_2_2');
         broadcast(new CampaignChatEvent($request->get('chatTo'), auth()->id(), $request->get('content')));
+
+        $mongoChat = app()->makeWith(CampaignChatRepositoryMongo::class, ['collectionName' => 'campaign_2_2']);
         $mongoChat->store($request);
     }
 

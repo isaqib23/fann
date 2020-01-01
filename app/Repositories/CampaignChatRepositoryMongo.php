@@ -31,6 +31,12 @@ class CampaignChatRepositoryMongo
         $this->model = CampaignChat::setCollection($collectionName);
     }
 
+
+  /*  public function init($collectionName)
+    {
+        $this->model = CampaignChat::setCollection($collectionName);
+        return $this;
+    }*/
     /**
      * @param Request $request
      * @return mixed
@@ -70,7 +76,7 @@ class CampaignChatRepositoryMongo
                 'campaign_id' => '2',
                 'placement_id' => '2'
             ];
-dd($this->model);
+
             return $this->model->create($data);
 
         } catch (Exception $e) {
