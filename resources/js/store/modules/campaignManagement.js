@@ -22,7 +22,7 @@ export const mutations = {
  */
 export const actions = {
     async fetchCampaigns({commit}, payload) {
-        let response =  await CampaignManageAxios.post('campaignManagement.getActiveCampaigns', payload);
+        let response =  await CampaignManageAxios.post('campaignManagement.getActiveCampaignsByCompany', payload);
 
         commit('setCampaigns', response.details);
         return response;
@@ -48,6 +48,12 @@ export const actions = {
 
     async getInfluencerCampaign({commit}, payload) {
         let response =  await CampaignManageAxios.post('campaignManagement.getInfluencerCampaign', payload);
+
+        return response.details;
+    },
+
+    async getActiveCampaigns({commit}, payload) {
+        let response =  await CampaignManageAxios.post('campaignManagement.getActiveCampaigns', payload);
 
         return response.details;
     }

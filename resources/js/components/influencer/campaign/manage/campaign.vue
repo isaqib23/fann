@@ -78,7 +78,7 @@
                                     </v-btn>
                                 </td>
                                 <td class="px-1">
-                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1" @click="goToInfluencer()">
+                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1" @click="getInfluencer(campaign[0])">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
                                     </v-btn>
                                 </td>
@@ -117,9 +117,6 @@
             ...mapActions({
                 getInfluencerCampaign : 'campaignManagement/getInfluencerCampaign',
             }),
-            goToInfluencer(){
-                this.$router.push({ name: 'influencer-manage-influencers' })
-            },
             placementStatistics(statistics,field){
                 let stat = _.sumBy(statistics, field);
                 if(_.isNil(stat)){
@@ -127,6 +124,15 @@
                 }
                 return stat;
             },
+            getInfluencer(campaign) {
+                this.$router.push({
+                    name: 'influencer-manage-influencers',
+                    params: {
+                        slug: campaign.campaign_id,
+                        user: this.auth.id
+                    }
+                })
+            }
         },
         async mounted() {
             this.campaigns = await this.getInfluencerCampaign({user_id:this.auth.id});

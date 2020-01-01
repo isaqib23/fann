@@ -1,6 +1,7 @@
 let campaign = {
     url: 'campaign_manage',
 
+    getActiveCampaignsByCompany   : 'getActiveCampaignsByCompany',
     getActiveCampaigns            : 'getActiveCampaigns',
     getCampaignById               : 'getCampaignById',
     getCampaignProposal           : 'getCampaignProposal',

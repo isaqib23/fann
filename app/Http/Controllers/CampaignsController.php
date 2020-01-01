@@ -400,9 +400,9 @@ class CampaignsController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function getActiveCampaigns(Request $request)
+    public function getActiveCampaignsByCompany(Request $request)
     {
-        $campaigns = $this->repository->getActiveCampaigns($request);
+        $campaigns = $this->repository->getActiveCampaignsByCompany($request);
 
         return response()->json([
             'details' => $campaigns,
@@ -455,6 +455,15 @@ class CampaignsController extends Controller
     public function getInfluencerCampaign(Request $request)
     {
         $campaigns = $this->influencerJobRepository->getInfluencerCampaign($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
+
+    public function getActiveCampaigns(Request $request)
+    {
+        $campaigns = $this->repository->getActiveCampaigns($request);
 
         return response()->json([
             'details' => $campaigns,

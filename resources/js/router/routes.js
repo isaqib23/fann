@@ -251,7 +251,7 @@ export default [
                     component : require('$comp/influencer/campaign/manage/campaign').default,
                 },
                 {
-                    path      : 'organise/manage/influencer',
+                    path      : 'organise/manage/influencer/:slug/:user',
                     name      : 'influencer-manage-influencers',
                     component : require('$comp/influencer/campaign/manage/influencer').default,
                 },

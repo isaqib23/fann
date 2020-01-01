@@ -192,7 +192,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      * @param $request
      * @return mixed
      */
-    public function getActiveCampaigns($request)
+    public function getActiveCampaignsByCompany($request)
     {
         $campaign = $this
             ->with([
@@ -265,5 +265,38 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
                     ->select(['id', 'user_id', 'campaign_id', 'placement_id']);
             }])
             ->findWhere(['id' => $request->input('campaign_id')])->first();
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getActiveCampaigns($request)
+    {
+        $campaign = $this
+            ->with([
+                'payment'  => function($query){
+                    $query->with(['paymentType' => function($paymentQuery){
+                        $paymentQuery->select(['id', 'name']);
+                    }])->select(['payment_type_id', 'campaign_id']);
+                },
+                'touchPoint' => function($query){
+                    $query->with(['media' => function($mediaQuery){
+                        $mediaQuery->select(['id', 'campaign_touch_point_id', 'path', 'name', 'format']);
+                    }])
+                        ->select(['id', 'name', 'campaign_id', 'placement_id']);
+                },
+                'objective' => function($objectiveQuery){
+                    $objectiveQuery->select(['id', 'name', 'slug']);
+                },
+                'company' => function($objectiveQuery){
+                    $objectiveQuery->select(['id', 'name', 'logo']);
+                }
+            ])
+            ->findWhere([
+                'status'   => $request->input('status')
+            ]);
+
+        return $campaign;
     }
 }
