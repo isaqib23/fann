@@ -35,13 +35,19 @@ class CampaignTouchPointProductShippmentRepositoryEloquent extends BaseRepositor
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public function createShippment($data,$details)
+    /**
+     * @param $data
+     * @param $details
+     * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function createShippment($data, $details)
     {
-        $this->create([
+        return $this->create([
             'outside_order_id'=> $data->id,
             'dispatch_date' => date('Y-m-d',strtotime($data->created_at)),
             'discount_code' => $data->discount_codes != null ? $data->discount_codes[0]->code : null,
-            'fulfillment_status' => $data->fulfillment_status ?? null,
+            'fulfillments' => $data->fulfillments ? json_encode($data->fulfillments) :  null,
             'order_status_url' => $data->order_status_url,
             'outside_customer_id' => $data->customer->id,
             'shipping_address' => $data->shipping_address !=null ? json_encode($data->shipping_address) : null,
@@ -50,6 +56,19 @@ class CampaignTouchPointProductShippmentRepositoryEloquent extends BaseRepositor
             'touch_point_id' => $details['touch_point_id'],
             'touch_point_product_id' => $details['touch_point_product_id']
         ]);
+    }
+
+    /**
+     * @param $data
+     * @param $order_id
+     * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function updateShippment($data, $order_id)
+    {
+        $order = $this->findByField('outside_order_id',$order_id)->first();
+
+        return $this->update($data,$order->id);
     }
 
 }

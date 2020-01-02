@@ -20,7 +20,7 @@ class CreateCampaignTouchPointProductShippmentsTable extends Migration
             $table->BigInteger('outside_order_id');
             $table->date('dispatch_date');
             $table->string('discount_code')->nullable();
-            $table->string('fulfillment_status')->nullable();
+            $table->json('fulfillments')->nullable();
             $table->text('order_status_url');
             $table->BigInteger('outside_customer_id');
             $table->json('shipping_address')->nullable();

@@ -301,6 +301,9 @@ class ShopifyController extends Controller
         );
     }
 
+    /**
+     * @return
+     */
     public function shipProduct()
     {
         $details = [
@@ -311,7 +314,7 @@ class ShopifyController extends Controller
         $user_id = 8;
         $variant_id = 30360911642678;
 
-        $shopObj = $this->repository->findByField('id', 7)->first(); ///SHOP id
+        $shopObj = $this->repository->findByField('id', 7)->first(); ////SHOP id
         $this->productService->setShop($shopObj);
 
         $user = $this->user->with(['UserDetail'])->find([$user_id])->first();
@@ -320,7 +323,10 @@ class ShopifyController extends Controller
         $createdOrder = $this->productService->createOrder($variant_id, $quantity=1, $createdCustomer[0]);
 
         $this->shippment->createShippment($createdOrder, $details);
+
+        $order_id = 1941024112694;///outside_order_id
+        $fulfillments = $this->productService->tracking($order_id);
+
+        $this->shippment->updateShippment(['fulfillments'=>json_encode($fulfillments)],$order_id);
     }
-
-
 }

@@ -343,4 +343,18 @@ class ShopifyProductService
         ]);
         return $resp->order;
     }
+
+    /**
+     * @param $order_id
+     * @return mixed
+     */
+    public function tracking($order_id)
+    {
+        $shopify = $this->getShopifyObj($this->shop);
+        $resp = $shopify->call([
+            'URL' => '/admin/orders/'.$order_id.'/fulfillments.json',
+            'METHOD' => 'GET'
+        ]);
+        return $resp->fulfillments;
+    }
 }
