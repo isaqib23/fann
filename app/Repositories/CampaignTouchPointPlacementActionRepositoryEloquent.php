@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Contracts\CampaignTouchPointPlacementActionRepository;
 use App\Models\CampaignTouchPointPlacementAction;
 use Illuminate\Container\Container as Application;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -60,30 +61,47 @@ class CampaignTouchPointPlacementActionRepositoryEloquent extends BaseRepository
      */
     public function store($data)
     {
-        return $this->create([
-            'campaign_touch_point_id' => $data['campaign_touch_point_id'],
-            'placement_type_id'       => $data['placement_type_id'],
-            'link'                    => $data['link'],
-            'link_type'               => $data['link_type']
-        ]);
+        return $this->updateOrCreate(
+            [
+                'campaign_touch_point_id'   => $data['campaign_touch_point_id'],
+                'placement_type_id'         => $data['placement_type_id'],
+            ],
+            [
+                'campaign_touch_point_id'       => $data['campaign_touch_point_id'],
+                'placement_type_id'             => $data['placement_type_id'],
+                'link'                          => $data['link'],
+                'link_type'                     => $data['link_type']
+            ]);
     }
 
     /**
      * @param $data
+     * @param $savedTouchPoint
      * @return mixed
      * @throws ValidatorException
+     * @throws BindingResolutionException
      */
-    public function prepareDataAndStore($data)
+    public function prepareDataAndStore($data,$savedTouchPoint)
     {
-        if (array_key_exists('slug', $data)) {
-            $placementType = $this->placementTypeRepositoryEloquent->findByField('slug', $data['slug'])->first();
+        $result = [
+            'campaign_touch_point_id'   => $savedTouchPoint->id,
+        ];
 
-            $data['placement_type_id'] = $placementType->id;
+        if(!is_null($data['instaBioLink'])) {
+            $result['placement_type_id'] = getPlacementTypeBySlug($data['instaPost']);
+            $result['link']              = $data['instaBioLink'];
+            $result['link_type']         = 'instaBioLink';
 
-            unset($data['slug']);
+            $this->store($result);
         }
 
-        return $this->store($data);
+        if(!is_null($data['instaStoryLink'])) {
+            $result['placement_type_id'] = getPlacementTypeBySlug($data['instaStory']);
+            $result['link']              = $data['instaStoryLink'];
+            $result['link_type']         = 'instaStoryLink';
+
+            $this->store($result);
+        }
     }
 
 }

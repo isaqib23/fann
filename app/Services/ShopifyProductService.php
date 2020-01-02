@@ -56,6 +56,10 @@ class ShopifyProductService
         return $resp->products;
     }
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function prepEventData(Request $request)
     {
         if (!$request->has('ids')) return [];
@@ -108,6 +112,36 @@ class ShopifyProductService
             'pixels'    => $this->shop->pixels,
             'config'  => $settings
         ];
+    }
+
+    /**
+     * @param $input
+     * @return mixed
+     */
+    public function findById($input)
+    {
+        $shopify = $this->getShopifyObj($this->shop);
+
+        if (ctype_digit($input)) {
+            $options = [
+                'limit' => 10,
+                'fields' => 'id,title,variants,images,image,handle',
+                'ids' => $input
+            ];
+        } else {
+            $options = [
+                'limit' => 10,
+                'fields' => 'id,title,variants,images,image,handle',
+                'title' => $input
+            ];
+        }
+
+        $resp = $shopify->call([
+            'URL' => '/admin/products/'.$input.'.json?' . urldecode(http_build_query($options)),
+            'METHOD' => 'GET'
+        ]);
+
+        return $resp->product;
     }
 
 

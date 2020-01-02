@@ -20,8 +20,18 @@
                 <div class="kind_group">
                     <div class="subtitle-2 mt-0 mb-2">What kind of Influencers you are looking for?</div>
                     <v-radio-group v-model="inviteSearchParams.placement" row class="mt-0">
-                        <v-radio class="insta_radio" label="Instagram" off-icon="mdi-instagram" on-icon="mdi-instagram" value="insatgram" active-class="kind_active"></v-radio>
-                        <v-radio class="youtube_radio" label="Youtube" off-icon="mdi-youtube" on-icon="mdi-youtube" value="youtube" active-class="kind_active"></v-radio>
+                        <v-radio
+                            v-for="(placementItem, placementIndex) in loadPlacements"
+                            :key="placementIndex"
+                            :class="[
+                                placementItem.slug === 'instagram' ? 'insta_radio' : 'youtube_radio',
+                                inviteSearchParams.placement == placementItem.id ? 'kind_active': ''
+                            ]"
+                            active-class="kind_active"
+                            :label="placementItem.name"
+                            :off-icon="placementItem.image"
+                            :on-icon="placementItem.image"
+                            :value="placementItem.slug"></v-radio>
                     </v-radio-group>
                 </div>
 
@@ -153,28 +163,21 @@
                range              : [0, 0],
                rating             : 3,
                items              : [],
-               inviteSearchParams : {
-                   niche     : null,
-                   placement : null,
-                   followers :  [0, 0],
-                   likes     :  [0, 0],
-                   eng_rate  : null,
-                   gender    : null,
-                   age_range : null,
-                   country   : null,
-                   rating    : null
-               }
+               loadPlacements:null,
             }
         },
         computed: {
             ...mapGetters({
                 countries: 'settings/countries',
                 niches: 'settings/niches',
+                inviteSearchParams: 'campaign/inviteSearchParams',
+                placement           : 'campaign/campaignPlacement',
             })
         },
         methods: {
             ...mapActions({
-                inviteSearch : 'campaign/inviteSearch'
+                inviteSearch : 'campaign/inviteSearch',
+                fetchAllPlacements          : 'campaign/fetchAllPlacements',
             }),
             getFlag (name) {
                 return '/images/flags/'+name;
@@ -187,11 +190,23 @@
                     this.inviteSearchParams
                 );
             }
+        },
+        mounted() {
+            this.inviteSearchParams.placement = this.placement.platform;
+        },
+        async created() {
+            let fetchAllPlacements = await this.fetchAllPlacements();
+            this.loadPlacements = fetchAllPlacements.details;
         }
     }
 </script>
 
 <style scoped>
+
+    >>>.kind_active1 {
+        background: #EE6F6F !important;
+        padding: 15px !important;
+    }
 
     >>>.kind_active {
         background: #EE6F6F !important;

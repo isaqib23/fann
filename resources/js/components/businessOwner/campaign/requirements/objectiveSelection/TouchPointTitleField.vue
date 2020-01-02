@@ -24,7 +24,7 @@
             }
         },
         mounted () {
-            this.icon = this.paymentMethod.platform == 1 ? 'mdi-instagram': 'mdi-youtube';
+            this.icon = this.paymentMethod.platform === 1 ? 'mdi-instagram': 'mdi-youtube';
         }
     }
 </script>

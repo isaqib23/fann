@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -21,14 +22,27 @@ class Placement extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'name',
+        'slug',
+        'image'
+    ];
+
 
     /**
-     * @return HasMany
-     *
+     * @return BelongsTo
+     */
+    public function campagin()
+    {
+        return $this->belongsTo(Campaign::class, 'primary_placement_id', 'id');
+    }
+
+    /**
+     * @return HasOne
      */
     public function userPlatforms()
     {
-        return $this->hasMany(UserPlatform::class);
+        return $this->hasOne(UserPlatform::class);
     }
+
 }

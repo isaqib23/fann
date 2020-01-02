@@ -87,13 +87,13 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
 
     public function saveInHierarchy($data)
     {
+        //dd($data);
         $barterProduct = $dispatchProduct =  null;
         $touchPoint = $data['touchPoint'];
-
         //---- dispatch product
         if (!empty($touchPoint['dispatchProduct'])) {
-            $dispatchProduct = $this->campaignTouchPointProductRepository->store($touchPoint['dispatchProduct']);
-        }
+        $dispatchProduct = $this->campaignTouchPointProductRepository->store($touchPoint['dispatchProduct']);
+    }
 
         //---- shipment product
         if (!empty($touchPoint['barterProduct'])) {
@@ -105,17 +105,31 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
             $savedPayments = $this->campaignPaymentRepositoryEloquent->storeMultiple($data['payment'], $data['campaignId']);
         }
 
+        // Prepare Barter Product
+        if($dispatchProduct !== null
+            ||
+            (isset($touchPoint['productBrand']) && $touchPoint['touchPointConditionalFields']['additionalPayAsBarter'])
+            ||
+            (isset($touchPoint['productBrand']) && $touchPoint['touchPointConditionalFields']['isBarter'])
+        ) {
+            $barterProduct = $barterProduct !== null ?  $barterProduct->id : $dispatchProduct->id ;
+        }
         //---- Touch Point
-        $savedTouchPoint =  $this->create([
-            'name'                => $touchPoint['caption'],
-            'description'         => $touchPoint['name'],
-            'dispatch_product'    => $dispatchProduct->id,
-            'barter_product'      => $barterProduct == null ?  $dispatchProduct->id : $barterProduct->id,
-            'campaign_id'         => $data['campaignId'],
-            'placement_id'        => $data['payment']['platform'],
-            'barter_as_dispatch'  => 1,
-            'amount'              => $touchPoint['amount']
-        ]);
+        $savedTouchPoint =  $this->updateOrCreate(
+            [
+                'id'              => $touchPoint['id'],
+            ],
+            [
+                'name'                => isset($touchPoint['name']) ? $touchPoint['name'] : '',
+                'description'         => $touchPoint['caption'],
+                'dispatch_product'    => $dispatchProduct === null ? null : $dispatchProduct->id,
+                'barter_product'      => $barterProduct,
+                'campaign_id'         => $data['campaignId'],
+                'company_id'          => isset($touchPoint['productBrand']) ? $touchPoint['productBrand'] : null,
+                'placement_id'        => $data['payment']['platform'],
+                'barter_as_dispatch'  => (!empty($touchPoint['dispatchProduct']) && !empty($touchPoint['barterProduct'])) ? 0 : 1,
+                'amount'              => $touchPoint['amount']
+            ]);
 
         //---- additionals
         $this->campaignTouchPointAdditionalRepositoryEloquent->store($touchPoint, $savedTouchPoint);
@@ -129,22 +143,11 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
          * Actions
          * In case of Insta story or post
          */
-        if (!empty($touchPoint['instaPost'])) {
-            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
-                'link_type'               => 'instaBioLink',
-                'link'                    => $touchPoint['instaBioLink'],
-                'slug'                    => $touchPoint['instaPost'],
-                'campaign_touch_point_id' => $savedTouchPoint->id
-            ]);
-        }
-
-        if (!empty($touchPoint['instaStory'])) {
-            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore([
-                'link_type'               => 'instaStoryLink',
-                'link'                    => $touchPoint['instaStoryLink'],
-                'slug'                    => $touchPoint['instaStory'],
-                'campaign_touch_point_id' => $savedTouchPoint->id
-            ]);
+        if ($touchPoint['touchPointConditionalFields']['touchPointInstagramFormat']) {
+            $this->campaignTouchPointPlacementActionRepositoryEloquent->prepareDataAndStore(
+                $touchPoint['instaFormatFields'],
+                $savedTouchPoint
+            );
         }
 
         return $savedTouchPoint;

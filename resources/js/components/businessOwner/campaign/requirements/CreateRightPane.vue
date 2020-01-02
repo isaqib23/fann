@@ -11,7 +11,10 @@
                     <v-layout class="left-pane">
                         <div class="card_box"></div>
                     </v-layout>
-                    <v-layout class="right-pane" style="background:#ccc">
+                    <v-layout class="right-pane mx-auto my-auto pl-7 pt-10">
+                        <v-card-text class="black--text">
+                        {{ (campaignInformation !== null) ? campaignInformation.description : ''}}
+                        </v-card-text>
                     </v-layout>
                 </v-card>
             </v-flex>
@@ -19,6 +22,7 @@
 
             <v-flex class="ma-auto mt-5"
                 :class="$vuetify.breakpoint.smAndUp ? 'common_wrapper' : 'full_width'"
+                    v-if="touchPoint.touchPointConditionalFields.touchPointInstagramFormat"
             >
                 <v-card class="description_card ma-auto" flat>
                     <v-layout row wrap>
@@ -28,20 +32,20 @@
                             </v-card-title>
                         </v-flex>
                         <v-flex lg8 sm8 m8 xs12 class="ma-auto white">
-                            <div class="parent_box ma-3">
+                            <div class="parent_box ma-3" v-if="touchPoint.instaFormatFields.instaPost">
                                 <v-badge overlap color="accent">
                                     <template v-slot:badge>0</template>
                                     <div class="child_box pa-5">
-                                        Instagram Post
+                                        {{touchPoint.instaFormatFields.instaBioLink}}
                                     </div>
                                 </v-badge>
                             </div>
 
-                            <div class="parent_box ma-3">
+                            <div class="parent_box ma-3" v-if="touchPoint.instaFormatFields.instaStory">
                                 <v-badge overlap color="accent">
                                     <template v-slot:badge>0</template>
                                     <div class="child_box pa-5">
-                                        Instagram Story
+                                        {{touchPoint.instaFormatFields.instaStoryLink}}
                                     </div>
                                 </v-badge>
                             </div>
@@ -233,7 +237,7 @@
                                             <strong class="primary--text">{{ guidelineIndex }}.</strong>
                                         </v-list-item-icon>
                                         <v-list-item-content v-if="guidelineIndex != 0">
-                                            <v-list-item-subtitle>
+                                            <v-list-item-subtitle class="black--text">
                                                 {{ guideline }}
                                             </v-list-item-subtitle>
                                         </v-list-item-content>
@@ -264,18 +268,27 @@
         },
         computed: {
             ...mapGetters({
-                touchPoint: 'campaign/touchPoint'
+                touchPoint: 'campaign/touchPoint',
+                campaignInformation : 'campaign/campaignInformation',
             })
         },
         watch : {
             'touchPoint.hashtags' : {
                 handler: function(newVal, oldVal) {
+                    if (_.isNil(newVal)) {
+                        this.hashtags = null;
+                        return;
+                    }
                     this.hashtags = newVal.split(',');
                  },
                 immediate: false
             },
             'touchPoint.mentions' : {
                 handler: function(newVal, oldVal) {
+                    if (_.isNil(newVal)) {
+                        this.mentions = null;
+                        return;
+                    }
                     this.mentions = newVal.split(',');
                 },
                 immediate: false
@@ -330,6 +343,7 @@
     }
     .right-pane {
         width: 75% !important;
+        background: #ffffff;
     }
 
     .card_box {
@@ -365,6 +379,10 @@
         margin-top:10px;
         margin-left:10px;
         color: #fff;
+    }
+    .child_box::before {
+        content: "\A";
+        white-space: pre;
     }
 
     .parent_box:last-child {

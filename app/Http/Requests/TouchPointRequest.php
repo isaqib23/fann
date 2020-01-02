@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Campaign;
+use Illuminate\Validation\Rule;
+
 class TouchPointRequest extends BaseFormRequest
 {
     /**
@@ -24,16 +27,20 @@ class TouchPointRequest extends BaseFormRequest
         $rules = [
             'campaignId'                     => 'required|numeric',
             'platformId'                     => 'required|numeric',
-            'touchPoint.campaignDescription' => 'required',
-            'touchPoint.name'                => 'required',
+            'campaignInformation.description'=> Rule::requiredIf($this->checkCampaignDescription()),
             'touchPoint.caption'             => 'required',
+            'touchPoint.hashtags'             => 'required',
+            'touchPoint.mentions'             => 'required',
+            'touchPoint.guideLines'             => 'required',
         ];
+
+        $rules = $this->checkTouchPointName($rules);
 
         $rules = $this->checkTouchPointAmount($rules);
 
         $rules = $this->checkTouchPointInstagramFormat($rules);
 
-        $rules = $this->checkBarterProduct($rules);
+        $rules = $this->checkDispatchProduct($rules);
 
         $rules = $this->checkProductBrand($rules);
 
@@ -63,15 +70,15 @@ class TouchPointRequest extends BaseFormRequest
     {
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointInstagramFormat')
         ) {
-            if (is_null($this->input('touchPoint.instaPost')) && is_null($this->input('touchPoint.instaStory'))
+            if (is_null($this->input('touchPoint.instaFormatFields.instaPost')) && is_null($this->input('touchPoint.instaFormatFields.instaStory'))
             ) {
-                $rules['touchPoint.instaPost'] = 'required';
+                $rules['touchPoint.instaFormatFields.instaPost'] = 'required';
             }
 
-            if (!is_null($this->input('touchPoint.instaPost'))) {
-                $rules['touchPoint.instaBioLink'] = 'required';
-            } elseif (!is_null($this->input('touchPoint.instaStory'))) {
-                $rules['touchPoint.instaStoryLink'] = 'required';
+            if (!is_null($this->input('touchPoint.instaFormatFields.instaPost'))) {
+                $rules['touchPoint.instaFormatFields.instaBioLink'] = 'required';
+            } elseif (!is_null($this->input('touchPoint.instaFormatFields.instaStory'))) {
+                $rules['touchPoint.instaFormatFields.instaStoryLink'] = 'required';
             }
         }
 
@@ -82,11 +89,11 @@ class TouchPointRequest extends BaseFormRequest
      * @param array $rules
      * @return array
      */
-    private function checkBarterProduct(array $rules): array
+    private function checkDispatchProduct(array $rules): array
     {
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointProduct')
         ) {
-            $rules['touchPoint.barterProduct'] = 'required';
+            $rules['touchPoint.dispatchProduct'] = 'required';
         }
 
         return $rules;
@@ -98,11 +105,48 @@ class TouchPointRequest extends BaseFormRequest
      */
     private function checkProductBrand(array $rules): array
     {
+
         if ($this->input('touchPoint.touchPointConditionalFields.touchPointBrand')
         ) {
             $rules['touchPoint.productBrand'] = 'required';
         }
-        
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointBrand') &&
+                $this->input('touchPoint.touchPointConditionalFields.additionalPayAsBarter')
+        ) {
+            $rules['touchPoint.barterProduct'] = 'required';
+        }
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointBrand') &&
+            $this->input('touchPoint.touchPointConditionalFields.isBarter')
+        ) {
+            $rules['touchPoint.barterProduct'] = 'required';
+        }
+
         return $rules;
     }
+
+    /**
+     * @return bool
+     */
+    private function checkCampaignDescription()
+    {
+        $data = $this->request->all();
+        $campaign = Campaign::find($data['campaignId']);
+
+        return (is_null($campaign->description)) ? true : false;
+    }
+
+    /**
+     * @param array $rules
+     * @return array
+     */
+    private function checkTouchPointName(array $rules): array
+    {
+        if ($this->input('touchPoint.touchPointConditionalFields.touchPointTitle')
+        ) {
+            $rules['touchPoint.name'] = 'required';
+        }
+
+        return $rules;
+    }
+
 }

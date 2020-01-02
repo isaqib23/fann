@@ -140,8 +140,7 @@
                     .then(function (resp) {
                         self.shops = resp.data;
                         self.busy = false;
-                        if(self.selectedShop === null){
-                            console.log('selectedShop SHop: ',self.selectedShop);
+                        if(self.selectedShop === null && self.shops[0] !== undefined){
                             self.selectedShop = self.shops[0].id;
                         }
                     });
@@ -151,11 +150,12 @@
                 this.selectedShop = shopId;
             }
         },
-        mounted() {
+       async mounted() {
             this.username = this.auth.first_name;
-            this.getLinkedShops();
-            if (localStorage.selectedShop) {
-                this.selectedShop = localStorage.selectedShop;
+           await this.getLinkedShops();
+
+           if (localStorage.hasOwnProperty("selectedShop")) {
+                this.selectedShop = localStorage.getItem('selectedShop');
             }
         },
         watch: {
@@ -163,6 +163,11 @@
                 if (!val) return
 
                 setTimeout(() => (this.loading = false), 3000)
+            },
+            selectedShop (val) {
+                if (!localStorage.hasOwnProperty("selectedShop")) {
+                    localStorage.setItem('selectedShop', this.selectedShop);
+                }
             }
         }
     }

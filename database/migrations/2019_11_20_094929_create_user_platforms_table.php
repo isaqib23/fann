@@ -41,6 +41,8 @@ class CreateUserPlatformsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('user_platforms');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('user_platforms');
+        Schema::enableForeignKeyConstraints();
 	}
 }

@@ -63,10 +63,10 @@ export const api = Object.assign(new URL(apiUrl), {
     user: {
         url: 'user',
 
-        activate :  ':id/activate',
-        single   :  ':id',
-        restore  :  ':id/restore',
-        search   :  'search'
+        activate          :  ':id/activate',
+        single            :  ':id',
+        restore           :  ':id/restore',
+        searchInfluencers :  'searchInfluencers'
     },
     profile: {
         url: 'profile'

@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\PlacementRepository;
-use App\Contracts\UserMetaRepository;
 use App\Contracts\UserPlatformMetaRepository;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
 use App\Contracts\UserPlatformRepository;
-use App\Validators\UserPlatformValidator;
 use App\Services\InstagramService;
 use App\Services\YoutubeService;
+
 
 
 /**
@@ -190,6 +189,9 @@ class UserPlatformsController extends Controller
         return $metaObject;
     }
 
+    /**
+     * @return int
+     */
     private function getYoutubeFollowers()
     {
         $followers = 0;
@@ -203,20 +205,20 @@ class UserPlatformsController extends Controller
         return $followers;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function getUserPlatforms(Request $request)
     {
-        $platforms = $this->placementRepository->all();
-
-        foreach ($platforms as $key => $value){
-            $platforms[$key]->userPlatforms = $this->repository->findWhere([
-                'user_id'    => auth()->user()->id,
-                'provider'   => $value->slug,
-            ])->first();
-        }
+        $platforms = $this->placementRepository->with(['userPlatforms' => function($query) {
+            $query->where('user_id', auth()->user()->id);
+            $query->with(['userPlatformMeta']);
+        }])->all();
 
         return response()->json([
             'details' => $platforms
         ]);
-
     }
+
 }

@@ -48,12 +48,16 @@ class CampaignTouchPointAdditionalRepositoryEloquent extends BaseRepository impl
             unset($data['guideLines'][0]);
         }
 
-        return $this->create([
-            'campaign_touch_point_id' => $touchPoint['id'],
-            'tags'                    => $data['hashtags'],
-            'mentions'                => $data['mentions'],
-            'guidelines'              => json_encode($data['guideLines'], JSON_FORCE_OBJECT )
-        ]);
+        return $this->updateOrCreate(
+            [
+                'campaign_touch_point_id'  => $touchPoint['id'],
+            ],
+            [
+                'campaign_touch_point_id' => $touchPoint['id'],
+                'tags'                    => $data['hashtags'],
+                'mentions'                => $data['mentions'],
+                'guidelines'              => json_encode($data['guideLines'], JSON_FORCE_OBJECT )
+            ]);
     }
 
 }

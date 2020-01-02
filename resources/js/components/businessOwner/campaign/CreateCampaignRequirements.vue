@@ -10,7 +10,7 @@
                     <LeftTabs></LeftTabs>
 
                     <v-tab-item>
-                        <CreateLeftPane :objective="campaignObjective" :touch-point="touchPoint"></CreateLeftPane>
+                        <CreateLeftPane></CreateLeftPane>
                     </v-tab-item>
                     <v-tab-item>
                         <InviteLeftPane></InviteLeftPane>
@@ -50,6 +50,11 @@
             InviteRightPaneGridView: InviteRightPaneGridView,
             Promote: Promote
         },
+        created() {
+            if (!localStorage.hasOwnProperty("touchPoint")) {
+                localStorage.setItem('touchPoint', JSON.stringify(this.touchPoint));
+            }
+        },
         mounted() {
             this.campaignObjective = Object.assign(this.campaignObjective, this.objective)
             this.campaignPlacement = Object.assign(this.campaignPlacement, this.placement)
@@ -72,21 +77,6 @@
                campaignPlacement : {
                    platform      : null,
                    type          : null
-               },
-               touchPoint        : {
-                   caption              : null,
-                   hashtags             : null,
-                   mentions             : null,
-                   guideLines           : [],
-                   dispatchProduct      : {},
-                   barterProduct        : {},
-                   amount               : 0,
-                   campaignDescription  : null,
-                   images               : [],
-                   instaPost            : null,
-                   instaBioLink         : null,
-                   instaStory           : null,
-                   instaStoryLink       : null,
                }
             }
         },
@@ -104,8 +94,9 @@
                 return (this.active_tab == 2) ? 'full_width' : 'full_width';
             },
             ...mapGetters({
-                objective: 'campaign/campaignObjective',
-                placement: 'campaign/campaignPlacement'
+                objective   : 'campaign/campaignObjective',
+                placement   : 'campaign/campaignPlacement',
+                touchPoint  : 'campaign/touchPoint'
             })
         },
         async mounted() {

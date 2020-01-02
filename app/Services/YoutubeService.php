@@ -25,13 +25,13 @@ class YoutubeService
         $this->google = new \Google_Client();
         $this->google->setAuthConfig(public_path(env('YOUTUBE_CLIENT_CREDENTIALS_PATH')));
 
-        $this->google->addScope([
-            \Google_Service_YouTube::YOUTUBE,
-            \Google_Service_YouTube::YOUTUBE_FORCE_SSL,
-            \Google_Service_YouTube::YOUTUBE_READONLY,
-            //\Google_Service_YouTube_ChannelAuditDetails::class
+        $this->google->setScopes([
+            'profile',
+            'https://www.googleapis.com/auth/youtube',
+            'https://www.googleapis.com/auth/youtube.force-ssl',
+            'https://www.googleapis.com/auth/youtube.readonly',
+            'https://www.googleapis.com/auth/youtubepartner-channel-audit',
         ]);
-        $this->google->setScopes(['profile']);
         $this->google->setIncludeGrantedScopes(true);
         $this->google->setRedirectUri(env('YOUTUBE_REDIRECT_URI'));
 
@@ -67,9 +67,17 @@ class YoutubeService
     public function setAccessToken($token)
     {
         $this->google->setAccessToken($token);
+
+        if($this->google->isAccessTokenExpired()) {
+            $this->google->fetchAccessTokenWithRefreshToken($this->google->getRefreshToken());
+            //Update in DB $this->google->getAccessToken();
+        }
     }
 
-    public function getUserInfo(){
+    /**
+     * @return \Google_Service_Oauth2_Userinfoplus
+     */
+    public function getUserInfo() {
 
         $userInfo = new \Google_Service_Oauth2($this->google);
 

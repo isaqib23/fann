@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateNichesTable.
+ * Class CreatePlacementsTable.
  */
-class CreateNichesTable extends Migration
+class CreatePlacementsTable extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -15,9 +15,11 @@ class CreateNichesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('niches', function(Blueprint $table) {
+		Schema::create('placements', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('image', 255)->unique();
             $table->softDeletes();
             $table->timestamps();
 		});
@@ -30,6 +32,8 @@ class CreateNichesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('niches');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('placements');
+        Schema::enableForeignKeyConstraints();
 	}
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -49,11 +50,19 @@ class UserPlatform extends Model implements Transformable
     }
 
     /**
-     * @return HasMany
+     * @return HasOne
      */
     public function userPlatformMeta()
     {
-        return $this->hasMany(UserPlatformMeta::class);
+        return $this->hasOne(UserPlatformMeta::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function placement()
+    {
+        return $this->belongsTo(Placement::class);
     }
 
 }
