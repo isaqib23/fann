@@ -35,9 +35,9 @@ class CampaignInvite extends Model implements Transformable
     /**
      * @return HasOne
      */
-    public function influencer_job()
+    public function assigned_job()
     {
-        return $this->hasOne(InfluencerJob::class,'campaign_invite_id', 'id');
+        return $this->hasOne(CampaignAssignedJobDetails::class,'campaign_invite_id', 'id');
     }
 
     /**
@@ -46,5 +46,10 @@ class CampaignInvite extends Model implements Transformable
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function campaign()
+    {
+        return $this->hasOne(Campaign::class,'id', 'campaign_id');
     }
 }

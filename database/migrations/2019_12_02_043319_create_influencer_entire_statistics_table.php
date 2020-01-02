@@ -17,7 +17,7 @@ class CreateInfluencerEntireStatisticsTable extends Migration
 	{
 		Schema::create('influencer_entire_statistics', function(Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('platform_id');
+            $table->unsignedInteger('placement_id');
             $table->unsignedInteger('user_id');
             $table->integer('rating')->nullable();
             $table->integer('eng_rate')->nullable();
@@ -33,7 +33,7 @@ class CreateInfluencerEntireStatisticsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('platform_id')->references('id')->on('placements');
+            $table->foreign('placement_id')->references('id')->on('placements');
             $table->foreign('user_id')->references('id')->on('users');
 		});
 	}

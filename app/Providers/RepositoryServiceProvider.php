@@ -17,9 +17,9 @@ use App\Contracts\CityRepository;
 use App\Contracts\CompanyRepository;
 use App\Contracts\CompanyUserRepository;
 use App\Contracts\CountryRepository;
-use App\Contracts\InfluencerCampaignStatisticsRepository;
+use App\Contracts\CampaignAssignedJobsRepository;
 use App\Contracts\UserPlatformMetaRepository;
-use App\Contracts\InfluencerJobRepository;
+use App\Contracts\CampaignAssignedJobDetailsRepository;
 use App\Contracts\InfluencerEntireStatisticsRepository;
 use App\Contracts\NicheRepository;
 use App\Contracts\NotificationRepository;
@@ -49,9 +49,9 @@ use App\Repositories\CityRepositoryEloquent;
 use App\Repositories\CompanyRepositoryEloquent;
 use App\Repositories\CompanyUserRepositoryEloquent;
 use App\Repositories\CountryRepositoryEloquent;
-use App\Repositories\InfluencerCampaignStatisticsRepositoryEloquent;
+use App\Repositories\CampaignAssignedJobsRepositoryEloquent;
 use App\Repositories\UserPlatformMetaRepositoryEloquent;
-use App\Repositories\InfluencerJobRepositoryEloquent;
+use App\Repositories\CampaignAssignedJobDetailsRepositoryEloquent;
 use App\Repositories\InfluencerEntireStatisticsRepositoryEloquent;
 use App\Repositories\NicheRepositoryEloquent;
 use App\Repositories\NotificationRepositoryEloquent;
@@ -119,9 +119,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserPlatformMetaRepository::class, UserPlatformMetaRepositoryEloquent::class);
         $this->app->bind(CampaignInviteRepository::class, CampaignInviteRepositoryEloquent::class);
         $this->app->bind(CampaignOfferRepository::class, CampaignOfferRepositoryEloquent::class);
-        $this->app->bind(InfluencerJobRepository::class, InfluencerJobRepositoryEloquent::class);
+        $this->app->bind(CampaignAssignedJobDetailsRepository::class, CampaignAssignedJobDetailsRepositoryEloquent::class);
         $this->app->bind(InfluencerEntireStatisticsRepository::class, InfluencerEntireStatisticsRepositoryEloquent::class);
-        $this->app->bind(InfluencerCampaignStatisticsRepository::class, InfluencerCampaignStatisticsRepositoryEloquent::class);
+        $this->app->bind(CampaignAssignedJobsRepository::class, CampaignAssignedJobsRepositoryEloquent::class);
         $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
         //:end-bindings:
     }

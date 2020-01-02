@@ -19,9 +19,10 @@ class InfluencerCampaignStatisticsTableSeeder extends Seeder
             $dt = Carbon::now();
             $dateNow = $dt->toDateTimeString();
 
-            DB::table('influencer_campaign_statistics')->insertGetId([
-                'platform_id'               => $faker->numberBetween(1,2),
+            DB::table('campaign_assigned_jobs')->insertGetId([
+                'placement_id'              => $faker->numberBetween(1,2),
                 'user_id'                   => $faker->numberBetween(11,20),
+                'campaign_invite_id'        => $faker->numberBetween(1,20),
                 'campaign_id'               => $campaign++,
                 'rating'                    => $faker->randomNumber(2),
                 'eng_rate'                  => $faker->randomNumber(2),

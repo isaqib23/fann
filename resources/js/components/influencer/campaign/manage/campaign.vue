@@ -35,14 +35,14 @@
                                     <v-list two-line class="list_cards pa-0 mx-0 hover_class" dense>
                                         <v-list-item class="px-0">
                                             <v-list-item-content>
-                                                <v-list-item-title v-html="campaign[0].campaign.name"></v-list-item-title>
+                                                <v-list-item-title v-html="campaign[0].invite.campaign.name"></v-list-item-title>
                                                 <v-list-item-subtitle >
                                                     <v-chip-group>
                                                         <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
-                                                            {{campaign[0].campaign.objective.name}}
+                                                            {{campaign[0].invite.campaign.objective.name}}
                                                         </v-chip>
                                                         <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
-                                                            {{campaign[0].campaign.payment.payment_type.name}}
+                                                            {{campaign[0].invite.campaign.payment.payment_type.name}}
                                                         </v-chip>
                                                     </v-chip-group>
                                                 </v-list-item-subtitle>
@@ -61,19 +61,19 @@
                                     ></v-switch>
                                 </td>
                                 <td class="subtitle-1">
-                                    {{placementStatistics(campaign[0].campaign.statistics,'work_rate')}}
+                                    {{placementStatistics(campaign[0].invite.campaign.statistics,'work_rate')}}
                                 </td>
                                 <td class="subtitle-1">
-                                    {{placementStatistics(campaign[0].campaign.statistics,'like_count')}}
+                                    {{placementStatistics(campaign[0].invite.campaign.statistics,'like_count')}}
                                 </td>
                                 <td class="subtitle-1">
-                                    {{placementStatistics(campaign[0].campaign.statistics,'eng_rate')}}%
+                                    {{placementStatistics(campaign[0].invite.campaign.statistics,'eng_rate')}}%
                                 </td>
                                 <td class="subtitle-1">
-                                    <v-btn color="accent" small height="45" class="mr-2" v-if="campaign[0].placement_id === 1">
+                                    <v-btn color="accent" small height="45" class="mr-2" v-if="campaign[0].invite.placement_id === 1">
                                         <v-icon>mdi-instagram</v-icon>
                                     </v-btn>
-                                    <v-btn color="white" small height="45" v-if="campaign[0].placement_id === 2">
+                                    <v-btn color="white" small height="45" v-if="campaign[0].invite.placement_id === 2">
                                         <v-icon color="primary">mdi-youtube</v-icon>
                                     </v-btn>
                                 </td>
@@ -128,7 +128,7 @@
                 this.$router.push({
                     name: 'influencer-manage-influencers',
                     params: {
-                        slug: campaign.campaign_id,
+                        slug: campaign.campaign_invite_id,
                         user: this.auth.id
                     }
                 })

@@ -87,7 +87,7 @@ class Campaign extends Model implements Transformable
      */
     public function statistics()
     {
-        return $this->hasMany(InfluencerCampaignStatistics::class);
+        return $this->hasMany(CampaignAssignedJobs::class);
     }
 
     /**

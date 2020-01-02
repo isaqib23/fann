@@ -227,14 +227,13 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
                 },
                 'touchPoint' => function($query) use ($request){
                     $query->with(['invite' => function($inviteQuery) use ($request){
-
-                        $inviteQuery->with(['influencer_job' => function($userQuery){
+                        $inviteQuery->with(['assigned_job' => function($userQuery){
                             $userQuery->with(['assign_to' => function($userQuery){
                                 $userQuery->with(['statistics' => function($statisticQuery){
-                                    $statisticQuery->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
+                                    $statisticQuery->select(['placement_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
                                 }])->select(['id', 'first_name', 'last_name', 'email']);
                             }])
-                            ->select(['id', 'assign_to_id', 'campaign_invite_id', 'assign_by_id', 'campaign_id', 'placement_id', 'campaign_touch_point_id']);
+                            ->select(['id', 'assign_to_id', 'assign_by_id', 'campaign_touch_point_id', 'campaign_invite_id']);
                         }])
                         ->where('campaign_id', $request->input('campaign_id'))
                         ->select(['id', 'user_id', 'campaign_id', 'placement_id']);
@@ -259,7 +258,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             ->with(['proposal' => function($userQuery){
                 $userQuery->with(['user' => function($userQuery){
                     $userQuery->with(['statistics' => function($statisticQuery){
-                        $statisticQuery->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
+                        $statisticQuery->select(['placement_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
                     }])->select(['id', 'first_name', 'last_name', 'email']);
                 }])
                     ->select(['id', 'user_id', 'campaign_id', 'placement_id']);
