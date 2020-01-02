@@ -79,7 +79,7 @@ export default {
         flex: 0 0 18%;
     }
     >>>.chatbox_min {
-        margin-bottom: -300px;
+        margin-bottom: -285px;
     }
     >>>.chatbox_min .chatbox-avatar {
         width:50px;

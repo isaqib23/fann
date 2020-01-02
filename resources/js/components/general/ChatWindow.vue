@@ -170,16 +170,6 @@
             width:auto !important;
         }
         }
-    >>>.chatbox_min {
-        margin-bottom: -300px;
-    }
-    >>>.chatbox_min .chatbox-avatar {
-        width:10%;
-        height:50%;
-    }
-    >>>.chatbox_min .chat-box-title {
-        padding:0 0 0 75px;
-    }
     >>>.emoji-picker {
         position: absolute ;
         z-index: 1 ;
@@ -194,6 +184,7 @@
         background: #fff ;
         box-shadow: 1px 1px 8px #c7dbe6 ;
         bottom:60px !important;
+        margin-bottom: 2em;
     }
     >>>.emoji-picker__search {
         display: flex;
@@ -232,6 +223,7 @@
     }
     .msg-box {
         height:200px;
+        overflow-y: scroll;
     }
     .my-message {
         word-wrap: break-word;
