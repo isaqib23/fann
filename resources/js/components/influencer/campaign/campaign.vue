@@ -25,6 +25,7 @@
                             class="mx-auto my-2"
                             @click="goToDetail()"
                         >
+                                <div class="img-container">
                                 <img
                                     :src="'/'+campaign.touch_point[0].media.path+'/medium/'+campaign.touch_point[0].media.name"
                                     alt="John"
@@ -37,7 +38,7 @@
                                     height="250"
                                     v-else
                                 >
-
+                                </div>
                             <v-avatar tile class="brand_logo">
                                 <img
                                     :src="'/'+campaign.touch_point[0].media.path+'/medium/'+campaign.touch_point[0].media.name"
@@ -127,5 +128,9 @@
         margin-top: -24px;
         margin-left: 24px;
         border-radius: 10px;
+    }
+    .img-container {
+        text-align: center;
+        display: block;
     }
 </style>

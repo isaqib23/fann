@@ -9298,6 +9298,10 @@ and (-webkit-min-device-pixel-ratio: 1) {
     margin-left: 24px;
     border-radius: 10px;
 }
+.img-container[data-v-0d5f2d08] {
+    text-align: center;
+    display: block;
+}
 
 .description_wrapper[data-v-0d3afcf9]{
     background:linear-gradient(90deg, #ee6f6e 0%,#fea57e 100% );
