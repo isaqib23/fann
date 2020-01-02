@@ -244,7 +244,6 @@
 </template>
 
 <script>
-
     import {mapActions, mapGetters} from 'vuex';
 
     export default {
@@ -356,18 +355,18 @@
         computed : {
             ...mapGetters({
                 chatBox : 'campaign/chatBox'
-            }),
+            })
         },
         methods: {
             ...mapActions({
                 saveChatBox : 'campaign/saveChatBox'
              }),
             openChatBox(item) {
-                let find = _.find(this.chatBox,function(obj){
-                        return obj.id === item.id;
-                    });
-               if( _.isEmpty(find)  &&  _.size(this.chatBox) < 3){
-                   this.saveChatBox(item);
+                let find = _.find(this.chatBox, function (obj) {
+                    return obj.id === item.id;
+                });
+                if (_.isEmpty(find) && _.size(this.chatBox) < 3) {
+                    this.saveChatBox(item);
                 }
             }
         }

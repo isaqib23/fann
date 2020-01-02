@@ -8,7 +8,7 @@
                 <transition name="fade" mode="out-in">
                     <router-view></router-view>
                 </transition>
-                <chatWindow
+                <chat-box
                     class="float-right checker"
                     v-for="(box, boxIndex) in listOfChatBox"
                     :key="boxIndex"
@@ -17,7 +17,7 @@
                     v-on:close-window="closeWindow"
                     :style="$vuetify.breakpoint.smAndUp ? {right: boxIndex*19 +'%'} : {right: boxIndex*0 +'%'}"
                 >
-                </chatWindow>
+                </chat-box>
             </v-container>
         </v-content>
 
@@ -38,10 +38,10 @@ export default {
         listOfChatBox  : []
     }),
     components: {
-        chatWindow : chatBox,
         AppNav,
         TopMenu,
-        AppFooter
+        AppFooter,
+        chatBox
     },
     mounted() {
         this.chatBoxes();
@@ -55,7 +55,10 @@ export default {
         ...mapActions({
             deleteChatBox : 'campaign/deleteChatBox'
         }),
-        chatBoxes(){
+        navToggle() {
+            this.mini = !this.mini
+        },
+        chatBoxes() {
             this.listOfChatBox = this.chatBox;
         },
         closeWindow(e) {
@@ -64,9 +67,6 @@ export default {
             });
 
             this.deleteChatBox(toRemove)
-        },
-        navToggle() {
-            this.mini = !this.mini
         }
     }
 }

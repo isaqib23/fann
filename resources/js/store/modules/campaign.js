@@ -31,7 +31,7 @@ export const state = {
           touchPointBrand          : false
       }
   },
-  inviteSearchParams        : {
+  inviteSearchParams          : {
         niche                   : 0,
         placement               : null,
         followers               : null,
@@ -112,13 +112,11 @@ export const actions = {
         commit('setTouchPointField',payload);
     },
     async inviteSearch({commit, state}, payload) {
-
         _.forEach(payload, function (value, key) {
             commit('setInviteSearchParams', [key, value]);
         });
 
         let response = await CampaignAxios.getInfluencersToInvite(state.inviteSearchParams);
-
     },
     saveChatBox({commit}, payload) {
         commit('setChatBox', payload);
