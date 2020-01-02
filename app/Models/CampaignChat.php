@@ -33,6 +33,23 @@ class CampaignChat extends Eloquent
     }
 
     /**
+     * @param $collection
+     * @return bool
+     */
+    public function collectionExists($collection)
+    {
+        $db = $this->getConnection();
+
+        foreach ($db->listCollections() as $collectionFromMongo) {
+            if ($collectionFromMongo->getName() == $collection) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

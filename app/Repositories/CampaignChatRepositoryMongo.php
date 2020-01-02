@@ -4,10 +4,12 @@ namespace App\Repositories;
 
 use App\Models\CampaignChat;
 use Exception;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Log;
+use MongoDB\BSON\ObjectId;
 
 
 /**
@@ -18,17 +20,32 @@ use Log;
 class CampaignChatRepositoryMongo
 {
     /**
+     * @var string|null
+     */
+    protected $collection = null;
+
+    /**
      * @var null
      */
-    protected $model = null;
+    protected $model;
+
+    /**
+     * @var string|null
+     */
+    protected $currentCollectionName;
 
     /**
      * CampaignChatRepositoryMongo constructor.
      * @param $collectionName
+     * @throws BindingResolutionException
      */
     public function __construct($collectionName)
     {
-        $this->model = CampaignChat::setCollection($collectionName);
+        $this->model = app()->make(CampaignChat::class);
+        $this->collection = CampaignChat::setCollection($collectionName);
+        $this->currentCollectionName = $collectionName;
+
+      //  dd($this->model->collectionExists('campaign_2_2'));
     }
 
 
@@ -77,7 +94,22 @@ class CampaignChatRepositoryMongo
                 'placement_id' => '2'
             ];
 
-            return $this->model->create($data);
+            if ($this->model->collectionExists($this->currentCollectionName)) {
+                return $this->collection
+                    ->where('campaign_id', '2')
+                    ->where('placement_id', '2')
+                    ->push('content' , [
+                    [
+                        'sender' => 18,
+                        'content' => 'new record to push',
+                        'time_created' => Carbon::now(),
+                        'type' => 'text',
+                        "_id"  => new ObjectId()
+                    ]
+                ]);
+            }
+
+            return $this->collection->create($data);
 
         } catch (Exception $e) {
             Log::info($e->getMessage());
