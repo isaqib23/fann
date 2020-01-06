@@ -35,7 +35,7 @@ class InfluencerJob extends Model implements Transformable
     /**
      * @return HasOne
      */
-    public function assign_to()
+    public function assignTo()
     {
         return $this->hasOne(User::class,'id', 'assign_to_id');
     }
@@ -43,7 +43,7 @@ class InfluencerJob extends Model implements Transformable
     /**
      * @return HasOne
      */
-    public function touch_point()
+    public function touchPoint()
     {
         return $this->hasOne(CampaignTouchPoint::class,'id', 'campaign_touch_point_id');
     }

@@ -28,6 +28,7 @@ use Prettus\Validator\LaravelValidator;
  *
  * @package namespace App\Http\Controllers;
  */
+
 class CampaignsController extends Controller
 {
     /**
@@ -38,31 +39,37 @@ class CampaignsController extends Controller
     /**
      * @var LaravelValidator
      */
+
     protected $validator;
 
     /**
      * @var CampaignObjectiveRepository
      */
+
     protected $campaignObjectiveRepository;
 
     /**
      * @var PlacementRepository
      */
+
     private $placementRepository;
 
     /**
      * @var CampaignTouchPointRepository
      */
+
     private $campaignTouchPointRepository;
 
     /**
      * @var CampaignPaymentRepository
      */
+
     private $campaignPaymentRepository;
 
     /**
      * @var CampaignInviteRepository
      */
+
     private $campaignInviteRepository;
     /**
      * @var InfluencerJobRepository
@@ -82,6 +89,7 @@ class CampaignsController extends Controller
      * @param CampaignInviteRepository $campaignInviteRepository
      * @param InfluencerJobRepository $influencerJobRepository
      */
+
     public function __construct(
         CampaignRepository $repository,
         CampaignObjectiveRepository $campaignObjectiveRepository,
@@ -366,7 +374,7 @@ class CampaignsController extends Controller
         $campaign = $this->repository->getCampaignTouchPointWithPresenter($request);
 
         return response()->json([
-            'details' => $campaign,
+            'details' => $campaign
         ]);
     }
 
@@ -379,7 +387,7 @@ class CampaignsController extends Controller
         $objective = $this->repository->getCampaignObjectivetWithPresenter($request);
 
         return response()->json([
-            'details' => $objective,
+            'details' => $objective
         ]);
     }
 
@@ -392,7 +400,7 @@ class CampaignsController extends Controller
         $campaign = $this->repository->updateCampaignStatus($request);
 
         return response()->json([
-            'details' => $campaign,
+            'details' => $campaign
         ]);
     }
 
@@ -405,7 +413,7 @@ class CampaignsController extends Controller
         $campaigns = $this->repository->getActiveCampaigns($request);
 
         return response()->json([
-            'details' => $campaigns,
+            'details' => $campaigns
         ]);
     }
 
@@ -418,7 +426,7 @@ class CampaignsController extends Controller
         $campaigns = $this->repository->getCampaignById($request);
 
         return response()->json([
-            'details' => $campaigns,
+            'details' => $campaigns
         ]);
     }
 
@@ -426,12 +434,12 @@ class CampaignsController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function getCampaignProposal(Request $request)
+    public function getCampaignProposals(Request $request)
     {
-        $campaigns = $this->repository->getCampaignProposal($request);
+        $campaigns = $this->repository->getCampaignProposals($request);
 
         return response()->json([
-            'details' => $campaigns,
+            'details' => $campaigns
         ]);
     }
 
