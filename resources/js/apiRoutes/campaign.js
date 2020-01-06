@@ -12,6 +12,9 @@ let campaign = {
     getCampaignTouchPoint       : 'getCampaignTouchPoint',
     getCampaignSavedObjective   : 'getCampaignSavedObjective',
     updateCampaignStatus        : 'updateCampaignStatus',
+    getActiveCampaigns          : 'manage/getActiveCampaigns',
+    getCampaignById             : 'manage/getCampaignById',
+    getCampaignProposal         : 'manage/getCampaignProposal'
 };
 
 export default campaign;

@@ -192,18 +192,7 @@
         },
         data: () => ({
             skeleton:true,
-            selectedCampaign:0,
-            item: {
-                title: 'My Awesome Campaign 2019',
-                tags: [
-                    'Pro Campaign',
-                    'Barter'
-                ],
-                status: true,
-                impression: '125k',
-                actions: '2.7k',
-                engRate: '2.0'
-            },
+            selectedCampaign:0
         }),
         methods: {
             getPlacement(campaign) {

@@ -22,20 +22,20 @@ export const mutations = {
  */
 export const actions = {
     async fetchCampaigns({commit}, payload) {
-        let response =  await CampaignManageAxios.post('campaignManagement.getActiveCampaigns', payload);
+        let response =  await CampaignManageAxios.post('campaign.getActiveCampaigns', payload);
 
         commit('setCampaigns', response.details);
         return response;
     },
 
     async getCampaignById({commit}, payload) {
-        let response =  await CampaignManageAxios.post('campaignManagement.getCampaignById', payload);
+        let response =  await CampaignManageAxios.post('campaign.getCampaignById', payload);
 
         return response.details;
     },
 
     async getCampaignProposal({commit}, payload) {
-        let response =  await CampaignManageAxios.post('campaignManagement.getCampaignProposal', payload);
+        let response =  await CampaignManageAxios.post('campaign.getCampaignProposal', payload);
 
         return response.details;
     }

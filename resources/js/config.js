@@ -39,7 +39,6 @@ class URL {
 import campaign from '../js/apiRoutes/campaign';
 import setting from '../js/apiRoutes/settings';
 import shopify from '../js/apiRoutes/shopify';
-import campaignManagement from '../js/apiRoutes/campaign-management';
 
 export const api = Object.assign(new URL(apiUrl), {
     url: '',
@@ -81,7 +80,6 @@ export const api = Object.assign(new URL(apiUrl), {
 
     campaign: campaign,
     setting:  setting,
-    shopify:  shopify,
-    campaignManagement:  campaignManagement,
+    shopify:  shopify
 
 })
