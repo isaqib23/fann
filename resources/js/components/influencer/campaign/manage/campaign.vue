@@ -21,31 +21,28 @@
                                 </th>
                                 <th class="text-left black--text">Campaign</th>
                                 <th class="text-left black--text">status</th>
-                                <th class="text-left black--text">impressions</th>
-                                <th class="text-left black--text">actions</th>
+                                <th class="text-left black--text">work rate</th>
+                                <th class="text-left black--text">like count</th>
                                 <th class="text-left black--text">eng.rate</th>
                                 <th class="text-left black--text">Placements</th>
                                 <th class="text-left black--text"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="i in 8" :key="i">
+                            <tr v-for="(campaign, index) in campaigns" :key="index">
                                 <td class="px-1"><v-checkbox value="true" color="primary"></v-checkbox></td>
                                 <td>
                                     <v-list two-line class="list_cards pa-0 mx-0 hover_class" dense>
                                         <v-list-item class="px-0">
                                             <v-list-item-content>
-                                                <v-list-item-title v-html="item.title"></v-list-item-title>
+                                                <v-list-item-title v-html="campaign[0].campaign.name"></v-list-item-title>
                                                 <v-list-item-subtitle >
                                                     <v-chip-group>
-                                                        <v-chip v-for="tag in item.tags"
-                                                                :key="tag"
-                                                                class="px-2"
-                                                                color="#E5E5E5"
-                                                                text-color="#71737D"
-                                                                label
-                                                        >
-                                                            {{tag}}
+                                                        <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
+                                                            {{campaign[0].campaign.objective.name}}
+                                                        </v-chip>
+                                                        <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
+                                                            {{campaign[0].campaign.payment.payment_type.name}}
                                                         </v-chip>
                                                     </v-chip-group>
                                                 </v-list-item-subtitle>
@@ -56,21 +53,27 @@
                                 <td>
                                     <v-switch
                                             flat
-                                            v-model="item.status"
+                                            :v-model="true"
                                             inset
                                             color="error"
                                             hide-details
                                             class="switch_class"
                                     ></v-switch>
                                 </td>
-                                <td class="subtitle-1">{{ item.impression }}</td>
-                                <td class="subtitle-1">{{ item.actions }}</td>
-                                <td class="subtitle-1">{{ item.engRate }}%</td>
                                 <td class="subtitle-1">
-                                    <v-btn color="accent" small height="45" class="mr-2">
+                                    {{placementStatistics(campaign[0].campaign.statistics,'work_rate')}}
+                                </td>
+                                <td class="subtitle-1">
+                                    {{placementStatistics(campaign[0].campaign.statistics,'like_count')}}
+                                </td>
+                                <td class="subtitle-1">
+                                    {{placementStatistics(campaign[0].campaign.statistics,'eng_rate')}}%
+                                </td>
+                                <td class="subtitle-1">
+                                    <v-btn color="accent" small height="45" class="mr-2" v-if="campaign[0].placement_id === 1">
                                         <v-icon>mdi-instagram</v-icon>
                                     </v-btn>
-                                    <v-btn color="white" small height="45">
+                                    <v-btn color="white" small height="45" v-if="campaign[0].placement_id === 2">
                                         <v-icon color="primary">mdi-youtube</v-icon>
                                     </v-btn>
                                 </td>
@@ -91,9 +94,10 @@
 </template>
 
 <script>
-
+    import {mapActions, mapGetters} from 'vuex';
     export default {
         data: () => ({
+            campaigns:[],
             item: {
                 title: 'My Awesome Campaign 2019',
                 tags: [
@@ -106,10 +110,26 @@
                 engRate: '2.0'
             }
         }),
+        computed: mapGetters({
+            auth: 'auth/user'
+        }),
         methods: {
+            ...mapActions({
+                getInfluencerCampaign : 'campaignManagement/getInfluencerCampaign',
+            }),
             goToInfluencer(){
                 this.$router.push({ name: 'influencer-manage-influencers' })
-            }
+            },
+            placementStatistics(statistics,field){
+                let stat = _.sumBy(statistics, field);
+                if(_.isNil(stat)){
+                    return 0;
+                }
+                return stat;
+            },
+        },
+        async mounted() {
+            this.campaigns = await this.getInfluencerCampaign({user_id:this.auth.id});
         }
     }
 </script>

@@ -7,6 +7,7 @@ use App\Contracts\CampaignInviteRepository;
 use App\Contracts\CampaignOfferRepository;
 use App\Contracts\CampaignPaymentRepository;
 use App\Contracts\CampaignTouchPointRepository;
+use App\Contracts\InfluencerJobRepository;
 use App\Contracts\PlacementRepository;
 use App\Http\Requests\TouchPointRequest;
 use http\Exception;
@@ -27,6 +28,7 @@ use Prettus\Validator\LaravelValidator;
  *
  * @package namespace App\Http\Controllers;
  */
+
 class CampaignsController extends Controller
 {
     /**
@@ -37,32 +39,42 @@ class CampaignsController extends Controller
     /**
      * @var LaravelValidator
      */
+
     protected $validator;
 
     /**
      * @var CampaignObjectiveRepository
      */
+
     protected $campaignObjectiveRepository;
 
     /**
      * @var PlacementRepository
      */
+
     private $placementRepository;
 
     /**
      * @var CampaignTouchPointRepository
      */
+
     private $campaignTouchPointRepository;
 
     /**
      * @var CampaignPaymentRepository
      */
+
     private $campaignPaymentRepository;
 
     /**
      * @var CampaignInviteRepository
      */
+
     private $campaignInviteRepository;
+    /**
+     * @var InfluencerJobRepository
+     */
+    private $influencerJobRepository;
 
 
     /**
@@ -75,7 +87,9 @@ class CampaignsController extends Controller
      * @param CampaignPaymentRepository $campaignPaymentRepository
      * @param LaravelValidator $validator
      * @param CampaignInviteRepository $campaignInviteRepository
+     * @param InfluencerJobRepository $influencerJobRepository
      */
+
     public function __construct(
         CampaignRepository $repository,
         CampaignObjectiveRepository $campaignObjectiveRepository,
@@ -83,7 +97,8 @@ class CampaignsController extends Controller
         CampaignTouchPointRepository $campaignTouchPointRepository,
         CampaignPaymentRepository $campaignPaymentRepository,
         LaravelValidator $validator,
-        CampaignInviteRepository $campaignInviteRepository
+        CampaignInviteRepository $campaignInviteRepository,
+        InfluencerJobRepository $influencerJobRepository
     )
     {
         $this->repository = $repository;
@@ -93,6 +108,7 @@ class CampaignsController extends Controller
         $this->campaignPaymentRepository = $campaignPaymentRepository;
         $this->validator = $validator;
         $this->campaignInviteRepository = $campaignInviteRepository;
+        $this->influencerJobRepository = $influencerJobRepository;
     }
 
     /**
@@ -424,6 +440,32 @@ class CampaignsController extends Controller
 
         return response()->json([
             'details' => $campaigns
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getInfluencerAssignTouchPoint(Request $request)
+    {
+        $campaigns = $this->influencerJobRepository->getInfluencerAssignTouchPoint($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getInfluencerCampaign(Request $request)
+    {
+        $campaigns = $this->influencerJobRepository->getInfluencerCampaign($request);
+
+        return response()->json([
+            'details' => $campaigns,
         ]);
     }
 }

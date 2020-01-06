@@ -100,14 +100,15 @@
                             dense clipped
                             class="ml-n7"
                         >
-                            <v-timeline-item
-                                v-for="(placementInvite, index) in item.invite"
+                            <template v-for="(placementInvite, index) in item.invite">
+                                <v-timeline-item
                                 :key="index"
                                 :fill-dot="true"
                                 icon="mdi-check"
                                 icon-color="white"
                                 right
                                 small
+                                v-if="placementInvite.influencer_job"
                             >
                                 <v-badge class="full_width">
                                     <template v-slot:badge>6</template>
@@ -123,15 +124,15 @@
                                             <v-list-item-content>
                                                 <v-row class="mx-auto">
                                                     <v-flex xl3 lg3 md3 sm6 xs12>
-                                                        <v-list-item-title>{{placementInvite.influencer_job.user.first_name+' '+placementInvite.influencer_job.user.last_name}}</v-list-item-title>
+                                                        <v-list-item-title>{{placementInvite.influencer_job.assign_to.first_name+' '+placementInvite.influencer_job.assign_to.last_name}}</v-list-item-title>
                                                         <v-list-item-subtitle>
-                                                            <v-rating :v-model="placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'rating')" size="7" small class="d-inline-block"></v-rating>
+                                                            <v-rating :v-model="placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'rating')" size="7" small class="d-inline-block"></v-rating>
                                                         </v-list-item-subtitle>
                                                     </v-flex>
                                                     <v-flex xl2 lg2 md2 sm6 xs12>
                                                         <div class="followers body-2">
                                                             <v-icon class="body-1">{{placementIcon(placementInvite.placement_id)}}</v-icon>
-                                                            {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'follower_count')}}
+                                                            {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'follower_count')}}
                                                             Followers
                                                         </div>
                                                     </v-flex>
@@ -144,13 +145,13 @@
                                                             </div>
                                                             <div class="followers">
                                                                 <p class="d-inline-block mb-0 mx-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'eng_rate')}}%
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'eng_rate')}}%
                                                                 </p>
                                                                 <p class="d-inline-block mb-0 ml-5 mr-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'comment_count')}}
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'comment_count')}}
                                                                 </p>
                                                                 <p class="d-inline-block mb-0 ml-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.user.statistics,'like_count')}}
+                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'like_count')}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -160,7 +161,7 @@
                                                             <v-icon class="caption">mdi-chat</v-icon>
                                                             Chat
                                                         </v-btn>
-                                                        <v-btn color="success" depressed small class="overline px-1" min-width="20">
+                                                        <v-btn color="success" depressed small class="overline px-1" min-width="20" @click="getInfluencer(placementInvite)">
                                                             <v-icon>keyboard_arrow_right</v-icon>
                                                         </v-btn>
                                                     </v-flex>
@@ -172,6 +173,7 @@
                                 </v-card>
                                 </v-badge>
                             </v-timeline-item>
+                            </template>
                         </v-timeline>
                     </td>
                 </template>
@@ -320,13 +322,14 @@
                     return 0;
                 }
                 return stat[field];
+            },
+            getInfluencer(campaign) {
+                this.$router.push({name: 'manage-campaigns-influencer', params: { slug: campaign.campaign_id, user: campaign.user_id }})
             }
         },
         async mounted() {
             this.campaignPlacement = await this.getCampaignById({campaign_id:this.$router.history.current.params.slug});
             this.campaignProposal = await this.getCampaignProposal({campaign_id:this.$router.history.current.params.slug});
-            console.log(this.campaignPlacement,this.campaignProposal);
-
         },
         watch: {
             'campaignPlacement' : {

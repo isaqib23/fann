@@ -105,6 +105,8 @@ Route::group(['middleware' => ['jwt']], function() {
             Route::post('getCampaignById', 'CampaignsController@getCampaignById');
             Route::post('getPlacementTouchPoint', 'CampaignsController@getPlacementTouchPoint');
             Route::post('getCampaignProposals', 'CampaignsController@getCampaignProposals');
+            Route::post('getInfluencerAssignTouchPoint', 'CampaignsController@getInfluencerAssignTouchPoint');
+            Route::post('getInfluencerCampaign', 'CampaignsController@getInfluencerCampaign');
         });
 
     });

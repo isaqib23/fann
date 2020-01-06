@@ -38,6 +38,18 @@ export const actions = {
         let response =  await CampaignManageAxios.post('campaign.getCampaignProposals', payload);
 
         return response.details;
+    },
+
+    async getInfluencerAssignTouchPoint({commit}, payload) {
+        let response =  await CampaignManageAxios.post('campaignManagement.getInfluencerAssignTouchPoint', payload);
+
+        return response.details;
+    },
+
+    async getInfluencerCampaign({commit}, payload) {
+        let response =  await CampaignManageAxios.post('campaignManagement.getInfluencerCampaign', payload);
+
+        return response.details;
     }
 }
 
