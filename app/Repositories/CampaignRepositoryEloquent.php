@@ -253,7 +253,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      * @param $request
      * @return mixed
      */
-    public function getCampaignProposal($request)
+    public function getCampaignProposals($request)
     {
         return $this
             ->with(['proposal' => function($userQuery){

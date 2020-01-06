@@ -104,7 +104,7 @@ Route::group(['middleware' => ['jwt']], function() {
             Route::post('getActiveCampaigns', 'CampaignsController@getActiveCampaigns');
             Route::post('getCampaignById', 'CampaignsController@getCampaignById');
             Route::post('getPlacementTouchPoint', 'CampaignsController@getPlacementTouchPoint');
-            Route::post('getCampaignProposal', 'CampaignsController@getCampaignProposal');
+            Route::post('getCampaignProposals', 'CampaignsController@getCampaignProposals');
         });
 
     });

@@ -358,7 +358,7 @@ class CampaignsController extends Controller
         $campaign = $this->repository->getCampaignTouchPointWithPresenter($request);
 
         return response()->json([
-            'details' => $campaign,
+            'details' => $campaign
         ]);
     }
 
@@ -371,7 +371,7 @@ class CampaignsController extends Controller
         $objective = $this->repository->getCampaignObjectivetWithPresenter($request);
 
         return response()->json([
-            'details' => $objective,
+            'details' => $objective
         ]);
     }
 
@@ -384,7 +384,7 @@ class CampaignsController extends Controller
         $campaign = $this->repository->updateCampaignStatus($request);
 
         return response()->json([
-            'details' => $campaign,
+            'details' => $campaign
         ]);
     }
 
@@ -397,7 +397,7 @@ class CampaignsController extends Controller
         $campaigns = $this->repository->getActiveCampaigns($request);
 
         return response()->json([
-            'details' => $campaigns,
+            'details' => $campaigns
         ]);
     }
 
@@ -410,7 +410,7 @@ class CampaignsController extends Controller
         $campaigns = $this->repository->getCampaignById($request);
 
         return response()->json([
-            'details' => $campaigns,
+            'details' => $campaigns
         ]);
     }
 
@@ -418,12 +418,12 @@ class CampaignsController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function getCampaignProposal(Request $request)
+    public function getCampaignProposals(Request $request)
     {
-        $campaigns = $this->repository->getCampaignProposal($request);
+        $campaigns = $this->repository->getCampaignProposals($request);
 
         return response()->json([
-            'details' => $campaigns,
+            'details' => $campaigns
         ]);
     }
 }

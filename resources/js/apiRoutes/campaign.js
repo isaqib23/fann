@@ -14,7 +14,7 @@ let campaign = {
     updateCampaignStatus        : 'updateCampaignStatus',
     getActiveCampaigns          : 'manage/getActiveCampaigns',
     getCampaignById             : 'manage/getCampaignById',
-    getCampaignProposal         : 'manage/getCampaignProposal'
+    getCampaignProposals         : 'manage/getCampaignProposals'
 };
 
 export default campaign;
