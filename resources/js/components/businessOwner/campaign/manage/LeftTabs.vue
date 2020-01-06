@@ -1,11 +1,17 @@
 <template>
     <div>
-        <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'" >
-            <v-icon left class="hidden-md-and-up">mdi-settings</v-icon>
-            <p class="text-capitalize">Campaign</p>
-            <v-icon left class="hidden-md-and-down">mdi-settings</v-icon>
+        <v-tab
+            :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'"
+            v-for="(tab,index) of manageTabs"
+            :key="tab.name"
+            :to="{name:tab.name}"
+            :disabled="(index === 0) ? false : true"
+        >
+            <v-icon left class="hidden-md-and-up">{{tab.icon}}</v-icon>
+            <p class="text-capitalize">{{tab.title}}</p>
+            <v-icon left class="hidden-md-and-down">{{tab.icon}}</v-icon>
         </v-tab>
-        <v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'" >
+        <!--<v-tab :class="$vuetify.breakpoint.mdAndUp ? 'pb-8 pt-12' : 'd-inline-block full_height'" >
             <v-icon left class="hidden-md-and-up">mdi-account-plus</v-icon>
             <p class="text-capitalize">Placement</p>
             <v-icon left class="hidden-md-and-down">mdi-account-plus</v-icon>
@@ -14,14 +20,18 @@
             <v-icon left class="hidden-md-and-up">mdi-lock</v-icon>
             <p class="text-capitalize">Influencer</p>
             <v-icon left class="hidden-md-and-down">mdi-lock</v-icon>
-        </v-tab>
+        </v-tab>-->
     </div>
 </template>
 
 <script>
+
     export default {
         components: {
 
+        },
+        props : {
+            manageTabs:null
         },
         data: () => {
            return  {

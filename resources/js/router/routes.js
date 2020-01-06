@@ -101,9 +101,25 @@ export default [
                     component : require('$comp/businessOwner/campaign/CreateFullWidthContentWrapper').default,
                     children  : [
                         {
-                            path      : 'campaign',
-                            name      : 'manage-campaigns',
-                            component : require('$comp/businessOwner/campaign/manage/index').default
+                            path      : 'campaigns',
+                            component : require('$comp/businessOwner/campaign/manage/index').default,
+                            children : [
+                                {
+                                    path      : 'all',
+                                    name      : 'manage-campaigns-all',
+                                    component : require('$comp/businessOwner/campaign/manage/Listing').default
+                                },
+                                {
+                                    path      : 'placement/:slug',
+                                    name      : 'manage-campaigns-placement',
+                                    component : require('$comp/businessOwner/campaign/manage/Placement').default
+                                },
+                                {
+                                    path      : 'influencer/:slug',
+                                    name      : 'manage-campaigns-influencer',
+                                    component : require('$comp/businessOwner/campaign/manage/Influencer').default
+                                }
+                            ]
                         }
                     ]
                 },

@@ -98,14 +98,21 @@ Route::group(['middleware' => ['jwt']], function() {
         Route::post('getCampaignTouchPoint', 'CampaignsController@getCampaignTouchPoint');
         Route::post('getCampaignSavedObjective', 'CampaignsController@getCampaignSavedObjective');
         Route::post('updateCampaignStatus', 'CampaignsController@updateCampaignStatus');
+
+        // ----- Campaign Manage related api's
+        Route::prefix('/manage')->group(function () {
+            Route::post('getActiveCampaigns', 'CampaignsController@getActiveCampaigns');
+            Route::post('getCampaignById', 'CampaignsController@getCampaignById');
+            Route::post('getPlacementTouchPoint', 'CampaignsController@getPlacementTouchPoint');
+            Route::post('getCampaignProposals', 'CampaignsController@getCampaignProposals');
+        });
+
     });
 
     // ----- User related api's
     Route::prefix('/user')->group(function () {
         Route::post('searchInfluencers', 'UserController@searchInfluencers');
     });
-
-
 
 });
 

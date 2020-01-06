@@ -20,6 +20,14 @@ class InfluencerJob extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'user_id',
+        'campaign_invite_id',
+        'status'
+    ];
 
+    public function user()
+    {
+        return $this->hasOne(User::class,'id', 'user_id');
+    }
 }
