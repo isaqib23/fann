@@ -227,8 +227,8 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
                 },
                 'touchPoint' => function($query) use ($request){
                     $query->with(['invite' => function($inviteQuery) use ($request){
-                        $inviteQuery->with(['assigned_job' => function($userQuery){
-                            $userQuery->with(['assign_to' => function($userQuery){
+                        $inviteQuery->with(['influencerJob' => function($userQuery){
+                            $userQuery->with(['assignTo' => function($userQuery){
                                 $userQuery->with(['statistics' => function($statisticQuery){
                                     $statisticQuery->select(['placement_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
                                 }])->select(['id', 'first_name', 'last_name', 'email']);
@@ -252,7 +252,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      * @param $request
      * @return mixed
      */
-    public function getCampaignProposal($request)
+    public function getCampaignProposals($request)
     {
         return $this
             ->with(['proposal' => function($userQuery){

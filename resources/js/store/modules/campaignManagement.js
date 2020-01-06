@@ -22,38 +22,38 @@ export const mutations = {
  */
 export const actions = {
     async fetchCampaigns({commit}, payload) {
-        let response =  await axiosRequest.post('campaignManagement.getActiveCampaignsByCompany', payload);
+        let response =  await axiosRequest.post('campaign.getActiveCampaignsByCompany', payload);
 
         commit('setCampaigns', response.details);
         return response;
     },
 
     async getCampaignById({commit}, payload) {
-        let response =  await axiosRequest.post('campaignManagement.getCampaignById', payload);
+        let response =  await axiosRequest.post('campaign.getCampaignById', payload);
 
         return response.details;
     },
 
     async getCampaignProposal({commit}, payload) {
-        let response =  await axiosRequest.post('campaignManagement.getCampaignProposal', payload);
+        let response =  await axiosRequest.post('campaign.getCampaignProposals', payload);
 
         return response.details;
     },
 
     async getInfluencerAssignTouchPoint({commit}, payload) {
-        let response =  await axiosRequest.post('campaignManagement.getInfluencerAssignTouchPoint', payload);
+        let response =  await axiosRequest.post('campaign.getInfluencerAssignTouchPoint', payload);
 
         return response.details;
     },
 
     async getInfluencerCampaign({commit}, payload) {
-        let response =  await axiosRequest.post('campaignManagement.getInfluencerCampaign', payload);
+        let response =  await axiosRequest.post('campaign.getInfluencerCampaign', payload);
 
         return response.details;
     },
 
     async getActiveCampaigns({commit}, payload) {
-        let response =  await axiosRequest.post('campaignManagement.getActiveCampaigns', payload);
+        let response =  await axiosRequest.post('campaign.getActiveCampaigns', payload);
 
         return response.details;
     }

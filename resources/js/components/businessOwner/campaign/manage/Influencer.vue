@@ -61,7 +61,12 @@
                 <template v-slot:item.engRate="{ item }">
                     <div class="mb-0">
                         <span>
-                            {{placementStatistics(item.touch_point.placement_id,item.assign_to.statistics,'eng_rate')}}%
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'eng_rate')
+                            }}%
                         </span>
                     </div>
                 </template>
@@ -69,7 +74,12 @@
                 <template v-slot:item.comments="{ item }">
                     <div class="mb-0">
                         <span>
-                            {{placementStatistics(item.touch_point.placement_id,item.assign_to.statistics,'comment_count')}}
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'comment_count')
+                            }}
                         </span>
                     </div>
                 </template>
@@ -77,7 +87,12 @@
                 <template v-slot:item.likes="{ item }">
                     <div class="mb-0">
                         <span>
-                            {{placementStatistics(item.touch_point.placement_id,item.assign_to.statistics,'like_count')}}
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'like_count')
+                            }}
                         </span>
                     </div>
                 </template>
