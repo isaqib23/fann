@@ -13,7 +13,7 @@
         <v-flex xs12 md7 class="pa-2">
             <v-data-table
                 :headers="headers"
-                :items="desserts"
+                :items="influencer"
                 :single-expand="singleExpand"
                 :expanded.sync="expanded"
                 item-key="id"
@@ -36,26 +36,59 @@
 
                 <template v-slot:item.title="{ item }">
                     <v-list-item class="list_cards mx-0 px-0">
-                    <v-list-item-avatar height="50" min-width="50" width="50" class="mr-3">
-                        <v-img :src="item.avatar"></v-img>
-                    </v-list-item-avatar>
+                        <v-list-item-avatar height="50" min-width="50" width="50" class="mr-3">
+                            <v-img src="/images/icons/user_placeholder.png"></v-img>
+                        </v-list-item-avatar>
                         <v-list-item-content>
-                        <div class="float_class">
-                            <div class="body-2 mb-2"><strong>{{item.title}}</strong>
-                                <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
+                            <div class="float_class">
+                                <div class="body-2 mb-2"><strong>{{item.assign_to.first_name+ ' '+item.assign_to.last_name}}</strong>
+                                    <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
+                                </div>
                             </div>
-                        </div>
                         </v-list-item-content>
                     </v-list-item>
                 </template>
 
                 <template v-slot:item.status="{ item }">
-                    {{item.status}}
+                    Active
                     <v-icon class="overline ml-2" color="success">mdi-circle</v-icon>
                 </template>
                 <template v-slot:item.engRate="{ item }">
                     <div class="mb-0">
-                        <span>{{item.engRate}}</span>
+                        <span>
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'eng_rate')
+                            }}%
+                        </span>
+                    </div>
+                </template>
+
+                <template v-slot:item.comments="{ item }">
+                    <div class="mb-0">
+                        <span>
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'comment_count')
+                            }}
+                        </span>
+                    </div>
+                </template>
+
+                <template v-slot:item.likes="{ item }">
+                    <div class="mb-0">
+                        <span>
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'like_count')
+                            }}
+                        </span>
                     </div>
                 </template>
 
@@ -66,8 +99,8 @@
                             class="ml-n7"
                         >
                             <v-timeline-item
-                                v-for="n in 3"
-                                :key="n"
+                                v-for="(touchPoint, index) in influencerTouchPoint[getInfluencerTouchPoint()]"
+                                :key="index"
                                 :fill-dot="true"
                                 icon="mdi-check"
                                 icon-color="white"
@@ -80,20 +113,20 @@
                                             <v-row class="mx-auto">
                                                 <v-flex xl2 lg2 md2 sm2 xs2>
                                                     <v-list-item-avatar height="56" min-width="100%" width="100%" class="ma-0 number_avatar" color="primary">
-                                                        <span class="white--text">1</span>
+                                                        <span class="white--text">{{index+1}}</span>
                                                     </v-list-item-avatar>
                                                 </v-flex>
                                                 <v-flex xl8 lg8 md8 sm8 xs8>
                                                     <v-text-field
                                                         outlined
-                                                        label="Instagram post"
+                                                        :label="touchPoint.touch_point.name"
                                                         class="touch_field"
-                                                        readonly
+                                                        disabled
                                                     ></v-text-field>
                                                 </v-flex>
                                                 <v-flex xl2 lg2 md2 sm2 xs2>
                                                     <v-list-item-avatar height="56" min-width="45" width="45" class="ma-0 amount_avatar" color="grayLight">
-                                                        <span>$15</span>
+                                                        <span>${{touchPoint.touch_point.amount}}</span>
                                                     </v-list-item-avatar>
                                                 </v-flex>
                                             </v-row>
@@ -144,8 +177,10 @@
 
 <script>
     import CampaignChatBox from "../../../general/CampaignChatBox";
+    import {mapActions, mapGetters} from 'vuex';
+
     export default {
-        components : {
+        components: {
             CampaignChatBox
         },
         data: () => ({
@@ -153,88 +188,70 @@
             expanded: [],
             singleExpand: true,
             dropdown: [
-                { title: '<strong>Status</strong> : In Progress' },
-                { title: 'Clone this Touchpoint' },
-                { title: 'Add new Touchpoint' },
-                { title: 'Pause This Touchpoint' },
-                { title: 'Delete' },
+                {title: '<strong>Status</strong> : In Progress'},
+                {title: 'Clone this Touchpoint'},
+                {title: 'Add new Touchpoint'},
+                {title: 'Pause This Touchpoint'},
+                {title: 'Delete'},
             ],
             headers: [
-                { text: 'Influencers', align: 'left', value: 'title', class: 'head_class text-uppercase',sortable: false,},
-                { text: 'Status', value: 'status', class: 'head_class text-uppercase',sortable: false,},
-                { text: 'Eng. Rate', value: 'engRate', class: 'head_class text-uppercase',sortable: false, },
-                { text: 'Comments', value: 'comments', class: 'head_class text-uppercase',sortable: false, },
-                { text: 'Likes', value: 'likes', class: 'head_class text-uppercase',sortable: false, },
+                {
+                    text: 'Influencers',
+                    align: 'left',
+                    value: 'title',
+                    class: 'head_class text-uppercase',
+                    sortable: false,
+                },
+                {text: 'Status', value: 'status', class: 'head_class text-uppercase', sortable: false,},
+                {text: 'Eng. Rate', value: 'engRate', class: 'head_class text-uppercase', sortable: false,},
+                {text: 'Comments', value: 'comments', class: 'head_class text-uppercase', sortable: false,},
+                {text: 'Likes', value: 'likes', class: 'head_class text-uppercase', sortable: false,},
             ],
-            desserts: [
+            influencerTouchPoint: [],
+            influencer: [],
+            chats: [
                 {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'1',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
+                    id: '1',
+                    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting',
+                    time: '7-19-2019 (3w ago)',
+                    img: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
+                    align: 'start'
                 },
                 {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'2',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
+                    id: '2',
+                    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting',
+                    time: '7-19-2019 (3w ago)',
+                    img: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
+                    align: 'end'
                 },
-                {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'3',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-                },
-                {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'4',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-                },
-                {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'5',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-                },
-            ],
+            ]
+        }),
+        methods: {
+            ...mapActions({
+                getInfluencerAssignTouchPoint: 'campaignManagement/getInfluencerAssignTouchPoint'
+            }),
+            getInfluencerTouchPoint() {
+                let response = _.keys(this.influencerTouchPoint)[0];
+                return response;
+            },
+            placementStatistics(id, statistics, field) {
+                let stat = _.find(statistics, ['placement_id', id]);
+                if (_.isNil(stat)) {
+                    return 0;
+                }
+                return stat[field];
+            }
+        },
+        async mounted() {
+            this.influencerTouchPoint = await this.getInfluencerAssignTouchPoint({
+                campaign_invite_id: this.$router.history.current.params.slug,
+                user_id: this.$router.history.current.params.user
+            });
 
-        })
+            if (_.isNil(this.influencerTouchPoint.length) || this.influencerTouchPoint.length > 0) {
+                this.influencer.push(this.influencerTouchPoint[this.getInfluencerTouchPoint()][0]);
+            }
+        }
     }
 </script>
 <style scoped>

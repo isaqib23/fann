@@ -2,11 +2,9 @@
  * Initial state
  */
 export const state = {
-
     campaigns    : [],
     campaignChat : null,
-    chatMessage : null
-
+    chatMessage  : null
 }
 
 /**
@@ -21,6 +19,9 @@ export const mutations = {
     },
     setChatMessage(state, payload) {
         state.chatMessage = payload
+    },
+    setActiveTab(state, objective) {
+        state.activeTab = objective
     }
 }
 
@@ -29,22 +30,52 @@ export const mutations = {
  */
 export const actions = {
     async fetchCampaigns({commit}, payload) {
-        let response =  await CampaignManageAxios.post('campaignManagement.getActiveCampaigns', payload);
-
+        let response =  await axiosRequest.post('campaign.getActiveCampaignsByCompany', payload);
         commit('setCampaigns', response.details);
         return response;
     },
 
     async initiateCampaignChat({commit}, payload) {
-        let response =  await CampaignManageAxios.post('campaign.broadcastCampaignChat', payload);
+        let response =  await axiosRequest.post('campaign.broadcastCampaignChat', payload);
         return response;
     },
+
+    async getCampaignById({commit}, payload) {
+        let response =  await axiosRequest.post('campaign.getCampaignById', payload);
+
+        return response.details;
+    },
+
+    async getCampaignProposal({commit}, payload) {
+        let response =  await axiosRequest.post('campaign.getCampaignProposals', payload);
+
+        return response.details;
+    },
+
+    async getInfluencerAssignTouchPoint({commit}, payload) {
+        let response =  await axiosRequest.post('campaign.getInfluencerAssignTouchPoint', payload);
+
+        return response.details;
+    },
+
+    async getInfluencerCampaign({commit}, payload) {
+        let response =  await axiosRequest.post('campaign.getInfluencerCampaign', payload);
+
+        return response.details;
+    },
+
+    async getActiveCampaigns({commit}, payload) {
+        let response =  await axiosRequest.post('campaign.getActiveCampaigns', payload);
+
+        return response.details;
+    },
+
     sendChatMessage({commit}, payload) {
         console.info(payload, "messsage");
         commit('setChatMessage', payload);
-        let response =  CampaignManageAxios.post('campaign.broadcastCampaignMessage', payload);
+        let response =  axiosRequest.post('campaign.broadcastCampaignMessage', payload);
         return response;
-    },
+    }
 }
 
 /**
@@ -52,64 +83,6 @@ export const actions = {
  */
 export const getters = {
     campaigns       : state => state.campaigns,
-    chatMessage     : state => state.chatMessage
+    chatMessage     : state => state.chatMessage,
+    activeTab       : state => state.activeTab
 }
-
-/**
- * Axios
- */
-let CampaignManageAxios = class {
-
-    static post (path, payload) {
-        return axios.post(api.path(path), payload)
-            .then(resp => {
-                return {
-                    status : 200,
-                    details : resp.data.details
-                };
-            })
-            .catch(err => {
-                return {
-                    status : err.response.status,
-                    details : err.response.data.errors
-                };
-            });
-    }
-
-    static put (path, payload) {
-        return axios.put(api.path(path), payload)
-            .then(resp => {
-                return {
-                    status : 200,
-                    details : resp.data.details
-                };
-            })
-            .catch(err => {
-                return {
-                    status : err.response.status,
-                    details : err.response.data.errors
-                };
-            });
-    }
-
-    static get (path, payload = null) {
-        return axios.get(api.path(path) + payload)
-            .then(resp => {
-                return {
-                    status : 200,
-                    details : resp.data.details
-                };
-        })
-        .catch(err => {
-            return {
-                status : err.response.status,
-                details : err.response.data.errors
-            };
-        });
-    }
-
-};
-
-
-
-
