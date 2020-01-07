@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Contracts\CampaignAssignedJobDetailRepository;
 use App\Contracts\CampaignInviteRepository;
 use App\Contracts\CampaignOfferRepository;
 use App\Contracts\CampaignPaymentRepository;
 use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\PlacementRepository;
 use App\Http\Requests\TouchPointRequest;
+use App\Models\CampaignAssignedJobDetail;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -27,6 +29,7 @@ use Prettus\Validator\LaravelValidator;
  *
  * @package namespace App\Http\Controllers;
  */
+
 class CampaignsController extends Controller
 {
     /**
@@ -37,32 +40,42 @@ class CampaignsController extends Controller
     /**
      * @var LaravelValidator
      */
+
     protected $validator;
 
     /**
      * @var CampaignObjectiveRepository
      */
+
     protected $campaignObjectiveRepository;
 
     /**
      * @var PlacementRepository
      */
+
     private $placementRepository;
 
     /**
      * @var CampaignTouchPointRepository
      */
+
     private $campaignTouchPointRepository;
 
     /**
      * @var CampaignPaymentRepository
      */
+
     private $campaignPaymentRepository;
 
     /**
      * @var CampaignInviteRepository
      */
+
     private $campaignInviteRepository;
+    /**
+     * @var CampaignAssignedJobDetailRepository
+     */
+    private $campaignAssignedJobDetailsRepository;
 
 
     /**
@@ -75,7 +88,9 @@ class CampaignsController extends Controller
      * @param CampaignPaymentRepository $campaignPaymentRepository
      * @param LaravelValidator $validator
      * @param CampaignInviteRepository $campaignInviteRepository
+     * @param CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
      */
+
     public function __construct(
         CampaignRepository $repository,
         CampaignObjectiveRepository $campaignObjectiveRepository,
@@ -83,7 +98,8 @@ class CampaignsController extends Controller
         CampaignTouchPointRepository $campaignTouchPointRepository,
         CampaignPaymentRepository $campaignPaymentRepository,
         LaravelValidator $validator,
-        CampaignInviteRepository $campaignInviteRepository
+        CampaignInviteRepository $campaignInviteRepository,
+        CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
     )
     {
         $this->repository = $repository;
@@ -93,6 +109,7 @@ class CampaignsController extends Controller
         $this->campaignPaymentRepository = $campaignPaymentRepository;
         $this->validator = $validator;
         $this->campaignInviteRepository = $campaignInviteRepository;
+        $this->campaignAssignedJobDetailsRepository = $campaignAssignedJobDetailsRepository;
     }
 
     /**
@@ -314,39 +331,25 @@ class CampaignsController extends Controller
 
             $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $this->repository->update(
-                [ 'description' => $data['campaignInformation']['description'] ],
-                $data['campaignId']
-            );
+            $saveTouchPoint = $this->campaignTouchPointRepository->saveInHierarchy($data);
 
-           $saveTouchPoint =  $this->campaignTouchPointRepository->saveInHierarchy($data);
-
-           // Get Last added Touch Poioint
-           $request->merge(['slug' => $request->input('campaignInformation.slug')]);
-           $savedTouchPoint = $this->repository->getCampaignTouchPointWithPresenter($request);
+            // Get Last added Touch Point
+            $request->merge(['slug' => $request->input('campaignInformation.slug')]);
+            $savedTouchPoint = $this->repository->getCampaignTouchPointWithPresenter($request);
 
             $response = [
-                'message'    => 'Touch Point Created.',
-                'details'    =>  $savedTouchPoint,
-                'touch_point_id'    =>  $saveTouchPoint->id,
+                'message' => 'Touch Point Created.',
+                'details' => $savedTouchPoint,
+                'touch_point_id' => $saveTouchPoint->id,
             ];
 
-            if ($request->wantsJson()) {
+            return response()->json($response);
 
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+            return response()->json([
+                'error'   => true,
+                'message' => $e->getMessageBag()
+            ]);
         }
     }
 
@@ -372,7 +375,7 @@ class CampaignsController extends Controller
         $campaign = $this->repository->getCampaignTouchPointWithPresenter($request);
 
         return response()->json([
-            'details' => $campaign,
+            'details' => $campaign
         ]);
     }
 
@@ -385,7 +388,7 @@ class CampaignsController extends Controller
         $objective = $this->repository->getCampaignObjectivetWithPresenter($request);
 
         return response()->json([
-            'details' => $objective,
+            'details' => $objective
         ]);
     }
 
@@ -398,8 +401,85 @@ class CampaignsController extends Controller
         $campaign = $this->repository->updateCampaignStatus($request);
 
         return response()->json([
-            'details' => $campaign,
+            'details' => $campaign
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getActiveCampaignsByCompany(Request $request)
+    {
+        $campaigns = [];
+
+        if(!is_null(auth()->user()->CompanyUser)) {
+            $campaigns = $this->repository->getActiveCampaignsByCompany($request);
+        }
+
+        return response()->json([
+            'details' => $campaigns
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getCampaignById(Request $request)
+    {
+        $campaigns = $this->repository->getCampaignById($request);
+
+        return response()->json([
+            'details' => $campaigns
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getCampaignProposals(Request $request)
+    {
+        $campaigns = $this->repository->getCampaignProposals($request);
+
+        return response()->json([
+            'details' => $campaigns
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getInfluencerAssignTouchPoint(Request $request)
+    {
+        $campaigns = $this->campaignAssignedJobDetailsRepository->getInfluencerAssignTouchPoint($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getInfluencerCampaign(Request $request)
+    {
+        $campaigns = $this->campaignInviteRepository->getInfluencerCampaign($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
+
+    public function getActiveCampaigns(Request $request)
+    {
+        $campaigns = $this->cam->getActiveCampaigns($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Contracts\CampaignRepository;
 use App\Contracts\CampaignTouchPointProductRepository;
 use Illuminate\Container\Container as Application;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -40,6 +41,10 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
      * @var CampaignTouchPointPlacementActionRepositoryEloquent
      */
     private $campaignTouchPointPlacementActionRepositoryEloquent;
+    /**
+     * @var CampaignRepository
+     */
+    private $campaignRepository;
 
     /**
      * CampaignTouchPointRepositoryEloquent constructor.
@@ -49,6 +54,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
      * @param CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent
      * @param CampaignTouchPointMediaRepositoryEloquent $campaignTouchPointMediaRepositoryEloquent
      * @param CampaignTouchPointPlacementActionRepositoryEloquent $campaignTouchPointPlacementActionRepositoryEloquent
+     * @param CampaignRepository $campaignRepository
      */
     public function __construct(
         Application $app,
@@ -56,7 +62,8 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         CampaignTouchPointAdditionalRepositoryEloquent $campaignTouchPointAdditionalRepositoryEloquent,
         CampaignPaymentRepositoryEloquent $campaignPaymentRepositoryEloquent,
         CampaignTouchPointMediaRepositoryEloquent $campaignTouchPointMediaRepositoryEloquent,
-        CampaignTouchPointPlacementActionRepositoryEloquent $campaignTouchPointPlacementActionRepositoryEloquent
+        CampaignTouchPointPlacementActionRepositoryEloquent $campaignTouchPointPlacementActionRepositoryEloquent,
+        CampaignRepository $campaignRepository
     )
     {
         parent::__construct($app);
@@ -65,6 +72,7 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
         $this->campaignPaymentRepositoryEloquent = $campaignPaymentRepositoryEloquent;
         $this->campaignTouchPointMediaRepositoryEloquent = $campaignTouchPointMediaRepositoryEloquent;
         $this->campaignTouchPointPlacementActionRepositoryEloquent = $campaignTouchPointPlacementActionRepositoryEloquent;
+        $this->campaignRepository = $campaignRepository;
     }
 
     /**
@@ -149,6 +157,19 @@ class CampaignTouchPointRepositoryEloquent extends BaseRepository implements Cam
                 $savedTouchPoint
             );
         }
+
+        //---- Update Campaign Data
+        $campaign = $this->campaignRepository->find($data['campaignId']);
+
+        $this->campaignRepository->update(
+            [
+                'description'           => $data['campaignInformation']['description'],
+                'touch_points'          => $campaign->touch_points+1,
+                'user_id'               => auth()->user()->id,
+                'created_by_company_id' => auth()->user()->CompanyUser->company_id
+            ],
+            $data['campaignId']
+        );
 
         return $savedTouchPoint;
 
