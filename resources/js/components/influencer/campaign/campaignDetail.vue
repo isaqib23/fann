@@ -6,6 +6,9 @@
                 <v-card class="description_wrapper">
                     <v-row>
                         <v-col cols="12" md="12" xs="12">
+                            <v-btn icon @click="preTab()" class="nav_control nav_left" style="">
+                                <v-icon right>keyboard_arrow_left</v-icon>
+                            </v-btn>
                             <v-card width="85%" class="mx-auto py-3">
                                 <v-list three-line>
                                     <v-list-item>
@@ -32,6 +35,9 @@
                                     </v-list-item>
                                 </v-list>
                             </v-card>
+                            <v-btn icon @click="nextTab()" class="nav_control nav_right">
+                                <v-icon right>keyboard_arrow_right</v-icon>
+                            </v-btn>
                         </v-col>
                     </v-row>
                 </v-card>
@@ -202,6 +208,8 @@
 
     export default {
         data: () => ({
+            tabs: 3,
+            tab : null,
             items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             list_items: [
                 { number: 1, title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'},
@@ -236,5 +244,19 @@
     }
     .hr_divider {
         border-top: 1px solid #cccccc;
+    }
+    >>>.nav_control .v-icon{
+        font-size: 48px;
+        color: #fff;
+    }
+    >>>.nav_right{
+        position: absolute;
+        bottom: 140px;
+        right:110px
+    }
+    >>>.nav_left{
+        position: absolute;
+        bottom: 140px;
+        left:40px
     }
 </style>

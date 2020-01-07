@@ -9320,6 +9320,20 @@ and (-webkit-min-device-pixel-ratio: 1) {
 .hr_divider[data-v-0d3afcf9] {
     border-top: 1px solid #cccccc;
 }
+[data-v-0d3afcf9] .nav_control .v-icon{
+    font-size: 48px;
+    color: #fff;
+}
+[data-v-0d3afcf9] .nav_right{
+    position: absolute;
+    bottom: 140px;
+    right:110px
+}
+[data-v-0d3afcf9] .nav_left{
+    position: absolute;
+    bottom: 140px;
+    left:40px
+}
 
 .card_wrapper[data-v-0f69c29c]{
     width: 90%;

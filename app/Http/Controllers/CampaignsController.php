@@ -476,7 +476,7 @@ class CampaignsController extends Controller
 
     public function getActiveCampaigns(Request $request)
     {
-        $campaigns = $this->cam->getActiveCampaigns($request);
+        $campaigns = $this->repository->getActiveCampaigns($request);
 
         return response()->json([
             'details' => $campaigns,
