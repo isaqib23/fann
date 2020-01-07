@@ -10,7 +10,7 @@ use App\Contracts\CampaignPaymentRepository;
 use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\PlacementRepository;
 use App\Http\Requests\TouchPointRequest;
-use App\Models\CampaignAssignedJobDetails;
+use App\Models\CampaignAssignedJobDetail;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -467,7 +467,7 @@ class CampaignsController extends Controller
      */
     public function getInfluencerCampaign(Request $request)
     {
-        $campaigns = $this->campaignAssignedJobDetailsRepository->getInfluencerCampaign($request);
+        $campaigns = $this->campaignInviteRepository->getInfluencerCampaign($request);
 
         return response()->json([
             'details' => $campaigns,
@@ -476,7 +476,7 @@ class CampaignsController extends Controller
 
     public function getActiveCampaigns(Request $request)
     {
-        $campaigns = $this->repository->getActiveCampaigns($request);
+        $campaigns = $this->cam->getActiveCampaigns($request);
 
         return response()->json([
             'details' => $campaigns,

@@ -368,9 +368,9 @@
             placementIcon(id){
                 return (id === 1) ? 'mdi-instagram' : 'mdi-youtube';
             },
-            placementStatistics(id,statistics,field){
+            placementStatistics(id,statistics,field) {
                 let stat = _.find(statistics, ['placement_id', id]);
-                if(_.isNil(stat)){
+                if(_.isNil(stat)) {
                     return 0;
                 }
                 return stat[field];

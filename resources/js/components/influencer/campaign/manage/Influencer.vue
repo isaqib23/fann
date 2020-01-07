@@ -56,7 +56,12 @@
                 <template v-slot:item.engRate="{ item }">
                     <div class="mb-0">
                         <span>
-                            {{placementStatistics(item.touch_point.placement_id,item.assign_to.statistics,'eng_rate')}}%
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'eng_rate')
+                            }}%
                         </span>
                     </div>
                 </template>
@@ -64,7 +69,12 @@
                 <template v-slot:item.comments="{ item }">
                     <div class="mb-0">
                         <span>
-                            {{placementStatistics(item.touch_point.placement_id,item.assign_to.statistics,'comment_count')}}
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'comment_count')
+                            }}
                         </span>
                     </div>
                 </template>
@@ -72,7 +82,12 @@
                 <template v-slot:item.likes="{ item }">
                     <div class="mb-0">
                         <span>
-                            {{placementStatistics(item.touch_point.placement_id,item.assign_to.statistics,'like_count')}}
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'like_count')
+                            }}
                         </span>
                     </div>
                 </template>
@@ -351,13 +366,13 @@
             insert(emoji) {
                 this.input += emoji
             },
-            getInfluencerTouchPoint(){
+            getInfluencerTouchPoint() {
                 let response = _.keys(this.influencerTouchPoint)[0];
                 return response;
             },
-            placementStatistics(id,statistics,field){
+            placementStatistics(id,statistics,field) {
                 let stat = _.find(statistics, ['placement_id', id]);
-                if(_.isNil(stat)){
+                if(_.isNil(stat)) {
                     return 0;
                 }
                 return stat[field];
@@ -368,7 +383,10 @@
                 campaign_invite_id :   this.$router.history.current.params.slug,
                 user_id     :   this.$router.history.current.params.user
             });
-            this.influencer.push(this.influencerTouchPoint[this.getInfluencerTouchPoint()][0]);
+
+            if(_.isNil(this.influencerTouchPoint.length) || this.influencerTouchPoint.length > 0) {
+                this.influencer.push(this.influencerTouchPoint[this.getInfluencerTouchPoint()][0]);
+            }
         }
     }
 </script>

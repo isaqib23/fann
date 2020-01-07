@@ -7,15 +7,14 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
- * Class InfluencerCampaignStatistics.
- *
- * @package namespace App\Models;
+ * Class CampaignAssignedJob
+ * @package App\Model
  */
-class CampaignAssignedJobs extends Model implements Transformable
+class CampaignAssignedJob extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $table = 'campaign_assigned_jobs';
+
     /**
      * The attributes that are mass assignable.
      *

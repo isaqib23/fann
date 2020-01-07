@@ -5,7 +5,7 @@ namespace App\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignAssignedJobDetailsRepository;
-use App\Models\CampaignAssignedJobDetails;
+use App\Models\CampaignAssignedJobDetail;
 
 /**
  * Class InfluencerJobRepositoryEloquent.
@@ -21,7 +21,7 @@ class CampaignAssignedJobDetailsRepositoryEloquent extends BaseRepository implem
      */
     public function model()
     {
-        return CampaignAssignedJobDetails::class;
+        return CampaignAssignedJobDetail::class;
     }
 
 

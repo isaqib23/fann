@@ -39,7 +39,7 @@ class CampaignInvite extends Model implements Transformable
     public function influencerJob()
 
     {
-        return $this->hasOne(CampaignAssignedJobDetails::class,'campaign_invite_id', 'id');
+        return $this->hasOne(CampaignAssignedJobDetail::class,'campaign_invite_id', 'id');
     }
 
     /**

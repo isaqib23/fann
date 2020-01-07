@@ -108,7 +108,6 @@
         },
         async mounted() {
             this.campaigns = await this.getActiveCampaigns({status:'active'});
-            console.log(this.campaigns);
         }
     }
 </script>
