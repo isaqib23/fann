@@ -24,6 +24,7 @@ class CampaignChatEvent implements ShouldBroadcast
      * @var
      */
     private $chatBy;
+
     /**
      * @var null
      */
@@ -43,7 +44,6 @@ class CampaignChatEvent implements ShouldBroadcast
         $this->content = $content;
 
         $this->dontBroadcastToCurrentUser();
-
     }
 
     /**

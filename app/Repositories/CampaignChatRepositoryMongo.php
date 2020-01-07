@@ -35,6 +35,11 @@ class CampaignChatRepositoryMongo
     protected $currentCollectionName;
 
     /**
+     * @var mixed
+     */
+    protected $CampaignChatConversationRepositoryMongo;
+
+    /**
      * CampaignChatRepositoryMongo constructor.
      * @param $collectionName
      * @throws BindingResolutionException
@@ -42,6 +47,7 @@ class CampaignChatRepositoryMongo
     public function __construct($collectionName)
     {
         $this->model = app()->make(CampaignChat::class);
+        $this->CampaignChatConversationRepositoryMongo = app()->make(CampaignChatConversationRepositoryMongo::class);
         $this->collection = CampaignChat::setCollection($collectionName);
         $this->currentCollectionName = $collectionName;
 
@@ -95,6 +101,7 @@ class CampaignChatRepositoryMongo
             ];
 
             if ($this->model->collectionExists($this->currentCollectionName)) {
+                $this->CampaignChatConversationRepositoryMongo->store($request);
                 return $this->collection
                     ->where('campaign_id', '2')
                     ->where('placement_id', '2')
