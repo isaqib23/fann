@@ -122,15 +122,15 @@
                 return result;
             },
             inviteInfluencer(userId) {
+                console.info(this.campaignInformation);
                 let payload =  {
                     user_id      : userId,
                     placement_id : this.inviteSearchParams.placement,
-                    campaign_id  : 1001, // hard coded just for testing purpose
+                    campaign_id  : this.campaignInformation.id,
                     sender_id    : this.auth.id,
                     sent_from    : this.auth.type,
                     status       : 'queued',
                     price        : 123,  // hard coded just for testing purpose
-
                 };
                 this.collectInvitation(payload);
             }
@@ -139,6 +139,7 @@
             ...mapGetters({
                 influencerSearchResults: 'campaign/influencerSearchResults',
                 inviteSearchParams: 'campaign/inviteSearchParams',
+                campaignInformation : 'campaign/campaignInformation',
                 auth: 'auth/user'
             })
         },

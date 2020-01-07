@@ -215,23 +215,7 @@
                 {text: 'Likes', value: 'likes', class: 'head_class text-uppercase', sortable: false,},
             ],
             influencerTouchPoint: [],
-            influencer: [],
-            chats: [
-                {
-                    id: '1',
-                    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting',
-                    time: '7-19-2019 (3w ago)',
-                    img: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-                    align: 'start'
-                },
-                {
-                    id: '2',
-                    text: 'Lorem Ipsum is simply dummy text of the printing and typesetting',
-                    time: '7-19-2019 (3w ago)',
-                    img: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-                    align: 'end'
-                }
-            ]
+            influencer: []
         }),
         methods: {
             ...mapActions({
@@ -255,6 +239,8 @@
                 user_id: this.$router.history.current.params.user
             });
             this.influencer.push(this.influencerTouchPoint[this.getInfluencerTouchPoint()][0]);
+
+            console.info(this.influencerTouchPoint);
         }
     }
 </script>
