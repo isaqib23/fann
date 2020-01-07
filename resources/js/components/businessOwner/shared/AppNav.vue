@@ -133,7 +133,7 @@
                         {title: 'Create', icon: 'list_alt', to: {name: 'create-campaign-objective'}, exact: false}
                     ],
                     [
-                        {title: 'Manage', icon: 'mdi-receipt', to: {name: 'manage-campaigns'}, exact: false}
+                        {title: 'Manage', icon: 'mdi-receipt', to: {name: 'manage-campaigns-all'}, exact: false}
                     ],
                     [
                         {title: 'Shipment', icon: 'local_shipping', to: {name: 'shipment'}, exact: false}

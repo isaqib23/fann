@@ -43,14 +43,6 @@ class CampaignInviteTableSeeder extends Seeder
                 'created_at'         => $dateNow,
                 'updated_at'         => $dateNow
             ]);
-
-            DB::table('influencer_jobs')->insertGetId([
-                'user_id'            => $get_campaign_invite->user_id,
-                'campaign_invite_id' => $get_campaign_invite->id,
-                'status'             => 'active',
-                'created_at'         => $dateNow,
-                'updated_at'         => $dateNow
-            ]);
         }
     }
 }

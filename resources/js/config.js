@@ -80,6 +80,6 @@ export const api = Object.assign(new URL(apiUrl), {
 
     campaign: campaign,
     setting:  setting,
-    shopify:  shopify,
+    shopify:  shopify
 
 })

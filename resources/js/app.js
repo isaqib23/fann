@@ -12,12 +12,14 @@ import Locale from './vue-i18n-locales.generated';
 import Vuelidate from 'vuelidate'
 import VueCreditCardField from 'vue-credit-card-field';
 import axios from 'axios';
+import axiosRequest from '~/plugins/axiosRequest';
 import { api } from '~/config'
 
 window.Vue = Vue;
 window._ = _;
 window.axios = axios;
 window.api = api;
+window.axiosRequest = axiosRequest;
 
 Vue.use(Vuelidate);
 Vue.use(VueInternationalization);
