@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\CampaignAssignedJobDetailsRepository;
+use App\Contracts\CampaignAssignedJobDetailRepository;
 use App\Models\CampaignAssignedJobDetail;
 
 /**
@@ -12,7 +12,7 @@ use App\Models\CampaignAssignedJobDetail;
  *
  * @package namespace App\Repositories;
  */
-class CampaignAssignedJobDetailsRepositoryEloquent extends BaseRepository implements CampaignAssignedJobDetailsRepository
+class CampaignAssignedJobDetailRepositoryEloquent extends BaseRepository implements CampaignAssignedJobDetailRepository
 {
     /**
      * Specify Model class name

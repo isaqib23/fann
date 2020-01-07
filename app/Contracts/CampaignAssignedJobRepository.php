@@ -5,11 +5,11 @@ namespace App\Contracts;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface InfluencerJobRepository.
+ * Interface InfluencerCampaignStatisticsRepository.
  *
  * @package namespace App\Contracts;
  */
-interface CampaignAssignedJobDetailsRepository extends RepositoryInterface
+interface CampaignAssignedJobRepository extends RepositoryInterface
 {
     //
 }

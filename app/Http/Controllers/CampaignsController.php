@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Contracts\CampaignAssignedJobDetailsRepository;
+use App\Contracts\CampaignAssignedJobDetailRepository;
 use App\Contracts\CampaignInviteRepository;
 use App\Contracts\CampaignOfferRepository;
 use App\Contracts\CampaignPaymentRepository;
@@ -73,7 +73,7 @@ class CampaignsController extends Controller
 
     private $campaignInviteRepository;
     /**
-     * @var CampaignAssignedJobDetailsRepository
+     * @var CampaignAssignedJobDetailRepository
      */
     private $campaignAssignedJobDetailsRepository;
 
@@ -88,7 +88,7 @@ class CampaignsController extends Controller
      * @param CampaignPaymentRepository $campaignPaymentRepository
      * @param LaravelValidator $validator
      * @param CampaignInviteRepository $campaignInviteRepository
-     * @param CampaignAssignedJobDetailsRepository $campaignAssignedJobDetailsRepository
+     * @param CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
      */
 
     public function __construct(
@@ -99,7 +99,7 @@ class CampaignsController extends Controller
         CampaignPaymentRepository $campaignPaymentRepository,
         LaravelValidator $validator,
         CampaignInviteRepository $campaignInviteRepository,
-        CampaignAssignedJobDetailsRepository $campaignAssignedJobDetailsRepository
+        CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
     )
     {
         $this->repository = $repository;
