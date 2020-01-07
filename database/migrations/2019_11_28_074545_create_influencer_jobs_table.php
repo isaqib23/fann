@@ -17,6 +17,7 @@ class CreateInfluencerJobsTable extends Migration
 	{
 		Schema::create('campaign_assigned_job_details', function(Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('assigned_job_id');
             $table->unsignedInteger('assign_to_id');
             $table->unsignedInteger('assign_by_id');
             $table->unsignedInteger('campaign_touch_point_id')->nullable();
@@ -31,10 +32,12 @@ class CreateInfluencerJobsTable extends Migration
             $table->string('follower_count')->nullable();
             $table->string('following_count')->nullable();
             $table->text('status')->nullable();
+            $table->boolean('is_cloned')->default(false);
 
             $table->softDeletes();
             $table->timestamps();
 
+            $table->foreign('assigned_job_id')->references('id')->on('campaign_assigned_jobs');
             $table->foreign('assign_to_id')->references('id')->on('users');
             $table->foreign('assign_by_id')->references('id')->on('users');
             $table->foreign('campaign_touch_point_id')->references('id')->on('campaign_touch_points');

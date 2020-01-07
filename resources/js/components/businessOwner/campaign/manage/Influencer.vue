@@ -18,7 +18,7 @@
         <v-flex xs12 md7 class="pa-2">
             <v-data-table
                 :headers="headers"
-                :items="influencer"
+                :items="influencerTouchPoint"
                 :single-expand="singleExpand"
                 :expanded.sync="expanded"
                 item-key="id"
@@ -97,14 +97,14 @@
                     </div>
                 </template>
 
-                <template v-slot:expanded-item="{ headers }">
+                <template v-slot:expanded-item="{ headers, item }">
                     <td :colspan="headers.length">
                         <v-timeline
                             dense clipped
                             class="ml-n7"
                         >
                             <v-timeline-item
-                                v-for="(touchPoint, index) in influencerTouchPoint[getInfluencerTouchPoint()]"
+                                v-for="(touchPoint, index) in item.touchPoints"
                                 :key="index"
                                 :fill-dot="true"
                                 icon="mdi-check"
@@ -124,14 +124,14 @@
                                                 <v-flex xl8 lg8 md8 sm8 xs8>
                                                     <v-text-field
                                                         outlined
-                                                        :label="touchPoint.touch_point.name"
+                                                        :label="touchPoint.name"
                                                         class="touch_field"
                                                         readonly
                                                     ></v-text-field>
                                                 </v-flex>
                                                 <v-flex xl2 lg2 md2 sm2 xs2>
                                                     <v-list-item-avatar height="56" min-width="45" width="45" class="ma-0 amount_avatar" color="grayLight">
-                                                        <span>${{touchPoint.touch_point.amount}}</span>
+                                                        <span>${{touchPoint.amount}}</span>
                                                     </v-list-item-avatar>
                                                 </v-flex>
                                             </v-row>
@@ -399,7 +399,6 @@
                 { text: 'Likes', value: 'likes', class: 'head_class text-uppercase',sortable: false, },
             ],
             influencerTouchPoint:[],
-            influencer:[],
             chats: [
                 { id:'1', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
                 { id:'2', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' }
@@ -411,10 +410,6 @@
             }),
             insert(emoji) {
                 this.input += emoji
-            },
-            getInfluencerTouchPoint(){
-                let response = _.keys(this.influencerTouchPoint)[0];
-                return response;
             },
             placementStatistics(id,statistics,field) {
                 let stat = _.find(statistics, ['placement_id', id]);
@@ -429,7 +424,6 @@
                 campaign_invite_id :   this.$router.history.current.params.slug,
                 user_id     :   this.$router.history.current.params.user
             });
-            this.influencer.push(this.influencerTouchPoint[this.getInfluencerTouchPoint()][0]);
         }
     }
 </script>
