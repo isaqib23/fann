@@ -22,6 +22,7 @@
                                                         <v-icon class="body-2 d-inline white--text">mdi-camera</v-icon>
                                                         <span class="caption">Upload Profile Picture</span>
                                                     </p>
+                                                    <p  v-for="(error,key) in errors['logo']" class="error--text">{{error}}</p>
                                                 </v-img>
                                             </v-avatar>
                                             <v-avatar size="175px" v-else class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
@@ -46,6 +47,7 @@
                                                 label="First Name"
                                                 solo
                                                 class="mt-1 custom_dropdown"
+                                                :error-messages="errors.first_name"
                                             ></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" class="py-0">
@@ -55,6 +57,7 @@
                                                 v-model="form.last_name"
                                                 solo
                                                 class="mt-1 custom_dropdown"
+                                                :error-messages="errors.last_name"
                                             ></v-text-field>
                                         </v-col>
                                     </v-row>
@@ -66,6 +69,7 @@
                                                 label="First Name"
                                                 solo
                                                 class="mt-1 custom_dropdown"
+                                                :error-messages="errors.email"
                                             ></v-text-field>
                                         </v-col>
                                         <v-col cols="12" sm="6" class="py-0">
@@ -75,6 +79,7 @@
                                                 v-model="userDetail.bio"
                                                 solo
                                                 class="mt-1 custom_dropdown"
+                                                :error-messages="errors['userDetail.bio']"
                                             ></v-text-field>
                                         </v-col>
                                     </v-row>
@@ -89,6 +94,7 @@
                                         v-model="userDetail.website"
                                         solo
                                         class="mt-1 custom_dropdown"
+                                        :error-messages="errors['userDetail.website']"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4" class="py-0">
@@ -102,6 +108,7 @@
                                         append-icon="keyboard_arrow_down"
                                         item-text="name"
                                         item-value="id"
+                                        :error-messages="errors['userDetail.niche_id']"
                                     ></v-select>
                                 </v-col>
                             </v-row>
@@ -114,6 +121,7 @@
                                         v-model="userDetail.phone"
                                         solo
                                         class="mt-1 custom_dropdown"
+                                        :error-messages="errors['userDetail.phone']"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4" class="py-0">
@@ -123,6 +131,7 @@
                                         v-model="userDetail.timezone"
                                         solo
                                         class="mt-1 custom_dropdown"
+                                        :error-messages="errors['userDetail.timezone']"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -136,6 +145,7 @@
                                         v-model="userDetail.address"
                                         rows="7"
                                         class="custom_dropdown"
+                                        :error-messages="errors['userDetail.address']"
                                     ></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="4" class="py-0">
@@ -150,6 +160,7 @@
                                         item-text="name"
                                         @change="getStates(userDetail)"
                                         item-value="id"
+                                        :error-messages="errors['userDetail.country_id']"
                                     ></v-autocomplete>
                                     <label class="font-weight-bold">State</label>
                                     <v-autocomplete
@@ -161,6 +172,7 @@
                                         class="custom_dropdown"
                                         item-text="name"
                                         item-value="id"
+                                        :error-messages="errors['userDetail.state_id']"
                                     ></v-autocomplete>
                                 </v-col>
                             </v-row>
@@ -204,7 +216,6 @@
             saving: false,
             saved: false
         }),
-
         computed: mapGetters({
             auth: 'auth/user',
             countries: 'settings/countries',
@@ -232,11 +243,19 @@
 
                 let response = await this.saveUserDetail(formData);
                 if(response.status === 200) {
+                    this.clearErrors();
                     this.$toast.success('Your profile successfully updated.')
+                }else{
+                    this.loading = true;
+                    this.handleErrors(response.details)
                 }
                 this.loading = false
 
             }
+        },
+        created() {
+          this.form.userDetail = Object.assign(this.userDetail);
+          this.form.logo = null;
         },
         async mounted() {
             this.form = Object.assign(this.form, this.auth);

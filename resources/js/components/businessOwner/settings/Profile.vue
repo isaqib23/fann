@@ -262,7 +262,8 @@
 
                     let response = await this.updateProfile(formData);
                     if (response.status === 200) {
-                        this.loading = false
+                        this.loading = false;
+                        this.clearErrors();
                         this.$toast.success('Your profile successfully updated.')
                     } else {
                         this.loading = true

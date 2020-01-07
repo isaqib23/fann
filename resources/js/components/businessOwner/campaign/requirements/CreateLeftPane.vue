@@ -273,7 +273,6 @@
                 guideLines            : 1,
                 model                 : 0,
                 e1                    : 0,
-                description           : null,
                 dispatchProduct       : null,
                 dispatchProductVariant: [],
                 barterProduct         : null,
@@ -291,7 +290,6 @@
                 menu2                 : false,
                 date                  : new Date().toISOString().substr(0, 10),
                 touchPointProducts    : [],
-                campaignDescription   : null,
                 caption               : '',
                 guideLineNumber       : 0,
                 paymentMethod         : {},
@@ -399,7 +397,7 @@
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
                     this.guideLines = 1;
-
+                    this.clearErrors();
                 } else {
                     this.loading = true;
                     this.handleErrors(response.details)
@@ -488,26 +486,6 @@
                 immediate: true,
                 deep: true
             },
-            // 'campaignInformation': {
-            //     handler: function(val) {
-            //         let self = this;
-            //         if(!_.isNil(val)) {
-            //             self.description = val.description;
-            //         }
-            //     },
-            //     immediate: true,
-            //     deep:true
-            // },
-            // 'description': {
-            //     handler: function(val) {
-            //         let self = this;
-            //         if(!_.isNil(val)) {
-            //             self.campaignInformation.description = val;
-            //         }
-            //     },
-            //     immediate: true,
-            //     deep:true
-            // },
             'savedDispatchProduct' (val) {
                 if(!_.isNil(val.details)) {
                     this.dispatchProductVariant = [];
