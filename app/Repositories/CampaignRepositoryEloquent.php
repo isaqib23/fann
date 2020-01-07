@@ -192,7 +192,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
      * @param $request
      * @return mixed
      */
-    public function getActiveCampaigns($request)
+    public function getActiveCampaignsByCompany($request)
     {
         $campaign = $this
             ->with([
@@ -228,12 +228,12 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
                 'touchPoint' => function($query) use ($request){
                     $query->with(['invite' => function($inviteQuery) use ($request){
                         $inviteQuery->with(['influencerJob' => function($userQuery){
-                            $userQuery->with(['user' => function($userQuery){
+                            $userQuery->with(['assignTo' => function($userQuery){
                                 $userQuery->with(['statistics' => function($statisticQuery){
-                                    $statisticQuery->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
+                                    $statisticQuery->select(['placement_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
                                 }])->select(['id', 'first_name', 'last_name', 'email']);
                             }])
-                            ->select(['id', 'assign_to_id', 'campaign_invite_id', 'assign_by_id', 'campaign_id', 'placement_id', 'campaign_touch_point_id']);
+                            ->select(['id', 'assign_to_id', 'assign_by_id', 'campaign_touch_point_id', 'campaign_invite_id']);
                         }])
                         ->where('campaign_id', $request->input('campaign_id'))
                         ->select(['id', 'user_id', 'campaign_id', 'placement_id']);
@@ -258,11 +258,44 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             ->with(['proposal' => function($userQuery){
                 $userQuery->with(['user' => function($userQuery){
                     $userQuery->with(['statistics' => function($statisticQuery){
-                        $statisticQuery->select(['platform_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
+                        $statisticQuery->select(['placement_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
                     }])->select(['id', 'first_name', 'last_name', 'email']);
                 }])
                     ->select(['id', 'user_id', 'campaign_id', 'placement_id']);
             }])
             ->findWhere(['id' => $request->input('campaign_id')])->first();
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getActiveCampaigns($request)
+    {
+        $campaign = $this
+            ->with([
+                'payment'  => function($query){
+                    $query->with(['paymentType' => function($paymentQuery){
+                        $paymentQuery->select(['id', 'name']);
+                    }])->select(['payment_type_id', 'campaign_id']);
+                },
+                'touchPoint' => function($query){
+                    $query->with(['media' => function($mediaQuery){
+                        $mediaQuery->select(['id', 'campaign_touch_point_id', 'path', 'name', 'format']);
+                    }])
+                        ->select(['id', 'name', 'campaign_id', 'placement_id']);
+                },
+                'objective' => function($objectiveQuery){
+                    $objectiveQuery->select(['id', 'name', 'slug']);
+                },
+                'company' => function($objectiveQuery){
+                    $objectiveQuery->select(['id', 'name', 'logo']);
+                }
+            ])
+            ->findWhere([
+                'status'   => $request->input('status')
+            ]);
+
+        return $campaign;
     }
 }

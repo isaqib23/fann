@@ -126,13 +126,24 @@
                                                     <v-flex xl3 lg3 md3 sm6 xs12>
                                                         <v-list-item-title>{{placementInvite.influencer_job.assign_to.first_name+' '+placementInvite.influencer_job.assign_to.last_name}}</v-list-item-title>
                                                         <v-list-item-subtitle>
-                                                            <v-rating :v-model="placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'rating')" size="7" small class="d-inline-block"></v-rating>
+                                                            <v-rating
+                                                                :v-model="placementStatistics(
+                                                                    placementInvite.placement_id,
+                                                                    placementInvite.influencer_job.assign_to.statistics,
+                                                                    'rating'
+                                                                )"
+                                                                size="7" small class="d-inline-block"></v-rating>
                                                         </v-list-item-subtitle>
                                                     </v-flex>
                                                     <v-flex xl2 lg2 md2 sm6 xs12>
                                                         <div class="followers body-2">
                                                             <v-icon class="body-1">{{placementIcon(placementInvite.placement_id)}}</v-icon>
-                                                            {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'follower_count')}}
+                                                            {{
+                                                            placementStatistics(
+                                                                placementInvite.placement_id,
+                                                                placementInvite.influencer_job.assign_to.statistics,
+                                                                'follower_count')
+                                                            }}
                                                             Followers
                                                         </div>
                                                     </v-flex>
@@ -145,13 +156,28 @@
                                                             </div>
                                                             <div class="followers">
                                                                 <p class="d-inline-block mb-0 mx-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'eng_rate')}}%
+                                                                    {{
+                                                                    placementStatistics(
+                                                                        placementInvite.placement_id,
+                                                                        placementInvite.influencer_job.assign_to.statistics,
+                                                                        'eng_rate')
+                                                                    }}%
                                                                 </p>
                                                                 <p class="d-inline-block mb-0 ml-5 mr-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'comment_count')}}
+                                                                    {{
+                                                                    placementStatistics(
+                                                                        placementInvite.placement_id,
+                                                                        placementInvite.influencer_job.assign_to.statistics,
+                                                                        'comment_count')
+                                                                    }}
                                                                 </p>
                                                                 <p class="d-inline-block mb-0 ml-3 custom_font">
-                                                                    {{placementStatistics(placementInvite.placement_id,placementInvite.influencer_job.assign_to.statistics,'like_count')}}
+                                                                    {{
+                                                                    placementStatistics(
+                                                                        placementInvite.placement_id,
+                                                                        placementInvite.influencer_job.assign_to.statistics,
+                                                                        'like_count')
+                                                                    }}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -211,7 +237,12 @@
                                                 </u></strong>
                                                 <div class="followers overline">
                                                     <v-icon class="caption">{{placementIcon(item.placement_id)}}</v-icon>
-                                                    {{placementStatistics(item.placement_id,item.user.statistics,'follower_count')}}
+                                                    {{
+                                                    placementStatistics(
+                                                        item.placement_id,
+                                                        item.user.statistics,
+                                                        'follower_count')
+                                                    }}
                                                     Followers
                                                 </div>
                                             </div>
@@ -235,7 +266,13 @@
                                 <v-list-item-subtitle>
                                     <v-row justify="space-between">
                                         <v-col md="6" class="py-0 ma-0">
-                                            <v-rating :v-model="placementStatistics(item.placement_id,item.user.statistics,'rating')" size="7" small background-color="grey"></v-rating>
+                                            <v-rating
+                                                :v-model="
+                                                placementStatistics(
+                                                    item.placement_id,
+                                                    item.user.statistics,
+                                                    'rating')"
+                                                    size="7" small background-color="grey"></v-rating>
                                         </v-col>
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="subtitle-2 mb-2 integrityColor--text float-right ml-n7">
@@ -252,13 +289,28 @@
                                         <v-col md="6" class="py-0 ma-0">
                                             <div class="float-right d-inline-block ml-n7">
                                                 <p class="d-inline-block mb-0 mr-n2 custom_font">
-                                                    {{placementStatistics(item.placement_id,item.user.statistics,'eng_rate')}}%
+                                                    {{
+                                                    placementStatistics(
+                                                        item.placement_id,
+                                                        item.user.statistics,
+                                                        'eng_rate')
+                                                    }}%
                                                 </p>
                                                 <p class="d-inline-block mb-0 ml-10 mr-6 custom_font">
-                                                    {{placementStatistics(item.placement_id,item.user.statistics,'comment_count')}}
+                                                    {{
+                                                    placementStatistics(
+                                                        item.placement_id,
+                                                        item.user.statistics,
+                                                        'comment_count')
+                                                    }}
                                                 </p>
                                                 <p class="d-inline-block mb-0 ml-5 custom_font">
-                                                    {{placementStatistics(item.placement_id,item.user.statistics,'like_count')}}
+                                                    {{
+                                                    placementStatistics(
+                                                        item.placement_id,
+                                                        item.user.statistics,
+                                                        'like_count')
+                                                    }}
                                                 </p>
                                             </div>
                                         </v-col>
@@ -316,15 +368,15 @@
             placementIcon(id){
                 return (id === 1) ? 'mdi-instagram' : 'mdi-youtube';
             },
-            placementStatistics(id,statistics,field){
-                let stat = _.find(statistics, ['platform_id', id]);
-                if(_.isNil(stat)){
+            placementStatistics(id,statistics,field) {
+                let stat = _.find(statistics, ['placement_id', id]);
+                if(_.isNil(stat)) {
                     return 0;
                 }
                 return stat[field];
             },
             getInfluencer(campaign) {
-                this.$router.push({name: 'manage-campaigns-influencer', params: { slug: campaign.campaign_id, user: campaign.user_id }})
+                this.$router.push({name: 'manage-campaigns-influencer', params: { slug: campaign.id, user: campaign.user_id }})
             }
         },
         async mounted() {

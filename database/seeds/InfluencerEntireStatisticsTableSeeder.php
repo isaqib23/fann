@@ -19,7 +19,7 @@ class InfluencerEntireStatisticsTableSeeder extends Seeder
             $dateNow = $dt->toDateTimeString();
 
             DB::table('influencer_entire_statistics')->insertGetId([
-                'platform_id'               => $faker->numberBetween(1,2),
+                'placement_id'               => $faker->numberBetween(1,2),
                 'user_id'                   => $faker->numberBetween(11,20),
                 'rating'                    => $faker->randomNumber(2),
                 'eng_rate'                  => $faker->randomNumber(2),

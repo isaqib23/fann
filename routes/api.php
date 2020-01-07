@@ -101,6 +101,7 @@ Route::group(['middleware' => ['jwt']], function() {
 
         // ----- Campaign Manage related api's
         Route::prefix('/manage')->group(function () {
+            Route::post('getActiveCampaignsByCompany', 'CampaignsController@getActiveCampaignsByCompany');
             Route::post('getActiveCampaigns', 'CampaignsController@getActiveCampaigns');
             Route::post('getCampaignById', 'CampaignsController@getCampaignById');
             Route::post('getPlacementTouchPoint', 'CampaignsController@getPlacementTouchPoint');

@@ -12,6 +12,7 @@ let campaign = {
     getCampaignTouchPoint         : 'getCampaignTouchPoint',
     getCampaignSavedObjective     : 'getCampaignSavedObjective',
     updateCampaignStatus          : 'updateCampaignStatus',
+    getActiveCampaignsByCompany   : 'manage/getActiveCampaignsByCompany',
     getActiveCampaigns            : 'manage/getActiveCampaigns',
     getCampaignById               : 'manage/getCampaignById',
     getCampaignProposals          : 'manage/getCampaignProposals',

@@ -29,20 +29,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="(campaign, index) in campaigns" :key="index">
+                            <tr v-for="(campaignInvite, index) in campaigns" :key="index">
                                 <td class="px-1"><v-checkbox value="true" color="primary"></v-checkbox></td>
                                 <td>
                                     <v-list two-line class="list_cards pa-0 mx-0 hover_class" dense>
                                         <v-list-item class="px-0">
                                             <v-list-item-content>
-                                                <v-list-item-title v-html="campaign[0].campaign.name"></v-list-item-title>
+                                                <v-list-item-title v-html="campaignInvite.campaign.name"></v-list-item-title>
                                                 <v-list-item-subtitle >
                                                     <v-chip-group>
                                                         <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
-                                                            {{campaign[0].campaign.objective.name}}
+                                                            {{campaignInvite.campaign.objective.name}}
                                                         </v-chip>
                                                         <v-chip class="px-2" color="#E5E5E5" text-color="#71737D" label>
-                                                            {{campaign[0].campaign.payment.payment_type.name}}
+                                                            {{campaignInvite.campaign.payment.payment_type.name}}
                                                         </v-chip>
                                                     </v-chip-group>
                                                 </v-list-item-subtitle>
@@ -61,24 +61,36 @@
                                     ></v-switch>
                                 </td>
                                 <td class="subtitle-1">
-                                    {{placementStatistics(campaign[0].campaign.statistics,'work_rate')}}
+                                    {{
+                                    placementStatistics(
+                                    campaignInvite.campaign.statistics,
+                                        'work_rate')
+                                    }}
                                 </td>
                                 <td class="subtitle-1">
-                                    {{placementStatistics(campaign[0].campaign.statistics,'like_count')}}
+                                    {{
+                                    placementStatistics(
+                                    campaignInvite.campaign.statistics,
+                                        'like_count')
+                                    }}
                                 </td>
                                 <td class="subtitle-1">
-                                    {{placementStatistics(campaign[0].campaign.statistics,'eng_rate')}}%
+                                    {{
+                                    placementStatistics(
+                                    campaignInvite.campaign.statistics,
+                                        'eng_rate')
+                                    }}%
                                 </td>
                                 <td class="subtitle-1">
-                                    <v-btn color="accent" small height="45" class="mr-2" v-if="campaign[0].placement_id === 1">
+                                    <v-btn color="accent" small height="45" class="mr-2" v-if="campaignInvite.placement_id === 1">
                                         <v-icon>mdi-instagram</v-icon>
                                     </v-btn>
-                                    <v-btn color="white" small height="45" v-if="campaign[0].placement_id === 2">
+                                    <v-btn color="white" small height="45" v-if="campaignInvite.placement_id === 2">
                                         <v-icon color="primary">mdi-youtube</v-icon>
                                     </v-btn>
                                 </td>
                                 <td class="px-1">
-                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1" @click="goToInfluencer()">
+                                    <v-btn small color="green accent-4 white--text" min-width="20" class="px-1" @click="getInfluencer(campaignInvite)">
                                         <v-icon class="body-1">keyboard_arrow_right</v-icon>
                                     </v-btn>
                                 </td>
@@ -117,16 +129,22 @@
             ...mapActions({
                 getInfluencerCampaign : 'campaignManagement/getInfluencerCampaign',
             }),
-            goToInfluencer(){
-                this.$router.push({ name: 'influencer-manage-influencers' })
-            },
-            placementStatistics(statistics,field){
+            placementStatistics(statistics,field) {
                 let stat = _.sumBy(statistics, field);
-                if(_.isNil(stat)){
+                if(_.isNil(stat)) {
                     return 0;
                 }
                 return stat;
             },
+            getInfluencer(campaign) {
+                this.$router.push({
+                    name: 'influencer-manage-influencers',
+                    params: {
+                        slug: campaign.id,
+                        user: this.auth.id
+                    }
+                })
+            }
         },
         async mounted() {
             this.campaigns = await this.getInfluencerCampaign({user_id:this.auth.id});

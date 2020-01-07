@@ -54,4 +54,31 @@ class CampaignInviteRepositoryEloquent extends BaseRepository implements Campaig
         ]);
     }
 
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getInfluencerCampaign($request)
+    {
+        return $this->with(['campaign' => function($campaignQuery) use($request) {
+            $campaignQuery->select(['id', 'name', 'slug','objective_id'])
+                ->with(['payment'  => function($query){
+                    $query->with(['paymentType' => function($paymentQuery){
+                        $paymentQuery->select(['id', 'name']);
+                    }])->select(['payment_type_id', 'campaign_id']);
+                },
+                    'objective' => function($objectiveQuery){
+                        $objectiveQuery->select(['id', 'name', 'slug']);
+                    },
+                    'statistics' => function($statisticQuery) use ($request){
+                        $statisticQuery->select(['user_id','campaign_id','placement_id','work_rate','rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count'])
+                            ->where('user_id',$request->input('user_id'));
+                    }
+                ]);
+        }])
+            ->findWhere([
+                'user_id' => $request->input('user_id'),
+            ]);
+    }
+
 }

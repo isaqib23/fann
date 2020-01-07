@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Contracts\CampaignAssignedJobDetailRepository;
 use App\Contracts\CampaignInviteRepository;
 use App\Contracts\CampaignOfferRepository;
 use App\Contracts\CampaignPaymentRepository;
 use App\Contracts\CampaignTouchPointRepository;
-use App\Contracts\InfluencerJobRepository;
 use App\Contracts\PlacementRepository;
 use App\Http\Requests\TouchPointRequest;
+use App\Models\CampaignAssignedJobDetail;
 use http\Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -72,9 +73,9 @@ class CampaignsController extends Controller
 
     private $campaignInviteRepository;
     /**
-     * @var InfluencerJobRepository
+     * @var CampaignAssignedJobDetailRepository
      */
-    private $influencerJobRepository;
+    private $campaignAssignedJobDetailsRepository;
 
 
     /**
@@ -87,7 +88,7 @@ class CampaignsController extends Controller
      * @param CampaignPaymentRepository $campaignPaymentRepository
      * @param LaravelValidator $validator
      * @param CampaignInviteRepository $campaignInviteRepository
-     * @param InfluencerJobRepository $influencerJobRepository
+     * @param CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
      */
 
     public function __construct(
@@ -98,7 +99,7 @@ class CampaignsController extends Controller
         CampaignPaymentRepository $campaignPaymentRepository,
         LaravelValidator $validator,
         CampaignInviteRepository $campaignInviteRepository,
-        InfluencerJobRepository $influencerJobRepository
+        CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
     )
     {
         $this->repository = $repository;
@@ -108,7 +109,7 @@ class CampaignsController extends Controller
         $this->campaignPaymentRepository = $campaignPaymentRepository;
         $this->validator = $validator;
         $this->campaignInviteRepository = $campaignInviteRepository;
-        $this->influencerJobRepository = $influencerJobRepository;
+        $this->campaignAssignedJobDetailsRepository = $campaignAssignedJobDetailsRepository;
     }
 
     /**
@@ -408,9 +409,13 @@ class CampaignsController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function getActiveCampaigns(Request $request)
+    public function getActiveCampaignsByCompany(Request $request)
     {
-        $campaigns = $this->repository->getActiveCampaigns($request);
+        $campaigns = [];
+
+        if(!is_null(auth()->user()->CompanyUser)) {
+            $campaigns = $this->repository->getActiveCampaignsByCompany($request);
+        }
 
         return response()->json([
             'details' => $campaigns
@@ -449,7 +454,7 @@ class CampaignsController extends Controller
      */
     public function getInfluencerAssignTouchPoint(Request $request)
     {
-        $campaigns = $this->influencerJobRepository->getInfluencerAssignTouchPoint($request);
+        $campaigns = $this->campaignAssignedJobDetailsRepository->getInfluencerAssignTouchPoint($request);
 
         return response()->json([
             'details' => $campaigns,
@@ -462,7 +467,16 @@ class CampaignsController extends Controller
      */
     public function getInfluencerCampaign(Request $request)
     {
-        $campaigns = $this->influencerJobRepository->getInfluencerCampaign($request);
+        $campaigns = $this->campaignInviteRepository->getInfluencerCampaign($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
+
+    public function getActiveCampaigns(Request $request)
+    {
+        $campaigns = $this->cam->getActiveCampaigns($request);
 
         return response()->json([
             'details' => $campaigns,
