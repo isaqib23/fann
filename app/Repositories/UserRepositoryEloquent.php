@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Container\Container as Application;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -38,6 +39,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     /**
      * @param Request $request
      * @return mixed
+     * @throws BindingResolutionException
      */
     public function searchInfluencersByCriteria(Request $request)
     {

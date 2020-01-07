@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
@@ -56,5 +57,21 @@ class CampaignTouchPoint extends Model implements Transformable
     public function placementAction()
     {
         return $this->hasMany(CampaignTouchPointPlacementAction::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function campaign()
+    {
+        return $this->belongsTo(Campaign::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function invite()
+    {
+        return $this->hasMany(CampaignInvite::class,'placement_id', 'placement_id');
     }
 }

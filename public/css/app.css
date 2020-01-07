@@ -8275,6 +8275,9 @@ and (-webkit-min-device-pixel-ratio: 1) {
 [data-v-5467d290] .theme--light.v-tabs-items{
     background: #F4F7FD !important;
 }
+[data-v-5467d290] .v-tabs-items .v-window__container {
+    height: 100% !important;
+}
 
 [data-v-2efe3e63] .v-badge{
     width: 95%;
@@ -8751,6 +8754,10 @@ and (-webkit-min-device-pixel-ratio: 1) {
     margin-top: -24px;
     margin-left: 24px;
     border-radius: 10px;
+}
+.img-container[data-v-0d5f2d08] {
+    text-align: center;
+    display: block;
 }
 
 .description_wrapper[data-v-0d3afcf9]{

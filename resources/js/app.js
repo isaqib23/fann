@@ -12,24 +12,21 @@ import Locale from './vue-i18n-locales.generated';
 import Vuelidate from 'vuelidate'
 import VueCreditCardField from 'vue-credit-card-field';
 import axios from 'axios';
-import { api } from '~/config';
+import axiosRequest from '~/plugins/axiosRequest';
+import { api } from '~/config'
 
-
-const moment = require('moment')
-require('moment/locale/es')
 
 window.Vue = Vue;
 window._ = _;
 window.axios = axios;
 window.api = api;
-window.moment = require('moment');
+window.axiosRequest = axiosRequest;
+
 
 Vue.use(Vuelidate);
 Vue.use(VueInternationalization);
 Vue.use(VueCreditCardField);
-Vue.use(require('vue-moment'), {
-    moment
-});
+
 
 const lang = document.documentElement.lang.substr(0, 2);
 const i18n = new VueInternationalization({
