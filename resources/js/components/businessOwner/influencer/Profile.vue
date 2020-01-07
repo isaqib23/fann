@@ -124,7 +124,7 @@
             return  {
                 youtube : null,
                 instagram : null,
-                selectedPlatform : 1, ////campaign selected platformco
+                selectedPlatform : null, ////campaign selected platformco
                 profileID : null,
                 rating: 3,
                 items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
@@ -138,18 +138,12 @@
                     user_id        : null,
                     provider       : null,
                     meta_json      : null
-
                 },
             }
         },
         computed:{
-            ...mapGetters({
-                campaignPlacement : 'campaign/campaignPlacement'
-            }),
             bio() {
-
                 let meta = JSON.parse(this.profile.meta_json);
-
                 if(_.has(meta, 'user') && !_.isNil(meta)) {
                     return meta.user.bio;
                 }
@@ -162,27 +156,26 @@
                 }else{
                     return this.profile.user_platform_meta.post_count != null ? this.profile.user_platform_meta.post_count : 0 ;
                 }
-
             }
         },
         mounted() {
             this.profileID = this.$router.currentRoute.query.profileID;
-            // this.selectedPlatform = this.campaignPlacement.platform;
+            this.selectedPlatform = this.$router.currentRoute.query.placement;
             this.profileData();
         },
         methods: {
             ...mapActions({
-                getProfile : 'influencer/getProfile',
+                getProfile : 'influencer/getProfile'
             }),
             async profileData() {
                 let self = this;
                 let selectedPlatformData = null;
                 let pros = await this.getProfile(this.profileID);
-
-                _.forEach(pros, function(value, index) {
-
+                _.forEach(pros, function(value, index)
+                {
+                    if (self.selectedPlatform == index) {
                         selectedPlatformData = value;
-
+                    }
                     if(value.provider === 'instagram') {
                         self.instagram  = value;
                     }else{
@@ -193,6 +186,7 @@
             },
             changePlatform(data) {
                 this.profile = data;
+                console.log(this.profile,"profile");
             },
             goBack(){
                 this.$router.push({name: 'create-campaign-requirements', params: { slug: this.$router.currentRoute.params.slug }})

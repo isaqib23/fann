@@ -107,7 +107,7 @@
                 collectInvitation : 'campaign/collectInvitation'
             }),
             goToProfile(profileID) {
-                this.$router.push({name: 'influencer-profile' , query: { profileID: profileID } });
+                this.$router.push({name: 'influencer-profile' , query: { profileID: profileID , placement: this.campaignPlacement.platform} });
             },
             totalPages() {
                 return !_.isNil(this.influencerSearchResults) ? this.influencerSearchResults.total : 0
@@ -139,7 +139,8 @@
             ...mapGetters({
                 influencerSearchResults: 'campaign/influencerSearchResults',
                 inviteSearchParams: 'campaign/inviteSearchParams',
-                auth: 'auth/user'
+                auth: 'auth/user',
+                campaignPlacement : 'campaign/campaignPlacement'
             })
         },
         watch : {
