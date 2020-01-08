@@ -2,9 +2,11 @@
  * Initial state
  */
 export const state = {
-    campaigns    : [],
-    campaignChat : null,
-    chatMessage  : null
+    campaigns           : [],
+    campaignChat        : null,
+    chatMessage         : null,
+    campaignAssignedJob : null
+
 }
 
 /**
@@ -22,6 +24,9 @@ export const mutations = {
     },
     setActiveTab(state, objective) {
         state.activeTab = objective
+    },
+    setCampaignAssignedJob(state, payload) {
+        state.campaignAssignedJob = payload
     }
 }
 
@@ -54,7 +59,7 @@ export const actions = {
 
     async getInfluencerAssignTouchPoint({commit}, payload) {
         let response =  await axiosRequest.post('campaign.getInfluencerAssignTouchPoint', payload);
-
+        commit('setCampaignAssignedJob', response.details);
         return response.details;
     },
 
@@ -82,7 +87,8 @@ export const actions = {
  * Getters
  */
 export const getters = {
-    campaigns       : state => state.campaigns,
-    chatMessage     : state => state.chatMessage,
-    activeTab       : state => state.activeTab
+    campaigns            : state => state.campaigns,
+    chatMessage          : state => state.chatMessage,
+    activeTab            : state => state.activeTab,
+    campaignAssignedJob  : state => state.campaignAssignedJob
 }

@@ -210,6 +210,7 @@
             input:'',
             rating: 3,
             emojiSearch : "",
+            campaignAssignedJobObj : null,
             chats: [
                 { id:'1', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
                 { id:'2', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
@@ -261,6 +262,12 @@
                 }
             }
         },
+        computed: {
+            ...mapGetters({
+                campaignAssignedJob: 'campaignManagement/campaignAssignedJob',
+                auth: 'auth/user'
+            })
+        },
         mounted() {
             this.initiateCampaignChat({
                 chatTo : 8,
@@ -284,6 +291,15 @@
                    /* Echo.channel('campaignChat').whisper('typing', {
                         name: 'user'
                     });*/
+                }
+            },
+            'campaignAssignedJob': {
+                handler: function(object) {
+                    let self = this;
+                    if(!_.isNil(object)) {
+                        self.campaignAssignedJobObj = _.find(object, ['campaign_invite_id', Number(this.$router.history.current.params.slug)]);
+                        console.info( self.campaignAssignedJobObj, "chat module BO");
+                    }
                 }
             }
         }

@@ -233,6 +233,7 @@
                 campaign_invite_id: this.$router.history.current.params.slug,
                 user_id: this.$router.history.current.params.user
             });
+            console.info('caaaaaaaaaaaaaaaa');
         }
     }
 </script>
