@@ -241,7 +241,7 @@ export default [
                     component : require('$comp/influencer/campaign/campaign').default,
                 },
                 {
-                    path      : 'organise/campaigns/detail',
+                    path      : 'organise/campaigns/detail/:slug',
                     name      : 'influencer-campaign-detail',
                     component : require('$comp/influencer/campaign/campaignDetail').default,
                 },

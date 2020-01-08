@@ -156,6 +156,10 @@ export const actions = {
     },
     async collectInvitation({commit, state}, payload) {
         let response =  await CampaignAxios.saveInvitation( payload );
+        if (response.status == 200) {
+            return true;
+        }
+        return false;
     },
     saveChatBox({commit}, payload) {
         commit('setChatBox', payload);

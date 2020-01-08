@@ -23,7 +23,7 @@
                             <v-card
                             :loading="loading"
                             class="mx-auto my-2"
-                            @click="goToDetail()"
+                            @click="goToDetail(campaign)"
                         >
                                 <div class="img-container">
                                 <img
@@ -102,8 +102,14 @@
 
                 setTimeout(() => (this.loading = false), 2000)
             },
-            goToDetail(){
+            goToDetail(campaign){
                 this.$router.push({ name: 'influencer-campaign-detail' })
+                this.$router.push({
+                    name: 'influencer-campaign-detail',
+                    params: {
+                        slug: campaign.slug
+                    }
+                })
             }
         },
         async mounted() {

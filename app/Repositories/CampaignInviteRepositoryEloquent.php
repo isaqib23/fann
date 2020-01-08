@@ -42,7 +42,12 @@ class CampaignInviteRepositoryEloquent extends BaseRepository implements Campaig
      */
     public function store(Request $request)
     {
-        return $this->create([
+        return $this->updateOrCreate(
+            [
+                'user_id'        => $request->user_id,
+                'campaign_id'    => $request->campaign_id,
+            ],
+            [
             'user_id'        => $request->user_id,
             'campaign_id'    => $request->campaign_id,
             'placement_id'   => $request->placement_id,
