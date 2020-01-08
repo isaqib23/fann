@@ -4,9 +4,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * Class CreateInfluencerCampaignStatisticsTable.
+ * Class CreateCampaignAssignedJobsTable.
  */
-class CreateInfluencerCampaignStatisticsTable extends Migration
+class CreateCampaignAssignedJobsTable extends Migration
 {
 	/**
 	 * Run the migrations.
