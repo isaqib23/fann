@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Contracts\CampaignAssignedJobDetailRepository;
+use App\Contracts\CampaignAssignedJobRepository;
 use App\Contracts\CampaignInviteRepository;
 use App\Contracts\CampaignOfferRepository;
 use App\Contracts\CampaignPaymentRepository;
@@ -76,6 +77,10 @@ class CampaignsController extends Controller
      * @var CampaignAssignedJobDetailRepository
      */
     private $campaignAssignedJobDetailsRepository;
+    /**
+     * @var CampaignAssignedJobRepository
+     */
+    private $campaignAssignedJobRepository;
 
 
     /**
@@ -89,6 +94,7 @@ class CampaignsController extends Controller
      * @param LaravelValidator $validator
      * @param CampaignInviteRepository $campaignInviteRepository
      * @param CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
+     * @param CampaignAssignedJobRepository $campaignAssignedJobRepository
      */
 
     public function __construct(
@@ -99,7 +105,8 @@ class CampaignsController extends Controller
         CampaignPaymentRepository $campaignPaymentRepository,
         LaravelValidator $validator,
         CampaignInviteRepository $campaignInviteRepository,
-        CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
+        CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository,
+        CampaignAssignedJobRepository $campaignAssignedJobRepository
     )
     {
         $this->repository = $repository;
@@ -110,6 +117,7 @@ class CampaignsController extends Controller
         $this->validator = $validator;
         $this->campaignInviteRepository = $campaignInviteRepository;
         $this->campaignAssignedJobDetailsRepository = $campaignAssignedJobDetailsRepository;
+        $this->campaignAssignedJobRepository = $campaignAssignedJobRepository;
     }
 
     /**
@@ -454,7 +462,7 @@ class CampaignsController extends Controller
      */
     public function getInfluencerAssignTouchPoint(Request $request)
     {
-        $campaigns = $this->campaignAssignedJobDetailsRepository->getInfluencerAssignTouchPoint($request);
+        $campaigns = $this->campaignAssignedJobRepository->getInfluencerAssignTouchPoint($request);
 
         return response()->json([
             'details' => $campaigns,
