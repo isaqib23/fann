@@ -13,7 +13,7 @@
         <v-flex xs12 md7 class="pa-2">
             <v-data-table
                 :headers="headers"
-                :items="influencer"
+                :items="influencerTouchPoint"
                 :single-expand="singleExpand"
                 :expanded.sync="expanded"
                 item-key="id"
@@ -58,7 +58,7 @@
                         <span>
                             {{
                             placementStatistics(
-                                item.touch_point.placement_id,
+                                item.placement_id,
                                 item.assign_to.statistics,
                                 'eng_rate')
                             }}%
@@ -71,7 +71,7 @@
                         <span>
                             {{
                             placementStatistics(
-                                item.touch_point.placement_id,
+                                item.placement_id,
                                 item.assign_to.statistics,
                                 'comment_count')
                             }}
@@ -84,7 +84,7 @@
                         <span>
                             {{
                             placementStatistics(
-                                item.touch_point.placement_id,
+                                item.placement_id,
                                 item.assign_to.statistics,
                                 'like_count')
                             }}
@@ -92,14 +92,14 @@
                     </div>
                 </template>
 
-                <template v-slot:expanded-item="{ headers }">
+                <template v-slot:expanded-item="{ headers, item }">
                     <td :colspan="headers.length">
                         <v-timeline
                             dense clipped
                             class="ml-n7"
                         >
                             <v-timeline-item
-                                v-for="(touchPoint, index) in influencerTouchPoint[getInfluencerTouchPoint()]"
+                                v-for="(touchPoint, index) in item.touch_points"
                                 :key="index"
                                 :fill-dot="true"
                                 icon="mdi-check"
@@ -353,7 +353,6 @@
                 { text: 'Likes', value: 'likes', class: 'head_class text-uppercase',sortable: false, },
             ],
             influencerTouchPoint:[],
-            influencer:[],
             chats: [
                 { id:'1', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
                 { id:'2', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
@@ -365,10 +364,6 @@
             }),
             insert(emoji) {
                 this.input += emoji
-            },
-            getInfluencerTouchPoint() {
-                let response = _.keys(this.influencerTouchPoint)[0];
-                return response;
             },
             placementStatistics(id,statistics,field) {
                 let stat = _.find(statistics, ['placement_id', id]);
@@ -383,10 +378,6 @@
                 campaign_invite_id :   this.$router.history.current.params.slug,
                 user_id     :   this.$router.history.current.params.user
             });
-
-            if(_.isNil(this.influencerTouchPoint.length) || this.influencerTouchPoint.length > 0) {
-                this.influencer.push(this.influencerTouchPoint[this.getInfluencerTouchPoint()][0]);
-            }
         }
     }
 </script>

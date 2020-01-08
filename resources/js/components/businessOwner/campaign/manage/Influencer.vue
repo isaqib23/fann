@@ -63,7 +63,7 @@
                         <span>
                             {{
                             placementStatistics(
-                                item.touch_point.placement_id,
+                                item.placement_id,
                                 item.assign_to.statistics,
                                 'eng_rate')
                             }}%
@@ -76,7 +76,7 @@
                         <span>
                             {{
                             placementStatistics(
-                                item.touch_point.placement_id,
+                                item.placement_id,
                                 item.assign_to.statistics,
                                 'comment_count')
                             }}
@@ -89,7 +89,7 @@
                         <span>
                             {{
                             placementStatistics(
-                                item.touch_point.placement_id,
+                                item.placement_id,
                                 item.assign_to.statistics,
                                 'like_count')
                             }}
@@ -104,7 +104,7 @@
                             class="ml-n7"
                         >
                             <v-timeline-item
-                                v-for="(touchPoint, index) in item.touchPoints"
+                                v-for="(touchPoint, index) in item.touch_points"
                                 :key="index"
                                 :fill-dot="true"
                                 icon="mdi-check"
@@ -124,14 +124,14 @@
                                                 <v-flex xl8 lg8 md8 sm8 xs8>
                                                     <v-text-field
                                                         outlined
-                                                        :label="touchPoint.name"
+                                                        :label="touchPoint.touch_point.name"
                                                         class="touch_field"
                                                         readonly
                                                     ></v-text-field>
                                                 </v-flex>
                                                 <v-flex xl2 lg2 md2 sm2 xs2>
                                                     <v-list-item-avatar height="56" min-width="45" width="45" class="ma-0 amount_avatar" color="grayLight">
-                                                        <span>${{touchPoint.amount}}</span>
+                                                        <span>${{touchPoint.touch_point.amount}}</span>
                                                     </v-list-item-avatar>
                                                 </v-flex>
                                             </v-row>

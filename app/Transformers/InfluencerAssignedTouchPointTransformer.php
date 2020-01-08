@@ -2,6 +2,7 @@
 
 namespace App\Transformers;
 
+use App\Models\CampaignAssignedJob;
 use App\Models\CampaignAssignedJobDetail;
 use League\Fractal\TransformerAbstract;
 
@@ -12,44 +13,36 @@ use League\Fractal\TransformerAbstract;
  */
 class InfluencerAssignedTouchPointTransformer extends TransformerAbstract
 {
+    protected $return = [];
+
     /**
      * Transform the CampaignAssignedJobDetail entity.
      *
-     * @param CampaignAssignedJobDetail $model
+     * @param CampaignAssignedJob $model
      *
      * @return array
      */
-    public function transform($model)
+    public function transform(CampaignAssignedJob $model)
     {
-        $return = [];
+        $this->return[] = [
+            'id' => (int)$model->id,
+            "placement_id" => (int)$model->placement_id,
+            "user_id" => (int)$model->user_id,
+            "campaign_id" => (int)$model->campaign_id,
+            "campaign_invite_id" => (int)$model->campaign_invite_id,
+            "rating" => (int)$model->rating,
+            "eng_rate" => (int)$model->eng_rate,
+            "work_rate" => (int)$model->work_rate,
+            "tags" => (string)$model->tags,
+            "post_count" => (int)$model->post_count,
+            "comment_count" => (int)$model->comment_count,
+            "like_count" => (int)$model->like_count,
+            "follower_count" => (int)$model->follower_count,
+            "following_count" => (int)$model->following_count,
+            "assign_to" => $model->assignTo,
+            "touch_points" => $model->campaign_assigned_job_details,
+        ];
 
-        foreach ($model as $key => $value) {
-            if($key === 0) {
-                $return[] = [
-                    'id' => (int)$value->id,
-                    "assign_to_id" => (int)$value->assign_to_id,
-                    "assign_by_id" => (int)$value->assign_by_id,
-                    "campaign_touch_point_id" => (int)$value->campaign_touch_point_id,
-                    "campaign_invite_id" => (int)$value->campaign_invite_id,
-                    "rating" => (int)$value->rating,
-                    "eng_rate" => (int)$value->eng_rate,
-                    "work_rate" => (int)$value->work_rate,
-                    "tags" => (string)$value->tags,
-                    "post_count" => (int)$value->post_count,
-                    "comment_count" => (int)$value->comment_count,
-                    "like_count" => (int)$value->like_count,
-                    "follower_count" => (int)$value->follower_count,
-                    "following_count" => (int)$value->following_count,
-                    "assigned_job_id" => $value->assigned_job_id,
-                    "is_cloned" => (boolean)$value->is_cloned,
-                    "assign_to" => $value->assignTo,
-                    "touch_point" => $value->touchPoint,
-                ];
-            }
-
-            $return[0]['touchPoints'][] = $value->touchPoint;
-        }
-
-        return $return;
+        return $this->return;
     }
 }

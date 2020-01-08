@@ -39,29 +39,6 @@ class CampaignAssignedJobDetailRepositoryEloquent extends BaseRepository impleme
      * @param $request
      * @return mixed
      */
-    public function getInfluencerAssignTouchPoint($request)
-    {
-        $results =  $this->with(['assignTo'  => function($userQuery){
-            $userQuery->with(['statistics' => function($statisticQuery){
-                $statisticQuery->select(['placement_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
-            }])->select(['id', 'first_name', 'last_name', 'email']);
-        }
-        ,'touchPoint'
-        ])
-            ->findWhere([
-                'assign_to_id' => $request->input('user_id'),
-                'campaign_invite_id' => $request->input('campaign_invite_id')
-            ])->groupBy('campaign_invite_id');
-
-        $response = (new InfluencerAssignedTouchPointTransformer())->transform($results->first());
-
-        return $response;
-    }
-
-    /**
-     * @param $request
-     * @return mixed
-     */
     public function getInfluencerCampaign($request)
     {
         return $this->with(["invite" => function($query) use ($request){

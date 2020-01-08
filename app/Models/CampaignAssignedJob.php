@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -36,4 +38,20 @@ class CampaignAssignedJob extends Model implements Transformable
         'following_count'
     ];
 
+
+    /**
+     * @return HasMany
+     */
+    public function campaign_assigned_job_details()
+    {
+        return $this->hasMany(CampaignAssignedJobDetail::class,'assigned_job_id', 'id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function assignTo()
+    {
+        return $this->hasOne(User::class,'id', 'user_id');
+    }
 }
