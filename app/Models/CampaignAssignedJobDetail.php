@@ -22,6 +22,7 @@ class CampaignAssignedJobDetail extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
+        'assigned_job_id',
         'assign_to_id',
         'campaign_invite_id',
         'assign_by_id',
@@ -29,7 +30,8 @@ class CampaignAssignedJobDetail extends Model implements Transformable
         'placement_id',
         'campaign_touch_point_id',
         'campaign_invite_id',
-        'status'
+        'status',
+        'is_cloned'
     ];
 
     /**
