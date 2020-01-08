@@ -42,7 +42,7 @@ class CampaignAssignedJob extends Model implements Transformable
     /**
      * @return HasMany
      */
-    public function campaign_assigned_job_details()
+    public function campaignAssignedJobDetails()
     {
         return $this->hasMany(CampaignAssignedJobDetail::class,'assigned_job_id', 'id');
     }

@@ -41,7 +41,7 @@ class CampaignAssignedJobRepositoryEloquent extends BaseRepository implements Ca
      */
     public function getInfluencerAssignTouchPoint($request)
     {
-        $results =  $this->with(['campaign_assigned_job_details' => function($query){
+        $results =  $this->with(['campaignAssignedJobDetails' => function($query){
             $query->with(['touchPoint']);
         },'assignTo'  => function($userQuery){
             $userQuery->with(['statistics' => function($statisticQuery){

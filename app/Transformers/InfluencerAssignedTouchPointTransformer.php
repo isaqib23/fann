@@ -40,7 +40,7 @@ class InfluencerAssignedTouchPointTransformer extends TransformerAbstract
             "follower_count" => (int)$model->follower_count,
             "following_count" => (int)$model->following_count,
             "assign_to" => $model->assignTo,
-            "touch_points" => $model->campaign_assigned_job_details,
+            "touch_points" => $model->campaignAssignedJobDetails,
         ];
 
         return $this->return;
