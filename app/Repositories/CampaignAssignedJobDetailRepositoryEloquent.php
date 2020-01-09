@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Transformers\InfluencerAssignedTouchPointTransformer;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignAssignedJobDetailRepository;
@@ -32,25 +33,6 @@ class CampaignAssignedJobDetailRepositoryEloquent extends BaseRepository impleme
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
-    }
-
-    /**
-     * @param $request
-     * @return mixed
-     */
-    public function getInfluencerAssignTouchPoint($request)
-    {
-        return $this->with(['assignTo'  => function($userQuery){
-            $userQuery->with(['statistics' => function($statisticQuery){
-                $statisticQuery->select(['placement_id', 'user_id', 'rating', 'eng_rate', 'comment_count', 'like_count', 'follower_count']);
-            }])->select(['id', 'first_name', 'last_name', 'email']);
-        }
-        ,'touchPoint'
-        ])
-            ->findWhere([
-                'assign_to_id' => $request->input('user_id'),
-                'campaign_invite_id' => $request->input('campaign_invite_id')
-            ])->groupBy('campaign_invite_id');
     }
 
     /**
