@@ -6,7 +6,6 @@ namespace App\Repositories;
 use App\Models\CampaignChatConversation;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Log;
 use MongoDB\BSON\ObjectId;
 
@@ -27,6 +26,15 @@ class CampaignChatConversationRepositoryMongo
      */
     protected $model;
 
+    /**
+     * @var null
+     */
+    protected $collectionPrefix = 'campaign_job_';
+
+    /**
+     * @var
+     */
+     protected $campaignChatRepositoryMongo;
 
     /**
      * CampaignChatConversationRepositoryMongo constructor.
@@ -46,22 +54,50 @@ class CampaignChatConversationRepositoryMongo
     public function store(Request $request)
     {
         try {
-                return $this->model
-                    ->where('campaign_id', '4')
-                    ->where('placement_id', '2')
-                    ->update([
-                        'participants' => [4]
-                        ,
-                        'campaign_id'  =>  '4',
-                        'placement_id' => '2'
-                    ],
-                    ['upsert' => true]);
+            $this->createChatCollection($request);
+            return $this->model
+                ->where('id', $request->id)
+                ->where('placement_id', $request->placement_id)
+                ->where('campaign_invite_id', $request->campaign_invite_id)
+                ->update([
+                    'participants' => [4]
+                    ,
+                    'id'                 => $request->id,
+                    'placement_id'       => $request->placement_id,
+                    'campaign_invite_id' => $request->campaign_invite_id,
+                    'campaign_id'        => $request->campaign_id,
+                    'campaign_job_id'    => $request->id
+                ],
+                [
+                    'upsert' => true
+                ]);
 
         } catch (Exception $e) {
             Log::info($e->getMessage());
             throw new Exception($e->getMessage());
 
         }
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function createChatCollection($request)
+    {
+        $name = $this->assumeChatCollectionName($request);
+        $this->campaignChatRepositoryMongo = app()->makeWith(CampaignChatRepositoryMongo::class, ['collectionName' => $name]);
+        return $this->campaignChatRepositoryMongo->createWithBaseData($request);
+    }
+
+    /**
+     * @param $request
+     * @return string
+     */
+    public function assumeChatCollectionName($request)
+    {
+        $identity = $request->id;
+        return $this->collectionPrefix . $identity;
     }
 
 }

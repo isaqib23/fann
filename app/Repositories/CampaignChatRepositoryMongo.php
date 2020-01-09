@@ -50,8 +50,6 @@ class CampaignChatRepositoryMongo
         $this->CampaignChatConversationRepositoryMongo = app()->make(CampaignChatConversationRepositoryMongo::class);
         $this->collection = CampaignChat::setCollection($collectionName);
         $this->currentCollectionName = $collectionName;
-
-      //  dd($this->model->collectionExists('campaign_2_2'));
     }
 
 
@@ -60,6 +58,66 @@ class CampaignChatRepositoryMongo
         $this->model = CampaignChat::setCollection($collectionName);
         return $this;
     }*/
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws Exception
+     */
+    public function createWithBaseData(Request $request)
+    {
+        try {
+            return $this->collection
+                ->where('id', $request->id)
+                ->where('placement_id', $request->placement_id)
+                ->where('campaign_invite_id', $request->campaign_invite_id)
+                ->update([
+                    'id' => $request->id,
+                    'campaign_id' => $request->campaign_id,
+                    'placement_id' => $request->placement_id,
+                    'campaign_invite_id' => $request->campaign_invite_id,
+                    'campaign_job_id' => $request->id
+                ],
+                [
+                    'upsert' => true
+                ]);
+
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            throw new Exception($e->getMessage());
+
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws Exception
+     */
+    public function pushContentToCollection(Request $request)
+    {
+        try {
+            return $this->collection
+                ->where('id', $request->id)
+                ->where('placement_id', $request->placement_id)
+                ->where('campaign_invite_id', $request->campaign_invite_id)
+                ->push('content', [
+                    [
+                        'sender' => 18,
+                        'content' => 'new record to push',
+                        'time_created' => Carbon::now(),
+                        'type' => 'text',
+                        "_id" => new ObjectId()
+                    ]
+                ]);
+
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            throw new Exception($e->getMessage());
+
+        }
+    }
+
     /**
      * @param Request $request
      * @return mixed
@@ -99,22 +157,6 @@ class CampaignChatRepositoryMongo
                 'campaign_id' => '2',
                 'placement_id' => '2'
             ];
-
-            if ($this->model->collectionExists($this->currentCollectionName)) {
-                $this->CampaignChatConversationRepositoryMongo->store($request);
-                return $this->collection
-                    ->where('campaign_id', '2')
-                    ->where('placement_id', '2')
-                    ->push('content' , [
-                    [
-                        'sender' => 18,
-                        'content' => 'new record to push',
-                        'time_created' => Carbon::now(),
-                        'type' => 'text',
-                        "_id"  => new ObjectId()
-                    ]
-                ]);
-            }
 
             return $this->collection->create($data);
 

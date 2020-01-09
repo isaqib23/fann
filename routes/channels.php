@@ -16,6 +16,9 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('campaignChat', function ($userTo, $userBy) {
+    return $userTo;
+});
 
+Broadcast::channel('campaignJob.{campaignAssignedJobId}', function ($userTo, $userBy) {
     return $userTo;
 });

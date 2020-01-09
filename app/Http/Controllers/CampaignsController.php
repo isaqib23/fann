@@ -11,6 +11,7 @@ use App\Contracts\CampaignTouchPointRepository;
 use App\Contracts\PlacementRepository;
 use App\Events\CampaignChatEvent;
 use App\Http\Requests\TouchPointRequest;
+use App\Repositories\CampaignChatConversationRepositoryMongo;
 use App\Repositories\CampaignChatRepositoryMongo;
 use App\Models\CampaignAssignedJobDetail;
 use http\Exception;
@@ -73,10 +74,16 @@ class CampaignsController extends Controller
      * @var CampaignAssignedJobDetailRepository
      */
     private $campaignAssignedJobDetailsRepository;
+
     /**
      * @var CampaignAssignedJobRepository
      */
     private $campaignAssignedJobRepository;
+
+    /**
+     * @var CampaignChatConversationRepositoryMongo
+     */
+    private $campaignChatConversationRepositoryMongo;
 
     /**
      * CampaignsController constructor.
@@ -90,6 +97,7 @@ class CampaignsController extends Controller
      * @param CampaignInviteRepository $campaignInviteRepository
      * @param CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository
      * @param CampaignAssignedJobRepository $campaignAssignedJobRepository
+     * @param CampaignChatConversationRepositoryMongo $campaignChatConversationRepositoryMongo
      */
 
     public function __construct(
@@ -101,7 +109,8 @@ class CampaignsController extends Controller
         LaravelValidator $validator,
         CampaignInviteRepository $campaignInviteRepository,
         CampaignAssignedJobDetailRepository $campaignAssignedJobDetailsRepository,
-        CampaignAssignedJobRepository $campaignAssignedJobRepository
+        CampaignAssignedJobRepository $campaignAssignedJobRepository,
+        CampaignChatConversationRepositoryMongo $campaignChatConversationRepositoryMongo
     )
     {
         $this->repository = $repository;
@@ -113,6 +122,7 @@ class CampaignsController extends Controller
         $this->campaignInviteRepository = $campaignInviteRepository;
         $this->campaignAssignedJobDetailsRepository = $campaignAssignedJobDetailsRepository;
         $this->campaignAssignedJobRepository = $campaignAssignedJobRepository;
+        $this->campaignChatConversationRepositoryMongo = $campaignChatConversationRepositoryMongo;
     }
 
     /**
@@ -466,11 +476,12 @@ class CampaignsController extends Controller
 
     /**
      * @param Request $request
+     * @throws \Exception
      */
     public function broadcastCampaignChat(Request $request)
     {
-
-       broadcast(new CampaignChatEvent($request->get('chatTo'), auth()->id()));
+        $this->campaignChatConversationRepositoryMongo->store($request);
+        //broadcast(new CampaignChatEvent($request->get('chatTo'), auth()->id()));
     }
 
     /**
@@ -478,10 +489,12 @@ class CampaignsController extends Controller
      */
     public function broadcastCampaignMessage(Request $request)
     {
-        broadcast(new CampaignChatEvent($request->get('chatTo'), auth()->id(), $request->get('content')));
+        broadcast(new CampaignChatEvent($request->get('8'), auth()->id(), $request->get('content')));
 
-        $mongoChat = app()->makeWith(CampaignChatRepositoryMongo::class, ['collectionName' => 'campaign_2_2']);
-        $mongoChat->store($request);
+        $collectionName = $this->campaignChatConversationRepositoryMongo->assumeChatCollectionName($request);
+        $mongoChatCollection = app()->makeWith(CampaignChatRepositoryMongo::class, ['collectionName' => $collectionName]);
+
+        $mongoChatCollection->store($request);
     }
 
     /**

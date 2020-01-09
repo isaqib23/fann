@@ -269,10 +269,6 @@
             })
         },
         mounted() {
-            this.initiateCampaignChat({
-                chatTo : 8,
-                chatBy : 7
-            });
         },
         created() {
             let self = this;
@@ -298,6 +294,7 @@
                     let self = this;
                     if(!_.isNil(object)) {
                         self.campaignAssignedJobObj = _.find(object, ['campaign_invite_id', Number(this.$router.history.current.params.slug)]);
+                        this.initiateCampaignChat(self.campaignAssignedJobObj);
                         console.info( self.campaignAssignedJobObj, "chat module BO");
                     }
                 }
