@@ -220,7 +220,6 @@
             rules: [
                 value => !value || value.size < 2000000 || 'Avatar size should be less than 2 MB!',
             ],
-            loading : false,
             user: {
                 first_name: null,
                 last_name: null,
@@ -253,8 +252,7 @@
                 this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
             },
             async submit() {
-                if (this.$refs.form.validate()) {
-
+                    this.loading = true
                     this.user.userCompany = this.userCompany;
                     let formData = new FormData();
                     formData.append("user", JSON.stringify(this.user));
@@ -262,7 +260,6 @@
 
                     let response = await this.updateProfile(formData);
                     if (response.status === 200) {
-                        this.loading = false;
                         this.clearErrors();
                         this.$toast.success('Your profile successfully updated.')
                     } else {
@@ -270,7 +267,6 @@
                         this.handleErrors(response.details)
                     }
                     this.loading = false
-                }
             }
         },
         created() {
