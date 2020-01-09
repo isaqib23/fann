@@ -13,6 +13,7 @@
                             v-model="touchPoint.instaFormatFields.instaPost"
                             @click="disabledBioLink = !disabledBioLink"
                             value="post"
+                            :error-messages="instaPost"
                 ></v-checkbox>
             </v-flex>
             <v-flex lg8 sm8 m8 pl-3>
@@ -22,6 +23,7 @@
                     class="custom_dropdown"
                     v-model="touchPoint.instaFormatFields.instaBioLink"
                     :disabled="disabledBioLink"
+                    :error-messages="instaBioLink"
                 ></v-text-field>
             </v-flex>
         </v-layout>
@@ -40,6 +42,7 @@
                     class="custom_dropdown"
                     v-model="touchPoint.instaFormatFields.instaStoryLink"
                     :disabled="disabledStoryLink"
+                    :error-messages="instaStoryLink"
                 ></v-text-field>
             </v-flex>
         </v-layout>
@@ -51,7 +54,10 @@
     export default {
         props : {
             touchPoint    : {},
-            paymentMethod : {}
+            paymentMethod : {},
+            errorMessage  : {
+                type : Object
+            }
         },
         data ()  {
             return  {
@@ -59,6 +65,26 @@
                 disabledBioLink       :true,
                 disabledStoryLink     :true,
             }
+        },
+        computed:{
+          instaStoryLink(){
+              let self = this;
+              if(self.errorMessage !=undefined && self.errorMessage.errors['touchPoint.instaFormatFields.instaStoryLink'] != null) {
+                    return self.errorMessage.errors['touchPoint.instaFormatFields.instaStoryLink']
+              }
+          },
+            instaBioLink(){
+                let self = this;
+                if(self.errorMessage !=undefined && self.errorMessage.errors['touchPoint.instaFormatFields.instaBioLink'] != null) {
+                    return self.errorMessage.errors['touchPoint.instaFormatFields.instaBioLink']
+                }
+            },
+            instaPost(){
+                let self = this;
+                if(self.errorMessage !=undefined && self.errorMessage.errors['touchPoint.instaFormatFields.instaPost'] !=null ) {
+                    return self.errorMessage.errors['touchPoint.instaFormatFields.instaPost']
+                }
+            },
         },
         mounted () {
             this.disabledBioLink = (_.isNil(this.touchPoint.instaFormatFields.instaPost)) ? this.disabledBioLink : false;

@@ -56,7 +56,13 @@ class TouchPointRequest extends BaseFormRequest
             'touchPoint.guideLines' => 'touch point guidelines',
             'campaignInformation.description' => 'campaign description',
             'touchPoint.name'                 => 'touch point name',
-            'touchPoint.dispatchProduct'      => 'touch point dispatch product'
+            'touchPoint.dispatchProduct'      => 'touch point dispatch product',
+            'touchPoint.barterProduct'        => 'touch point barter product',
+            'touchPoint.productBrand'         => 'touch point product brand',
+            'touchPoint.instaFormatFields.instaStoryLink' => 'instagram story link',
+            'touchPoint.instaFormatFields.instaBioLink'   => 'instagram bio link',
+            'touchPoint.instaFormatFields.instaPost'      => 'instagram post',
+            'touchPoint.amount'                           => 'touch point amount'
         ];
         return $attributes;
     }

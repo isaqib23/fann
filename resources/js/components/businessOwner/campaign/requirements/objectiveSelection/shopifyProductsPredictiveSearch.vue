@@ -1,6 +1,5 @@
 <template>
     <div style="width:100%">
-
         <v-flex xl12 lg12 md12 sm12 xs12>
             <v-combobox
                 :disabled="disabledSearch"
@@ -22,7 +21,7 @@
                 hide-label
                 :menu-props="{maxWidth:440,marginTop:20}"
                 return-object
-                :error-messages="errorMessage"
+                :error-messages="message"
                 class="comboboxClass custom_dropdown"
             >
                 <template v-slot:selection="data" role="listitem" class="mt-n12">
@@ -81,7 +80,9 @@
     import { mapGetters } from 'vuex';
     export default {
         props : {
-            errorMessage : null,
+            errorMessage : {
+                type : Object
+            },
             disabledSearch : null,
             emitAs : {
                 type: String,
@@ -107,7 +108,6 @@
                selectedVariant : {}
             }
         },
-
         methods: {
             getProducts(val) {
                 let self = this;
@@ -151,6 +151,22 @@
                 self.variants.splice( self.ld.findIndex(self.variants, variant), 1 );
             }
         },
+        created() {
+            let self = this;
+            self.tempFunction = _.debounce( this.getProducts, 750);
+        },
+        computed: {
+            message(){
+                let self = this;
+                if(self.errorMessage !=undefined){
+                    if(self.errorMessage.errors['touchPoint.dispatchProduct'] != null){
+                        return self.errorMessage.errors['touchPoint.dispatchProduct'];
+                    }else if(self.errorMessage.errors['touchPoint.barterProduct'] !=null) {
+                        return self.errorMessage.errors['touchPoint.barterProduct'];
+                    }
+                }
+            },
+        },
         watch: {
             search () {
                 let self = this;
@@ -184,10 +200,6 @@
                 immediate: true,
                 deep: true
             }
-        },
-        created() {
-            let self = this;
-            self.tempFunction = _.debounce( this.getProducts, 750);
         }
     }
 </script>

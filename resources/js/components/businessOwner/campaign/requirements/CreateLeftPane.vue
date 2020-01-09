@@ -59,6 +59,7 @@
                                     v-if="touchPoint.touchPointConditionalFields.touchPointBrand"
                                     :touchPoint="touchPoint"
                                     :paymentMethod="paymentMethod"
+                                    :errorMessage="errors['touchPoint.productBrand']"
                                 ></touch-point-brand-field>
 
                                 <products-search
@@ -67,7 +68,7 @@
                                     :selectedProduct="dispatchProduct"
                                     :selectedVariants="dispatchProductVariant"
                                     @selected-product="selectedProduct"
-                                    :errorMessage="errors['touchPoint.dispatchProduct']"
+                                    :errorMessage="{errors}"
                                 ></products-search>
                             </v-row>
 
@@ -75,6 +76,7 @@
                                 v-if="touchPoint.touchPointConditionalFields.touchPointInstagramFormat"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
+                                :errorMessage="{errors}"
                             ></touch-point-post-format-field>
 
                             <v-card flat class="mx-auto">
@@ -207,6 +209,7 @@
                                         :selectedProduct="barterProduct"
                                         :selectedVariants="barterProductVariant"
                                         @selected-product="selectedProduct"
+                                        :errorMessage="{errors}"
                                     >
                                     </products-search>
 
@@ -222,6 +225,7 @@
                                         solo
                                         label="$100"
                                         class="custom_dropdown"
+                                        :error-messages="errors['touchPoint.amount']"
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
@@ -334,7 +338,7 @@
         methods: {
             ...mapMutations({
                 setTouchPoint : 'campaign/setTouchPoint',
-                updateCampaignInformation : 'campaign/updateCampaignInformation'
+                updateCampaignInformation : 'campaign/updateCampaignInformation',
             }),
             ...mapActions({
                 saveTouchPoint              : 'campaign/saveTouchPoint',
@@ -385,6 +389,7 @@
                 this.guideLines = (objectLenght.length > 0) ? objectLenght.length : this.guideLines;
             },
             async addTouchPoint() {
+                this.clearErrors();
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
@@ -397,17 +402,17 @@
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
                     this.guideLines = 1;
-                    this.clearErrors();
+
                 } else {
                     this.loading = true;
-                    this.handleErrors(response.details)
+                    this.handleErrors(response.details);
                 }
                 this.loading = false;
             },
             removeTouchPoint() {
                 if (this.tabsLength === 1) {
                     return false;
-                }
+                }c
                 this.tabsLength = this.tabsLength - 1;
                 this.currentTab = this.currentTab - 1;
             },

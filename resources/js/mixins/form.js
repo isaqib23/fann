@@ -14,13 +14,25 @@ export default {
     },
   mounted() {
     for (let key in this.form) {
+
       if (this.form[key] !== null && typeof this.form[key] === 'object') {
         for (let i in this.form[key]) {
-          let key2 = key + '.' + i
-          this.errors[key2] = []
-          if (!this.labels[key2]) {
-            this.labels[key2] = formatter.titlecase(i)
-          }
+
+            if (this.form[key][i] !== null && typeof this.form[key][i] === 'object' ) {
+                for (let x in this.form[key][i]) {
+                    let key3 = key + '.' + i + '.' + x
+                    this.errors[key3] = []
+                    if (!this.labels[key3]) {
+                        this.labels[key3] = formatter.titlecase(x)
+                    }
+                }
+        }else{
+            let key2 = key + '.' + i
+            this.errors[key2] = []
+            if (!this.labels[key2]) {
+                this.labels[key2] = formatter.titlecase(i)
+            }
+        }
         }
       }
       else {

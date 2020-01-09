@@ -20,6 +20,7 @@
                     class="brand_dropdown product_left_border"
                     item-text="name"
                     item-value="id"
+                    :error-messages="errorMessage"
                 ></v-select>
             </v-flex>
         </v-row>
@@ -32,6 +33,7 @@
         props : {
             touchPoint    : {},
             paymentMethod : {},
+            errorMessage  : null
         },
         data ()  {
             return  {
