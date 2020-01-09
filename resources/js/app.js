@@ -12,12 +12,20 @@ import Locale from './vue-i18n-locales.generated';
 import Vuelidate from 'vuelidate'
 import VueCreditCardField from 'vue-credit-card-field';
 import axios from 'axios';
-import { api } from '~/config'
+import { api } from '~/config';
+import Echo from "laravel-echo";
 
 window.Vue = Vue;
 window._ = _;
 window.axios = axios;
 window.api = api;
+window.Pusher = require('pusher-js');
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: '6672af230b35c56c5290',
+    cluster: 'ap3',
+    encrypted: true
+});
 
 Vue.use(Vuelidate);
 Vue.use(VueInternationalization);

@@ -19,6 +19,7 @@
         "madcoda/php-youtube-api": "1.2",
         "martinlindhe/laravel-vue-i18n-generator": "^0.1.42",
         "prettus/l5-repository": "^2.6",
+        "pusher/pusher-php-server": "^4.1",
         "rinvex/countries": "^6.1",
         "stripe/stripe-php": "^7.12",
         "tymon/jwt-auth": "^1.0.0-rc.4.1"

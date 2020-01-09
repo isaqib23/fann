@@ -77,7 +77,9 @@ export const api = Object.assign(new URL(apiUrl), {
     stateList: {
         'url': 'country/states'
     },
-
+    getNotifications:{
+        'url' : 'getNotifications'
+    },
     campaign: campaign,
     setting:  setting,
     shopify:  shopify,

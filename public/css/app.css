@@ -4432,6 +4432,10 @@
 [data-v-61ca4211] .highlighted {
     background: red !important;
 }
+.notification_list[data-v-61ca4211] {
+    overflow-y: scroll;
+    max-height: 200px !important;
+}
 /** Ripples */
 /** Elements */
 .v-app-bar:not([data-booted=true]) {

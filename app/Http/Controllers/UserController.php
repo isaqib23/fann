@@ -85,10 +85,13 @@ class UserController extends Controller
         try {
 
             $rules = [
+                'first_name'            => 'required|string|max:191',
+                'last_name'             => 'required|string|max:191',
+                'email'                 => 'required|string|email|max:191|unique:users,email,' . $request->user()->id,
                 'userDetail.bio'        => 'required|string|max:191',
                 'userDetail.address'    => 'required',
-                'logo'                  => 'required',
-                'userDetail.niche_id'      => 'required',
+                'logo'                  => $request->userDetail['picture'] == null ? 'required' : '',///to skipp rule if old logo,
+                'userDetail.niche_id'   => 'required',
                 'userDetail.timezone'   => 'required',
                 'userDetail.state_id'   => 'required',
                 'userDetail.country_id' => 'required',
@@ -96,13 +99,32 @@ class UserController extends Controller
                 'userDetail.phone'      => 'required|numeric'
             ];
 
-            $this->validate($request, $rules);
+            $attributes = [
+                'userDetail.bio'        => 'user bio',
+                'userDetail.address'    => 'user address',
+                'userDetail.niche_id'   => 'user niche',
+                'userDetail.timezone'   => 'user timezone',
+                'userDetail.state_id'   => 'user state',
+                'userDetail.country_id' => 'user country',
+                'userDetail.website'    => 'user website url',
+                'userDetail.phone'      => 'user phone'
+            ];
+
+            $this->validate($request, $rules,[], $attributes);
 
             $request->merge([
                 'user_id' => auth()->user()->id,
             ]);
 
             $userDetail = $this->repository->store($request);
+
+            $user = $request->user();
+            $user->fill([
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'email' => $request->input('email')
+            ]);
+            $user->save();
 
             return response()->json([
                 'details'    => $userDetail,

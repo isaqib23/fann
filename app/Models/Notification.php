@@ -22,4 +22,12 @@ class Notification extends Model implements Transformable
      */
     protected $fillable = [];
 
+    /**
+     * @return MorphTo
+     */
+    public function notifiable()
+    {
+        return $this->morphTo();
+    }
+
 }

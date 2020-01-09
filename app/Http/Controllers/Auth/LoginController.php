@@ -6,6 +6,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Notifications\DatabaseNotify;
+
 
 class LoginController extends Controller
 {
@@ -27,6 +29,14 @@ class LoginController extends Controller
     public function me()
     {
         $user = auth()->user();
+
+        $message = [
+            'text'   => "logged in user",
+            'sender' => auth()->user()
+        ];
+
+        $user->notify(new DatabaseNotify($message));
+
 
         return response()->json(compact('user'));
     }
@@ -72,5 +82,14 @@ class LoginController extends Controller
         auth()->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    public function getNotifications()
+    {
+        $user = auth()->user();
+        return response()->json([
+            'details'=>$user->notifications
+        ]);
+
     }
 }

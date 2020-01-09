@@ -31,8 +31,10 @@
         "vuex": "^3.1"
     },
     "dependencies": {
+        "laravel-echo": "^1.6.1",
         "lodash": "^4.17.15",
         "nprogress": "^0.2.0",
+        "pusher-js": "^5.0.3",
         "v-stripe-elements": "^1.2.0",
         "vue-credit-card-field": "^0.3.14",
         "vue-emoji-picker": "^1.0.1",

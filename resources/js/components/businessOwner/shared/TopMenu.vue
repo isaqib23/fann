@@ -35,13 +35,15 @@
                     </v-btn>
                 </template>
                 <v-card>
-                    <v-card-title class="border_bottom body-1">David's Activity</v-card-title>
+                    <v-card-title class="border_bottom body-1">{{username}}'s Activity</v-card-title>
                     <v-card-text>
-                        <v-list>
+                        <v-list class="notification_list">
                             <v-list-item
                                 v-for="(item, index) in items"
                                 :key="index"
-                                @click=""
+                                :to="{name:'manage-campaigns'}"
+                                ripple
+                                @click="false"
                             >
                                 <v-list-item-avatar>
                                     <v-list-item-avatar class="mr-1">
@@ -50,7 +52,7 @@
                                 </v-list-item-avatar>
                                 <v-list-item-content>
                                     <v-list-item-title class="body-2">
-                                        <strong>David Lee</strong> sent you content for review
+                                        <strong>{{item.data.sender.first_name}}</strong> {{item.data.text}}
                                     </v-list-item-title>
                                     <v-list-item-subtitle>4 min ago</v-list-item-subtitle>
                                 </v-list-item-content>
@@ -100,7 +102,7 @@
     import {settings} from '~/config'
     import {mapGetters} from 'vuex'
     import axios from 'axios'
-    import {api} from '~/config'
+    import { api } from '~/config'
 
     export default {
         data: () => ({
@@ -110,16 +112,13 @@
             loading: false,
             shops: [],
             selectedShop:null,
-            items: [
-                { title: 'Click Me' },
-                { title: 'Click Me' },
-                { title: 'Click Me' },
-                { title: 'Click Me 2' },
-            ]
+            items: []
         }),
-        computed: mapGetters({
-            auth: 'auth/user'
-        }),
+        computed: {
+            ...mapGetters({
+                auth: 'auth/user'
+            })
+        },
         methods: {
             toggleNight() {
                 this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
@@ -151,12 +150,23 @@
             }
         },
        async mounted() {
-            this.username = this.auth.first_name;
+           this.username = this.auth.first_name;
            await this.getLinkedShops();
 
            if (localStorage.hasOwnProperty("selectedShop")) {
                 this.selectedShop = localStorage.getItem('selectedShop');
             }
+           let self = this;
+           Echo.private('App.User.' + 31)
+               .notification((notification) => {
+                   console.log(notification,"notifivation");
+               });
+            axios
+               .get(api.path('getNotifications'))
+               .then(function (resp) {
+                   console.log(resp.data.details,"de")
+                  self.items = resp.data.details;
+               });
         },
         watch: {
             loading (val) {
@@ -181,5 +191,9 @@
     }
     >>>.highlighted {
         background: red !important;
+    }
+    .notification_list {
+        overflow-y: scroll;
+        max-height: 200px !important;
     }
 </style>

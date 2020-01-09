@@ -29,6 +29,8 @@ Route::group(['middleware' => ['jwt']], function() {
     Route::get('me', 'Auth\LoginController@me');
     Route::post('profile', 'ProfileController@update');
 
+    Route::get('getNotifications','Auth\LoginController@getNotifications');
+
     // ----- shopify handshake
     Route::get('shopify/install/{shop}', [
         'as' => 'shopify-install',
