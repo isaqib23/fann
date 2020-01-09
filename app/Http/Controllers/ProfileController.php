@@ -44,7 +44,6 @@ class ProfileController extends Controller
      */
     public function update(Request $request)
     {
-
         $request->merge(json_decode($request->input('user'),true));
 
         $rules = [
@@ -52,7 +51,7 @@ class ProfileController extends Controller
             'last_name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,' . $request->user()->id,
             'password' => 'nullable|string|min:6|confirmed',
-            'logo'=> 'required',
+            'logo'     => $request->userCompany['logo'] == null ? 'required' : '',///to skipp rule if old logo
             'userCompany.name' => 'required|string|max:191',
             'userCompany.website' => 'required|url',
             'userCompany.phone' => 'required|numeric',
@@ -62,7 +61,17 @@ class ProfileController extends Controller
             'userCompany.niche_id' => 'required'
         ];
 
-        $this->validate($request, $rules);
+        $attributes = [
+            'userCompany.name'      => 'user company name',
+            'userCompany.website'   => 'user company website',
+            'userCompany.phone'     => 'user company phone',
+            'userCompany.address'   => 'user company address',
+            'userCompany.state_id'  => 'user company state',
+            'userCompany.country_id'=> 'user company country',
+            'userCompany.niche_id'  => 'user company niche'
+        ];
+
+        $this->validate($request, $rules,[], $attributes);
 
         $user = $request->user();
         $user->fill([

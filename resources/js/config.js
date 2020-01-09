@@ -81,8 +81,12 @@ export const api = Object.assign(new URL(apiUrl), {
 
     campaign: campaign,
     setting:  setting,
+<<<<<<< HEAD
     shopify:  shopify,
     influencer: influencer,
 
+=======
+    shopify:  shopify
+>>>>>>> c2ae2f5527e10bc8312c976c06fe742fc737d269
 
 })

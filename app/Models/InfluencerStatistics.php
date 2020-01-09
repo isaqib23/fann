@@ -22,4 +22,5 @@ class InfluencerStatistics extends Model implements Transformable
      */
     protected $fillable = [];
 
+    protected $table = 'influencer_entire_statistics';
 }

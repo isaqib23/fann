@@ -3,7 +3,7 @@
         <div class="subtitle-1 mb-2 text-uppercase"><strong>Business Profile</strong></div>
         <v-card class="pa-6">
             <v-row class="mx-auto">
-                <v-form ref="form" @submit.prevent="submit" enctype="multipart/form-data">
+                <v-form ref="form" @submit.prevent="submit" enctype="multipart/form-data" lazy-validation v-model="valid">
                     <v-flex xl12 lg12 md12 sm12 sx12 class="mr-12">
                         <v-card-title>
                             <div class="subtitle-1 mb-2"><strong>Business Information</strong></div>
@@ -17,35 +17,44 @@
                                     <label class="font-weight-bold">First Name</label>
                                     <v-text-field
                                         v-model="user.first_name"
-                                        label="First Name"
+                                        :label="labels.first_name"
                                         solo
                                         class="mt-1 custom_dropdown"
+                                        :error-messages="errors.first_name"
+
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Last Name</label>
                                     <v-text-field
                                         v-model="user.last_name"
-                                        label="Last Name"
+                                        :label="labels.last_name"
                                         solo
                                         class="mt-1 custom_dropdown"
+                                        :error-messages="errors.last_name"
+
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
-                                    <label class="font-weight-bold">Email</label>
-                                    <v-text-field
-                                        v-model="user.email"
-                                        label="Email"
-                                        solo
-                                        class="mt-1 custom_dropdown"
-                                    ></v-text-field>
-                                </v-col>
+                                <label class="font-weight-bold">Email</label>
+                                <v-text-field
+                                    v-model="user.email"
+                                    :label="labels.email"
+                                    solo
+                                    class="mt-1 custom_dropdown"
+                                    :error-messages="errors.email"
+                                    :disabled="loading"
+                                ></v-text-field>
+                            </v-col>
                             </v-row>
 
                             <div class="subtitle-1 mb-2 black--text"><strong>Company Details</strong></div>
                             <v-row>
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Upload Logo</label>
+                                    <p  v-for="(error,key) in errors['logo']" class="error--text">{{error}}</p>
                                     <image-input v-model="file">
                                         <div slot="activator">
                                             <v-avatar size="175px" v-ripple v-if="!file.imageURL" class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
@@ -54,7 +63,9 @@
                                             <v-avatar size="175px" v-else class="mb-3" tile min-height="180" min-width="160" max-height="180" max-width="160">
                                                 <v-img
                                                     class="white--text align-end"
-                                                    :src="file.imageURL" alt="avatar">
+                                                    :src="file.imageURL"
+                                                    alt="avatar"
+                                                >
                                                 </v-img>
                                             </v-avatar>
                                         </div>
@@ -63,10 +74,13 @@
                                 <v-col cols="12" sm="4">
                                     <label class="font-weight-bold">Name</label>
                                     <v-text-field
-                                        label="Company Name"
+                                        :label="labels.name"
                                         solo
                                         class="mt-1 custom_dropdown"
                                         v-model="userCompany.name"
+                                        :error-messages="errors['userCompany.name']"
+
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -79,6 +93,9 @@
                                         solo
                                         class="mt-1 custom_dropdown"
                                         v-model="userCompany.website"
+                                        :error-messages="errors['userCompany.website']"
+
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -90,6 +107,9 @@
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
                                         v-model="userCompany.niche_id"
+                                        :error-messages="errors['userCompany.niche_id']"
+
+                                        :disabled="loading"
                                         item-text="name"
                                         item-value="id"
                                     ></v-autocomplete>
@@ -104,6 +124,9 @@
                                         solo
                                         class="mt-1 custom_dropdown"
                                         v-model="userCompany.phone"
+                                        :error-messages="errors['userCompany.phone']"
+
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -113,6 +136,9 @@
                                         solo
                                         class="mt-1 custom_dropdown"
                                         v-model="userCompany.timezone"
+                                        :error-messages="errors['userCompany.timezone']"
+
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-col>
                             </v-row>
@@ -126,6 +152,9 @@
                                         rows="7"
                                         class="custom_dropdown"
                                         v-model="userCompany.address"
+                                        :error-messages="errors['userCompany.address']"
+
+                                        :disabled="loading"
                                     ></v-textarea>
                                 </v-col>
                                 <v-col cols="12" sm="4">
@@ -138,8 +167,11 @@
                                         class="custom_dropdown"
                                         append-icon="keyboard_arrow_down"
                                         item-text="name"
-                                        @change="getStates(userCompany)"
+                                        @change="getStates({'country_id':$event})"
                                         item-value="id"
+                                        :error-messages="errors['userCompany.country_id']"
+
+                                        :disabled="loading"
                                     ></v-autocomplete>
                                     <label class="font-weight-bold">State</label>
                                     <v-autocomplete
@@ -151,6 +183,9 @@
                                         class="custom_dropdown"
                                         item-text="name"
                                         item-value="id"
+                                        :error-messages="errors['userCompany.state_id']"
+
+                                        :disabled="loading"
                                     ></v-autocomplete>
                                 </v-col>
                             </v-row>
@@ -158,7 +193,12 @@
 
                         <v-card-actions class="text-right float-right">
                             <v-btn class="caption mr-3 text-capitalize" large>Button</v-btn>
-                            <v-btn type="submit" color="primary" class="caption text-capitalize" large>Submit</v-btn>
+                            <v-btn
+                                type="submit"
+                                color="primary"
+                                class="caption text-capitalize"
+                                large
+                            >Submit</v-btn>
                         </v-card-actions>
                     </v-flex>
                 </v-form>
@@ -183,7 +223,7 @@
             user: {
                 first_name: null,
                 last_name: null,
-                email: null
+                email: null,
             },
             file: {
                 imageFile: null,
@@ -191,13 +231,15 @@
             },
         }),
 
-        computed: mapGetters({
-            auth: 'auth/user',
-            countries: 'settings/countries',
-            states: 'settings/states',
-            niches: 'settings/niches',
-            userCompany: 'settings/userCompany',
-        }),
+        computed: {
+            ...mapGetters({
+                auth: 'auth/user',
+                countries: 'settings/countries',
+                states: 'settings/states',
+                niches: 'settings/niches',
+                userCompany: 'settings/userCompany',
+            })
+        },
         methods: {
             ...mapActions({
                 getCountries: 'settings/getCountries',
@@ -210,23 +252,29 @@
                 this.file =  Object.assign(this.file, {"imageURL":'/images/'+this.userCompany.logo});
             },
             async submit() {
-                this.loading = true
-                this.user.userCompany = this.userCompany;
-                let formData = new FormData();
-                formData.append("user", JSON.stringify(this.user));
-                formData.append("logo", this.file.imageFile);
+                    this.loading = true
+                    this.user.userCompany = this.userCompany;
+                    let formData = new FormData();
+                    formData.append("user", JSON.stringify(this.user));
+                    formData.append("logo", this.file.imageFile);
 
-                let response = await this.updateProfile(formData);
-                if(response.status === 200) {
-                    this.$toast.success('Your profile successfully updated.')
-                } else {
-                    this.handleErrors(response.details)
-                }
-                this.loading = false
-
+                    let response = await this.updateProfile(formData);
+                    if (response.status === 200) {
+                        this.clearErrors();
+                        this.$toast.success('Your profile successfully updated.')
+                    } else {
+                        this.loading = true
+                        this.handleErrors(response.details)
+                    }
+                    this.loading = false
             }
         },
-       async mounted() {
+        created() {
+            this.form = Object.assign(this.user);
+            this.form.logo = null;
+            this.form.userCompany = Object.assign(this.userCompany);
+        },
+        async mounted() {
             this.user = Object.assign(this.user, this.auth);
             await this.getUserCompany();
             await this.getCountries();

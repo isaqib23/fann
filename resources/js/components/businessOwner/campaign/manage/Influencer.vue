@@ -18,7 +18,7 @@
         <v-flex xs12 md7 class="pa-2">
             <v-data-table
                 :headers="headers"
-                :items="desserts"
+                :items="influencer"
                 :single-expand="singleExpand"
                 :expanded.sync="expanded"
                 item-key="id"
@@ -42,11 +42,11 @@
                 <template v-slot:item.title="{ item }">
                     <v-list-item class="list_cards mx-0 px-0">
                     <v-list-item-avatar height="50" min-width="50" width="50" class="mr-3">
-                        <v-img :src="item.avatar"></v-img>
+                        <v-img src="/images/icons/user_placeholder.png"></v-img>
                     </v-list-item-avatar>
                         <v-list-item-content>
                         <div class="float_class">
-                            <div class="body-2 mb-2"><strong>{{item.title}}</strong>
+                            <div class="body-2 mb-2"><strong>{{item.assign_to.first_name+ ' '+item.assign_to.last_name}}</strong>
                                 <v-rating v-model="rating" size="7" small class="d-inline-block"></v-rating>
                             </div>
                         </div>
@@ -55,12 +55,45 @@
                 </template>
 
                 <template v-slot:item.status="{ item }">
-                    {{item.status}}
+                    Active
                     <v-icon class="overline ml-2" color="success">mdi-circle</v-icon>
                 </template>
                 <template v-slot:item.engRate="{ item }">
                     <div class="mb-0">
-                        <span>{{item.engRate}}</span>
+                        <span>
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'eng_rate')
+                            }}%
+                        </span>
+                    </div>
+                </template>
+
+                <template v-slot:item.comments="{ item }">
+                    <div class="mb-0">
+                        <span>
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'comment_count')
+                            }}
+                        </span>
+                    </div>
+                </template>
+
+                <template v-slot:item.likes="{ item }">
+                    <div class="mb-0">
+                        <span>
+                            {{
+                            placementStatistics(
+                                item.touch_point.placement_id,
+                                item.assign_to.statistics,
+                                'like_count')
+                            }}
+                        </span>
                     </div>
                 </template>
 
@@ -71,8 +104,8 @@
                             class="ml-n7"
                         >
                             <v-timeline-item
-                                v-for="n in 3"
-                                :key="n"
+                                v-for="(touchPoint, index) in influencerTouchPoint[getInfluencerTouchPoint()]"
+                                :key="index"
                                 :fill-dot="true"
                                 icon="mdi-check"
                                 icon-color="white"
@@ -85,20 +118,20 @@
                                             <v-row class="mx-auto">
                                                 <v-flex xl2 lg2 md2 sm2 xs2>
                                                     <v-list-item-avatar height="56" min-width="100%" width="100%" class="ma-0 number_avatar" color="primary">
-                                                        <span class="white--text">1</span>
+                                                        <span class="white--text">{{index+1}}</span>
                                                     </v-list-item-avatar>
                                                 </v-flex>
                                                 <v-flex xl8 lg8 md8 sm8 xs8>
                                                     <v-text-field
                                                         outlined
-                                                        label="Instagram post"
+                                                        :label="touchPoint.touch_point.name"
                                                         class="touch_field"
                                                         readonly
                                                     ></v-text-field>
                                                 </v-flex>
                                                 <v-flex xl2 lg2 md2 sm2 xs2>
                                                     <v-list-item-avatar height="56" min-width="45" width="45" class="ma-0 amount_avatar" color="grayLight">
-                                                        <span>$15</span>
+                                                        <span>${{touchPoint.touch_point.amount}}</span>
                                                     </v-list-item-avatar>
                                                 </v-flex>
                                             </v-row>
@@ -340,7 +373,8 @@
 </template>
 
 <script>
-    import EmojiPicker from 'vue-emoji-picker'
+    import EmojiPicker from 'vue-emoji-picker';
+    import {mapActions, mapGetters} from 'vuex';
     export default {
         components: {
             EmojiPicker,
@@ -364,109 +398,38 @@
                 { text: 'Comments', value: 'comments', class: 'head_class text-uppercase',sortable: false, },
                 { text: 'Likes', value: 'likes', class: 'head_class text-uppercase',sortable: false, },
             ],
-            desserts: [
-                {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'1',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-                },
-                {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'2',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-                },
-                {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'3',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-                },
-                {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'4',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-                },
-                {
-                    title: 'My Awesome Campaign 2019',
-                    tags: [
-                        'Pro Campaign',
-                        'Barter'
-                    ],
-                    status: "Active",
-                    comments: '125k',
-                    likes: '2.7k',
-                    engRate: '2.0',
-                    id:'5',
-                    avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg'
-                },
-            ],
+            influencerTouchPoint:[],
+            influencer:[],
             chats: [
                 { id:'1', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'2', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'3', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'4', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'5', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'6', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'7', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'8', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'9', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'10', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'11', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'12', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'13', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'14', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'15', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'16', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'17', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'18', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'19', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'20', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'21', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'22', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'23', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'24', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'25', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'26', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' },
-                { id:'27', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'start' },
-                { id:'28', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' }
-
+                { id:'2', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting', time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' }
             ]
         }),
         methods: {
+            ...mapActions({
+                getInfluencerAssignTouchPoint : 'campaignManagement/getInfluencerAssignTouchPoint'
+            }),
             insert(emoji) {
                 this.input += emoji
             },
+            getInfluencerTouchPoint(){
+                let response = _.keys(this.influencerTouchPoint)[0];
+                return response;
+            },
+            placementStatistics(id,statistics,field) {
+                let stat = _.find(statistics, ['placement_id', id]);
+                if(_.isNil(stat)) {
+                    return 0;
+                }
+                return stat[field];
+            },
+        },
+        async mounted() {
+            this.influencerTouchPoint = await this.getInfluencerAssignTouchPoint({
+                campaign_invite_id :   this.$router.history.current.params.slug,
+                user_id     :   this.$router.history.current.params.user
+            });
+            this.influencer.push(this.influencerTouchPoint[this.getInfluencerTouchPoint()][0]);
         }
     }
 </script>

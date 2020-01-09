@@ -4,13 +4,16 @@
 export const state = {
   campaignObjective               : {},
   campaignPlacement               : null,
-  campaignInformation             : null,
+  campaignInformation            : {
+      description                 : null,
+  },
   influencerSearchResults         : null,
   savedDispatchProduct            : null,
   savedBarterProduct              : null,
   savedTouchPoints                : [],
   touchPoint                    : {
       id                          : null,
+      name                        : null,
       caption                     : null,
       hashtags                    : null,
       mentions                    : null,
@@ -264,7 +267,7 @@ let CampaignAxios = class {
             .catch(err => {
                 return {
                     status : err.response.status,
-                    details : []
+                    details : err.response.data.errors
                 };
             });
     }

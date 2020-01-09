@@ -21,6 +21,8 @@ class CreateCampaignsTable extends Migration
             $table->string('name');
             $table->string('slug', 255);
             $table->text('description')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
+            $table->unsignedInteger('created_by_company_id')->nullable();
             $table->enum('status',['draft', 'active', 'pending', 'completed'])->default('draft');
             $table->unsignedInteger('primary_placement_id')->nullable();
             $table->unsignedInteger('touch_points')->default(0);
@@ -36,6 +38,8 @@ class CreateCampaignsTable extends Migration
 
             $table->foreign('primary_placement_id')->references('id')->on('placements');
             $table->foreign('objective_id')->references('id')->on('campaign_objectives');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('created_by_company_id')->references('id')->on('companies');
 		});
 	}
 

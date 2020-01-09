@@ -47,6 +47,20 @@ class TouchPointRequest extends BaseFormRequest
         return $rules;
     }
 
+    public function attributes()
+    {
+        $attributes = [
+            'touchPoint.caption'    => 'touch point caption',
+            'touchPoint.hashtags'   => 'touch point hashtags',
+            'touchPoint.mentions'   => 'touch point mentions',
+            'touchPoint.guideLines' => 'touch point guidelines',
+            'campaignInformation.description' => 'campaign description',
+            'touchPoint.name'                 => 'touch point name',
+            'touchPoint.dispatchProduct'      => 'touch point dispatch product'
+        ];
+        return $attributes;
+    }
+
     /**
      * @param array $rules
      * @return array

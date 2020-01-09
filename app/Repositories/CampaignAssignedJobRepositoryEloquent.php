@@ -4,16 +4,15 @@ namespace App\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\InfluencerCampaignStatisticsRepository;
-use App\Models\InfluencerCampaignStatistics;
-use App\Validators\InfluencerCampaignStatisticsValidator;
+use App\Contracts\CampaignAssignedJobRepository;
+use App\Models\CampaignAssignedJob;
 
 /**
  * Class InfluencerCampaignStatisticsRepositoryEloquent.
  *
  * @package namespace App\Repositories;
  */
-class InfluencerCampaignStatisticsRepositoryEloquent extends BaseRepository implements InfluencerCampaignStatisticsRepository
+class CampaignAssignedJobRepositoryEloquent extends BaseRepository implements CampaignAssignedJobRepository
 {
     /**
      * Specify Model class name
@@ -22,10 +21,10 @@ class InfluencerCampaignStatisticsRepositoryEloquent extends BaseRepository impl
      */
     public function model()
     {
-        return InfluencerCampaignStatistics::class;
+        return CampaignAssignedJob::class;
     }
 
-    
+
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,5 +33,5 @@ class InfluencerCampaignStatisticsRepositoryEloquent extends BaseRepository impl
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
-    
+
 }

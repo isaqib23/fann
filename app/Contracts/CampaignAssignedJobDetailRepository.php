@@ -9,7 +9,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  *
  * @package namespace App\Contracts;
  */
-interface InfluencerJobRepository extends RepositoryInterface
+interface CampaignAssignedJobDetailRepository extends RepositoryInterface
 {
     //
 }

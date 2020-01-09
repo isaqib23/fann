@@ -8,12 +8,14 @@
                     </v-card-title>
 
                     <v-textarea
-                        v-model="description"
+                        v-model="campaignInformation.description"
                         label="Write your campaign description here"
                         auto-grow
                         outlined
                         rows="5"
                         row-height="15"
+                        :error-messages="errors['campaignInformation.description']"
+                        :disabled="loading"
                     ></v-textarea>
                 </v-card>
             </v-flex>
@@ -43,6 +45,7 @@
                                 v-if="touchPoint.touchPointConditionalFields.touchPointTitle"
                                 :touchPoint="touchPoint"
                                 :paymentMethod="paymentMethod"
+                                :errorMessage="errors['touchPoint.name']"
                             ></touch-point-title-field>
 
                             <v-card-title>
@@ -64,6 +67,7 @@
                                     :selectedProduct="dispatchProduct"
                                     :selectedVariants="dispatchProductVariant"
                                     @selected-product="selectedProduct"
+                                    :errorMessage="errors['touchPoint.dispatchProduct']"
                                 ></products-search>
                             </v-row>
 
@@ -77,6 +81,7 @@
                                 <v-card-title>
                                     <div class="subtitle-1 mb-2"><strong>Suggested Caption</strong></div>
                                 </v-card-title>
+
                                 <v-textarea
                                     v-model="touchPoint.caption"
                                     label="Write suggested caption here!"
@@ -84,6 +89,8 @@
                                     outlined
                                     rows="5"
                                     row-height="15"
+                                    :error-messages="errors['touchPoint.caption']"
+                                    :disabled="loading"
                                 ></v-textarea>
                             </v-card>
 
@@ -109,6 +116,8 @@
                                                 solo
                                                 dense
                                                 class="custom_dropdown product_left_border"
+                                                :error-messages="errors['touchPoint.guideLines']"
+                                                :disabled="loading"
                                             ></v-text-field>
                                         </v-flex>
                                     </v-row>
@@ -158,6 +167,8 @@
                                         label="Fitness,Gym"
                                         prepend-icon="#"
                                         class="tag_field"
+                                        :error-messages="errors['touchPoint.hashtags']"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-flex>
                                 <v-flex lg6 sm6 m6 pl-3>
@@ -169,6 +180,8 @@
                                         label="Nike,Nuchey"
                                         prepend-icon="@"
                                         class="tag_field"
+                                        :error-messages="errors['touchPoint.mentions']"
+                                        :disabled="loading"
                                     ></v-text-field>
                                 </v-flex>
                             </v-layout>
@@ -240,6 +253,7 @@
     import TouchPointBrandField from './objectiveSelection/TouchPointBrandField';
     import shopifyProductsPredictiveSearch from "./objectiveSelection/shopifyProductsPredictiveSearch";
     import {mapGetters, mapActions, mapMutations} from 'vuex';
+    import Form from '~/mixins/form';
 
     export default {
         components: {
@@ -249,15 +263,16 @@
             TouchPointPostFormatField : TouchPointPostFormatField,
             TouchPointBrandField : TouchPointBrandField
         },
+        mixins: [Form],
         props : ["campObjective"],
         data ()  {
             return  {
+                loading               : false,
                 tabsLength            : 1,
                 currentTab            : 0,
                 guideLines            : 1,
                 model                 : 0,
                 e1                    : 0,
-                description           : null,
                 dispatchProduct       : null,
                 dispatchProductVariant: [],
                 barterProduct         : null,
@@ -275,7 +290,6 @@
                 menu2                 : false,
                 date                  : new Date().toISOString().substr(0, 10),
                 touchPointProducts    : [],
-                campaignDescription   : null,
                 caption               : '',
                 guideLineNumber       : 0,
                 paymentMethod         : {},
@@ -288,7 +302,7 @@
                     preTouchPoint       : null,
                     currentTouchPoint   : 0,
                     nextTouchPoint      : null
-                }
+                },
             }
         },
         computed: {
@@ -301,6 +315,11 @@
                 savedBarterProduct  : 'campaign/savedBarterProduct',
                 campaignInformation : 'campaign/campaignInformation'
             })
+        },
+        beforeMount(){
+            this.form.campaignInformation = Object.assign(this.campaignInformation);
+
+            this.form.touchPoint = Object.assign(this.touchPoint);
         },
         async created() {
             await this.getCampaignTouchPoint({slug:this.$router.currentRoute.params.slug});
@@ -369,6 +388,7 @@
                 let response =  await this.saveTouchPoint();
 
                 if (response.status === 200) {
+                    this.loading = false;
                     this.touchPoint.id = response.details.touch_point_id;
                     this.tabsLength = this.tabsLength + 1;
                     this.currentTab = this.currentTab + 1;
@@ -377,7 +397,12 @@
                     this.resetTouchPoint(JSON.parse(localStorage.getItem('touchPoint')));
                     this.setTouchPointFields();
                     this.guideLines = 1;
+                    this.clearErrors();
+                } else {
+                    this.loading = true;
+                    this.handleErrors(response.details)
                 }
+                this.loading = false;
             },
             removeTouchPoint() {
                 if (this.tabsLength === 1) {
@@ -460,26 +485,6 @@
                 },
                 immediate: true,
                 deep: true
-            },
-            'campaignInformation': {
-                handler: function(val) {
-                    let self = this;
-                    if(!_.isNil(val)) {
-                        self.description = val.description;
-                    }
-                },
-                immediate: true,
-                deep:true
-            },
-            'description': {
-                handler: function(val) {
-                    let self = this;
-                    if(!_.isNil(val)) {
-                        self.campaignInformation.description = val;
-                    }
-                },
-                immediate: true,
-                deep:true
             },
             'savedDispatchProduct' (val) {
                 if(!_.isNil(val.details)) {
@@ -572,8 +577,8 @@
         border-radius: 0px !important;
         margin-bottom: 0px !important;
     }
-    >>>.v-text-field__details{
-        display:none;
+    >>>.v-text-field__details {
+
     }
     .task_btn >>>.v-btn__content{
         font-size:10px;

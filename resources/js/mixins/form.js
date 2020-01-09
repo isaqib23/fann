@@ -9,8 +9,10 @@ export default {
     rules: {},
     errors: {}
   }),
-
   created() {
+      this.rules.required = (field) => ((v) => !!v || 'The ' + (this.labels && this.labels[field] && this.labels[field].toLowerCase() + ' ') + 'field is required')
+    },
+  mounted() {
     for (let key in this.form) {
       if (this.form[key] !== null && typeof this.form[key] === 'object') {
         for (let i in this.form[key]) {
@@ -29,7 +31,6 @@ export default {
       }
     }
 
-    this.rules.required = (field) => ((v) => !!v || 'The ' + (this.labels && this.labels[field] && this.labels[field].toLowerCase() + ' ') + 'field is required')
   },
 
   methods: {

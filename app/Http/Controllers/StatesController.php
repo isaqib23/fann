@@ -46,9 +46,7 @@ class StatesController extends Controller
      */
     public function index(Request $request)
     {
-
         $states = $this->repository->findByField('country_id',$request->input('country_id'));
-
         return response()->json([
             'states' => $states,
         ]);
