@@ -133,6 +133,9 @@
                         {title: 'Campaigns', icon: 'mdi-account', to: {name: 'influencer-campaign'}, exact: false}
                     ],
                     [
+                        {title: 'Invites', icon: 'mdi-email-receive', to: {name: 'influencer-campaign-invites'}, exact: false}
+                    ],
+                    [
                         {title: 'Manage', icon: 'mdi-receipt', to: {name: 'influencer-manage-campaign'}, exact: false}
                     ],
                     [

@@ -26,8 +26,6 @@ class CampaignAssignedJobDetail extends Model implements Transformable
         'assign_to_id',
         'campaign_invite_id',
         'assign_by_id',
-        'campaign_id',
-        'placement_id',
         'campaign_touch_point_id',
         'campaign_invite_id',
         'status',

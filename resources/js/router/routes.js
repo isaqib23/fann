@@ -241,9 +241,19 @@ export default [
                     component : require('$comp/influencer/campaign/campaign').default,
                 },
                 {
-                    path      : 'organise/campaigns/detail',
+                    path      : 'organise/campaigns/detail/:slug',
                     name      : 'influencer-campaign-detail',
                     component : require('$comp/influencer/campaign/campaignDetail').default,
+                },
+                {
+                    path      : 'organise/campaign/invites',
+                    name      : 'influencer-campaign-invites',
+                    component : require('$comp/influencer/campaign/invite/invite').default,
+                },
+                {
+                    path      : 'organise/campaigns/invite/detail/:sender/:invite/:slug',
+                    name      : 'influencer-campaign-invite-detail',
+                    component : require('$comp/influencer/campaign/invite/inviteDetail').default,
                 },
                 {
                     path      : 'organise/manage/campaign',

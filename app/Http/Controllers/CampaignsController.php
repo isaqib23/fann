@@ -482,12 +482,71 @@ class CampaignsController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function getActiveCampaigns(Request $request)
     {
-        $campaigns = $this->cam->getActiveCampaigns($request);
+        $campaigns = $this->repository->getActiveCampaigns($request);
 
         return response()->json([
             'details' => $campaigns,
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getCampaignInvitesByInfluencer(Request $request)
+    {
+        $campaigns = $this->campaignInviteRepository->getCampaignInvitesByInfluencer($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function rejectCampaignInvite(Request $request)
+    {
+        $this->campaignInviteRepository->rejectCampaignInvite($request);
+
+        return response()->json([
+            'details' => true,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function acceptCampaignInvite(Request $request)
+    {
+        $this->campaignInviteRepository->acceptCampaignInvite($request);
+
+        return response()->json([
+            'details' => true,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function cloneTouchPoint(Request $request)
+    {
+        $campaigns = $this->campaignAssignedJobDetailsRepository->cloneTouchPoint($request);
+
+        $request->merge([
+            'user_id'               => $campaigns->assign_to_id,
+            'campaign_invite_id'    => $campaigns->campaign_invite_id
+        ]);
+
+        return $this->getInfluencerAssignTouchPoint($request);
     }
 }

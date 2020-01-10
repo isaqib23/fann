@@ -108,6 +108,14 @@ Route::group(['middleware' => ['jwt']], function() {
             Route::post('getCampaignProposals', 'CampaignsController@getCampaignProposals');
             Route::post('getInfluencerAssignTouchPoint', 'CampaignsController@getInfluencerAssignTouchPoint');
             Route::post('getInfluencerCampaign', 'CampaignsController@getInfluencerCampaign');
+            Route::post('cloneTouchPoint', 'CampaignsController@cloneTouchPoint');
+        });
+
+        // ----- Campaign Invite related api's
+        Route::prefix('/invite')->group(function () {
+            Route::post('getCampaignInvitesByInfluencer', 'CampaignsController@getCampaignInvitesByInfluencer');
+            Route::post('rejectCampaignInvite', 'CampaignsController@rejectCampaignInvite');
+            Route::post('acceptCampaignInvite', 'CampaignsController@acceptCampaignInvite');
         });
 
     });

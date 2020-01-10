@@ -56,6 +56,12 @@ export const actions = {
         let response =  await axiosRequest.post('campaign.getActiveCampaigns', payload);
 
         return response.details;
+    },
+
+    async cloneTouchPoint({commit}, payload) {
+        let response =  await axiosRequest.post('campaign.cloneTouchPoint', payload);
+
+        return response.details;
     }
 }
 

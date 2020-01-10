@@ -156,7 +156,7 @@
                                                         <v-list-item
                                                             v-for="(drop, index) in dropdown"
                                                             :key="index"
-                                                            @click="menuClick(drop)"
+                                                            @click="menuClick(drop,item.id,touchPoint.touch_point.id)"
                                                             class="bottom_border"
                                                         >
                                                             <v-list-item-title v-html="drop.title" class="text-center"></v-list-item-title>
@@ -406,11 +406,15 @@
         }),
         methods: {
             ...mapActions({
-                getInfluencerAssignTouchPoint : 'campaignManagement/getInfluencerAssignTouchPoint'
+                getInfluencerAssignTouchPoint : 'campaignManagement/getInfluencerAssignTouchPoint',
+                cloneTouchPoint               : 'campaignManagement/cloneTouchPoint'
             }),
-            menuClick(menu) {
+            async menuClick(menu, jobId, touchPointId) {
                 if(menu.slug === 'clone-this-touch-point'){
-
+                    this.influencerTouchPoint = await this.cloneTouchPoint({
+                        'assigned_job_id'         : jobId,
+                        'touch_point_id'          : touchPointId
+                    })
                 }
             },
             insert(emoji) {

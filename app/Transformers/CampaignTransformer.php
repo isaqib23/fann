@@ -16,18 +16,22 @@ class CampaignTransformer extends TransformerAbstract
     /**
      * Transform the Campaign entity.
      *
-     * @param \App\Models\Campaign $model
-     *
+     * @param Campaign $campaign
      * @return array
      */
     public function transform(Campaign $campaign)
     {
         $return['campaignInformation'] = [
-            'id'            => (int) $campaign->id,
-            'name'          => (string) $campaign->name,
-            'slug'          => (string) $campaign->slug,
-            'description'   => (string) $campaign->description,
-            'objective_id'  => (int) $campaign->objective_id,
+            'id'                    => (int) $campaign->id,
+            'name'                  => (string) $campaign->name,
+            'slug'                  => (string) $campaign->slug,
+            'description'           => (string) $campaign->description,
+            'objective_id'          => (int) $campaign->objective_id,
+            'primary_placement_id'  => (int) $campaign->primary_placement_id,
+            'created_by_company_id' => (int) $campaign->created_by_company_id,
+            'company_name'          => (string) $campaign->company->name,
+            'company_address'       => (string) $campaign->company->address,
+            'company_logo'          => (string) $campaign->company->logo
         ];
 
         // campaign objective Presentor
@@ -105,7 +109,7 @@ class CampaignTransformer extends TransformerAbstract
     {
         $return['campaignObjective'] = [
             'objective_id'   => $campaign->objective->id,
-            'name'          => $campaign->objective->slug,
+            'name'          => $campaign->objective->name,
             'slug'          => $campaign->objective->slug
         ];
         return $return;
@@ -122,6 +126,7 @@ class CampaignTransformer extends TransformerAbstract
             'additionalPayAsAmount'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'barter') ? (boolean)$campaign['payment']->is_primary : false,
             'additionalPayAsBarter'     => (!is_null($campaign['payment']) && $campaign['payment']->paymentType->slug == 'paid') ? (boolean)$campaign['payment']->is_primary : false,
             'paymentType'               => (!is_null($campaign['payment'])) ? $campaign['payment']->paymentType->slug : null,
+            'paymentTypeName'           => (!is_null($campaign['payment'])) ? $campaign['payment']->paymentType->name : null,
             'platform'                  => (!is_null($campaign['payment'])) ? $campaign->primary_placement_id : null,
         ];
         return $return;

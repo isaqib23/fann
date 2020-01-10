@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Transformers\InfluencerAssignedTouchPointTransformer;
+use Illuminate\Http\Request;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignAssignedJobDetailRepository;
 use App\Models\CampaignAssignedJobDetail;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class InfluencerJobRepositoryEloquent.
@@ -36,6 +38,23 @@ class CampaignAssignedJobDetailRepositoryEloquent extends BaseRepository impleme
     }
 
     /**
+     * @param Request $request
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($request)
+    {
+        return $this->create(
+            [
+                'assigned_job_id'           => $request->assigned_job_id,
+                'assign_by_id'              => $request->sender_id,
+                'assign_to_id'              => $request->user_id,
+                'campaign_invite_id'        => $request->invite_id,
+                'campaign_touch_point_id'   => $request->touch_point_id
+            ]);
+    }
+
+    /**
      * @param $request
      * @return mixed
      */
@@ -62,5 +81,26 @@ class CampaignAssignedJobDetailRepositoryEloquent extends BaseRepository impleme
         ->findWhere([
             'assign_to_id' => $request->input('user_id'),
         ])->groupBy('campaign_invite_id');
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function cloneTouchPoint($request)
+    {
+        $touchPoint = $this->findWhere([
+           'assigned_job_id'            => $request->assigned_job_id,
+           'campaign_touch_point_id'    => $request->touch_point_id
+        ])->first();
+
+        $request->merge([
+            'invite_id'    => $touchPoint->campaign_invite_id,
+            'sender_id'          => $touchPoint->assign_by_id,
+            'user_id'          => $touchPoint->assign_to_id
+        ]);
+
+        return $this->store($request);
     }
 }

@@ -3,10 +3,12 @@
 namespace App\Repositories;
 
 use App\Transformers\InfluencerAssignedTouchPointTransformer;
+use Illuminate\Http\Request;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\CampaignAssignedJobRepository;
 use App\Models\CampaignAssignedJob;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class InfluencerCampaignStatisticsRepositoryEloquent.
@@ -33,6 +35,25 @@ class CampaignAssignedJobRepositoryEloquent extends BaseRepository implements Ca
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     * @throws ValidatorException
+     */
+    public function store($request)
+    {
+        return $this->updateOrCreate(
+            [
+                'campaign_invite_id'  => $request->invite_id
+            ],
+            [
+                'placement_id'        => $request->placement_id,
+                'user_id'             => $request->user_id,
+                'campaign_id'         => $request->campaign_id,
+                'campaign_invite_id'  => $request->invite_id
+            ]);
     }
 
     /**

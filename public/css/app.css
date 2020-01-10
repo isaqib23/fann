@@ -8619,6 +8619,146 @@ and (-webkit-min-device-pixel-ratio: 1) {
 .hr_divider[data-v-0d3afcf9] {
     border-top: 1px solid #cccccc;
 }
+[data-v-0d3afcf9] .nav_control .v-btn__content .v-icon{
+    font-size: 48px;
+    color: #fff;
+}
+[data-v-0d3afcf9] .nav_right{
+    position: absolute;
+    bottom: 140px;
+    right:110px
+}
+[data-v-0d3afcf9] .nav_left{
+    position: absolute;
+    bottom: 140px;
+    left:40px
+}
+[data-v-0d3afcf9] .v-rating .v-icon{
+    padding:0px;
+}
+/** Ripples */
+/** Elements */
+.theme--light.v-btn-toggle {
+  background: #FFFFFF;
+  color: rgba(0, 0, 0, 0.87);
+}
+.theme--light.v-btn-toggle .v-btn.v-btn {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+.theme--light.v-btn-toggle .v-btn.v-btn:focus:not(:active) {
+  border-color: rgba(0, 0, 0, 0.26);
+}
+.theme--light.v-btn-toggle .v-btn.v-btn .v-icon {
+  color: #000000;
+}
+
+.theme--dark.v-btn-toggle {
+  background: #424242;
+  color: #FFFFFF;
+}
+.theme--dark.v-btn-toggle .v-btn.v-btn {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+.theme--dark.v-btn-toggle .v-btn.v-btn:focus:not(:active) {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.theme--dark.v-btn-toggle .v-btn.v-btn .v-icon {
+  color: #FFFFFF;
+}
+
+.v-btn-toggle {
+  border-radius: 2px;
+  display: inline-flex;
+  max-width: 100%;
+}
+.v-btn-toggle > .v-btn {
+  opacity: 0.8;
+}
+.v-btn-toggle > .v-btn--active {
+  color: inherit;
+  opacity: 1;
+}
+.v-btn-toggle > .v-btn.v-size--default {
+  height: 48px;
+  min-height: 0;
+  min-width: 48px;
+  padding: 0 12px;
+}
+.v-btn-toggle > .v-btn.v-btn {
+  border-radius: 0;
+  border-style: solid;
+  border-width: thin;
+  box-shadow: none;
+}
+.v-btn-toggle > .v-btn.v-btn:first-child {
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+.v-btn-toggle > .v-btn.v-btn:last-child {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+.v-btn-toggle > .v-btn.v-btn:after {
+  display: none;
+}
+
+.v-btn-toggle--rounded {
+  border-radius: 24px;
+}
+[data-v-d65cbaf2] .custom_dropdown .v-input__control{
+    min-height: 45px !important;
+}
+[data-v-d65cbaf2] .custom_dropdown .v-input__control > .v-input__slot{
+    box-shadow: none !important;
+    border: 1px solid #cccccc;
+}
+[data-v-d65cbaf2] .v-text-field__details {
+    display: none !important;
+}
+[data-v-d65cbaf2] .brand_logo{
+    margin-top: -24px;
+    margin-left: 24px;
+    border-radius: 10px;
+}
+.img-container[data-v-d65cbaf2] {
+    text-align: center;
+    display: block;
+}
+
+.description_wrapper[data-v-2e791738]{
+    background:linear-gradient(90deg, #ee6f6e 0%,#fea57e 100% );
+    padding: 50px 90px;
+}
+[data-v-2e791738] .brand_logo{
+    margin-left: -65px;
+    border-radius: 10px;
+}
+[data-v-2e791738] .brand_logo2{
+    border-radius: 5px;
+}
+[data-v-2e791738] .guide_list .v-list-item{
+    min-height: 35px !important;
+}
+.hr_divider[data-v-2e791738] {
+    border-top: 1px solid #cccccc;
+}
+[data-v-2e791738] .nav_control .v-btn__content .v-icon{
+    font-size: 48px;
+    color: #fff;
+}
+[data-v-2e791738] .nav_right{
+    position: absolute;
+    bottom: 140px;
+    right:110px
+}
+[data-v-2e791738] .nav_left{
+    position: absolute;
+    bottom: 140px;
+    left:40px
+}
+[data-v-2e791738] .v-rating .v-icon{
+    padding:0px;
+}
 
 .card_wrapper[data-v-0f69c29c]{
     width: 90%;
@@ -9686,74 +9826,6 @@ v-tabs[data-v-64a614ec] {
 }
 .v-breadcrumbs--large li .v-icon {
   font-size: 16px;
-}/** Ripples */
-/** Elements */
-.theme--light.v-btn-toggle {
-  background: #FFFFFF;
-  color: rgba(0, 0, 0, 0.87);
-}
-.theme--light.v-btn-toggle .v-btn.v-btn {
-  border-color: rgba(0, 0, 0, 0.12) !important;
-}
-.theme--light.v-btn-toggle .v-btn.v-btn:focus:not(:active) {
-  border-color: rgba(0, 0, 0, 0.26);
-}
-.theme--light.v-btn-toggle .v-btn.v-btn .v-icon {
-  color: #000000;
-}
-
-.theme--dark.v-btn-toggle {
-  background: #424242;
-  color: #FFFFFF;
-}
-.theme--dark.v-btn-toggle .v-btn.v-btn {
-  border-color: rgba(255, 255, 255, 0.12) !important;
-}
-.theme--dark.v-btn-toggle .v-btn.v-btn:focus:not(:active) {
-  border-color: rgba(255, 255, 255, 0.3);
-}
-.theme--dark.v-btn-toggle .v-btn.v-btn .v-icon {
-  color: #FFFFFF;
-}
-
-.v-btn-toggle {
-  border-radius: 2px;
-  display: inline-flex;
-  max-width: 100%;
-}
-.v-btn-toggle > .v-btn {
-  opacity: 0.8;
-}
-.v-btn-toggle > .v-btn--active {
-  color: inherit;
-  opacity: 1;
-}
-.v-btn-toggle > .v-btn.v-size--default {
-  height: 48px;
-  min-height: 0;
-  min-width: 48px;
-  padding: 0 12px;
-}
-.v-btn-toggle > .v-btn.v-btn {
-  border-radius: 0;
-  border-style: solid;
-  border-width: thin;
-  box-shadow: none;
-}
-.v-btn-toggle > .v-btn.v-btn:first-child {
-  border-top-left-radius: inherit;
-  border-bottom-left-radius: inherit;
-}
-.v-btn-toggle > .v-btn.v-btn:last-child {
-  border-top-right-radius: inherit;
-  border-bottom-right-radius: inherit;
-}
-.v-btn-toggle > .v-btn.v-btn:after {
-  display: none;
-}
-
-.v-btn-toggle--rounded {
-  border-radius: 24px;
 }/** Ripples */
 /** Elements */
 .theme--light.v-calendar-events .v-event-timed {
