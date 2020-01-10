@@ -262,24 +262,40 @@
                 }
             }
         },
-        computed: {
+       computed: {
             ...mapGetters({
                 campaignAssignedJob: 'campaignManagement/campaignAssignedJob',
                 auth: 'auth/user'
             })
         },
-        mounted() {
+        async mounted() {
+            console.info(await this.campaignAssignedJob, "inside of mounted");
         },
-        created() {
+         created() {
             let self = this;
-            Echo.channel('campaignChat').listen('CampaignChatEvent', (data) => {
+          /*  Echo.private(`campaignJobChat.${self.campaignAssignedJobObj.id}`).listen('CampaignChatEvent', (data) => {
                 if(!_.isNil(data.content)) {
                     self.chats.push({ text: data.content, time:'7-19-2019 (3w ago)', img:'https://cdn.vuetifyjs.com/images/lists/1.jpg', align:'end' });
                 }
-            });
+            });*/
+
             /*.listenForWhisper('typing', (e) => {
                     console.log(e.name, "is Typing");
             });*/
+console.info(  this.campaignAssignedJob,'upper');
+
+       /*     setTimeout(() => {
+                // your action
+                console.info('inside') ;
+                console.info(self.campaignAssignedJobObj, "inside of created");
+            }, 3000)
+            _.debounce(function(){
+                console.info('chall jaa');
+            }, 1000);
+            _.debounce(() => {
+                console.log('I only get fired once every two seconds, max!')
+                console.info(self.campaignAssignedJobObj, "inside of created");
+            }, 2000)*/
         },
         watch: {
             input(value) {
@@ -289,16 +305,16 @@
                     });*/
                 }
             },
-            'campaignAssignedJob': {
-                handler: function(object) {
-                    let self = this;
-                    if(!_.isNil(object)) {
-                        self.campaignAssignedJobObj = _.find(object, ['campaign_invite_id', Number(this.$router.history.current.params.slug)]);
-                        this.initiateCampaignChat(self.campaignAssignedJobObj);
-                        console.info( self.campaignAssignedJobObj, "chat module BO");
-                    }
+            /* campaignAssignedJob(object) {
+                let self = this;
+                if (!_.isNil(object)) {
+                    console.info(object,  'watcher');
+                    //_.find(object, ['campaign_invite_id', Number(self.$router.history.current.params.slug)]);
+                    self.campaignAssignedJobObj = _.find(object, ['campaign_invite_id', Number(self.$router.history.current.params.slug)]);
+                    //this.initiateCampaignChat(self.campaignAssignedJobObj);
+                    console.info(self.campaignAssignedJobObj, "chat module BO");
                 }
-            }
+            }*/
         }
     }
 </script>

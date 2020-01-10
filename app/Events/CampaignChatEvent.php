@@ -16,31 +16,45 @@ class CampaignChatEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * @var
-     */
-    private $chatTo;
-
-    /**
-     * @var
-     */
-    private $chatBy;
-
-    /**
      * @var null
      */
     private $content;
 
     /**
-     * CampaignChatEvent constructor.
-     *
-     * @param $chatTo
-     * @param $chatBy
-     * @param null $content
+     * @var
      */
-    public function __construct($chatTo, $chatBy, $content = null)
+    private $campaignAssignedJob;
+
+    /**
+     * @var
+     */
+    private $campaignId;
+
+    /**
+     * @var
+     */
+    private $placementId;
+
+    /**
+     * @var
+     */
+    private $participants;
+
+    /**
+     * InitiateCampaignChatEvent constructor.
+     *
+     * @param $campaignAssignedJob
+     * @param $campaignId
+     * @param $placementId
+     * @param $participants
+     * @param $content
+     */
+    public function __construct($campaignAssignedJob, $campaignId, $placementId, $participants, $content)
     {
-        $this->chatTo = $chatTo;
-        $this->chatBy = $chatBy;
+        $this->campaignAssignedJob = $campaignAssignedJob;
+        $this->campaignId = $campaignId;
+        $this->placementId = $placementId;
+        $this->participants = $participants;
         $this->content = $content;
 
         $this->dontBroadcastToCurrentUser();
@@ -53,7 +67,7 @@ class CampaignChatEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('campaignChat');
+        return new PrivateChannel('campaignJobChat.' . $this->campaignAssignedJob);
     }
 
     /**
@@ -64,9 +78,11 @@ class CampaignChatEvent implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'chatTo' => $this->chatTo,
-            'chatBy' => $this->chatBy,
-            'content' => $this->content
+            'campaignAssignedJob' => $this->campaignAssignedJob,
+            'campaignId'          => $this->campaignId,
+            'placementId'         => $this->placementId,
+            'participants'        => $this->participants,
+            'content'             => $this->content
         ];
     }
 }
