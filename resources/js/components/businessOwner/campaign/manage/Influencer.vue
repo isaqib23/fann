@@ -156,7 +156,7 @@
                                                         <v-list-item
                                                             v-for="(drop, index) in dropdown"
                                                             :key="index"
-                                                            @click=""
+                                                            @click="menuClick(drop)"
                                                             class="bottom_border"
                                                         >
                                                             <v-list-item-title v-html="drop.title" class="text-center"></v-list-item-title>
@@ -385,11 +385,11 @@
             expanded: [],
             singleExpand: true,
             dropdown: [
-                { title: '<strong>Status</strong> : In Progress' },
-                { title: 'Clone this Touchpoint' },
-                { title: 'Add new Touchpoint' },
-                { title: 'Pause This Touchpoint' },
-                { title: 'Delete' },
+                { title: '<strong>Status</strong> : In Progress', slug: 'status' },
+                { title: 'Clone this Touchpoint', slug: 'clone-this-touch-point' },
+                { title: 'Add new Touchpoint', slug: 'add-new-touch-point' },
+                { title: 'Pause This Touchpoint', slug: 'pause-this-touch-point' },
+                { title: 'Delete', slug: 'delete' },
             ],
             headers: [
                 { text: 'Influencers', align: 'left', value: 'title', class: 'head_class text-uppercase',sortable: false,},
@@ -408,6 +408,11 @@
             ...mapActions({
                 getInfluencerAssignTouchPoint : 'campaignManagement/getInfluencerAssignTouchPoint'
             }),
+            menuClick(menu) {
+                if(menu.slug === 'clone-this-touch-point'){
+
+                }
+            },
             insert(emoji) {
                 this.input += emoji
             },
