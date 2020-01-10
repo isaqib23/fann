@@ -117,7 +117,7 @@ class CampaignRepositoryEloquent extends BaseRepository implements CampaignRepos
             'touchPoint' => function($query){
                 $query->with(['additional','media','placementAction']);
             },
-            'objective'
+            'objective','company'
         ])
             ->findWhere(['slug' => $request->input('slug')])
             ->first();

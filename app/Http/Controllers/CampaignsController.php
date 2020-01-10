@@ -482,12 +482,51 @@ class CampaignsController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function getActiveCampaigns(Request $request)
     {
-        $campaigns = $this->cam->getActiveCampaigns($request);
+        $campaigns = $this->repository->getActiveCampaigns($request);
 
         return response()->json([
             'details' => $campaigns,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getCampaignInvitesByInfluencer(Request $request)
+    {
+        $campaigns = $this->campaignInviteRepository->getCampaignInvitesByInfluencer($request);
+
+        return response()->json([
+            'details' => $campaigns,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function rejectCampaignInvite(Request $request)
+    {
+        $this->campaignInviteRepository->rejectCampaignInvite($request);
+
+        return response()->json([
+            'details' => true,
+        ]);
+    }
+
+    public function acceptCampaignInvite(Request $request)
+    {
+        $this->campaignInviteRepository->acceptCampaignInvite($request);
+
+        return response()->json([
+            'details' => true,
         ]);
     }
 }

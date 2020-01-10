@@ -17,7 +17,10 @@ let campaign = {
     getCampaignById               : 'manage/getCampaignById',
     getCampaignProposals          : 'manage/getCampaignProposals',
     getInfluencerAssignTouchPoint : 'manage/getInfluencerAssignTouchPoint',
-    getInfluencerCampaign         : 'manage/getInfluencerCampaign'
+    getInfluencerCampaign         : 'manage/getInfluencerCampaign',
+    getCampaignInvitesByInfluencer: 'invite/getCampaignInvitesByInfluencer',
+    rejectCampaignInvite          : 'invite/rejectCampaignInvite',
+    acceptCampaignInvite          : 'invite/acceptCampaignInvite'
 };
 
 export default campaign;

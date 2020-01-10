@@ -110,6 +110,13 @@ Route::group(['middleware' => ['jwt']], function() {
             Route::post('getInfluencerCampaign', 'CampaignsController@getInfluencerCampaign');
         });
 
+        // ----- Campaign Invite related api's
+        Route::prefix('/invite')->group(function () {
+            Route::post('getCampaignInvitesByInfluencer', 'CampaignsController@getCampaignInvitesByInfluencer');
+            Route::post('rejectCampaignInvite', 'CampaignsController@rejectCampaignInvite');
+            Route::post('acceptCampaignInvite', 'CampaignsController@acceptCampaignInvite');
+        });
+
     });
 
     // ----- User related api's

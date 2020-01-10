@@ -23,7 +23,7 @@ class CampaignAssignedJob extends Model implements Transformable
      * @var array
      */
     protected $fillable = [
-        'platform_id',
+        'placement_id',
         'campaign_invite_id',
         'user_id',
         'campaign_id',

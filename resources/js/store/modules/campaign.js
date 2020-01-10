@@ -156,6 +156,10 @@ export const actions = {
     },
     async collectInvitation({commit, state}, payload) {
         let response =  await CampaignAxios.saveInvitation( payload );
+        if (response.status == 200) {
+            return true;
+        }
+        return false;
     },
     saveChatBox({commit}, payload) {
         commit('setChatBox', payload);
@@ -196,6 +200,21 @@ export const actions = {
 
         let response = await CampaignAxios.updateCampaign(payload);
         return response;
+    },
+    async getCampaignInvitesByInfluencer({commit, state},payload) {
+
+        let response = await axiosRequest.post('campaign.getCampaignInvitesByInfluencer', payload);
+        return response.details;
+    },
+    async rejectCampaignInvite({commit, state},payload) {
+
+        let response = await axiosRequest.post('campaign.rejectCampaignInvite', payload);
+        return response.details;
+    },
+    async acceptCampaignInvite({commit, state},payload) {
+
+        let response = await axiosRequest.post('campaign.acceptCampaignInvite', payload);
+        return response.details;
     }
 
 }
